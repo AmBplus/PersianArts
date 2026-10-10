@@ -61,8 +61,8 @@ node work/persian/progress.mjs          # refresh PROGRESS.md / progress.json fr
    `Workflow({scriptPath: "<repo>/work/persian/workflow/persian-rtl-localize.js", args: {slugs: [...], pool: 6, review: true, root: "<repo absolute path>"}})`
 3. When it finishes: read the result (fonts, issues, concerns, **lessons**); spot-check a few fa vs orig stills yourself;
    merge new lessons into `docs/PERSIAN-LOCALIZATION-LESSONS.md`; run `node work/persian/progress.mjs`.
-4. Commit and push to `feat/persian-shotcraft` (never `main`: it auto-deploys the public library).
-   Keep `pwsh -File work/persian/autosync.ps1` running in the background during batches: every 10 min it regenerates
+4. Commit and push to `main` (owner's decision 2026-10-11; `main` deploys the library on `library/**` changes).
+   Keep `pwsh -File work/persian/autosync.ps1` running in the background during batches: every 5 min it regenerates
    progress, commits only this project's paths and pushes over SSH (`git@github.com:AmBplus/PersianArts.git`), so nothing is
    lost if the session hits a usage limit. HTTPS push needs an interactive login on this machine; SSH works non-interactively.
 5. Repeat until all 157 are approved/fixed. Then: package the Persian MP4s into `library/media/shotcraft/<card>/v<n>/`

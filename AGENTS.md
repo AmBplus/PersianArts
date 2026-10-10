@@ -27,5 +27,7 @@ To **resume the shotcraft → Persian project**, start with [`docs/PERSIAN-SHOTC
 
 ## Git
 
-- `main` auto-deploys the library to GitHub Pages (`.github/workflows/deploy-library.yml` on `library/**`). Do not push
-  unverified media or reference renders of upstream code to `main`; work on a feature branch.
+- The owner decided (2026-10-11) to work on `main` directly. `main` auto-deploys the library to GitHub Pages
+  (`.github/workflows/deploy-library.yml` on `library/**`), so be deliberate about changes under `library/`.
+- Push over SSH (`git@github.com:AmBplus/PersianArts.git`); HTTPS needs an interactive login on the owner's machine.
+- During long batches keep `pwsh -File work/persian/autosync.ps1` running (commit + push of this project's paths every 5 min).

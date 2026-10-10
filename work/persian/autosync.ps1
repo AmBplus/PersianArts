@@ -1,11 +1,11 @@
 # Periodic commit + push of the Persian shotcraft work so nothing is lost if a session stops (usage limit, crash).
-# Stages ONLY this project's paths (never the owner's unrelated changes) and pushes the feature branch over SSH.
+# Stages ONLY this project's paths (never the owner's unrelated changes) and pushes the current work branch (default main) over SSH.
 # Usage (repo root):  pwsh -File work/persian/autosync.ps1 [-IntervalSec 600] [-Once]
-param([int]$IntervalSec = 600, [switch]$Once)
+param([int]$IntervalSec = 300, [switch]$Once, [string]$Branch = 'main')
 $ErrorActionPreference = 'Continue'
 Set-Location (Resolve-Path "$PSScriptRoot\..\..")
 $remote = 'git@github.com:AmBplus/PersianArts.git'
-$branch = 'feat/persian-shotcraft'
+$branch = $Branch  # owner decided (2026-10-11) to work on main directly
 $paths = @('work/persian', 'docs/PERSIAN-LOCALIZATION-LESSONS.md', 'docs/PERSIAN-SHOTCRAFT-HANDOFF.md', 'AGENTS.md', 'CLAUDE.md')
 while ($true) {
   if ((git branch --show-current) -eq $branch) {
