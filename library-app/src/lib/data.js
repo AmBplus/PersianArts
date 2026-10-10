@@ -16,11 +16,26 @@ export const SOURCE_FA = {
 const faDigits = (n) => String(n).replace(/\d/g, (d) => "۰۱۲۳۴۵۶۷۸۹"[d]);
 export const faNum = faDigits;
 
+// برچسب‌های دسته در video-shotcraft (tags) → نام فارسی دسته؛ یک کارت می‌تواند چند دسته داشته باشد
+// (همان منطق library.html: دستهٔ اصلی + برچسب‌های frontmatter) تا شمارش‌ها با صفحهٔ مرجع برابر بماند.
+const TAG_FA = {
+  "ui-entrance": "ورود عناصر",
+  typography: "تایپوگرافی",
+  effects: "افکت",
+  transition: "ترنزیشن",
+  camera: "دوربین",
+  opening: "شروع و برند",
+  interaction: "تعامل",
+  data: "داده و نمودار",
+  rhythm: "ریتم",
+  outro: "پایان",
+};
+
 function countBy(items, key) {
   const m = new Map();
   for (const it of items) {
-    const k = it[key] || "سایر";
-    m.set(k, (m.get(k) || 0) + 1);
+    const ks = key === "category" ? it.cats : [it[key] || "سایر"];
+    for (const k of ks) m.set(k, (m.get(k) || 0) + 1);
   }
   return [...m.entries()].map(([name, count]) => ({ name, count })).sort((a, b) => b.count - a.count);
 }
@@ -56,6 +71,7 @@ export async function loadLibrary() {
     title: m.titleFa,
     desc: m.descFa,
     category: "تایپوگرافی موشن",
+    cats: ["تایپوگرافی موشن"],
     source: "typography",
     tags: m.tags || [],
     font: m.defaultFont,
@@ -81,6 +97,7 @@ export async function loadLibrary() {
         title: e.titleFa && e.titleFa !== e.name ? e.titleFa : fa.title,
         desc: fa.blurb,
         category: e.category || "سایر",
+        cats: [...new Set([e.category || "سایر", ...(e.source === "shotcraft" && e.kind === "shot" ? (e.tags || []).map((t) => TAG_FA[t]).filter(Boolean) : [])])],
         source: e.source,
         tags: e.tags || [],
         duration: e.duration,

@@ -131,7 +131,13 @@ function TypoDetail({ item }) {
 }
 
 function EntryDetail({ item }) {
-  const m = item.media;
+  const base = item.media;
+  const variants = base?.variants || [];
+  const [vi, setVi] = useState(0);
+  // رندر فارسیِ تأییدشده اولویت دارد؛ وگرنه نمونه (variant) انتخاب‌شده جای مدیای اصلی می‌نشیند
+  const pick = !base?.persianOwned && variants.length > 0 ? variants[Math.min(vi, variants.length - 1)] : null;
+  const m = pick ? { ...base, video: pick.video, poster: pick.poster, thumbnail: pick.thumbnail } : base;
+  const isBaseline = base?.renderKind === "upstream-baseline" && !base.persianOwned;
   const [showVideo, setShowVideo] = useState(false);
   const isSound = item.kind === "entry" && !m?.video && !!m?.audio;
   return (
@@ -140,8 +146,21 @@ function EntryDetail({ item }) {
         <img className="entry-poster" src={m.poster || m.thumbnail} alt={item.title} />
       )}
       {m?.video && (
-        <video className="sample-video" src={m.video} poster={m.poster} controls loop playsInline />
+        <video key={m.video} className="sample-video" src={m.video} poster={m.poster} controls loop playsInline />
       )}
+      {variants.length > 1 && !base.persianOwned && (
+        <div className="variant-pills" role="tablist" aria-label="نمونه‌ها">
+          {variants.map((v, i) => (
+            <button key={v.key} role="tab" aria-selected={i === vi} className={`fchip mini ${i === vi ? "on" : ""}`} onClick={() => setVi(i)} title={v.description}>
+              {v.label}
+            </button>
+          ))}
+        </div>
+      )}
+      {pick?.short && (
+        <p className="variant-desc">⚠ این رندر مرجع فقط «هستهٔ حرکت» است ({pick.duration}ث) — کامپوزیشن اصلی مخزن کوتاه تعریف شده؛ نمونهٔ رسمی طولانی‌تر است.</p>
+      )}
+      {pick?.description && <p className="variant-desc">{pick.description}</p>}
       {isSound && (
         <div className="sound-player">
           <span className="sound-ico" aria-hidden="true">♫</span>
@@ -158,7 +177,9 @@ function EntryDetail({ item }) {
         {item.duration && <div><dt>مدت</dt><dd>{item.duration}</dd></div>}
         {item.energy && <div><dt>انرژی</dt><dd>{item.energy}</dd></div>}
         <div><dt>منبع</dt><dd>{SOURCE_FA[item.source] || item.source}</dd></div>
-        {item.status && <div><dt>وضعیت</dt><dd>رندر محلی فارسی</dd></div>}
+        {isBaseline
+          ? <div><dt>وضعیت</dt><dd>رندر مرجع از کد اصلی (بدون فارسی‌سازی و صدا)</dd></div>
+          : item.status && <div><dt>وضعیت</dt><dd>رندر محلی فارسی</dd></div>}
         {item.license && <div><dt>مجوز</dt><dd>{item.license}</dd></div>}
       </dl>
 

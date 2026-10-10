@@ -10,8 +10,13 @@ skills/anidoodle/engine/.cache/
 .DS_Store
 .vs/
 
-# local scratch (internal, never ship)
-work/
+# local scratch (internal, never ship) — except the Persian shotcraft localization workspace (source only)
+work/*
+!work/persian/
+!work/serve.mjs
+work/persian/out/
+work/persian/src/workbench/node_modules
+work/persian/src/workbench/.tmp/
 _readme-preview.html
 _*.png
 .style-gallery-brief.md
@@ -36,3 +41,4 @@ skills/anidoodle/engine/src/hosts/page-clawd*.ts
 skills/anidoodle/engine/src/canvas-core/butterfly/
 skills/anidoodle/engine/src/canvas-core/mechanicalLepidoptera.ts
 skills/anidoodle/engine/src/hosts/page-mechanicalLepidoptera.ts
+work/persian/src/workbench/demosrc

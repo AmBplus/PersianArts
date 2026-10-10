@@ -436,3 +436,9 @@ a:hover { text-decoration: underline; }
 .sound-player { display: flex; align-items: center; gap: 12px; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.09); border-radius: 12px; padding: 12px 14px; margin-bottom: 6px; }
 .sound-player audio { outline: none; }
 .sound-ico { font-size: 20px; color: #ffb547; }
+
+/* رندر مرجع (کد اصلی) + نمونه‌ها */
+.chip.baseline{background:rgba(255,184,77,.14);color:#ffb84d;border:1px solid rgba(255,184,77,.35)}
+.chip.variants-chip{background:rgba(159,182,232,.14);color:#9fb6e8}
+.variant-pills{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 4px}
+.variant-desc{margin:4px 0 12px;color:#aaa;font-size:13px;line-height:1.7;direction:auto}

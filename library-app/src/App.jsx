@@ -56,7 +56,7 @@ export default function App() {
     if (!lib) return [];
     const query = q.trim().toLowerCase();
     return lib.items.filter((it) => {
-      if (cat && it.category !== cat) return false;
+      if (cat && !(it.cats || [it.category]).includes(cat)) return false;
       if (src && it.source !== src) return false;
       if (!query) return true;
       return (

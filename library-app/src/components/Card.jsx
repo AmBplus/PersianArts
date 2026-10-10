@@ -102,6 +102,14 @@ export default function Card({ item, onSelect, picked = false, onTogglePick, pic
           <span className={`badge src-${item.source}`}>{SOURCE_FA[item.source] || item.source}</span>
           <span className="chip cat">{item.category}</span>
           {live && <span className="chip font-chip">{item.font}</span>}
+          {item.media?.renderKind === "upstream-baseline" && !item.media.persianOwned && (
+            <span className="chip baseline" title="رندر مستقیم از کد مخزن اصلی — متن انگلیسی/چینی و بدون صدا؛ هنوز فارسی‌سازی نشده">
+              رندر مرجع
+            </span>
+          )}
+          {item.media?.variants?.length > 1 && (
+            <span className="chip variants-chip">{item.media.variants.length} نمونه</span>
+          )}
         </div>
         {live && item.desc && <p className="card-desc">{item.desc}</p>}
         {!live && item.tags.length > 0 && (
