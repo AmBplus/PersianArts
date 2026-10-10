@@ -1,24 +1,51 @@
 {
  "slug": "scramble",
  "status": "done",
- "font": {"family": "Noto Kufi Arabic", "reason": "Geometric/techy variable Kufi gives the machine-computing voice SF Mono had; Vazir Code looks stretched on Persian prose. Weight 500, size fs(28)=31 design px so the line keeps the original side margins."},
- "iterations": 2,
+ "font": {
+  "family": "Noto Kufi Arabic",
+  "reason": "Geometric/techy variable Kufi gives the machine-computing voice that SF Mono had; Vazir Code looks stretched on Persian prose."
+ },
+ "iterations": 3,
  "comps": [
   {
    "id": "demo-Scramble",
-   "translatedSummary": "Title 'TEMPLATE MOTION DEMO' becomes «نمونه نمایشی قالب حرکت» (22 chars, 3 gaps; source prompt wants ~20 so the lock window 24f..82f keeps its density). Noise pool is Persian letters, Persian digits and symbols.",
+   "translatedSummary": "«نمونه نمایشی قالب حرکت»; noise pool of narrow Persian letters, digits and symbols; lock sweeps right to left.",
    "video": "work/persian/out/scramble/Scramble.fa.mp4",
    "rtlDecisions": [
-    {"what": "Lock order (left to right in the original)", "action": "mirrored", "why": "Lock follows reading order; with direction:rtl and characters in logical order the locked prefix grows from the right edge."},
-    {"what": "Fixed monospace slots (min-width 0.62em)", "action": "adapted", "why": "Per-char cells force isolated letter forms. Each word keeps an invisible ghost box of the final word that owns the width; live characters are inline spans inside it, so locked letters join like real Persian and the line does not jitter."},
-    {"what": "letterSpacing 2px", "action": "adapted", "why": "Removed (set 0); it breaks Persian joining."},
-    {"what": "Noise pool (Latin A-Z, 0-9, symbols, <>/\)", "action": "adapted", "why": "Persian letters, Persian digits and #$%&*+= (47 entries kept; <>/\ dropped because bidi mirrors them). Same seeded hash indexing, no Math.random."},
-    {"what": "Flash colours, glow, timings, seeds, lockAt formula, 6f blank opening, 96f duration", "action": "kept", "why": "Motion fidelity; glow is radial and symmetric. Spaces are never scrambled."},
-    {"what": "Font and size", "action": "adapted", "why": "Noto Kufi Arabic 500 at fs(28); line-height FA_LH."}
+    {
+     "what": "Lock order",
+     "action": "mirrored",
+     "why": "Follows reading order; locked prefix grows from the right."
+    },
+    {
+     "what": "Hopping chars",
+     "action": "adapted",
+     "why": "0.6em inline-block cells (never join) inside a per-word ghost box, live layer clipped to the box; locked chars stay inline so the final word joins."
+    },
+    {
+     "what": "Noise pool",
+     "action": "adapted",
+     "why": "Narrow non-fusing Persian letters, Persian digits, symbols; wide joining letters removed."
+    },
+    {
+     "what": "Timing, seeds, flash, glow, duration",
+     "action": "kept",
+     "why": "Matches the original; glow is symmetric."
+    },
+    {
+     "what": "letterSpacing",
+     "action": "adapted",
+     "why": "Removed; breaks joining."
+    }
    ]
   }
  ],
  "rasterTextHandling": "No raster assets.",
- "concerns": ["Noise glyphs are proportional, so during scrambling a word can overhang its ghost box by a little; contained within the frame.", "Final lock frame is ~82f; final 14f are a static hold as in the original."],
- "lessons": ["Scramble/decode per-character effects on Persian: do not use fixed per-letter cells (isolated forms ruin the final read). Use a per-word invisible ghost box for width plus inline per-character spans (colour/text-shadow spans do not break joining in Chromium), with chars in logical order so the lock sweep runs right to left automatically."]
+ "concerns": [
+  "Wide glyphs like گ can still touch a neighbouring cell for a frame; word gaps stay intact thanks to the clip."
+ ],
+ "lessons": [
+  "Scramble effects on Persian: symptom, noise letters in adjacent inline spans fuse into a fake word and overflow into word gaps. Cause, joining letters shape across spans. Fix, hopping chars as fixed-width inline-block cells (atomic) from a narrow pool, locked chars inline, per-word ghost box with horizontal clip."
+ ],
+ "fixedAfterReview": true
 }

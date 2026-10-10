@@ -1,0 +1,19 @@
+{
+ "slug": "line-boil",
+ "verdict": "approve",
+ "issues": [
+  {
+   "severity": "minor",
+   "where": "LineBoil.tsx title block (fontSize 230, Lalezar)",
+   "problem": "The Persian headline is about 350px wide against about 575px for the Latin original, so the hero reads slightly lighter than the source. The ز tail comes within about 40px of the card.",
+   "suggestedFix": "Optional: raise the size to about 260 with the box height held at 170, or leave as is. Not blocking."
+  },
+  {
+   "severity": "minor",
+   "where": "work/persian/out/line-boil/LineBoil.fa.f0.png and .f104.png",
+   "problem": "These two stills are stale. They were rendered before the title-height fix and show the card about 25px lower (top at y=528 instead of 503). They are not representative of the current source, and the current source renders correctly.",
+   "suggestedFix": "Re-render the stills so the output folder matches the final source. Source change not needed."
+  }
+ ],
+ "notes": "I did not re-render. My attempt to re-run render-card.mjs failed with a path error (ENOENT on demo-index.ts), so I judged from the existing stills.\n\nStills viewed:\n- fa f0 and f104 (stale, pre-fix)\n- fa f70 and f120 (current)\n- orig f70 (the original; f0 and f104 not viewed)\n\nShaping and fidelity:\n- The Persian shaping is clean: «زنده», «جوشش خط», «جوشش روشن», «جوشش خاموش».\n- letterSpacing is 0 everywhere, and uppercase is removed.\n- The boil filter applies to the whole layer, so letters do not separate.\n- BOIL_START, BOIL_END and BOIL_SCALE match the original.\n- The seed is still floor(f/3), and the opacity keyframes are unchanged.\n- The filter is mounted only while boiling, as in the original.\n- The f120 still (rendered with --duration 140 and viewed) is unfiltered and static.\n- The exported LineBoil component name is unchanged.\n\nDirection decisions:\n- The label moves to the top-right and the status tag to the bottom-left.\n- The card's placeholder lines and avatar circle start at the right.\n- Mirroring the label, tag and card contents is justified.\n- The centered title and card correctly stay symmetric.\n\nFont choice:\n- Lalezar is a single-weight face with no fake bold, and it suits the poster title.\n- Vazirmatn is a sensible neutral choice for the label and tags.\n\nStale stills: the two stale stills are in the second issue. Because of them, the output folder is not wholly consistent with the final source. The final MP4 was rendered after the last source edit.\n\nNot done: I did not diff the exported duration constants beyond reading both files. I wrote no review.json."
+}

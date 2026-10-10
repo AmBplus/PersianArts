@@ -1,0 +1,6 @@
+{
+ "slug": "command-palette-summon",
+ "verdict": "approve",
+ "issues": [],
+ "notes": "I rendered frames 0, 6, 14, 24, 40, 56, 70, 90 and 103 and viewed the Persian and original stills for 40 and 103 side by side. The animation is mirrored consistently: sidebar on the right, search and avatar at the left end, and the cards fill right to left. In the palette, the search icon sits at the start (right), the typed blocks and caret grow leftward, and the shortcut badges are at the left. The highlight stripe is on the right edge. I did not open the other rendered frames. The diff against the original shows only the RTL changes: the local FaDashboard copy, the stripe shadow flipped from inset 4px to inset -4px, marginInlineStart in place of marginLeft, and the FaRoot wrapper. All timing constants, easing, exports and the duration are unchanged. The demo has no real text, only grey placeholder bars, so there is nothing to translate and no Latin or Chinese text can leak. There are no raster assets. Remaining left/right hits are the panel `left: PANEL_X` and the symmetric translateY motion, both of which are correctly left alone because the panel is centred. The header comment matches what the code does. The Vazirmatn choice is harmless since no text is rendered."
+}

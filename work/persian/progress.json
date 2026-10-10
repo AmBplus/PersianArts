@@ -1,11 +1,11 @@
 {
- "generatedAt": "2026-10-10T23:31:01.810Z",
+ "generatedAt": "2026-10-10T23:31:18.789Z",
  "summary": {
   "todo": 113,
-  "localized": 5,
-  "approved": 32,
-  "fixed": 6,
-  "needs-fix": 1,
+  "localized": 1,
+  "approved": 36,
+  "fixed": 7,
+  "needs-fix": 0,
   "total": 157
  },
  "cards": [
@@ -180,14 +180,14 @@
   {
    "slug": "carousel-3d",
    "status": "approved",
-   "font": "",
+   "font": "Vazirmatn",
    "videos": 1,
    "majors": 0,
-   "concerns": 0
+   "concerns": 2
   },
   {
    "slug": "cel-flash-stomp",
-   "status": "localized",
+   "status": "approved",
    "font": "Lalezar",
    "videos": 1,
    "majors": 0,
@@ -251,7 +251,7 @@
   },
   {
    "slug": "command-palette-summon",
-   "status": "localized",
+   "status": "approved",
    "font": "Vazirmatn",
    "videos": 1,
    "majors": 0,
@@ -260,10 +260,10 @@
   {
    "slug": "countdown-arc-scatter",
    "status": "approved",
-   "font": "",
+   "font": "Vazirmatn",
    "videos": 1,
    "majors": 0,
-   "concerns": 0
+   "concerns": 1
   },
   {
    "slug": "counter-confetti",
@@ -563,7 +563,7 @@
   },
   {
    "slug": "line-boil",
-   "status": "localized",
+   "status": "approved",
    "font": "Lalezar (title) + Vazirmatn (label, tags)",
    "videos": 1,
    "majors": 0,
@@ -708,10 +708,10 @@
   {
    "slug": "page-turn-transitions",
    "status": "fixed",
-   "font": "",
+   "font": "Vazirmatn",
    "videos": 2,
    "majors": 1,
-   "concerns": 0
+   "concerns": 2
   },
   {
    "slug": "page-waterfall-wall",
@@ -923,11 +923,11 @@
   },
   {
    "slug": "scramble",
-   "status": "needs-fix",
-   "font": "",
+   "status": "fixed",
+   "font": "Noto Kufi Arabic",
    "videos": 1,
    "majors": 0,
-   "concerns": 0
+   "concerns": 1
   },
   {
    "slug": "scroll-brake-moves",
@@ -1159,7 +1159,7 @@
    "font": "Lalezar (LetterDropPhysics) / Noto Kufi Arabic 800 (ScrambleDecode)",
    "videos": 2,
    "majors": 0,
-   "concerns": 2
+   "concerns": 1
   },
   {
    "slug": "type-rhythm-sync",
@@ -1171,11 +1171,11 @@
   },
   {
    "slug": "typewriter-moves",
-   "status": "localized",
-   "font": "",
+   "status": "approved",
+   "font": "Vazirmatn (B: 700) / Vazir Code (A: terminal)",
    "videos": 2,
    "majors": 0,
-   "concerns": 0
+   "concerns": 3
   },
   {
    "slug": "typing-code-block",

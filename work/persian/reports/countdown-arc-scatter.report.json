@@ -1,12 +1,47 @@
-{"slug":"countdown-arc-scatter","status":"done","iterations":1,
-"font":{"family":"Vazirmatn","reason":"Neutral geometric UI sans matching the original system-sans headline; variable weight 600 available, covers Persian digits."},
-"rasterTextHandling":"No raster assets; pure text/CSS.",
-"comps":[{"id":"demo-CountdownArcScatter","translatedSummary":"۵ دقیقه تا نصب (5 minutes to install); dial numbers in Persian digits 45,35,28,22,17,10,5,4,3",
-"video":"D:\P\project\persianArts\work\persian\out\countdown-arc-scatter\CountdownArcScatter.fa.mp4",
-"rtlDecisions":[
-{"what":"Dial sweep and arc order","action":"mirrored","why":"Countdown now reads right-to-left (largest on right), sweep enters from right; x=-sin, self-rotation and tick rotation signs flipped."},
-{"what":"'5' landing target","action":"mirrored","why":"x -148 -> +148, becomes the first (right-most) glyph of the RTL title."},
-{"what":"Title anchor and word order","action":"mirrored","why":"left:-124 -> right:-124, direction rtl; words دقیقه/تا/نصب reveal in the same windows, flowing right to left; accent last word ends left-most; gap via marginInlineEnd."},
-{"what":"Text and digits","action":"adapted","why":"Persian idiomatic title, faDigits, letterSpacing 0, fs() size, FA_LH line-height, whole-word animation only."},
-{"what":"Blur/opacity fades, arc radius, 96deg magnitude, timing, easing","action":"kept","why":"Non-directional or physical; motion fidelity."}]}],
-"concerns":["Title is slightly off-centre (as in the original, mirrored)."]}
+{
+ "slug": "countdown-arc-scatter",
+ "status": "done",
+ "iterations": 1,
+ "font": {
+  "family": "Vazirmatn",
+  "reason": "Neutral geometric UI sans matching the original system-sans headline; variable weight 600 available, covers Persian digits."
+ },
+ "rasterTextHandling": "No raster assets; pure text/CSS.",
+ "comps": [
+  {
+   "id": "demo-CountdownArcScatter",
+   "translatedSummary": "۵ دقیقه تا نصب; dial numbers in Persian digits",
+   "video": "D:\\P\\project\\persianArts\\work\\persian\\out\\countdown-arc-scatter\\CountdownArcScatter.fa.mp4",
+   "rtlDecisions": [
+    {
+     "what": "Dial sweep and arc order",
+     "action": "mirrored",
+     "why": "Countdown reads right-to-left, sweep enters from the right; x, self-rotation and tick rotation signs flipped."
+    },
+    {
+     "what": "'5' landing target",
+     "action": "mirrored",
+     "why": "x -148 to +148, becomes the first right-most glyph of the RTL title."
+    },
+    {
+     "what": "Title anchor and word order",
+     "action": "mirrored",
+     "why": "right-anchored rtl title; words reveal in the same windows flowing right to left; accent last word ends left-most."
+    },
+    {
+     "what": "Text and digits",
+     "action": "adapted",
+     "why": "Idiomatic Persian, faDigits, letterSpacing 0, fs() size, FA_LH, whole-word animation only."
+    },
+    {
+     "what": "Blur/opacity fades, radius, 96deg, timing, easing",
+     "action": "kept",
+     "why": "Non-directional or physical; motion fidelity."
+    }
+   ]
+  }
+ ],
+ "concerns": [
+  "Title is slightly off-centre, as in the original (mirrored)."
+ ]
+}

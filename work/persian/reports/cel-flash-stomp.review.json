@@ -1,0 +1,19 @@
+{
+ "slug": "cel-flash-stomp",
+ "verdict": "approve",
+ "issues": [
+  {
+   "severity": "minor",
+   "where": "CelFlashStomp.tsx WORDS[0] text 'منتشر کن' (frame 0-29)",
+   "problem": "The word gap in the first slogan is very tight at 210px Lalezar, so the two words read almost as one. Persian «منتشر کن» is also a slightly literal rendering of SHIP; «عرضه کن» would stamp as a single compact word.",
+   "suggestedFix": "Optional: use «عرضه کن» or add wordSpacing/NBSP padding. Not blocking."
+  },
+  {
+   "severity": "minor",
+   "where": "Registry demo-index (outside card dir)",
+   "problem": "The registry renders only 30 frames, as the original does, so words 2 and 3 and the label bar never appear in the harness stills or video. This is the same as upstream and not a localization defect. The code logic for those beats is identical to the original.",
+   "suggestedFix": "None needed in this card."
+  }
+ ],
+ "notes": "I did not write review.json. I re-rendered frames 0, 3, 6, 8, 10 and 29 and viewed fa against orig at f0 and f6 (the later frames are not viewed). The composition is capped at 30 frames, so f30 and above could not be rendered. Persian shaping is joined, with no letterSpacing and no Latin or Chinese text left. Diffing against upstream shows that the timing, easing, scale/flash logic and colours are untouched. The rotation signs flip and the tilt still dips toward the line end, as in the original. The title moved to the top right and the bottom bar flips via RTL flex and marginInlineStart. Lalezar is a single weight with no fake bold. The header comment matches the code. There are no exported duration constants in the original either."
+}

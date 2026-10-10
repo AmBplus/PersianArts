@@ -36,7 +36,7 @@ for (const slug of slugs) {
   if (report || videos) status = "localized";
   if (review) {
     if (review.verdict === "approve" && !majors) status = "approved";
-    else status = rs && vs && rs.mtimeMs > vs.mtimeMs ? "fixed" : "needs-fix";
+    else status = report?.fixedAfterReview || (rs && vs && rs.mtimeMs > vs.mtimeMs) ? "fixed" : "needs-fix";
   }
   const font = report?.font?.family || report?.font || "";
   rows.push({slug, status, font: typeof font === "string" ? font : JSON.stringify(font), videos, majors, concerns: (report?.concerns || []).length});

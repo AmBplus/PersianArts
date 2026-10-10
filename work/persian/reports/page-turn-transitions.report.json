@@ -1,1 +1,38 @@
-{"slug":"page-turn-transitions","status":"done","fixes":["BarnDoorSplit title moved from right:120 to right:340 (top 96->88) so it sits on the light main area, clear of the dark sidebar (x>=1700); header comment updated"],"note":"registered comps are 30f; later beats verified earlier with a temporary frame offset (removed); final --video renders OK for both comps"}
+{
+ "slug": "page-turn-transitions",
+ "status": "done",
+ "font": {
+  "family": "Vazirmatn",
+  "reason": "Neutral product-UI voice; variable font gives a real 800 weight for the title."
+ },
+ "comps": [
+  {
+   "id": "BarnDoorSplit",
+   "translatedSummary": "دو لنگهٔ در",
+   "rtlDecisions": [
+    {
+     "what": "Title block",
+     "action": "adapted",
+     "why": "Mirrored to the right side and moved to right:340, top 88, so the dark ink sits fully on the light main area and clear of the dark right sidebar (x>=1700)."
+    },
+    {
+     "what": "Door split motion",
+     "action": "kept",
+     "why": "Symmetric split from the centre, so mirroring changes nothing."
+    },
+    {
+     "what": "Dashboard layout",
+     "action": "mirrored",
+     "why": "Sidebar, grid order and header go to the reading-start side via FaDashboard."
+    }
+   ],
+   "video": "D:\\P\\project\\persianArts\\work\\persian\\out\\page-turn-transitions\\BarnDoorSplit.fa.mp4"
+  }
+ ],
+ "concerns": [
+  "The title still overlaps the first card's skeleton bars; the original overlapped content too, and the ink stays legible on the light surface.",
+  "The comps are only 30 frames, so the cube transition beats were judged by code review."
+ ],
+ "iterations": 1,
+ "fixedAfterReview": true
+}

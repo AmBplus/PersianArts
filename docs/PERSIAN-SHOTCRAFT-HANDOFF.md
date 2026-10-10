@@ -60,7 +60,12 @@ node work/persian/progress.mjs          # refresh PROGRESS.md / progress.json fr
 2. Run the workflow (Claude Code main session), e.g. 30–40 slugs per batch:
    `Workflow({scriptPath: "<repo>/work/persian/workflow/persian-rtl-localize.js", args: {slugs: [...], pool: 6, review: true, root: "<repo absolute path>"}})`
 3. When it finishes: read the result (fonts, issues, concerns, **lessons**); spot-check a few fa vs orig stills yourself;
-   merge new lessons into `docs/PERSIAN-LOCALIZATION-LESSONS.md`; run `node work/persian/progress.mjs`.
+   merge new lessons into `docs/PERSIAN-LOCALIZATION-LESSONS.md`; import the agents' returned results (reviewers that approve
+   often skip writing review.json, fixers sometimes skip report.json) with
+   `node work/persian/import-journal.mjs <journal.jsonl …>` (journals: `~/.claude/projects/<project>/<session>/subagents/workflows/wf_*/journal.jsonl`),
+   then run `node work/persian/progress.mjs`.
+   Note: the workflow script must stay free of control characters (no CR line endings, ZWNJ written as `‌`) or the
+   Workflow approval dialog rejects it.
 4. Commit and push to `main` (owner's decision 2026-10-11; `main` deploys the library on `library/**` changes).
    Keep `pwsh -File work/persian/autosync.ps1` running in the background during batches: every 5 min it regenerates
    progress, commits only this project's paths and pushes over SSH (`git@github.com:AmBplus/PersianArts.git`), so nothing is

@@ -1,1 +1,53 @@
-{"slug":"carousel-3d","status":"done"}
+{
+ "slug": "carousel-3d",
+ "status": "done",
+ "font": {
+  "family": "Vazirmatn",
+  "reason": "Neutral product-UI card labels; variable font so weight 700 is real, Persian digits supported."
+ },
+ "comps": [
+  {
+   "id": "demo-Carousel3D",
+   "translatedSummary": "کارت‌های ۱ تا ۸ روی حلقه‌ی سه‌بعدی می‌چرخند؛ برچسب هر کارت «کارت ۰۱» تا «کارت ۰۸» است.",
+   "video": "D:\\P\\project\\persianArts\\work\\persian\\out\\carousel-3d\\Carousel3D.fa.mp4",
+   "rtlDecisions": [
+    {
+     "what": "Ring spin direction (-t*360)",
+     "action": "mirrored",
+     "why": "Carousel advancing follows reading direction; front cards now move right-to-left; still exactly one turn so loop stays seamless"
+    },
+    {
+     "what": "Card azimuth order (-i*45deg)",
+     "action": "mirrored",
+     "why": "Card 1 first, next cards follow leftwards in reading order; verified in frame 40 (6 right, 7 centre, 8 left)"
+    },
+    {
+     "what": "Card face layout (direction:rtl)",
+     "action": "mirrored",
+     "why": "Icon, title and skeleton bars anchor to the right/start edge"
+    },
+    {
+     "what": "Card gradient angle 160deg -> 200deg",
+     "action": "mirrored",
+     "why": "Light direction implied by the gradient follows the mirrored layout"
+    },
+    {
+     "what": "Label text and digits",
+     "action": "adapted",
+     "why": "CARD 0X -> «کارت ۰X» with Persian digits, letterSpacing 0, no uppercase, fs() size and FA_LH line-height"
+    },
+    {
+     "what": "Camera tilt, translateZ, perspective, ground disc, backface double-layer, geometric icons",
+     "action": "kept",
+     "why": "Physical depth/gravity and symmetric elements; icons are universal shapes"
+    }
+   ]
+  }
+ ],
+ "rasterTextHandling": "No raster assets; all CSS-drawn. Only text is the card label, translated.",
+ "iterations": 2,
+ "concerns": [
+  "report.json was written minimally (slug/status); full structured result is returned here.",
+  "Rendered stills at frames 0,40,90,130 and verified frame 40 visually; others not individually inspected."
+ ]
+}

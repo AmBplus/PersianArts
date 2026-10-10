@@ -1,1 +1,84 @@
-{"slug":"typewriter-moves","status":"done","note":"see structured output"}
+{
+ "slug": "typewriter-moves",
+ "status": "done",
+ "font": {
+  "family": "Vazirmatn (B: 700) / Vazir Code (A: terminal)",
+  "reason": "A is terminal chrome so Vazir Code is used. B was tried in Vazir Code but its monospaced Persian joins showed stretched gaps and a thin single weight with no real bold. Vazirmatn Bold matches the weight of the original Courier Bold, and the typewriter feel comes from the cadence and cursor."
+ },
+ "comps": [
+  {
+   "id": "demo-TerminalTypewriter",
+   "translatedSummary": "The terminal command acme deploy --prod stays Latin and LTR. After the Enter push and hard cut, the dashboard appears mirrored (sidebar on the right).",
+   "rtlDecisions": [
+    {
+     "what": "Terminal window content (command, path, $ prompt, cursor)",
+     "action": "kept",
+     "why": "A shell is an LTR island (direction:ltr). Typing grows rightward and the block cursor follows the last character."
+    },
+    {
+     "what": "Window chrome (traffic-light dots on the left), centred window position, push focus point",
+     "action": "kept",
+     "why": "macOS chrome does not mirror, and the window and focus point are symmetric."
+    },
+    {
+     "what": "Push scale 1 to 3.2, last-2f blur, hard cut, dashboard settle 1.06 to 1",
+     "action": "kept",
+     "why": "This is a camera move centred on the scene, not tied to reading direction. Timing and easing are unchanged."
+    },
+    {
+     "what": "Dashboard after the cut (RtlDashboard, a local copy of the fixture)",
+     "action": "mirrored",
+     "why": "Sidebar moves to the right, search and avatar order flip with marginLeft changed to marginInlineStart, and the card grid starts top-right. Card inner bars are right-aligned."
+    },
+    {
+     "what": "Font",
+     "action": "adapted",
+     "why": "Menlo is replaced by Vazir Code for the terminal. The wrapper is FaRoot with the same font."
+    }
+   ]
+  },
+  {
+   "id": "demo-TypewriterErrorRetype",
+   "translatedSummary": "Types «فقط یک داشبورد», pauses with two cursor blinks, backspaces «یک داشبورد», then retypes «مرکز فرماندهی شما». Final line: «فقط مرکز فرماندهی شما».",
+   "rtlDecisions": [
+    {
+     "what": "Text translation",
+     "action": "adapted",
+     "why": "Idiomatic rather than literal. The original keeps «just » and swaps «a dashboard» for «your command center». The Persian keeps «فقط » and swaps «یک داشبورد» for «مرکز فرماندهی شما», so the structure and dramatic turn are the same."
+    },
+    {
+     "what": "Typing and deletion direction, start-edge anchoring",
+     "action": "mirrored",
+     "why": "Text is pinned at the right (start) edge and grows leftward. Backspace eats from the left end. An invisible full-width sizer keeps the final line centred and prevents reflow while typing."
+    },
+    {
+     "what": "Cursor",
+     "action": "mirrored",
+     "why": "It sits at the left of the last letter (inline after the text, marginInlineStart). Its three states (steady while typing/deleting, blink while hesitating, two blinks then off) are unchanged."
+    },
+    {
+     "what": "One fixed-width span per character",
+     "action": "adapted",
+     "why": "Persian letters join, so per-glyph boxes would break shaping. The text is one prefix slice with the start edge pinned, which gives the same no-jitter guarantee."
+    },
+    {
+     "what": "Timing",
+     "action": "adapted",
+     "why": "Character counts changed from 16/11/19 to 14/10/17. Typing start moves from f2 to f6 so the pause (f32), delete start (f48) and retype start (f68) land on the original frames. Retype ends at f92 (original f95) and the cursor goes out at f112 (original f115). Rates are unchanged at 2f, 1.5f and 1.5f per character. Total length is still 150f."
+    },
+    {
+     "what": "Font weight and size",
+     "action": "adapted",
+     "why": "Vazirmatn 700 at fs(112), line-height FA_LH. The line fills about the same width as the original, with no letterSpacing and no uppercase."
+    }
+   ]
+  }
+ ],
+ "iterations": 2,
+ "rasterTextHandling": "No raster assets in this card. The fixture dashboard is wordless and is mirrored via the local RtlDashboard component.",
+ "concerns": [
+  "report.json in the out dir is a stub that just points to the structured output.",
+  "Retype delete now ends at f63 vs f64.5 and retype ends at f92 vs f95 because Persian character counts are shorter. The pause, delete and retype start beats are identical.",
+  "Vazir Code was not used for B because its Persian rendering looked stretched, so the two comps use different fonts, which is intentional. Rendered stills were inspected, but the MP4 files were not watched."
+ ]
+}

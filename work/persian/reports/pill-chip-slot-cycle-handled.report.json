@@ -3,64 +3,38 @@
  "status": "done",
  "font": {
   "family": "Vazirmatn",
-  "reason": "Neutral SaaS product voice replacing the system sans; variable 100-900 so the original 700/800 weights are real, not faux bold."
+  "reason": "Neutral SaaS product voice; variable 100-900 so the original 700/800 weights are real."
  },
+ "iterations": 2,
  "comps": [
   {
    "id": "demo-PillChipSlotCycleHandled",
-   "translatedSummary": "«کارِ [فروش | گردش‌کار | مدیریت | گزارش] شما انجام شد» - the dark chip's wheel cycles four words, widening/narrowing and pushing the side texts.",
    "video": "work/persian/out/pill-chip-slot-cycle-handled/PillChipSlotCycleHandled.fa.mp4",
    "rtlDecisions": [
     {
-     "what": "Sentence order (Your / chip / Handled)",
+     "what": "Sentence order",
      "action": "mirrored",
-     "why": "direction:rtl via FaRoot: «کارِ» at the right, chip in the middle, «شما انجام شد» at the left; Persian copy is idiomatic, not literal."
+     "why": "direction:rtl: کارِ at right, chip middle, شما انجام شد at left"
     },
     {
-     "what": "Chip internal padding (paddingLeft 18)",
-     "action": "mirrored",
-     "why": "paddingInlineStart reduced 18->12 (trailing slack 24) so emoji side and word side look optically equal given the emoji glyph's side bearing; verified at f5/f90/f130/f149."
-    },
-    {
-     "what": "Vertical wheel roll direction, ghost items above/below, half-speed parallax",
-     "action": "kept",
-     "why": "Vertical/physical motion, not reading-direction."
-    },
-    {
-     "what": "Ghost horizontal centring, chip radius, drop shadow",
-     "action": "kept",
-     "why": "Symmetric or straight down; nothing directional."
-    },
-    {
-     "what": "letterSpacing -0.5 on side text",
+     "what": "Chip padding and width measurement",
      "action": "adapted",
-     "why": "Removed; any letter-spacing breaks Persian joining."
+     "why": "Review fix: whole row (emoji+gap+word) measured plus 36 padding instead of Latin-tuned +74; paddingInlineStart 12 so emoji and word gaps look balanced for all four words"
     },
     {
-     "what": "Chip width measurement",
-     "action": "adapted",
-     "why": "Measured once at mount would use the fallback font; re-measured after the font loads under a delayRender. Review fix: the +74 slack (tuned to Latin metrics) left the Persian word cramped at the chip's trailing edge; now the whole row (emoji+gap+word) is measured and 36 padding added. Interpolation unchanged."
-    },
-    {
-     "what": "Font sizes and line-height",
-     "action": "adapted",
-     "why": "fs() x1.1 (30->33, 22->24, emoji 18->20) for smaller Persian x-height; FA_LH on side text."
-    },
-    {
-     "what": "Timing (0.25/0.47/0.69 switches, inOutCubic, 150f)",
+     "what": "Vertical wheel, ghosts, shadow, radius, timing",
      "action": "kept",
-     "why": "Motion fidelity; word-length ratio stays under 2x (فروش vs گردش‌کار)."
+     "why": "Physical or symmetric, not reading-direction"
     }
    ]
   }
  ],
- "rasterTextHandling": "No raster assets; only emoji, which are non-directional and kept.",
- "iterations": 2,
+ "rasterTextHandling": "No raster assets; emoji only, kept.",
  "concerns": [
-  "Emoji glyph (system colour emoji) widths may still vary by platform, as noted in the source prompt."
+  "Emoji glyph widths can vary by platform."
  ],
  "lessons": [
-  "Symptom: width-measuring effects (offsetWidth in a one-shot useLayoutEffect) size boxes from the fallback font -> cause: FaRoot's delayRender does not delay child mount-time measurement -> fix: re-measure after document.fonts.load(font, sample) inside its own delayRender.",
-  "Symptom: fixed '+N' slack in a measured chip looks unbalanced in Persian -> cause: slack was tuned to Latin word/emoji metrics -> fix: measure the full row (emoji+gap+word) and add explicit padding, then verify all words visually."
- ]
+  "Symptom: fixed +N slack in a measured chip looks unbalanced in Persian -> cause: tuned to Latin metrics -> fix: measure the full row (emoji+gap+word), add explicit padding, check every word visually."
+ ],
+ "fixedAfterReview": true
 }
