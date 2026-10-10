@@ -1,0 +1,34 @@
+{
+ "slug": "type-assembly-moves",
+ "status": "done",
+ "font": {"family": "per-demo: Vazirmatn 800 (SplitTextStagger), Lalezar (LetterformDriftAssembly), Markazi Text 700/500 (TrackingExpandReveal), Estedad 800 (TextOnPath)", "reason": "Each of the four moves has its own voice. A (rational, crisp default): Vazirmatn with true 800 weight. B (ceremonial brand reveal): Lalezar poster face, single weight, depth from the stroke pulse. C (quiet lyrical, kashida): Markazi Text, calligraphic serif with elegant tatweels; Noto Naskh Arabic was tried first and read too light. D (data-story growth line): Estedad, modern geometric sans that stays legible when pieces rotate."},
+ "comps": [
+  {"id": "demo-SplitTextStagger", "video": "work/persian/out/type-assembly-moves/SplitTextStagger.fa.mp4", "translatedSummary": "«سامانه حرکت» rises piece by piece from under a cut line, baseline grows from the right; label «خیزش پلکانی حروف».", "rtlDecisions": [
+   {"what": "unit order of the cascade", "action": "mirrored", "why": "first group is right-most, stagger runs right to left (reading order)"},
+   {"what": "baseline growth", "action": "mirrored", "why": "grows from the start edge (right) to the left"},
+   {"what": "vertical rise 115% -> -10% -> 0", "action": "kept", "why": "up/down gravity carries no reading direction"},
+   {"what": "label position", "action": "mirrored", "why": "top-left -> top-right"},
+   {"what": "split unit and timing", "action": "adapted", "why": "joined groups (6 units incl. word gap) instead of single characters; step 24/5 f keeps first jump f12, last jump f36, settle f56; mask box and cut line moved below Persian descenders; baseline width follows real text width"}]},
+  {"id": "demo-LetterformDriftAssembly", "video": "work/persian/out/type-assembly-moves/LetterformDriftAssembly.fa.mp4", "translatedSummary": "«گردهم‌آیی» pieces drift in blurred, lock with a darkening pulse, whole word breathes 1.04; label «گردآمدن شناور حروف».", "rtlDecisions": [
+   {"what": "lock sequence / unit order", "action": "mirrored", "why": "first piece is right-most, locking proceeds right to left"},
+   {"what": "seeded drift vectors, breath scale", "action": "kept", "why": "random directions and symmetrical scale have no reading direction"},
+   {"what": "label position", "action": "mirrored", "why": "top-left -> top-right"},
+   {"what": "units and timing", "action": "adapted", "why": "5 joined groups (ZWNJ becomes a gap) with STAG 21/4 f so last lock stays f66; letterSpacing 8 removed; same seeds, pulse, breath f80-104"}]},
+  {"id": "demo-TrackingExpandReveal", "video": "work/persian/out/type-assembly-moves/TrackingExpandReveal.fa.mp4", "translatedSummary": "«نفس بکش» stretches open with kashida under blur, words slide out of an overlapped pile; subtitle «ورود سینمایی تیتر» fades in; label «باز شدن کشیدهٔ حروف».", "rtlDecisions": [
+   {"what": "letter-spacing expansion", "action": "adapted", "why": "tracking breaks Persian joins; replaced by integer kashida (tatweel) steps per joint 0 -> 2 on the same out-poly(5) p curve, word pile translateX, scaleX .92, blur 10 -> 0"},
+   {"what": "word order and slide-out", "action": "mirrored", "why": "first word on the right, each word slides outward from the centre to its own side"},
+   {"what": "label position", "action": "mirrored", "why": "top-left -> top-right"},
+   {"what": "centred subtitle and title axis", "action": "kept", "why": "symmetrical"},
+   {"what": "subtitle tracking .32em and uppercase", "action": "adapted", "why": "removed, letterSpacing 0"}]},
+  {"id": "demo-TextOnPath", "video": "work/persian/out/type-assembly-moves/TextOnPath.fa.mp4", "translatedSummary": "«رشد تا آخرین قله» pieces ride a rising curve, tangent-rotated, then straighten into the title; label «متن روی مسیر».", "rtlDecisions": [
+   {"what": "growth curve", "action": "mirrored", "why": "x -> 1920-x: climbs from lower-right to upper-left as a RTL time axis reads"},
+   {"what": "piece order along curve", "action": "mirrored", "why": "first-read right-most piece makes the shortest trip, last piece the farthest"},
+   {"what": "tangent rotation", "action": "mirrored", "why": "text reads leftwards so upright angle is -theta of the original tangent"},
+   {"what": "final title row", "action": "adapted", "why": "centres measured from a hidden RTL flex row instead of a fixed 46 px grid, since joined groups have varying widths"},
+   {"what": "label position", "action": "mirrored", "why": "top-left -> top-right"},
+   {"what": "timings/easing", "action": "kept", "why": "piece start = s*34 f, 45 f travel, 8 f hold, 12 f settle, curve evolve 0-82: same envelope, last settle f99"}]}
+ ],
+ "rasterTextHandling": "No raster assets in this card; the curve is an SVG path and all text is live DOM text.",
+ "concerns": ["Registry durations are 56 f but the designs are 130-150 f; inspected and rendered with --duration 150 (no code offsets)", "TextOnPath uses a measured layout (font-ready polling + getBoundingClientRect), deterministic per render but depends on the font file loading", "Kashida steps in TrackingExpandReveal are integer jumps hidden by blur in the first ~12 f"],
+ "iterations": 4
+}
