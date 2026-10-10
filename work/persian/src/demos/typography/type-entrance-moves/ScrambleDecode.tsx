@@ -2,7 +2,7 @@
 // TEXT: "DECODE SPEED" -> «کدگشایی سریع» (12 code points incl. the space, exactly like the original's 12): lock frame of index i is
 //   still 20 + i*6, the space (index 7, was 6) is never locked-by-timer, the last letter locks on frame 86 as before. Noise charset
 //   keeps the hacker feel but is NOT Persian letters (they would look like real answers - the brief's "no look-alike glyph" pitfall):
-//   Persian digits + Latin A-F + # $ % & (digits via faDigits-style literals; they are noise, not data).
+//   Persian digits 1-9 (no zero: it renders as a diamond dot) + Latin A-F + narrow / + = (wide # $ % & dropped: they overflowed the cell) (digits via faDigits-style literals; they are noise, not data).
 // SHAPING: the original used fixed 1ch cells per character. Persian letters join, so locked characters are NOT put in separate
 //   cells: the locked part of each word is ONE text run (prefix slice, like typeOn) and therefore always correctly shaped; only
 //   the still-scrambling letters are fixed-width noise cells. The just-locked letter is an inline span with the inverted
@@ -26,12 +26,13 @@ import { G } from '../../_fixtures/Fixtures';
 import { FaRoot, fs } from '../../_fa';
 
 const TEXT = 'کدگشایی سریع';
-const CHARSET = ['A', 'B', 'C', 'D', 'E', 'F', '۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹', '#', '$', '%', '&'];
+const CHARSET = ['A', 'B', 'C', 'D', 'E', 'F', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹', '/', '+', '='];
 const LOCK_START = 20; // 第 0 个字符锁定帧
 const LOCK_STEP = 6; // 相邻字符锁定间隔
 const FLASH_LEN = 2; // 锁定反色闪持续帧数
 const FONT = fs(120);
-const CELL_W = Math.round(FONT * 0.68); // fixed noise-cell width (the noise is monospaced; locked text is not)
+// ghost-width guard: the live row is clipped to the ghost box width so it never exceeds the final title
+const CELL_W = Math.round(FONT * 0.6); // fixed noise-cell width (the noise is monospaced; locked text is not)
 const GAP_W = Math.round(FONT * 0.3); // word gap
 
 // 帧确定伪随机
@@ -71,7 +72,7 @@ export const ScrambleDecode: React.FC = () => {
       } else {
         const noise = CHARSET[Math.floor(h(i * 101 + tick * 7 + 13) * CHARSET.length)];
         nodes.push(
-          <span key={i} style={{ display: 'inline-block', width: CELL_W, textAlign: 'center', color: G.mid, direction: 'ltr' }}>{noise}</span>,
+          <span key={i} style={{ display: 'inline-block', width: CELL_W, textAlign: 'center', color: G.mid, direction: 'ltr', fontWeight: 700, lineHeight: 'inherit' }}>{noise}</span>,
         );
       }
     });

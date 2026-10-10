@@ -1,11 +1,11 @@
 {
- "generatedAt": "2026-10-10T23:20:40.236Z",
+ "generatedAt": "2026-10-10T23:21:13.722Z",
  "summary": {
   "todo": 115,
-  "localized": 6,
+  "localized": 5,
   "approved": 30,
   "fixed": 5,
-  "needs-fix": 1,
+  "needs-fix": 2,
   "total": 157
  },
  "cards": [
@@ -1155,7 +1155,7 @@
   },
   {
    "slug": "type-entrance-moves",
-   "status": "localized",
+   "status": "needs-fix",
    "font": "Lalezar (LetterDropPhysics) / Noto Kufi Arabic 800 (ScrambleDecode)",
    "videos": 2,
    "majors": 0,
