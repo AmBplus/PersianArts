@@ -1,9 +1,9 @@
 {
- "generatedAt": "2026-10-10T23:25:46.986Z",
+ "generatedAt": "2026-10-10T23:30:00.669Z",
  "summary": {
   "todo": 113,
-  "localized": 6,
-  "approved": 31,
+  "localized": 5,
+  "approved": 32,
   "fixed": 6,
   "needs-fix": 1,
   "total": 157
@@ -1147,7 +1147,7 @@
   },
   {
    "slug": "type-assembly-moves",
-   "status": "localized",
+   "status": "approved",
    "font": "per-demo: Vazirmatn 800 (SplitTextStagger), Lalezar (LetterformDriftAssembly), Markazi Text 700/500 (TrackingExpandReveal), Estedad 800 (TextOnPath)",
    "videos": 4,
    "majors": 0,
