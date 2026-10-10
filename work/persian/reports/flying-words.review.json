@@ -1,0 +1,1 @@
+{"slug":"flying-words","verdict":"approve","issues":[],"notes":"Rendered frames 0,10,30,60,90,120,150,179 vs original; Persian words join correctly, no leftovers, timing/seeds/exports unchanged (diff verified), centring fix correct, radially symmetric scene rightly not mirrored."}

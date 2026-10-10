@@ -1,0 +1,21 @@
+{
+ "slug": "pill-slot-cycle",
+ "status": "done",
+ "font": {"family": "Vazirmatn", "reason": "Neutral modern product/headline voice matching the Notion-AI Helvetica original; variable font so the 800 headline and 700 pill weights are real, not faux bold; full Persian digit/punctuation/ZWNJ coverage."},
+ "comps": [{
+  "id": "demo-PillSlotCycle",
+  "video": "work/persian/out/pill-slot-cycle/PillSlotCycle.fa.mp4",
+  "translatedSummary": "«یک ابزار هوشمند برای» + pills (پرسیدن سؤال / جست‌وجو در Drive / جست‌وجو در Slack / خلاصه‌سازی / بهبود نوشته / نوشتن دستور جلسه) then «انجام همه‌چیز.»",
+  "rtlDecisions": [
+   {"what": "Sentence anchor (left:300 -> insetInlineStart:150 under direction:rtl)", "action": "mirrored", "why": "The stem is pinned to the reading-start edge; the slot now sits left of the stem and grows leftwards while the stem never moves. Margin reduced from 300 to 150 because Persian copy is wider and the longest pill would otherwise leave the frame."},
+   {"what": "Pill internals: icon chip and padding (24 left/36 right)", "action": "mirrored", "why": "Icon is on the start side (right) with paddingInlineStart 24 / paddingInlineEnd 36."},
+   {"what": "Slot children left:0 (outgoing, incoming, finale)", "action": "mirrored", "why": "insetInlineStart:0 so stacked pills share the stem-side edge."},
+   {"what": "Vertical slot-machine motion (in +120, out -130, blur, easings, BEAT 21, SWAP 8, INTRO 12, overshoot)", "action": "kept", "why": "Up/down page-flip metaphor is physical and not reading-direction; all timing/easing untouched."},
+   {"what": "Latin product names Drive/Slack and the '?' icon", "action": "adapted", "why": "Brand names kept Latin inside bdi (direction:ltr); '?' became the Persian question mark; other icon glyphs are symbols."},
+   {"what": "letterSpacing -1 and font sizes", "action": "adapted", "why": "Spacing set to 0 to keep joining; sizes via fs() (1.1x) and FA_LH line-height inside pills."}
+  ]
+ }],
+ "rasterTextHandling": "No raster assets.",
+ "concerns": ["Registry duration is 12 frames; the design is 175 so it was inspected with --duration 175 (no source offsets changed).", "Final line is right-weighted on screen, mirroring the original left-weighted layout."],
+ "iterations": 2
+}

@@ -1,0 +1,25 @@
+{
+ "slug": "draw-svg-trace",
+ "status": "done",
+ "font": {"family": "Vazirmatn", "reason": "Original headline is Helvetica ExtraBold in a neutral grey product-style scene; Vazirmatn is the neutral variable UI sans with a true 800 weight, so no fake bold. letterSpacing -1 removed (breaks joining), size 54 -> fs(54)=59, line-height FA_LH."},
+ "iterations": 4,
+ "comps": [{
+  "id": "demo-DrawSvgTrace",
+  "translatedSummary": "ترسیم مسیر SVG (the only text; SVG isolated with bdi). Card body is grey placeholder bars, no text.",
+  "video": "work/persian/out/draw-svg-trace/DrawSvgTrace.fa.mp4",
+  "rtlDecisions": [
+   {"what": "Headline block position (left:120)", "action": "mirrored", "why": "Title anchors at reading start; now right:120."},
+   {"what": "Headline text", "action": "adapted", "why": "DRAW SVG TRACE -> «ترسیم مسیر SVG»; SVG kept Latin as a technical token inside <bdi>; no uppercase/letterSpacing."},
+   {"what": "Trace path start and winding", "action": "mirrored", "why": "Pen starts top-right and runs leftwards (counter-clockwise) like Persian writing; svg flipped with scaleX(-1), rect is symmetric so only start/winding change. Pen-tip, dash length, flash, linecap, timing unchanged."},
+   {"what": "Card content layout", "action": "mirrored", "why": "direction:rtl on the column: title bar, text lines and avatar row sit at the right edge, avatar then name bar to its left. Widths unchanged."},
+   {"what": "Title underline", "action": "mirrored", "why": "left->right anchor under the right-aligned title bar and drawn from x=UW to 0 so it grows right-to-left."},
+   {"what": "Card position, radius, shadow, border hand-off", "action": "kept", "why": "Centered and symmetric; shadow is vertical-only; no direction meaning."},
+   {"what": "Easing, durations, flash colour/width, opacity hand-offs", "action": "kept", "why": "Motion fidelity; all keyframes identical to original."}
+  ]
+ }],
+ "rasterTextHandling": "No raster or image assets in this demo.",
+ "concerns": [
+  "The registry (demo-index.ts / comps.txt) lists this comp as 40 frames and the upstream mp4 is only 40 frames, while the animation is designed for 140 frames (hold at 90-140). The registry value comes from a misparse of the '40f' in the header comment, so standard renders and the Persian video only cover the trace phase (frames 0-39). I did not touch registry/shared files. Beats 48-140 were verified with the harness --duration 140 flag (debug offset constant removed from source): flash, content fade-in, hand-off, underline growth and final rest were all clean, but there is no original render to compare past frame 39.",
+  "No exported DURATION constant exists in the original; none was added."
+ ]
+}

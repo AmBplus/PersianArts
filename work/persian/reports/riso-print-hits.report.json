@@ -1,0 +1,30 @@
+{
+ "slug": "riso-print-hits",
+ "status": "done",
+ "font": {"family": "Lalezar", "reason": "Single-weight heavy poster face; closest Persian voice to the original Helvetica 800 riso headline. No bold requested; wordSpacing .15em for its tight word gap; size fs() x1.2-1.25 because Lalezar is compact."},
+ "comps": [
+  {"id": "demo-RisoBeatPump", "translatedSummary": "ON THE BEAT -> روی ضرب",
+   "video": "work/persian/out/riso-print-hits/RisoBeatPump.fa.mp4",
+   "rtlDecisions": [
+    {"what": "Beat tick dots row", "action": "mirrored", "why": "RTL flex: first beat is the right-most dot, progress follows reading order"},
+    {"what": "3 cards row and Card internals", "action": "mirrored", "why": "RTL flex puts first card at right; bars/avatar rows align to start (right)"},
+    {"what": "Misregistration plate x offsets", "action": "mirrored", "why": "sign flipped so first excursion is mirror image; y split unchanged"},
+    {"what": "Scale pump, y split, multiply blend, timing beats", "action": "kept", "why": "centre-origin and vertical/physical effects, symmetric"},
+    {"what": "Centered headline/dots", "action": "kept", "why": "symmetric composition, no recompute needed"},
+    {"what": "letterSpacing -1 / Latin uppercase title", "action": "adapted", "why": "tracking breaks Persian joining; title is one whole-line unit"}
+   ]},
+  {"id": "demo-RisoMisregistrationHit", "translatedSummary": "IMPACT -> ضربه",
+   "video": "work/persian/out/riso-print-hits/RisoMisregistrationHit.fa.mp4",
+   "rtlDecisions": [
+    {"what": "Slam-in origin", "action": "mirrored", "why": "title now enters from off-screen left via dir(1400), same Easing.in(cubic) 8f"},
+    {"what": "Plate x offsets", "action": "mirrored", "why": "dir() on damped cosine; y unchanged"},
+    {"what": "Bottom rule (510/900 centred)", "action": "kept", "why": "symmetric"},
+    {"what": "Scale pulse, y split, multiply blend, frames 20/28/72", "action": "kept", "why": "centre-origin, physical, timing fidelity"},
+    {"what": "letterSpacing -1", "action": "adapted", "why": "set to 0 to preserve joining"}
+   ]}
+ ],
+ "rasterTextHandling": "No raster assets; everything drawn with divs. No text besides the headline.",
+ "concerns": [],
+ "lessons": [],
+ "iterations": 1
+}

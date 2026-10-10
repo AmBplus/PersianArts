@@ -1,0 +1,1 @@
+{"slug":"riso-print-hits","verdict":"approve","issues":[],"notes":"Rendered fa vs orig at beats (0,19-32,40,71-76,100,149). Persian shaping joined, no tracking, timings/constants/exports unchanged, slam enters from left mirrored, dot row and cards mirrored under RTL, plate sign logic preserved (dy net unchanged). Minor: Misregistration descender near rule but no overlap."}

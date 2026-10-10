@@ -1,0 +1,17 @@
+{
+ "slug":"flying-words","status":"done",
+ "font":{"family":"Vazirmatn","reason":"Neutral clean sans with a real heavy weight (variable 800 kept); matches the bold glow-on-dark background-layer look of the original system sans."},
+ "comps":[{"id":"demo-FlyingWords","video":"work/persian/out/flying-words/FlyingWords.fa.mp4",
+ "translatedSummary":"22 Persian motion-design keywords (حرکت، چیدمان، دوربین، آبشاری، روانی، ضرب، کلیدفریم، محو، مقیاس، تبدیل، چرخش، پارالاکس، شفافیت، عمق، میان‌یابی، حلقه، فنر، تأخیر، ظهور، ترکیب، شبکه، محور) fly through the 3D tunnel.",
+ "rtlDecisions":[
+ {"what":"Word list","action":"adapted","why":"Translated to idiomatic Persian terms of similar length (3-8 letters) so N=22, phase i/N and density/rhythm are unchanged."},
+ {"what":"Per-word animation unit","action":"kept","why":"Each word is one whole element; no letter splitting, so joining is intact. letterSpacing 0 (was 0.5px)."},
+ {"what":"Word centring (margin-left:-60px hack)","action":"adapted","why":"Hard-coded left offset assumed ~120px Latin words; replaced with inner translate(-50%,-50%) so any Persian word width is centred on its 3D anchor; outer translate3d/rotateZ untouched."},
+ {"what":"x/y scatter, golden angle, z travel, drift, rotateZ signs, perspective","action":"kept","why":"Radially symmetric tunnel around the centred camera; no reading-direction meaning, mirroring a seeded random scatter adds nothing."},
+ {"what":"Centre glow, background radial gradient, blur and opacity curve","action":"kept","why":"Symmetric/physical depth effects."},
+ {"what":"Seeds, CYCLES, curve, durations","action":"kept","why":"Motion fidelity; FLYING_WORDS_DURATION=180 unchanged, loop stays seamless."},
+ {"what":"Font size and line-height","action":"adapted","why":"fs() x1.1 for smaller Persian x-height; lineHeight FA_LH, direction rtl, unicode-bidi isolate."}]}],
+ "rasterTextHandling":"No raster/image assets; nothing to handle.",
+ "concerns":["Weight 800 renders slightly lighter than the Latin original heavy system font; acceptable.","Words at near-camera end are huge/blurred by design (as in original)."],
+ "iterations":1
+}

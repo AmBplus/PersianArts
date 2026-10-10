@@ -1,0 +1,23 @@
+{
+ "slug": "paper-title-card",
+ "status": "done",
+ "font": {"family": "Amiri (headline) + Vazirmatn (sub-line)", "reason": "Amiri is a high-contrast Naskh, the editorial serif voice that replaces ui-serif/Georgia 600; single weight, so the semi-bold is rebuilt with a 2.5px WebkitTextStroke (accent word 3.5px). Markazi Text was tried first and rendered monoline/sans-like. Vazirmatn for the small neutral sub-line replacing the monospace uppercase tracked line (Vazir Code looks stretched on Persian prose). Both loaded via FaFonts."},
+ "comps": [{
+  "id": "demo-PaperTitleCard",
+  "translatedSummary": "«تمام پژوهش‌های تیم شما، همه در یک جا.» with accent word «یک»; sub-line «۵ از ۳۱ مورد امروز دریافت شد».",
+  "video": "work/persian/out/paper-title-card/PaperTitleCard.fa.mp4",
+  "rtlDecisions": [
+   {"what": "Headline word stagger (4f step, 9f stamp-in)", "action": "mirrored", "why": "flex row under direction:rtl: first word is right-most, cascade runs right to left; per-WORD units only, ZWNJ kept inside «پژوهش‌های»"},
+   {"what": "Italic accent word", "action": "adapted", "why": "Persian has no italic; slanting breaks joining. Emphasis = amber colour + thicker stroke"},
+   {"what": "Underline scaleX 0->1", "action": "mirrored", "why": "transform-origin right: grows from the reading-start edge"},
+   {"what": "Sub-line: letterSpacing .12em + uppercase + mono", "action": "adapted", "why": "removed (breaks joining/meaningless); Vazirmatn, fs(26)"},
+   {"what": "Odometer digit roll", "action": "adapted", "why": "digit strip now Persian digits ۰-۹, same delay/22f bezier; vertical roll is physical, kept"},
+   {"what": "Sub-line row order", "action": "mirrored", "why": "digit first at right, label follows, reads «۵ از ۳۱ ...»"},
+   {"what": "Centered composition, radial paper glow, 8f fade-out, scale/blur stamp", "action": "kept", "why": "symmetric / not direction-bearing"},
+   {"what": "Headline wrap width 1500 -> 1150, line-height ~1.6, columnGap .32em", "action": "adapted", "why": "Persian is wider and taller: balanced break «تمام پژوهش‌های تیم شما،» / «همه در یک جا.», dots/ascenders do not collide, Amiri word gap clear"}
+  ]
+ }],
+ "iterations": 4,
+ "rasterTextHandling": "No raster or image assets in this card.",
+ "concerns": ["Original had 8 words; Persian keeps 8 word units so beats (delay 4+i*4, underline 16-34f, digit 12f) are identical. Amiri's ZWNJ gap in «پژوهش‌های» is slightly wide. Karaoke-like 'یک' tail touches 'در' swash slightly at rest."]
+}

@@ -1,0 +1,22 @@
+{
+ "slug": "blur-slide",
+ "status": "done",
+ "font": {"family": "Vazirmatn", "reason": "Neutral product-UI voice matching the original -apple-system sans; variable font gives true 800 headline and 400 subtitle weights, so the 34px/800 vs 14px/400 hierarchy needs no fake bold."},
+ "comps": [{
+  "id": "demo-BlurSlide",
+  "translatedSummary": "Headline 'تیتر شما اینجا می‌نشیند' (4 words) and subtitle 'زیرعنوان کوتاه برای متن نمونه' (5 words), preserving the 4/5 word counts so the stagger beats stay as designed.",
+  "video": "work/persian/out/blur-slide/BlurSlide.fa.mp4",
+  "rtlDecisions": [
+   {"what": "Per-word stagger order", "action": "mirrored", "why": "Flex row now has direction:rtl so the first word appears at the right and the cascade runs right-to-left (reading order). gap/window/easing unchanged."},
+   {"what": "Word units", "action": "adapted", "why": "split(' ') whole words; 'می‌نشیند' keeps its ZWNJ in one span; never split into letters so joining survives."},
+   {"what": "letterSpacing -0.5px, tracking", "action": "adapted", "why": "Set to 0; spacing breaks Persian joining."},
+   {"what": "Line-height and size", "action": "adapted", "why": "fs() x1.1 for smaller Persian x-height; line-height 1.15->FA_LH(1.5) and 1.4->1.6 for tall dots/descenders; the flex column gap of 16 is unchanged."},
+   {"what": "Vertical y-rise (40/26px) and blur 10->0, opacity", "action": "kept", "why": "Up/down gravity-like motion and blur are not reading-direction semantics; all three channels still share one p with outCubic."},
+   {"what": "Centered column layout", "action": "kept", "why": "Symmetric composition; no physical left/right values existed."},
+   {"what": "Timing windows (0.06-0.62 / 0.34-0.9), duration 114", "action": "kept", "why": "Motion fidelity; BLUR_SLIDE_DURATION and export names unchanged."}
+  ]
+ }],
+ "rasterTextHandling": "No raster or image assets; nothing to translate or mirror.",
+ "concerns": ["The Persian headline is wider than the 4-word original relative to the frame (about 73% of width), which still fits with no clipping. Subtitle blur frames overlap the headline window exactly as in the original."],
+ "iterations": 2
+}

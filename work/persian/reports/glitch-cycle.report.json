@@ -1,0 +1,18 @@
+{
+"slug":"glitch-cycle","status":"done","iterations":2,
+"font":{"family":"Vazir Code","reason":"The original is a monospace SF Mono machine/terminal status voice; Vazir Code is the monospace-flavoured Persian face and fits the system-narration mood. Single weight, so no fake bold; size fs(26)=29 with FA_LH line-height."},
+"comps":[{"id":"demo-GlitchCycle","video":"work/persian/out/glitch-cycle/GlitchCycle.fa.mp4",
+"translatedSummary":"چهار وضعیت پشت‌سرهم در یک جایگاه: «در حال راه‌اندازی»، «بارگذاری منابع»، «کامپایل شیدرها»، «آماده انتشار»؛ ابتدا و انتهای هر عبارت نویز می‌شود، جداسازی RGB و لرزش خط، نوار پیشرفت از راست پر می‌شود.",
+"rtlDecisions":[
+{"what":"Four status phrases","action":"adapted","why":"Idiomatic Persian build-status lines of similar length; phrase table, 4 x 42f beats, KF [1,0,0,0.1,0,0,1] and KF_LAST unchanged."},
+{"what":"Glitch unit (per-character dice)","action":"adapted","why":"Persian letters join; unit is the joined group (joinedGroups) with hit probability 1-(1-g)^len so expected corruption density equals the original per-character g. Noise glyphs (symbols, Persian digits, non-joiners) each in own span in an LTR isolate, centred over an invisible true-width cell so the line never reflows (fixed-slot idea preserved). Seeds/bucket (every 2 frames) unchanged."},
+{"what":"Row direction and phrase alignment","action":"mirrored","why":"direction:rtl; phrases stacked in one grid cell, start-aligned (right edge) so the widest phrase sets row width as MAXCH did; short phrases leave space on the left (mirror of the original left-aligned pad)."},
+{"what":"RGB split text-shadow","action":"mirrored","why":"Red fringe on the start (right) side, cyan on the left; intensity still g*3px, threshold g>0.04."},
+{"what":"Progress bar fill","action":"mirrored","why":"Fills from the right edge (reading direction) to full at t=1; track centred, 120x2."},
+{"what":"Row jitter jx/jy","action":"kept","why":"Symmetric random noise, no direction meaning; x amplitude (g*10) still larger than y (g*4) for horizontal tearing."},
+{"what":"Letter-spacing 3px / uppercase","action":"adapted","why":"Removed (letterSpacing 0, no transform) because tracking breaks Persian joining; fixed-slot width replaced by true group cells."},
+{"what":"Colours, dark scene, bar position, timing","action":"kept","why":"Palette #0a0b10 / #6c8cff / #4a5270, centred composition, 168f/30fps and bar at 63% have no reading-direction meaning."}]}],
+"rasterTextHandling":"No raster or image assets in this card.",
+"concerns":["Final phrase 'آماده انتشار' sits right of the bar centre because rows are start-aligned in a width set by the widest phrase; this mirrors the original's left-weighted pad and was kept deliberately.","Noise-state glyphs of different widths can overlap slightly at full glitch (frame 0); acceptable as glitch character."],
+"lessons":["Per-character glitch/scramble effects: use joined groups as the cell, scale hit probability as 1-(1-g)^len to keep corruption density, overlay the noise (LTR isolate, separate spans) on an invisible clone of the real group so widths never reflow."]
+}

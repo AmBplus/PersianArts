@@ -1,0 +1,21 @@
+{
+ "slug": "neon-triple-marquee",
+ "status": "done",
+ "font": {"family": "Lalezar", "reason": "Poster/impact display face for giant slogan words; single weight (no fake bold), heavy monoline strokes read well as hollow neon outline."},
+ "comps": [{
+  "id": "demo-NeonTripleMarquee",
+  "translatedSummary": "Three counter-flowing neon marquee rows: «بهتر» / «سریع‌تر» / «قوی‌تر» (BETTER/FASTER/STRONGER), outlined giant words, pulse cycling row by row, whole group fades out.",
+  "video": "work/persian/out/neon-triple-marquee/NeonTripleMarquee.fa.mp4",
+  "rtlDecisions": [
+   {"what": "Marquee travel directions", "action": "mirrored", "why": "Rows 1 and 3 now move left (reading direction), row 2 moves right; counter-flow 'surround' feel kept."},
+   {"what": "Copy anchoring (left -> right edge) and bullet separator offset", "action": "mirrored", "why": "First word of a row sits at the reading start; separator offset sign flipped to stay on the word's trailing (left) side."},
+   {"what": "Text and letterSpacing/weight", "action": "adapted", "why": "Whole Persian words with ZWNJ before «تر»; letterSpacing 0; no fake weight 900; font size 300->330 (kit 1.1x)."},
+   {"what": "Outline technique", "action": "adapted", "why": "Lalezar glyphs overlap at joins so text-stroke showed inner contours; replaced by SVG dilate-minus-erode outline of the same 5->8 px width, glow and opacity pulse unchanged."},
+   {"what": "Slot widths", "action": "adapted", "why": "Latin 0.92em/char estimate replaced by measured per-word width (em) so density is similar; unitW = width + 1.3em as designed."},
+   {"what": "Speeds 14/17/14, 45f pulse, 15f phase, 10/20f fades, colours, row order, glow", "action": "kept", "why": "Motion design and light physics; vertical stack order is not reading-direction dependent."}
+  ]
+ }],
+ "rasterTextHandling": "No raster assets.",
+ "concerns": ["The ZWNJ in «سریع‌تر» renders as a visible gap in Lalezar (non-joining), acceptable for display type."],
+ "iterations": 2
+}

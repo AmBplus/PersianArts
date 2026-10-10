@@ -25,6 +25,22 @@ Each entry: the symptom, why it happens, and the fix that worked. Entries are gr
 - Mixed runs (Latin tokens, numbers with units) need bidi isolation (`<bdi>` or `unicodeBidi: isolate`) or punctuation
   jumps to the wrong side.
 
+### 1b. Craft details that silently ruin the result (owner's explicit warnings)
+
+- **Letter-by-letter must stay letter-by-letter.** When the source reveals per character (typing, write-on, per-letter fade or
+  drop), a common failure is degrading it to per-word steps, or the opposite: animating single code points as separate boxes
+  so the joins break. Correct: `typeOn()` prefix slicing (every frame is a correctly shaped prefix) or per `joinedGroups()`
+  unit. Prove it by viewing consecutive mid-reveal frames: each step adds one letter, shaped correctly.
+- **Pens and handwriting.** A pen/brush/ink effect must move **right-to-left along the real strokes of the real font**:
+  derive the path from the rendered glyph outline or a stroke mask of the actual string, body strokes first, then dots
+  (nuqta), kashida and small marks — as Persian is really written. Failures seen: pen moving left-to-right, jumping between
+  letters, floating off the strokes, revealing dots before the body. Inspect frames where the pen is mid-word.
+- **A beautiful pen needs a beautiful face.** Calligraphic, ink, poetic or luxury contexts need a genuinely elegant Persian
+  face (Aref Ruqaa, Noto Nastaliq Urdu, Amiri, Markazi Text, Katibeh) with generous line-height. A strange-looking glyph shape
+  is a defect even if the words are right — and check the face actually loaded (no fallback).
+- **Persian typography basics.** ZWNJ (نیم‌فاصله) in words like «می‌شود»، «یادداشت‌ها»؛ Persian «ی/ک» never Arabic «ي/ك»؛
+  Persian punctuation and digits; no single orphan letter at a line end.
+
 ## 2. Fonts
 
 - **Every family a demo uses must be loaded.** `FaRoot` loads only the family it is given. A second family set inline

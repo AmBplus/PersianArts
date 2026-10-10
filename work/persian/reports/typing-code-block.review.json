@@ -1,0 +1,1 @@
+{"slug":"typing-code-block","verdict":"approve","issues":[{"severity":"minor","where":"TypedRow cursor on Persian letters (frames 118-122)","problem":"Cursor block on Vazirmatn letters is taller than on Latin code (inline background follows the larger font box).","suggestedFix":"Optional: lineHeight/inline-block height normalization on the Persian cursor span."}]}

@@ -1,0 +1,1 @@
+{"slug":"beat-step-list-theme-cycle","verdict":"approve","issues":[],"notes":"Diff vs original is minimal and correct; f0-f29 match original layout; shaping clean; beats f30+ unverifiable by harness (card is 30 frames in upstream too) but logic untouched."}

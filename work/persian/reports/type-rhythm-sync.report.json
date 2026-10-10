@@ -1,0 +1,25 @@
+{
+ "slug": "type-rhythm-sync",
+ "status": "done",
+ "font": {"family": "Estedad", "reason": "Variable 100-900 heavy poster-style Persian sans: font-weight-pump needs a real 400<->900 jump plus stroke, which single-weight display fonts (Lalezar) cannot do; karaoke uses weight 800 of the same family for consistency."},
+ "comps": [
+  {"id": "demo-FontWeightPump", "translatedSummary": "PUMP IT UP -> «حالشو ببر بالا» (colloquial DJ/club voice, three words like the original)", "video": "work/persian/out/type-rhythm-sync/FontWeightPump.fa.mp4",
+   "rtlDecisions": [
+    {"what": "title text and letterSpacing 6", "action": "adapted", "why": "Persian text, letterSpacing 0 (breaks joining), fontSize via fs(150), lineHeight FA_LH"},
+    {"what": "centered title and scaleX accent (origin center)", "action": "kept", "why": "symmetric; no reading-direction meaning"},
+    {"what": "beat dots order", "action": "mirrored", "why": "rtl flex row: first beat (f30) is the right-most dot, sequence advances along the reading direction; centered, balance unchanged"},
+    {"what": "beats 30/50/70/90/110, env (1-t/10)^0.8, stroke 10px, 400/900 jump, 8% accent", "action": "kept", "why": "motion fidelity"}
+   ]},
+  {"id": "demo-KaraokeFillSync", "translatedSummary": "SHIP FASTER / BREAK NOTHING -> «عرضه سریع‌تر / بدون خرابی» (two words per line; longer second word reads slower, as in source)", "video": "work/persian/out/type-rhythm-sync/KaraokeFillSync.fa.mp4",
+   "rtlDecisions": [
+    {"what": "fill direction (clipPath inset(0 X% 0 0))", "action": "mirrored", "why": "fill now reveals right-to-left, the way a Persian word is read: inset(0 0 0 X%)"},
+    {"what": "reading-finger underline", "action": "mirrored", "why": "anchored right:0 and grows leftwards with the fill edge; bottom offset -14 -> -6 for the taller line box"},
+    {"what": "block padding and line alignment", "action": "mirrored", "why": "paddingLeft 240 -> paddingInlineStart (right); rows rtl so first word is right-most; gap 48 unchanged"},
+    {"what": "letterSpacing 2, lineHeight 1.45, fontSize 130", "action": "adapted", "why": "letterSpacing 0, FA_LH, fs(130)"},
+    {"what": "word timetable 20-38, 42-75, 85-103, 107-130 and rest frames", "action": "kept", "why": "motion fidelity; word counts per line preserved so beats are unchanged"}
+   ]}
+ ],
+ "rasterTextHandling": "No raster assets in this card.",
+ "concerns": ["Registry duration is 10 frames; designs are 140 (pump) and 150 (karaoke) frames, inspected with --duration 150. Original-render stills were not produced by the harness for this card (orig PNGs missing), comparison done against source code and prompt.", "Karaoke block sits on the right with empty left half: intended mirrored composition of the original left-pinned layout."],
+ "lessons": ["Weight-pump style effects need a variable family (Estedad/Vazirmatn): 400->900 contrast is clearly visible; WebkitTextStroke on Estedad leaves no seams in joined letters, only slightly bulky diamond dots.", "Mirrored clip-path reveals: inset(0 X% 0 0) -> inset(0 0 0 X%) plus right-anchored underline (right:0) gives a correct RTL karaoke fill."]
+}

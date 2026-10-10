@@ -1,0 +1,53 @@
+{
+  "slug": "light-play-moves",
+  "status": "done",
+  "font": {
+    "family": "Lalezar (HalationBloom headline, SpotlightSweepReveal title); Estedad 800 (SheenSweepRetry card); Vazirmatn 600 (halation kicker)",
+    "reason": "Heavy Helvetica 800 slam headlines map to the single-weight poster face Lalezar (no fake bold, wordSpacing .15em to keep the word gap); the card UI uses Estedad, a neutral variable face that really has weight 800; the small kicker uses neutral Vazirmatn."
+  },
+  "comps": [
+    {
+      "id": "demo-HalationBloom",
+      "translatedSummary": "«۱۰ برابر» crash-zooms in, a blurred bright halo pops and settles; kicker «هالهٔ نور».",
+      "rtlDecisions": [
+        {"what": "Crash-zoom scale and bloom pop/fall/settle", "action": "kept", "why": "Radially symmetric about the centre; no reading direction. Timeline, easings, blur 22px and brightness 1.8 unchanged."},
+        {"what": "Centred headline and halo copy", "action": "kept", "why": "Symmetric composition; halo is a copy of the same Persian TextBlock so glyph shapes bloom correctly."},
+        {"what": "Text: '10x' -> '۱۰ برابر'; kicker -> 'هالهٔ نور'", "action": "adapted", "why": "Idiomatic ten-fold claim with Persian digits; direction:rtl so the order reads right to left."},
+        {"what": "Kicker letterSpacing .35em", "action": "adapted", "why": "Tracking breaks Persian joining; removed, hierarchy kept with size and colour."},
+        {"what": "Registry duration (17f vs design 145f)", "action": "kept", "why": "Source untouched; inspected beats with the harness --duration 145."}
+      ]
+    },
+    {
+      "id": "demo-SheenSweepRetry",
+      "translatedSummary": "A dark card titled «پرو» with two placeholder bars; one diagonal sheen band sweeps across once (frames 40-68).",
+      "rtlDecisions": [
+        {"what": "Sheen sweep direction", "action": "mirrored", "why": "A wipe/sweep follows reading direction: band anchored right:0 with translateX(dir(x)), entering from the right edge and exiting left; same distance, easing and frames."},
+        {"what": "Band gradient angle 115deg", "action": "mirrored", "why": "245deg keeps the 45deg lean of the band mirrored with the travel direction."},
+        {"what": "Title and bars alignment", "action": "mirrored", "why": "direction:rtl puts content on the start (right) edge; padding is symmetric so the card still looks balanced."},
+        {"what": "Card centring, radius, drop shadow", "action": "kept", "why": "Symmetric or vertical light physics."},
+        {"what": "'PRO' -> 'پرو', letterSpacing 2 removed", "action": "adapted", "why": "Persian spelling of the tier; letter spacing breaks joining."}
+      ]
+    },
+    {
+      "id": "demo-SpotlightSweepReveal",
+      "translatedSummary": "Dim title «در کانون / توجه» is revealed by a swinging spotlight (two round trips), then settles fully bright.",
+      "rtlDecisions": [
+        {"what": "Spotlight swing phase", "action": "mirrored", "why": "The first pass now moves toward the reading side (right to left) via dir(AMP*sin); beam still ends centred at f110. Period 55f and amplitude unchanged."},
+        {"what": "Light cone, radial spot, mask and vertical gradient", "action": "kept", "why": "Radially symmetric light physics; they follow the same x."},
+        {"what": "Centred two-line title", "action": "kept", "why": "Symmetric composition; text is direction:rtl."},
+        {"what": "Text 'SPOTLIGHT\\nON' -> 'در کانون\\nتوجه'", "action": "adapted", "why": "Idiom 'in the spotlight'; two lines preserved, all three layers render the same joined string (no per-letter splitting)."},
+        {"what": "letterSpacing .04em and line-height 1.15", "action": "adapted", "why": "Spacing removed (breaks joining); line-height 1.5 so dots and descenders are not clipped by the mask."}
+      ]
+    }
+  ],
+  "rasterTextHandling": "No raster or video assets in this card; nothing baked into images.",
+  "concerns": [
+    "HalationBloom registry duration is 17f while the design is 145f; verified later beats with --duration 145 (the full video render succeeded).",
+    "Lalezar renders the Persian zero as a circle (reads fine as ۱۰ at headline size)."
+  ],
+  "iterations": 2,
+  "lessons": [
+    "Lights/sweeps with a diagonal gradient: mirroring the travel direction also needs the gradient angle mirrored (θ -> 360-θ), and the band anchored on the opposite edge (right:0 + translateX(dir(x))) so the start/end offsets stay symmetric.",
+    "Spotlight/sine swings: flip the phase with dir() so the first pass goes toward the reading side; the end position (centre) is unchanged because sin returns to 0."
+  ]
+}

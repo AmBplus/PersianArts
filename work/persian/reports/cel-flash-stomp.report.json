@@ -1,0 +1,26 @@
+{
+  "slug": "cel-flash-stomp",
+  "status": "done",
+  "font": {"family": "Lalezar", "reason": "Poster/impact Persian display face with a single heavy weight; plays the role of Helvetica Black stamped words in an anime finisher card. No fake bold requested; used for stamped words and the title (one family)."},
+  "iterations": 3,
+  "rasterTextHandling": "No raster assets in this demo; nothing to blur/replace.",
+  "comps": [{
+    "id": "demo-CelFlashStomp",
+    "translatedSummary": "Three stamped slogan words (منتشر کن / سریع‌تر / امروز) hard-cut on the beat, each stamping in with a scale overshoot and tilt while only the background flashes; last beat flashes double and the bottom label bar fades in.",
+    "video": "work/persian/out/cel-flash-stomp/CelFlashStomp.fa.mp4",
+    "rtlDecisions": [
+      {"what": "Words SHIP / FASTER / TODAY", "action": "adapted", "why": "Translated idiomatically as a three-beat slogan: «منتشر کن» / «سریع‌تر» / «امروز»; each is stamped as a whole line (never split into letters) so joining is intact; ZWNJ in سریع‌تر is natural orthography."},
+      {"what": "Title CEL FLASH STOMP", "action": "adapted", "why": "Translated to «کوبش فلاش»; no uppercase/tracking; moved from top-left (left:120) to top-right (right:120), the reading-start corner."},
+      {"what": "Stamp tilt rotate signs (+2.5 / -2.5 / 0)", "action": "mirrored", "why": "Rotation sign is reading-direction dependent (baseline dips toward line end); alternation order and magnitudes kept, signs flipped to -2.5 / +2.5 / 0."},
+      {"what": "Bottom label bar (icon, long bar, short bar with marginLeft:auto)", "action": "mirrored", "why": "Inside direction:rtl flex the icon and long bar sit at the right and the short bar is pushed left via marginInlineStart:auto; symmetric 120px padding kept."},
+      {"what": "Letter-spacing -4/-1, fontWeight 800, Helvetica", "action": "adapted", "why": "letterSpacing set to 0 (breaks joining), font replaced by Lalezar, size via fs() x1.1, lineHeight FA_LH so dots/descenders are not clipped, whiteSpace nowrap."},
+      {"what": "Stamp scale 1.18->0.98->1, easing, 6f land, flash timing and colours (#cfcfca, #c4c4c0, doubled 8f last flash), label fade 66-80", "action": "kept", "why": "Physical/universal motion and the 'flash only the air' rule; timing and easing must stay identical."},
+      {"what": "Centered word block and full-bleed background flash", "action": "kept", "why": "Symmetric composition; nothing reading-directional to mirror."}
+    ]
+  }],
+  "concerns": [
+    "The workbench registry (demoMeta/demo-index, durationSource 'card') renders this comp at only 30 frames, although the design is 144f (3 words x 30f + 45f hold). Stills/video therefore only cover the first word (SHIP -> منتشر کن) plus its flash. I verified beats 30-59 and 60-89 by temporarily offsetting the frame in the component (removed again): word 2 and word 3 plus label bar render correctly. Registry duration is outside my card directory and left untouched.",
+    "No exported duration constant exists in this file; none added.",
+    "Persian words are of comparable length to the originals (منتشر کن is two words but stamps as one unit); the original beats are unchanged."
+  ]
+}

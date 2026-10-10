@@ -1,0 +1,61 @@
+{
+ "slug": "odometer-digit-roll",
+ "status": "done",
+ "font": {
+  "family": "Vazirmatn",
+  "reason": "Neutral product/metric voice; variable font so the original fw800 exists; real Persian digit glyphs; replaces Helvetica/Arial."
+ },
+ "comps": [
+  {
+   "id": "demo-OdometerDigitRoll",
+   "translatedSummary": "Title «رول ارقام کیلومترشمار»; metric ۹۹٫۹۸٪ rolling Persian digit strips.",
+   "rtlDecisions": [
+    {
+     "what": "Title block top-left -> top-right",
+     "action": "mirrored",
+     "why": "Header anchoring follows reading order"
+    },
+    {
+     "what": "Digit order in 99.98 and the left-to-right lock stagger (20/27/34/41)",
+     "action": "kept",
+     "why": "Numeral order inside a number is never reversed; the stagger follows digit significance and right-to-left would read as counting backwards"
+    },
+    {
+     "what": "Percent sign position",
+     "action": "mirrored",
+     "why": "Logically the percent sign follows the number; visually it sits at its left end, via an RTL flex row holding the number as an LTR island"
+    },
+    {
+     "what": "Decimal separator and digits",
+     "action": "adapted",
+     "why": "Persian digits via faDigits, percent «٪»; no tabular-nums (cells fixed 150px, no jitter). Decimal separator is drawn as a dot+tail shape on the baseline because Vazirmatn's ٫ renders as a huge slash at 209px"
+    },
+    {
+     "what": "Vertical roll, overshoot, ghost copies, centre-origin pulse scale, centred label bars",
+     "action": "kept",
+     "why": "Physical/vertical or symmetric, carries no reading direction"
+    },
+    {
+     "what": "Font size and letterSpacing",
+     "action": "adapted",
+     "why": "fs() 1.1x scale for Persian x-height; letterSpacing 0 (title had -1)"
+    },
+    {
+     "what": "Digit cell width 126 -> 150",
+     "action": "adapted",
+     "why": "Persian digit glyphs at fs(190) are wider than the original cell and were clipped by overflow:hidden (visible on f38/f45)"
+    },
+    {
+     "what": "Title top offset 96 -> 80",
+     "action": "adapted",
+     "why": "Persian line-height 1.5 enlarges the line box; offset reduced to keep the same optical top margin"
+    }
+   ]
+  }
+ ],
+ "rasterTextHandling": "No raster assets in this card.",
+ "concerns": [
+  "Registry duration is 63 frames; design length 150 checked with --duration 150."
+ ],
+ "iterations": 5
+}

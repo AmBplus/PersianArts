@@ -1,0 +1,1 @@
+{"slug":"gradient-word-sweep","verdict":"approve","issues":[],"notes":"Rendered frames 0-95 (duration 100). Shaping joined, word order correct, sweep right-to-left with mirrored masks/clip/gradient, bolts mirrored, timing constants/exports identical to original. Residual: faint rectangular glow edge during sweep (also in original); registry duration 20f."}

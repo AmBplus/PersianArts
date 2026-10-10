@@ -1,0 +1,25 @@
+{
+ "slug": "ai-stream-response",
+ "status": "done",
+ "author": "main session (pilot, hand-written)",
+ "font": {"family": "Vazirmatn", "reason": "Neutral product-UI sans that plays Inter's role in the original AI assistant panel."},
+ "comps": [
+  {
+   "id": "demo-StreamResponse",
+   "video": "work/persian/out/StreamResponse.fa.mp4",
+   "translatedSummary": "Header, query, summary label and sentence, 7 evidence rows with counts, completion line — natural Persian UI copy, Persian digits.",
+   "rtlDecisions": [
+    {"what": "panel layout (header logo/title vs status chip, evidence rows icon vs count)", "action": "mirrored", "why": "reading order: direction:rtl on the panel mirrors every flex row"},
+    {"what": "marginLeft on header items", "action": "adapted", "why": "converted to marginInlineStart so gaps survive mirroring"},
+    {"what": "summary clip-path reveal", "action": "mirrored", "why": "the sweep follows reading direction: now right->left (revealFromStart)"},
+    {"what": "letterSpacing / uppercase on labels", "action": "adapted", "why": "removed: they break Persian joining"},
+    {"what": "spinner/check rotation", "action": "kept", "why": "clock-like universal rotation"},
+    {"what": "camera scale, panel rise, row rise timings", "action": "kept", "why": "motion fidelity; no direction meaning"},
+    {"what": "backplate JPG with baked-in English UI text", "action": "adapted", "why": "blur raised 1px -> 18px so no Latin text stays legible"}
+   ]
+  }
+ ],
+ "rasterTextHandling": "Backplate contains 'Ask Linear…' English text; blurred to 18px.",
+ "concerns": ["Not yet reviewed by an independent reviewer agent."],
+ "iterations": 2
+}

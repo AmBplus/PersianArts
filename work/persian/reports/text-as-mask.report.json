@@ -1,0 +1,24 @@
+{
+ "slug": "text-as-mask",
+ "status": "done",
+ "font": {"family": "Lalezar (hero word, as embedded glyph paths) + Vazirmatn 700 (caption)", "reason": "The effect depends on very heavy strokes acting as the viewport; Lalezar is the heaviest single-weight Persian display face in the kit (no fake bold needed). Caption is a neutral product-UI voice, Vazirmatn variable 700."},
+ "comps": [
+  {
+   "id": "demo-TextAsMask",
+   "translatedSummary": "SCALE -> «مقیاس»; caption 'TEXT AS MASK' -> «متن به‌عنوان ماسک»",
+   "video": "work/persian/out/text-as-mask/TextAsMask.fa.mp4",
+   "rtlDecisions": [
+    {"what": "Hero word and caption text", "action": "adapted", "why": "Translated idiomatically; caption lost letterSpacing:10 and uppercase (break Persian joining); hierarchy kept by size/weight/colour."},
+    {"what": "Mask text rendering (SVG data-URI)", "action": "adapted", "why": "An SVG used as mask-image cannot load page web fonts; the word is shaped once with HarfBuzz from Lalezar and embedded as outline paths (maskGlyphs.ts), vector-crisp at 26x."},
+    {"what": "Dashboard drift translateX +110 -> -110 (20-100f) and ease to 0 (100-130f)", "action": "mirrored", "why": "Panning follows reading direction: now -110 -> +110 via dir(); same speed, frames and easing."},
+    {"what": "FakeDashboard (sidebar left, search right)", "action": "mirrored", "why": "Shared fixture is LTR-only and read-only; copied as MirroredDashboard with direction:rtl (sidebar right, search left via marginInlineStart, grid reads RTL)."},
+    {"what": "Mask scale origin", "action": "adapted", "why": "Hand-picked origin (L stem 61.5%) is invalid for the new word; moved to 47.8% 46%, inside the solid alef stroke so the hole grows evenly and the cover layer finishes the take-over."},
+    {"what": "Scale 1->26, bezier(0.4,0,0.2,1), 1/S counter-scale, cover fade 0.25-0.9, frame beats 20/100/130", "action": "kept", "why": "Physics of a zoom and the timing design are direction-neutral."},
+    {"what": "Word position and caption", "action": "kept", "why": "Centred, symmetric composition; vertical placement re-balanced (baseline 640, size 500 px/em) so the heavy body band shows dashboard content like the original."}
+   ]
+  }
+ ],
+ "rasterTextHandling": "No raster text. Dashboard is text-free placeholder bars. Mask word is vector paths from Lalezar.",
+ "concerns": ["Registry duration is 20f; design is 150f, rendered with --duration 150. Original reference render only exists for 20 frames, so only f10 had an original comparison; later beats compared against the design in the source prompt.", "Lalezar's tall alef and descending س make the word taller than the Latin original; the dashboard is only visible in the central body band, same limitation as the original placeholder content."],
+ "iterations": 3
+}

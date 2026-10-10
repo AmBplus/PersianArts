@@ -1,0 +1,25 @@
+{
+ "slug": "text-column-converge",
+ "status": "done",
+ "font": {"family": "Vazirmatn", "reason": "Neutral product-UI spec-sheet card; variable font keeps the original weight 500; its Latin glyphs cover the brand Raycast. Vazir Code (Persian monospace) looks stretched, and monospace was only needed for the original merge arithmetic, which is replaced by measurement."},
+ "comps": [{
+  "id": "demo-TextColumnConverge",
+  "translatedSummary": "جدید + rotating features (طراحی لانچر, حالت فشرده, ضبط میان‌بر, انواع میان‌بر, قابلیت‌های صوتی, طراحی تنظیمات, چت هوش مصنوعی, جستجوی فایل) then Raycast; converges to «جدید Raycast» with sub-line «به‌زودی ۲۰۲۶».",
+  "video": "work/persian/out/text-column-converge/TextColumnConverge.fa.mp4",
+  "rtlDecisions": [
+   {"what": "Pinned pair: NEW word and rotating feature word", "action": "mirrored", "why": "جدید (reading start) pinned by right edge at x=1302, feature word pinned by left edge at x=618 and growing toward the centre; equal 618 px margins preserved."},
+   {"what": "Single converge slide", "action": "mirrored", "why": "Both words slide inward with the original 36f cubic ease-in-out to a centred phrase reading right-to-left (جدید Raycast)."},
+   {"what": "Merge endpoint calculation", "action": "adapted", "why": "Monospace step formula impossible with proportional Persian; phrase width is measured from the real font (delayRender until loaded), giving exactly one real space between the words."},
+   {"what": "Sub-line alignment", "action": "mirrored", "why": "Aligned to the phrase start (right) edge, as the original aligned to the left start."},
+   {"what": "Italic on sub-line", "action": "adapted", "why": "Persian has no italic; distinction kept via dimmer colour #d8d8dc."},
+   {"what": "Uppercase and letterSpacing 3", "action": "adapted", "why": "Removed, they break Persian joining; Latin Raycast is brand-cased."},
+   {"what": "Timing (STEPS dwell, START 8, delay 10, converge 36, sub delay 18, 4f fade), colours, hard cuts, zero shrink", "action": "kept", "why": "Identity of the card (pinning then one reveal-converge)."},
+   {"what": "Vertical position", "action": "kept", "why": "Line-height raised to 1.5 and top offset compensated so the text row centre stays at y~519+."},
+   {"what": "Digits", "action": "adapted", "why": "2026 -> ۲۰۲۶ via faDigits; brand Raycast isolated with bdi."}
+  ]
+ }],
+ "rasterTextHandling": "None: pure text on a flat background.",
+ "iterations": 1,
+ "concerns": ["Registry duration is 16 frames while the design is ~180; verified with --duration 180 (original stills only exist up to f15, later beats checked against source logic). The 16-frame video only shows the first rotation step."],
+ "lessons": ["Proportional Persian font breaks monospace-based merge arithmetic: measure the phrase width in a hidden probe span after document.fonts.load, block the frame with delayRender, then position from the measured width.", "Pinning an RTL pair: start-word by right edge, rotating word by left edge so it grows toward the centre, mirroring the Latin right-edge pin."]
+}

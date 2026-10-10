@@ -1,0 +1,19 @@
+{
+ "slug": "title-demote-to-label",
+ "status": "done",
+ "font": {"family": "Vazirmatn", "reason": "Neutral product-UI/headline sans matching Helvetica 800; variable font so weight 800 is real. Single heading, no second family needed."},
+ "comps": [{
+  "id": "demo-TitleDemoteToLabel",
+  "translatedSummary": "A: «اجرای زیرعامل‌ها» (Running Subagents); B: «پاسخ را انتخاب کنید» (Select the Answer)",
+  "rtlDecisions": [
+   {"what": "Demoted label destination", "action": "mirrored", "why": "Top-left slot becomes top-right (reading start): right anchor, transformOrigin right center, centering correction translate(+50%) still zeroes at the end"},
+   {"what": "Skeleton content column and bar growth", "action": "mirrored", "why": "Anchored at right:150; bars grow from the right edge toward the left, following reading direction"},
+   {"what": "Selection highlight sweep", "action": "mirrored", "why": "Sweeps in from the right (start edge) and retreats by uncovering from the right; css left swapped to right"},
+   {"what": "Title letterSpacing -2, size 128", "action": "adapted", "why": "letterSpacing 0 to keep letters joined; size via fs() = 141px"},
+   {"what": "Vertical rise of skeleton blocks, blur reveal, scale 0.3, white flash, all frame beats/easing/SPLIT=92", "action": "kept", "why": "Vertical/physical or non-directional; motion fidelity"}
+  ]
+ }],
+ "rasterTextHandling": "No raster assets.",
+ "concerns": ["Registry duration is 92f but the design is 196f (A+B); inspected with --duration 196. Mirrored selection in B verified at f106/f120/f128."],
+ "lessons": []
+}

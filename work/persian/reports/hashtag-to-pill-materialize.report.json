@@ -1,0 +1,19 @@
+{
+ "slug":"hashtag-to-pill-materialize","status":"done",
+ "font":{"family":"Noto Kufi Arabic","reason":"Geometric sans is the closest to the original Futura/Century Gothic mood; variable font so the real 500 (typing/pill/body) and 700 (title) weights exist."},
+ "comps":[{"id":"demo-HashtagToPillMaterialize","video":"work/persian/out/hashtag-to-pill-materialize/HashtagToPillMaterialize.fa.mp4",
+  "translatedSummary":"Typing '#موسیقی' with an always-on red cursor, 1-frame hard cut to a wide grey pill with note icon, hold, glide/shrink to the tag slot, 1-frame hard cut to the cream note page titled «گروه‌های محبوب من» with three Persian body lines.",
+  "rtlDecisions":[
+   {"what":"Typing group and cursor","action":"mirrored","why":"Persian text starts at the right; the cursor sits at the end of text, i.e. on its left (marginInlineStart). Typing uses typeOn prefix slicing so letters re-join; 7 chars vs 6 but same seed/cadence, last char lands before MORPH=48."},
+   {"what":"Pill internals (icon/word order)","action":"mirrored","why":"Icon replaces '#', the first (right-most) char, so icon is on the right and the word on the left; paddingInlineStart."},
+   {"what":"Pill width 740 -> 900","action":"adapted","why":"Persian word is ~580px at the same size; icon+word overflowed 740 and the icon was squeezed to zero. Icon flexShrink:0, gap 50. Timing/easing unchanged."},
+   {"what":"Glide target (tag slot)","action":"mirrored","why":"Pill now lands on the right, its right edge aligned with the title's right edge (x=1760), same bezier, same frames 66-80 and scale 0.554."},
+   {"what":"Reveal page title/body anchoring","action":"mirrored","why":"Right anchored (right:160/152), RTL text; body re-written idiomatically in 3 balanced lines; line-height 1.5."},
+   {"what":"Music-note SVG","action":"kept","why":"A glyph, not directional."},
+   {"what":"Hard cuts, hold, seeds, colours, vertical positions","action":"kept","why":"Rhythm skeleton (two cuts, one glide) is the core of the design."},
+   {"what":"letterSpacing / case","action":"adapted","why":"All letterSpacing set to 0 to keep Persian joining."}
+  ]}],
+ "iterations":2,
+ "rasterTextHandling":"None: everything is vector/text.",
+ "concerns":["Registry duration is 40 frames but the design is 132; verified with --duration 132 (not changed in source).","Pill word sits slightly off-centre (larger end padding) because the box was widened for fit."]
+}

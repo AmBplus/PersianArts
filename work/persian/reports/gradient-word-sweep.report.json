@@ -1,0 +1,25 @@
+{
+ "slug": "gradient-word-sweep",
+ "status": "done",
+ "font": {"family": "Noto Kufi Arabic (700)", "reason": "Geometric, techy Kufi closest in mood to Avenir/Futura; variable font so real bold; works with background-clip:text and heavy blur glow layers."},
+ "comps": [
+  {
+   "id": "demo-GradientWordSweep",
+   "translatedSummary": "Line 1: «فوق‌شارژ در عملکرد» (keyword «فوق‌شارژ» gets the gradient charge); line 2: «با اطمینانی استوار».",
+   "rtlDecisions": [
+    {"what": "Keyword position and sweep direction", "action": "mirrored", "why": "Keyword is the first word of line 1, so it is the right-most word; the charge wave runs from word start (right) to end (left) like reading."},
+    {"what": "Sharp gradient clip-path inset", "action": "mirrored", "why": "inset(-25% 0 -25% (100-p)%) so the reveal grows from the right edge."},
+    {"what": "Soft glow masks, trail mask, head hot-core clip", "action": "mirrored", "why": "90deg -> 270deg gradients and swapped inset sides, same percentages measured from the right."},
+    {"what": "GRAD gradient 92deg -> 268deg", "action": "mirrored", "why": "Blue (start) stays at the word start (right), amber tail on the left."},
+    {"what": "Lightning svg", "action": "adapted", "why": "Anchored at the word's right edge, scale(-0.74,1) flip+fit to the narrower Persian word; seeded bolt pattern and timing unchanged."},
+    {"what": "translateY entrance, centered composition, symmetric ambient radial glow, seeds, easing, glow opacities", "action": "kept", "why": "Vertical/gravity and symmetric elements carry no reading direction."},
+    {"what": "letterSpacing -1 -> 0, no italic, lineHeight 1.5, fs(92)", "action": "adapted", "why": "Persian letters join; synthetic italic breaks joins; taller ascenders/dots; smaller x-height."},
+    {"what": "Whole-word layers (no per-letter splitting)", "action": "kept", "why": "All glow layers duplicate the same joined word so shaping stays intact."},
+    {"what": "Temporary frame offset (useCurrentFrame()+40) left by interrupted attempt", "action": "adapted", "why": "Removed; timeline is the original (fill 12-30f, lightning from 33f). Late beats inspected with --duration 100 because registry length is 20f."}
+   ]
+  }
+ ],
+ "rasterTextHandling": "None: no raster assets.",
+ "concerns": ["Faint rectangular edge of blurred glow layers during the sweep is also present in the original; kept for fidelity.", "Registry duration is only 20f, so video shows only the sweep start unless --duration is passed; design length is ~100f (fill 18f + 1-3s steady)."],
+ "iterations": 2
+}

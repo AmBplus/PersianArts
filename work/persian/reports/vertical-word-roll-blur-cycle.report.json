@@ -1,0 +1,21 @@
+{
+ "slug": "vertical-word-roll-blur-cycle",
+ "status": "done",
+ "font": {"family": "Vazirmatn", "reason": "Variable family with real weight 800; neutral clean product-UI voice that matches the light brand one-liner; stem and wheel must share family/size/weight per the design."},
+ "comps": [{
+  "id": "demo-VerticalWordRollBlurCycle",
+  "translatedSummary": "«ساخته‌شده برای» + roll of برنامه‌ها / تیم‌ها / داده‌ها / همه (Built for Apps/Teams/Data/Everyone)",
+  "video": "work/persian/out/vertical-word-roll-blur-cycle/VerticalWordRollBlurCycle.fa.mp4",
+  "rtlDecisions": [
+   {"what": "Stem + wheel row order", "action": "mirrored", "why": "FaRoot direction:rtl makes the flex row read right-to-left: stem on the right, wheel on its left."},
+   {"what": "Wheel word alignment", "action": "mirrored", "why": "left:0 replaced with insetInlineStart:0 + width:100%, words start-aligned (right edge) hugging the stem."},
+   {"what": "Mask width 190 -> 124 design px", "action": "adapted", "why": "Re-measured for the Persian word list (longest word about 107px) so the centred group is not empty/left-heavy; source prompt asks to re-measure width when words change."},
+   {"what": "Reel scroll direction (translateY up)", "action": "kept", "why": "Physical page-flip metaphor, not reading direction; no horizontal motion exists."},
+   {"what": "Vertical blur / opacity / colour ramps, STEPS, outQuint+outBack mix, fade-out", "action": "kept", "why": "Pure motion design, must stay identical; beats and timing unchanged."},
+   {"what": "letterSpacing -0.5 and sizes", "action": "adapted", "why": "letterSpacing 0 (joining), fs(30)=33px, lineHeight = ROW so Persian ascenders/dots stay in the row."}
+  ]
+ }],
+ "rasterTextHandling": "No raster assets.",
+ "concerns": ["Blur is the isotropic CSS blur (as in the original); hard clip at the mask edge is part of the original design."],
+ "lessons": ["Fixed-width mask windows sized for Latin words must be re-measured for Persian words, otherwise the centred group looks off-balance."]
+}

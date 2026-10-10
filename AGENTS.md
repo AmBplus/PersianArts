@@ -17,10 +17,13 @@ Also binding:
 - Shotcraft localization workspace: `work/persian/` (kit `work/persian/src/demos/_fa/index.tsx`, per-card harness
   `work/persian/render-card.mjs`, card facts `work/persian/card-info.mjs`). Edit only your own card directory.
 
+To **resume the shotcraft → Persian project**, start with [`docs/PERSIAN-SHOTCRAFT-HANDOFF.md`](docs/PERSIAN-SHOTCRAFT-HANDOFF.md)
+(method, tools, how to continue) and `work/persian/PROGRESS.md` (where we are).
+
 ## Model roles
 
 - Decisions, planning, review of results and orchestration: the main session model.
-- Implementation tasks (writing/rewriting code, renders, mechanical fixes) are delegated to **Sonnet 5.5, high effort**.
+- Implementation tasks (writing/rewriting code, renders, mechanical fixes) are delegated to **Sonnet 5.5, medium effort**.
 
 ## Git
 

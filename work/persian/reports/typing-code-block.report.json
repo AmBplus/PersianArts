@@ -1,0 +1,22 @@
+{
+ "slug": "typing-code-block",
+ "status": "done",
+ "font": {"family": "Vazir Code + Vazirmatn", "reason": "Vazir Code for Latin code chrome (monospace); Vazirmatn for the neutral UI labels and for the Persian comment letters, because the monospace face shows Persian as unjoined, spaced letters."},
+ "comps": [{
+  "id": "demo-TypingCodeBlock",
+  "translatedSummary": "Two panels over the same syntax-highlighted code: line-by-line fade/rise (right) vs. char-by-char typing with block cursor (left). Labels: «ظهور خط‌به‌خط» / «تایپ حرف‌به‌حرف»; comment «// آماده».",
+  "video": "work/persian/out/typing-code-block/TypingCodeBlock.fa.mp4",
+  "rtlDecisions": [
+   {"what": "Panel order (left/right swap, right: 3.5% / 51.5%)", "action": "mirrored", "why": "First panel in reading order goes to the right half; both panels share one spec so x' = 100 - x - 45."},
+   {"what": "Panel label alignment", "action": "mirrored", "why": "direction:rtl on the panel puts the label on the start (right) edge like an RTL UI header; letterSpacing/uppercase removed."},
+   {"what": "Code lines and typing direction", "action": "kept", "why": "Code is an LTR island (direction:ltr, textAlign:left, isolate): syntax does not mirror and the cursor advances through the code in its own reading order."},
+   {"what": "translateY(8px) rise and top-to-bottom line stagger", "action": "kept", "why": "Vertical/gravity motion, not reading-direction dependent."},
+   {"what": "Comment '// ready' -> '// آماده'", "action": "adapted", "why": "Same 8 code points, so the 59-char typing pace and end frame are unchanged. Typed with prefix slicing: untyped remainder kept as hidden text for stable width, and ZWNJ between visible prefix and hidden rest so the last letter takes its right form; block cursor on last typed letter."},
+   {"what": "Token palette, easings, timings, seeds, block cursor colour", "action": "kept", "why": "Motion fidelity; nothing in them depends on direction."}
+  ]
+ }],
+ "rasterTextHandling": "No raster assets in this card.",
+ "concerns": ["Typing in the Persian comment starts at the right end of its RTL run and grows leftwards (natural Persian typing); the cursor block sits on the newest letter.", "Code identifiers stay Latin by design (code syntax)."],
+ "iterations": 2,
+ "lessons": ["Monospace code fonts (Vazir Code) render Persian letters unjoined and spaced: switch Persian runs inside code to Vazirmatn (symptom: 'آ م ا د ه' with gaps).", "Hidden-remainder typewriters in Persian: join into the invisible next letter gives a wrong medial form on the cursor letter; insert U+200C between the visible prefix and the hidden rest."]
+}

@@ -1,0 +1,27 @@
+{
+ "slug": "document-typewriter-reveal",
+ "status": "done",
+ "font": {"family": "Vazirmatn", "reason": "Neutral product/document UI (collaborative weekly-brief editor); variable weights 400-800 for h1/h2/body hierarchy, full Persian digits and ZWNJ coverage."},
+ "comps": [{
+  "id": "demo-DocumentTypewriterReveal",
+  "translatedSummary": "Persian weekly-brief document (هفتهٔ ۲۸ ۲۰۲۶ · گزارش هفتگی آزمایشگاه بنیان) written out by a mirrored wipe+caret, weeks sidebar on the right, comments rail on the left, six past-week entries dropping into the right rail.",
+  "video": "work/persian/out/document-typewriter-reveal/DocumentTypewriterReveal.fa.mp4",
+  "rtlDecisions": [
+   {"what": "Baked page screenshot (wbr-full.png)", "action": "adapted", "why": "Contained Chinese/English UI text that cannot be translated; rebuilt as a real DOM page (Page.tsx) with Persian product wording, Jalali date 19 Tir for 7/10."},
+   {"what": "Page layout: sidebar, comments rail, header/nav, toolbar, chevrons, undo/redo", "action": "mirrored", "why": "Reading-order layout: weeks sidebar left->right, comments rail right->left, brand/nav start on the right, toolbar order reversed."},
+   {"what": "Document text column", "action": "mirrored", "why": "Mirrored around page centre (x' = W-x-w), right-aligned, bullets on the right (start side)."},
+   {"what": "Writing wipe mask and amber caret", "action": "mirrored", "why": "Paper mask anchored left shrinking right->left; caret rides the front moving in reading direction; li masks over-cover the bullet side by 28px as in the original."},
+   {"what": "@-mention wash", "action": "mirrored", "why": "Grows from the start (right) edge of the member name."},
+   {"what": "Rail entrance patch and inner amber line", "action": "adapted", "why": "Patch shrinks downward (vertical, kept); inner line moved to the inner edge of each mirrored rail; cues 46/54 kept so the weeks rail still goes first."},
+   {"what": "Past-week entries drop-in", "action": "kept", "why": "Gravity (drop from above, spring, air shadow) is physical; only the rail side changed; date sits at the row's left end."},
+   {"what": "Camera keys", "action": "mirrored", "why": "cx mirrored (1920-cx) so title close-up and settle keep their relation; zoom/frames/easing unchanged."},
+   {"what": "Screen-space kicker", "action": "mirrored", "why": "Moved top-right -> top-left; tracked uppercase mono label became a plain Persian label (no letterSpacing/uppercase)."},
+   {"what": "Latin tokens (cascade, drift, ASR, WER, CI, run-47, v2, LR schedule)", "action": "kept", "why": "Technical tokens that Persian UIs keep; isolated with bdi so punctuation does not jump; digits elsewhere are Persian."},
+   {"what": "Timing, cues (6+3.5g), WIPE 8f, easings, 110f duration", "action": "kept", "why": "Motion fidelity requirement; text shortened so every bullet occupies the original line count (blocks 2 and 5 two lines, others one line)."}
+  ]
+ }],
+ "rasterTextHandling": "wbr-full.png (baked Chinese/English UI) is no longer used; the page chrome, sidebar, comments and document are real DOM in Persian. Only the avatar initial V remains Latin.",
+ "concerns": ["The title close-up (frames 0-22) crops the right end of the brand text, as the original close-up crops its page; intentional.", "Persian copy was condensed (long clauses dropped) to keep original one/two-line block geometry so wipes, carets and the wash line up."],
+ "lessons": ["Mock documents with fixed block geometry (wipe masks keyed to layout JSON): Persian text is wider/wraps differently; a bullet that wraps overlaps the next block, so fit-check every block against its original line count and shorten copy rather than letting it wrap.", "Baked screenshot textures with foreign UI text: rebuild as DOM driven by the same layout JSON so animations keep their geometry."],
+ "iterations": 3
+}

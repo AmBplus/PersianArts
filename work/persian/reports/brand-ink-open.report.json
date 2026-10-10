@@ -1,0 +1,53 @@
+{
+ "slug": "brand-ink-open",
+ "status": "done",
+ "font": {
+  "family": "Amiri (wordmark) + Vazir Code (kicker)",
+  "reason": "Review found Markazi Text rendered monoline and sans-like and too light against the heavy Georgia 600 lockup. Amiri is a genuine high-contrast Naskh serif, so the editorial voice is visible. It has one weight, so heaviness is rebuilt with a 2.5px ink text stroke instead of synthesized bold. Kicker keeps Vazir Code for the console cadence."
+ },
+ "comps": [
+  {
+   "id": "demo-BrandInkOpen",
+   "translatedSummary": "Wordmark «آزمایشگاه هوش مصنوعی», kicker «کنسول پژوهشی تیم».",
+   "video": "work/persian/out/brand-ink-open/BrandInkOpen.fa.mp4",
+   "rtlDecisions": [
+    {
+     "what": "Wordmark per-glyph letterpress cascade",
+     "action": "adapted",
+     "why": "Per-unit motion runs on joinedGroups so letters keep joining; row is rtl so the first group is right-most and stamping goes right to left. The delay step is derived so the last unit starts at the original f58 and finishes at f70, keeping the 1s hold (f67-97) and exit unchanged."
+    },
+    {
+     "what": "Kicker typewriter and cursor",
+     "action": "mirrored",
+     "why": "Prefix slice via typeOn, growing from the right edge. The block cursor sits at the logical end (left) via marginInlineStart. Speed rescaled to the original f28-f43 window; letterSpacing and uppercase removed."
+    },
+    {
+     "what": "Crosshair horizontal stroke",
+     "action": "mirrored",
+     "why": "Line endpoints swapped so the pen starts at the right end, the reading-start side. Same frames and easing."
+    },
+    {
+     "what": "Crosshair vertical stroke, glint underline, lift/shrink exit, centered composition",
+     "action": "kept",
+     "why": "Symmetric or physical vertical motion with no reading-direction meaning."
+    },
+    {
+     "what": "Sizes and line-heights",
+     "action": "adapted",
+     "why": "fs() x1.1, wordmark lineHeight 1.3, kicker box scaled for Persian ascenders and dots."
+    },
+    {
+     "what": "Wordmark font and weight",
+     "action": "adapted",
+     "why": "Markazi to Amiri with 2.5px stroke to restore the heavy serif lockup; no motion or timing change."
+    }
+   ]
+  }
+ ],
+ "rasterTextHandling": "none (all SVG/text)",
+ "concerns": [
+  "Persian wordmark has 20 units against the original 17 glyphs, so the stagger step is about 2.4f instead of 3f to keep the original end beat.",
+  "Glint underline bottom moved from -6 to 14 so it sits just under the Persian descenders (lineHeight 1.3 made it float). Dead perChar variable removed. Wordmark weight is a stroke approximation of the original 600 serif."
+ ],
+ "iterations": 2
+}

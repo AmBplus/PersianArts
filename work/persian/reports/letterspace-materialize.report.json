@@ -1,0 +1,23 @@
+{
+ "slug": "letterspace-materialize",
+ "status": "done",
+ "font": {"family": "none rendered (vector wordmark); mood reference Noto Kufi Arabic", "reason": "The only text is a hand-drawn skeleton SVG wordmark; no font runs. Geometric monoline construction follows the calm Kufic mood of Noto Kufi Arabic."},
+ "iterations": 2,
+ "comps": [{
+  "id": "demo-LetterspaceMaterialize",
+  "translatedSummary": "Wordmark SUPERHUMAN -> «ابرانسان», redrawn as 8 continuous monoline strokes (5 connected groups + 3 dot strokes).",
+  "rtlDecisions": [
+   {"what": "Wordmark text", "action": "adapted", "why": "Latin skeleton glyphs replaced by Persian skeleton strokes for «ابرانسان»; same stroke weight, caps, glow."},
+   {"what": "Letter-spacing identity", "action": "adapted", "why": "Tracking would break joining; the word is split at natural joining breaks (ا | بر | ا | نسا | ن) and groups are set apart with wide gaps, letters stay connected inside groups."},
+   {"what": "Parallel sync draw (START 16, DUR 52, easeInOut, pathLength dash)", "action": "kept", "why": "Core of the card: same progress for all strokes, no stagger, so nothing to mirror in order."},
+   {"what": "Pen direction of baseline strokes", "action": "mirrored", "why": "Persian is written right to left; baseline/bowl paths start at the right end. Alif verticals keep original bottom-to-top-like physical gesture."},
+   {"what": "Word order", "action": "mirrored", "why": "First letter ا is right-most."},
+   {"what": "Afterglow ellipse right:130", "action": "mirrored", "why": "Asymmetric light accent moves to left:130 with the layout."},
+   {"what": "Horizon band, vertical sky gradient, glow drop-shadow", "action": "kept", "why": "Symmetric or physical (sky), omnidirectional glow."},
+   {"what": "Completion glow beat", "action": "kept", "why": "Timing identical to original."}
+  ]
+ }],
+ "rasterTextHandling": "No raster assets in this demo.",
+ "concerns": ["Registry duration is 15 f; design is ~100 f, verified via --duration 110 stills.", "Skeleton letter forms are a geometric logotype, not calligraphic naskh; ن dots drawn as short strokes. If SUPERHUMAN is a real Latin brand mark, a client may prefer to keep the Latin logo."],
+ "lessons": ["Letter-by-letter stroke-draw wordmarks: do not translate letters one-to-one; split into joined groups, draw each group as one continuous path and keep the large gaps between groups (spacing only at joining breaks).", "Skeleton Persian teeth (س) taller than the ن tooth read as 'hmm' blobs: keep س teeth short and sharp (sawtooth), ن bowl deep enough (ry ~66) or it reads as a smile."]
+}

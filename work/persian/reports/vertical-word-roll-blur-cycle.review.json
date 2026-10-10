@@ -1,0 +1,1 @@
+{"slug":"vertical-word-roll-blur-cycle","verdict":"approve","issues":[],"notes":"Checked frames 0,32,45,75,110,142 fa vs orig: shaping joined, ZWNJ intact, row order RTL, timing/exports unchanged. Minor: ink centre drifts right for the short word (same imbalance as original)."}

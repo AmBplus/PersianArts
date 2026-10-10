@@ -1,0 +1,21 @@
+{
+  "slug": "stroke-segment-build",
+  "status": "done",
+  "font": {"family": "Vazirmatn", "reason": "Weight 900 gives uniform heavy monoline strokes that read as the thick disjoint stroke segments of the original; Lalezar was too blobby once cut, Reem Kufi's final ه became illegible when fragmented. Caption uses Vazirmatn 800 (variable, real bold). Loaded via FaRoot."},
+  "comps": [{
+    "id": "demo-StrokeSegmentBuild",
+    "translatedSummary": "Title 'SHIP' becomes the Persian word «عرضه»; caption becomes «ساخت واژه از پاره‌خط‌ها». 16 disjoint fragments of the real typeset word light in scrambled order, last 3 are the key fragments, final scale pulse 1→1.06→1.",
+    "video": "work/persian/out/stroke-segment-build/StrokeSegmentBuild.fa.mp4",
+    "rtlDecisions": [
+      {"what": "Title word SHIP -> عرضه", "action": "adapted", "why": "Persian letters connect and are curved, so the hand-drawn straight butt-cap line segments cannot be reused. The word is typeset once and 16 rectangular slices (clip-path inset, 10px gaps) are revealed; never split into code points, so shaping stays correct."},
+      {"what": "Fragment slide-in (12px along stroke axis)", "action": "mirrored", "why": "Horizontal fragments travel right->left (the original left->right was reading direction); vertical fragments keep top->bottom (physical)."},
+      {"what": "ORDER / key fragments", "action": "adapted", "why": "New 16-entry order spread across letters; last 3 (ع bowl, ر tail, ض dot) are the recognition keys, preserving the 'unreadable first 70%' design."},
+      {"what": "Timing FIRST/STEP/SEG_IN/LAST_LAND, pulse, transformOrigin 50% 55%", "action": "kept", "why": "Motion beats unchanged; 16 fragments retained so beats are identical; composition is symmetric."},
+      {"what": "Caption letterSpacing 2 / uppercase / Helvetica 800", "action": "adapted", "why": "Tracking breaks Persian joining; replaced by Vazirmatn 800 at fs(44), centered like the original."},
+      {"what": "Word and caption centering", "action": "kept", "why": "Symmetric about the vertical axis; flex-centered so direction:rtl does not shift it."}
+    ]
+  }],
+  "rasterTextHandling": "No raster assets in this card.",
+  "concerns": ["At f95 (13 of 16 fragments lit) the right part ه/ض/ر is partly guessable by a Persian reader; an alternative ORDER could hide one more body fragment of ه if a stronger mystery is wanted.", "Seams (10px gaps) remain visible in the final held word, as the original's segments were also disjoint."],
+  "lessons": ["Stroke-built / line-segment title effects cannot be redrawn as straight segments for Persian: typeset the real word and reveal disjoint clip-path rectangles of it (translate each fragment with its own clip applied before transform).", "Pick the fragmenting font by cutting it: Reem Kufi and Lalezar looked fine whole but fragmented badly; Vazirmatn 900 stayed legible."]
+}

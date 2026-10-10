@@ -1,0 +1,20 @@
+{
+ "slug": "line-boil",
+ "status": "done",
+ "font": {"family": "Lalezar (title) + Vazirmatn (label, tags)", "reason": "Lalezar is a single-weight heavy poster face, the equivalent of Helvetica 800 for the giant outlined headline; no fake bold used. Vazirmatn variable is neutral UI for the method label and status tags (700/800). Both loaded via FaFonts so no frame falls back."},
+ "comps": [{
+  "id": "demo-LineBoil",
+  "translatedSummary": "Title 'ALIVE' -> «زنده»; label 'LINE BOIL' -> «جوشش خط»; tags 'boil on/off' -> «جوشش روشن» / «جوشش خاموش».",
+  "video": "work/persian/out/line-boil/LineBoil.fa.mp4",
+  "rtlDecisions": [
+   {"what": "Method label (top-left)", "action": "mirrored", "why": "Header anchor follows reading start: insetInlineStart:120 puts it top-right."},
+   {"what": "Status tag (bottom-right)", "action": "mirrored", "why": "insetInlineEnd:72 puts it bottom-left, keeping diagonal balance with the label."},
+   {"what": "Outlined card contents (placeholder lines, avatar circle + line row)", "action": "mirrored", "why": "direction:rtl makes lines start at the right edge and the circle sit at the right, as text lines do in Persian UI."},
+   {"what": "Centered title and card, feTurbulence seed floor(f/3), baseFrequency, scale 8, filter region, boil phases 35-105", "action": "kept", "why": "Symmetric composition; noise displacement is physical and applies to the whole layer (never per letter, so Persian joining is safe). Timing/seed untouched."},
+   {"what": "letterSpacing (4, -1, 2) and uppercase", "action": "adapted", "why": "Set to 0 everywhere; they break Persian joining. Title size 170 -> 230 (Lalezar compact, small x-height); label/tag sizes via fs() x1.1; title box height fixed at 170 so the card keeps its original vertical position."}
+  ]
+ }],
+ "rasterTextHandling": "None: pure CSS/SVG, no raster assets.",
+ "concerns": ["Frame 105-140 exists only with --duration 140 (registry is 105 frames); verified static rest frame 120 renders unfiltered and clean."],
+ "iterations": 2
+}

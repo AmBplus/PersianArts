@@ -1,0 +1,16 @@
+{
+ "slug":"beat-step-list-theme-cycle","status":"done",
+ "font":{"family":"Estedad","reason":"Variable font with real weight 800; bold, crisp, friendly display for short product adjectives, matching original Helvetica 800."},
+ "comps":[{"id":"demo-BeatStepListThemeCycle",
+  "translatedSummary":"modern/playful/expressive/seamless/intuitive -> مدرن/سرزنده/گویا/یکپارچه/شهودی (same count, beats unchanged)",
+  "video":"BeatStepListThemeCycle.fa.mp4",
+  "rtlDecisions":[
+   {"what":"Vertical word list scrolling up","action":"kept","why":"Vertical stepping is not reading-direction dependent."},
+   {"what":"Centered pill (left:50% + translateX(-50%)), squash","action":"kept","why":"Symmetric composition; centering unaffected by RTL."},
+   {"what":"Shadow, top/bottom feather gradients","action":"kept","why":"Purely vertical, light from above."},
+   {"what":"Theme order / colour cycle","action":"kept","why":"Temporal sequence, not spatial."},
+   {"what":"Text direction and font","action":"adapted","why":"Wrapped in FaRoot (rtl, Estedad); fs(92), letterSpacing 0 (was -1.5, breaks joining), lineHeight 1.5, nowrap."},
+   {"what":"Non-selected word colour","action":"adapted","why":"rgba white 34% showed seams at glyph joins; replaced by white + group opacity 0.34 (same look)."}]}],
+ "rasterTextHandling":"No raster assets.",
+ "concerns":["Registered card duration in demo-index is 30 frames (durationSource card) while FIRST_BEAT=30, so the harness only renders the static preamble; beats (f30-84) cannot be verified by stills. Timing logic is untouched from the original."],
+ "iterations":2}

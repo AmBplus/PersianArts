@@ -1,0 +1,20 @@
+{
+ "slug": "outline-word-fill",
+ "status": "done",
+ "font": {"family": "Vazirmatn", "reason": "Neutral product/slogan voice; variable font so the design's 500 weight is real (heavier would balloon the 1px outline). Loaded via FaRoot. Estedad, Sahel and Shabnam were trialled; all showed the same join seams, Vazirmatn read cleanest."},
+ "comps": [{
+  "id": "demo-OutlineWordFill",
+  "video": "work/persian/out/outline-word-fill/OutlineWordFill.fa.mp4",
+  "translatedSummary": "«سریع‌تر» (Faster): outlined word shrinks in from 3.2x, dashed circle and side lines aim at it, then it snaps to solid white with a brief glow.",
+  "rtlDecisions": [
+   {"what": "Word 'Faster' -> «سریع‌تر», letterSpacing 0.5px -> 0, fs(48), lineHeight 1->1.25, direction rtl, nowrap", "action": "adapted", "why": "Persian letters join; spacing breaks shaping. Single short word still fits inside the r=88 circle, so circle/line coordinates are unchanged."},
+   {"what": "Outline rendering", "action": "adapted", "why": "A 1px text-stroke on Persian shows seams where joined glyph contours overlap. Now 2px stroke plus a bg-coloured fill copy on top, leaving a clean 1px outer outline; timing and colours unchanged."},
+   {"what": "Dashed circle rotation sign (t*18) and radial shrink", "action": "kept", "why": "Physical spinner-like rotation, not reading order."},
+   {"what": "Left/right horizontal dashed lines", "action": "kept", "why": "Composition is exactly symmetric; both extend in the same window and distance, so mirroring is a no-op."},
+   {"what": "Dust scatter, glow, zoom, pop window 0.742-0.762, all seg windows/easings", "action": "kept", "why": "Seeded and non-directional; the motion beats must stay identical."}
+  ]
+ }],
+ "rasterTextHandling": "None: pure CSS/SVG, no raster or baked text.",
+ "concerns": ["Dust or circle dashes passing behind the glyph body are hidden by the bg-coloured fill copy (only visible in the first ~3 frames of the 3.2x zoom; negligible)."],
+ "iterations": 3
+}

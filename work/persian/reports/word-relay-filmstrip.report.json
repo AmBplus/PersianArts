@@ -1,0 +1,22 @@
+{
+ "slug": "word-relay-filmstrip",
+ "status": "done",
+ "font": {"family": "Markazi Text", "reason": "High-contrast editorial serif (variable 400-700) is the closest Persian match for the Didot/Bodoni newsroom voice required by the source prompt; sans would lose the editorial character. Used at weight 500, size 150 (116 Latin) with 160px line boxes."},
+ "iterations": 2,
+ "comps": [{
+  "id": "demo-WordRelayFilmstrip",
+  "translatedSummary": "Computer -> کامپیوتر (constant line 1); verbs researches/builds/codes -> پژوهش می‌کند / می‌سازد / کد می‌نویسد relay in place on line 2. Cards are text-free wireframes.",
+  "video": "work/persian/out/word-relay-filmstrip/WordRelayFilmstrip.fa.mp4",
+  "rtlDecisions": [
+   {"what": "Filmstrip column position (left x=106 -> right:106)", "action": "mirrored", "why": "The evidence column precedes the argument in reading order, so it takes the start (right) side."},
+   {"what": "Word block position and alignment", "action": "mirrored", "why": "Moved to the left half, text start-aligned (right edge x=790), keeping the 84px gap to the cards like the original; vertical centre kept at y=540 (top=540-160, two 160px lines)."},
+   {"what": "Wireframe pages inside cards (flex order, marginLeft auto, borderLeft/paddingLeft, textAlign, MRI sidebars)", "action": "mirrored", "why": "Pages are drawn as Persian RTL pages via direction:rtl and logical properties; MRI viewer sidebars swap sides; random draw order and seeds untouched."},
+   {"what": "MRI scan image with marker circles and radial gradient", "action": "kept", "why": "Physical imagery, symmetric gradient; mirroring an image is not reading-direction meaning."},
+   {"what": "Vertical step scroll, ease-in-out step windows (f14/62/108), word relay cross-fade and grey timing, shadows, seeds", "action": "kept", "why": "Up/down motion and timing are not reading-direction; the step-and-click design intent is preserved."},
+   {"what": "Word relay motion", "action": "adapted", "why": "Still whole-word opacity/colour cross-fade (no per-letter motion so joining is safe); letterSpacing removed (0); weight 500 single serif family."}
+  ]
+ }],
+ "rasterTextHandling": "No raster assets; cards are CSS shapes with no text.",
+ "concerns": ["Registry duration is 16 frames (inline); the design runs ~145 frames, verified with --duration 150 and the full video rendered at 150 frames. The upstream original render only has 16 frames so orig comparison exists only for early frames.", "Wireframe pages are mockups; with real screenshots, Persian pages would need real RTL screenshots."],
+ "lessons": ["Registry-inline durations may be tiny (16 f) and the original render then only covers those frames: orig comparison is impossible beyond them; rely on the design length from the source prompt plus --duration."]
+}

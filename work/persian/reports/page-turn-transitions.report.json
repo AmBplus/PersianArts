@@ -1,0 +1,1 @@
+{"slug":"page-turn-transitions","status":"done","fixes":["BarnDoorSplit title moved from right:120 to right:340 (top 96->88) so it sits on the light main area, clear of the dark sidebar (x>=1700); header comment updated"],"note":"registered comps are 30f; later beats verified earlier with a temporary frame offset (removed); final --video renders OK for both comps"}

@@ -1,0 +1,20 @@
+{
+ "slug": "spectrum-morph-ui",
+ "status": "done",
+ "font": {"family": "Lalezar", "reason": "Poster/impact display face standing in for Helvetica 800 caps; single weight so no fake bold; wordSpacing .15em for its tight word gap."},
+ "comps": [{
+  "id": "demo-SpectrumMorphUi",
+  "translatedSummary": "LAUNCH WEEK -> «هفتهٔ عرضه»; underline splits into 28 spectrum bars for two bars of music, then collapses back to the exact line.",
+  "rtlDecisions": [
+   {"what": "Spectrum frequency axis (bar slot order)", "action": "mirrored", "why": "Bass-to-treble is a category axis read in reading order; bar i=0 (tallest bass bar) now sits at the right end, envelope falls to the left. Slot x = N-1-i; per-index wobble/jitter/env maths and seeds unchanged."},
+   {"what": "Underline / bar group geometry (600..1320, centred)", "action": "kept", "why": "Symmetric about the canvas centre, so the collapse into the line is pixel-identical; bars grow upward from the line (gravity)."},
+   {"what": "Title alignment", "action": "kept", "why": "textAlign center is direction neutral; FaRoot adds direction rtl."},
+   {"what": "Title typography", "action": "adapted", "why": "Removed letterSpacing -1 and Helvetica caps; Lalezar faText(150) = 165px, lineHeight 1.3, top 310 so the taller Persian glyph box and descender clear the bars; size raised vs 120 because the two-word Persian headline is narrower than the Latin caps."},
+   {"what": "Timing, easing, gap/width interpolation, conditional mount of the solid line", "action": "kept", "why": "Motion fidelity; 25f split, 64f dance, 12f collapse, static tail."}
+  ]
+ }],
+ "rasterTextHandling": "No raster assets in this demo.",
+ "iterations": 2,
+ "concerns": ["Registry duration is 64f but design is ~141f; verified with --duration 141 and the full video rendered with it."],
+ "lessons": ["Frequency/spectrum bar charts are category axes: mirror the slot order only (x = N-1-i) and keep the per-index maths so seeds/beats stay identical."]
+}

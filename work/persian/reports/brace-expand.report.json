@@ -1,0 +1,21 @@
+{
+ "slug": "brace-expand",
+ "status": "done",
+ "font": {"family": "Vazirmatn", "reason": "Neutral developer/product headline voice. Variable font so the original weight 800 is real, not faked. Braces use the same face so stroke weight matches the title."},
+ "comps": [{
+  "id": "demo-BraceExpand",
+  "translatedSummary": "Placeholder title 'Your title' became 'عنوان شما'. A pair of braces appears at the centre, springs outward with an outBack overshoot while scaling up, and reveals the title like a curtain. At the end the word gap relaxes slightly.",
+  "video": "work/persian/out/brace-expand/BraceExpand.fa.mp4",
+  "rtlDecisions": [
+   {"what": "Title text", "action": "adapted", "why": "'عنوان شما' fits the 262px clip at HALF=148 (about 190px wide). The curtain still reads (frame 16 shows the first letter between the braces). HALF and all timings are unchanged."},
+   {"what": "Letter-spacing relaxation 1 to 2.6px", "action": "adapted", "why": "Letter-spacing breaks Persian joining, so letterSpacing is 0. The same lerp and window (0.42 to 0.62, inOutQuad) now drive wordSpacing. The single word gap opens slightly, which keeps the 'settling breath'."},
+   {"what": "Brace positions (+-x), shared scale, clip width x*2-34, centred absolute layout", "action": "kept", "why": "The composition is symmetric about the centre. The reveal grows from the middle outward in both directions, so nothing carries reading direction. The source prompt requires absolute positioning, not flex."},
+   {"what": "Brace glyphs '{' on the left and '}' on the right", "action": "kept", "why": "Each brace sits in a direction:ltr isolate so bidi mirroring cannot swap them. The pair looks identical to the original and is read as code syntax, a universal symbol."},
+   {"what": "Title direction and line-height", "action": "adapted", "why": "The title uses faText (rtl, no tracking, no transform) with FA_LH 1.5 inside the 60px clip and size fs(38). Descender dots are not clipped in any viewed frame."},
+   {"what": "Timing, easing, hard-cut brace entrance, overshoot", "action": "kept", "why": "Motion fidelity: on at t=.07, outBack .13 to .34, relax .42 to .62, 114 frames, BRACE_EXPAND_DURATION unchanged."}
+  ]
+ }],
+ "iterations": 2,
+ "rasterTextHandling": "No raster or image assets in this demo.",
+ "concerns": ["The Persian title is shorter than 'Your title', so the text is fully revealed a little earlier. The curtain is slightly less pronounced but visible, and beats are kept. The word-gap relaxation is subtler than the original tracking, since the title is only two words."]
+}

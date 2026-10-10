@@ -1,0 +1,1 @@
+{"slug":"hashtag-to-pill-materialize","verdict":"approve","issues":[{"severity":"minor","where":"HashtagToPillMaterialize.tsx Pill (line ~98), frames 48-82","problem":"Pill content is off-centre: about 100px on the icon (right) side versus about 60px on the word (left) side.","suggestedFix":"Use symmetric paddingInline (~70) or justifyContent:center."}]}

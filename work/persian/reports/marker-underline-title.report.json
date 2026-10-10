@@ -1,0 +1,22 @@
+{
+ "slug": "marker-underline-title",
+ "status": "done",
+ "font": {"family": "Vazirmatn (weight 800)", "reason": "Neutral product-headline voice equal to the original SF/Helvetica bold; variable font so a real heavy weight exists; Persian glyph coverage complete."},
+ "comps": [{
+  "id": "demo-MarkerUnderlineTitle",
+  "translatedSummary": "Line 1: «با جدید آشنا شوید» (keyword «جدید» underlined; = Meet the new); line 2: Notion AI kept Latin as brand mark (bdi).",
+  "video": "work/persian/out/marker-underline-title/MarkerUnderlineTitle.fa.mp4",
+  "rtlDecisions": [
+   {"what": "Underline draw direction (clip window)", "action": "mirrored", "why": "A reveal along the word follows reading order; Persian is written right to left so the pen starts at the right end."},
+   {"what": "Stroke polygon slope (left-low/right-high)", "action": "mirrored", "why": "Stroke geometry mirrored with the draw: low at word start (right), rising to the end (left); seed 77, wobble and width profile unchanged."},
+   {"what": "Italic on keyword", "action": "adapted", "why": "Persian has no italics and faux slant breaks the script; emphasis is carried by the marker stroke alone."},
+   {"what": "Letter-spacing -0.02em", "action": "adapted", "why": "Set to 0 so letters stay joined; line-height 1.5 for Persian dots/descenders."},
+   {"what": "Title entrance (translateY 36px, 22f ease-out) and centring", "action": "kept", "why": "Vertical gravity-like motion and a symmetric centred composition carry no reading direction; timings 0-22 / 32-42 unchanged."},
+   {"what": "Brand 'Notion AI'", "action": "kept", "why": "Brand mark stays Latin, isolated with bdi so it remains one LTR run."},
+   {"what": "Underline length/offset", "action": "adapted", "why": "LEN 252->276, right:-6, bottom:-12 re-measured on the Persian glyph box: the word is wider and the dots sit lower; stroke hugs the word without hitting the dots."}
+  ]
+ }],
+ "rasterTextHandling": "No raster assets.",
+ "concerns": ["Registry duration is 12 frames while the design is ~60 (draw at 32-42): inspected with --duration 60; original MP4 only has 12 frames so orig comparison was possible only for early frames."],
+ "iterations": 2
+}

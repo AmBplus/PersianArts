@@ -1,0 +1,1269 @@
+{
+ "generatedAt": "2026-10-10T23:18:24.571Z",
+ "summary": {
+  "todo": 115,
+  "localized": 6,
+  "approved": 30,
+  "fixed": 5,
+  "needs-fix": 1,
+  "total": 157
+ },
+ "cards": [
+  {
+   "slug": "ai-stream-response",
+   "status": "localized",
+   "font": "Vazirmatn",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 1
+  },
+  {
+   "slug": "assemble-then-type-flyin",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "aurora-bloom-bg-flip",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "autolayout-gap-dial",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "avatar-bracket-carousel",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "avatar-grid-radial-build-colorize",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "basic-3d-scene",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "beat-cut-moves",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "beat-step-list-theme-cycle",
+   "status": "approved",
+   "font": "Estedad",
+   "videos": 1,
+   "majors": 0,
+   "concerns": 1
+  },
+  {
+   "slug": "before-after-slider-scrub",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "bezier-source-converge-merge",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "blur-slide",
+   "status": "approved",
+   "font": "Vazirmatn",
+   "videos": 1,
+   "majors": 0,
+   "concerns": 1
+  },
+  {
+   "slug": "bottom-push-stack-wipe",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "brace-expand",
+   "status": "approved",
+   "font": "Vazirmatn",
+   "videos": 1,
+   "majors": 0,
+   "concerns": 1
+  },
+  {
+   "slug": "brand-frame-snap",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "brand-ink-open",
+   "status": "fixed",
+   "font": "Amiri (wordmark) + Vazir Code (kicker)",
+   "videos": 1,
+   "majors": 1,
+   "concerns": 2
+  },
+  {
+   "slug": "bubble-swarm-takeover",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "canvas-materialize-moves",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "card-flip-reveal",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "card-flock-tumble",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "card-stack",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "carousel-3d",
+   "status": "approved",
+   "font": "",
+   "videos": 1,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "cel-flash-stomp",
+   "status": "localized",
+   "font": "Lalezar",
+   "videos": 1,
+   "majors": 0,
+   "concerns": 3
+  },
+  {
+   "slug": "chart-live-moves",
+   "status": "fixed",
+   "font": "Vazirmatn",
+   "videos": 3,
+   "majors": 1,
+   "concerns": 1
+  },
+  {
+   "slug": "chip-grid-single-select-blackout",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "chip-lift-to-user-pill",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "circle-match-iris",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "cloner-depth-echo",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "collab-cursor-moves",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "color-block-step-wipe",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "command-palette-summon",
+   "status": "localized",
+   "font": "Vazirmatn",
+   "videos": 1,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "countdown-arc-scatter",
+   "status": "approved",
+   "font": "",
+   "videos": 1,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "counter-confetti",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "crane-rise-reveal",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "crash-zoom-punch",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "cube-navigation",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "cursor-flyover",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "cycle-glass-node-morph",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "dashboard-glow-highlight-pill",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "dataviz-landscape-open",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "deck-deal-flyin",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "depth-layer-moves",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "doc-park-left-pill-deal",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "document-typewriter-reveal",
+   "status": "approved",
+   "font": "Vazirmatn",
+   "videos": 1,
+   "majors": 0,
+   "concerns": 2
+  },
+  {
+   "slug": "draw-svg-trace",
+   "status": "approved",
+   "font": "Vazirmatn",
+   "videos": 1,
+   "majors": 0,
+   "concerns": 2
+  },
+  {
+   "slug": "edit-hook-moves",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "element-body-moves",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "floating-glossy-label-pills",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "flying-words",
+   "status": "approved",
+   "font": "Vazirmatn",
+   "videos": 1,
+   "majors": 0,
+   "concerns": 2
+  },
+  {
+   "slug": "fracture",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "fui-hud-moves",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "gauge-readout-moves",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "glass-pill-dictation-typing",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "glitch-cycle",
+   "status": "approved",
+   "font": "Vazir Code",
+   "videos": 1,
+   "majors": 0,
+   "concerns": 2
+  },
+  {
+   "slug": "glow-flyline-moves",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "gradient-transition",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "gradient-word-sweep",
+   "status": "approved",
+   "font": "Noto Kufi Arabic (700)",
+   "videos": 1,
+   "majors": 0,
+   "concerns": 2
+  },
+  {
+   "slug": "grain-dissolve",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "graze-face-tour",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "hashtag-to-pill-materialize",
+   "status": "approved",
+   "font": "Noto Kufi Arabic",
+   "videos": 1,
+   "majors": 0,
+   "concerns": 2
+  },
+  {
+   "slug": "hatch-depth",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "icon-field-colorize",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "icon-performance-moves",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "impact-feedback",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "input-trigger-moves",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "integration-hub-map",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "lead-word-zoom-assemble",
+   "status": "approved",
+   "font": "Vazirmatn",
+   "videos": 1,
+   "majors": 0,
+   "concerns": 3
+  },
+  {
+   "slug": "letterspace-materialize",
+   "status": "approved",
+   "font": "none rendered (vector wordmark); mood reference Noto Kufi Arabic",
+   "videos": 1,
+   "majors": 0,
+   "concerns": 2
+  },
+  {
+   "slug": "light-play-moves",
+   "status": "approved",
+   "font": "Lalezar (HalationBloom headline, SpotlightSweepReveal title); Estedad 800 (SheenSweepRetry card); Vazirmatn 600 (halation kicker)",
+   "videos": 3,
+   "majors": 0,
+   "concerns": 2
+  },
+  {
+   "slug": "line-boil",
+   "status": "localized",
+   "font": "Lalezar (title) + Vazirmatn (label, tags)",
+   "videos": 1,
+   "majors": 0,
+   "concerns": 1
+  },
+  {
+   "slug": "line-carry-transition",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "list-reveal",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "list-stack-press",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "logo-shrink-wordmark-lockup",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "magician-card-flourish",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "marker-underline-title",
+   "status": "approved",
+   "font": "Vazirmatn (weight 800)",
+   "videos": 1,
+   "majors": 0,
+   "concerns": 1
+  },
+  {
+   "slug": "montage-rhythm-moves",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "morph-from-primitive",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "mosaic-reframe",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "neon-frame-forerun",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "neon-frame-orbit-drop",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "neon-triple-marquee",
+   "status": "approved",
+   "font": "Lalezar",
+   "videos": 1,
+   "majors": 0,
+   "concerns": 1
+  },
+  {
+   "slug": "odometer-digit-roll",
+   "status": "fixed",
+   "font": "Vazirmatn",
+   "videos": 1,
+   "majors": 1,
+   "concerns": 1
+  },
+  {
+   "slug": "orbit-ring-title-open",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "outline-word-fill",
+   "status": "approved",
+   "font": "Vazirmatn",
+   "videos": 1,
+   "majors": 0,
+   "concerns": 1
+  },
+  {
+   "slug": "outro-group-photo-launch",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "overhead-camera-moves",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "page-turn-transitions",
+   "status": "fixed",
+   "font": "",
+   "videos": 2,
+   "majors": 1,
+   "concerns": 0
+  },
+  {
+   "slug": "page-waterfall-wall",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "panel-grid-moves",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "paper-craft-moves",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "paper-plane-messenger",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "paper-title-card",
+   "status": "approved",
+   "font": "Amiri (headline) + Vazirmatn (sub-line)",
+   "videos": 1,
+   "majors": 0,
+   "concerns": 1
+  },
+  {
+   "slug": "particle-celebrate-hits",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "particle-sand-fill",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "picker-carousel-feature-cycle",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "pill-chip-slot-cycle-handled",
+   "status": "fixed",
+   "font": "Vazirmatn",
+   "videos": 1,
+   "majors": 1,
+   "concerns": 1
+  },
+  {
+   "slug": "pill-slot-cycle",
+   "status": "approved",
+   "font": "Vazirmatn",
+   "videos": 1,
+   "majors": 0,
+   "concerns": 2
+  },
+  {
+   "slug": "platform-hinge-rise",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "print-texture-transitions",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "product-card-progressive-assemble",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "quad-split-parallel-scenes",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "radial-ripple-phone-chips",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "radial-wave",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "research-card-stack-scroll",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "rhythm-interrupt-moves",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "ring-diagram-annotation-reveal",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "riso-print-hits",
+   "status": "approved",
+   "font": "Lalezar",
+   "videos": 2,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "row-embed",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "runway-ground-skim",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "sakuga-timing-shift",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "scan-bracket-sweep",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "scanline-annotate-focus",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "scanline-assemble-flyin",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "scramble",
+   "status": "needs-fix",
+   "font": "",
+   "videos": 1,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "scroll-brake-moves",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "segmented-thumb-hero",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "shot-transitions",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "skeleton-reveal",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "slam-entrance-moves",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "smear-multiples",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "space-camera-moves",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "spectrum-morph-ui",
+   "status": "approved",
+   "font": "Lalezar",
+   "videos": 1,
+   "majors": 0,
+   "concerns": 1
+  },
+  {
+   "slug": "speed-ramp-freeze",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "split-flap-title",
+   "status": "approved",
+   "font": "Noto Kufi Arabic",
+   "videos": 1,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "spotlight-hero-card",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "spotlight-sweep-moves",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "steep-tilt-glide",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "stroke-segment-build",
+   "status": "approved",
+   "font": "Vazirmatn",
+   "videos": 1,
+   "majors": 0,
+   "concerns": 2
+  },
+  {
+   "slug": "svg-shape-morph",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "tear-streak-transitions",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "tension-camera-moves",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "terminal-3d",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "text-as-mask",
+   "status": "approved",
+   "font": "Lalezar (hero word, as embedded glyph paths) + Vazirmatn 700 (caption)",
+   "videos": 1,
+   "majors": 0,
+   "concerns": 2
+  },
+  {
+   "slug": "text-column-converge",
+   "status": "approved",
+   "font": "Vazirmatn",
+   "videos": 1,
+   "majors": 0,
+   "concerns": 1
+  },
+  {
+   "slug": "theme-switch-moves",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "timeline-travel",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "title-demote-to-label",
+   "status": "approved",
+   "font": "Vazirmatn",
+   "videos": 1,
+   "majors": 0,
+   "concerns": 1
+  },
+  {
+   "slug": "trailer-grammar-moves",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "transition-hidden-cut",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "transition-travel",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "type-and-filter",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "type-assembly-moves",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "type-entrance-moves",
+   "status": "localized",
+   "font": "",
+   "videos": 1,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "type-rhythm-sync",
+   "status": "approved",
+   "font": "Estedad",
+   "videos": 2,
+   "majors": 0,
+   "concerns": 2
+  },
+  {
+   "slug": "typewriter-moves",
+   "status": "localized",
+   "font": "",
+   "videos": 2,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "typing-code-block",
+   "status": "approved",
+   "font": "Vazir Code + Vazirmatn",
+   "videos": 1,
+   "majors": 0,
+   "concerns": 2
+  },
+  {
+   "slug": "ui-strip-away-outro",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "ui-to-brand-morph",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "value-stagger-gradient",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "vertical-word-roll-blur-cycle",
+   "status": "approved",
+   "font": "Vazirmatn",
+   "videos": 1,
+   "majors": 0,
+   "concerns": 1
+  },
+  {
+   "slug": "voice-waveform-live",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "wall-reveal-moves",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "white-flash-logo-simplify-cut",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "wipe-transitions",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  },
+  {
+   "slug": "word-relay-filmstrip",
+   "status": "approved",
+   "font": "Markazi Text",
+   "videos": 1,
+   "majors": 0,
+   "concerns": 2
+  },
+  {
+   "slug": "word-relay-geometry",
+   "status": "todo",
+   "font": "",
+   "videos": 0,
+   "majors": 0,
+   "concerns": 0
+  }
+ ]
+}

@@ -1,0 +1,64 @@
+{
+ "slug": "lead-word-zoom-assemble",
+ "status": "done",
+ "font": {
+  "family": "Vazirmatn",
+  "reason": "Neutral modern product-launch voice; variable font gives real weight 700 for the headline."
+ },
+ "comps": [
+  {
+   "id": "demo-LeadWordZoomAssemble",
+   "translatedSummary": "«معرفی لومن دک» with subline «یک کارت نما، یک دستور حرکت — کپی، جای‌گذاری، رندر.»; lead word zooms centered, shrinks and the line glides rightwards into place, followers pushed in from the left.",
+   "rtlDecisions": [
+    {
+     "what": "Text (3 words kept: lead + 2 followers; brand transliterated, highlight on «لومن»)",
+     "action": "adapted",
+     "why": "Same beat structure/stagger; single RTL run avoids bidi islands."
+    },
+    {
+     "what": "letter-spacing -0.03em, lineHeight 1.1, size 96",
+     "action": "adapted",
+     "why": "Spacing 0 to keep joining; lineHeight 1.5 and fs(96); baseline still measured by zero-size ruler so pivot stays exact."
+    },
+    {
+     "what": "Line slide-in direction (translate slideDistance->0)",
+     "action": "mirrored",
+     "why": "Lead word is now the right-most; measured leadRatio makes slideDistance negative so the line glides right (mirror of original left glide)."
+    },
+    {
+     "what": "Follower push-in offset 0.5em",
+     "action": "mirrored",
+     "why": "Words enter from the left side of their slots via dir(); stagger order: first follower right-most."
+    },
+    {
+     "what": "transform-origin (leadRatio% + baseline px)",
+     "action": "kept",
+     "why": "Physical coords derived from measurement; remain correct under RTL."
+    },
+    {
+     "what": "Lift -56px, subline rise, crash-zoom/blur",
+     "action": "kept",
+     "why": "Vertical/centered physical motion."
+    },
+    {
+     "what": "Mesh gradient background",
+     "action": "kept",
+     "why": "Decorative, no reading cue."
+    },
+    {
+     "what": "Subline text",
+     "action": "adapted",
+     "why": "Persian punctuation, size fs(32), rtl, no tracking."
+    }
+   ]
+  }
+ ],
+ "rasterTextHandling": "No raster assets.",
+ "concerns": [
+  "Timings, easings, durations unchanged; shorter Persian lead word does not alter beats.",
+  "The pivot is measured at mount (leadRatio, baseline) so the glide direction follows the Persian word order automatically; verified at frames 3,14,20,26,60,81.",
+  "Subline period sits at the left end (RTL end) as expected; the em dash was kept."
+ ],
+ "iterations": 2,
+ "lessons": []
+}
