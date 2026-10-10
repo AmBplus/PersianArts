@@ -82,7 +82,7 @@ const FLASHES: Flash[] = Array.from({ length: 36 }, () => ({
 }));
 
 export const GradientWordSweep: React.FC = () => {
-  const frame = useCurrentFrame() + 40;
+  const frame = useCurrentFrame();
 
   const enter = interpolate(frame, [0, 12], [0, 1], {
     extrapolateRight: 'clamp',

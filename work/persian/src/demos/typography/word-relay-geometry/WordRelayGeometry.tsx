@@ -1,13 +1,29 @@
-// word-relay-geometry — Word Relay Geometry 利益词几何接力（motion-lab 定稿转原生 Remotion）
-// 三个利益词接力：Faster（虚线大圆）→ Better（三实线圆相扣）→ Stronger（金属 sheen
-// 从左扫到右变纯白）。旧词与几何淡出缩小，新词描边→填充进场，圆路径带 trim 生长感；
-// 背景漂浮微尘粒子。设计坐标 480×270（DesignStage 等比放大），参数以此坐标系标定。
+// PERSIAN (RTL) localization of shotcraft "word-relay-geometry" — motion, timing, easing, seeds and design coordinates untouched.
+// Text: Faster/Better/Stronger -> «سریع‌تر / بهتر / قوی‌تر» (same grammar: three comparatives, as the source prompt demands;
+//   ZWNJ kept inside «سریع‌تر»/«قوی‌تر»). Font Estedad 800 (geometric, confident headline voice close to the Helvetica 800 original; variable font so the real 800
+//   weight exists, and its heavy joins keep the outline readable; Vazirmatn was tried and looked thinner/fussier in outline). Size 56 -> fs(56)=62 (Persian x-height); no letterSpacing/uppercase were used.
+// Direction decisions:
+//  - MIRRORED fill reveal: outline->fill clip-path wipe starts at the RIGHT (reading start) edge: inset(-20% 0 -20% X%).
+//  - MIRRORED Stronger sheen: highlight sweeps right->left (background-position 0%->100% with the 100deg band mirrored to 260deg,
+//    so the light band keeps its slant relative to travel).
+//  - KEPT: dashed circle spin (-90 + t*30 deg, clockwise = a spinner/clock-like physical rotation), upward dust drift (gravity /
+//    up-down), dust x positions (random, symmetric), centred word block and scale-out 0.86, colours, glow.
+//  - Outline layer: every Persian font draws internal overlap seams at letter joins when stroked with a transparent fill. Fix:
+//    stroke 2px with paint-order:stroke fill and an opaque #07080c fill, so the inner half of the stroke and the seams are covered
+//    and only the outer ~1px outline (the original's visible thickness) remains. Side effect: dust/circle lines no longer show
+//    through the glyph interior of the outline layer (tiny, low-opacity elements).
+//  - GEOMETRY KEPT AS RENDERED: the original's rotate(-90) on the solid circles also rotates their cx, so the 'Better' circles
+//    actually stack vertically (first = bottom, last = top) and the chain is cropped by the frame; this is up/down (physical), so it is
+//    left exactly as the original renders. Trim starts at the top, clockwise, unchanged.
+// Raster: none (pure vector/DOM).
 import React from 'react';
 import { DesignStage, E, lerp, rand, seg, useT } from '../../_fixtures/Motion';
+import { FaRoot, fs, FA_LH } from '../../_fa';
 
 export const WORD_RELAY_GEOMETRY_DURATION = 180; // 6000ms @30fps
 
 const CIRC_R = 78;
+const FONT = 'Estedad';
 
 // 微尘粒子（20 个，种子与原 effect.js 完全一致）
 const PARTS = Array.from({ length: 20 }, (_, i) => ({
@@ -20,9 +36,9 @@ const PARTS = Array.from({ length: 20 }, (_, i) => ({
 // 每个词一段 slot：几何配置 + 时段（in 0.07 + hold + out 0.05）
 type Geom = { x: number; r: number; dash?: boolean; d?: number };
 const SLOTS: { label: string; geom: Geom[]; t0: number; t1: number }[] = [
-  { label: 'Faster', geom: [{ x: 0, r: CIRC_R + 22, dash: true }], t0: 0.0, t1: 0.36 },
+  { label: 'سریع‌تر', geom: [{ x: 0, r: CIRC_R + 22, dash: true }], t0: 0.0, t1: 0.36 },
   {
-    label: 'Better',
+    label: 'بهتر',
     geom: [
       { x: -110, r: 62, d: 0 },
       { x: 0, r: 62, d: 0.06 },
@@ -31,13 +47,14 @@ const SLOTS: { label: string; geom: Geom[]; t0: number; t1: number }[] = [
     t0: 0.32,
     t1: 0.68,
   },
-  { label: 'Stronger', geom: [], t0: 0.64, t1: 1.0 },
+  { label: 'قوی‌تر', geom: [], t0: 0.64, t1: 1.0 },
 ];
 
 export const WordRelayGeometry: React.FC = () => {
   const t = useT();
   return (
     <DesignStage bg="#07080c">
+      <FaRoot family={FONT} style={{ inset: 0 }}>
       {/* 微尘粒子：缓慢上浮 loop + 呼吸闪烁 */}
       {PARTS.map((p, i) => {
         const y = (1 - ((t * p.sp + p.ph) % 1)) * 110 - 5;
@@ -124,16 +141,18 @@ export const WordRelayGeometry: React.FC = () => {
                 left: '50%',
                 top: '50%',
                 transform: `translate(-50%,-52%) scale(${lerp(tout, 1, 0.86)})`,
-                fontFamily: '-apple-system,"Helvetica Neue",sans-serif',
-                fontSize: 56,
+                fontSize: fs(56),
                 fontWeight: 800,
-                lineHeight: 1,
+                lineHeight: FA_LH,
+                whiteSpace: 'nowrap',
+                letterSpacing: 0,
               }}
             >
               <div
                 style={{
-                  color: 'transparent',
-                  WebkitTextStroke: '1px #6a7186',
+                  color: '#07080c',
+                  WebkitTextStroke: '2px #6a7186',
+                  paintOrder: 'stroke fill',
                   opacity: isLast ? 1 - sh : 1 - fillp * 0.75,
                 }}
               >
@@ -159,12 +178,12 @@ export const WordRelayGeometry: React.FC = () => {
                       inset: 0,
                       color: 'transparent',
                       backgroundImage:
-                        'linear-gradient(100deg,#585f72 0%,#8d95aa 38%,#ffffff 50%,#8d95aa 62%,#585f72 100%)',
+                        'linear-gradient(260deg,#585f72 0%,#8d95aa 38%,#ffffff 50%,#8d95aa 62%,#585f72 100%)',
                       backgroundSize: '280% 100%',
                       WebkitBackgroundClip: 'text',
                       backgroundClip: 'text',
                       opacity: sh * (1 - white),
-                      backgroundPosition: `${lerp(sweep, 100, 0)}% 0`,
+                      backgroundPosition: `${lerp(sweep, 0, 100)}% 0`,
                     }}
                   >
                     {label}
@@ -176,7 +195,7 @@ export const WordRelayGeometry: React.FC = () => {
                     position: 'absolute',
                     inset: 0,
                     color: '#fff',
-                    clipPath: `inset(-20% ${(1 - fillp) * 100}% -20% 0)`,
+                    clipPath: `inset(-20% 0 -20% ${(1 - fillp) * 100}%)`,
                   }}
                 >
                   {label}
@@ -186,6 +205,7 @@ export const WordRelayGeometry: React.FC = () => {
           </div>
         );
       })}
+      </FaRoot>
     </DesignStage>
   );
 };

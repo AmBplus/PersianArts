@@ -1,9 +1,17 @@
-// sheen-sweep-retry —— 单点扫光（高标准重试）
-// 深墨大卡居中，一道 45° 高光带在 40–68f 从左外扫到右外，仅此一次。
-// 约束：单点(只扫主角卡)、圆角裁剪(overflow hidden)、扫前扫后完全静止。
+// PERSIAN (RTL) localization of shotcraft "sheen-sweep-retry" (light-play-moves) — frames 40-68, inOut(cubic), 45deg band untouched.
+// Text: "PRO" -> «پرو» (Persian spelling of the tier name); the two grey placeholder bars carry no text.
+// Direction decisions:
+//  - Sweep is a reading-direction wipe: it now travels right -> left. Band anchored with right:0 and translateX(dir(x)),
+//    so it starts fully outside the right edge and exits past the left edge (same distance/easing/frames).
+//  - Gradient 115deg -> 245deg (mirror of the angle about the vertical axis): the band keeps its 45deg lean, mirrored.
+//  - Card content: direction:rtl, so the title and the two bars align to the START (right) edge; padding is symmetric (72px).
+//  - Card is centred on the canvas; boxShadow offset is vertical only, radius symmetric -> KEPT (light physics).
+// Font: Estedad 800 (neutral strong variable UI face = Helvetica 800 role); letterSpacing 2 removed (breaks joining).
+// Raster assets: none.
 import React from 'react';
 import { useCurrentFrame, interpolate, Easing } from 'remotion';
 import { G } from '../../_fixtures/Fixtures';
+import { FaRoot, dir, faText } from '../../_fa';
 
 const CARD_W = 760;
 const CARD_H = 420;
@@ -12,7 +20,6 @@ const SHEEN_W = CARD_W * 1.6; // 1216
 export const SheenSweepRetry: React.FC = () => {
   const frame = useCurrentFrame();
 
-  // 扫光：40–68f，从卡左外(-SHEEN_W)扫到卡右外(CARD_W)，inOut(cubic)，只一次
   const sweepActive = frame >= 40 && frame <= 68;
   const x = interpolate(frame, [40, 68], [-SHEEN_W, CARD_W], {
     easing: Easing.inOut(Easing.cubic),
@@ -21,24 +28,14 @@ export const SheenSweepRetry: React.FC = () => {
   });
 
   return (
-    <div
-      style={{
-        width: 1920,
-        height: 1080,
-        background: G.bg,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontFamily: 'Helvetica, Arial, sans-serif',
-      }}
-    >
+    <FaRoot family="Estedad" style={{ background: G.bg, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <div
         style={{
           width: CARD_W,
           height: CARD_H,
           background: G.side,
           borderRadius: 24,
-          overflow: 'hidden', // 圆角裁剪：高光带被卡的圆角裁住
+          overflow: 'hidden',
           position: 'relative',
           boxShadow: '0 12px 40px rgba(0,0,0,0.22)',
           boxSizing: 'border-box',
@@ -51,35 +48,34 @@ export const SheenSweepRetry: React.FC = () => {
       >
         <div
           style={{
-            fontSize: 130,
+            ...faText(120),
             fontWeight: 800,
             color: '#f5f5f3',
-            letterSpacing: 2,
-            lineHeight: 1,
+            lineHeight: 1.4,
           }}
         >
-          PRO
+          پرو
         </div>
         <div style={{ height: 16, width: 380, background: G.sideBar, borderRadius: 8 }} />
         <div style={{ height: 16, width: 260, background: G.sideBar, borderRadius: 8 }} />
 
-        {/* 高光带：条件挂载，扫完即摘罩，收尾真静止 */}
+        {/* sheen band: mounted only while sweeping */}
         {sweepActive && (
           <div
             style={{
               position: 'absolute',
               top: 0,
-              left: 0,
+              right: 0,
               width: SHEEN_W,
               height: CARD_H,
-              transform: `translateX(${x}px)`,
+              transform: `translateX(${dir(x)}px)`,
               background:
-                'linear-gradient(115deg, transparent 42%, rgba(255,255,255,0.32) 50%, transparent 58%)',
+                'linear-gradient(245deg, transparent 42%, rgba(255,255,255,0.32) 50%, transparent 58%)',
               pointerEvents: 'none',
             }}
           />
         )}
       </div>
-    </div>
+    </FaRoot>
   );
 };

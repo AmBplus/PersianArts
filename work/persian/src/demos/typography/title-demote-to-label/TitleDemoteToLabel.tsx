@@ -1,12 +1,24 @@
-// title-demote-to-label —— 大标题降格为节标签
-// 源：perplexity-promo 16–18.5s。大标题居中显影站稳一拍，随后缩小 ~0.3x
-// 平移到左上角变小节标签，内容区（灰阶骨架块）在其下方生长。
-// 附加变体（framer text-selection-title）：标题登场带文本选中蓝高亮块、随后撤掉。
+// title-demote-to-label — Persian / RTL localization (motion, timing, easing unchanged).
+// TEXT: "اجرای زیرعامل‌ها" -> «اجرای زیرعامل‌ها» (section-title voice, 2 words);
+//       "پاسخ را انتخاب کنید" -> «پاسخ را انتخاب کنید» (UI imperative, polite form).
+// FONT: Vazirmatn 800 (variable) — neutral product-UI/headline sans matching Helvetica 800; weight exists.
+//       fs() scales 128px -> 141px; letterSpacing -2 -> 0 (tracking breaks joining); single-line title (no line-height issue)
+//       with padding 10px 18px kept (selection block spans the glyph box).
+// DIRECTION decisions:
+//  - title lands top-RIGHT (label slot follows reading start): left/x tween -> right anchor, transformOrigin
+//    'left center' -> 'right center', centering correction translate(-50%) -> translate(+50%) so it still zeroes at the end.
+//  - skeleton content column anchored at right:150 (was left:150); bars start at the right edge and grow toward
+//    the left (width tween with right anchored), i.e. growth follows the reading direction.
+//  - selection highlight: sweeps in from the RIGHT (start edge) and retreats by uncovering from the right
+//    (left/right css swapped) — text selection in RTL begins at the right.
+//  - KEPT: translateY rise of skeleton blocks (vertical), blur reveal, white flash, scale 0.3, all frame beats.
+// RASTER: none. Numbers: none. Duration constant: SPLIT=92 unchanged (registry shows 92f; full design is 196f).
 import React from 'react';
 import { AbsoluteFill, useCurrentFrame, interpolate, Easing } from 'remotion';
 import { G } from '../../_fixtures/Fixtures';
+import { FaRoot, fs } from '../../_fa';
 
-const FONT = 'Helvetica, Arial, sans-serif';
+const FONT = '"Vazirmatn", sans-serif';
 const SEL = 'rgba(58, 128, 236, 0.35)';
 
 // 内容骨架块：随 t 依次生长
@@ -79,7 +91,7 @@ const DemoteScene: React.FC<{
   const y = interpolate(dem, [0, 1], [480, 110]);
 
   // 高亮块：从左扫入盖住文字，再从左撤掉
-  let selLeft = 0;
+  let selRight = 0;
   let selWidth = 0;
   if (withSelection) {
     const on = interpolate(frame, [SEL_ON, SEL_ON + 10], [0, 1], {
@@ -92,8 +104,8 @@ const DemoteScene: React.FC<{
       extrapolateRight: 'clamp',
       easing: Easing.in(Easing.quad),
     });
-    selLeft = off * 100;
-    selWidth = Math.max(0, on * 100 - selLeft);
+    selRight = off * 100;
+    selWidth = Math.max(0, on * 100 - selRight);
   }
 
   const growT = interpolate(frame, [GROW, GROW + 40], [0, 1], {
@@ -104,17 +116,17 @@ const DemoteScene: React.FC<{
   return (
     <AbsoluteFill style={{ background: G.bg }}>
       {/* 内容骨架区 */}
-      <div style={{ position: 'absolute', left: 150, top: 210 }}>
+      <div style={{ position: 'absolute', right: 150, top: 210 }}>
         <Skeleton t={growT} />
       </div>
       {/* 标题：transform-origin 左中，位置补间 */}
       <div
         style={{
           position: 'absolute',
-          left: x,
+          right: x,
           top: y,
-          transform: `translate(${-(1 - dem) * 50}%, -50%) scale(${scale})`,
-          transformOrigin: 'left center',
+          transform: `translate(${(1 - dem) * 50}%, -50%) scale(${scale})`,
+          transformOrigin: 'right center',
           opacity: rev,
           filter: `blur(${(1 - rev) * 12}px)`,
         }}
@@ -124,10 +136,11 @@ const DemoteScene: React.FC<{
             position: 'relative',
             fontFamily: FONT,
             fontWeight: 800,
-            fontSize: 128,
+            fontSize: fs(128),
             color: G.ink,
-            letterSpacing: -2,
+            letterSpacing: 0,
             whiteSpace: 'nowrap',
+            direction: 'rtl',
             padding: '10px 18px',
           }}
         >
@@ -135,7 +148,7 @@ const DemoteScene: React.FC<{
             <div
               style={{
                 position: 'absolute',
-                left: `${selLeft}%`,
+                right: `${selRight}%`,
                 top: 8,
                 width: `${selWidth}%`,
                 height: 'calc(100% - 16px)',
@@ -156,7 +169,7 @@ export const TitleDemoteToLabel: React.FC = () => {
   const SPLIT = 92; // 变体 A 时长
 
   if (frame < SPLIT) {
-    return <DemoteScene frame={frame} title="Running Subagents" withSelection={false} />;
+    return <FaRoot family="Vazirmatn"><DemoteScene frame={frame} title="اجرای زیرعامل‌ها" withSelection={false} /></FaRoot>;
   }
   // 变体 B：文本选中态高亮登场
   const f = frame - SPLIT;
@@ -166,9 +179,9 @@ export const TitleDemoteToLabel: React.FC = () => {
     extrapolateRight: 'clamp',
   });
   return (
-    <AbsoluteFill>
-      <DemoteScene frame={f} title="Select the Answer" withSelection={true} />
+    <FaRoot family="Vazirmatn">
+      <DemoteScene frame={f} title="پاسخ را انتخاب کنید" withSelection={true} />
       <AbsoluteFill style={{ background: '#fff', opacity: flash, pointerEvents: 'none' }} />
-    </AbsoluteFill>
+    </FaRoot>
   );
 };

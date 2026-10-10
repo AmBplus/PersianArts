@@ -1,19 +1,48 @@
-// 套印节拍泵（riso-beat-pump）——beat-punch-in（卡点顿推）× riso-misregistration-hit
-// （套印错位）的组合节奏。节拍帧 [30,54,78,102]（每 24f 一拍），每命中帧：
-// ① 整画面 scale 一帧瞬跳 1.08（无渐入），14f 内按 exp(-t/3) 指数衰减回 1；
-// ② 标题裂成 G.mid/G.ink 双色印版 multiply 错位，初始错位逐拍加码 4/7/11/16px
-//    （每版反向 → 总分离 8/14/22/32px），12f 衰减余弦震荡收敛套准；
-// ③ 底部对应节拍刻度点闪深并常驻。结构：0–29f hold；30–115f 四拍；116–139f 真静止。
+/*
+ * Persian/RTL localization of riso-beat-pump (beats, amplitudes, windows, seeds unchanged).
+ * TEXT: "ON THE BEAT" -> «روی ضرب» (idiomatic rhythm phrase, not word-for-word). No other text exists in the demo.
+ * FONT: Lalezar (single-weight heavy poster face): closest Persian voice to Helvetica 800 on a riso poster.
+ *   No bold is requested (single weight); wordSpacing .15em because Lalezar's word gap is tight (lessons s.2).
+ *   Loaded through FaRoot. Size fs(160) x1.25 extra: Lalezar is compact and the headline must keep its poster weight.
+ * SHAPING: letterSpacing was -1 (tracking) -> 0 (it would split joined letters); no uppercase; headline is one whole-line unit.
+ * DIRECTION decisions:
+ *  - Root direction:rtl via FaRoot.
+ *  - Beat tick dots: flex row under RTL, so the FIRST beat is the right-most dot (progress follows reading order). MIRRORED.
+ *  - Row of 3 cards: RTL flex puts seed 2 at the right; Card internals (bar and avatar rows) align to the start (right). MIRRORED.
+ *  - Misregistration plates: x offset sign reversed so the plates' first excursion is the mirror image; the damped cosine
+ *    itself is symmetric and the y split is vertical. MIRRORED (cosmetic).
+ *  - Scale pump (centre origin), vertical y split, colours and multiply blend: KEPT (symmetric / physical).
+ *  - Centred headline and centred dot row: symmetric composition, no (W-x-w) recompute needed.
+ * RASTER: none (all drawn with divs). HITS/AMP/PUMP_WIN/SPLIT_WIN untouched.
+ */
 import React from 'react';
 import { useCurrentFrame } from 'remotion';
-import { G, Card, TitleBlock } from '../../_fixtures/Fixtures';
+import { G, Card } from '../../_fixtures/Fixtures';
+import { FaRoot, fs, faText } from '../../_fa';
 
 const HITS = [30, 54, 78, 102]; // 节拍命中帧
 const AMP = [4, 7, 11, 16]; // 每拍单版初始错位（px），逐拍加码
 const PUMP_WIN = 14; // scale 泵窗口：14f 后精确归 1（保证结尾真静止）
 const SPLIT_WIN = 12; // 错位窗口：12f 后精确归 0（余量 <0.4px，硬切套准）
+const TITLE = 'روی ضرب';
+const TITLE_PX = Math.round(fs(160) * 1.25);
 
-// 与 TitleBlock 同字形的单色印版（错位需要可调色副本）
+const TitleText: React.FC<{ color: string }> = ({ color }) => (
+  <div
+    style={faText(TITLE_PX, {
+      fontWeight: 400,
+      color,
+      wordSpacing: '0.15em',
+      lineHeight: 1.2,
+      whiteSpace: 'nowrap',
+      unicodeBidi: 'isolate',
+    })}
+  >
+    {TITLE}
+  </div>
+);
+
+// Single-colour plate with the same glyphs (misregistration needs tintable copies)
 const Plate: React.FC<{ color: string; dx: number; dy: number }> = ({ color, dx, dy }) => (
   <div
     style={{
@@ -26,39 +55,25 @@ const Plate: React.FC<{ color: string; dx: number; dy: number }> = ({ color, dx,
       mixBlendMode: 'multiply',
     }}
   >
-    <div
-      style={{
-        fontFamily: 'Helvetica, Arial, sans-serif',
-        fontWeight: 800,
-        fontSize: 160,
-        color,
-        letterSpacing: -1,
-        whiteSpace: 'nowrap',
-      }}
-    >
-      ON THE BEAT
-    </div>
+    <TitleText color={color} />
   </div>
 );
 
 export const RisoBeatPump: React.FC = () => {
   const frame = useCurrentFrame();
 
-  // 找最近一次已命中的节拍（24f 间隔 > 14f 窗口，永远只有一拍在作用）
   let beatIdx = -1;
   for (let i = 0; i < HITS.length; i++) {
     if (frame >= HITS[i]) beatIdx = i;
   }
   const t = beatIdx >= 0 ? frame - HITS[beatIdx] : Infinity;
 
-  // ① 整画面泵：命中帧一帧到位 1.08（t=0 即满值，无渐入），指数衰减回 1
   const pump = t < PUMP_WIN ? 1 + 0.08 * Math.exp(-t / 3) : 1;
 
-  // ② 标题错位：衰减余弦震荡（周期 6f 抖两下），窗口外精确 0 = 套准
   const split = t < SPLIT_WIN;
   const m = split ? Math.cos((2 * Math.PI * t) / 6) * Math.exp(-t / 3) : 0;
-  const dx = beatIdx >= 0 ? AMP[beatIdx] * m : 0;
-  const dy = dx * 0.45; // y 少量，更像没对准版
+  const dx = beatIdx >= 0 ? -AMP[beatIdx] * m : 0; // sign flipped for RTL (mirrored plate drift)
+  const dy = -dx * 0.45; // y magnitude unchanged (vertical, physical)
 
   return (
     <div
@@ -70,86 +85,84 @@ export const RisoBeatPump: React.FC = () => {
         overflow: 'hidden',
       }}
     >
-      {/* 整画面容器：scale 泵作用在全部内容上 */}
-      <div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          transform: `scale(${pump})`,
-          transformOrigin: 'center center',
-        }}
-      >
-        {/* 标题区：正体 / 双版错位互斥切换 */}
-        <div style={{ position: 'absolute', left: 0, right: 0, top: 0, height: 660 }}>
-          {!split && (
-            <div
-              style={{
-                position: 'absolute',
-                inset: 0,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-            >
-              <TitleBlock text="ON THE BEAT" size={160} />
-            </div>
-          )}
-          {split && (
-            <>
-              <Plate color={G.mid} dx={-dx} dy={dy} />
-              <Plate color={G.ink} dx={dx} dy={-dy} />
-            </>
-          )}
-        </div>
-
-        {/* 底下一排 3 张小卡 */}
+      <FaRoot family="Lalezar">
         <div
           style={{
             position: 'absolute',
-            left: 0,
-            right: 0,
-            top: 660,
-            display: 'flex',
-            justifyContent: 'center',
-            gap: 44,
+            inset: 0,
+            transform: `scale(${pump})`,
+            transformOrigin: 'center center',
           }}
         >
-          <Card w={330} h={200} seed={2} />
-          <Card w={330} h={200} seed={5} />
-          <Card w={330} h={200} seed={8} />
-        </div>
-
-        {/* 节拍刻度：命中即闪深（8f 缩放脉冲 1.8→1）并常驻深色 */}
-        <div
-          style={{
-            position: 'absolute',
-            left: 0,
-            right: 0,
-            top: 950,
-            display: 'flex',
-            justifyContent: 'center',
-            gap: 60,
-          }}
-        >
-          {HITS.map((hit, i) => {
-            const dt = frame - hit;
-            const on = dt >= 0;
-            const s = on && dt < 8 ? 1 + 0.8 * (1 - dt / 8) : 1;
-            return (
+          <div style={{ position: 'absolute', left: 0, right: 0, top: 0, height: 660 }}>
+            {!split && (
               <div
-                key={i}
                 style={{
-                  width: 22,
-                  height: 22,
-                  borderRadius: 11,
-                  background: on ? G.ink : G.bar,
-                  transform: `scale(${s})`,
+                  position: 'absolute',
+                  inset: 0,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
                 }}
-              />
-            );
-          })}
+              >
+                <TitleText color={G.ink} />
+              </div>
+            )}
+            {split && (
+              <>
+                <Plate color={G.mid} dx={-dx} dy={dy} />
+                <Plate color={G.ink} dx={dx} dy={-dy} />
+              </>
+            )}
+          </div>
+
+          <div
+            style={{
+              position: 'absolute',
+              left: 0,
+              right: 0,
+              top: 660,
+              display: 'flex',
+              justifyContent: 'center',
+              gap: 44,
+            }}
+          >
+            <Card w={330} h={200} seed={2} />
+            <Card w={330} h={200} seed={5} />
+            <Card w={330} h={200} seed={8} />
+          </div>
+
+          <div
+            style={{
+              position: 'absolute',
+              left: 0,
+              right: 0,
+              top: 950,
+              display: 'flex',
+              justifyContent: 'center',
+              gap: 60,
+            }}
+          >
+            {HITS.map((hit, i) => {
+              const dt = frame - hit;
+              const on = dt >= 0;
+              const s = on && dt < 8 ? 1 + 0.8 * (1 - dt / 8) : 1;
+              return (
+                <div
+                  key={i}
+                  style={{
+                    width: 22,
+                    height: 22,
+                    borderRadius: 11,
+                    background: on ? G.ink : G.bar,
+                    transform: `scale(${s})`,
+                  }}
+                />
+              );
+            })}
+          </div>
         </div>
-      </div>
+      </FaRoot>
     </div>
   );
 };

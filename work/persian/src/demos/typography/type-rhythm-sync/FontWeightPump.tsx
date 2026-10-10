@@ -1,12 +1,17 @@
-// 字重脉冲（font-weight-pump）——标题笔画随节拍变粗又弹回，像文字跟着低音鼓蹦迪。
-// 节拍每 20f 一拍：帧 30/50/70/90/110 命中。命中瞬间 -webkit-text-stroke 0→10px
-// 跳满，随后 10f 幂衰减 (1-t/10)^0.8 弹回 0；fontWeight 在命中窗口 400→900 离散跳变
-// （env>0.15），配合 stroke 连续衰减读作"连续变粗"。第 3、5 拍（帧 70/110）为重音，
-// 额外 scaleX 1→1.08 同衰减（transform 缩放不改排版）。底部 5 个节拍点作节拍参照。
-// 结构：0–29f 静止 hold；30–119f 五拍脉冲；120–139f 真静止收尾（20f，110+10=120 无残留）。
+// PERSIAN (RTL) localization of shotcraft "font-weight-pump" — beats, envelope, stroke/weight jumps untouched.
+//  - Text: "PUMP IT UP" -> «حالشو ببر بالا» (colloquial, club/DJ voice; 3 words like the original).
+//  - Font: Estedad (variable 100-900, heavy poster-like Persian sans). The effect NEEDS a real weight jump 400<->900 on top of
+//    the stroke, so single-weight display fonts (Lalezar...) are excluded. Loaded through FaRoot.
+//  - letterSpacing 6 -> 0 and no uppercase (break joining). fontSize 150 -> fs(150); explicit lineHeight FA_LH.
+//  - The title is centered and the accent scaleX pivots on its center: symmetric, nothing to mirror.
+//  - Beat dots: container gets direction:rtl through FaRoot, so the first beat (frame 30) is the RIGHT-most dot and the
+//    row fills along the reading direction (decision: MIRROR order; dots are centered so balance is unchanged).
+//  - Mild extra: WebkitTextStroke paints over joined strokes in the same ink colour, so no seams appear.
+//  - Raster: none. Digits: none on screen.
 import React from 'react';
 import { useCurrentFrame } from 'remotion';
 import { G } from '../../_fixtures/Fixtures';
+import { FaRoot, fs, FA_LH } from '../../_fa';
 
 const BEATS = [30, 50, 70, 90, 110];
 const ACCENTS = new Set([2, 4]); // 第 3、5 拍重音
@@ -39,14 +44,13 @@ export const FontWeightPump: React.FC = () => {
   const scaleX = accent ? 1 + 0.08 * env : 1; // 重音拍变宽一挡
 
   return (
-    <div
+    <FaRoot
+      family="Estedad"
       style={{
         width: 1920,
         height: 1080,
         background: G.bg,
-        position: 'relative',
         overflow: 'hidden',
-        fontFamily: 'Helvetica, Arial, sans-serif',
       }}
     >
       {/* 定宽居中容器，transform 缩放不改排版 */}
@@ -64,17 +68,18 @@ export const FontWeightPump: React.FC = () => {
       >
         <div
           style={{
-            fontSize: 150,
+            fontSize: fs(150),
             fontWeight: weight,
             color: G.ink,
-            letterSpacing: 6,
+            letterSpacing: 0,
+            lineHeight: FA_LH,
             whiteSpace: 'nowrap',
             WebkitTextStroke: `${strokeW}px ${G.ink}`,
             transform: `scaleX(${scaleX})`,
             transformOrigin: 'center center',
           }}
         >
-          PUMP IT UP
+          حالشو ببر بالا
         </div>
       </div>
 
@@ -119,6 +124,6 @@ export const FontWeightPump: React.FC = () => {
           );
         })}
       </div>
-    </div>
+    </FaRoot>
   );
 };

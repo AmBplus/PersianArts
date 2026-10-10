@@ -1,15 +1,17 @@
 // ===== Persian/RTL localization (PersianArts) =====
-// TEXT: "#music" -> "#موسیقی"; pill word -> "موسیقی"; title "گروه‌های محبوب من" -> "گروه‌های محبوب من";
+// TEXT: "#music" -> "#موسیقی"; pill word -> "موسیقی"; title "My favorite bands" -> "گروه‌های محبوب من";
 //   body (3 lines) re-written idiomatically, line breaks kept (3 lines, balanced).
 // SHAPING: letterSpacing 0 everywhere; typing = prefix slice (typeOn) so letters re-join as real typing does.
 //   Typing has 7 chars vs 6: same mulberry32 seed/4-6f cadence, last char lands ~f38 < MORPH(48): beats unchanged.
 // DIRECTION: FaRoot direction:rtl. Typing group: text starts at the right edge of the centered group, red cursor sits at
 //   the END of the text = its left side (marginInlineStart) -> MIRRORED. Pill: icon replaces "#" which is the first
 //   (right-most) char, so icon on the right, word on the left (paddingInlineStart) -> MIRRORED. Pill glide to the tag slot:
-//   SLOT.x 361 -> 1920-361 (moves right-and-down-up instead of left): MIRRORED because the tag slot follows the title's
+//   slot centre now 1760-PILL_W*END_SCALE/2 so the pill's right edge aligns with the title's right edge (moves toward the right instead of left): MIRRORED because the tag slot follows the title's
 //   start side. Reveal page: title/body anchored to the right (right:160/152), RTL text-align start -> MIRRORED.
 //   KEPT: the music-note SVG (a glyph, not directional; no mirroring of notation), vertical positions, easing, hard cuts, colors, seeds.
 // FONT: Noto Kufi Arabic (variable, 100-900): geometric sans = closest to the original Futura mood; real 500/700 weights.
+// PILL WIDTH: 740 -> 900 (documented deviation): the Persian word is ~580px wide at the same size, so icon+word+gap overflowed 740 and
+//   the flex icon was squeezed to 0 width; icon is also flexShrink:0 now. Timing, easing, seeds unchanged.
 // RASTER: none (all vector).
 // hashtag-to-pill-materialize（bear-app 18–21.5s 重做版，按原片密帧逐帧对照）
 // 原片实测节奏（25fps 逐帧）：
@@ -74,13 +76,13 @@ const REVEAL = 83;      // 1 帧硬切揭示成品页，之后静置收尾
 // ---- 几何（1920x1080，等比换算自原片 1280x720 实测像素）----
 const FS = 132;                       // 打字/胶囊文字字号（原片 glyph 等高换算）
 const HERO = { x: 960, y: 540 };      // 大胶囊中心
-const PILL_W = 740, PILL_H = 236;     // 原片实测 493x157 @720p ×1.5
+const PILL_W = 900, PILL_H = 236;     // 原片实测 493x157 @720p ×1.5
 const END_SCALE = 0.554;              // 落位缩放（原片 273/493）
-const SLOT = { x: 1920 - 361, y: 473 };      // 标签位中心（原片灰胶囊落点 (244.5,317.5)×1.5 与揭示位折中）
+const SLOT = { x: 1760 - (PILL_W * END_SCALE) / 2, y: 473 }; // pill's start (right) edge sits on the title's right edge (x=1760)      // 标签位中心（原片灰胶囊落点 (244.5,317.5)×1.5 与揭示位折中）
 
 // 灰色双八分音符图标（原片是 beamed 双音符，非 ♪）
 const NoteIcon: React.FC<{ size: number; color: string }> = ({ size, color }) => (
-  <svg width={size} height={size} viewBox="0 0 48 48" style={{ display: 'block' }}>
+  <svg width={size} height={size} viewBox="0 0 48 48" style={{ display: 'block', flexShrink: 0 }}>
     <ellipse cx="11" cy="39" rx="7.2" ry="5.6" fill={color} transform="rotate(-18 11 39)" />
     <ellipse cx="35" cy="35" rx="7.2" ry="5.6" fill={color} transform="rotate(-18 35 35)" />
     <rect x="15.4" y="12.5" width="3" height="27" fill={color} />
@@ -93,10 +95,10 @@ const NoteIcon: React.FC<{ size: number; color: string }> = ({ size, color }) =>
 const Pill: React.FC<{ bg: string; iconColor: string; textColor: string }> = ({ bg, iconColor, textColor }) => (
   <div style={{
     width: PILL_W, height: PILL_H, borderRadius: PILL_H / 2, background: bg,
-    display: 'flex', alignItems: 'center', paddingInlineStart: 96, boxSizing: 'border-box', gap: 66,
+    display: 'flex', alignItems: 'center', paddingInlineStart: 96, boxSizing: 'border-box', gap: 50,
   }}>
     <NoteIcon size={104} color={iconColor} />
-    <span style={{ fontSize: fs(FS), lineHeight: 1.5, fontWeight: 500, color: textColor, letterSpacing: 0 }}>{WORD}</span>
+    <span style={{ fontSize: fs(FS), lineHeight: 1.5, fontWeight: 500, color: textColor, letterSpacing: 0, whiteSpace: 'nowrap' }}>{WORD}</span>
   </div>
 );
 

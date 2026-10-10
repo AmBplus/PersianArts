@@ -1,66 +1,85 @@
-// stroke-segment-build —— 断笔成字（《异形》式）
-// "SHIP" 拆成 16 段互不相连的粗线段，按乱序表逐段点亮。
-// 前 70%（11 段）读不出字，最后 3 段落位瞬间突然可读；
-// 末段落位帧整字轻微 scale 脉冲（1→1.06→1）。
-// 每段入场：opacity 0→1 + 沿笔画方向 12px 滑入（out 缓动），6f。
-// f0–14 静置空场；末段落位于 f104，脉冲至 f112，真静止 ≥38f（150f 总长）。
+// PERSIAN (RTL) localization of shotcraft "stroke-segment-build" (断笔成字, Alien-title style) — timing, easing, pulse, order logic untouched.
+//
+// WHAT CHANGED AND WHY
+//  - Title word: "SHIP" -> «عرضه» (the Persian product-launch verb for "ship"; 4 letters like the original, and a word the audience
+//    recognises, which the card's pitfalls demand). Persian letters are connected curves, so the hand-drawn straight line segments
+//    (stroke 44, butt caps) cannot be reused: the real word is typeset ONCE (Vazirmatn 900, 400px) and 16 disjoint rectangular
+//    fragments of its ink are revealed by clip-path (inset) in a scrambled order. Cuts leave ~10px gaps (the original's segments were
+//    also disjoint, with gaps), so the word is never split into code points: every fragment is a slice of correctly shaped text.
+//  - Fragment slide: still 12px along the fragment's own stroke axis (butt-cap slide in the original). Vertical fragments keep the
+//    top->bottom travel (physical); horizontal fragments now travel right->left (the original travelled left->right = reading
+//    direction in Latin, so it mirrors with the reading direction in Persian).
+//  - ORDER keeps the design logic mirrored: first 13 fragments jump across letters (unreadable), the last 3 are "key" fragments
+//    (first-letter ع bowl, ر tail, ض dot) so recognition lands on the last beats. Same FIRST/STEP/SEG_IN/LAST_LAND/pulse/transformOrigin.
+//  - Composition is symmetric (word centered, caption centered): nothing else to mirror. Word block is centered by flex so RTL does
+//    not move it; the pulse origin 50% 55% is symmetric and kept.
+//  - Caption «STROKE SEGMENT BUILD» -> «ساخت واژه از پاره‌خط‌ها»: letterSpacing 2 removed and uppercase/Helvetica 800 replaced by
+//    Vazirmatn 800 (variable font, real bold), size 44 -> fs(44).
+//  - FONT: Vazirmatn (900 for the word: uniform heavy monoline strokes read as the "thick stroke segments" of the original;
+//    Lalezar was too blobby, Reem Kufi's ه was illegible when cut). Loaded through FaRoot.
+//  - No raster assets, no digits, no Latin text left.
 import React from 'react';
 import { useCurrentFrame, interpolate, Easing } from 'remotion';
-import { G, TitleBlock } from '../../_fixtures/Fixtures';
+import { G } from '../../_fixtures/Fixtures';
+import { FaRoot, fs } from '../../_fa';
 
-// "SHIP" 手工笔画段。坐标系：每字 200 宽、320 高，字间距 60。
-// 段 = {x1,y1,x2,y2}，线宽 44，方形端帽（不连续感更强）。
-type Seg = { x1: number; y1: number; x2: number; y2: number };
+// Fragment = rectangle of the typeset word in canvas px (x0,y0,x1,y1) + travel axis of its slide-in.
+// Cuts are inset by 5px on every side so neighbours are 10px apart (disjoint "broken strokes").
+type Seg = { x0: number; y0: number; x1: number; y1: number; axis: 'h' | 'v' };
 
-const K = 200; // 字宽
-const H = 320; // 字高
-const ADV = K + 60;
+const GAP = 5;
+const R = (x0: number, y0: number, x1: number, y1: number, axis: 'h' | 'v'): Seg => ({
+  x0: x0 + GAP, y0: y0 + GAP, x1: x1 - GAP, y1: y1 - GAP, axis,
+});
 
-// S：4 段（上横、左上竖、中横、右下竖+下横 → 拆成 5 也行，取 4）
-// H：3 段（左竖、右竖、中横）
-// I：3 段（上横、中竖、下横）
-// P：4 段（左竖、上横、右短竖、中横）—— 共 14 段；S 再拆 2 段成 16
+// ع (rightmost) -> ر -> ض -> ه (leftmost), canvas coordinates of the word at 400px, centered.
 const SEGS: Seg[] = [
-  // S (x offset 0) —— 6 段
-  { x1: 30, y1: 22, x2: 185, y2: 22 },     // 0 上横
-  { x1: 22, y1: 44, x2: 22, y2: 130 },     // 1 左上竖
-  { x1: 30, y1: 152, x2: 175, y2: 152 },   // 2 中横
-  { x1: 178, y1: 174, x2: 178, y2: 276 },  // 3 右下竖
-  { x1: 15, y1: 298, x2: 170, y2: 298 },   // 4 下横
-  { x1: 22, y1: 240, x2: 22, y2: 276 },    // 5 左下小竖（S 尾钩）
-  // H (x offset ADV) —— 3 段
-  { x1: ADV + 22, y1: 22, x2: ADV + 22, y2: 298 },   // 6 左竖
-  { x1: ADV + 178, y1: 22, x2: ADV + 178, y2: 298 }, // 7 右竖
-  { x1: ADV + 44, y1: 160, x2: ADV + 156, y2: 160 }, // 8 中横
-  // I (x offset ADV*2) —— 3 段
-  { x1: ADV * 2 + 40, y1: 22, x2: ADV * 2 + 160, y2: 22 },   // 9 上横
-  { x1: ADV * 2 + 100, y1: 44, x2: ADV * 2 + 100, y2: 276 }, // 10 中竖
-  { x1: ADV * 2 + 40, y1: 298, x2: ADV * 2 + 160, y2: 298 }, // 11 下横
-  // P (x offset ADV*3) —— 4 段
-  { x1: ADV * 3 + 22, y1: 22, x2: ADV * 3 + 22, y2: 298 },   // 12 左竖
-  { x1: ADV * 3 + 44, y1: 22, x2: ADV * 3 + 165, y2: 22 },   // 13 上横
-  { x1: ADV * 3 + 178, y1: 44, x2: ADV * 3 + 178, y2: 140 }, // 14 右短竖
-  { x1: ADV * 3 + 44, y1: 162, x2: ADV * 3 + 165, y2: 162 }, // 15 中横
+  R(1250, 420, 1410, 535, 'h'), // 0  ع head (top hook)
+  R(1160, 420, 1250, 640, 'v'), // 1  ع left bowl                       [key]
+  R(1250, 535, 1330, 640, 'h'), // 2  ع base, inner
+  R(1330, 535, 1410, 640, 'h'), // 3  ع base, tail
+  R(1085, 480, 1160, 640, 'v'), // 4  ر stem
+  R(1010, 640, 1200, 760, 'h'), // 5  ر tail                            [key]
+  R(960, 435, 1065, 540, 'v'),  // 6  ض right bowl, top
+  R(960, 540, 1065, 645, 'v'),  // 7  ض right bowl, bottom
+  R(830, 440, 960, 540, 'h'),   // 8  ض left, top
+  R(830, 540, 960, 645, 'h'),   // 9  ض left, bottom
+  R(890, 345, 1025, 435, 'v'),  // 10 ض dot                             [key]
+  R(725, 410, 830, 645, 'v'),   // 11 ه right stem
+  R(620, 410, 725, 545, 'v'),   // 12 ه top
+  R(510, 420, 620, 645, 'v'),   // 13 ه loop (left)
+  R(620, 545, 725, 645, 'h'),   // 14 ه base, right
+  R(725, 575, 830, 645, 'h'),   // 15 ه base, joint to ض
 ];
 
-// 乱序点亮表：刻意打散——前 13 段跨字乱跳（读不出），
-// 最后 3 段（8 中横 / 10 I 竖 / 12 P 左竖）落位瞬间补全可读性。
-const ORDER = [3, 9, 6, 15, 1, 11, 14, 4, 0, 7, 13, 2, 5, 8, 10, 12];
+// Scrambled lighting order (same logic as the original): 13 jumps across letters, then the 3 key fragments (1 / 5 / 10).
+const ORDER = [13, 3, 7, 12, 4, 0, 9, 14, 6, 11, 2, 15, 8, 5, 10, 1];
 
-const FIRST = 14; // 首段起始帧
-const STEP = 6; // 段间隔
-const SEG_IN = 6; // 单段入场时长
-const LAST_LAND = FIRST + 15 * STEP + SEG_IN; // = 110，末段落位
+const FIRST = 14; // first fragment start frame
+const STEP = 6; // gap between fragments
+const SEG_IN = 6; // entrance duration
+const LAST_LAND = FIRST + 15 * STEP + SEG_IN; // = 110, last fragment lands
 const PULSE_END = LAST_LAND + 8;
 
-const WORD_W = ADV * 3 + K; // 980
-const OX = (1920 - WORD_W) / 2;
-const OY = (1080 - H) / 2 + 20;
+const SLIDE = 12;
+
+const WordBlock: React.FC = () => (
+  <div
+    style={{
+      position: 'absolute', left: 460, top: 330, width: 1000, height: 420,
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
+      fontFamily: '"Vazirmatn", sans-serif', fontWeight: 900, fontSize: 400, lineHeight: 1,
+      letterSpacing: 0, color: G.panel,
+    }}
+  >
+    عرضه
+  </div>
+);
 
 export const StrokeSegmentBuild: React.FC = () => {
   const frame = useCurrentFrame();
 
-  // 末段落位：整字脉冲 1 → 1.06 → 1（8f）
+  // Last fragment lands: whole-word pulse 1 -> 1.06 -> 1 (8f)
   const pulse = interpolate(
     frame,
     [LAST_LAND, LAST_LAND + 3, PULSE_END],
@@ -70,57 +89,54 @@ export const StrokeSegmentBuild: React.FC = () => {
 
   return (
     <div style={{ width: 1920, height: 1080, background: G.ink, overflow: 'hidden', position: 'relative' }}>
-      <div
-        style={{
-          position: 'absolute',
-          top: 110,
-          width: '100%',
-          textAlign: 'center',
-          fontFamily: 'Helvetica, Arial, sans-serif',
-          fontWeight: 800,
-          fontSize: 44,
-          color: G.mid,
-          letterSpacing: 2,
-        }}
-      >
-        STROKE SEGMENT BUILD
-      </div>
-      <svg
-        width={1920}
-        height={1080}
-        style={{ position: 'absolute', left: 0, top: 0, transform: `scale(${pulse})`, transformOrigin: '50% 55%' }}
-      >
-        {SEGS.map((seg, i) => {
-          const rank = ORDER.indexOf(i);
-          const start = FIRST + rank * STEP;
-          if (frame < start) return null; // 未开始的段不渲染
-          const t = interpolate(frame, [start, start + SEG_IN], [0, 1], {
-            easing: Easing.out(Easing.cubic),
-            extrapolateLeft: 'clamp',
-            extrapolateRight: 'clamp',
-          });
-          // 沿笔画方向滑入 12px
-          const dx = seg.x2 - seg.x1;
-          const dy = seg.y2 - seg.y1;
-          const len = Math.hypot(dx, dy) || 1;
-          const slide = 12 * (1 - t);
-          const ox = (-dx / len) * slide;
-          const oy = (-dy / len) * slide;
-          return (
-            <line
-              key={i}
-              x1={OX + seg.x1 + ox}
-              y1={OY + seg.y1 + oy}
-              x2={OX + seg.x2 + ox}
-              y2={OY + seg.y2 + oy}
-              stroke={G.panel}
-              strokeWidth={44}
-              strokeLinecap="butt"
-              opacity={t}
-            />
-          );
-        })}
-      </svg>
+      <FaRoot family="Vazirmatn">
+        <div
+          style={{
+            position: 'absolute',
+            top: 100,
+            width: '100%',
+            textAlign: 'center',
+            fontWeight: 800,
+            fontSize: fs(44),
+            lineHeight: 1.5,
+            color: G.mid,
+            letterSpacing: 0,
+          }}
+        >
+          ساخت واژه از پاره‌خط‌ها
+        </div>
+        <div
+          style={{ position: 'absolute', left: 0, top: 0, width: 1920, height: 1080, transform: `scale(${pulse})`, transformOrigin: '50% 55%' }}
+        >
+          {SEGS.map((seg, i) => {
+            const rank = ORDER.indexOf(i);
+            const start = FIRST + rank * STEP;
+            if (frame < start) return null; // not started: not rendered (not opacity 0)
+            const t = interpolate(frame, [start, start + SEG_IN], [0, 1], {
+              easing: Easing.out(Easing.cubic),
+              extrapolateLeft: 'clamp',
+              extrapolateRight: 'clamp',
+            });
+            // Slide 12px along the fragment's stroke axis: vertical = top->bottom (physical), horizontal = right->left (reading dir).
+            const slide = SLIDE * (1 - t);
+            const tx = seg.axis === 'h' ? slide : 0;
+            const ty = seg.axis === 'v' ? -slide : 0;
+            return (
+              <div
+                key={i}
+                style={{
+                  position: 'absolute', left: 0, top: 0, width: 1920, height: 1080,
+                  clipPath: `inset(${seg.y0}px ${1920 - seg.x1}px ${1080 - seg.y1}px ${seg.x0}px)`,
+                  transform: `translate(${tx}px, ${ty}px)`,
+                  opacity: t,
+                }}
+              >
+                <WordBlock />
+              </div>
+            );
+          })}
+        </div>
+      </FaRoot>
     </div>
   );
 };

@@ -1,40 +1,55 @@
-// paper-title-card —— 一句话逐词 letterpress 压印上纸字卡
-// 章节转场/价值主张呼吸位：单句文案逐词压印入场（scale 大→1 + blur→0），
-// 每句恰一个强调色斜体重点词，强调色下划线 scaleX 收束，尾部整卡淡出。
-// 全片多张字卡统一 50–55f；纸底+中心暖光与纸墨风格产品画面同色系。
-// 参数化：words/sub/subDigits 可换成目标产品文案；subDigits 走 DigitRoll
-// 数字滚动（必须在本卡淡出前落定）。渲染本 demo 前把 text 复制进项目即可。
+// paper-title-card (Persian / RTL localization)
+// Original: one sentence stamped word-by-word onto paper (letterpress: scale 1.28->1 + blur 7->0 + opacity), one accent
+// word, amber underline scaleX 0->1, mono sub-line with an odometer digit, whole card fades out in the last 8 frames.
+//
+// TEXT: "All your team's research, one place to go." -> «تمام پژوهش‌های تیم شما، همه در یک جا.» (idiomatic value-prop voice,
+//   8 words like the original so the 4f stagger / 9f entrance beats are untouched). Sub-line "5 of 31 fetched today" ->
+//   «۵ از ۳۱ مورد امروز دریافت شد»; the odometer digit rolls through Persian digits (۰..۹, same 22f bezier, same delay).
+// SHAPING: no letterSpacing (was -0.012em / 0.12em), no uppercase. Per-unit motion is per WORD (never per letter). ZWNJ
+//   inside «پژوهش‌های» is kept in the string. Line-height raised to ~1.6 (Persian dots/ascenders), sizes via fs().
+// ACCENT: Persian has no italic (a slanted Arabic-script font breaks joining and looks wrong), so the emphasis word «یک»
+//   keeps the amber colour and gets a thicker ink stroke (3.5px vs 2.5px) instead of italic.
+// DIRECTION: flex row under direction:rtl -> first word is the right-most, the stagger cascades right->left (mirrored,
+//   reading order). Underline grows from the START edge (transform-origin right) like the reading direction. Digit
+//   column order inside the number is irrelevant (single digit); odometer rolling stays vertical (physical, kept). The
+//   centred composition and radial paper glow are symmetric: kept. Sub-line flex row: digit first (right), label after it.
+// FONT: Amiri (high-contrast Naskh = the editorial serif voice that replaces ui-serif/Georgia 600). Single weight: the
+//   original semi-bold is rebuilt with a 2.5px WebkitTextStroke (no synthesized bold). Markazi Text was tried first and
+//   rendered monoline/sans-like (same finding as brand-ink-open). Vazirmatn for the small sub-line (neutral UI text; replaces monospace, whose
+//   Persian fallback (Vazir Code) looks stretched). Both loaded via FaFonts.
+// RASTER: none. TIMING: all delays, durations, easings and PAPER_TITLE_CARD_DURATION unchanged.
 import React from 'react';
 import { AbsoluteFill, interpolate, useCurrentFrame, Easing } from 'remotion';
+import { FaFonts, faText, fs, FA_LH } from '../../_fa';
 
 export const PAPER_TITLE_CARD_DURATION = 55; // ≈1.8s @30fps
 
-const SERIF = 'ui-serif, Georgia, "Times New Roman", serif';
-const MONO = 'ui-monospace, SFMono-Regular, Menlo, monospace';
+const SERIF = '"Amiri", "Vazirmatn", serif';
+const SANS = '"Vazirmatn", sans-serif';
 
 // 每句恰好一个 accent：功能名/收益词（C2）
 const WORDS: { text: string; accent?: boolean }[] = [
-  { text: 'All' },
-  { text: 'your' },
-  { text: 'team’s' },
-  { text: 'research,' },
-  { text: 'one', accent: true },
-  { text: 'place' },
-  { text: 'to' },
-  { text: 'go.' },
+  { text: 'تمام' },
+  { text: 'پژوهش‌های' },
+  { text: 'تیم' },
+  { text: 'شما،' },
+  { text: 'همه' },
+  { text: 'در' },
+  { text: 'یک', accent: true },
+  { text: 'جا.' },
 ];
-const SUB = 'of 31 fetched today';
-const SUB_DIGITS = '5';
+const SUB = 'از ۳۱ مورد امروز دریافت شد';
+const SUB_DIGITS = '۵';
 
 // 数字滚动列（odometer 风格，复制自 template DigitRoll，数字带双份拼接保证
 // 任何目标位都有滚感；tabular-nums 防横向抖）
-const DIGITS = '0123456789';
+const DIGITS = '۰۱۲۳۴۵۶۷۸۹';
 const DigitColumn: React.FC<{ ch: string; delay: number; lineH: number; color: string }> = ({ ch, delay, lineH, color }) => {
   const frame = useCurrentFrame();
-  if (ch < '0' || ch > '9') {
-    return <span style={{ fontSize: 26, lineHeight: `${lineH}px`, color }}>{ch}</span>;
-  }
   const target = DIGITS.indexOf(ch);
+  if (target < 0) {
+    return <span style={{ fontSize: fs(26), lineHeight: `${lineH}px`, color }}>{ch}</span>;
+  }
   const t = interpolate(frame, [delay, delay + 22], [0, 1], {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
@@ -49,10 +64,9 @@ const DigitColumn: React.FC<{ ch: string; delay: number; lineH: number; color: s
             key={j}
             style={{
               display: 'block',
-              fontSize: 26,
+              fontSize: fs(26),
               lineHeight: `${lineH}px`,
               color,
-              fontVariantNumeric: 'tabular-nums',
             }}
           >
             {d}
@@ -64,7 +78,7 @@ const DigitColumn: React.FC<{ ch: string; delay: number; lineH: number; color: s
 };
 
 const DigitRoll: React.FC<{ value: string; delay: number; color: string }> = ({ value, delay, color }) => {
-  const lineH = 26 * 1.15;
+  const lineH = fs(26) * 1.3;
   return (
     <span style={{ display: 'inline-flex', overflow: 'hidden', height: lineH, verticalAlign: 'bottom' }}>
       {value.split('').map((c, i) => (
@@ -92,8 +106,10 @@ export const PaperTitleCard: React.FC = () => {
   });
 
   return (
+    <FaFonts families={['Amiri', 'Vazirmatn']}>
     <AbsoluteFill
       style={{
+        direction: 'rtl',
         backgroundColor: 'oklch(97.5% 0.008 82)',
         justifyContent: 'center',
         alignItems: 'center',
@@ -102,19 +118,18 @@ export const PaperTitleCard: React.FC = () => {
           'radial-gradient(1100px 750px at 50% 42%, oklch(99.3% 0.014 88 / 0.85), transparent 65%)',
       }}
     >
-      <div style={{ textAlign: 'center', maxWidth: 1500 }}>
+      <div style={{ textAlign: 'center', maxWidth: 1150 }}>
         <div
           style={{
             fontFamily: SERIF,
-            fontSize: 116,
-            fontWeight: 600,
-            lineHeight: 1.14,
+            ...faText(116),
+            WebkitTextStroke: '2.5px currentColor',
+            lineHeight: FA_LH * 1.06,
             color: 'oklch(18% 0.006 82)',
-            letterSpacing: '-0.012em',
             display: 'flex',
             flexWrap: 'wrap',
             justifyContent: 'center',
-            columnGap: '0.26em',
+            columnGap: '0.32em',
           }}
         >
           {WORDS.map((w, i) => {
@@ -132,7 +147,7 @@ export const PaperTitleCard: React.FC = () => {
                   transform: `scale(${1.28 - 0.28 * t})`,
                   filter: `blur(${(1 - t) * 7}px)`,
                   display: 'inline-block',
-                  fontStyle: w.accent ? 'italic' : 'normal',
+                  WebkitTextStroke: w.accent ? '3.5px currentColor' : undefined,
                   color: w.accent ? 'oklch(52% 0.115 65)' : undefined,
                 }}
               >
@@ -148,18 +163,17 @@ export const PaperTitleCard: React.FC = () => {
             margin: '38px auto 0',
             borderRadius: 3,
             background: 'oklch(52% 0.115 65)',
+            transformOrigin: 'right center',
             transform: `scaleX(${underline})`,
           }}
         />
         <div
           style={{
-            fontFamily: MONO,
-            fontSize: 26,
-            letterSpacing: '0.12em',
+            ...faText(26),
+            fontFamily: SANS,
             color: 'oklch(50% 0.006 82)',
             marginTop: 34,
             opacity: subT,
-            textTransform: 'uppercase',
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'baseline',
@@ -171,5 +185,6 @@ export const PaperTitleCard: React.FC = () => {
         </div>
       </div>
     </AbsoluteFill>
+    </FaFonts>
   );
 };

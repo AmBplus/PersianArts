@@ -1,12 +1,27 @@
-// word-relay-filmstrip v3 —— 批次 12 单点微调：右侧大词块（Computer+动词）
-// 的垂直中心与左列当前页面卡的垂直中点（y=540）对齐（top 462→402）。
-// 其余沿用 v2：对照用户截图重做（perplexity-promo01，7 张）：
-// ① 左列页面卡黑白相间、每张等高（940x530，间距 105）；
-// ② 左列平时静止，只在右侧切词的窗口内滚动一格（滚动与切词同步）；
-// ③ 尺寸/字号/位置按截图量取：卡 x=106 宽 940，词右对齐至 x≈1710，
-//    Didot 系衬线 116px，"Computer" 固定第一行，动词第二行原位灰化淡出换词。
+// word-relay-filmstrip — Persian / RTL localization (upstream: v3 Computer + researches/builds/codes).
+//
+// TEXT: the only real text is the big two-line word block. "Computer" -> «کامپیوتر» (constant noun, line 1);
+//   verbs rotate in place on line 2: researches -> «پژوهش می‌کند», builds -> «می‌سازد», codes -> «کد می‌نویسد»
+//   (idiomatic present-tense Persian predicates, ZWNJ in «می‌»). The page cards are text-free wireframes (grey bars).
+// FONT: Markazi Text (variable, 400-700) - high-contrast editorial serif, the closest Persian match for the
+//   Didot/Bodoni "newsroom" voice the source prompt demands (sans would lose it). Single family, loaded via FaRoot.
+//   Persian x-height is small: size 116 -> 150, line boxes enlarged (dots/ascenders), no letterSpacing.
+// DIRECTION DECISIONS
+//   - Film column (cards) x=106 (left) -> right edge (right:106): it is the "evidence" that precedes the argument in
+//     reading order, so it takes the start side. MIRROR.
+//   - Word block moves to the left half; text anchored to its start (right) edge, 84px from the cards like the original
+//     gap Computer-card. MIRROR (alignment follows reading direction, not the outer screen edge).
+//   - Wireframe pages inside the cards are drawn as Persian RTL pages: flex rows follow direction:rtl, marginLeft:auto ->
+//     marginInlineStart, borderLeft/paddingLeft -> inline-start, sidebars swap sides (MRI viewer), textAlign left -> start.
+//     MIRROR. The MRI scan image itself (organ + marker circles) is physical imagery: KEPT, symmetric radial gradient.
+//   - Vertical filmstrip scroll (cards advance upward one step), easing, step windows (f14/62/108), word relay cross-fade
+//     timing, grey->fade->in sequence, seeds, shadows (straight down) and the 540px vertical centering: KEPT (up/down is
+//     gravity/vertical, not reading direction).
+//   - Word relay stays a whole-word opacity/colour cross-fade (no per-letter motion, joined script is safe).
+// RASTER: none (cards are CSS shapes). LEFTOVERS: no Latin/Chinese text on screen.
 import React from 'react';
 import { AbsoluteFill, interpolate, useCurrentFrame } from 'remotion';
+import { FaRoot } from '../../_fa';
 
 const mulberry32 = (a: number) => () => {
   let t = (a += 0x6d2b79f5);
@@ -27,7 +42,7 @@ const DarkArticle: React.FC<{ seed: number }> = ({ seed }) => {
     <div style={{ position: 'absolute', inset: 0, background: '#101318', padding: '38px 46px' }}>
       <div style={{ display: 'flex', gap: 26, alignItems: 'center', marginBottom: 34 }}>
         <div style={{ width: 90, height: 13, background: '#d8b25a', borderRadius: 3, opacity: 0.9 }} />
-        <div style={{ marginLeft: 'auto', display: 'flex', gap: 18 }}>
+        <div style={{ marginInlineStart: 'auto', display: 'flex', gap: 18 }}>
           {[0, 1, 2, 3].map((i) => <div key={i} style={{ width: 54, height: 9, background: '#3a3f48', borderRadius: 3 }} />)}
         </div>
       </div>
@@ -88,7 +103,7 @@ const DarkStats: React.FC<{ seed: number }> = ({ seed }) => {
   const rand = mulberry32(seed);
   return (
     <div style={{ position: 'absolute', inset: 0, background: '#0e0d12', padding: '44px 52px' }}>
-      <div style={{ borderLeft: '3px solid #6a2430', paddingLeft: 34 }}>
+      <div style={{ borderInlineStart: '3px solid #6a2430', paddingInlineStart: 34 }}>
         {[
           { n: 92, accent: false }, { n: 74, accent: false }, { n: 58, accent: false }, { n: 118, accent: true },
         ].map((row, i) => (
@@ -130,7 +145,7 @@ const LightTable: React.FC<{ seed: number }> = ({ seed }) => {
           <div style={{ width: 22, height: 10, background: '#9aa0aa', borderRadius: 3 }} />
           <div style={{ width: 26, height: 16, background: ['#b23a3a', '#2c62b8', '#caa53c', '#3a8a52'][i % 4], borderRadius: 2, opacity: 0.85 }} />
           <div style={{ width: 90 + rand() * 60, height: 10, background: '#3a3c40', borderRadius: 3 }} />
-          <div style={{ marginLeft: 'auto', display: 'flex', gap: 46 }}>
+          <div style={{ marginInlineStart: 'auto', display: 'flex', gap: 46 }}>
             <div style={{ width: 16, height: 16, background: i % 3 === 1 ? '#8d8f94' : '#eceef1', borderRadius: 3 }} />
             <div style={{ width: 16, height: 16, background: i % 3 === 2 ? '#a5772e' : '#eceef1', borderRadius: 3 }} />
             <div style={{ width: 14, height: 10, background: '#5a5c60', borderRadius: 3 }} />
@@ -145,10 +160,10 @@ const DarkMri: React.FC = () => (
   <div style={{ position: 'absolute', inset: 0, background: '#08090b', padding: 0 }}>
     <div style={{ height: 44, borderBottom: '1px solid #1c1e22', display: 'flex', alignItems: 'center', gap: 16, padding: '0 26px' }}>
       <div style={{ width: 100, height: 10, background: '#cfd2d6', borderRadius: 3, opacity: 0.8 }} />
-      <div style={{ marginLeft: 'auto', width: 60, height: 8, background: '#2c2f34', borderRadius: 3 }} />
+      <div style={{ marginInlineStart: 'auto', width: 60, height: 8, background: '#2c2f34', borderRadius: 3 }} />
     </div>
     <div style={{ display: 'flex', height: CARD_H - 44 }}>
-      <div style={{ width: 190, borderRight: '1px solid #17191d', padding: 20 }}>
+      <div style={{ width: 190, borderInlineEnd: '1px solid #17191d', padding: 20 }}>
         <div style={{ width: 110, height: 10, background: '#b8a24e', borderRadius: 3, marginBottom: 14 }} />
         {Array.from({ length: 5 }).map((_, i) => (
           <div key={i} style={{ height: 7, width: `${58 + (i * 13) % 36}%`, background: '#2e3138', borderRadius: 3, marginBottom: 10 }} />
@@ -166,7 +181,7 @@ const DarkMri: React.FC = () => (
           ))}
         </div>
       </div>
-      <div style={{ width: 170, borderLeft: '1px solid #17191d', padding: 18 }}>
+      <div style={{ width: 170, borderInlineStart: '1px solid #17191d', padding: 18 }}>
         {Array.from({ length: 8 }).map((_, i) => (
           <div key={i} style={{ height: 7, width: `${50 + (i * 17) % 44}%`, background: '#26292f', borderRadius: 3, marginBottom: 11 }} />
         ))}
@@ -183,7 +198,7 @@ const LightPortfolio: React.FC = () => (
     ))}
     <div style={{ display: 'flex', gap: 18, marginTop: 36 }}>
       {[0, 1, 2, 3].map((i) => (
-        <div key={i} style={{ flex: 1, height: 150, background: '#ffffff', border: '1px solid #e2e4e8', borderRadius: 10, padding: 16, textAlign: 'left' }}>
+        <div key={i} style={{ flex: 1, height: 150, background: '#ffffff', border: '1px solid #e2e4e8', borderRadius: 10, padding: 16, textAlign: 'start' }}>
           <div style={{ width: '54%', height: 12, background: '#2c2d30', borderRadius: 3, marginBottom: 12 }} />
           <div style={{ width: '80%', height: 8, background: '#d3d6db', borderRadius: 3, marginBottom: 8 }} />
           <div style={{ width: '66%', height: 8, background: '#d3d6db', borderRadius: 3 }} />
@@ -203,11 +218,15 @@ const CARDS: React.FC<{ seed: number }>[] = [
   () => <LightPortfolio />,
 ];
 
-const WORDS = ['researches', 'builds', 'codes'];
+const WORDS = ['پژوهش می‌کند', 'می‌سازد', 'کد می‌نویسد'];
 // 切词窗口：第一个词入场 f14–30；换词 f62–78、f108–124
 const SWITCHES = [14, 62, 108];
 const SW_DUR = 16;
-const SERIF = '"Didot", "Bodoni 72", "Playfair Display", Georgia, serif';
+const WORD_PX = 150;
+const LINE_H = 160;
+const BLOCK_RIGHT = 1130; // text start edge at x=790 = card left edge (1920-106-940=874) minus the 84px gap
+const FONT = 'Markazi Text';
+const FA_SERIF = '"Markazi Text", "Vazirmatn", serif';
 
 export const WordRelayFilmstrip: React.FC = () => {
   const frame = useCurrentFrame();
@@ -232,7 +251,7 @@ export const WordRelayFilmstrip: React.FC = () => {
       if (y > 1200 || y < -CARD_H - 120) return;
       cards.push(
         <div key={`${rep}-${i}`} style={{
-          position: 'absolute', top: y, left: 106, width: CARD_W, height: CARD_H,
+          position: 'absolute', top: y, right: 106, width: CARD_W, height: CARD_H,
           borderRadius: 12, overflow: 'hidden',
           boxShadow: '0 12px 40px rgba(30,26,20,0.14)',
           border: '1px solid rgba(0,0,0,0.06)', background: '#fff',
@@ -245,8 +264,8 @@ export const WordRelayFilmstrip: React.FC = () => {
 
   // —— 右侧词接力：原位交叉淡（旧词灰化淡出，新词淡入，不位移）——
   const wordStyle: React.CSSProperties = {
-    fontFamily: SERIF, fontWeight: 400, fontSize: 116, lineHeight: 1.18,
-    letterSpacing: '0.002em', textAlign: 'right', whiteSpace: 'nowrap',
+    fontFamily: FA_SERIF, fontWeight: 500, fontSize: WORD_PX, lineHeight: `${LINE_H}px`,
+    letterSpacing: 0, textAlign: 'start', whiteSpace: 'nowrap',
   };
   // 每个词的生命周期：入场淡入（黑）→ 常驻黑 → 下个切点前 14 帧灰化
   //（截图 4/6 捕捉到的就是"旧词已灰、新词未现"的状态）→ 切点起淡出。
@@ -276,7 +295,7 @@ export const WordRelayFilmstrip: React.FC = () => {
     const ch = Math.round(0x19 + (0x9d - 0x19) * mix);
     return (
       <div key={w} style={{
-        ...wordStyle, position: 'absolute', right: 0, top: 0,
+        ...wordStyle, position: 'absolute', insetInlineStart: 0, top: 0,
         color: `rgb(${ch},${Math.round(0x19 + (0x98 - 0x19) * mix)},${Math.round(0x19 + (0x8e - 0x19) * mix)})`,
         opacity: op,
       }}>
@@ -287,14 +306,16 @@ export const WordRelayFilmstrip: React.FC = () => {
 
   return (
     <AbsoluteFill style={{ background: '#faf8f3' }}>
+      <FaRoot family={FONT}>
       <div style={{ position: 'absolute', inset: 0 }}>{cards}</div>
       {/* 右侧词组：Computer 固定第一行，动词第二行原位换词。
           v3：块总高≈137(Computer 行)+140(词行容器)=277，垂直中心须对齐
           当前页面卡中点 y=540（卡顶 275 + 卡高 530/2）→ top=540-277/2≈402 */}
-      <div style={{ position: 'absolute', right: 210, top: 402 }}>
-        <div style={{ ...wordStyle, color: '#191919' }}>Computer</div>
-        <div style={{ position: 'relative', height: 140 }}>{wordNodes}</div>
+      <div style={{ position: 'absolute', right: BLOCK_RIGHT, top: 540 - LINE_H }}>
+        <div style={{ ...wordStyle, color: '#191919' }}>کامپیوتر</div>
+        <div style={{ position: 'relative', height: LINE_H }}>{wordNodes}</div>
       </div>
+      </FaRoot>
     </AbsoluteFill>
   );
 };

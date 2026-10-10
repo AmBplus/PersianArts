@@ -1,3 +1,17 @@
+// PERSIAN (RTL) localization of shotcraft "line-boil". Motion, timing, seeds (floor(f/3)), filter params, BOIL_* and phases are untouched.
+// TEXT: "ALIVE" -> «زنده»; "LINE BOIL" -> «جوشش خط»; "boil on/off" -> «جوشش روشن» / «جوشش خاموش».
+// FONT: title in Lalezar (single weight, heavy poster display = Helvetica 800's role; no fake bold; wordSpacing not needed, one word),
+//   size 170 -> 230 because Persian x-height is small and Lalezar is compact. Label + tags in Vazirmatn (neutral UI), weight 700/800 (variable).
+//   Both families are loaded through FaFonts so no frame falls back.
+// SHAPING: letterSpacing (4 / -1 / 2) removed everywhere; the boil is a whole-layer SVG displacement, never per-letter, so joining is safe.
+// DIRECTION (mirror = reading order, keep = physical):
+//  - Method label top-left (left:120) -> top-right (insetInlineStart:120): the header anchor follows the reading start. MIRRORED.
+//  - Status tag bottom-right (right:72) -> bottom-left (insetInlineEnd:72 in RTL = left). MIRRORED (composition balance with label).
+//  - Outlined card: content column aligns to the reading start (right) via direction:rtl; the grey text-line placeholders start at the
+//    right edge and the bottom avatar-circle + line row puts the circle at the right. MIRRORED.
+//  - Title/card are centered: symmetric, kept. feTurbulence noise, displacement channels, filter region: physical noise, KEPT.
+//  - Corner tag cross-fade (boil on <-> off) is opacity only: no direction.
+// RASTER: none (pure CSS/SVG).
 // 线条沸腾（line-boil）——手绘动画 line boil 质感：静止线稿在"沸腾段"
 // 边缘逐帧微颤，像手绘逐帧描线的抖动。SVG filter feTurbulence(baseFrequency
 // 0.015, numOctaves 2, seed = Math.floor(f/3) 每 3 帧阶梯换) + feDisplacementMap
@@ -9,7 +23,8 @@
 // → 105 摘罩 → 105–140 真静止(boil off)。
 import React, { useId } from 'react';
 import { useCurrentFrame, interpolate } from 'remotion';
-import { G, TitleBlock } from '../../_fixtures/Fixtures';
+import { G } from '../../_fixtures/Fixtures';
+import { FaRoot, FaFonts, fs } from '../../_fa';
 
 const BOIL_START = 35;
 const BOIL_END = 105;
@@ -19,17 +34,17 @@ const CornerTag: React.FC<{ text: string; opacity: number }> = ({ text, opacity 
   <div
     style={{
       position: 'absolute',
-      right: 72,
+      insetInlineEnd: 72,
       bottom: 56,
       padding: '10px 22px',
       border: `3px solid ${G.ink}`,
       borderRadius: 999,
       color: G.ink,
       background: G.bg,
-      fontFamily: 'Helvetica, Arial, sans-serif',
       fontWeight: 700,
-      fontSize: 30,
-      letterSpacing: 2,
+      fontSize: fs(30),
+      letterSpacing: 0,
+      lineHeight: 1.5,
       opacity,
     }}
   >
@@ -54,7 +69,8 @@ export const LineBoil: React.FC = () => {
   const offOp = 1 - onOp;
 
   return (
-    <div style={{ width: 1920, height: 1080, background: G.bg, position: 'relative', overflow: 'hidden' }}>
+    <FaFonts families={['Lalezar']}>
+    <FaRoot family="Vazirmatn" style={{ width: 1920, height: 1080, background: G.bg, overflow: 'hidden' }}>
       {/* 沸腾段才渲染 filter 定义——摘罩即整个 SVG def 消失，收尾天然真静止 */}
       {boiling && (
         <svg width={0} height={0} style={{ position: 'absolute' }}>
@@ -80,8 +96,8 @@ export const LineBoil: React.FC = () => {
       )}
 
       {/* 手法名标签：不入滤镜层，作为静止参照物 */}
-      <div style={{ position: 'absolute', left: 120, top: 96 }}>
-        <TitleBlock text="LINE BOIL" size={54} />
+      <div style={{ position: 'absolute', insetInlineStart: 120, top: 96, fontWeight: 800, fontSize: fs(54), lineHeight: 1.5, color: G.ink }}>
+        جوشش خط
       </div>
 
       {/* 被沸腾的整层：大标题 + 描边卡 */}
@@ -99,15 +115,17 @@ export const LineBoil: React.FC = () => {
       >
         <div
           style={{
-            fontFamily: 'Helvetica, Arial, sans-serif',
-            fontWeight: 800,
-            fontSize: 170,
+            fontFamily: '"Lalezar", "Vazirmatn", sans-serif',
+            fontSize: 230,
             color: G.ink,
-            letterSpacing: 4,
-            lineHeight: 1,
+            letterSpacing: 0,
+            lineHeight: 1.5,
+            height: 170,
+            display: 'flex',
+            alignItems: 'center',
           }}
         >
-          ALIVE
+          زنده
         </div>
         {/* 描边卡：透明底 3px ink 描边 520×300 圆角框 + 几条灰线 */}
         <div
@@ -135,8 +153,9 @@ export const LineBoil: React.FC = () => {
       </div>
 
       {/* 状态角标：沸腾段 boil on，静止段 boil off */}
-      <CornerTag text="boil on" opacity={onOp} />
-      <CornerTag text="boil off" opacity={offOp} />
-    </div>
+      <CornerTag text="جوشش روشن" opacity={onOp} />
+      <CornerTag text="جوشش خاموش" opacity={offOp} />
+    </FaRoot>
+    </FaFonts>
   );
 };

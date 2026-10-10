@@ -1,10 +1,24 @@
-// spectrum-morph-ui —— 频谱化 UI
+// PERSIAN (RTL) localization of shotcraft "spectrum-morph-ui" — timing, easing, seed and bar maths are untouched.
+// Text: "LAUNCH WEEK" -> «هفتهٔ عرضه» (product-launch voice; two words, about the same visual mass as the Latin headline).
+//  letterSpacing -1 and the heavy Helvetica caps are dropped (they break joining); the weight is carried by the font instead.
+// Font: Lalezar — a poster/impact display face (single weight, so no fake bold) = the role of Helvetica 800. Size fs(150)=165 (larger than fs(120): Persian two-word headline is narrower than the Latin caps),
+//  wordSpacing .15em because Lalezar's word gap is tight at display size, lineHeight 1.3 (its glyph box is tall).
+// Direction decisions:
+//  - MIRRORED: the spectrum frequency axis. The bars are a left->right category axis (bass at the left, treble at the right);
+//    for a Persian reader the axis starts at the right, so bar i sits at the right end for i=0 (tallest bass bar on the right,
+//    envelope falls toward the left). The wobble/jitter/env maths per index are untouched, only the x slot is (N-1-i).
+//  - KEPT: the underline is centred and symmetric (600..1320 of 1920), so the collapse back into a line is pixel-identical
+//    regardless of direction; bars grow upward from the line (gravity/physical), title is centred (textAlign center is neutral).
+//  - KEPT: gap/width interpolation, collapse timing, conditional mount of the solid line (pixel-still ending).
+//  - No raster assets in this demo.
+// Original: spectrum-morph-ui —— 频谱化 UI
 // 标题 "LAUNCH WEEK" 下方 8px ink 下划线（720px）。25f 起裂成 28 根竖条
 // （20px 宽、6px 间隙），条高按伪 FFT 跳动 64f（低频端高、高频端矮的包络），
 // 条底对齐原线、向上生长。两小节后 12f 收拢回 8px 直线，收线后真静止 ≥35f。
 import React from 'react';
 import { useCurrentFrame, interpolate, Easing } from 'remotion';
-import { G, TitleBlock } from '../../_fixtures/Fixtures';
+import { G } from '../../_fixtures/Fixtures';
+import { FaRoot, fs, faText } from '../../_fa';
 
 // 库内标准 seed hash（帧确定，无 Math.random）
 const h = (n: number) => {
@@ -71,22 +85,19 @@ export const SpectrumMorphUi: React.FC = () => {
   const barsActive = frame >= SPLIT && frame < COLLAPSE_END;
 
   return (
-    <div style={{ width: 1920, height: 1080, background: G.bg, position: 'relative', overflow: 'hidden' }}>
+    <FaRoot family="Lalezar" style={{ background: G.bg, overflow: 'hidden' }}>
       <div
         style={{
           position: 'absolute',
-          top: 330,
+          top: 310,
           width: '100%',
           textAlign: 'center',
           opacity: titleOp,
-          fontFamily: 'Helvetica, Arial, sans-serif',
-          fontWeight: 800,
-          fontSize: 120,
+          ...faText(150, { lineHeight: 1.3, wordSpacing: '0.15em', fontWeight: 400 }),
           color: G.ink,
-          letterSpacing: -1,
         }}
       >
-        LAUNCH WEEK
+        هفتهٔ عرضه
       </div>
 
       {!barsActive && (
@@ -114,7 +125,7 @@ export const SpectrumMorphUi: React.FC = () => {
               key={i}
               style={{
                 position: 'absolute',
-                left: LINE_X + i * (barW + gap),
+                left: LINE_X + (N_BARS - 1 - i) * (barW + gap), // frequency axis mirrored: bass bar i=0 at the right
                 top: LINE_BOTTOM - barH, // 底边对齐原线，向上长
                 width: barW + (gap < 1 ? 0.5 : 0), // gap 收到 0 时补 0.5px 防细缝
                 height: barH,
@@ -124,6 +135,6 @@ export const SpectrumMorphUi: React.FC = () => {
             />
           );
         })}
-    </div>
+    </FaRoot>
   );
 };

@@ -17,7 +17,7 @@
 //  - Underline: left: CX+32 -> right: CX+32 (under the right-aligned title bar) and drawn from x=UW to x=0 so it grows
 //    right-to-left like handwriting in Persian. MIRRORED.
 //  - Vertical order, easing curves, transform-origin (none), clip-paths (none): nothing else carries direction.
-// RASTER: none in this demo. Frame offset constant is 0 (debug only).
+// RASTER: none in this demo.
 import React from 'react';
 import { useCurrentFrame, interpolate, Easing } from 'remotion';
 import { G } from '../../_fixtures/Fixtures';
@@ -27,11 +27,10 @@ const CW = 560;
 const CH = 380;
 const CX = (1920 - CW) / 2; // 680
 const CY = (1080 - CH) / 2; // 350
-const FRAME_OFFSET = 0; // debug only
 const PEN = 0.045; // 笔头 dash 长度（占整圈比例）
 
 export const DrawSvgTrace: React.FC = () => {
-  const frame = useCurrentFrame() + FRAME_OFFSET;
+  const frame = useCurrentFrame();
 
   // 轮廓描边进度：8–48，40f，inOut cubic
   const p = interpolate(frame, [8, 48], [0, 1], {

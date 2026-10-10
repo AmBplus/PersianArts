@@ -1,23 +1,41 @@
-// 字距呼吸展开（tracking-expand-reveal）——电影片头字幕惯用的 letter-spacing 入场。
-// 标题 "BREATHE"（150px）出场时字符几乎叠压（相当于 letter-spacing -0.42em），
-// 50 帧内展开到 0.14em，同步 blur 10px→0、opacity 0.6→1、scaleX 0.92→1。
-// 不动 letter-spacing 本身（逐帧重排会抖）：容器常量 letterSpacing 0.14em 定终位，
-// 逐字符 span 用 translateX 手动插值——第 i 字起始位移 = (i - 中心) × 每缝差值 84px，
-// 全部挤向词心，位移只与字缝有关、与字宽无关，天然对中。
-// 关键帧：0–50 展开（Easing.out(poly(5)))＋去糊提亮 → 35–58 副标题淡入（≈主词展开 70% 时点）
-// → 58–130 全静止（≥72f，滤镜彻底摘除）。
+// TrackingExpandReveal — Persian/RTL localization (tracking-expand-reveal: letters squeezed together breathe open, blur 10 -> 0).
+//
+// TEXT
+//  - Hero "BREATHE" -> «نفس بکش» (imperative, the "breathe in" of a lyrical title).
+//  - Subtitle "A CINEMATIC TITLE ENTRANCE" -> «ورود سینمایی تیتر». Label "TRACKING EXPAND REVEAL" -> «باز شدن کشیدهٔ حروف».
+// SHAPING - the big adaptation
+//  - Letter-spacing (the effect itself) is forbidden on Persian: it cuts the joins. The native Persian analogue of tracking is
+//    KASHIDA (tatweel ـ), the connection stroke elongated between joined letters. So "expand" is
+//      (a) the number of tatweels at every joint of each word grows 0 -> KASHIDA in integer steps following p (same out-poly(5) curve),
+//          so the stretching happens in the first ~12 f, under the blur, and later steps are tiny;
+//      (b) the two words start as an overlapped pile at the centre (original: letters piled at -0.42em) and travel out to their places,
+//          translateX = (1-p) * PILE toward the centre: the same "everything pulled to the centre" idea, depends only on p;
+//      (c) scaleX .92 -> 1, blur 10 -> 0, opacity .6 -> 1, all on the original p curve; filters removed at f50 (settled).
+//  - The subtitle's letterSpacing .32em and uppercase are removed (0 / none).
+// TIMING: identical beats (0-50 expand, subtitle fade 35-58, rest from 58).
+// DIRECTION (RTL)
+//  - «نفس» is the first word and sits on the RIGHT, «بکش» on the left; each word slides from the centre outward to its own side.
+//    MIRRORED (reading order); the compression is symmetrical around the centre so no side is favoured.
+//  - Label top-left -> top-right. MIRRORED. Centred subtitle: KEPT.
+// FONT: Markazi Text 700 - the quietest, most lyrical demo of the card; a naskh face has well-drawn tatweels (kashida) and
+//  a calm, bookish voice. Subtitle in the same family (500). Raster assets: none.
 import React from 'react';
 import { useCurrentFrame, interpolate, Easing } from 'remotion';
-import { G, TitleBlock } from '../../_fixtures/Fixtures';
+import { G } from '../../_fixtures/Fixtures';
+import { FaRoot, fs, FA_LH } from '../../_fa';
+import { FaTitle } from './FaCommon';
 
-const WORD = 'BREATHE';
-const FS = 150; // 主词字号
-// 每个字缝的起始-终点差：(-0.42em) - (0.14em) = -0.56em = -84px @150px
-const GAP_DELTA = -0.56 * FS;
+const WORDS = ['نفس', 'بکش'];
+const FS = fs(150); // 主词字号
+const KASHIDA = 2; // tatweels per joint in the final, expanded state
+const PILE = 200; // px each word starts away from its final place (toward the centre)
+
+// Insert k tatweels after every letter that joins forward (all but the last letter of these words).
+const stretch = (w: string, k: number) =>
+  [...w].map((ch, i, a) => (i < a.length - 1 ? ch + 'ـ'.repeat(k) : ch)).join('');
 
 export const TrackingExpandReveal: React.FC = () => {
   const frame = useCurrentFrame();
-  // 展开进度 0→1（0–50f，out poly(5)）
   const p = interpolate(frame, [0, 50], [0, 1], {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
@@ -26,28 +44,22 @@ export const TrackingExpandReveal: React.FC = () => {
   const blur = 10 * (1 - p);
   const op = interpolate(p, [0, 1], [0.6, 1]);
   const sx = interpolate(p, [0, 1], [0.92, 1]);
-  // 副标题：主词时间轴走到 70%（帧 35）起淡入
   const subOp = interpolate(frame, [35, 58], [0, 1], {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
     easing: Easing.out(Easing.quad),
   });
-
-  const N = WORD.length;
-  const center = (N - 1) / 2;
-  const settled = frame >= 50; // 展开完成后摘掉一切滤镜/变换，保证逐帧完全相同
+  const k = Math.round(KASHIDA * p);
+  const settled = frame >= 50;
 
   return (
-    <div style={{ width: 1920, height: 1080, background: G.bg, position: 'relative', overflow: 'hidden' }}>
-      <div style={{ position: 'absolute', left: 120, top: 96 }}>
-        <TitleBlock text="TRACKING EXPAND REVEAL" size={54} />
-      </div>
+    <FaRoot family="Markazi Text" style={{ background: G.bg, overflow: 'hidden' }}>
+      <FaTitle text="باز شدن کشیدهٔ حروف" family="Markazi Text" weight={700} />
 
-      {/* 主词：容器 letterSpacing 恒为 0.14em（终态），字符仅做 translateX */}
       <div
         style={{
           position: 'absolute',
-          top: 430,
+          top: 400,
           left: 0,
           width: 1920,
           display: 'flex',
@@ -59,51 +71,48 @@ export const TrackingExpandReveal: React.FC = () => {
       >
         <div
           style={{
-            fontFamily: 'Helvetica, Arial, sans-serif',
-            fontWeight: 800,
+            fontWeight: 700,
             fontSize: FS,
+            lineHeight: FA_LH,
             color: G.ink,
-            letterSpacing: '0.14em',
+            letterSpacing: 0,
             whiteSpace: 'pre',
-            // letter-spacing 只加在字后，整体左移半个缝宽找回视觉对中
-            marginLeft: 0.14 * FS * 0.5,
+            display: 'flex',
+            gap: FS * 0.3,
           }}
         >
-          {WORD.split('').map((ch, i) => {
-            const tx = (1 - p) * (i - center) * GAP_DELTA;
-            return (
-              <span
-                key={i}
-                style={{
-                  display: 'inline-block',
-                  transform: settled ? undefined : `translateX(${tx}px)`,
-                }}
-              >
-                {ch}
-              </span>
-            );
-          })}
+          {WORDS.map((w, i) => (
+            <span
+              key={i}
+              style={{
+                display: 'inline-block',
+                // first word (right) travels left out of the pile, second (left) travels right
+                transform: settled ? undefined : `translateX(${(i === 0 ? -1 : 1) * (1 - p) * PILE}px)`,
+              }}
+            >
+              {stretch(w, k)}
+            </span>
+          ))}
         </div>
       </div>
 
-      {/* 副标题：主词展开 70% 时点淡入 */}
       <div
         style={{
           position: 'absolute',
-          top: 630,
+          top: 640,
           left: 0,
           width: 1920,
           textAlign: 'center',
-          fontFamily: 'Helvetica, Arial, sans-serif',
           fontWeight: 500,
-          fontSize: 34,
+          fontSize: fs(34),
+          lineHeight: FA_LH,
           color: G.mid,
-          letterSpacing: '0.32em',
+          letterSpacing: 0,
           opacity: frame >= 58 ? 1 : subOp,
         }}
       >
-        A CINEMATIC TITLE ENTRANCE
+        ورود سینمایی تیتر
       </div>
-    </div>
+    </FaRoot>
   );
 };

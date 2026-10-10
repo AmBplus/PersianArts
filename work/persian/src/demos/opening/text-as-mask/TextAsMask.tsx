@@ -1,37 +1,65 @@
-// 文字视频遮罩（text-as-mask）——kinetische typografie
-// 深底上超粗大字 "SCALE"，字形内部用 CSS alpha mask 套住 FakeDashboard：
-// 0–20f hold 读布景；20–100f dashboard 在字内匀速 translateX +110→-110（scale 1.15）；
-// 100–130f 单段 bezier：mask 层 scale 1→26 放大溢出（内容层用 1/S 反向抵消不畸变），
-// 同时无遮罩全屏层淡入接管，dashboard 1.15→1.0 归位；130–150f 全屏静止收尾。
+// متن به‌عنوان ماسک (text-as-mask) — Persian / RTL localization of the "kinetic typography" opening.
+// Design (unchanged): 0–20f hold · 20–100f dashboard drifts at constant speed inside the glyphs (scale 1.15, ±110px) ·
+// 100–130f single bezier(0.4,0,0.2,1): mask layer scale 1→26, content layer 1/S counter-scale, un-masked cover layer fades in
+// (endT 0.25–0.9), dashboard 1.15→1.0 · 130–150f still. Timing, easing, scale 26, ±110 drift amplitude are untouched.
+//
+// TEXT
+//  - Hero word "SCALE" -> «مقیاس» (the Persian word for scale/measure; 5 letters like the original). It is one joined word: no per-letter
+//    motion exists in this demo, only a whole-word mask, so shaping is never split.
+//  - Caption "TEXT AS MASK" -> «متن به‌عنوان ماسک» (ZWNJ in به‌عنوان). Tracking (letterSpacing 10) and uppercase removed: they break
+//    Persian joining. Hierarchy is kept by size (fs(30)), weight 700 and the mid-grey colour.
+// MASK TEXT AS PATHS (raster/vector handling)
+//  - An SVG data-URI used as mask-image is an isolated document: it can NOT use page web fonts, so «مقیاس» would fall back to a system
+//    face. The word is therefore shaped once with HarfBuzz from Lalezar and embedded as glyph outline paths (maskGlyphs.ts). The mask
+//    stays vector-crisp at 26x, like the original SVG text.
+// FONT
+//  - Lalezar (single weight, poster/impact display face): the card's idea is "the stroke is the viewport" (source prompt: very heavy
+//    strokes, weight 900). Lalezar is the heaviest Persian display family in the kit. No fake bold (weight is built in).
+//    Caption: Vazirmatn 700 (neutral product UI voice, variable weight). Both families are loaded through FaFonts.
+// DIRECTION DECISIONS
+//  - Word position: centred (symmetric) - kept. Mask scale origin ORIGIN re-derived for the new word so it sits in a solid stroke
+//    (source prompt: a hand-picked origin always breaks when the word changes).
+//  - Dashboard drift: translateX +110 -> -110 becomes -110 -> +110 (dir()), the window pans with the reading direction;
+//    after 100f the same mirrored path eases to 0, as in the original.
+//  - FakeDashboard is LTR (sidebar left, search right): MirroredDashboard (sidebar right, search left, grid reads RTL).
+//  - Mask wrapper and take-over layer share the same mirrored dashMotion, as designed.
+//  - Caption: centred, direction rtl, so no further left/right decision.
+// KEPT: scale 1→26 (physics of a zoom), vertical positions, colours, bezier, all frame numbers.
 import React from 'react';
 import { useCurrentFrame, interpolate, Easing } from 'remotion';
-import { FakeDashboard, G } from '../../_fixtures/Fixtures';
+import { G } from '../../_fixtures/Fixtures';
+import { FaFonts, FaRoot, faText, dir } from '../../_fa';
+import { MirroredDashboard } from './MirroredDashboard';
+import { MASK_UPEM, MASK_ADVANCE, MASK_GLYPHS } from './maskGlyphs';
 
-const MASK_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080"><text x="960" y="666" font-family="Helvetica, Arial, sans-serif" font-size="360" font-weight="900" letter-spacing="-8" text-anchor="middle" fill="white">SCALE</text></svg>`;
+const WORD_SIZE = 500; // px per em: the glyph run is MASK_ADVANCE/MASK_UPEM em wide
+const BASELINE = 640;
+const k = WORD_SIZE / MASK_UPEM;
+const tx = (1920 - MASK_ADVANCE * k) / 2;
+const MASK_SVG =
+  `<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080"><g fill="white">` +
+  MASK_GLYPHS.map((g) => `<path transform="translate(${(tx + g.x * k).toFixed(2)} ${(BASELINE - g.y * k).toFixed(2)}) scale(${k} ${-k})" d="${g.d}"/>`).join('') +
+  `</g></svg>`;
 const MASK_URL = `url("data:image/svg+xml,${encodeURIComponent(MASK_SVG)}")`;
-// mask 放大原点：取字母 L 的竖笔位置（约 61.5% 处），保证放大时原点落在实心笔画内
-const ORIGIN = '61.5% 50%';
+// mask scale origin: must sit inside a solid stroke, re-derived for the Persian word
+const ORIGIN = '47.8% 46%';
 
 export const TextAsMask: React.FC = () => {
   const f = useCurrentFrame();
   const clamp = { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' } as const;
 
-  // 结尾撤场进度：100–130f 单段 bezier
   const endT = interpolate(f, [100, 130], [0, 1], {
     ...clamp,
     easing: Easing.bezier(0.4, 0, 0.2, 1),
   });
 
-  // dashboard 内容运动：20–100f 匀速漂移，100–130f 归位到全屏
-  const driftX = interpolate(f, [20, 100], [110, -110], clamp);
-  const dx = f < 100 ? driftX : interpolate(endT, [0, 1], [-110, 0]);
+  // dashboard drift mirrored: dir() flips the physical x offsets (reading direction is leftwards)
+  const driftX = interpolate(f, [20, 100], [dir(110), dir(-110)], clamp);
+  const dx = f < 100 ? driftX : interpolate(endT, [0, 1], [dir(-110), 0]);
   const dashS = interpolate(endT, [0, 1], [1.15, 1]);
 
-  // mask 层放大（内容层反向抵消，dashboard 不跟着几何畸变）
   const maskS = interpolate(endT, [0, 1], [1, 26]);
-  // 无遮罩全屏层淡入，保证接管彻底
   const cover = interpolate(endT, [0.25, 0.9], [0, 1], clamp);
-  // 底部小注释：撤场时淡出
   const caption = interpolate(f, [100, 114], [1, 0], clamp);
 
   const dashMotion: React.CSSProperties = {
@@ -42,53 +70,48 @@ export const TextAsMask: React.FC = () => {
   };
 
   return (
-    <div style={{ width: 1920, height: 1080, background: G.ink, position: 'relative', overflow: 'hidden' }}>
-      {/* 遮罩层：wrapper 负责 mask + 放大；inner 用 1/S 反向缩放抵消内容形变 */}
-      <div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          transform: `scale(${maskS})`,
-          transformOrigin: ORIGIN,
-          WebkitMaskImage: MASK_URL,
-          maskImage: MASK_URL,
-          WebkitMaskRepeat: 'no-repeat',
-          maskRepeat: 'no-repeat',
-          WebkitMaskSize: '1920px 1080px',
-          maskSize: '1920px 1080px',
-        }}
-      >
-        <div style={{ position: 'absolute', inset: 0, transform: `scale(${1 / maskS})`, transformOrigin: ORIGIN }}>
-          <div style={dashMotion}>
-            <FakeDashboard variant="A" />
+    <FaFonts families={['Lalezar', 'Vazirmatn']}>
+      <div style={{ width: 1920, height: 1080, background: G.ink, position: 'relative', overflow: 'hidden' }}>
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            transform: `scale(${maskS})`,
+            transformOrigin: ORIGIN,
+            WebkitMaskImage: MASK_URL,
+            maskImage: MASK_URL,
+            WebkitMaskRepeat: 'no-repeat',
+            maskRepeat: 'no-repeat',
+            WebkitMaskSize: '1920px 1080px',
+            maskSize: '1920px 1080px',
+          }}
+        >
+          <div style={{ position: 'absolute', inset: 0, transform: `scale(${1 / maskS})`, transformOrigin: ORIGIN }}>
+            <div style={dashMotion}>
+              <MirroredDashboard />
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* 接管层：同一运动变换的全屏 dashboard，撤场时淡入到 1 */}
-      <div style={{ position: 'absolute', inset: 0, opacity: cover }}>
-        <div style={dashMotion}>
-          <FakeDashboard variant="A" />
+        <div style={{ position: 'absolute', inset: 0, opacity: cover }}>
+          <div style={dashMotion}>
+            <MirroredDashboard />
+          </div>
         </div>
-      </div>
 
-      {/* 底部小注释 */}
-      <div
-        style={{
-          position: 'absolute',
-          bottom: 90,
-          width: '100%',
-          textAlign: 'center',
-          fontFamily: 'Helvetica, Arial, sans-serif',
-          fontWeight: 700,
-          fontSize: 30,
-          letterSpacing: 10,
-          color: G.mid,
-          opacity: caption,
-        }}
-      >
-        TEXT AS MASK
+        <FaRoot
+          family="Vazirmatn"
+          style={{
+            top: 'auto',
+            bottom: 70,
+            height: 'auto',
+            textAlign: 'center',
+            ...faText(30, { fontWeight: 700, color: G.mid, opacity: caption, unicodeBidi: 'isolate' }),
+          }}
+        >
+          متن به‌عنوان ماسک
+        </FaRoot>
       </div>
-    </div>
+    </FaFonts>
   );
 };

@@ -1,3 +1,19 @@
+// Persian/RTL localization of odometer-digit-roll (original design notes below are kept: timing, easing, seeds unchanged).
+// TEXT: title "ODOMETER DIGIT ROLL" -> «رول ارقام کیلومترشمار» (odometer = کیلومترشمار, idiomatic); metric "99.98%" -> «٪۹۹٫۹۸»
+//   with Persian digits, decimal separator «٫» and percent «٪». No Latin/Chinese text remains. letterSpacing 0 (was -1 on title).
+// FONT: Vazirmatn (variable, weights up to 900): neutral product/metric voice, real Persian digit glyphs, fw800 exists. Loaded via FaRoot.
+// DIRECTION decisions:
+//  - Title block: top-left -> top-right (insetInlineStart under RTL): it is a header, header anchoring follows reading order. MIRRORED.
+//  - Number: digits keep their visual order (۹۹٫۹۸, most significant at the left; numeral order inside a number is never reversed)
+//    -> KEPT, so the left-to-right lock stagger (20/27/34/41) also KEPT: it follows the digit significance, and the source says
+//    right-to-left reads as counting backwards. The static percent sign follows Persian typography (٪ before the number), which in
+//    the RTL flex row puts it at the number's left end: MIRRORED by flex row order (direction:rtl on the row with the number as an LTR island).
+//    (wording fix: logically the percent sign follows the number; visually it ends up at the left of it.)
+//  - Title top 96 -> 80: Persian line-height 1.5 / fs(54) makes the line box taller, so the offset was reduced to keep the same optical top margin.
+//  - Digit cell widened 126 -> 150 (Persian digit glyphs at fs(190) are wider than the original cell); decimal separator drawn at 0.5x scale on the baseline (width kept 70).
+//  - Vertical roll, overshoot, ghost copies, pulse scale (symmetric, origin at centre): physical/vertical -> KEPT.
+//  - Label bars under the number: centred, symmetric -> KEPT.
+// Digit strip uses faDigits() glyphs; each digit is a single glyph in a fixed cell, so no joining problem. fs() scales 1.1x.
 // 里程表数字滚动大字报（odometer-digit-roll）——声画钩子 / Vercel Ship 指标段。
 // 全屏巨号 "99.98%"（190px fw800 tabular-nums），四个数位各是一条 0–9 纵向
 // strip（overflow:hidden 数位盒），高速滚动后逐位停稳：位 i 在 20+i*7f 开始
@@ -9,11 +25,13 @@
 // 附 1.035 微缩放加码）→ 66–84 下方标签条淡入 → 84–150 全静止（66f ≥45f）。
 import React from 'react';
 import { useCurrentFrame, interpolate, interpolateColors, Easing } from 'remotion';
-import { G, TitleBlock } from '../../_fixtures/Fixtures';
+import { G } from '../../_fixtures/Fixtures';
+import { FaRoot, fs, faDigits } from '../../_fa';
 
 const ROW = 210; // 数位行高（overflow 盒高）
-const DW = 126; // 数位盒宽
-const FS = 190; // 字号
+const DW = 150; // 数位盒宽 (widened from 126: Persian digit glyphs at fs(190) are wider than the original cell and were clipped)
+const FS = fs(190); // 字号 (Persian-scaled)
+const DOT_DY = 52; // decimal separator is drawn at 0.5x and pushed down to sit on the digit baseline
 const SPIN = 0.85; // 高速滚动速度：行/帧
 const DIGITS = [9, 9, 9, 8]; // 目标数位（"99.98" 中可滚的四位）
 
@@ -67,11 +85,11 @@ const Strip: React.FC<{ pos: number; color: string; opacity?: number; dy?: numbe
           textAlign: 'center',
           fontSize: FS,
           fontWeight: 800,
-          fontVariantNumeric: 'tabular-nums',
+          letterSpacing: 0,
           color,
         }}
       >
-        {k % 10}
+        {faDigits(k % 10)}
       </div>
     ))}
   </div>
@@ -99,17 +117,18 @@ const DigitReel: React.FC<{ frame: number; i: number; color: string }> = ({ fram
 };
 
 // 不滚动的静态字符（小数点 / %），一直驻场
-const StaticGlyph: React.FC<{ ch: string; color: string; w?: number }> = ({ ch, color, w }) => (
+const StaticGlyph: React.FC<{ ch: string; color: string; w?: number; scale?: number; dy?: number }> = ({ ch, color, w, scale = 1, dy = 0 }) => (
   <div
     style={{
       width: w,
       height: ROW,
       lineHeight: `${ROW}px`,
       textAlign: 'center',
-      fontSize: FS,
+      fontSize: FS * scale,
       fontWeight: 800,
-      fontVariantNumeric: 'tabular-nums',
+      letterSpacing: 0,
       color,
+      transform: dy ? `translateY(${dy}px)` : undefined,
     }}
   >
     {ch}
@@ -133,8 +152,9 @@ export const OdometerDigitRoll: React.FC = () => {
 
   return (
     <div style={{ width: 1920, height: 1080, background: G.bg, position: 'relative', overflow: 'hidden' }}>
-      <div style={{ position: 'absolute', left: 120, top: 96 }}>
-        <TitleBlock text="ODOMETER DIGIT ROLL" size={54} />
+     <FaRoot family="Vazirmatn">
+      <div style={{ position: 'absolute', right: 120, top: 80, fontWeight: 800, fontSize: fs(54), lineHeight: 1.5, color: G.ink, letterSpacing: 0 }}>
+        رول ارقام کیلومترشمار
       </div>
       <div
         style={{
@@ -144,17 +164,23 @@ export const OdometerDigitRoll: React.FC = () => {
           width: 1920,
           display: 'flex',
           justifyContent: 'center',
-          fontFamily: 'Helvetica, Arial, sans-serif',
+          direction: 'rtl',
           transform: `scale(${pulseScale})`,
           transformOrigin: '960px 105px',
         }}
       >
-        <DigitReel frame={frame} i={0} color={inkNow} />
-        <DigitReel frame={frame} i={1} color={inkNow} />
-        <StaticGlyph ch="." color={inkNow} w={70} />
-        <DigitReel frame={frame} i={2} color={inkNow} />
-        <DigitReel frame={frame} i={3} color={inkNow} />
-        <StaticGlyph ch="%" color={inkNow} />
+        <div style={{ display: 'flex', direction: 'ltr' }}>
+          <DigitReel frame={frame} i={0} color={inkNow} />
+          <DigitReel frame={frame} i={1} color={inkNow} />
+          <div style={{ width: 70, height: ROW, position: 'relative' }}>
+            {/* drawn Persian decimal separator (comma shape) on the digit baseline: the font glyph renders as a huge slash at this size */}
+            <div style={{ position: 'absolute', left: 22, top: 138, width: 26, height: 26, borderRadius: 13, background: inkNow }} />
+            <div style={{ position: 'absolute', left: 33, top: 154, width: 12, height: 26, background: inkNow, borderRadius: 6, transform: 'rotate(22deg)' }} />
+          </div>
+          <DigitReel frame={frame} i={2} color={inkNow} />
+          <DigitReel frame={frame} i={3} color={inkNow} />
+        </div>
+        <StaticGlyph ch="٪" color={inkNow} />
       </div>
       {/* 下方标签条：全部锁定后淡入 */}
       <div
@@ -173,6 +199,7 @@ export const OdometerDigitRoll: React.FC = () => {
         <div style={{ width: 520, height: 22, background: G.bar, borderRadius: 11 }} />
         <div style={{ width: 320, height: 14, background: G.line, borderRadius: 7 }} />
       </div>
+     </FaRoot>
     </div>
   );
 };

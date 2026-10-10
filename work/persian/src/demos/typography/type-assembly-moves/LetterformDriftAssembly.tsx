@@ -1,32 +1,42 @@
-// 字形漂移合拢（letterform-drift-assembly）——Stranger Things 片头式入场。
-// 标题 "ASSEMBLE" 拆 9 字符：各自从不同方向（h(i) seeded 随机向量，
-// 幅度 ±260–360px）带 blur 8px + opacity 0.35 缓慢漂入，错峰归位
-// （delay i×3f，45f 行程，Easing.out(cubic)）。每字锁定瞬间给一次
-// "加深脉冲"：字色 G.ink→#000→G.ink + 描边 0→3px→0（8f）——白底上
-// 不用发光用加深（库判例）。全部合体后整词 scale 1→1.04→1 收束呼吸
-// （判例：1.02 太弱，加码到 1.04）。
-// 关键帧：0–24 各字错峰启程 → i 字 [i*3, i*3+45] 漂入归位 →
-// 锁定帧 i*3+45 起 8f 加深脉冲（最后一字 69–77）→ 80–104 整词呼吸 →
-// 104–150 全静止（46f，无逐帧滤镜）。
+// LetterformDriftAssembly — Persian/RTL localization (letterform-drift-assembly: seeded drift-in with blur, lock pulse, word breath).
+//
+// TEXT
+//  - Hero "ASSEMBLE" -> «گردهم‌آیی» (the gathering / "coming together" a brand reveal means; idiomatic, not «جمع کن»).
+//  - Label "LETTERFORM DRIFT ASSEMBLY" -> «گردآمدن شناور حروف».
+// SHAPING
+//  - The original drifts 8 single characters. Persian letters join, so the drifting unit is a JOINED GROUP
+//    (joinedGroups(): «گر د هم آ یی»; the ZWNJ of «هم‌آ» becomes a real gap between two non-joined pieces).
+//    Each cut sits where the script does not connect, so no drifting piece ever loses a join.
+//  - letterSpacing 8 -> 0 (tracking separates joined letters); no uppercase.
+// TIMING (beats kept)
+//  - Original: 8 units, STAG 3 f, TRAVEL 45 f, last lock at f66, breath f80-104. With 5 units the stagger is
+//    STAG = 21/(5-1) = 5.25 f so the last lock is still f66 and the breath/rest beats are untouched. Seeds h(i+1), h(i+101),
+//    magnitudes (260-360 px), blur 8, opacity .35, lock pulse (8 f, #2f -> #000, stroke 0 -> 3 px) are unchanged.
+// DIRECTION (RTL)
+//  - Unit order / lock sequence: the first unit is the RIGHT-most (flex row in direction:rtl), locking proceeds right to left. MIRRORED.
+//  - The drift vectors are seeded random directions (no reading meaning) and the word breath is symmetrical: KEPT as designed.
+//  - Label top-left -> top-right. MIRRORED.
+// FONT: Lalezar (single weight, so no fake bold: the depth comes from the 3 px black stroke pulse) - a ceremonial brand-title
+//  reveal wants a poster/impact face, and its heavy strokes make the darkening pulse read on the light plate.
+//  Raster assets: none.
 import React from 'react';
 import { useCurrentFrame, interpolate, Easing } from 'remotion';
-import { G, TitleBlock } from '../../_fixtures/Fixtures';
+import { G } from '../../_fixtures/Fixtures';
+import { FaRoot, fs, joinedGroups } from '../../_fa';
+import { FaTitle } from './FaCommon';
 
 const h = (n: number) => {
   const s = Math.sin(n * 127.3) * 43758.5453;
   return s - Math.floor(s);
 };
 
-const WORD = 'ASSEMBLE';
+const UNITS = joinedGroups('گردهم‌آیی');
 const TRAVEL = 45; // 每字漂入行程帧数
-const STAG = 3; // 错峰间隔
+const STAG = 21 / (UNITS.length - 1); // original: 7 steps x 3 f = 21 f
 
 export const LetterformDriftAssembly: React.FC = () => {
   const frame = useCurrentFrame();
-  const chars = WORD.split('');
-  const lastLock = (chars.length - 1) * STAG + TRAVEL; // 69
 
-  // 整词收束呼吸：80–92 放大到 1.04，92–104 回落，之后恒 1 → 帧确定
   const breath =
     frame < 92
       ? interpolate(frame, [80, 92], [1, 1.04], {
@@ -41,10 +51,8 @@ export const LetterformDriftAssembly: React.FC = () => {
         });
 
   return (
-    <div style={{ width: 1920, height: 1080, background: G.bg, position: 'relative', overflow: 'hidden' }}>
-      <div style={{ position: 'absolute', left: 120, top: 96 }}>
-        <TitleBlock text="LETTERFORM DRIFT ASSEMBLY" size={54} />
-      </div>
+    <FaRoot family="Lalezar" style={{ background: G.bg, overflow: 'hidden' }}>
+      <FaTitle text="گردآمدن شناور حروف" family="Lalezar" weight={400} />
       <div
         style={{
           position: 'absolute',
@@ -55,42 +63,40 @@ export const LetterformDriftAssembly: React.FC = () => {
           transform: `scale(${breath})`,
         }}
       >
-        {chars.map((c, i) => {
+        {UNITS.map((c, i) => {
           const start = i * STAG;
           const lock = start + TRAVEL;
-          // 漂入进度
           const p = interpolate(frame, [start, lock], [0, 1], {
             extrapolateLeft: 'clamp',
             extrapolateRight: 'clamp',
             easing: Easing.out(Easing.cubic),
           });
-          // seeded 起始向量：方向 h(i)，幅度 260–360px
           const ang = h(i + 1) * Math.PI * 2;
           const mag = 260 + h(i + 101) * 100;
           const dx = Math.cos(ang) * mag * (1 - p);
           const dy = Math.sin(ang) * mag * (1 - p);
           const blur = 8 * (1 - p);
           const op = interpolate(p, [0, 1], [0.35, 1]);
-          // 锁定加深脉冲：lock→lock+8，三角波 0→1→0
           const pulse =
             frame <= lock || frame >= lock + 8
               ? 0
               : frame < lock + 4
                 ? (frame - lock) / 4
                 : (lock + 8 - frame) / 4;
-          const shade = Math.round(47 * (1 - pulse)); // #2f(47)→#00
+          const shade = Math.round(47 * (1 - pulse));
           const color = `rgb(${shade},${shade},${shade})`;
           const strokeW = 3 * pulse;
           return (
             <span
               key={i}
               style={{
-                fontFamily: 'Helvetica, Arial, sans-serif',
-                fontWeight: 800,
-                fontSize: 140,
-                letterSpacing: 8,
+                fontWeight: 400,
+                fontSize: fs(140),
+                lineHeight: 1.5,
+                letterSpacing: 0,
                 color,
                 display: 'inline-block',
+                whiteSpace: 'pre',
                 transform: `translate(${dx}px, ${dy}px)`,
                 opacity: op,
                 filter: blur > 0.01 ? `blur(${blur}px)` : undefined,
@@ -102,6 +108,6 @@ export const LetterformDriftAssembly: React.FC = () => {
           );
         })}
       </div>
-    </div>
+    </FaRoot>
   );
 };

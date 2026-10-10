@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-10T23:18:24.571Z",
+ "generatedAt": "2026-10-10T23:20:40.236Z",
  "summary": {
   "todo": 115,
   "localized": 6,
@@ -1156,10 +1156,10 @@
   {
    "slug": "type-entrance-moves",
    "status": "localized",
-   "font": "",
-   "videos": 1,
+   "font": "Lalezar (LetterDropPhysics) / Noto Kufi Arabic 800 (ScrambleDecode)",
+   "videos": 2,
    "majors": 0,
-   "concerns": 0
+   "concerns": 2
   },
   {
    "slug": "type-rhythm-sync",

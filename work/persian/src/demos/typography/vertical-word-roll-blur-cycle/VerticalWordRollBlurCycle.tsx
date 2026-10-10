@@ -1,14 +1,30 @@
-// vertical-word-roll-blur-cycle — Word Roll 竖向词条滚轮（motion-lab 定稿转原生 Remotion）
+// vertical-word-roll-blur-cycle — Persian/RTL localization (Word Roll 竖向词条滚轮).
+// TEXT: "Built for" -> «ساخته‌شده برای» ; Apps/Teams/Data/Everyone -> برنامه‌ها / تیم‌ها / داده‌ها / همه
+//   (idiomatic product-tagline voice; ZWNJ plurals; the last word stays the short, conclusive one).
+// DIRECTION: FaRoot sets direction:rtl, so the flex row reads right-to-left: the stem sits on the RIGHT
+//   and the wheel on its LEFT (mirrored, reading order). The wheel column is start-aligned (right edge, next to
+//   the stem) via insetInlineStart/width:100% instead of left:0. The group stays centred.
+//   KEPT: the reel scrolls UP (translateY) - physical page-flip metaphor, not reading direction;
+//   blur stays vertical-feel isotropic filter; no horizontal motion exists in this demo.
+// SHAPING: letterSpacing -0.5 removed (0), no uppercase, line-height = ROW (44) with flex centring so the taller
+//   Persian ascenders/dots stay inside the row; size fs(30)=33.
+// FONT: Vazirmatn (variable, weight 800) - neutral clean product-UI voice matching the light brand film;
+//   stem and wheel use the same family/size/weight as the design demands.
+// TIMING/EASING/SEEDS: untouched (STEPS, outQuint/outBack mix, blur/opacity/colour ramps, fade-out).
+// WIDTH: mask 190 -> 124 design px, re-measured for the Persian word list (longest word «برنامه‌ها» ≈107px) so the
+//   group is not left-heavy/empty (source prompt: re-measure width when the word list changes).
+// RASTER: none.
 // 标语后半词用竖向滚轮循环 Apps→Teams→Data→Everyone：中心词清晰上色，相邻行浅灰带
 // 垂直 blur（滚轮景深），每步 outQuint 前快后慢带轻微过冲，落定瞬间中心词从灰染成强调色。
 // 设计坐标 480×270（DesignStage 等比放大），参数表数值以此坐标系标定。
 import React from 'react';
 import { DesignStage, E, seg, useT } from '../../_fixtures/Motion';
+import { FaRoot, fs } from '../../_fa';
 
 export const VERTICAL_WORD_ROLL_BLUR_CYCLE_DURATION = 150; // 5000ms @30fps
 
 const ROW = 44;
-const WORDS = ['Apps', 'Teams', 'Data', 'Everyone'];
+const WORDS = ['برنامه‌ها', 'تیم‌ها', 'داده‌ها', 'همه'];
 // 3 次换词，每次 0.11（≈0.55s）
 const STEPS = [0.16, 0.36, 0.56];
 
@@ -36,14 +52,12 @@ export const VerticalWordRollBlurCycle: React.FC = () => {
 
   return (
     <DesignStage bg="#F7F7FA">
-      <div
+      <FaRoot
+        family="Vazirmatn"
         style={{
-          position: 'absolute',
-          inset: 0,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          fontFamily: '-apple-system,system-ui,sans-serif',
         }}
       >
         <div
@@ -57,20 +71,22 @@ export const VerticalWordRollBlurCycle: React.FC = () => {
         >
           <div
             style={{
-              fontSize: 30,
+              fontSize: fs(30),
               fontWeight: 800,
               color: '#0B0B0C',
-              letterSpacing: -0.5,
+              letterSpacing: 0,
+              lineHeight: `${ROW}px`,
             }}
           >
-            Built for
+            ساخته‌شده برای
           </div>
           {/* 三行高的遮罩窗口，滚轮列在其中滑动，中心行 = 第二行 */}
-          <div style={{ position: 'relative', height: ROW * 3, width: 190, overflow: 'hidden' }}>
+          <div style={{ position: 'relative', height: ROW * 3, width: 124, overflow: 'hidden' }}>
             <div
               style={{
                 position: 'absolute',
-                left: 0,
+                insetInlineStart: 0,
+                width: '100%',
                 top: 0,
                 transform: `translateY(${ROW - p * ROW}px)`,
               }}
@@ -87,9 +103,10 @@ export const VerticalWordRollBlurCycle: React.FC = () => {
                       height: ROW,
                       display: 'flex',
                       alignItems: 'center',
-                      fontSize: 30,
+                      fontSize: fs(30),
                       fontWeight: 800,
-                      letterSpacing: -0.5,
+                      letterSpacing: 0,
+                      lineHeight: `${ROW}px`,
                       filter: `blur(${blur.toFixed(2)}px)`,
                       opacity: op,
                       // 落定染色：中心词灰→强调色（d 越小越彩）
@@ -103,7 +120,7 @@ export const VerticalWordRollBlurCycle: React.FC = () => {
             </div>
           </div>
         </div>
-      </div>
+      </FaRoot>
     </DesignStage>
   );
 };

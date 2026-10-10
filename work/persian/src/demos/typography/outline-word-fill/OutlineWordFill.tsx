@@ -1,9 +1,27 @@
+// outline-word-fill (Persian / RTL localization) — «سریع‌تر» outline -> solid fill.
+// TEXT: "Faster" -> «سریع‌تر» (comparative, ZWNJ before the suffix, idiomatic benefit/slogan word). Single short word as the
+//   design requires (circle r=88 / dash extents unchanged; the Persian word is slightly narrower than 'Faster' at 48px*1.1).
+// SHAPING: letterSpacing 0 (was 0.5px: breaks joining); no per-letter split; both layers are whole-word, so joining stays intact.
+// FONT: Vazirmatn 500 (variable, neutral product/UI voice; 500 is the design's spec for outline words - heavier would
+//   balloon the 1px stroke). Loaded through FaRoot so no silent fallback. Size via fs(48) (x-height compensation).
+// DIRECTION (decided per element):
+//   - word: centred, direction rtl on the text layers (reading direction of the glyph run); no physical offset -> kept.
+//   - dashed circle: rotation sign KEPT (a spinner/clock-like rotation is physical, not reading order); shrink is radial.
+//   - left/right horizontal dashed lines: composition is exactly symmetric and both extend in the same frame window and
+//     same distance -> mirroring is a no-op, kept; the 'start' (right) line is the same line anyway.
+//   - dust: seeded, meaningless scatter, symmetric statistically -> kept (same seeds, identical beats).
+//   - outline: Persian joins overlap glyph contours, so a plain 1px text-stroke showed inner seams; now 2px stroke + bg-coloured
+//     fill copy on top (visible result = clean 1px outer outline). Dust/circle behind the glyph body is hidden by that fill (negligible).
+//   - glow/stroke: radial/uniform, no light direction -> kept.
+// MOTION: all seg() windows, easings, 3.2x zoom, 0.742->0.762 pop, flash, rotation speed and seeds are untouched.
+// RASTER: none (pure vector/CSS).
 // outline-word-fill — Outline→Solid Fill 空心字辉光填充（motion-lab 定稿转原生 Remotion）
 // 空心 "Faster"（细灰描边、中等字重）从约 3.2 倍巨大尺寸急缓收缩落位居中；
 // 背后巨大虚线圆随后从画外持续收缩到字周围并缓慢自转，两侧水平虚线从画框边缘向内伸向圆；
 // 描边先微微增亮，随即实心白色一帧内瞬间点亮（无慢扫），带一闪即逝的微辉光后定格纯白。
 // 设计坐标 480×270（DesignStage 等比放大），参数表数值以此坐标系标定。
 import React from 'react';
+import { FaRoot, fs } from '../../_fa';
 import { DesignStage, E, lerp, rand, seg, useT } from '../../_fixtures/Motion';
 
 export const OUTLINE_WORD_FILL_DURATION = 75; // 2500ms @30fps
@@ -36,7 +54,7 @@ export const OutlineWordFill: React.FC = () => {
   // 注：原 effect.js 背景为 #050505，但样片 mp4 经 x264 编码后底色实测为 rgb(3,3,3)
   // （暗部量化损失），此处按样片实际电平取 #030303 保证帧一致性。
   return (
-    <DesignStage bg="#030303">
+    <FaRoot family="Vazirmatn"><DesignStage bg="#030303">
       <div style={{ position: 'absolute', inset: 0, background: '#030303', overflow: 'hidden' }}>
         {/* 背景微尘 */}
         {DUST.map(({ size, opacity, left, top }, i) => (
@@ -98,23 +116,28 @@ export const OutlineWordFill: React.FC = () => {
             position: 'absolute',
             left: '50%',
             top: '50%',
-            fontFamily: '-apple-system,"Helvetica Neue",sans-serif',
-            fontSize: 48,
+            direction: 'rtl',
+            whiteSpace: 'nowrap',
+            fontSize: fs(48),
             fontWeight: 500,
-            letterSpacing: 0.5,
-            lineHeight: 1,
+            letterSpacing: 0,
+            lineHeight: 1.25,
             opacity: born,
             transform: `translate(-50%,-53%) scale(${lerp(zoom, 3.2, 1)})`,
           }}
         >
-          <div
-            style={{
-              color: 'transparent',
-              WebkitTextStroke: `1px rgb(${gv - 4},${gv},${gv + 8})`,
-              opacity: 1 - pop,
-            }}
-          >
-            Faster
+          <div style={{ opacity: 1 - pop }}>
+            {/* 2px stroke, of which the inner half is covered by the bg-coloured copy below: leaves a clean 1px outer
+                outline and hides the internal contour overlaps that the joined Persian letters otherwise show */}
+            <div
+              style={{
+                color: 'transparent',
+                WebkitTextStroke: `2px rgb(${gv - 4},${gv},${gv + 8})`,
+              }}
+            >
+              سریع‌تر
+            </div>
+            <div style={{ position: 'absolute', inset: 0, color: '#030303' }}>سریع‌تر</div>
           </div>
           <div
             style={{
@@ -126,10 +149,10 @@ export const OutlineWordFill: React.FC = () => {
                 flash > 0.01 ? `0 0 ${flash * 16}px rgba(255,255,255,${flash * 0.45})` : 'none',
             }}
           >
-            Faster
+            سریع‌تر
           </div>
         </div>
       </div>
-    </DesignStage>
+    </DesignStage></FaRoot>
   );
 };

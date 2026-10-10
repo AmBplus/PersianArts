@@ -140,6 +140,6 @@ export const CommentsRail: React.FC<{ x: number; y: number; w: number; h: number
       <span style={{ color: '#6b7280', fontSize: 16, direction: 'ltr' }}>«</span>
     </div>
     <Card top={61} h={150} quote="۶۲٪ ← ۷۱٪" body="با نتیجهٔ W26 هم‌خوان است؛ می‌شود هر دو را در یک گزارش ادغام کرد." />
-    <Card top={219} h={144} quote="۳٫۱× پیش‌دستی" body="این میزان پیش‌دستی برای تصویب کافی است؛ پیشنهاد می‌کنم هفتهٔ بعد نمونه‌های شکست هم به بازبینی بیاید." />
+    <Card top={219} h={144} quote="۳٫۱× پیش‌دستی" body="این پیش‌دستی برای تصویب کافی است؛ هفتهٔ بعد نمونه‌های شکست را هم ببینیم." />
   </div>
 );
