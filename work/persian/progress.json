@@ -1,11 +1,11 @@
 {
- "generatedAt": "2026-10-10T23:21:13.722Z",
+ "generatedAt": "2026-10-10T23:24:02.258Z",
  "summary": {
-  "todo": 115,
-  "localized": 5,
-  "approved": 30,
-  "fixed": 5,
-  "needs-fix": 2,
+  "todo": 113,
+  "localized": 6,
+  "approved": 31,
+  "fixed": 6,
+  "needs-fix": 1,
   "total": 157
  },
  "cards": [
@@ -1147,15 +1147,15 @@
   },
   {
    "slug": "type-assembly-moves",
-   "status": "todo",
+   "status": "localized",
    "font": "",
-   "videos": 0,
+   "videos": 2,
    "majors": 0,
    "concerns": 0
   },
   {
    "slug": "type-entrance-moves",
-   "status": "needs-fix",
+   "status": "fixed",
    "font": "Lalezar (LetterDropPhysics) / Noto Kufi Arabic 800 (ScrambleDecode)",
    "videos": 2,
    "majors": 0,
@@ -1259,11 +1259,11 @@
   },
   {
    "slug": "word-relay-geometry",
-   "status": "todo",
-   "font": "",
-   "videos": 0,
+   "status": "approved",
+   "font": "Estedad",
+   "videos": 1,
    "majors": 0,
-   "concerns": 0
+   "concerns": 2
   }
  ]
 }

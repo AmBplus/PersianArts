@@ -17,8 +17,10 @@
 //  - «نفس» is the first word and sits on the RIGHT, «بکش» on the left; each word slides from the centre outward to its own side.
 //    MIRRORED (reading order); the compression is symmetrical around the centre so no side is favoured.
 //  - Label top-left -> top-right. MIRRORED. Centred subtitle: KEPT.
-// FONT: Markazi Text 700 - the quietest, most lyrical demo of the card; a naskh face has well-drawn tatweels (kashida) and
-//  a calm, bookish voice. Subtitle in the same family (500). Raster assets: none.
+// FONT: Markazi Text 700 - the quietest, most lyrical demo of the card; a calligraphic-naskh serif voice with elegant tatweel joints
+//  (kashida). Noto Naskh Arabic was tried first and read far too light next to the Helvetica-800 original, Markazi 700 keeps weight.
+//  Subtitle in the same family (500). Size: fs(180) instead of fs(150) because the kashida-stretched pair is narrower than the spaced
+//  Latin word. Raster assets: none.
 import React from 'react';
 import { useCurrentFrame, interpolate, Easing } from 'remotion';
 import { G } from '../../_fixtures/Fixtures';
@@ -26,7 +28,7 @@ import { FaRoot, fs, FA_LH } from '../../_fa';
 import { FaTitle } from './FaCommon';
 
 const WORDS = ['نفس', 'بکش'];
-const FS = fs(150); // 主词字号
+const FS = fs(180); // 主词字号
 const KASHIDA = 2; // tatweels per joint in the final, expanded state
 const PILE = 200; // px each word starts away from its final place (toward the centre)
 
@@ -59,7 +61,7 @@ export const TrackingExpandReveal: React.FC = () => {
       <div
         style={{
           position: 'absolute',
-          top: 400,
+          top: 380,
           left: 0,
           width: 1920,
           display: 'flex',
@@ -99,7 +101,7 @@ export const TrackingExpandReveal: React.FC = () => {
       <div
         style={{
           position: 'absolute',
-          top: 640,
+          top: 665,
           left: 0,
           width: 1920,
           textAlign: 'center',

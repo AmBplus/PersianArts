@@ -1,26 +1,96 @@
 {
  "slug": "type-entrance-moves",
  "status": "done",
- "font": {"family": "Lalezar (LetterDropPhysics) / Noto Kufi Arabic 800 (ScrambleDecode)", "reason": "Letter-drop is a slam/bounce poster title: Lalezar is a heavy single-weight display face (no fake bold). Scramble-decode is a terminal/tech reveal: Noto Kufi Arabic is geometric/techno and variable, so weight 800 stays heavy; Vazir Code was rejected (stretched, single weight). Latin/digit noise glyphs come from the Vazirmatn fallback."},
- "iterations": 3,
+ "font": {
+  "family": "Lalezar (LetterDropPhysics) / Noto Kufi Arabic 800 (ScrambleDecode)",
+  "reason": "Letter-drop is a slam/bounce poster title: Lalezar is a heavy single-weight display face (no fake bold). Scramble-decode is a terminal/tech reveal: Noto Kufi Arabic is geometric/techno and variable, so weight 800 stays heavy; Vazir Code was rejected (stretched, single weight). Latin/digit noise glyphs come from the Vazirmatn fallback. Noise glyphs set in Vazirmatn 700 at 0.8*FONT (Kufi lacks Latin) to match the locked Kufi 800 weight."
+ },
+ "iterations": 4,
  "comps": [
-  {"id": "demo-LetterDropPhysics", "translatedSummary": "GRAVITY -> «سقوط آزاد» (free fall); six joined groups fall right to left", "video": "LetterDropPhysics.fa.mp4", "rtlDecisions": [
-   {"what": "Falling units", "action": "adapted", "why": "Joined groups [سقو, ط, آ, ز, ا, د] replace 7 letters; every boundary follows a non-joiner so the landed word is correctly shaped. Six droppers: starts 10..35 (was 10..40), same 5f step; 24f fall, 30%/9% bounces, SNAP at 110 unchanged."},
-   {"what": "Stagger order", "action": "mirrored", "why": "rtl flex row: first group is right-most and falls first (reading order)."},
-   {"what": "Layout", "action": "adapted", "why": "Fixed 150px slots replaced by a centred rtl flex row of natural-width groups; floor line re-sized and centred, baseline re-measured for Lalezar (size fs(250))."},
-   {"what": "Gravity, bounces, floor, transform-origin 50% 100%, tilt seeds", "action": "kept", "why": "Physical or symmetric; tilt hash is random, not directional."},
-   {"what": "Word gap", "action": "adapted", "why": "Lalezar word gap is tight, so an explicit 0.3em spacer is used; letterSpacing 0."}
-  ]},
-  {"id": "demo-ScrambleDecode", "translatedSummary": "DECODE SPEED -> «کدگشایی سریع»; decodes right to left", "video": "ScrambleDecode.fa.mp4", "rtlDecisions": [
-   {"what": "Text / beats", "action": "adapted", "why": "Chosen with exactly 12 code points like the original so lock frame 20+i*6 and last lock at 86 are unchanged; space index shifts 6->7."},
-   {"what": "Locked text shaping", "action": "adapted", "why": "Locked letters form one text run (prefix) so joining is correct; only scrambling letters are fixed-width cells; the 2f invert flash is an inline span (shaping preserved across colour-only spans). letterSpacing 2 removed."},
-   {"what": "Decode direction", "action": "mirrored", "why": "rtl row: first letter right-most, sweep runs right to left."},
-   {"what": "Progress bar", "action": "mirrored", "why": "Fill anchored to the right edge (rtl track) following the decode direction."},
-   {"what": "Box sizing", "action": "adapted", "why": "Hidden fully-decoded ghost sets the width; live row is start-anchored, so locked text never jitters and the final title is centred."},
-   {"what": "Noise charset", "action": "adapted", "why": "Latin A-F, Persian digits, # $ % & (no Persian letters, avoiding look-alike-of-answer pitfall); noise cells direction:ltr, deterministic hash unchanged."}
-  ]}
+  {
+   "id": "demo-LetterDropPhysics",
+   "translatedSummary": "GRAVITY -> «سقوط آزاد» (free fall); six joined groups fall right to left",
+   "video": "LetterDropPhysics.fa.mp4",
+   "rtlDecisions": [
+    {
+     "what": "Falling units",
+     "action": "adapted",
+     "why": "Joined groups [سقو, ط, آ, ز, ا, د] replace 7 letters; every boundary follows a non-joiner so the landed word is correctly shaped. Six droppers: starts 10..35 (was 10..40), same 5f step; 24f fall, 30%/9% bounces, SNAP at 110 unchanged."
+    },
+    {
+     "what": "Stagger order",
+     "action": "mirrored",
+     "why": "rtl flex row: first group is right-most and falls first (reading order)."
+    },
+    {
+     "what": "Layout",
+     "action": "adapted",
+     "why": "Fixed 150px slots replaced by a centred rtl flex row of natural-width groups; floor line re-sized and centred, baseline re-measured for Lalezar (size fs(250))."
+    },
+    {
+     "what": "Gravity, bounces, floor, transform-origin 50% 100%, tilt seeds",
+     "action": "kept",
+     "why": "Physical or symmetric; tilt hash is random, not directional."
+    },
+    {
+     "what": "Word gap",
+     "action": "adapted",
+     "why": "Lalezar word gap is tight, so an explicit 0.3em spacer is used; letterSpacing 0."
+    }
+   ]
+  },
+  {
+   "id": "demo-ScrambleDecode",
+   "translatedSummary": "DECODE SPEED -> «کدگشایی سریع»; decodes right to left",
+   "video": "ScrambleDecode.fa.mp4",
+   "rtlDecisions": [
+    {
+     "what": "Text / beats",
+     "action": "adapted",
+     "why": "Chosen with exactly 12 code points like the original so lock frame 20+i*6 and last lock at 86 are unchanged; space index shifts 6->7."
+    },
+    {
+     "what": "Locked text shaping",
+     "action": "adapted",
+     "why": "Locked letters form one text run (prefix) so joining is correct; only scrambling letters are fixed-width cells; the 2f invert flash is an inline span (shaping preserved across colour-only spans). letterSpacing 2 removed."
+    },
+    {
+     "what": "Decode direction",
+     "action": "mirrored",
+     "why": "rtl row: first letter right-most, sweep runs right to left."
+    },
+    {
+     "what": "Progress bar",
+     "action": "mirrored",
+     "why": "Fill anchored to the right edge (rtl track) following the decode direction."
+    },
+    {
+     "what": "Box sizing",
+     "action": "adapted",
+     "why": "Hidden fully-decoded ghost sets the width; live row is start-anchored, so locked text never jitters and the final title is centred."
+    },
+    {
+     "what": "Noise charset",
+     "action": "adapted",
+     "why": "Latin A-F, Persian digits, # $ % & (no Persian letters, avoiding look-alike-of-answer pitfall); noise cells direction:ltr, deterministic hash unchanged."
+    },
+    {
+     "what": "Noise cells and charset",
+     "action": "adapted",
+     "why": "Review fix: cell width 0.6*FONT, noise glyph 0.8*FONT, charset narrowed to A-F, Persian 1-9, / + = (dropped wide # $ % & and the Persian zero that rendered as a diamond), so glyphs never overlap and the live row stays within the final title width."
+    }
+   ]
+  }
  ],
  "rasterTextHandling": "No raster assets in this card.",
- "concerns": ["Registry duration is 66f but design is 150f/130f: verified with --duration 150 (the harness renders the original only up to 65 frames, so orig comparison exists only up to f50).", "Noto Kufi 800 renders somewhat lighter than Menlo 800 at this size."],
- "lessons": ["Joined-group falling units: split a Persian word only after non-joiners; render landed groups adjacent in an rtl flex row with zero gap and they read as one correctly shaped word.", "Per-char lock/scramble effects: keep the locked part as ONE text run (prefix) and only noise as fixed cells; ghost-sized hidden copy keeps layout stable.", "Choose the Persian string with the same code-point count as the original to keep per-index timing beats exactly."]
+ "concerns": [
+  "Registry duration is 66f but design is 150f/130f: verified with --duration 150 (the harness renders the original only up to 65 frames, so orig comparison exists only up to f50).",
+  "Noto Kufi 800 renders somewhat lighter than Menlo 800 at this size."
+ ],
+ "lessons": [
+  "Joined-group falling units: split a Persian word only after non-joiners; render landed groups adjacent in an rtl flex row with zero gap and they read as one correctly shaped word.",
+  "Per-char lock/scramble effects: keep the locked part as ONE text run (prefix) and only noise as fixed cells; ghost-sized hidden copy keeps layout stable.",
+  "Choose the Persian string with the same code-point count as the original to keep per-index timing beats exactly.",
+  "Fixed-cell noise/scramble: Latin/symbol glyphs are far wider than Persian letters at the same size; scale the noise glyph down (~0.8x) and avoid wide symbols (# $ % &) and the Persian zero (renders as a dot)."
+ ]
 }

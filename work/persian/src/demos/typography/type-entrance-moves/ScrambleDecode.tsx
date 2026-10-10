@@ -12,6 +12,8 @@
 //   bar fills from the right edge (MIRRORED: track is rtl, the fill is start-anchored). The row is start-aligned inside a
 //   ghost-sized box (a hidden copy of the fully decoded title sets the width), so the locked part never jitters while the
 //   noise tail shrinks, and the final title is centred like the original.
+// NOISE CELLS: 0.6*FONT wide, noise glyph set at 0.8*FONT, Vazirmatn 700 (Kufi has no Latin; 700 reads closest to the Kufi 800 locked text), so glyphs never overlap
+//   and the live row (<= ghost width) never exceeds the final title.
 // FONT: Noto Kufi Arabic (geometric, techno, variable 100-900 so weight 800 stays heavy like Menlo/ui-monospace 800). Latin noise
 //   glyphs come from the Vazirmatn fallback inside FaRoot.
 // No raster assets; no digits in the title.
@@ -31,7 +33,6 @@ const LOCK_START = 20; // 第 0 个字符锁定帧
 const LOCK_STEP = 6; // 相邻字符锁定间隔
 const FLASH_LEN = 2; // 锁定反色闪持续帧数
 const FONT = fs(120);
-// ghost-width guard: the live row is clipped to the ghost box width so it never exceeds the final title
 const CELL_W = Math.round(FONT * 0.6); // fixed noise-cell width (the noise is monospaced; locked text is not)
 const GAP_W = Math.round(FONT * 0.3); // word gap
 
@@ -72,7 +73,7 @@ export const ScrambleDecode: React.FC = () => {
       } else {
         const noise = CHARSET[Math.floor(h(i * 101 + tick * 7 + 13) * CHARSET.length)];
         nodes.push(
-          <span key={i} style={{ display: 'inline-block', width: CELL_W, textAlign: 'center', color: G.mid, direction: 'ltr', fontWeight: 700, lineHeight: 'inherit' }}>{noise}</span>,
+          <span key={i} style={{ display: 'inline-block', width: CELL_W, textAlign: 'center', color: G.mid, direction: 'ltr', fontWeight: 700, fontSize: Math.round(FONT * 0.8), lineHeight: `${Math.round(FONT * 1.5)}px` }}>{noise}</span>,
         );
       }
     });

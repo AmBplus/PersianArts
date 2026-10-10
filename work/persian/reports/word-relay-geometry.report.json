@@ -1,0 +1,33 @@
+{
+ "slug": "word-relay-geometry",
+ "status": "done",
+ "font": {"family": "Estedad", "reason": "Variable family with a real 800 weight; geometric, confident headline voice matching the Helvetica 800 original. Its heavy joins keep the outlined (stroke-only) stage readable; Vazirmatn was tried and looked thinner/fussier when stroked; Lalezar/Baloo/Reem tried and rejected for seam noise or style."},
+ "comps": [
+  {
+   "id": "demo-WordRelayGeometry",
+   "translatedSummary": "سه واژهٔ مزیت «سریع‌تر / بهتر / قوی‌تر» با هندسهٔ اختصاصی هر واژه: دایرهٔ خط‌چین چرخان، سه دایرهٔ تو در تو که ترسیم می‌شوند، و برق فلزی که آخر سفید می‌شود.",
+   "video": "work/persian/out/word-relay-geometry/WordRelayGeometry.fa.mp4",
+   "rtlDecisions": [
+    {"what": "Words Faster/Better/Stronger", "action": "adapted", "why": "Three comparatives with identical grammar, as the source prompt requires: سریع‌تر / بهتر / قوی‌تر (ZWNJ kept). Size 56 -> fs(56); lineHeight FA_LH; letterSpacing 0; no uppercase."},
+    {"what": "Outline->fill clip-path wipe of the first two words", "action": "mirrored", "why": "Reveal follows reading direction: now starts at the right edge (inset(-20% 0 -20% X%)), same window/easing."},
+    {"what": "Stronger metallic sheen sweep", "action": "mirrored", "why": "Sweep travels right->left (background-position 0%->100%) and the gradient band is mirrored 100deg->260deg so its slant keeps the same relation to travel; sheen->white timing unchanged."},
+    {"what": "Dashed circle spin (-90 + t*30 deg) and scale 0.4->1", "action": "kept", "why": "Clockwise spinner rotation is physical, not reading direction; circle is symmetric."},
+    {"what": "Three solid trim circles (Better)", "action": "kept", "why": "Original rotate(-90) on the circle element also rotates cx, so the chain renders vertically (first=bottom, last=top, cropped by the frame). Up/down is physical; reproduced exactly as the original renders. Trim starts at top, clockwise, phase stagger 0.06 unchanged."},
+    {"what": "Dust particles (20, upward drift, seeds)", "action": "kept", "why": "Gravity/up-down motion, random symmetric x distribution; seeds untouched."},
+    {"what": "Centered word block, scale-out 0.86, colours, glow", "action": "kept", "why": "Symmetric centred composition; no balance problem after mirroring."},
+    {"what": "Outline text layer", "action": "adapted", "why": "Stroked Persian text with transparent fill shows internal overlap seams at every letter join in all tested fonts. Now stroke 2px + paint-order stroke fill + opaque #07080c fill: only the outer ~1px outline remains (same visible thickness as the original 1px centred stroke). Trade-off: dust/circle lines no longer show through the glyph interior of the outline layer."},
+    {"what": "FaRoot wrapper", "action": "adapted", "why": "Sets direction:rtl, loads Estedad (delayRender) inside the 480x270 DesignStage so no fallback font is ever rendered."}
+   ]
+  }
+ ],
+ "rasterTextHandling": "No raster assets; everything is DOM/SVG. Nothing to blur or mirror.",
+ "concerns": [
+  "Persian words are shorter (Better) than the Latin originals, so the word sits visually smaller against the circles; sizes kept at fs(56) to preserve the design coordinates.",
+  "The original vertical stacking of the Better circles (rotate(-90) bug) is reproduced deliberately for fidelity."
+ ],
+ "lessons": [
+  "Stroked (outline) Persian text shows overlap seams at every letter join with a transparent fill, in every font tried (Vazirmatn, Estedad, Lalezar, Baloo, Reem): use -webkit-text-stroke 2x width with paint-order:stroke fill and an opaque background-coloured fill to cover inner stroke halves/seams.",
+  "Check the original render before mirroring geometry: an SVG transform like rotate(-90) on an element with cx offset moves the element, so a designed horizontal chain may render vertical; mirror what is actually rendered, not what the code intends."
+ ],
+ "iterations": 4
+}
