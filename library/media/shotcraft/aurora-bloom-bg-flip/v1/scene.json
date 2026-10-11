@@ -1,0 +1,17 @@
+{
+  "source": "shotcraft",
+  "modelId": "shotcraft/aurora-bloom-bg-flip",
+  "variantKey": "aurora-bloom-bg-flip",
+  "variantIndex": 0,
+  "approved": true,
+  "family": "camera",
+  "titleFa": "شفقِ پس‌زمینه",
+  "bodyFa": "نور می‌آید، فضا عوض می‌شود",
+  "promptFa": "بازسازی مستقل فارسی برای شفقی که از پایین بالا می‌آید و با تغییر فضا، صحنه را از روشنایی به تاریکی می‌برد.",
+  "paper": "warm-paper",
+  "seed": 3900342456,
+  "durationFrames": 135,
+  "fps": 30,
+  "sourceDescription": "A soft purple-orange bloom rises and the background shifts into a dark afterglow.",
+  "sourceCategory": "effects"
+}

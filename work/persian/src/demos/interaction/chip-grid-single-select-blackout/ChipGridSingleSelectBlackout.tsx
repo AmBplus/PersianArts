@@ -1,9 +1,21 @@
+// PERSIAN (RTL) LOCALIZATION - chip-grid-single-select-blackout
+// Text: title "گروه گزینه‌ها"; chips "طرح گزینه یک/دو/سوم با نام بلند/چهار/پنج ویژه" (third stays the long-name stress test);
+//   caption "۱۸٪ تخفیف · ۴۲٫۰۰ ← ۳۴٫۴۴" (Persian digits/decimal/percent, same double-space word skeleton so the per-word darkening beats are identical).
+// Shaping: letterSpacing removed everywhere (title tracking 2.4px and the caption's animated -0.03em tracking would break joining), no uppercase.
+//   The caption's per-word darkening already runs per WORD (never per letter), so it is kept as is.
+// Direction: chip rows are flex rows under direction:rtl, so chip 1 sits at the right, the 3+2 rows stay centred (symmetric, position locked).
+//   The selected chip (first option = right-most) lifts toward the centre: cx is measured from offsetLeft (physical) so it is negative now.
+//   Arrow in the caption "→" becomes "←" (flow from old price to new price follows reading order; the 42 sits right, 34.44 left).
+//   Caption word margin uses marginInlineEnd (was marginRight). Press flash, scale bounce, lift, and fades are direction-neutral: kept.
+// Font: Vazirmatn (neutral Swiss-minimal product UI, variable weight 600 like the original); fs() 1.1x size compensation.
+// Raster: none. Timing/easing/seeds unchanged.
 // chip-grid-single-select-blackout — Single Select 1 帧灰闪单选反黑（motion-lab 定稿转原生 Remotion）
 // 五个选项 chip 以 3+2 居中排布逐个淡入；选中帧先插一帧灰色按压块，紧接 3 帧内底色变纯黑、
 // 文字变白并做 1→1.04→1 的极轻回弹，同窗口其余 chip 淡到 18% 但位置锁死；1s 后余项归零，
 // 黑 chip 上移缩小，下方浮现算式行。
 // 设计坐标 480×270（DesignStage 等比放大），440×240 定尺画布居中排版。
 import React, { useLayoutEffect, useRef, useState } from 'react';
+import { FaRoot, fs, FA_LH } from '../../_fa';
 import { DesignStage, E, lerp, seg, useT } from '../../_fixtures/Motion';
 
 export const CHIP_GRID_SINGLE_SELECT_BLACKOUT_DURATION = 150; // 5000ms @30fps
@@ -25,13 +37,13 @@ const mix = (p: number, a: string, b: string) => {
 };
 
 // ---- 参数表（与 effect.js 完全一致） ----
-const NAMES = ['Option one plan', 'Option two plan', 'Option three long name', 'Option four', 'Option five variant'];
+const NAMES = ['طرح گزینه یک', 'طرح گزینه دو', 'طرح گزینه سوم با نام بلند', 'طرح گزینه چهار', 'طرح گزینه پنج ویژه'];
 const TI = 0;   // 选中项下标
 const FS = 0.44; // 灰闪起点
 
 // 算式行（逐词加深语法）。注意原文含双空格：split(' ') 产生的空串"词"
 // 也各占一个 4.5px margin 的空 span，是间距配方的一部分，必须保留。
-const CAP_TEXT = '18% off  ·  42.00  →  34.44';
+const CAP_TEXT = '۱۸٪ تخفیف  ·  ۴۲٫۰۰  ←  ۳۴٫۴۴';
 const CAP_WORDS = CAP_TEXT.split(' ');
 const CAP_N = CAP_WORDS.length;
 const CAP_ST = 0.78 / CAP_N;
@@ -56,16 +68,7 @@ export const ChipGridSingleSelectBlackout: React.FC = () => {
   return (
     <DesignStage bg={BG}>
       {/* 页面 + 440×240 定尺画布（居中） */}
-      <div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          background: BG,
-          overflow: 'hidden',
-          fontFamily: SANS,
-          WebkitFontSmoothing: 'antialiased',
-        }}
-      >
+      <FaRoot family="Vazirmatn" style={{ background: BG, overflow: 'hidden', WebkitFontSmoothing: 'antialiased' }}>
         <div style={{ position: 'absolute', left: '50%', top: '50%', width: 440, height: 240, margin: '-120px 0 0 -220px' }}>
           {/* 标题 */}
           <div
@@ -75,13 +78,13 @@ export const ChipGridSingleSelectBlackout: React.FC = () => {
               right: 0,
               top: 26,
               textAlign: 'center',
-              font: `600 11px/1 ${SANS}`,
-              letterSpacing: 2.4,
+              fontWeight: 600, fontSize: fs(11), lineHeight: FA_LH,
+              letterSpacing: 0,
               color: '#9A9AA2',
               opacity: seg(t, 0.02, 0.1, E.outQuad),
             }}
           >
-            OPTION GROUP
+            گروه گزینه‌ها
           </div>
 
           {/* 两行 chip：3+2 居中排布（flex 布局，位置全程锁死不重排） */}
@@ -149,7 +152,7 @@ export const ChipGridSingleSelectBlackout: React.FC = () => {
                       transform,
                     }}
                   >
-                    <div style={{ font: `600 12px/1 ${SANS}`, color: labelColor, letterSpacing: '-.01em', whiteSpace: 'nowrap' }}>
+                    <div style={{ fontWeight: 600, fontSize: fs(12), lineHeight: 1.4, color: labelColor, letterSpacing: 0, whiteSpace: 'nowrap' }}>
                       {n}
                     </div>
                     {/* 按压灰闪块（盖在 label 上） */}
@@ -179,10 +182,10 @@ export const ChipGridSingleSelectBlackout: React.FC = () => {
                 <span
                   key={i}
                   style={{
-                    font: `600 14px/1.25 ${SANS}`,
+                    fontWeight: 600, fontSize: fs(14), lineHeight: 1.4,
                     color: mix(q, DIM, TXT),
-                    letterSpacing: (-0.03 * (1 - q)).toFixed(4) + 'em',
-                    marginRight: i === CAP_N - 1 ? 0 : 4.5,
+                    letterSpacing: 0,
+                    marginInlineEnd: i === CAP_N - 1 ? 0 : 4.5,
                   }}
                 >
                   {w}
@@ -191,7 +194,7 @@ export const ChipGridSingleSelectBlackout: React.FC = () => {
             })}
           </div>
         </div>
-      </div>
+      </FaRoot>
     </DesignStage>
   );
 };

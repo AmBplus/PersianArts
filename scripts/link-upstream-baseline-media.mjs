@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-// Publishes the upstream-code baseline renders (work/upstream/out/video) into the library as media:
-//   library/media/shotcraft/<card>/<style>/{preview.mp4,poster.webp,thumb.webp}
-// and writes library/data/entry-media.json (id -> primary media + all style variants).
+// Publishes the upstream-code baseline renders (work/upstream/out/video) as LOCAL-ONLY reference media:
+//   library/media/reference/shotcraft/<card>/<style>/{preview.mp4,poster.webp,thumb.webp}   (git-ignored: never published)
+// and writes library/data/entry-media.reference.json (git-ignored). Persian renders live in entry-media.json.
 // Baseline renders are the ORIGINAL Remotion code (English/Chinese text, silent): they are labelled renderKind "upstream-baseline"
 // and never replace a verified Persian render (those keep priority in data.js).
 // Usage: node scripts/link-upstream-baseline-media.mjs [--force]
@@ -11,7 +11,7 @@ import {resolve, join} from "node:path";
 
 const force = process.argv.includes("--force");
 const up = resolve("work/upstream");
-const mediaRoot = resolve("library/media/shotcraft");
+const mediaRoot = resolve("library/media/reference/shotcraft");
 const map = JSON.parse(await readFile(join(up, "style-comp-map.json"), "utf8"));
 const lib = JSON.parse(await readFile(join(up, "src/gallery/api/library.json"), "utf8"));
 const persian = JSON.parse(await readFile(resolve("library/data/persian-renders.json"), "utf8")).renders;
@@ -31,7 +31,7 @@ let done = 0, skipped = 0, failed = [];
 for (const [id, m] of Object.entries(map)) {
   const src = join(up, "out/video", `${m.comp}.mp4`);
   if (!(await exists(src))) { skipped++; continue; }
-  const rel = `media/shotcraft/${m.card}/${m.style}`;
+  const rel = `media/reference/shotcraft/${m.card}/${m.style}`;
   const dir = join(mediaRoot, m.card, m.style);
   await mkdir(dir, {recursive: true});
   const out = {video: join(dir, "preview.mp4"), poster: join(dir, "poster.webp"), thumb: join(dir, "thumb.webp")};
@@ -75,7 +75,7 @@ for (const [entryId, it] of Object.entries(items)) {
 }
 
 await writeFile(
-  resolve("library/data/entry-media.json"),
-  JSON.stringify({schema: "persianarts/entry-media/v2", generatedAt: new Date().toISOString(), items}, null, 1),
+  resolve("library/data/entry-media.reference.json"),
+  JSON.stringify({schema: "persianarts/entry-media-reference/v1", generatedAt: new Date().toISOString(), items}, null, 1),
 );
 console.log(JSON.stringify({entries: Object.keys(items).length, variants: done, skippedNoRender: skipped, failed}, null, 1));

@@ -42,3 +42,7 @@ skills/anidoodle/engine/src/canvas-core/butterfly/
 skills/anidoodle/engine/src/canvas-core/mechanicalLepidoptera.ts
 skills/anidoodle/engine/src/hosts/page-mechanicalLepidoptera.ts
 work/persian/src/workbench/demosrc
+
+# local-only reference renders of upstream code (never published)
+library/media/reference/
+library/data/entry-media.reference.json

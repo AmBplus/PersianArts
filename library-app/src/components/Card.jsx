@@ -102,6 +102,11 @@ export default function Card({ item, onSelect, picked = false, onTogglePick, pic
           <span className={`badge src-${item.source}`}>{SOURCE_FA[item.source] || item.source}</span>
           <span className="chip cat">{item.category}</span>
           {live && <span className="chip font-chip">{item.font}</span>}
+          {item.media?.renderKind === "persian-local" && (
+            <span className="chip fa-done" title="بازنویسی فارسی و راست‌چین از روی کد اصلی، با فونت فارسی متناسب">
+              ✓ فارسی
+            </span>
+          )}
           {item.media?.renderKind === "upstream-baseline" && !item.media.persianOwned && (
             <span className="chip baseline" title="رندر مستقیم از کد مخزن اصلی — متن انگلیسی/چینی و بدون صدا؛ هنوز فارسی‌سازی نشده">
               رندر مرجع

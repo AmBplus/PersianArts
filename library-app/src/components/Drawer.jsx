@@ -132,9 +132,12 @@ function TypoDetail({ item }) {
 
 function EntryDetail({ item }) {
   const base = item.media;
-  const variants = base?.variants || [];
+  const isPersian = base?.renderKind === "persian-local";
+  const refs = base?.reference || [];
+  const [showRef, setShowRef] = useState(false);
+  const variants = (isPersian && showRef ? refs : base?.variants) || [];
   const [vi, setVi] = useState(0);
-  // رندر فارسیِ تأییدشده اولویت دارد؛ وگرنه نمونه (variant) انتخاب‌شده جای مدیای اصلی می‌نشیند
+  // نمونهٔ (variant) انتخاب‌شده جای مدیای اصلی می‌نشیند؛ در حالت «اصلی» همان نمونه از رندرهای مرجع
   const pick = !base?.persianOwned && variants.length > 0 ? variants[Math.min(vi, variants.length - 1)] : null;
   const m = pick ? { ...base, video: pick.video, poster: pick.poster, thumbnail: pick.thumbnail } : base;
   const isBaseline = base?.renderKind === "upstream-baseline" && !base.persianOwned;
@@ -142,11 +145,21 @@ function EntryDetail({ item }) {
   const isSound = item.kind === "entry" && !m?.video && !!m?.audio;
   return (
     <>
-      {m && (m.poster || m.thumbnail) && (
+      {m && !m.video && (m.poster || m.thumbnail) && (
         <img className="entry-poster" src={m.poster || m.thumbnail} alt={item.title} />
       )}
       {m?.video && (
-        <video key={m.video} className="sample-video" src={m.video} poster={m.poster} controls loop playsInline />
+        <video key={m.video} className="sample-video" src={m.video} poster={m.poster} controls loop autoPlay muted playsInline />
+      )}
+      {isPersian && refs.length > 0 && (
+        <div className="variant-pills" role="tablist" aria-label="نسخه">
+          <button role="tab" aria-selected={!showRef} className={`fchip mini ${!showRef ? "on" : ""}`} onClick={() => { setShowRef(false); setVi(0); }}>
+            نسخهٔ فارسی
+          </button>
+          <button role="tab" aria-selected={showRef} className={`fchip mini ${showRef ? "on" : ""}`} onClick={() => { setShowRef(true); setVi(0); }} title="رندر کد اصلی مخزن — فقط برای مقایسه، منتشر نمی‌شود">
+            اصلی (مرجع)
+          </button>
+        </div>
       )}
       {variants.length > 1 && !base.persianOwned && (
         <div className="variant-pills" role="tablist" aria-label="نمونه‌ها">
@@ -177,9 +190,15 @@ function EntryDetail({ item }) {
         {item.duration && <div><dt>مدت</dt><dd>{item.duration}</dd></div>}
         {item.energy && <div><dt>انرژی</dt><dd>{item.energy}</dd></div>}
         <div><dt>منبع</dt><dd>{SOURCE_FA[item.source] || item.source}</dd></div>
-        {isBaseline
-          ? <div><dt>وضعیت</dt><dd>رندر مرجع از کد اصلی (بدون فارسی‌سازی و صدا)</dd></div>
-          : item.status && <div><dt>وضعیت</dt><dd>رندر محلی فارسی</dd></div>}
+        {isPersian ? (
+          <div><dt>وضعیت</dt><dd>
+            نسخهٔ فارسی (راست‌چین) — {base.reviewStatus === "approved" ? "تأییدشده در بازبینی مستقل" : base.reviewStatus === "fixed" ? "اصلاح‌شده پس از بازبینی" : "در انتظار بازبینی"} · بی‌صدا
+          </dd></div>
+        ) : isBaseline ? (
+          <div><dt>وضعیت</dt><dd>رندر مرجع از کد اصلی (هنوز فارسی‌سازی نشده، بدون صدا)</dd></div>
+        ) : (
+          item.status && <div><dt>وضعیت</dt><dd>رندر محلی فارسی</dd></div>
+        )}
         {item.license && <div><dt>مجوز</dt><dd>{item.license}</dd></div>}
       </dl>
 

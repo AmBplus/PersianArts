@@ -1,0 +1,17 @@
+{
+  "source": "shotcraft",
+  "modelId": "shotcraft/ai-stream-response",
+  "variantKey": "ai-stream-response",
+  "variantIndex": 0,
+  "approved": true,
+  "family": "collage",
+  "titleFa": "پاسخ زندهٔ هوش مصنوعی",
+  "bodyFa": "نتیجه می‌رسد، شواهد کامل می‌شوند",
+  "promptFa": "بازسازی مستقل فارسی برای پاسخ زندهٔ هوش مصنوعی؛ نتیجه زودتر می‌رسد و شواهد بعد از آن کامل می‌شوند.",
+  "paper": "blueprint",
+  "seed": 801146089,
+  "durationFrames": 135,
+  "fps": 30,
+  "sourceDescription": "AI response summary arrives first, then evidence rows assemble into a completed state.",
+  "sourceCategory": "interaction"
+}

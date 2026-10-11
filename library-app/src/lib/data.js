@@ -41,11 +41,13 @@ function countBy(items, key) {
 }
 
 export async function loadLibrary() {
-  const [typo, catalog, renders, entryMedia] = await Promise.all([
+  const [typo, catalog, renders, entryMedia, refMedia] = await Promise.all([
     j("./data/typography-models.json"),
     j("./data/catalog.json"),
     j("./data/persian-renders.json").catch(() => null),
     j("./data/entry-media.json").catch(() => null),
+    // رندرهای مرجعِ کد اصلی (فقط محلی، هرگز منتشر نمی‌شود) — برای مقایسه با نسخهٔ فارسی
+    j("./data/entry-media.reference.json").catch(() => null),
   ]);
 
   // پوستر/ویدیوی رندرشده برای entryهای کاتالوگ (اگر وجود داشته باشد)
@@ -63,6 +65,13 @@ export async function loadLibrary() {
   // رندرهای محلیِ جدید (entry-media.json): ویدیو + پوستر + صدا برای همهٔ آیتم‌هایی که رندر شده‌اند
   for (const [id, m] of Object.entries((entryMedia && entryMedia.items) || {})) {
     mediaOf[id] = { ...mediaOf[id], ...m };
+  }
+  // مرجع: کنار نسخهٔ فارسی برای مقایسه؛ اگر هنوز فارسی نشده، تنها رسانهٔ قابل نمایش (با نشان «رندر مرجع»)
+  for (const [id, r] of Object.entries((refMedia && refMedia.items) || {})) {
+    const refs = r.variants || [];
+    if (!refs.length) continue;
+    if (mediaOf[id]?.video) mediaOf[id] = { ...mediaOf[id], reference: refs };
+    else mediaOf[id] = { ...mediaOf[id], renderKind: "upstream-baseline", video: refs[0].video, poster: refs[0].poster, thumbnail: refs[0].thumbnail, variants: refs };
   }
 
   const typoItems = typo.models.map((m) => ({

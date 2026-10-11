@@ -1,3 +1,15 @@
+// autolayout-gap-dial -- Persian/RTL localization.
+// TEXT: "GAP" -> «فاصله» (design-tool wording for spacing); badge numbers via faDigits (Persian digits, step 2 kept).
+// FONT: Vazirmatn (variable, weights 700/800 exist) - neutral design-tool UI, matches the Helvetica original.
+// SHAPING: letterSpacing 2 removed (0), no uppercase.
+// DIRECTION decisions:
+//  - Link-block row MIRRORED: first block (widest-list index 0) is right-most (nav order follows reading order);
+//    block x = W - x - w. Row stays centered, so growth stays symmetric (gap math untouched).
+//  - Gap annotations (extension lines, measure line, badge) are positioned from the mirrored block edges, so they track the gaps.
+//  - Title: direction rtl, word on the right and the value badge to its left (inline-start margin instead of marginLeft).
+//  - Selection frame + 8 handles: symmetric, kept. Dot grid: symmetric, kept.
+//  - Timing, easing, spring, seeds, step-2 counter and tick pulse: unchanged.
+// RASTER: none.
 // autolayout-gap-dial —— framer-ai 4.5–5.5s
 // 一排导航链接块带框选描边 + 间距标注徽章，徽章数字逐格跳动，
 // 链接块被参数实时推开（flex gap 插值），标注线跟随。
@@ -5,6 +17,7 @@
 import React from 'react';
 import { AbsoluteFill, useCurrentFrame, interpolate, spring, useVideoConfig, Easing } from 'remotion';
 import { G } from '../../_fixtures/Fixtures';
+import { FaRoot, faDigits, fs } from '../../_fa';
 
 const BLOCK_WIDTHS = [230, 190, 265, 210, 245];
 const BLOCK_H = 100;
@@ -40,7 +53,7 @@ export const AutolayoutGapDial: React.FC = () => {
   const xs: number[] = [];
   let acc = startX;
   for (const w of BLOCK_WIDTHS) {
-    xs.push(acc);
+    xs.push(1920 - acc - w); // mirrored: first block sits at the right (RTL reading order)
     acc += w + gap;
   }
 
@@ -57,6 +70,7 @@ export const AutolayoutGapDial: React.FC = () => {
   const tickPulse = ticking ? 1 + 0.10 * Math.abs(Math.sin(frame * 0.9)) : 1;
 
   return (
+    <FaRoot family="Vazirmatn">
     <AbsoluteFill style={{ background: G.bg, overflow: 'hidden' }}>
       <AbsoluteFill
         style={{
@@ -66,10 +80,10 @@ export const AutolayoutGapDial: React.FC = () => {
       />
 
       {/* 标题字块（讲清这是"参数驱动布局"） */}
-      <div style={{ position: 'absolute', top: 250, width: '100%', textAlign: 'center', fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 800, fontSize: 44, color: G.mid, letterSpacing: 2 }}>
-        GAP
-        <span style={{ display: 'inline-block', minWidth: 130, marginLeft: 24, padding: '4px 22px', borderRadius: 12, background: G.ink, color: '#f2f2f0', fontVariantNumeric: 'tabular-nums', transform: `scale(${tickPulse})` }}>
-          {gapShown}
+      <div style={{ position: 'absolute', top: 250, width: '100%', textAlign: 'center', fontWeight: 800, fontSize: fs(44), lineHeight: 1.5, color: G.mid, letterSpacing: 0 }}>
+        فاصله
+        <span style={{ display: 'inline-block', minWidth: 130, marginInlineStart: 24, padding: '0px 22px', textAlign: 'center', borderRadius: 12, background: G.ink, color: '#f2f2f0', fontVariantNumeric: 'tabular-nums', transform: `scale(${tickPulse})` }}>
+          {faDigits(gapShown)}
         </span>
       </div>
 
@@ -137,7 +151,7 @@ export const AutolayoutGapDial: React.FC = () => {
 
       {/* 间距标注：测量线 + 端刺 + 跟随徽章 */}
       {xs.slice(0, -1).map((x, i) => {
-        const gx = x + BLOCK_WIDTHS[i]; // 缝隙左缘
+        const gx = x - gap; // gap's left edge (block i+1 lies to the left of block i)
         const cy = ROW_Y + BLOCK_H / 2 + 56;
         const badgeOp = interpolate(frame, [8, 16], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
         return (
@@ -158,17 +172,18 @@ export const AutolayoutGapDial: React.FC = () => {
                 borderRadius: 10,
                 background: G.ink,
                 color: '#f2f2f0',
-                fontFamily: 'Helvetica, Arial, sans-serif',
                 fontWeight: 700,
-                fontSize: 24,
+                fontSize: fs(24),
+                lineHeight: 1.4,
                 fontVariantNumeric: 'tabular-nums',
               }}
             >
-              {gapShown}
+              {faDigits(gapShown)}
             </div>
           </div>
         );
       })}
     </AbsoluteFill>
+    </FaRoot>
   );
 };

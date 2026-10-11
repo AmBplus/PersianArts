@@ -442,3 +442,8 @@ a:hover { text-decoration: underline; }
 .chip.variants-chip{background:rgba(159,182,232,.14);color:#9fb6e8}
 .variant-pills{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 4px}
 .variant-desc{margin:4px 0 12px;color:#aaa;font-size:13px;line-height:1.7;direction:auto}
+
+/* نسخهٔ فارسی‌شده */
+.chip.fa-done{background:rgba(110,214,140,.15);color:#7fe0a0;border:1px solid rgba(110,214,140,.4)}
+.fchip.fa-only{border-color:rgba(110,214,140,.45);color:#7fe0a0}
+.fchip.fa-only.on{background:rgba(110,214,140,.22);color:#c9f7d6}

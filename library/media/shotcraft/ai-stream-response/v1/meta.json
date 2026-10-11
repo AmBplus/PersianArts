@@ -1,0 +1,53 @@
+{
+  "modelId": "shotcraft/ai-stream-response",
+  "variantKey": "ai-stream-response",
+  "family": "collage",
+  "output": "preview.mp4",
+  "audio": "music.m4a",
+  "poster": "poster.webp",
+  "thumbnail": "thumb.webp",
+  "encoding": {
+    "codec": "h264",
+    "crf": 22,
+    "preset": "slow",
+    "fastStart": true
+  },
+  "probe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "width": 1920,
+        "height": 1080,
+        "pix_fmt": "yuv420p",
+        "nb_frames": "135"
+      },
+      {
+        "codec_name": "aac",
+        "nb_frames": "211"
+      }
+    ],
+    "format": {
+      "duration": "4.500000",
+      "size": "177437"
+    }
+  },
+  "spec": {
+    "source": "shotcraft",
+    "modelId": "shotcraft/ai-stream-response",
+    "variantKey": "ai-stream-response",
+    "variantIndex": 0,
+    "approved": true,
+    "family": "collage",
+    "titleFa": "پاسخ زندهٔ هوش مصنوعی",
+    "bodyFa": "نتیجه می‌رسد، شواهد کامل می‌شوند",
+    "promptFa": "بازسازی مستقل فارسی برای پاسخ زندهٔ هوش مصنوعی؛ نتیجه زودتر می‌رسد و شواهد بعد از آن کامل می‌شوند.",
+    "paper": "blueprint",
+    "seed": 801146089,
+    "durationFrames": 135,
+    "fps": 30,
+    "sourceDescription": "AI response summary arrives first, then evidence rows assemble into a completed state.",
+    "sourceCategory": "interaction"
+  }
+}

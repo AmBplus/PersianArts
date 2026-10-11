@@ -14,6 +14,7 @@ export default function App() {
   const [q, setQ] = useState("");
   const [cat, setCat] = useState("");
   const [src, setSrc] = useState("");
+  const [onlyFa, setOnlyFa] = useState(false); // فقط کارت‌هایی که نسخهٔ فارسی‌شان ساخته شده
   const [visible, setVisible] = useState(PAGE);
   const [sel, setSel] = useState(null);
   const [pickMode, setPickMode] = useState(false);
@@ -58,6 +59,7 @@ export default function App() {
     return lib.items.filter((it) => {
       if (cat && !(it.cats || [it.category]).includes(cat)) return false;
       if (src && it.source !== src) return false;
+      if (onlyFa && it.media?.renderKind !== "persian-local") return false;
       if (!query) return true;
       return (
         it.title?.toLowerCase().includes(query) ||
@@ -68,9 +70,9 @@ export default function App() {
         (it.font || "").toLowerCase().includes(query)
       );
     });
-  }, [lib, q, cat, src]);
+  }, [lib, q, cat, src, onlyFa]);
 
-  useEffect(() => setVisible(PAGE), [q, cat, src]);
+  useEffect(() => setVisible(PAGE), [q, cat, src, onlyFa]);
 
   const shown = filtered.slice(0, visible);
   const liveCount = filtered.filter((i) => i.kind === "typo").length;
@@ -163,8 +165,15 @@ export default function App() {
               {SOURCE_FA[s.name] || s.name}
             </button>
           ))}
-          {(q || cat || src) && (
-            <button className="fchip mini clear" onClick={() => { setQ(""); setCat(""); setSrc(""); }}>
+          <button
+            className={`fchip mini fa-only ${onlyFa ? "on" : ""}`}
+            onClick={() => setOnlyFa((v) => !v)}
+            title="فقط طرح‌هایی که نسخهٔ فارسی و راست‌چین‌شان ساخته شده"
+          >
+            ✓ فقط فارسی‌شده <b>{faNum(lib.items.filter((i) => i.media?.renderKind === "persian-local").length)}</b>
+          </button>
+          {(q || cat || src || onlyFa) && (
+            <button className="fchip mini clear" onClick={() => { setQ(""); setCat(""); setSrc(""); setOnlyFa(false); }}>
               ✕ پاک‌کردن
             </button>
           )}

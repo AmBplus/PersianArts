@@ -1,8 +1,19 @@
+// avatar-bracket-carousel — Persian (RTL) localization.
+// TEXT: "Your ___ teammates" -> «هم‌تیمی‌های ___ شما» (reads right-to-left: هم‌تیمی‌های [slot] شما = "your designer teammates").
+//   Roles: Designer/Support/Analyst/Writer -> طراح / پشتیبان / تحلیلگر / نویسنده (short nouns, same slot role as the English ones).
+// DIRECTION: the sentence is a flex row under direction:rtl, so the first word sits on the right and the closing word on the left;
+//   the 92px slot stays pinned at the centre, so mirroring needs no coordinates. KEPT (with reason): the avatar queue moves
+//   vertically (physical, no reading-direction meaning), the focus brackets are 4-fold symmetric, scale/blur/opacity/breath are
+//   direction-free, emoji avatars are universal. The role label is centred under the slot (symmetric).
+// SHAPING: letterSpacing removed (0) on words and labels (it would break joining); no uppercase; fs() 1.1x size; ZWNJ in هم‌تیمی‌های.
+// FONT: Vazirmatn (variable, 800 for the headline words, 600 for role labels): neutral product UI voice like the original system-ui.
+// RASTER: none (emoji glyphs only). TIMING: all beats, seeds, springs and durations unchanged.
 // avatar-bracket-carousel — Bracket Carousel 对焦框头像轮换（motion-lab 定稿转原生 Remotion）
 // "Your ___ teammates" 填空排版：四角对焦框锁定当前头像，头像队列垂直 spring 轮换，
 // 入框放大清晰、出框缩小淡化，角色标签同步更换，两侧文字不动。
 // 设计坐标 480×270（DesignStage 等比放大），参数表数值以此坐标系标定。
 import React from 'react';
+import { FaRoot, fs, FA_LH } from '../../_fa';
 import { DesignStage, E, seg, useT } from '../../_fixtures/Motion';
 
 export const AVATAR_BRACKET_CAROUSEL_DURATION = 156; // 5200ms @30fps
@@ -11,10 +22,10 @@ const ACCENT = '#3b82f6';
 
 // 头像底色走中性灰阶梯度（仅用于区分队列项），强调色只留在对焦框上
 const AV = [
-  { c: '#4a4d59', e: '🎨', role: 'Designer' },
-  { c: '#5b6070', e: '💬', role: 'Support' },
-  { c: '#6d7383', e: '📊', role: 'Analyst' },
-  { c: '#828796', e: '✍️', role: 'Writer' },
+  { c: '#4a4d59', e: '🎨', role: 'طراح' },
+  { c: '#5b6070', e: '💬', role: 'پشتیبان' },
+  { c: '#6d7383', e: '📊', role: 'تحلیلگر' },
+  { c: '#828796', e: '✍️', role: 'نویسنده' },
 ];
 
 // 四角对焦框的角路径（92×92 viewBox）
@@ -40,20 +51,18 @@ export const AvatarBracketCarousel: React.FC = () => {
 
   return (
     <DesignStage bg="#0b0c12">
-      <div
+      <FaRoot
+        family="Vazirmatn"
         style={{
-          position: 'absolute',
-          inset: 0,
           background: '#0b0c12',
           overflow: 'hidden',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           gap: 22,
-          fontFamily: '-apple-system,system-ui,sans-serif',
         }}
       >
-        <div style={{ color: '#eef1f8', fontWeight: 800, fontSize: 34, letterSpacing: -0.5 }}>Your</div>
+        <div style={{ color: '#eef1f8', fontWeight: 800, fontSize: fs(34), lineHeight: FA_LH, letterSpacing: 0, whiteSpace: 'nowrap' }}>هم‌تیمی‌های</div>
 
         {/* 中央对焦框 + 头像列 */}
         <div style={{ position: 'relative', width: 92, height: 92, flex: 'none' }}>
@@ -114,9 +123,11 @@ export const AvatarBracketCarousel: React.FC = () => {
                 top: '50%',
                 transform: 'translate(-50%,64px)',
                 color: '#8f97b3',
-                fontSize: 12,
+                fontSize: fs(12),
                 fontWeight: 600,
-                letterSpacing: 1,
+                letterSpacing: 0,
+                whiteSpace: 'nowrap',
+                lineHeight: FA_LH,
                 opacity: Math.max(0, 1 - Math.abs(k - pos) * 2.2),
               }}
             >
@@ -125,8 +136,8 @@ export const AvatarBracketCarousel: React.FC = () => {
           ))}
         </div>
 
-        <div style={{ color: '#eef1f8', fontWeight: 800, fontSize: 34, letterSpacing: -0.5 }}>teammates</div>
-      </div>
+        <div style={{ color: '#eef1f8', fontWeight: 800, fontSize: fs(34), lineHeight: FA_LH, letterSpacing: 0, whiteSpace: 'nowrap' }}>شما</div>
+      </FaRoot>
     </DesignStage>
   );
 };

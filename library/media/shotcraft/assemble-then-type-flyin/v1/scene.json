@@ -1,0 +1,17 @@
+{
+  "source": "shotcraft",
+  "modelId": "shotcraft/assemble-then-type-flyin",
+  "variantKey": "assemble-then-type-flyin",
+  "variantIndex": 0,
+  "approved": true,
+  "family": "collage",
+  "titleFa": "صفحه خودش را می‌سازد",
+  "bodyFa": "اجزا می‌آیند و متن جای می‌گیرد",
+  "promptFa": "بازسازی مستقل فارسی برای صفحه‌ای که ابتدا از اجزای پراکنده شکل می‌گیرد و سپس متن در جای خود می‌نشیند.",
+  "paper": "warm-paper",
+  "seed": 1717291994,
+  "durationFrames": 150,
+  "fps": 30,
+  "sourceDescription": "A component skeleton assembles from multiple directions before labels settle into place.",
+  "sourceCategory": "effects"
+}
