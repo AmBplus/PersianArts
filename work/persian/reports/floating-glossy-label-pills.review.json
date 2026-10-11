@@ -1,0 +1,11 @@
+{
+  "slug": "floating-glossy-label-pills",
+  "verdict": "approve",
+  "score": 88,
+  "issues": [
+    {"severity": "minor", "where": "FloatingGlossyLabelPills.tsx cursor div (transform rotate(16deg) scaleX(-1)), frames 86-119", "problem": "The macOS-style pointer glyph itself is mirrored. Real OS cursors keep their orientation in RTL UIs; only the approach path should mirror. It reads acceptably but is a debatable fidelity choice.", "suggestedFix": "Keep the arrow shape unmirrored (rotate(-16deg), original borders) and keep only the mirrored x path (77->199), or document the choice."},
+    {"severity": "minor", "where": "GROUPS txt: 'قابلیت الف/ب/پ/ت'", "problem": "Abjad letters as feature ids read slightly stilted (the final pill shows 'قابلیت ت' with a lone letter after a wide space).", "suggestedFix": "Consider 'قابلیت ۱..۴' (faDigits) or 'ویژگی اول..چهارم'. Pill widths still fit."},
+    {"severity": "minor", "where": "Header/inline comments", "problem": "Stale source comments still say the track moves right (向右换位), cursor slides 'to lower left' and stops at the pill's right end (x≈281). The code now does the opposite. Header also does not list the cursor-glyph mirroring and the mirrored wireframe body (scaleX wrapper) as explicit hygiene notes.", "suggestedFix": "Update the inline comments to match the mirrored behaviour."}
+  ],
+  "notes": "Re-rendered fa vs orig at frames 0,10,26,34,50,60,70,80,86,90,104,119 (single comp). Shaping is correct (Vazirmatn 700 loaded, no letterSpacing/uppercase, labels one run). Carousel direction is coherently mirrored: next item enters from the right and moves left, exit and neighbours consistent, 3 beats, scale 0.62/sink/blur/opacity corridor and final resting frame preserved. Wireframe body mirrored via a scaleX(-1) wrapper (text-free, functional colours kept), sidebar goes right, fog gradient anchors mirrored; the BForm line/circle overlap exists in the original too. No leftover English/Chinese text, no raster text, no hiding or blurring tricks. Exports, duration (120), fps, easing, BEATS and seeds are unchanged. Report.json is accurate. Only minor polish items remain."
+}

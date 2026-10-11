@@ -1,0 +1,26 @@
+{
+  "slug": "runway-ground-skim",
+  "verdict": "approve",
+  "score": 90,
+  "issues": [
+    {
+      "severity": "minor",
+      "where": "RunwayGroundSkim.tsx lines ~201-203 (ground soft shadow) and ~220 (boxShadow)",
+      "problem": "The shadow offset still drifts to +x (translate(h*0.08px, ...)), i.e. the implied light/shadow direction was not mirrored although the whole dashboard was mirrored. Nearly invisible in the blurred shadows, but the header comment claims shadows were intentionally kept unchanged without mentioning this.",
+      "suggestedFix": "Use translate(${-h * 0.08}px, ${h * 0.12}px) so the cast shadow falls toward the mirrored side, or note in the header that the light direction is deliberately kept physical."
+    },
+    {
+      "severity": "minor",
+      "where": "Header comment / report.json",
+      "problem": "The header does not mention the fixed Arial family for the ClickUp wordmark, the mirrored slot formula (4600 - GRID_X - col*COL_GAP - CARD_W) or the sidebar row-reverse trick. The report lists concerns:[] and lessons:[] although the root-RTL scene-leaves-frame finding is a reusable lesson.",
+      "suggestedFix": "Add one line on each to the header, and add the lesson 'keep the 3D scene root direction:ltr and apply rtl only inside UI regions (root rtl pushed the scene off canvas)' to lessons."
+    },
+    {
+      "severity": "minor",
+      "where": "Sidebar item '3.0' (faDigits('3.0')) and tab 'ClickUp 3.0'",
+      "problem": "A Persian digit with an ASCII period is used for a version string. It reads fine but mixes ۳ with '.', not the Persian decimal separator.",
+      "suggestedFix": "Acceptable as a version number. Optionally keep Latin '3.0' inside a direction:ltr bdi."
+    }
+  ],
+  "notes": "I re-rendered at frames 0,10,18,26,34,45,70,94,149 and compared fa with orig. The mirror is consistent: the sidebar is on the right, the 4-column grid is mirrored (the first card lands right-most and the stagger runs right to left), and the list bars are on the left. The fall (vertical, gravity), camera, perspective, brightness and vignette are physical and unchanged. Timings, seed, GAP/FALLF, easing and the 150f length are identical to the original (diffed by eye; the only changes are text, direction, slot x and fonts). The only exports are RunwayGroundSkim, with no duration constants to break. Shaping is correct: no letterSpacing, no uppercase, ZWNJ is used (تازه‌سازی, باگ‌های), the ezafe uses ۀ, the Latin tokens CSS/EPD/ClickUp are isolated or placed correctly, and Persian digits are used. Vazirmatn variable is a suitable neutral UI font, actually loaded through FaRoot. Text fits the cards (the longest title 'داشبورد اسپرینت توسعه' has margin), with no overflow, no leftover Chinese or English apart from the intentional brand and technical tokens, and no raster assets. The clipped tab bar and 'ClickUp' row at the top of the final frame match the original's crop. This is a pure-code localization with no cheating (nothing blurred or hidden). Ship-ready; only minor polish remains."
+}

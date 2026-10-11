@@ -1,0 +1,26 @@
+{
+  "slug": "collab-cursor-moves",
+  "verdict": "approve",
+  "score": 86,
+  "issues": [
+    {
+      "severity": "minor",
+      "where": "CursorCastEnsemble.tsx, final gather frames ~116-139 (typed sentence in central note)",
+      "problem": "The Persian sentence is right-anchored, so the gathering cursors occlude its start (Lucas badge/cursor over the first letter of the first word) and Lisa's badge cuts into the first letters of the last word. The original also occludes the text (Lisa over the middle of 'customers'), but here the sentence stays readable only because of context.",
+      "suggestedFix": "Optional: nudge GATHER positions of Lucas/Lisa a little (a few px up/down) so the hold frame does not cover the sentence start/end. Changing GATHER is a timing/choreography change, so only do it if the owner wants it; otherwise ship as is."
+    },
+    {
+      "severity": "minor",
+      "where": "CursorCastEnsemble.tsx header comment",
+      "problem": "Because FaRoot sets direction:rtl, the placeholder bars in the sticky notes and the central note header bar are now right-aligned (mirrored). This is a good, consistent result but the header comment does not list it.",
+      "suggestedFix": "Add one line to the header comment: decorative note bars follow the RTL flow (right-aligned) through inherited direction."
+    },
+    {
+      "severity": "minor",
+      "where": "Both comps, cursor choreography",
+      "problem": "Cursor entry/exit sides (Lisa/Designer from the left, Lucas/Developer from the right, Designer exit bottom-left) were deliberately not mirrored; the header comments explain this as actor choreography. Defensible, but the Duet handoff reads left-to-right (Designer on the left, Developer on the right) for a Persian audience.",
+      "suggestedFix": "No change needed; acceptable decision, documented in the headers."
+    }
+  ],
+  "notes": "Verified by own render at frames 0,8,20,30,45,56,64,72,84,92,105,116,124,139 and a consecutive typing sweep 86-102 for Cast, and the same beats for Duet. Diff vs upstream (CR-stripped) is minimal and clean: only names, TYPED string, FaRoot/faText/typeOn, marginLeft->marginInlineStart; all timings, springs, seed 88, easing, Bezier paths and exports are unchanged. Typing is true per-character via typeOn prefix slicing with correct contextual shaping and the ZWNJ in the sentence (مشتری‌ها) at every step; caret sits at the RTL inline end and blinks as before. Badge names (لیزا لوکاس مارتا نیکو ریتا, طراح, توسعه‌دهنده) render joined, in Vazirmatn, no letter-spacing, no overflow, badge pills still fit. No leftover English/Chinese text, no raster text. Duet badge light/dark handoff, glow and giant-arrow transition match the original frame by frame. The very light 'dim' badge state is as low-contrast as the original. Font Vazirmatn is appropriate for neutral product UI and variable weight 700 is real. Copy «مشتری‌ها دوستش دارند» is idiomatic and fits one line (about 460 of 540 px). Hygiene grep: left/top/translate are physical cursor attachment and are consciously kept; no letterSpacing/uppercase/clip-path/rotate on text. Note: older stale PNGs in the out dir (e.g. Cast f96/f100/f130 from the author's earlier run) showed an old string variant; the current code renders correctly (re-rendered). Ship as is."
+}

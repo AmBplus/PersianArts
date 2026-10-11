@@ -1,11 +1,11 @@
 {
- "generatedAt": "2026-10-11T16:46:22.988Z",
+ "generatedAt": "2026-10-11T16:51:40.805Z",
  "summary": {
   "todo": 75,
-  "localized": 9,
-  "approved": 62,
-  "fixed": 10,
-  "needs-fix": 1,
+  "localized": 1,
+  "approved": 68,
+  "fixed": 8,
+  "needs-fix": 5,
   "total": 157
  },
  "cards": [
@@ -91,10 +91,10 @@
   },
   {
    "slug": "bezier-source-converge-merge",
-   "status": "localized",
+   "status": "needs-fix",
    "font": "Vazirmatn",
    "videos": 1,
-   "majors": 0,
+   "majors": 1,
    "concerns": 0
   },
   {
@@ -235,7 +235,7 @@
   },
   {
    "slug": "collab-cursor-moves",
-   "status": "localized",
+   "status": "approved",
    "font": "{\"families\":[\"Vazirmatn\"],\"reason\":\"Vazirmatn is a neutral variable Persian UI face with dependable joining, Persian punctuation and ZWNJ coverage. It matches the original collaborative-canvas/product tone and supplies a real 700 weight for the compact identity badges and headline cameo.\"}",
    "videos": 2,
    "majors": 0,
@@ -379,15 +379,15 @@
   },
   {
    "slug": "element-body-moves",
-   "status": "fixed",
+   "status": "approved",
    "font": "",
    "videos": 2,
-   "majors": 1,
+   "majors": 0,
    "concerns": 0
   },
   {
    "slug": "floating-glossy-label-pills",
-   "status": "localized",
+   "status": "approved",
    "font": "Vazirmatn",
    "videos": 1,
    "majors": 0,
@@ -531,10 +531,10 @@
   },
   {
    "slug": "integration-hub-map",
-   "status": "localized",
+   "status": "needs-fix",
    "font": "{\"families\":[\"Vazirmatn\"],\"reason\":\"This is restrained enterprise/product UI. Vazirmatn is a loaded variable Persian UI sans with dependable joining, Persian punctuation, ZWNJ coverage and real weight variation for the title, list hierarchy and compact filters.\"}",
    "videos": 1,
-   "majors": 0,
+   "majors": 1,
    "concerns": 0
   },
   {
@@ -587,10 +587,10 @@
   },
   {
    "slug": "list-stack-press",
-   "status": "fixed",
+   "status": "needs-fix",
    "font": "{\"families\":[\"Vazirmatn\"],\"reason\":\"Loaded with FaRoot. Its neutral UI proportions and genuine variable weights fit the restrained academic feed; Persian joins, ZWNJ, digits and Latin technical tokens have coverage. FA_LH=1.5 gives Persian dots and descenders space.\"}",
    "videos": 1,
-   "majors": 3,
+   "majors": 1,
    "concerns": 4
   },
   {
@@ -643,7 +643,7 @@
   },
   {
    "slug": "neon-frame-forerun",
-   "status": "localized",
+   "status": "approved",
    "font": "{\"families\":[\"Vazirmatn\"],\"reason\":\"The card is a neutral product/UI skeleton. Vazirmatn is a loaded variable Persian UI sans with dependable glyph coverage and real weight variation; it is appropriate for any future Persian chrome without fallback shaping or fake bold.\",\"usedOnScreen\":false}",
    "videos": 1,
    "majors": 0,
@@ -883,7 +883,7 @@
   },
   {
    "slug": "runway-ground-skim",
-   "status": "localized",
+   "status": "approved",
    "font": "Vazirmatn",
    "videos": 1,
    "majors": 0,
@@ -1091,10 +1091,10 @@
   },
   {
    "slug": "theme-switch-moves",
-   "status": "localized",
+   "status": "needs-fix",
    "font": "",
    "videos": 2,
-   "majors": 0,
+   "majors": 2,
    "concerns": 1
   },
   {
@@ -1227,7 +1227,7 @@
   },
   {
    "slug": "wall-reveal-moves",
-   "status": "localized",
+   "status": "approved",
    "font": "Vazirmatn",
    "videos": 3,
    "majors": 0,

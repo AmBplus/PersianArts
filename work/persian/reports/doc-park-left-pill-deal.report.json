@@ -57,9 +57,9 @@
       ],
       "motionFidelity": "Retained 174 frames, T0=[0.26,0.48,0.70], subtitle start/end scheduling, E.outQuad opacity/fade, E.outBack spring, document park interval and easing, seeded skeleton widths, and 3-cycle scrolling. No timing, seed, fps or size changes.",
       "visualVerification": {
-        "renderedFrames": [5, 10, 40, 50, 85, 105, 125, 150, 173],
-        "comparedFaAndOriginalAt": [10, 50, 85, 105, 150, 173],
-        "result": "Viewed matching Persian and original frames for the sole component, including park progress, all three pill arrivals/caption states, final resting composition and fade state. The Persian font rendered correctly; labels and captions fit; mirrored source/pill balance is clear; no unintended Latin or Chinese on-screen text remains."
+        "renderedFrames": [0, 14, 40, 95, 105, 131, 150, 173],
+        "comparedFaAndOriginalAt": [14, 40, 95, 105, 150, 173],
+        "result": "Viewed matching Persian and original frames for the sole component after fix round 2: document entrance and mirrored columns (f0/f14), park progress (f40), all three pill arrivals and caption states (f95/f105/f131/f150), and the final resting composition (f173). Word gaps, per-column bar alignment and the caption inset now match the mirrored source. The Persian font rendered correctly; labels and captions fit; the mirrored source/pill balance is clear; no unintended Latin or Chinese on-screen text remains."
       }
     }
   ],
@@ -68,5 +68,9 @@
     "action": "No raster edits or replacement required; the vector skeleton was mirrored with its document layout."
   },
   "concerns": [],
-  "lessons": []
+  "lessons": [
+    "RTL flex word-gap pitfall: a per-word margin must sit on the TRAILING side (marginInlineEnd) to mirror an LTR marginRight; marginInlineStart in an RTL row puts the gap on the right of each word, which fuses the last word pair and adds a spurious right margin to the first word.",
+    "Mirroring an absolutely-positioned multi-column skeleton must be done per column AND per bar: anchoring only the column slots (or only the title bars) leaves the in-column bars left-aligned and produces mixed alignment that reads as a defect.",
+    "In RTL, logical mirror insets flip sides: a caption inset 4px from the pill's left edge becomes 4px inside the pill's RIGHT edge, i.e. right = W - PX - width + 4, not W - PX - width - 4."
+  ]
 }

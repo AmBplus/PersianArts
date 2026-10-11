@@ -1,0 +1,26 @@
+{
+  "slug": "bezier-source-converge-merge",
+  "verdict": "fix",
+  "score": 80,
+  "issues": [
+    {
+      "severity": "major",
+      "where": "BezierSourceConvergeMerge.tsx lines 240-252 (caption box: left: 28, width: 200); frames 140-167",
+      "problem": "Caption is not centred under the badge. Badge centre is x~512px, caption centre ~590px (about 78px / 18 design units to the right). In the original the caption sits ~15px left of the badge centre, so a faithful mirror would be ~15px right of it. The report claims it is placed 'beneath the badge' but the lockup looks visibly lopsided in the final resting frame.",
+      "suggestedFix": "Centre the caption box on the badge centre: badge centre = 440-XC = 108 in design units, so use left: 108 - 100 + ~3 (about 11) with width 200 and justifyContent:center (or left: 440-XC-100). Keep the slight mirrored offset only if intentional."
+    },
+    {
+      "severity": "minor",
+      "where": "SRCS tags 'S1'..'S4' (lines 34-37, 192)",
+      "problem": "Node labels remain Latin 'S1'-'S4' inside a Persian composition. Defensible as identifiers, but a Persian product would more naturally show Persian digits or a Persian tag (e.g. ۱..۴ or م۱..م۴) via faDigits; the report did not consider it.",
+      "suggestedFix": "Optionally render tags with faDigits (e.g. 'م۱') or document why Latin identifiers stay; keep font weight 700 on Vazirmatn which is variable."
+    },
+    {
+      "severity": "minor",
+      "where": "Header comment / leftover Chinese comments",
+      "problem": "Header is short and does not list font weight, caption word-order and the pointAt/f0 mirroring (x'=440-x, threshold <=366) decisions in detail; many Chinese comments remain in the file (harmless on screen).",
+      "suggestedFix": "Expand the header with the exact mirroring formula and caption alignment decision."
+    }
+  ],
+  "notes": "Checked fa vs orig at frames 14, 64, 96, 140, 152, 167 (plus others rendered). Geometry is a correct mirror: path d (462/366/254/226/108), pointAt (462-sc, 440-x), f0 threshold (<=366), badge left (440-XC-17) all consistent; nodes and blue packets sit on the mirrored curves, draw-on starts at the outer right and erase reverses, three-stage shrink and stagger identical to the original. Timings, exported duration (168), easing and seeds unchanged. Persian caption 'چهار منبع یکپارچه' shapes correctly with Vazirmatn (loaded), word-by-word darkening runs right-to-left (چهار first), no letterSpacing, no leftover English prose. Only real defect is the off-centre caption under the badge. Not blurring/hiding anything; no cheating."
+}

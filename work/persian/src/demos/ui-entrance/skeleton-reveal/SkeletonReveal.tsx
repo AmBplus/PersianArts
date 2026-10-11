@@ -1,9 +1,19 @@
 // PERSIAN (RTL) localization of skeleton-reveal — motion, timing, easing, seeds and geometry are preserved.
 // RTL decisions: the hand-drawn placeholder is mirrored as a whole because its sidebar, divider and message
-// order describe reading/layout order; the live UI uses direction:rtl so the sidebar is on the right, each
-// avatar is on the right of its message, and the word reveal progresses in Persian reading order. The camera
-// push, vertical row order, wobble physics and all frame constants remain unchanged. The mock names/messages
-// are translated idiomatically; timestamps use Persian digits and Persian morning punctuation. No raster assets.
+// order describe reading/layout order; the live UI uses direction:rtl so the sidebar is on the right and each
+// avatar sits to the RIGHT of its message, so text lines start at the right, under the name. The message line
+// uses unicodeBidi:'normal' + textAlign:'start' (NOT the faText plaintext default): the line is built from
+// inline-block word spans, which are bidi-neutral, so a plaintext paragraph would resolve LTR and lay the
+// words out left-to-right in the wrong reading order (fix for the round-1 review blocker). Word gaps come
+// from the preserved whitespace tokens only — no extra inline margin, so spacing matches the original.
+// The timestamp is isolated (<bdi dir="ltr"> for the digits) followed by ق.ظ in DOM order, so in the RTL
+// paragraph the digits sit right of ق.ظ: reading right-to-left gives time first, then the morning marker.
+// CAMERA: transformOrigin is mirrored to '42% 46%' (orig '58% 46%') because the zoom drifts toward the
+// content area (reading-flow side of the sidebar); after mirroring the layout the content column is on the
+// left, so an unmirrored 58% origin would push the crop onto the header/content instead of the sidebar.
+// The push, vertical row order, wobble physics and all frame constants remain unchanged. The mock
+// names/messages are translated idiomatically; timestamps use Persian digits and Persian morning
+// punctuation. No raster assets.
 // Font: Vazirmatn — a loaded variable UI sans with dependable Persian shaping and the weights used by this card.
 // 三级显影：全屏手绘粗笔触涂鸦占位（圆头 blob 线稿，煮沸抖动）→ 一拍内被
 // 灰条骨架 UI 窗口替换 → 骨架消息列表滚入，镜头推近时灰条逐行"显影"成
@@ -154,11 +164,15 @@ const Row: React.FC<{ i: number; dev: number; wordAt: (w: number, n: number) => 
           {NAMES[i][0]}
         </div>
         <div style={{ flex: 1, paddingTop: 2 }}>
-          <div style={{ ...faText(26), fontWeight: 800, color: INK, opacity: dev }}>
+          <div style={{ ...faText(26, { unicodeBidi: 'normal' }), fontWeight: 800, color: INK, opacity: dev }}>
             {NAMES[i]}
-            <span style={{ ...faText(19), fontWeight: 400, color: '#9a9a98', marginInlineStart: 12 }}>{faDigits(`9:0${i + 1}`)} ق.ظ</span>
+            <span style={{ ...faText(19, { unicodeBidi: 'normal' }), fontWeight: 400, color: '#9a9a98', marginInlineStart: 12 }}>
+              <bdi dir="ltr">{faDigits(`9:0${i + 1}`)}</bdi> ق.ظ
+            </span>
           </div>
-          <div style={{ ...faText(27), color: '#3c3c3a', marginTop: 8, lineHeight: 1.5 }}>
+          {/* unicodeBidi:'normal' instead of faText's plaintext: this line is all inline-block word spans
+              (bidi-neutral), so plaintext would resolve LTR and put the words in the wrong visual order. */}
+          <div style={{ ...faText(27, { unicodeBidi: 'normal', textAlign: 'start' }), color: '#3c3c3a', marginTop: 8, lineHeight: 1.5 }}>
             {tokens.map((token, ti) => {
               if (/^\s+$/.test(token)) return <span key={ti}>{token}</span>;
               const wi = wordIndex++;
@@ -168,7 +182,6 @@ const Row: React.FC<{ i: number; dev: number; wordAt: (w: number, n: number) => 
                   key={ti}
                   style={{
                     display: 'inline-block',
-                    marginInlineEnd: 9,
                     opacity: p,
                     transform: `translateY(${(1 - p) * 14}px)`,
                   }}
@@ -238,7 +251,9 @@ export const SkeletonReveal: React.FC = () => {
         <AbsoluteFill
           style={{
             transform: `scale(${zoom})`,
-            transformOrigin: '58% 46%',
+            // Mirrored from the original '58% 46%': the push drifts toward the reading/content side of the
+            // window, which sits LEFT of the right-hand sidebar in the RTL layout.
+            transformOrigin: '42% 46%',
           }}
         >
           <FaRoot family="Vazirmatn">

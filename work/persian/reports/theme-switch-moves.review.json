@@ -1,0 +1,32 @@
+{
+ "slug": "theme-switch-moves",
+ "verdict": "fix",
+ "score": 78,
+ "issues": [
+  {
+   "severity": "major",
+   "where": "PaletteThemeRipple.tsx, typed-query row (minWidth:168 div + cursor div), frames 54-68",
+   "problem": "The text cell has a fixed minWidth of 168px, so the blinking cursor sits about 140px to the left of the typed word «تیره». In f68 the word ends near x=1131 and the cursor is at x=989. It reads as a detached bar instead of a caret at the typing point.",
+   "suggestedFix": "Drop the minWidth. Make the text cell shrink-wrapped so the cursor stays directly left of the last letter (the RTL typing end). Alternatively render the cursor inline right after the text."
+  },
+  {
+   "severity": "major",
+   "where": "PaletteThemeRipple.tsx, typed-query row (charScale spans)",
+   "problem": "The original has four dark blocks that scale-pop with back(2.2) overshoot, and contains no literal text. The Persian version invents a 28px word and animates it with opacity only. The overshoot pop is lost, so the beat is weaker. The word is also tiny and low-contrast next to the old 30px blocks, and each letter appears by fading in 4f rather than hitting. Per-code-point spans are safe for shaping, but the 4th letter «ه» sits in a fade-in span, so the word reads as incomplete at f62-65.",
+   "suggestedFix": "Either keep the original four-block motif, since nothing literal was on screen, and only mirror it. Or, if the word stays, reproduce the pop by applying the same scale or translate on each span (inline-block is unsafe for joining, so use a prefix typeOn plus a scale pop on the whole run). Enlarge to about 36-40px."
+  },
+  {
+   "severity": "minor",
+   "where": "PaletteThemeRipple.tsx and ThemeSweepToggle.tsx, header comments",
+   "problem": "The header comments describe the decisions but do not give reasons for the mirrored rotate(-15deg) line, the sweep clip polygon or the symmetric ripple origin. They also leave the original Chinese notes mixed with the Persian header. The ThemeSweepToggle header says Vazirmatn is loaded 'though no visible copy', which is a pointless FaFonts wrapper.",
+   "suggestedFix": "List per-element direction decisions and reasons (sweep mirrored via polygon plus rotate sign, ripple radial and symmetric so unchanged, settle scale unchanged). Remove the unused font wrapper from ThemeSweepToggle."
+  },
+  {
+   "severity": "minor",
+   "where": "Fixtures-based dashboards (scaleX(-1) wrapper)",
+   "problem": "The mirror is done by transforming the whole dashboard with scaleX(-1), so the skeleton shapes are mirrored rather than laid out RTL. Visually this is acceptable because there is no text. Document it, and confirm it does not matter, since the light layer is blurred and then unmounted.",
+   "suggestedFix": "Note in the header that scaleX(-1) is chosen because the skeleton has no text or glyphs."
+  }
+ ],
+ "notes": "Verified by rendering. ThemeSweepToggle is correct: dashboard mirrored (sidebar right), sweep runs from the right edge leftward, the 15deg edge and glow line align with the clip edge (rotate sign flipped), and timing, easing and settle scale are identical to the original (diffed). PaletteThemeRipple: the ripple origin (960,470), timing and exports are unchanged, and the panel, dim, blur and ring all match. The dashboard is mirrored, the sidebar is at right, the final dark resting frame is clean, and there is no leftover foreign text. The only defects are the detached cursor and the replacement of the blocky 'typing' with small text, which weakens the beat. No cheating (no blur or hiding). Fix the typing row and this is shippable."
+}
