@@ -1,14 +1,28 @@
-// Persian RTL localization: dashboard rails and card reading order mirror horizontally, with the sidebar on the right.
-// The diagonal reading sweep mirrors to run from upper-right toward lower-left; its 15° edge, timing, easing,
-// settle scale, and colors stay unchanged. The dashboard is a textless gray skeleton; no raster assets.
-// Vazirmatn is loaded for the Persian UI tone, though this composition contains no visible copy.
+// Persian RTL localization of theme-sweep-toggle (light → dark diagonal sweep).
+// Per-element direction decisions and reasons:
+// - Dashboards (light + dark): both layers are mirrored with scaleX(-1) so the sidebar rail and
+//   the card reading order sit on the RTL side. The skeleton is textless gray geometry (no
+//   glyphs anywhere), so a mirror is visually identical to relaying it out RTL, and it keeps
+//   the two theme layers pixel-aligned so the sweep reads as "the same UI re-skinned".
+// - Sweep clip polygon: mirrored horizontally (x → 1920 − x) so the dark theme enters from the
+//   RIGHT edge and travels toward lower-left, matching RTL reading direction. The 15° slant
+//   angle, poly(3) out easing, and the SWEEP0/SWEEP1 frame range are unchanged.
+// - Bright edge line: its x position is mirrored by the same mapping (left = 1920 − p + SLANT/2)
+//   and the rotation sign is negated (rotate(15deg) → rotate(-15deg)), so the 4px line + glow
+//   stays exactly on the clip polygon's slanted edge (top vertex 1920−p, bottom 1920−p+SLANT).
+// - Settle scale (1 → 0.995 → 1), all timings, easings and colors: unchanged — uniform/physical,
+//   no reading-direction meaning.
+// - No visible copy in this composition, so no Persian font is loaded (FaRoot/FaFonts omitted
+//   deliberately; a font wrapper with zero visible text would be dead weight).
+// Raster handling: none; everything is CSS geometry with no baked text.
+// Original beat map (unchanged): 0–14 light idle → 14–52 sweep with bright edge → 52–64 settle
+//   scale → fully static afterwards.
 import React from 'react';
 import { useCurrentFrame, interpolate, Easing } from 'remotion';
-import {FaFonts} from '../../_fa';
 
 const CL = { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' } as const;
 
-// 浅色板 = Fixtures G；深色板手工反转映射
+// Light palette = Fixtures G; dark palette is a hand-inverted mapping
 type Pal = {
   bg: string; panel: string; line: string; bar: string;
   mid: string; card: string; border: string; side: string; sideBar: string;
@@ -22,7 +36,7 @@ const DARK: Pal = {
   mid: '#8f8f8d', card: '#2c2c2b', border: '#454543', side: '#0f0f0e', sideBar: '#6a6a68',
 };
 
-// 带色板参数的 dashboard（结构同 Fixtures.FakeDashboard variant A）
+// Parameterized dashboard (structure identical to Fixtures.FakeDashboard variant A)
 const Dash: React.FC<{ p: Pal }> = ({ p }) => (
   <div style={{ width: 1920, height: 1080, background: p.bg, display: 'flex', direction: 'ltr' }}>
     <div style={{ width: 220, background: p.side, padding: '28px 22px', boxSizing: 'border-box', display: 'flex', flexDirection: 'column', gap: 18 }}>
@@ -59,38 +73,38 @@ const Dash: React.FC<{ p: Pal }> = ({ p }) => (
   </div>
 );
 
-// 时间轴
-const SWEEP0 = 14; // 扫场开始（前 14f 初始静置）
-const SWEEP1 = 52; // 扫场结束
+// Timeline
+const SWEEP0 = 14; // sweep start (first 14f idle)
+const SWEEP1 = 52; // sweep end
 const SETTLE0 = 52;
-const SETTLE1 = 64; // 坐实结束 → 之后全静止
+const SETTLE1 = 64; // settle end → fully static afterwards
 
-const SLANT = 1080 * Math.tan((15 * Math.PI) / 180); // ≈ 289px，15° 斜边
+const SLANT = 1080 * Math.tan((15 * Math.PI) / 180); // ≈ 289px, 15° slanted edge
 
 export const ThemeSweepToggle: React.FC = () => {
   const frame = useCurrentFrame();
 
-  // 边界顶端 x：先快后缓（poly(3) out）；从左外扫到右外+SLANT 保证底边也扫尽
+  // Edge top-vertex x: fast then slow (poly(3) out); goes past both edges + SLANT so the bottom edge is fully swept
   const p = interpolate(frame, [SWEEP0, SWEEP1], [-20, 1920 + SLANT + 40], {
     easing: Easing.out(Easing.poly(3)),
     ...CL,
   });
 
-  // 坐实：0.995 → 1
+  // Settle: 0.995 → 1
   const settle = interpolate(frame, [SETTLE0, SETTLE0 + 1, SETTLE1], [1, 0.995, 1], {
     easing: Easing.out(Easing.cubic),
     ...CL,
   });
 
-  // 亮线透明度：扫场期间可见，扫完 6f 内淡出
+  // Bright line opacity: visible during the sweep, fades out within 6f after it ends
   const lineOp = interpolate(frame, [SWEEP0, SWEEP0 + 4, SWEEP1 - 4, SWEEP1 + 2], [0, 1, 1, 0], CL);
   const sweeping = frame >= SWEEP0 && frame < SWEEP1 + 2;
 
   return (
-    <FaFonts families={["Vazirmatn"]}><div style={{ width: 1920, height: 1080, position: 'relative', overflow: 'hidden', background: LIGHT.bg, direction: 'rtl', fontFamily: 'Vazirmatn, sans-serif' }}>
-      {/* 底层浅色版 */}
+    <div style={{ width: 1920, height: 1080, position: 'relative', overflow: 'hidden', background: LIGHT.bg }}>
+      {/* Bottom layer: light theme (mirrored textless skeleton) */}
       <div style={{ position: 'absolute', inset: 0, transform: 'scaleX(-1)', direction: 'ltr' }}><Dash p={LIGHT} /></div>
-      {/* 上层深色版，clip-path 斜切揭出 */}
+      {/* Top layer: dark theme revealed by the slanted clip-path polygon (RTL: enters from the right edge) */}
       <div
         style={{
           position: 'absolute',
@@ -102,7 +116,7 @@ export const ThemeSweepToggle: React.FC = () => {
       >
         <div style={{ position: 'absolute', inset: 0, transform: 'scaleX(-1)', direction: 'ltr' }}><Dash p={DARK} /></div>
       </div>
-      {/* 2px 亮线边界（条件卸载） */}
+      {/* 4px bright edge line on the clip boundary (conditionally unmounted) */}
       {sweeping && (
         <div
           style={{
@@ -119,6 +133,6 @@ export const ThemeSweepToggle: React.FC = () => {
           }}
         />
       )}
-    </div></FaFonts>
+    </div>
   );
 };

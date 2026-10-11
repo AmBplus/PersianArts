@@ -91,17 +91,17 @@ const DarkDashboard: React.FC = () => (
 export const PaletteThemeRipple: React.FC = () => {
   const f = useCurrentFrame();
 
-  // 压暗 + blur：面板阶段生效，扫场完成后浅色层已被卸载
+  // Dim + blur during the panel phase; the light layer is unmounted after the ripple completes
   const dim = interpolate(f, [DIM_START, DIM_START + 7], [0, 1], {
     extrapolateLeft: 'clamp', extrapolateRight: 'clamp',
   });
 
-  // 面板弹落（back-out 超调）
+  // Panel drop-in (back-out overshoot)
   const panelT = interpolate(f, [PANEL_IN, PANEL_IN + 8], [0, 1], {
     extrapolateLeft: 'clamp', extrapolateRight: 'clamp',
     easing: Easing.out(Easing.back(1.9)),
   });
-  // 回车后 5f 收缩成一点（ease-in，越缩越快）
+  // After Enter the panel shrinks to a point in 5f (ease-in, accelerating)
   const shrink = interpolate(f, [ENTER, RIPPLE], [1, 0], {
     extrapolateLeft: 'clamp', extrapolateRight: 'clamp',
     easing: Easing.in(Easing.cubic),
@@ -123,7 +123,7 @@ export const PaletteThemeRipple: React.FC = () => {
   for (const t of TYPE_FRAMES) if (f >= t) lastCue = t;
   const pop = typedCount > 0 ? runPop(lastCue) : 1;
 
-  // 扫场：圆从收缩点荡开（ease-out，先快后缓），边缘带亮环
+  // Ripple: circle expands from the shrink point (ease-out, fast then slow), bright edge ring
   const r = interpolate(f, [RIPPLE, RIPPLE_END], [12, MAX_R], {
     extrapolateLeft: 'clamp', extrapolateRight: 'clamp',
     easing: Easing.out(Easing.cubic),
@@ -134,26 +134,26 @@ export const PaletteThemeRipple: React.FC = () => {
     extrapolateLeft: 'clamp', extrapolateRight: 'clamp',
   });
 
-  // 亮点：收缩完成前后 3f 的高光核（把"收缩点=扫场起点"钉死给观众看）
+  // Flash dot: highlight core ~3f around shrink completion (shows the ripple starts exactly at the shrink point)
   const dotOn = f >= ENTER + 2 && f < RIPPLE + 3;
 
   return (
     <FaFonts families={["Vazirmatn"]}><div style={{ width: 1920, height: 1080, background: D.bg, position: 'relative', overflow: 'hidden', direction: 'rtl', fontFamily: 'Vazirmatn, sans-serif' }}>
-      {/* 浅色层：扫场完成后条件卸载（真静止） */}
+      {/* Light layer: conditionally unmounted after the ripple completes (true rest) */}
       {!done && (
         <div style={{ position: 'absolute', inset: 0, filter: dim > 0 ? `brightness(${1 - dim * 0.45}) blur(${dim * 6}px)` : 'none' }}>
           <div style={{ position: 'absolute', inset: 0, transform: 'scaleX(-1)', direction: 'ltr' }}><FakeDashboard variant="A" /></div>
         </div>
       )}
 
-      {/* 深色层：从收缩点起被圆形 clip 揭开；完成后铺满且无 clip */}
+      {/* Dark layer: revealed by a circular clip growing from the shrink point; full-bleed with no clip when done */}
       {(rippling || done) && (
         <div style={{ position: 'absolute', inset: 0, clipPath: done ? 'none' : `circle(${r}px at ${ORIGIN.x}px ${ORIGIN.y}px)` }}>
           <div style={{ position: 'absolute', inset: 0, transform: 'scaleX(-1)', direction: 'ltr' }}><DarkDashboard /></div>
         </div>
       )}
 
-      {/* 扫场亮边缘环 */}
+      {/* Ripple bright edge ring (radial + symmetric: unchanged by RTL) */}
       {rippling && (
         <div
           style={{
@@ -170,7 +170,7 @@ export const PaletteThemeRipple: React.FC = () => {
         />
       )}
 
-      {/* 收缩亮点 */}
+      {/* White flash dot pinning the shrink point = ripple origin */}
       {dotOn && (
         <div
           style={{
@@ -186,7 +186,6 @@ export const PaletteThemeRipple: React.FC = () => {
         />
       )}
 
-      {/* فرمان ⌘K؛ ورودی فارسی از لبهٔ راست پیش می‌رود. */}
       {panelMounted && (
         <div
           style={{
