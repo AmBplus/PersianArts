@@ -17,7 +17,12 @@ while ($true) {
       $done = $summary.approved + $summary.fixed
       git commit -q -m "wip(persian-shotcraft): autosync $(Get-Date -Format 'yyyy-MM-dd HH:mm') — $done/$($summary.total) done" -m "Automatic snapshot (cards may be mid-edit by running agents; the batch-end commit is authoritative)." -m "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
     }
-    git push -q $remote "HEAD:$branch" 2>&1 | Out-Null
+    # integrate other writers (parallel sessions push to main too); local wins on conflicts in generated files
+    git fetch -q $remote $branch 2>&1 | Out-Null
+    git merge -q --no-edit -X ours FETCH_HEAD 2>&1 | Out-Null
+    if ($LASTEXITCODE -ne 0) { git merge --abort 2>$null; "$(Get-Date -Format HH:mm:ss) MERGE FAILED - manual fix needed" }
+    $pushOut = git push -q $remote "HEAD:$branch" 2>&1
+    if ($LASTEXITCODE -ne 0) { "$(Get-Date -Format HH:mm:ss) PUSH FAILED: $pushOut" }
     "$(Get-Date -Format HH:mm:ss) synced $(git rev-parse --short HEAD)"
   } else {
     "$(Get-Date -Format HH:mm:ss) skipped: not on $branch"
