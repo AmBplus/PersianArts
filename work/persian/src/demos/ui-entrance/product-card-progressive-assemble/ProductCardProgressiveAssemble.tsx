@@ -2,8 +2,20 @@
 // 详情卡像被逐字段抓取般自建：图→标题→breadcrumb pill 依次 pop→价格出现后被划线降级、
 // 强调色新价 spring 跳出→正文逐行揭示+强调色高亮块由左向右刷过→色卡点亮。
 // 整卡极慢 scale 前推保持呼吸。设计坐标 480×270（DesignStage 等比放大）。
+// PERSIAN (RTL) localization of product-card-progressive-assemble.
+// Motion/timing is unchanged: the 60-denominator recipe frames, arrival curves,
+// f=26 price downgrade, spring emphasis, highlight wipes, and slow camera push
+// remain intact. FaRoot mirrors reading-order layout: the product image moves to
+// the right and the details column stays beside it on the left; pill, price, and
+// swatch rows reverse naturally. The marker sweep changes from left-origin to
+// right-origin because it follows reading direction. The centered zipper stays
+// physical and unmirrored. All placeholder copy is idiomatic Persian; dollar
+// tokens stay LTR-isolated while digits become Persian. Vazirmatn is a loaded,
+// variable UI sans with real 800 weight and dependable Persian shaping. There is
+// no raster or baked-in text: the product image is CSS geometry.
 import React from 'react';
 import { DesignStage, E, lerp, seg, useT } from '../../_fixtures/Motion';
+import {FaRoot, FA_LH, faDigits, faText} from '../../_fa';
 
 export const PRODUCT_CARD_PROGRESSIVE_ASSEMBLE_DURATION = 150; // 5000ms @30fps
 
@@ -26,9 +38,9 @@ const fieldStyle = (t: number, f0: number, mode: 'rise' | 'pop' = 'rise'): React
 
 // 描述行：[文本, 是否马克笔高亮]
 const LINES: [string, boolean?][][] = [
-  [['Placeholder copy for '], ['a key highlight', true], [' in the']],
-  [['product body. '], ['Second highlight', true], [' sits here on']],
-  [['the third line of neutral sample text.']],
+  [['ساخته‌شده برای '], ['استفادهٔ روزانه', true]],
+  [['طراحی '], ['سبک و مقاوم', true], [' برای هر روز']],
+  [['سادگیِ کاربردی در یک قاب کوچک']],
 ];
 
 export const ProductCardProgressiveAssemble: React.FC = () => {
@@ -40,6 +52,7 @@ export const ProductCardProgressiveAssemble: React.FC = () => {
   const nk = seg(t, F(26), F(26) + 0.12);
   return (
     <DesignStage bg="#0d0e13" raster="zoom">
+      <FaRoot family="Vazirmatn">
       <div
         style={{
           position: 'absolute',
@@ -51,7 +64,6 @@ export const ProductCardProgressiveAssemble: React.FC = () => {
           background: '#f6f5f2',
           borderRadius: 12,
           boxShadow: '0 18px 50px rgba(0,0,0,.5)',
-          fontFamily: '-apple-system,Helvetica,sans-serif',
           display: 'flex',
           padding: '4.5%',
           boxSizing: 'border-box',
@@ -80,24 +92,23 @@ export const ProductCardProgressiveAssemble: React.FC = () => {
               borderRadius: '40% 40% 14% 14%/26% 26% 10% 10%',
             }}
           >
-            {/* 拉链 */}
+            {/* Physical zipper: centered, so it stays unmirrored. */}
             <div style={{ position: 'absolute', left: '49%', top: '20%', width: '2%', height: '58%', background: '#525a70' }} />
           </div>
         </div>
         {/* 右列 */}
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0 }}>
           {/* 标题（f=4） */}
-          <div style={{ fontSize: 19, fontWeight: 800, color: '#17181c', letterSpacing: '-.3px', ...fieldStyle(t, 4) }}>
-            Sample Product Title
+          <div style={{ ...faText(19, {fontWeight: 800, color: '#17181c'}), ...fieldStyle(t, 4) }}>
+            کیف شهریِ مینیمال
           </div>
           {/* breadcrumb pills（f=8 起每 2 帧一个 pop） */}
           <div style={{ display: 'flex', gap: 6, margin: '8px 0 10px' }}>
-            {['Category', 'Subgroup', 'Detail'].map((txt, i) => (
+            {['اکسسوری', 'روزمره', 'جزئیات'].map((txt, i) => (
               <div
                 key={txt}
                 style={{
-                  fontSize: 9,
-                  fontWeight: 600,
+                  ...faText(9, {fontWeight: 600}),
                   color: '#5a5e6b',
                   background: '#e9e7e1',
                   padding: '3px 9px',
@@ -113,28 +124,26 @@ export const ProductCardProgressiveAssemble: React.FC = () => {
           <div style={{ display: 'flex', alignItems: 'baseline', gap: 9, marginBottom: 11, ...fieldStyle(t, 16) }}>
             <span
               style={{
-                fontSize: cut ? 15 : 21,
-                fontWeight: 800,
+                ...faText(cut ? 15 : 21, {fontWeight: 800}),
                 color: cut ? '#9a9da6' : '#17181c',
                 textDecoration: cut ? 'line-through' : 'none',
               }}
             >
-              $249
+              <bdi dir="ltr">${faDigits(249)}</bdi>
             </span>
             <span
               style={{
-                fontSize: 21,
-                fontWeight: 800,
+                ...faText(21, {fontWeight: 800}),
                 color: ACCENT,
                 opacity: Math.min(1, nk * 3),
                 transform: `scale(${lerp(E.spring(nk, 0.35), 1.15, 1)})`,
               }}
             >
-              $189
+              <bdi dir="ltr">${faDigits(189)}</bdi>
             </span>
           </div>
           {/* 描述行（f=30 起每 2 帧一行）+ 马克笔高亮（行 f0+4 起由左向右刷过） */}
-          <div style={{ fontSize: 10.5, lineHeight: 1.75, color: '#494d58' }}>
+          <div style={{ ...faText(10.5, {lineHeight: FA_LH, color: '#494d58'}) }}>
             {LINES.map((segs, li) => (
               <div key={li} style={{ whiteSpace: 'nowrap', ...fieldStyle(t, 30 + li * 2) }}>
                 {segs.map(([txt, isMark], si) =>
@@ -145,14 +154,14 @@ export const ProductCardProgressiveAssemble: React.FC = () => {
                       <span
                         style={{
                           position: 'absolute',
-                          left: -2,
-                          right: -2,
+                          insetInlineStart: -2,
+                          insetInlineEnd: -2,
                           top: '8%',
                           bottom: '4%',
                           background: ACCENT_SOFT,
                           borderRadius: 2,
                           transform: `scaleX(${seg(t, F(30 + li * 2 + 4), F(30 + li * 2 + 4) + 0.085, E.outCubic)})`,
-                          transformOrigin: 'left center',
+                          transformOrigin: 'right center',
                         }}
                       />
                       <span style={{ position: 'relative', fontWeight: 700, color: '#26282f' }}>{txt}</span>
@@ -181,6 +190,7 @@ export const ProductCardProgressiveAssemble: React.FC = () => {
           </div>
         </div>
       </div>
+      </FaRoot>
     </DesignStage>
   );
 };

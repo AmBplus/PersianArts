@@ -1,3 +1,6 @@
+// PERSIAN localization note: this helper contains no on-screen text. RTL is supplied
+// by the parent FaRoot, but the vertical ticker's alternating up/down motion and its
+// centered physical column order remain unchanged to preserve the source parallax.
 // origin: vibe-motion/skills remotion-3d-ticker assets/VerticalTicker.tsx
 //         (2026-07-13 扫描，2026-07-15 吸收；改动：items 泛化为 ReactNode、
 //          遮罩高度/透视角/scale/列宽/间距提为 props)

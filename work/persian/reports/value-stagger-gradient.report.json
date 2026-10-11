@@ -1,0 +1,68 @@
+{
+  "slug": "value-stagger-gradient",
+  "status": "done",
+  "comps": ["demo-ValueStaggerGradient"],
+  "startingState": "Working copy was byte-identical to upstream (diff clean) — no interrupted edits to repair; localized from scratch.",
+  "font": {
+    "family": "Vazirmatn",
+    "reason": "The card's only text is tiny, low-emphasis technical chrome (a caption strip in muted #5b6480). Vazirmatn is the neutral product-UI Persian voice, variable weight, and has full coverage of Persian digits, punctuation and ZWNJ. Loaded via FaRoot (family='Vazirmatn') — verified rendering in the stills (no fallback look). The original's SF Mono / monospace has no Persian-joining-safe counterpart in the kit (Vazir Code renders Persian stretched/unjoined per lessons), so the Persian caption uses Vazirmatn."
+  },
+  "textChanges": [
+    {
+      "original": "scale: stagger([1, 0.35])  hue: stagger([200, 320])",
+      "persian": "ورود: تأخیر پلکانی + گرادیان در مقادیر",
+      "why": "The original caption is an anime.js API call string. The card's own source prompt says these captions are technique annotations, not content, and in a real film must become a semantic title or be removed. Keeping raw English code on screen would also violate the 'no unintended foreign text' rule. The Persian caption states what beat 1 does: staggered entry delay with a value gradient (height/hue/travel/blur)."
+    },
+    {
+      "original": "pulse: stagger([.06, .42], { from: 'center' })",
+      "persian": "نبض: پلکانی از مرکز، بیشینهٔ دامنه در میانه",
+      "why": "Same reasoning; the Persian caption states what beat 2 does: pulse staggered from the center with maximum amplitude in the middle. Persian typography checked: Persian ی/ک, no Arabic ي/ك, natural tech-demo wording (not word-for-word), no orphan letters."
+    }
+  ],
+  "timingBeats": "All beats preserved exactly: caption fade-in seg(t,0.04,0.12), HARD CUT between captions at t=0.52 (f78), entry cascade d=i*0.02 with window 0.22 outCubic, center pulse 0.56+distC*0.13, endpoints settle by t=0.87 with the design's intentional static hold to t=1. No string-length-driven beat shifts exist (captions are not typed/staggered). VALUE_STAGGER_GRADIENT_DURATION=150, fps 30, 1920x1080, N=16, seeds, easings: all unchanged.",
+  "rtlDecisions": [
+    {
+      "comp": "demo-ValueStaggerGradient",
+      "what": "Beat-1 stagger/cascade origin and the hue/height/travel/blur ramp (bars + decorative dots)",
+      "action": "MIRRORED: bars and dots anchored with right: (8+i*5.4)% (+1.2% inward offset for dots) instead of left:. Bar i=0 (hue 200 blue, tallest, first to move, longest travel/blur) now sits at the RIGHT edge; the ramp reads right-to-left.",
+      "why": "The stagger origin is the 'first' element — reading-order semantics (checklist: first item = right-most for RTL). The gradient ramp and cascade order carry layout-direction meaning, so they flip; magnitude/direction of every animated value (translateY, scaleY, blur, brightness) is unchanged."
+    },
+    {
+      "comp": "demo-ValueStaggerGradient",
+      "what": "Beat-2 center pulse (from center, distC=|i-7.5|/7.5, distC*0.13 delay, amp=lerp(1-distC,0.06,0.42), brightness 1+pulse*0.55)",
+      "action": "KEPT unchanged.",
+      "why": "Physically symmetric about the center axis; a center origin has no reading direction. Verified visually at f97: identical bulge/brightness shape in fa and orig."
+    },
+    {
+      "comp": "demo-ValueStaggerGradient",
+      "what": "Caption strip position and styling",
+      "action": "KEPT centered (left:50% + translateX(-50%) is direction-neutral); direction:rtl + unicodeBidi:plaintext from kit/faText; letterSpacing forced to 0 (the original 1.5px tracking on Latin mono must not survive on joined Persian); fontSize fs(10) x1.1 per kit; color #5b6480 and top:9% unchanged.",
+      "why": "Centered chrome text; Persian joins break under letter-spacing; Persian x-height compensates via fs()."
+    },
+    {
+      "comp": "demo-ValueStaggerGradient",
+      "what": "Bar visual physics (vertical entrance, 180deg gradient, borderRadius 5, glow shadow, dots row)",
+      "action": "KEPT unchanged.",
+      "why": "Vertical motion (gravity axis) and symmetric glow/radii carry no reading direction."
+    }
+  ],
+  "rasterHandling": "No raster/video assets in this demo — everything is pure DOM divs; nothing to sanitize or mirror.",
+  "verification": {
+    "framesViewed_fa_vs_orig": [12, 30, 60, 84, 97, 110, 145],
+    "video": "work/persian/out/value-stagger-gradient/ValueStaggerGradient.fa.mp4 (150 frames, rendered ok)",
+    "notes": [
+      "f12: blue first bar entering at RIGHT in fa (orig: left); Persian caption clean, correctly shaped, Vazirmatn loaded.",
+      "f30/f60: cascade and ramp mirror exactly — same bar counts mid-flight, same blur trail, same beats.",
+      "f84: caption hard-cut already switched in both; entry complete, identical ramps mirrored.",
+      "f97: center-pulse peak identical (symmetric), brightness glow matches.",
+      "f110: endpoint pulse reached the FIRST bar — right side in fa, left in orig; mirror confirmed at late beats.",
+      "f145/146: final resting gradient, static hold beat preserved; no foreign text anywhere on screen."
+    ]
+  },
+  "leftoverScan": "Grep of the card dir: no letterSpacing, no textTransform/uppercase, no left/translateX/marginLeft/paddingLeft/clipPath/inset/gradient-angle/transformOrigin hits beyond the mirrored right-anchors, the centered caption (left:50% + translateX(-50%), direction-neutral) and transformOrigin '50% 100%' (vertical, physical). Zero Chinese/English on-screen text in the Persian render.",
+  "concerns": [
+    "The original caption strings were anime.js API code; they were replaced with semantic Persian captions as the card's source prompt itself prescribes. A reviewer wanting the literal code kept could disagree, but keeping English code would violate the no-foreign-text rule and the prompt explicitly sanctions semantic titles.",
+    "Chinese comments from upstream remain in code comments (staggerVal/BARS blocks) — code comments are not on-screen text; upstream reference values were kept for fidelity auditing."
+  ],
+  "newLessons": []
+}

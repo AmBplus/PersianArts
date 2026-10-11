@@ -1,0 +1,60 @@
+{
+  "slug": "page-waterfall-wall",
+  "status": "localized",
+  "font": {
+    "families": ["Vazirmatn"],
+    "reason": "No live Persian copy is rendered by this card; Vazirmatn is loaded by FaRoot as the neutral, well-covered Persian UI default for any inherited page chrome and keeps the card contract consistent."
+  },
+  "comps": [
+    {
+      "id": "demo-PageWaterfallWall",
+      "component": "PageWaterfallWall",
+      "fps": 30,
+      "size": "1920x1080",
+      "durationInFrames": 150,
+      "rtlDecisions": [
+        {
+          "what": "Global direction",
+          "action": "Wrapped the composition in FaRoot with direction:rtl and Vazirmatn loaded.",
+          "why": "The localized card must establish Persian RTL context even though its visible content is entirely raster page material."
+        },
+        {
+          "what": "Column order",
+          "action": "Kept the three columns centered in their source order.",
+          "why": "This is a balanced physical wall, not a horizontal reading sequence; reordering columns would change the intended parallax silhouette and differential-motion proof."
+        },
+        {
+          "what": "Vertical ticker direction",
+          "action": "Kept the source directions unchanged: outer columns up and middle column down.",
+          "why": "The alternating vertical flow is the core motion design and is physical/content flow rather than an RTL horizontal reading cue."
+        },
+        {
+          "what": "Perspective and camera",
+          "action": "Kept perspective, rotateX, scale, masks, loop durations [12, 9, 14], column width, gap, and 1.0-to-1.06 camera push unchanged.",
+          "why": "These parameters define the source card's 3D wall, seamless looping, and slow push; no RTL change is required."
+        }
+      ],
+      "text": {
+        "liveStringsTranslated": [],
+        "notes": "There are no JSX/SVG/canvas strings in the composition."
+      },
+      "rasterHandling": {
+        "assets": ["card1.png", "card2.png", "card3.png", "card4.png", "card5.png", "card6.png", "card7.png", "card8.png", "card9.png", "card10.png", "projects-empty.png", "float-search.png"],
+        "action": "Repointed the card's texture lookup to the checked-in textures/live set and applied filter: blur(16px) plus a 1.04 scale cover to each screenshot slice.",
+        "why": "The source screenshots contain baked English/Chinese UI copy that cannot be translated in JSX. Strong blur preserves the page-card texture and motion while preventing foreign text from remaining legible."
+      },
+      "timing": "All source timing, loop periods, direction signs, easing/transform behavior, fps, dimensions, and duration remain unchanged."
+    }
+  ],
+  "verification": {
+    "persianFramesViewed": [0, 20, 45, 75, 110, 149],
+    "persianStillRender": "passed",
+    "videoRender": "passed",
+    "originalFrameComparison": "unavailable: work/upstream/out/video/demo-PageWaterfallWall.mp4 is absent; the handoff documents this card as an upstream-render failure. No original comparison is claimed."
+  },
+  "concerns": [
+    "The upstream reference MP4 is missing, so same-frame fa/orig visual comparison could not be performed.",
+    "Raster blur intentionally removes readable page detail because the source assets contain baked foreign-language text; no foreign text remains legible in the inspected Persian stills."
+  ],
+  "lessons": []
+}

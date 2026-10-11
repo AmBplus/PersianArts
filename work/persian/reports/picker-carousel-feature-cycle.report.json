@@ -1,0 +1,72 @@
+{
+  "slug": "picker-carousel-feature-cycle",
+  "status": "localized-and-rendered",
+  "component": {
+    "id": "demo-PickerCarouselFeatureCycle",
+    "file": "PickerCarouselFeatureCycle.tsx",
+    "durationFrames": 108,
+    "fps": 30,
+    "size": "1920x1080"
+  },
+  "font": {
+    "family": "Vazirmatn",
+    "reason": "A variable, neutral Persian product-UI sans that retains the compact, high-contrast role of the source Helvetica while rendering joined Persian labels cleanly at the picker's small row size.",
+    "loading": "FaRoot loads Vazirmatn before rendering."
+  },
+  "translations": {
+    "Data Cleanup": "پاک‌سازی داده‌ها",
+    "Direct Message": "پیام مستقیم",
+    "Smart Segments": "بخش‌بندی هوشمند",
+    "Batch Actions": "اقدام‌های گروهی",
+    "Reward Program": "برنامهٔ پاداش",
+    "Automated Flows": "گردش‌کارهای خودکار",
+    "Variant Testing": "آزمون نسخه‌ها",
+    "AI": "AI (retained as a familiar Latin technical mark, isolated with bdi)"
+  },
+  "rtlDecisions": [
+    {
+      "component": "demo-PickerCarouselFeatureCycle",
+      "what": "Feature-label row order",
+      "action": "Applied RTL through FaRoot; each icon is the flex-start item and therefore sits at the right/start side of its Persian label.",
+      "why": "The icon-label relationship follows reading order."
+    },
+    {
+      "component": "demo-PickerCarouselFeatureCycle",
+      "what": "AI badge",
+      "action": "Mirrored the badge from the source's left exterior to the equivalent right exterior position; preserved its dimensions and fade timing. The Latin token is bidi-isolated.",
+      "why": "It is a reading-side companion to the picker, while AI itself is a technical token conventionally retained in Latin script."
+    },
+    {
+      "component": "demo-PickerCarouselFeatureCycle",
+      "what": "Picker movement, item sequence, centre pill, falloff and gradient",
+      "action": "Kept unchanged: vertical translateY, fixed focus pill, vertical gradient, list order, opacity/font-size distance mapping, outQuint easing, five holds and scaleY landing breath.",
+      "why": "These are vertical/physical interaction semantics, not left-to-right reading semantics. The source prompt requires content to move through an immobile focus pill and pause after every snap."
+    },
+    {
+      "component": "demo-PickerCarouselFeatureCycle",
+      "what": "Symmetric absolute geometry",
+      "action": "Kept the picker and pill left/right bounds and centre anchoring unchanged.",
+      "why": "They define a centred symmetric composition; mirroring would produce the same geometry."
+    }
+  ],
+  "typography": {
+    "letterSpacing": "No tracking on Persian labels. The sole 0.5px tracking declaration is restricted to the retained Latin AI mark.",
+    "shaping": "Labels are intact text runs; no Persian characters are split, transformed individually or uppercased.",
+    "fit": "Persian sizes use the shared fs/faText scaling. All labels stay on one line inside the 300px design viewport in inspected frames."
+  },
+  "rasterHandling": {
+    "assets": "None. The card is fully vector/CSS text and geometry.",
+    "foreignText": "All source feature labels were replaced; the intentional AI technical mark remains."
+  },
+  "motionFidelity": {
+    "timingChanged": false,
+    "details": "PICKER_CAROUSEL_FEATURE_CYCLE_DURATION remains 108. FPS, stage size, five snap steps, HOLD=5/14, easing, row height, opacity/size falloff, and landing breath are unchanged. Translation length does not change any timing because labels are whole-row content rather than character-timed animation."
+  },
+  "verification": {
+    "stillFramesViewed": [5, 17, 24, 36, 43, 55, 62, 74, 81, 93, 102, 105],
+    "comparison": "Viewed Persian and original paired renders at early entry, every cycle/settle sequence, and the final resting phase. Checked Persian font shaping, one-line fit, mirrored badge/icon placement, fixed focus pill, and matching vertical composition.",
+    "finalRender": "PickerCarouselFeatureCycle.fa.mp4 rendered successfully with --video; harness returned ok:true and no errors."
+  },
+  "concerns": [],
+  "newLessons": []
+}

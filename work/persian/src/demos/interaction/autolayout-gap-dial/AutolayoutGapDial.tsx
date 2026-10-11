@@ -3,17 +3,15 @@
 // FONT: Vazirmatn (variable, weights 700/800 exist) - neutral design-tool UI, matches the Helvetica original.
 // SHAPING: letterSpacing 2 removed (0), no uppercase.
 // DIRECTION decisions:
-//  - Link-block row MIRRORED: first block (widest-list index 0) is right-most (nav order follows reading order);
+//  - Link-block row MIRRORED: first block (index 0) is right-most (nav order follows reading order);
 //    block x = W - x - w. Row stays centered, so growth stays symmetric (gap math untouched).
 //  - Gap annotations (extension lines, measure line, badge) are positioned from the mirrored block edges, so they track the gaps.
 //  - Title: direction rtl, word on the right and the value badge to its left (inline-start margin instead of marginLeft).
 //  - Selection frame + 8 handles: symmetric, kept. Dot grid: symmetric, kept.
 //  - Timing, easing, spring, seeds, step-2 counter and tick pulse: unchanged.
 // RASTER: none.
-// autolayout-gap-dial —— framer-ai 4.5–5.5s
-// 一排导航链接块带框选描边 + 间距标注徽章，徽章数字逐格跳动，
-// 链接块被参数实时推开（flex gap 插值），标注线跟随。
-// demo 放大做：间距从紧(16)拉到松(64)，再弹簧回弹归位。
+// The shared gap drives the centered row, four measurements, and five synchronized readouts.
+// The source's 120-frame curve grows from 12 to 110, holds, then returns with spring overshoot.
 import React from 'react';
 import { AbsoluteFill, useCurrentFrame, interpolate, spring, useVideoConfig, Easing } from 'remotion';
 import { G } from '../../_fixtures/Fixtures';

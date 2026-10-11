@@ -1,0 +1,75 @@
+{
+  "slug": "autolayout-gap-dial",
+  "status": "complete",
+  "components": [
+    {
+      "id": "demo-AutolayoutGapDial",
+      "file": "AutolayoutGapDial.tsx",
+      "durationFrames": 120,
+      "fps": 30,
+      "text": [
+        {
+          "source": "GAP",
+          "persian": "فاصله",
+          "reason": "Natural, concise label for the spacing control in a Persian design tool."
+        },
+        {
+          "source": "numeric gap readouts",
+          "persian": "Persian digits through faDigits",
+          "reason": "The same stepped numeric value appears in the title badge and all four measurement badges."
+        }
+      ],
+      "font": {
+        "family": "Vazirmatn",
+        "reason": "A neutral, readable product UI face matching the Helvetica design-tool mood; its variable weights support the original 700 and 800 hierarchy.",
+        "loading": "FaRoot loads the font before the frame is rendered.",
+        "shaping": "The Persian word is a single joined text run; tracking is zero and uppercase is removed."
+      },
+      "rtlDecisions": [
+        {
+          "what": "Five link blocks and their placeholder bars",
+          "action": "Mirror each block's x coordinate using 1920 - sourceX - blockWidth; preserve widths, centered row, and bar centering.",
+          "why": "Navigation order follows Persian reading order, so item zero belongs at the right edge. The placeholders contain no literal text."
+        },
+        {
+          "what": "Four gap measurements: both extension lines, horizontal line, and numeric badge",
+          "action": "Derive the gap's left edge from the mirrored block x coordinate, then place the line across the same live gap and center its badge.",
+          "why": "The measurement belongs to the adjacent mirrored blocks and must track the same gap value on the same frame."
+        },
+        {
+          "what": "Heading and value badge",
+          "action": "Use the root RTL direction and an inline-start margin so «فاصله» reads from the right and the badge sits to its left; center the pair.",
+          "why": "The label-to-value sequence is reading-direction content, while the centered heading is part of the original composition."
+        },
+        {
+          "what": "Selection rectangle and eight handles",
+          "action": "Keep the centered rectangle and all corner and midpoint handles at their original geometric positions.",
+          "why": "This selection geometry is symmetric and has no reading-order meaning."
+        },
+        {
+          "what": "Dot grid, block shadows, and badge scale pulse",
+          "action": "Keep the background grid, physical shadows, and centered scale pulse.",
+          "why": "These are symmetric or physical visual effects, not directional navigation."
+        },
+        {
+          "what": "Gap growth, 14-frame hold, spring return, and two-unit readout steps",
+          "action": "Keep the original frame boundaries, easing, spring parameters, rounding, and pulse calculation.",
+          "why": "The simultaneous number and geometry change is the source design's causal beat. Translation does not change its timing."
+        }
+      ],
+      "rasterHandling": {
+        "assets": [],
+        "action": "None: the original card uses CSS shapes and text only."
+      },
+      "visualVerification": {
+        "method": "Viewed matching original and Persian PNGs at frames 0, 14, 33, 52, 65, 72, 86, and 119.",
+        "result": "Persian text and digits fit, the RTL row remains centered, the gap markers stay on the block edges, and the expansion, hold, overshoot, and final rest match the source beats. No foreign on-screen text is visible.",
+        "fullVideo": "AutolayoutGapDial.fa.mp4",
+        "videoRendered": true
+      },
+      "timingAdjustmentForTextLength": "None: the translated heading has no reveal or stagger, and all digits derive from the original gap value."
+    }
+  ],
+  "concerns": [],
+  "lessons": []
+}

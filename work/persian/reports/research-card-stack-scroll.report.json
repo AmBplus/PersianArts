@@ -1,0 +1,33 @@
+{
+  "slug": "research-card-stack-scroll",
+  "status": "localized",
+  "font": {
+    "families": ["Vazirmatn"],
+    "reason": "Neutral variable UI sans suited to academic research cards; reliable Persian glyph coverage, natural shaping, and variable weights preserve the restrained SF/Arial-like source tone."
+  },
+  "comps": [
+    {
+      "id": "demo-ResearchCardStackScroll",
+      "component": "ResearchCardStackScroll",
+      "rtlDecisions": [
+        {"what": "Thirteen research paper titles", "action": "Translated into concise, idiomatic Persian with appropriate technical vocabulary and Persian punctuation.", "why": "These are the central readable content and should convey the same research-document volume in the target language."},
+        {"what": "Card text alignment and content anchoring", "action": "Set card direction to RTL; anchor title and author metadata at the right with logical-space placement.", "why": "Reading starts from the right in Persian and the text should align naturally within each paper card."},
+        {"what": "Colored accent rail", "action": "Moved the rail from the left edge to the right edge.", "why": "It serves as a leading edge accent beside the card content, so it follows the reading start."},
+        {"what": "Horizontal drift of the stacking stream", "action": "Negated the x displacement; the stack now drifts left while retaining the original down movement.", "why": "The source's rightward component expresses the flow direction of incoming content and mirrors for RTL. Vertical stacking is physical and remains downward."},
+        {"what": "Centered stack anchor", "action": "Kept the center anchor and symmetric card dimensions unchanged.", "why": "The composition is centered; mirroring only the horizontal drift preserves its balance."},
+        {"what": "Background grid", "action": "Kept its downward translation and spacing unchanged.", "why": "The grid is a physical speed reference tied to the vertical card drift, not a reading-direction cue."},
+        {"what": "Card entry, timing and depth", "action": "Preserved 144-frame duration, 12-frame cadence, 6-frame entry, easing, squash, deterministic skeleton widths, blur, brightness and opacity curves.", "why": "These define the source's throughput rhythm and research-stack depth; none depend on language direction."},
+        {"what": "Author and preprint metadata", "action": "Localized the labels and used Persian digits for generated synthetic identifiers.", "why": "The metadata is visible UI copy; Persian digits follow the project localization rule."},
+        {"what": "Raster/textured elements", "action": "No raster assets are used; the grid and skeleton bars are native CSS shapes.", "why": "There is no baked-in foreign text requiring replacement or blur."}
+      ],
+      "visualVerification": {
+        "framesCompared": [0, 5, 11, 12, 17, 23, 36, 60, 96, 132, 143],
+        "faVsOriginalViewed": true,
+        "notes": "Viewed matching Persian and original PNGs at entry (5), the mid-stack reading state (60), and the final beat (143), plus rendered stills across the full timeline. Persian glyphs shaped correctly; title and metadata remain within the card; the entry and stack progression preserve the source beat and depth feel."
+      },
+      "concerns": ["The source prompt intentionally ends mid-flow: at 144 frames its 13th card is still entering. This source behavior is preserved." ]
+    }
+  ],
+  "rasterHandling": "No raster images or baked-in text occur in this composition.",
+  "lessons": []
+}

@@ -1,0 +1,73 @@
+{
+  "slug": "morph-from-primitive",
+  "status": "localized-and-rendered",
+  "components": [
+    {
+      "id": "demo-MorphFromPrimitive",
+      "file": "work/persian/src/demos/ui-entrance/morph-from-primitive/MorphFromPrimitive.tsx",
+      "visibleText": [],
+      "textHandling": "The source has no on-screen words or digits. Its gray bars and circles are abstract UI placeholders, so no copy was added or translated.",
+      "font": {
+        "family": "Vazirmatn",
+        "reason": "A neutral Persian product UI face fits the card's restrained grayscale mock interface. FaRoot loads it and establishes RTL, though no glyphs are drawn in this composition.",
+        "verifiedGlyphRendering": "Not applicable: this composition contains no text."
+      },
+      "rtlDecisions": [
+        {
+          "what": "Whole content layer",
+          "action": "Set direction:rtl through FaRoot.",
+          "why": "The card's placeholder content represents UI reading order."
+        },
+        {
+          "what": "Header placeholder bar",
+          "action": "Anchor the existing 58% width bar at the right side of the content box.",
+          "why": "A Persian header begins at the right reading edge."
+        },
+        {
+          "what": "Two body placeholder bars",
+          "action": "Anchor the existing 86% and 72% width bars at the right side, preserving their widths and vertical order.",
+          "why": "Paragraph lines share the Persian text start edge."
+        },
+        {
+          "what": "Footer avatar and short bar",
+          "action": "Use inherited RTL flex order so the avatar sits on the right and the short bar follows to its left.",
+          "why": "The avatar is the first item in a reading-order row."
+        },
+        {
+          "what": "Circle, centered card outline, and SVG morph topology",
+          "action": "Keep geometry, clockwise path construction, radius, center, and transform unchanged.",
+          "why": "This symmetric in-place graphic motion has no reading direction; mirroring the path would change the designed motion without aiding comprehension."
+        },
+        {
+          "what": "Card content fade and vertical stack",
+          "action": "Keep opacity curve, vertical order, and 56–68 frame cue unchanged.",
+          "why": "The fade and top-to-bottom sequence do not encode left-to-right reading."
+        }
+      ],
+      "rasterHandling": "No raster, video, texture, or baked-in text assets occur in this component.",
+      "motionFidelity": {
+        "unchanged": "30 fps; 1920×1080; circle R=130; card 520×300, corner R=20; cubic path topology; 10–30 breath at 1→1.12→1; 30–54 morph; 56–68 content fade; easing curves; grayscale colors.",
+        "timingImpactOfCopy": "None; there is no source text or Persian replacement.",
+        "designDurationFrames": 140,
+        "registryDurationFrames": 20,
+        "renderDurationFrames": 140
+      },
+      "visualVerification": {
+        "persianFramesViewed": [0, 20, 42, 60, 68, 139],
+        "sourceFramesViewed": [0],
+        "findings": "Opening circle matches the source frame. The breath is centered, the mid-morph has the expected smooth barrel contour, content fades inside the settled outline, all placeholder bars align to the right, and the final frame is stable and unclipped."
+      },
+      "video": "work/persian/out/morph-from-primitive/MorphFromPrimitive.fa.mp4"
+    }
+  ],
+  "concerns": [
+    "The upstream reference MP4 is truncated to the 20-frame registry duration. It supplies opening-frame visual comparison but no source frames for the morph or final card. Later fidelity was checked against the untouched source component and source prompt, alongside Persian frames rendered with --duration 140."
+  ],
+  "lessons": [
+    {
+      "symptom": "A text-free UI placeholder card can appear to need no localization even though its short bars and avatar retain left-to-right reading order.",
+      "cause": "The bars are abstract shapes, but their alignment and sequence still stand in for text and UI content.",
+      "fix": "Apply RTL to the content layer so bars share the right start edge and the avatar begins the footer row on the right; preserve symmetric outline geometry and motion."
+    }
+  ]
+}

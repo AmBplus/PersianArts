@@ -9,51 +9,56 @@
       "size": "1920x1080",
       "designDurationFrames": 120,
       "renderedVideo": "ClonerDepthEcho.fa.mp4",
-      "renderedStillFrames": [0, 18, 28, 45, 55, 60, 65, 80, 119],
+      "renderedStillFrames": [0, 18, 28, 45, 55, 60, 65, 68, 80, 119],
       "rtlDecisions": [
         {
           "what": "Visible heading: CLONER DEPTH ECHO",
-          "action": "Translated to «پژواکِ عمقِ کلون‌ها» and rendered in a FaRoot RTL context with Vazirmatn 800, zero letter spacing, and a 1.15 line height.",
-          "why": "This is natural contemporary Persian while retaining the familiar technical token «کلون»; the heading remains centered because centering is compositionally symmetric, not a reading-order rail."
+          "action": "Translated to «پژواک عمق کلون‌ها» with the required ZWNJ, no ezafe diacritics, zero letter spacing, Vazirmatn 800, and a 1.4 line height in a fixed 108px title box.",
+          "why": "This is idiomatic contemporary Persian and keeps «کلون» as a familiar technical token. The centered heading is compositionally symmetric, so it remains centered rather than mirroring."
+        },
+        {
+          "what": "3D stage static positioning inside FaRoot",
+          "action": "Set the full-viewport perspective stage to direction:ltr.",
+          "why": "The source stage uses an absolute child with left:700 and no right/inset counterpart. LTR restores the source static-position origin; without it, inherited RTL anchored the card at the far-left edge and broke the centered composition."
+        },
+        {
+          "what": "Card placeholder internals",
+          "action": "Wrapped every reused Card in an explicit direction:ltr geometry context.",
+          "why": "The fixture contains only geometric bars and an avatar, not translatable UI text. Preserving its original LTR arrangement keeps the source placeholder faithful and avoids introducing a meaningless mirrored avatar/line placement."
         },
         {
           "what": "Diagonal clone spread (dx=64*idx, dy=-34*idx), rotateY(16deg), and translateZ depth",
-          "action": "Kept the original physical direction and signs unchanged.",
-          "why": "The diagonal fan and perspective are the visual grammar of physical depth and a clone echo, not a left-to-right reading sequence. Mirroring it would change the authored 3D staging without improving RTL comprehension."
+          "action": "Kept the original signs and perspective origin after centering the stage.",
+          "why": "The source prompt defines this as physical 3D depth/echo staging, not a reading-order cascade. Persian f45/f55 inspection shows the queue fans up-right with the same recognizable depth rhythm and stays inside the 1920px frame."
         },
         {
-          "what": "Clone queue order and occlusion",
-          "action": "Kept reverse rendering order, seven clones, seed 3, opacity decay, stagger, merge, spring, easing, and all frame constants unchanged.",
-          "why": "These parameters encode the original spread-then-synchronous-merge narrative and must remain motion-faithful."
-        },
-        {
-          "what": "Card internals",
-          "action": "Reused the gray placeholder Card unchanged.",
-          "why": "It contains only geometric bars and circles, with no text, glyphs, numerals, or directional UI meaning to localize."
+          "what": "Clone queue order, opacity, timing, and merge",
+          "action": "Kept reverse render order, seven clones, seed 3, opacity decay, 1.6-frame stagger, 25-frame hold, 10-frame merge, 18-frame spring pop, fps, dimensions, easing, and all numeric constants unchanged.",
+          "why": "These values encode the source's spread-then-synchronous-merge narrative and are motion fidelity requirements."
         }
       ],
       "timing": {
         "changed": false,
-        "notes": "SPREAD_START, 1.6-frame clone stagger, 25-frame hold, 10-frame merge, 18-frame pop spring, fps, seed, dimensions, and easing are unchanged."
+        "notes": "The Persian title is shorter than the source English title, but the title remains in the same fixed top box and does not alter any animation beat. No timing constants, spring parameters, easing curves, seed, fps, size, or duration changed."
       }
     }
   ],
   "font": {
     "families": ["Vazirmatn"],
-    "reason": "Neutral variable Persian sans appropriate for a minimal product/UI motion card; its loaded variable 800 weight preserves the original heavy display hierarchy and has reliable Persian glyph coverage."
+    "reason": "Loaded variable Vazirmatn 800 provides reliable Persian glyph coverage and a compact, heavy UI/display sans suitable for the original bold heading. The fixture is geometric and contains no text."
   },
   "rasterHandling": {
     "status": "none-needed",
-    "details": "No raster or video assets are used by this component. The placeholder Card is DOM geometry only and contains no baked foreign-language text."
+    "details": "No raster or video assets are used. The reused Card is DOM geometry only and contains no baked foreign-language text."
   },
   "visualVerification": {
-    "localizedFramesViewed": [0, 18, 28, 45, 55, 60, 65, 80, 119],
+    "localizedFramesViewed": [0, 18, 28, 45, 55, 60, 65, 68, 80, 119],
     "sameFrameOriginalViewed": [0],
-    "notes": "Viewed the Persian and original frame 0 pair, then inspected Persian entrance, spread, hold, merge, and settled frames. The original upstream MP4 contains only 10 frames despite the source design's 120-frame timeline, so matching original stills for later beats cannot be extracted from that file."
+    "notes": "After the fix, the Persian f0 card visually matches the upstream f0 position at approximately x=700–1190; f45/f55 show the centered up-right clone fan; f68 shows the post-merge settled card; f119 shows the final resting state. The harness produced only the upstream original f0 still because the available original MP4 contains no extractable later-frame stills, so later original-frame viewing is unavailable rather than claimed."
   },
   "concerns": [
-    "The upstream comparison MP4 is truncated to 10 frames by its registry output; later original-frame comparisons are unavailable. The source prompt and unchanged motion constants were used for the late-beat fidelity check.",
-    "The renderer's final valid frame is 119 because durationInFrames=120 is exclusive; a temporary duration override of 121 was used only to inspect frame 119 and was not written into source."
+    "The available upstream comparison render exposes only original f0 as a still; later original PNGs are not present, so later-beat comparison is documented from the source prompt, unchanged motion code, and Persian render inspection.",
+    "Frame 119 is the last valid frame of the exclusive 120-frame composition."
   ],
   "lessons": []
 }

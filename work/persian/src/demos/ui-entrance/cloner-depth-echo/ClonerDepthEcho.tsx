@@ -1,17 +1,26 @@
 // PERSIAN (RTL) localization of cloner-depth-echo.
 //
-// Text: “CLONER DEPTH ECHO” -> «پژواکِ عمقِ کلون‌ها», an idiomatic technical
-// title that keeps “clone” as a familiar product token. The placeholder cards
-// contain no text or raster lettering, so there is nothing else to translate.
-// Direction decisions: the title is centered and remains centered. The clone
-// line's diagonal offset, rotateY perspective, z-depth, and top-left spread are
-// physical staging for a depth echo, not reading-order UI, so they stay exactly
-// as authored. Clone render order, stagger, merge, easing, spring, seed, fps,
-// dimensions, and all frame constants are unchanged.
-// Font: Vazirmatn, a neutral variable Persian UI/display sans with reliable
-// Persian glyph coverage and a strong 800 weight for the original bold heading.
-// Letter spacing is explicitly zero; the shared fixture TitleBlock is not used
-// because it hard-codes Helvetica and Latin tracking.
+// PERSIAN/RTL decisions:
+// - “CLONER DEPTH ECHO” becomes «پژواک عمق کلون‌ها»: idiomatic Persian with a
+//   ZWNJ in «کلون‌ها», no ezafe marks, and no Latin UI residue. The centered
+//   heading stays centered because it is symmetric composition, not reading order.
+// - The 3D stage is explicitly direction:ltr. This preserves the original
+//   absolute-positioned stage origin (x=700) inside the RTL FaRoot; the stage's
+//   child cards have no directional UI semantics and must not be re-anchored by
+//   inherited RTL static-position rules.
+// - Each placeholder Card is explicitly direction:ltr, preserving its original
+//   geometric bars/avatar arrangement. It contains no text, so mirroring its
+//   internals would add no Persian reading benefit and would change the source
+//   placeholder composition.
+// - The diagonal clone fan (dx=+64*idx, dy=-34*idx), rotateY(16deg), and z-depth
+//   stay unchanged: after centering, the inspected spread frame shows the same
+//   physical depth echo as the source; this is not a reading-order cascade.
+// - Clone order, opacity decay, stagger, merge, spring, easing, seed, fps,
+//   dimensions, and all frame constants are unchanged. No raster assets exist.
+// Font: Vazirmatn 800 is a loaded variable Persian UI/display sans with reliable
+// glyph coverage and enough weight for the compact impact heading. Letter spacing
+// remains zero; the shared fixture TitleBlock is not used because it hard-codes
+// Helvetica and Latin tracking.
 import React from 'react';
 import { useCurrentFrame, interpolate, spring, Easing } from 'remotion';
 import { G, Card } from '../../_fixtures/Fixtures';
@@ -47,13 +56,13 @@ export const ClonerDepthEcho: React.FC = () => {
   return (
     <div style={{ width: 1920, height: 1080, background: G.bg, overflow: 'hidden', position: 'relative' }}>
       <FaRoot family="Vazirmatn">
-        <div style={{ position: 'absolute', top: 100, width: '100%', textAlign: 'center' }}>
-          <div style={{ ...faText(72), fontWeight: 800, color: G.ink, lineHeight: 1.15 }}>
-            پژواکِ عمقِ کلون‌ها
+        <div style={{ position: 'absolute', top: 100, width: '100%', height: 108, textAlign: 'center' }}>
+          <div style={{ ...faText(72), fontWeight: 800, color: G.ink, lineHeight: 1.4 }}>
+            پژواک عمق کلون‌ها
           </div>
         </div>
 
-        <div style={{ position: 'absolute', inset: 0, perspective: 1600, perspectiveOrigin: '58% 46%' }}>
+        <div style={{ position: 'absolute', inset: 0, direction: 'ltr', perspective: 1600, perspectiveOrigin: '58% 46%' }}>
           <div
             style={{
               position: 'absolute',
@@ -88,13 +97,17 @@ export const ClonerDepthEcho: React.FC = () => {
                     opacity: op,
                   }}
                 >
-                  <Card w={520} h={340} seed={3} />
+                  <div style={{ width: 520, height: 340, direction: 'ltr' }}>
+                    <Card w={520} h={340} seed={3} />
+                  </div>
                 </div>
               );
             })}
             {/* Hero card. */}
             <div style={{ position: 'absolute', transform: `translateZ(0px) scale(${heroScale.toFixed(4)})` }}>
+            <div style={{ width: 520, height: 340, direction: 'ltr' }}>
               <Card w={520} h={340} seed={3} style={{ boxShadow: '0 10px 36px rgba(31,28,23,0.22)' }} />
+            </div>
             </div>
           </div>
         </div>
