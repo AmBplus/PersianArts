@@ -1,73 +1,309 @@
 {
   "slug": "list-stack-press",
-  "status": "localized-rendered",
+  "status": "fixed-rendered-awaiting-independent-review",
   "component": "ListStackPress",
   "duration": 88,
   "fps": 30,
   "size": "1920x1080",
   "font": {
-    "families": ["Vazirmatn"],
-    "reason": "A neutral variable-weight Persian UI sans suits the restrained academic paper feed, supports the range of UI weights, and shapes Persian and Persian digits reliably."
+    "families": [
+      "Vazirmatn"
+    ],
+    "reason": "Loaded with FaRoot. Its neutral UI proportions and genuine variable weights fit the restrained academic feed; Persian joins, ZWNJ, digits and Latin technical tokens have coverage. FA_LH=1.5 gives Persian dots and descenders space."
   },
   "rtlDecisions": [
     {
       "comp": "demo-ListStackPress",
-      "what": "Paper-feed header, navigation, article titles, metadata, summaries, project labels and descriptions",
-      "action": "Rebuilt as Persian DOM text, right-aligned and set direction:rtl; replaced the source screenshot surface with a matching paper-feed layout.",
-      "why": "These are localized UI strings and follow Persian reading order. Raster screenshots baked in Chinese and English text that could not be translated in place."
+      "what": "Page surface and blank slots",
+      "action": "Cover the source plate with an opaque text-free paper surface; preserve slot coordinates, expansion and reveal frame thresholds.",
+      "why": "Screenshot text is baked in. Persian DOM replaces visible copy without modifying shared textures or exposing the original underneath arriving cards."
     },
     {
       "comp": "demo-ListStackPress",
-      "what": "Screen-space Paper Radar counter",
-      "action": "Translated to «رادار مقاله» and «از ۳۱ مقالهٔ امروز»; moved the counter from top-right to top-left; changed the odometer strip to Persian digits ۰–۹.",
-      "why": "The counter is a feed-side UI element, so its placement follows the mirrored reading/layout order. Numeric progression and digit order remain unchanged."
+      "what": "Brand bar and navigation",
+      "action": "Right-first RTL flex order; content left=cards[0].x (408), width=cards[0].w (1104), bar height=62. Keep symmetric full-page bar background.",
+      "why": "UI navigation follows Persian reading order. Card-column bounds preserve the original screen framing at zoom 1.35; background width is decoration rather than a text anchor."
     },
     {
       "comp": "demo-ListStackPress",
-      "what": "Card entry positions, alternating tilt, stack compression and camera follow",
-      "action": "Kept positions, cues, easing, scale, tilt signs, stack press values, camera keyframes and frame timings unchanged.",
-      "why": "Vertical entrance, gravity and camera tracking are physical motion; the centered stack has no meaningful horizontal reading sequence to mirror."
+      "what": "Title, subtitle, filter chip",
+      "action": "RTL title/subtitle, filter at the left end of the title row. Title block top=88, height=116; FA_LH line boxes.",
+      "why": "Reading order mirrors; sizing recovers the original header vertical footprint and prevents first-beat cropping."
     },
     {
       "comp": "demo-ListStackPress",
-      "what": "Amber linked-project highlight",
-      "action": "Anchored the highlight to the card's inline end (right) and moved its accent edge to the left; retained width and grow/fade timing.",
-      "why": "The highlight is attached to the RTL project label; its origin and trailing edge follow the text direction."
+      "what": "Date, article count, update metadata and rule",
+      "action": "Metadata at top=86 within title block; rule spans the 1104px column. Date is Persian digits isolated in bdi LTR; primary count at right, update summary at left.",
+      "why": "Metadata must not collide with subtitle glyphs. Column alignment separates update copy from the screen-space counter; dates preserve internal numeric order."
+    },
+    {
+      "comp": "demo-ListStackPress",
+      "what": "Paper title, author metadata and ranking/upvotes",
+      "action": "Whole RTL text runs, right-aligned; ranks use isolated #۱ etc., isolated ↑ ۶۳ etc., and رای.",
+      "why": "Paper feed content follows reading order; rank and voting meanings survive the translation. Up arrow is a universal voting symbol and is not reversed."
+    },
+    {
+      "comp": "demo-ListStackPress",
+      "what": "arXiv and HuggingFace source row",
+      "action": "Keep arXiv:2607.01001 through .01005 and HuggingFace ↗ in bdi dir=ltr islands.",
+      "why": "IDs retain Latin digits and periods rather than acquiring Persian decimal separators; these are intentional technical/brand tokens. External-link arrow is a conventional symbol."
+    },
+    {
+      "comp": "demo-ListStackPress",
+      "what": "TL;DR, project label and notes",
+      "action": "Restore خلاصه: prefix; render joined Persian summaries, project names and notes in original fixed card rectangles.",
+      "why": "Static prose is localized without changing arrival beats. No per-character animation occurs in this demo."
+    },
+    {
+      "comp": "demo-ListStackPress",
+      "what": "Screen-space counter label and placement",
+      "action": "Translate رادار مقاله / از ۳۱ مقالهٔ امروز; mirror right:96 to left:96, align left, mirror scale origin to top left, give rail fixed width 210.",
+      "why": "This auxiliary feed rail belongs on the opposite side of RTL content. Screen-space position and anticipation remain independent of camera tracking."
+    },
+    {
+      "comp": "demo-ListStackPress",
+      "what": "Odometer digits, zero and cell geometry",
+      "action": "Use Persian ۱–۹, with Latin 0 only for zero, direction:ltr. Window width=88, lineH=fs(96)*FA_LH=159px; center each digit vertically; preserve 8-frame continuous rolls.",
+      "why": "The original Persian zero was a tiny ring that read as a bullet. The reviewer explicitly allowed an LTR Latin zero. Larger line boxes fit settled Persian glyphs while preserving the source moving-strip clipping effect and all roll beats."
+    },
+    {
+      "comp": "demo-ListStackPress",
+      "what": "Card flights, tilts, compression, shadows and camera",
+      "action": "Preserve all source motion expressions, coordinates and keys.",
+      "why": "Gravity, vertical camera follow, depth and alternating tilts are physical; the centered stack does not require horizontal mirroring."
+    },
+    {
+      "comp": "demo-ListStackPress",
+      "what": "Amber project highlight",
+      "action": "Nest overlay in actual project-name row (top=0, full row height), right anchor, left trailing border; width grows to 40% of original c.w. Grow/ease remain unchanged; final fade ends at f87 rather than f88.",
+      "why": "Highlight follows RTL text, and actual row geometry prevents covering the note. Source prompt specifically permits tail-card fade compression to clear the shot boundary; the one-frame shortening eliminates the final border remnant."
+    },
+    {
+      "comp": "demo-ListStackPress",
+      "what": "All-loaded footer",
+      "action": "Restore همهٔ مقاله‌ها بارگذاری شد, centered at last-card bottom +20 page pixels.",
+      "why": "This source page status was omitted previously. Symmetric center alignment needs no mirroring; it shares camera motion like the original footer."
     },
     {
       "comp": "demo-ListStackPress",
       "what": "Final glaze sweep",
-      "action": "Reversed the horizontal sweep anchor and gradient angle; negated the decorative 14° tilt.",
-      "why": "This single finishing sweep carries directional reading flow and should travel right-to-left."
+      "action": "Retain right anchor, -14deg rotation and 270deg gradient, and unchanged glaze interpolation/opacity.",
+      "why": "The finishing sweep follows RTL reading flow; horizontal position, decorative tilt and gradient must reverse together."
     },
     {
       "comp": "demo-ListStackPress",
-      "what": "Header text and number formatting",
-      "action": "Used Persian digits for visible counts and removed uppercase/tracking treatment from the counter labels.",
-      "why": "Persian UI uses Persian digits; letter-spacing and uppercase styling are unsuitable for Persian shaping."
+      "what": "Typography and remaining physical style properties",
+      "action": "No Persian letter spacing, uppercase, isolated letter boxes or altered letter motion; symmetric radii and center-center card transform origin remain.",
+      "why": "Persian joining and legibility require whole shaped runs. Symmetric physical geometry and shadows have no reading-direction meaning."
     }
   ],
   "rasterHandling": {
-    "source": "papers-full.png and paper1.png through paper5.png",
-    "action": "The full source screenshot plate is covered by a newly typeset Persian page surface. The flying screenshot cards were replaced with Persian DOM-built card surfaces and translated article-style titles, metadata, summaries, project tags and descriptions. No source raster text is visible in the localized render.",
-    "note": "Card copy is a concise Persian reconstruction of the visible research-feed subjects and layout, not a line-by-line transcription of every baked screenshot string."
+    "source": [
+      "papers-full.png",
+      "paper1.png",
+      "paper2.png",
+      "paper3.png",
+      "paper4.png",
+      "paper5.png"
+    ],
+    "action": "Opaque localized page surface covers the plate; moving cards are Persian DOM replacements. Original files and shared kit/fixtures/textures are read-only and unchanged. No legible baked source text is visible.",
+    "intentionalLatin": [
+      "arXiv",
+      "HuggingFace",
+      "arXiv identifiers",
+      "counter zero 0"
+    ],
+    "copyScope": "Retained existing concise Persian reconstructions of the research subjects, adding source row, ranking/upvote markers, summary prefix, date, filter and footer."
   },
   "motionFidelity": {
-    "preserved": ["88-frame duration", "CUES [6,18,30,42,54]", "22-frame card flights", "original easing", "alternating ±2° tilt", "6px/8-frame stack press", "8-frame digit rolls", "camera keyframes", "highlight grow/fade beats"],
-    "rtlChanges": ["counter moved to top-left", "glaze sweep mirrored"],
-    "timingNote": "Persian card copy is static within each card, so the original per-card landing and counter beats remain unchanged."
+    "preserved": [
+      "LIST_STACK_PRESS_DURATION=88",
+      "30fps / 1920x1080",
+      "CUES=[6,18,30,42,54]",
+      "DUR=22",
+      "FLY_EASE=(0.45,0.05,0.25,1.12)",
+      "TILTS=[2,-2,2,-2,2]",
+      "600px flights and scale 1.06→1",
+      "6px/8-frame stack press",
+      "all camera keys",
+      "anticipation frames 0–6 / opacity and scale",
+      "8-frame digit-roll progression and easing",
+      "glaze frames/easing/opacity",
+      "7-frame highlight growth and ordinary 5-frame fade"
+    ],
+    "rtlChanges": [
+      "counter layout mirrored",
+      "glaze mirrored",
+      "highlight anchor/border mirrored"
+    ],
+    "timingException": {
+      "element": "last highlight fade",
+      "before": "f83–f88",
+      "after": "f83–f87",
+      "reason": "Source prompt instructs compression of the final highlight at the cut; ensures no border on final frame."
+    },
+    "timingNote": "Persian strings remain static; their different lengths do not affect cues or landings. Counter remains 0 through f28, then rolls once per landing and settles at ۵ by f84. Increased digit strip geometry changes travel distance only, not progress/easing/frame timings.",
+    "sourceChecks": {
+      "LIST_STACK_PRESS_DURATION": "unchanged against upstream",
+      "CUES": "unchanged against upstream",
+      "DUR": "unchanged against upstream",
+      "FLY_EASE": "unchanged against upstream",
+      "TILTS": "unchanged against upstream",
+      "ANTICIPATE_START": "unchanged against upstream",
+      "ANTICIPATE_END": "unchanged against upstream",
+      "CAM_KEYS": "unchanged against upstream",
+      "ROLL_DUR": "unchanged against upstream",
+      "counterRoll": "unchanged continuous position/easing",
+      "stackPress": "unchanged",
+      "glazeTiming": "unchanged"
+    }
   },
+  "fixes": [
+    {
+      "severity": "major",
+      "issue": "Header width/cropping",
+      "resolution": "Align all header text blocks to card-column x/w; verified complete at f0/f6."
+    },
+    {
+      "severity": "major",
+      "issue": "Subtitle/meta overlap and counter clutter",
+      "resolution": "FA_LH, taller title block and distinct metadata row; header rule and update text stay in column."
+    },
+    {
+      "severity": "major",
+      "issue": "Ring zero and short digit cells",
+      "resolution": "Recognizable LTR Latin 0, fixed-width/taller digit cells; opening and settled digits inspected."
+    },
+    {
+      "severity": "minor",
+      "issue": "ID formatting / rank-vote semantics",
+      "resolution": "LTR technical IDs with period, #rank and ↑votes, رای spelling."
+    },
+    {
+      "severity": "minor",
+      "issue": "Highlight on note and final border remnant",
+      "resolution": "Row-relative tag overlay; last fade ends f87."
+    },
+    {
+      "severity": "minor",
+      "issue": "Incomplete header documentation",
+      "resolution": "Expanded element-level header analysis and this report."
+    },
+    {
+      "severity": "minor",
+      "issue": "Missing source UI content",
+      "resolution": "Restored filter, date/count metadata, summary prefix, arXiv/HuggingFace row and all-loaded footer."
+    }
+  ],
   "verification": {
-    "renderCommand": "node work/persian/render-card.mjs --slug list-stack-press --frames 0,6,18,30,42,54,66,76,84,87 --video",
+    "renderCommand": "node work/persian/render-card.mjs --slug list-stack-press --frames 0,6,12,14,30,32,35,70,84,87 --video",
     "renderSucceeded": true,
+    "errors": [],
     "video": "work/persian/out/list-stack-press/ListStackPress.fa.mp4",
-    "viewedFaAndOriginalFrames": [0, 18, 30, 54, 66, 76, 87],
-    "compositionsViewed": ["demo-ListStackPress"],
-    "visualNotes": "Compared localized/original frames at the entrance, card arrivals and final stack. Persian page text and cards render without visible source screenshot text; all five card surfaces are present by the final frame and the counter settles at ۵."
+    "viewedFaAndOriginalFrames": [
+      0,
+      6,
+      12,
+      14,
+      30,
+      32,
+      35,
+      70,
+      84,
+      87
+    ],
+    "compositionsViewed": [
+      "demo-ListStackPress"
+    ],
+    "visualNotes": [
+      "Opening brand/title/subtitle are entirely inside frame and header edges match the column.",
+      "Subtitle/meta rows are distinct; rule is intact, not partly hidden by slot masks.",
+      "Initial zero is an oval numeral. f30/f32 show normal moving odometer clipping, comparable to source; f35/f70/f84/f87 show whole settled Persian glyphs.",
+      "Highlight at f30/f32/f35/f70/f84 is on the project-name row and does not cover the note. f87 overlay/border is absent.",
+      "All five Persian cards and restored footer are visible at the end; no unintended Chinese or English prose.",
+      "Persian joins and lines are intact; technical source tokens are intentionally isolated."
+    ],
+    "sourcePromptSha256": "f103bd212bab98d125f4935f8d1c2158c260fb031fbe589089a4f23d0b1abb87",
+    "localizedSourceSha256": "3c6f3c22279a98f9712f3aae9aa98e0aeb1bb820c72e1ce6c6921243d3b8c636",
+    "evidence": [
+      {
+        "comp": "demo-ListStackPress",
+        "frame": 0,
+        "localized": "ListStackPress.fa.f0.png",
+        "original": "ListStackPress.orig.f0.png"
+      },
+      {
+        "comp": "demo-ListStackPress",
+        "frame": 6,
+        "localized": "ListStackPress.fa.f6.png",
+        "original": "ListStackPress.orig.f6.png"
+      },
+      {
+        "comp": "demo-ListStackPress",
+        "frame": 12,
+        "localized": "ListStackPress.fa.f12.png",
+        "original": "ListStackPress.orig.f12.png"
+      },
+      {
+        "comp": "demo-ListStackPress",
+        "frame": 14,
+        "localized": "ListStackPress.fa.f14.png",
+        "original": "ListStackPress.orig.f14.png"
+      },
+      {
+        "comp": "demo-ListStackPress",
+        "frame": 30,
+        "localized": "ListStackPress.fa.f30.png",
+        "original": "ListStackPress.orig.f30.png"
+      },
+      {
+        "comp": "demo-ListStackPress",
+        "frame": 32,
+        "localized": "ListStackPress.fa.f32.png",
+        "original": "ListStackPress.orig.f32.png"
+      },
+      {
+        "comp": "demo-ListStackPress",
+        "frame": 35,
+        "localized": "ListStackPress.fa.f35.png",
+        "original": "ListStackPress.orig.f35.png"
+      },
+      {
+        "comp": "demo-ListStackPress",
+        "frame": 70,
+        "localized": "ListStackPress.fa.f70.png",
+        "original": "ListStackPress.orig.f70.png"
+      },
+      {
+        "comp": "demo-ListStackPress",
+        "frame": 84,
+        "localized": "ListStackPress.fa.f84.png",
+        "original": "ListStackPress.orig.f84.png"
+      },
+      {
+        "comp": "demo-ListStackPress",
+        "frame": 87,
+        "localized": "ListStackPress.fa.f87.png",
+        "original": "ListStackPress.orig.f87.png"
+      }
+    ]
   },
   "concerns": [
-    "The source screenshot contains dense baked research copy. The localized card copy preserves the research-feed subject and visual hierarchy but is a concise reconstruction rather than a verbatim translation of every raster line."
+    "Existing paper summaries/notes remain concise reconstructions, not a verbatim translation of every raster sentence; an independent reviewer may still require copy expansion.",
+    "Counter zero intentionally uses Latin 0 as allowed by the reviewer; other counter/count/ranking digits are Persian, identifiers keep Latin digits.",
+    "Odometer glyphs are partially masked during transit as in the original; settled glyphs fit the window.",
+    "Public release is not claimed: this report records local fixes and visual evidence for independent review."
   ],
-  "lessons": []
+  "lessons": [
+    {
+      "symptom": "Rebuilt chrome crops at the first camera zoom and its metadata collides with a screen-space counter.",
+      "cause": "Text bounds were derived from the 1920px page instead of the original card-column bounds.",
+      "fix": "Use layout card x/w for all content anchors, and inspect both page-space and screen-space elements at the highest zoom."
+    },
+    {
+      "symptom": "Highlight covers a note rather than the project name after Persian typography changes.",
+      "cause": "Fixed percentage-of-card positioning ignores actual translated row geometry.",
+      "fix": "Nest the overlay within the project-name row; preserve source width/growth and mirror its inline origin."
+    }
+  ]
 }
-

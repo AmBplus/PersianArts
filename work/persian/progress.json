@@ -1,11 +1,11 @@
 {
- "generatedAt": "2026-10-11T16:41:05.170Z",
+ "generatedAt": "2026-10-11T16:46:22.988Z",
  "summary": {
   "todo": 75,
-  "localized": 15,
-  "approved": 57,
-  "fixed": 8,
-  "needs-fix": 2,
+  "localized": 9,
+  "approved": 62,
+  "fixed": 10,
+  "needs-fix": 1,
   "total": 157
  },
  "cards": [
@@ -147,7 +147,7 @@
   },
   {
    "slug": "canvas-materialize-moves",
-   "status": "localized",
+   "status": "approved",
    "font": "Vazirmatn",
    "videos": 2,
    "majors": 0,
@@ -211,7 +211,7 @@
   },
   {
    "slug": "chip-lift-to-user-pill",
-   "status": "localized",
+   "status": "approved",
    "font": "Vazirmatn",
    "videos": 1,
    "majors": 0,
@@ -347,7 +347,7 @@
   },
   {
    "slug": "doc-park-left-pill-deal",
-   "status": "needs-fix",
+   "status": "fixed",
    "font": "{\"families\":[\"Vazirmatn\"],\"reason\":\"The card is a restrained product interface. Variable Vazirmatn supplies the source's regular-to-semibold hierarchy, reliable Persian glyph coverage and natural joining at the pill and caption sizes. FaRoot loads it before rendering.\"}",
    "videos": 1,
    "majors": 1,
@@ -523,7 +523,7 @@
   },
   {
    "slug": "input-trigger-moves",
-   "status": "localized",
+   "status": "approved",
    "font": "Vazirmatn",
    "videos": 2,
    "majors": 0,
@@ -587,11 +587,11 @@
   },
   {
    "slug": "list-stack-press",
-   "status": "needs-fix",
-   "font": "{\"families\":[\"Vazirmatn\"],\"reason\":\"A neutral variable-weight Persian UI sans suits the restrained academic paper feed, supports the range of UI weights, and shapes Persian and Persian digits reliably.\"}",
+   "status": "fixed",
+   "font": "{\"families\":[\"Vazirmatn\"],\"reason\":\"Loaded with FaRoot. Its neutral UI proportions and genuine variable weights fit the restrained academic feed; Persian joins, ZWNJ, digits and Latin technical tokens have coverage. FA_LH=1.5 gives Persian dots and descenders space.\"}",
    "videos": 1,
    "majors": 3,
-   "concerns": 1
+   "concerns": 4
   },
   {
    "slug": "logo-shrink-wordmark-lockup",
@@ -651,7 +651,7 @@
   },
   {
    "slug": "neon-frame-orbit-drop",
-   "status": "localized",
+   "status": "approved",
    "font": "",
    "videos": 1,
    "majors": 0,
@@ -731,7 +731,7 @@
   },
   {
    "slug": "paper-craft-moves",
-   "status": "localized",
+   "status": "approved",
    "font": "Lalezar",
    "videos": 2,
    "majors": 0,
@@ -955,10 +955,10 @@
   },
   {
    "slug": "skeleton-reveal",
-   "status": "localized",
+   "status": "needs-fix",
    "font": "{\"families\":[\"Vazirmatn\"],\"reason\":\"Vazirmatn is a loaded variable UI sans with dependable Persian glyph coverage and real weight variation for the compact names, timestamps and message copy. It matches the restrained Helvetica-like product UI mood without fake bold or fallback shaping.\"}",
    "videos": 1,
-   "majors": 0,
+   "majors": 2,
    "concerns": 0
   },
   {

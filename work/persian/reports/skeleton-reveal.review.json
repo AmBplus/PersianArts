@@ -1,0 +1,38 @@
+{
+  "slug": "skeleton-reveal",
+  "verdict": "fix",
+  "score": 52,
+  "issues": [
+    {
+      "severity": "blocker",
+      "where": "SkeletonReveal.tsx Row, message div (line ~161, faText(27) + inline-block word spans); frames 88, 110, 142, 171",
+      "problem": "Message text is broken. faText() sets unicodeBidi:'plaintext'; the message line consists only of inline-block spans (atomic, bidi-neutral) so the paragraph resolves to LTR. Result: words are laid out left-to-right in logical order, so the sentence reads in the wrong order for a Persian reader (visual right-to-left reads 'می‌کنیم شروع را بازطراحی امروز بخیر! صبح'), the word reveal travels left-to-right (f88: 'صبح' appears at the far left, then 'بخیر!', then 'امروز' growing rightward), and the line sits flush LEFT at x~25 far from the avatar and the name instead of being right-aligned beneath the name next to the avatar. Every one of the four messages is affected, including the delayed last word.",
+      "suggestedFix": "On the message container use unicodeBidi:'normal' (or 'isolate') with direction:'rtl' and textAlign:'start' instead of the plaintext from faText (e.g. {...faText(27), unicodeBidi:'normal'}). Then word 1 sits at the right under the name and the reveal marches right-to-left. Re-render f88/f110/f142/f171 and confirm the order صبح بخیر! امروز بازطراحی را شروع می‌کنیم reads right-to-left and is flush with the name."
+    },
+    {
+      "severity": "major",
+      "where": "SkeletonReveal.tsx camera push, transformOrigin '58% 46%' (line ~241); frames 142-171",
+      "problem": "Camera origin was not mirrored although the layout was. In the original the zoom drifts toward the content area (right of the left sidebar), cropping the sidebar. In fa the sidebar is on the right and the origin is still 58%, so the zoom drifts right to the sidebar and crops the content/header side: at f171 the window's left (reading-end) edge and the header are cut off while the dark sidebar stays fully in frame, which flips the composition's emphasis.",
+      "suggestedFix": "Mirror the origin: transformOrigin '42% 46%' (100-58). Re-check f142/f171 so the sidebar is cropped on the right and the message column fills the frame like the original."
+    },
+    {
+      "severity": "minor",
+      "where": "Row name line (line ~159); frames 110-171",
+      "problem": "Timestamp reads 'ق.ظ ۹:۰۱' in visual right-to-left order (AM marker before the time) because the digits and marker are in one plaintext run next to the name; Persian convention is time first then ق.ظ. Also the digits/colon can reorder under bidi.",
+      "suggestedFix": "Wrap as <bdi dir='ltr'>۹:۰۱</bdi> followed by a space and ق.ظ (or put 'ق.ظ' in its own span before the time in DOM order for RTL so it renders to the left of the digits), then verify visually that digits sit right of ق.ظ."
+    },
+    {
+      "severity": "minor",
+      "where": "Row word spans (marginInlineEnd 9 plus real whitespace tokens)",
+      "problem": "Word gaps are very wide (~40 px at 27 px font): the whitespace token is rendered in addition to a 9 px inline margin, so lines look loose compared with the original and wrap later than intended.",
+      "suggestedFix": "Drop marginInlineEnd (keep the whitespace tokens) or skip the whitespace tokens and rely on the margin; compare against orig f171 spacing."
+    },
+    {
+      "severity": "minor",
+      "where": "Header comment (lines 1-7)",
+      "problem": "Header claims the word reveal 'progresses in Persian reading order' and avatars/text are RTL; the rendered frames contradict this (see blocker). It also does not list the camera transformOrigin decision. report.json states 'joined Persian glyphs' verified and 'concerns: []', which is not true.",
+      "suggestedFix": "After fixing, update the header to record the transformOrigin mirror and the bidi fix (unicodeBidi normal instead of plaintext), and correct report.json."
+    }
+  ],
+  "notes": "Good: doodle layer mirror via scaleX(-1) on the whole layer (sidebar goes right, text lines run leftwards from the avatars, seeds/boil/timing intact); skeleton window and sidebar correctly on the right with direction:rtl; skeleton bars hang from the right; avatars at the right edge; timing constants, exports, spring and easing unchanged (diffed against upstream: only layout props, font, copy changed). Vazirmatn is a sound choice for neutral product UI, loaded (glyphs shape correctly, ZWNJ present in می‌کنیم/پیش‌طرح‌های/آماده‌اند, ی/ک correct). Copy is idiomatic ('عالیه' conversational, 'ارائه', 'صورتی‌اش'). No raster assets, no leftover Latin/Chinese text, no letterSpacing/uppercase. Avatar initial 'آ' with madda is a legitimate Persian initial. Despite this, the message-line bidi bug is visible in every content frame of the final hold, so this cannot ship. Frame f76 errored in my render run (transient bundler/page error), other 12 beat frames viewed; the original MP4 H.264 PNG size differences were ignored as instructed."
+}

@@ -1,9 +1,16 @@
 // Persian localization of doc-park-left-pill-deal.
 // Text: Quick Start / Bundle Plan / Starter Kit and all three captions are translated idiomatically.
 // RTL: source document parks on the left, so it parks on the right and anchors/scales from its right edge;
-//     the conclusion cards move to the left, their icon/text order follows Persian reading order, and
-//     the skeleton document columns and header placeholders mirror as document reading layout.
+//     the conclusion cards move to the left, their icon/text order follows Persian reading order.
+//     Skeleton document: the three column slots mirror (first column right-most) AND every header/row
+//     bar inside a column is right-aligned at its column's right edge — the exact mirror of the
+//     source's left-aligned bars; widths and seeds are unchanged.
 //     Vertical stacking, scroll speed, deal beats, opacity/spring curves and icon geometry stay unchanged.
+// Caption word spacing: the original puts marginRight on every word except the last (gap AFTER each
+//     word in LTR). In the RTL flex row the trailing side is the LEFT, so the mirror is
+//     marginInlineEnd on every word except the last — marginInlineStart fused the final word pair.
+//     The caption box is anchored 4px inside the pill's start (right) edge, mirroring the source's
+//     4px inset from the pill's left edge.
 // Font: Vazirmatn variable preserves the restrained product UI tone, real 600 weight and Persian glyph coverage.
 // Raster handling: none; all shapes are live CSS/SVG, with no embedded foreign-language text.
 import React from 'react';
@@ -48,16 +55,19 @@ const Caption: React.FC<{text: string; right: number; top: number; size: number;
       const q = clamp01((innP - i * st) / win);
       let color = mix(q, DIM, TXT);
       if (outP > 0) color = mix(1 - clamp01((outP - i * stw) / (stw * 1.4)), DIM, TXT);
-      return <span key={i} style={{ ...faText(size, { fontFamily: SANS, fontWeight: 600, lineHeight: 1.5, color }), marginInlineStart: i === n - 1 ? 0 : 4.5 }}>{w}</span>;
+      return <span key={i} style={{ ...faText(size, { fontFamily: SANS, fontWeight: 600, lineHeight: 1.5, color }), marginInlineEnd: i === n - 1 ? 0 : 4.5 }}>{w}</span>;
     })}
   </div>;
 };
 
 const DW = 250, DH = 190, COLS = 3;
 const COL_W = (DW - 28 - (COLS - 1) * 10) / COLS;
+// r = the column's right-edge inset from the document's right edge (mirror of the source's
+// left-edge inset from its left). Bars are right-anchored at this edge, so each column's
+// header/row bars stay flush with the column's reading edge exactly as in the source.
 const DOC_COLS = Array.from({ length: COLS }, (_, c) => {
-  const x = DW - (14 + c * (COL_W + 10)) - COL_W;
-  return { x, headW: (COL_W * 0.72).toFixed(1), rows: Array.from({ length: 7 }, (_, r) => (COL_W * (0.55 + rand(c * 13 + r * 7) * 0.45)).toFixed(1)) };
+  const r = 14 + c * (COL_W + 10);
+  return { r, headW: (COL_W * 0.72).toFixed(1), rows: Array.from({ length: 7 }, (_, r2) => (COL_W * (0.55 + rand(c * 13 + r2 * 7) * 0.45)).toFixed(1)) };
 });
 const ITEMS: { n: string; ic: 'leaf' | 'bowl' | 'wrap'; cap: string }[] = [
   { n: 'شروع سریع', ic: 'leaf', cap: 'هماهنگ با سلیقه' },
@@ -80,9 +90,9 @@ export const DocParkLeftPillDeal: React.FC = () => {
               <div style={{ position: 'absolute', insetInline: 0, top: 0, height: DH + 60, transform: `translateY(${scrollY}px)` }}>
                 <div style={{ position: 'absolute', right: 14, top: 12, width: Math.round(DW * 0.34), height: 7, borderRadius: 3, background: INK, opacity: 0.85 }} />
                 <div style={{ position: 'absolute', right: 14, top: 25, width: Math.round(DW * 0.2), height: 5, borderRadius: 3, background: SKEL }} />
-                {DOC_COLS.map(({ x, headW, rows }, c) => <React.Fragment key={c}>
-                  <div style={{ position: 'absolute', left: x, top: 44, width: `${headW}px`, height: 6, borderRadius: 3, background: '#9A9AA2' }} />
-                  {rows.map((ww, r) => <div key={r} style={{ position: 'absolute', left: x, top: 58 + r * 13, width: `${ww}px`, height: 5, borderRadius: 2.5, background: SKEL }} />)}
+                {DOC_COLS.map(({ r, headW, rows }, c) => <React.Fragment key={c}>
+                  <div style={{ position: 'absolute', right: r, top: 44, width: `${headW}px`, height: 6, borderRadius: 3, background: '#9A9AA2' }} />
+                  {rows.map((ww, r2) => <div key={r2} style={{ position: 'absolute', right: r, top: 58 + r2 * 13, width: `${ww}px`, height: 5, borderRadius: 2.5, background: SKEL }} />)}
                 </React.Fragment>)}
               </div>
             </div>
@@ -96,7 +106,7 @@ export const DocParkLeftPillDeal: React.FC = () => {
                 <Icon k={it.ic} size={16} />
                 <div style={{ ...faText(12.5, { fontFamily: SANS, fontWeight: 600, color: TXT, whiteSpace: 'nowrap' }), lineHeight: 1 }}>{it.n}</div>
               </div>
-              <Caption text={it.cap} right={440 - PX - 4 - 172} top={PY + k * (PH + PG) + PH + 7} size={11} showV={showV} innP={innP} outP={outP} />
+              <Caption text={it.cap} right={440 - PX - 172 + 4} top={PY + k * (PH + PG) + PH + 7} size={11} showV={showV} innP={innP} outP={outP} />
             </React.Fragment>;
           })}
         </div>

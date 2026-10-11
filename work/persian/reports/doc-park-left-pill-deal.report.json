@@ -1,6 +1,36 @@
 {
   "slug": "doc-park-left-pill-deal",
   "status": "localized",
+  "fixRound": 2,
+  "fixRound2": {
+    "reviewFindingsAddressed": [
+      {
+        "severity": "major",
+        "where": "Caption word spans (Caption component)",
+        "problem": "marginInlineStart sat on the RIGHT of each word in the RTL flex row, so the gap landed before each word and the last word got 0 — the final word pair fused on screen («خریددوباره» at f150, «روزهای‌کاری» at f95), reading as a shaping/word-order defect.",
+        "fix": "Moved the margin to the trailing side: marginInlineEnd on every word except the last (the trailing-side mirror of the source's marginRight-on-all-but-last). Word gaps now match the original's spacing rhythm exactly."
+      },
+      {
+        "severity": "minor",
+        "where": "Skeleton header/row bars",
+        "problem": "Column slots and the top title bars were mirrored, but the header and row bars inside each column were still left-anchored at the column's left edge — mixed alignment, whereas the source has every bar left-aligned.",
+        "fix": "DOC_COLS now stores the column's right-edge inset (r = 14 + c*(COL_W+10), the exact mirror of the source's left inset) and every header/row bar is anchored with right: r, so bars sit flush at each column's reading edge. Bar widths and the rand(c*13+r*7) seeds are unchanged."
+      },
+      {
+        "severity": "minor",
+        "where": "Caption anchor",
+        "problem": "The caption's right edge was flush with the pill's outer right edge, losing the source's 4px inset from the pill's start edge.",
+        "fix": "right = 440 - PX - 172 + 4 = 218, so the caption's right edge is inset 4px inside the pill's start (right) edge — the exact mirror of the source's left = PX + 4."
+      },
+      {
+        "severity": "minor",
+        "where": "Header comment and report",
+        "problem": "The comment claimed the skeleton columns mirror as a whole and said nothing about the caption word-gap handling; the report claimed all frames clean despite the visibly fused words.",
+        "fix": "The header comment now documents the word-gap rule and the per-column bar mirroring; this report was rewritten with the verified fix evidence."
+      }
+    ],
+    "verification": "Re-rendered stills at frames 0, 14, 40, 95, 105, 131, 150, 173 and compared fa vs orig. f95 and f150 now show proper word gaps («مناسب روزهای کاری»، «محبوب برای خرید دوباره») matching the original spacing; f14/f0/f40 show all bars right-aligned at each column's reading edge, mirroring the source's left alignment; f105/f131 confirm the darkening/fade stagger still runs first-word-rightmost at the original beats; f173 final resting frame unchanged and balanced. Full Persian MP4 re-rendered without errors."
+  },
   "font": {
     "families": ["Vazirmatn"],
     "reason": "The card is a restrained product interface. Variable Vazirmatn supplies the source's regular-to-semibold hierarchy, reliable Persian glyph coverage and natural joining at the pill and caption sizes. FaRoot loads it before rendering."
@@ -18,12 +48,12 @@
       },
       "rtlDecisions": [
         {"what": "Parked document position and park motion", "action": "Mirrored to the right side; changed the anchor to the right edge and the park translation to +55%.", "why": "The source document sits on the left and slides left as reading-direction layout. Persian reading begins at the right, so its retained source panel belongs there and must travel outward to the right."},
-        {"what": "Skeleton document columns and header placeholders", "action": "Mirrored the three column slots and anchored the top placeholders at the right.", "why": "They represent document reading layout; reversing them keeps the first column and header aligned with the Persian reading edge. Skeleton widths and seeded values remain the same."},
+        {"what": "Skeleton document columns and every bar inside them", "action": "Mirrored the three column slots (first column right-most, inset r = 14 + c*(COL_W+10) from the right edge) AND right-anchored the header and row bars at each column's right edge (right: r); the two dark title bars at the document top stay right-anchored. Widths and seeded values unchanged.", "why": "They represent document reading layout; in the source everything is left-aligned to the LTR reading edge, so the faithful mirror is everything right-aligned to the RTL reading edge — per column, not just per document. Fix round 2 completed this mirroring for the in-column bars."},
         {"what": "Conclusion pills", "action": "Moved the stack from the right to the left side and set each pill row to RTL, placing the icon at the right of its label.", "why": "The cards follow the source's left-to-right reading progression, which becomes right-to-left. Their top-to-bottom order remains because vertical order has no RTL meaning."},
-        {"what": "Caption text and progressive word emphasis", "action": "Translated the three captions into concise idiomatic Persian; split on word spaces in logical Persian order, laid out RTL, and removed tracking. Kept the original per-word emphasis and fade timing.", "why": "Persian joins within each word and reads from right to left. Short copy fits the mirrored caption slot below the pills without colliding with the parked document."},
+        {"what": "Caption text, word-gap and progressive word emphasis", "action": "Translated the three captions into concise idiomatic Persian; split on word spaces in logical Persian order, laid out RTL, removed tracking (the source's negative letterSpacing has no healthy Persian equivalent). Word spacing uses marginInlineEnd on every word except the last — the trailing-side mirror of the source's marginRight — which fixes the fused final word pair found in review. Kept the original per-word emphasis and fade timing (first word = right-most).", "why": "Persian joins within each word and reads from right to left. The original gap sits AFTER each word in LTR flow; in the RTL flex row the trailing side is the left, so the gap must move to marginInlineEnd or the last word pair fuses."},
         {"what": "Pill entry and vertical layout", "action": "Kept y positions, vertical stack order, opacity, outBack translateY/scale, deal starts, scroll amount and timing curves unchanged.", "why": "These are timing/physics and vertical composition semantics rather than reading-direction movement."},
         {"what": "Document scroll", "action": "Kept its upward direction, 3-cycle modulo and 40px travel unchanged.", "why": "The slow scroll communicates a document being read while vertical movement remains physical and universal."},
-        {"what": "Caption slot geometry", "action": "Placed a 172px RTL caption box beneath each pill at the horizontally mirrored location.", "why": "The original caption sits just below and aligns to the inward edge of each pill; mirroring that anchor preserves relationship and clears the parked panel."}
+        {"what": "Caption slot geometry", "action": "172px RTL caption box beneath each pill, right edge inset 4px inside the pill's start (right) edge: right = 440 - PX - 172 + 4 = 218.", "why": "The source caption sits 4px inside the pill's left (start) edge; mirroring that anchor preserves the relationship and clears the parked panel. Fix round 2 restored the inset that was lost."}
       ],
       "motionFidelity": "Retained 174 frames, T0=[0.26,0.48,0.70], subtitle start/end scheduling, E.outQuad opacity/fade, E.outBack spring, document park interval and easing, seeded skeleton widths, and 3-cycle scrolling. No timing, seed, fps or size changes.",
       "visualVerification": {

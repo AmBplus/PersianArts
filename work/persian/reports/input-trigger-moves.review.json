@@ -1,0 +1,11 @@
+{
+  "slug": "input-trigger-moves",
+  "verdict": "approve",
+  "score": 88,
+  "issues": [
+    {"severity": "minor", "where": "CursorPerformancePunchIn.tsx Cursor (scaleX(-1), left x-44.6)", "problem": "The OS arrow cursor is mirrored so its tip points up-right. Real pointers keep their up-left tip in RTL UIs, so the mirrored arrow reads slightly unnatural (visible f12, f24, f34). The approach path mirror is correct; the icon mirror is debatable.", "suggestedFix": "Optional: keep the standard up-left arrow (remove scaleX(-1), restore left = x - 3.4). The tip must still land on CLICK."},
+    {"severity": "minor", "where": "CursorPerformancePunchIn.tsx button label", "problem": "«انتشار» (publish) is acceptable, but «استقرار» is the more idiomatic Persian devops term for 'Deploy'.", "suggestedFix": "Consider «استقرار»; check it still fits the 200px button."},
+    {"severity": "minor", "where": "CursorPerformancePunchIn.tsx BTN x=160", "problem": "Button sits about 200px from the card's right edge and 120px from its left edge, so it is not an exact card-internal mirror of the original (which sat about 120px from the card's right edge). It still overlaps the title lines the same way as the original.", "suggestedFix": "None required. Optionally shift BTN/CLICK to hug the card's outer corner."}
+  ],
+  "notes": "Re-rendered with the harness at 14 frames per comp (0,12,24,30,34,40,42,46,52,60,72,81,90,149) and viewed fa vs orig for the key beats. Both comps are faithful. Sidebar, header, grid, card text-anchoring and footers are all mirrored. Cursor path, overshoot at f24, hover lift at f34, ripple and zoom at f52 and f81 are identical to the original apart from the mirror. Zoom origin tracks the click point. KeycapSmashCut: the centred key, breath, press and ring are unchanged. Fly paths and tilts mirror correctly (f35, f46). The hard cut at f58 shows the RTL dashboard with the mini keycap in the mirrored header gap (464 -> 1412 keeps the same 32px offset from the title bar). The ⌘⏎ legend is correctly kept as an LTR island. All timing constants, exports and seeds are unchanged. Header comments are truthful. Persian shaping of «انتشار» is correct, in Vazirmatn 700, with no letterSpacing and no uppercase. No raster assets, no leftover Latin/Chinese text, and no cheating by hiding or blurring. Remaining points are stylistic only."
+}

@@ -1,0 +1,11 @@
+{
+  "slug": "chip-lift-to-user-pill",
+  "verdict": "approve",
+  "score": 91,
+  "issues": [
+    {"severity": "minor", "where": "ChipLiftToUserPill.tsx typed name (typeOn + visibleChars)", "problem": "The source fades each letter in with a 2px rise; the Persian version steps whole shaped prefixes with no per-letter opacity/rise, so the micro-motion texture is slightly flatter. Beats (first/last char) are preserved and shaping is correct at every inspected frame (f41-f50).", "suggestedFix": "Optional: add a short opacity ramp on the newest prefix (e.g. wrap the final char in a span with opacity from the step progress) without splitting glyphs."},
+    {"severity": "minor", "where": "ChipLiftToUserPill.tsx connector div", "problem": "Added transformOrigin 'right center' (not in original, no-op because width is animated) and a mis-indented 'right: 0' in the chip label. Harmless hygiene only.", "suggestedFix": "Remove the redundant transformOrigin and fix indentation."},
+    {"severity": "minor", "where": "Report lesson (f47 'کیان رض' glitch)", "problem": "The author swapped the name to dodge an unexplained shaping glitch instead of root-causing it; the lesson is vague.", "suggestedFix": "Note in lessons that prefix steps should be checked consecutively; no code change needed."}
+  ],
+  "notes": "Rendered 24 beats with the harness and compared fa vs orig (f0, 5, 10, 14, 20, 30, 40-48, 50, 53, 56, 60, 70, 149). Grid is a true mirror (target stays row 2 / col 2 from the right, Manhattan stagger identical), selection flash timing identical, pill grows leftward from its right edge with identical width at f44 (448px) and f149, green dot rides the left tip, connector extends leftward to a correctly mirrored badge, caption starts 18 design px inside the pill's left tip and darkens word-by-word right to left. Positions verified numerically (badge left 78 = 440-336-26). Font Vazirmatn 600 is a loaded variable weight; no letterSpacing/uppercase, Persian initials/name/caption, no leftover Latin or Chinese, no raster assets, no blur/hide cheating. Duration constant and all easing/timing constants unchanged. Header comment matches the code. Shipping quality."
+}

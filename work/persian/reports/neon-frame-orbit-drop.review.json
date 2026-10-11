@@ -1,0 +1,20 @@
+{
+  "slug": "neon-frame-orbit-drop",
+  "verdict": "approve",
+  "score": 84,
+  "issues": [
+    {
+      "severity": "minor",
+      "where": "NeonFrameForerunOrbit.tsx lines ~190-201 (rotY 38 -> -26, pOrigin 30 -> 64)",
+      "problem": "The page layout and frame trace are mirrored to RTL, but the camera arc still runs left-to-right as in the source prompt. At the end the sidebar (reading start) sits on the far, foreshortened side. This is defensible as physical camera motion, but the choice is not fully consistent with mirroring the trace and lift offsets, and the header and report only justify it as physical.",
+      "suggestedFix": "Either keep it and state explicitly that the arc is a deliberate non-mirrored cinematic choice, or negate rotY, rotZ and pOrigin (38 -> -26 becomes -38 -> +26, 70 -> 36) so the camera sweeps right-to-left like a Persian reading gesture. Compare both and pick one."
+    },
+    {
+      "severity": "minor",
+      "where": "NeonFrameForerunOrbit.tsx lines 1-12 and 17-20, 36-38",
+      "problem": "The header does not mention that the original Chinese code comments (non-rendering) were kept. FaRoot/Vazirmatn is loaded with no glyph on screen, which is harmless. liftOf keeps the original unused 'land' parameter (inherited dead code).",
+      "suggestedFix": "Optional cleanup: drop the unused 'land' argument, or leave it for upstream diff parity."
+    }
+  ],
+  "notes": "Diffed against upstream: only dir() on the floating offsets and shadow x, mirrored FRAME_D start (right midpoint), mirrored SVG gradient endpoints, 150deg -> 210deg overlay, flipped rim-glow shadow x, direction:rtl on the page, and logical border/margin props. LAND, FALL, easings, frame ranges, seed 20260718, size, fps and the exported component are unchanged. I rendered frames 0,5,10,14,25,40,70,100,118,128,149 and compared fa to orig. The sidebar sits on the right, the title and search are right-anchored, chip rows start from the right (row 2 aligned to the right), row bullets are on the right and the action dots on the left. The frame trace heads meet at the left midpoint (the mirror of the original right midpoint), and the purple-to-orange balance is mirrored. Landing is simultaneous with the shadows converging, as the source prompt requires. The card has no literal text or raster assets (placeholder bars only), so there is nothing to translate. No cheating (no blur or hiding). No letterSpacing or uppercase and no shaping issues, since there are no glyphs. The only note is the camera orbit direction, which was kept deliberately."
+}

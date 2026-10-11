@@ -1,0 +1,10 @@
+{
+  "slug": "paper-craft-moves",
+  "verdict": "approve",
+  "score": 90,
+  "issues": [
+    {"severity": "minor", "where": "MaskingTapeSlap.tsx title copy", "problem": "«ضربهٔ چسب کاغذی» is a somewhat literal rendering of 'MASKING TAPE SLAP'; shaping, hamza and Lalezar rendering are correct and it is centered/balanced.", "suggestedFix": "Optional: a punchier idiomatic title such as «چسب‌زدن کاغذی» or «چسب، تق!»; not required."},
+    {"severity": "minor", "where": "Registry durations (38/34 f)", "problem": "Registry previews end before both slap hits and most of the book rise; originals are truncated too, so late beats cannot be compared pixel-wise with the original.", "suggestedFix": "Orchestrator should raise registry durations to about 140 f (outside this card's scope); the author correctly documented this."}
+  ],
+  "notes": "Re-rendered with --duration 140 at frames 0,12,20,33,38,50-62,70,82-86,108,139 for both comps, viewed fa vs orig where originals exist (f20,f33,f37), late frames checked against source prompt and code. Diffed vs upstream: all timing constants, spring config, easing, seeds, exports unchanged (no DUR exports exist upstream). Persian title shaping is correct, no letterSpacing/uppercase, single-weight Lalezar with no fake bold, font actually loaded. Mirroring is right: tapes swapped to top-right/bottom-left with approach offsets via dir(), rotate base +45 with overshoot signs flipped (+16 -> -7 -> 0), gradient 270deg, torn polygon and shadows kept (physical). Popup book: sidebar on right, header order mirrored (logo bar right, search+avatar left), card index 0 at right, far row before near row, rotateX/spring/origin/perspective untouched (physical). Card placeholder bars right-anchored with avatar/label pair on right. No raster assets, no leftover Latin/Chinese text on screen. Not cheating: nothing blurred or hidden. Header comments are truthful. Residual nit: tape 1 bleeds slightly beyond card's top-right corner, same as original geometry mirrored."
+}
