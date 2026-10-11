@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-11T14:44:56.908Z",
+ "generatedAt": "2026-10-11T14:50:04.244Z",
  "summary": {
   "todo": 111,
   "localized": 3,
@@ -836,8 +836,8 @@
   {
    "slug": "radial-wave",
    "status": "localized",
-   "font": "{\"family\":null,\"reason\":\"No on-screen text exists, so no font is needed.\"}",
-   "videos": 0,
+   "font": "",
+   "videos": 1,
    "majors": 0,
    "concerns": 0
   },

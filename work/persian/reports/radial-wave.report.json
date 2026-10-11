@@ -1,57 +1,39 @@
 {
   "slug": "radial-wave",
-  "status": "localized",
+  "status": "localized-and-rendered",
   "components": [
     {
       "id": "demo-RadialWave",
-      "stem": "RadialWave",
-      "durationFrames": 114,
+      "file": "RadialWave.tsx",
+      "duration": 114,
       "fps": 30,
       "size": "1920x1080",
-      "onScreenText": [],
+      "font": null,
+      "fontReason": "No font is used: the composition contains only geometric circles and no typography.",
       "rtlDecisions": [
         {
-          "what": "17×9 centered dot grid coordinates",
-          "action": "kept unchanged",
-          "why": "The field is symmetric about its geometric center and does not encode reading or category order."
+          "what": "17×9 dot positions around the geometric center",
+          "action": "Kept unchanged",
+          "why": "The array is symmetric and the radial wave is defined by Euclidean distance from its center; it has no reading-order meaning."
         },
         {
-          "what": "First center-out wave",
-          "action": "kept unchanged",
-          "why": "This is a radial physical propagation effect; reversing it would change the source design rather than localize reading direction."
+          "what": "First wave and second reverse pulse",
+          "action": "Kept timing, direction, easing, scale, colors, and opacity unchanged",
+          "why": "These are geometric energy waves (center outward, then outer region inward), not directional text or interface navigation."
         },
         {
-          "what": "Second outer-in blue pulse",
-          "action": "kept unchanged",
-          "why": "It is a radial return response around the same center, not a directional reading cue."
-        },
-        {
-          "what": "Text alignment, font, and bidi handling",
-          "action": "not applicable",
-          "why": "The component contains no text."
-        },
-        {
-          "what": "Timing and motion parameters",
-          "action": "preserved",
-          "why": "The 114-frame duration, distance delays, easing, overshoot, pulse timing, size, and colors are part of the design and carry no RTL semantics."
+          "what": "Background and dot grid alignment",
+          "action": "Kept unchanged",
+          "why": "The scene is text-free and centered; mirroring would produce the same composition."
         }
       ],
-      "rasterHandling": "No raster or video assets; dots are DOM elements.",
-      "concerns": [
-        "Visual verification is incomplete. The harness failed before rendering because npx attempted a network fetch (network unavailable); direct local Remotion CLI invocation failed with esbuild spawn EPERM.",
-        "No Persian or original PNG frames and no final MP4 were produced. The final --video render could not be completed under this environment restriction."
-      ]
+      "rasterHandling": "None. The scene uses DOM circles and a solid background; it contains no raster or video assets.",
+      "visualVerification": {
+        "framesCompared": [0, 8, 22, 45, 75, 105, 113],
+        "result": "Viewed matching Persian and original PNG frames for the sole composition. The grid remains centered and symmetric, and the initial activation, center highlight, reverse edge pulse, and late resting field preserve the source appearance and beats."
+      },
+      "concerns": ["Frame 113 retains the source design's small residual central second-wave pulse; this is documented in the source prompt and intentionally preserved."]
     }
   ],
-  "font": {
-    "family": null,
-    "reason": "No on-screen text exists, so no font is needed."
-  },
-  "lessons": [],
-  "render": {
-    "requestedFrames": [0, 12, 24, 42, 60, 75, 90, 102, 113],
-    "visualComparisonCompleted": false,
-    "videoRendered": false,
-    "failure": "Bundle harness: TypeError while formatting spawn error; local CLI: esbuild spawn EPERM."
-  }
+  "lessons": []
 }

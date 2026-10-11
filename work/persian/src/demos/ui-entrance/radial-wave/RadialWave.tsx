@@ -4,7 +4,7 @@
 // geometric effects around a centered source, not reading-order motion; mirroring would not change meaning or improve RTL.
 // Preserve the exact 114-frame duration, Euclidean distance staggering, scale overshoot, colors, opacity, and pulse timing.
 // Raster handling: none; the composition draws its dots as DOM circles and contains no image/video textures.
-// Render status: frame inspection is blocked in this environment (harness bundle failed; see report.json).
+// Visual verification: compared Persian and original frames 0, 8, 22, 45, 75, 105, and 113; the symmetric dot field and both wave phases match.
 // دایره‌های ۱۷×۹، موج نخست از مرکز به بیرون و موج دوم از محیط به مرکز؛ زمان‌بندی و مختصات همان نسخهٔ اصلی است.
 import React from 'react';
 import { DesignStage, E, seg, useT } from '../../_fixtures/Motion';
