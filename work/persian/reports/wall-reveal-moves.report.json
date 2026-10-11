@@ -2,7 +2,7 @@
   "slug": "wall-reveal-moves",
   "status": "localized",
   "fps": 30,
-  "durationFrames": 150,
+  "durationFrames": "150 maximum; per source design: BentoLightUp 150, GridWaveFlip 130, WireframeDrawOn 150",
   "font": {
     "family": "Vazirmatn",
     "reason": "Neutral, modern UI sans suited to the product feature heading. Loaded through FaRoot so the Persian title renders in the intended font. The other two demos use text-free gray fixture geometry; the same root provides a stable RTL/font context without adding copy."
@@ -40,7 +40,8 @@
       ],
       "rasterHandling": "No raster or video assets. Card content is gray placeholder geometry without baked-in text.",
       "timing": "All source frames, easing curves, activation intervals, seeds, and camera scale timing preserved.",
-      "visualVerification": "Compared Persian and original at frame 100; checked the title, mirrored sequence, aligned card bounds, and final wall."
+      "visualVerification": "Compared Persian and original at frame 100; checked the title, mirrored sequence, aligned card bounds, and final wall.",
+      "durationFrames": 150
     },
     {
       "id": "demo-GridWaveFlip",
@@ -63,8 +64,9 @@
         }
       ],
       "rasterHandling": "No raster or video assets. Both faces are generated gray placeholder shapes with no text.",
-      "timing": "All 20-frame hold, 6-frame diagonal stagger, 14-frame flips, last-card overshoot/settle, easing, and seeds preserved.",
-      "visualVerification": "Compared Persian and original at frame 44; verified centered wall geometry and the right-to-left first wave. Frame 100 still was rendered for the comp but not separately inspected."
+      "timing": "Source design length is 130 frames (prompt); all source hold/stagger/flip/overshoot timings preserved. Rendered the Persian full video at the designed 130-frame length, despite the registry reporting 150.",
+      "visualVerification": "Compared Persian and original at frame 44; verified centered wall geometry and the right-to-left first wave. Rendered through the 130-frame design end.",
+      "durationFrames": 130
     },
     {
       "id": "demo-WireframeDrawOn",
@@ -93,7 +95,8 @@
       ],
       "rasterHandling": "No raster or video assets. Dashboard is rendered from vector/DOM placeholder geometry and contains no baked text.",
       "timing": "All source draw group start times, per-item offsets, scan frames 88–118, opacity beats, easing and seeds preserved.",
-      "visualVerification": "Compared Persian and original at frame 100; confirmed the mirrored sidebar, right-to-left scan, and registered clip boundary."
+      "visualVerification": "Compared Persian and original at frames 100 and 118; confirmed the right-side rail, right-to-left materialization boundary, and matched sweep endpoint.",
+      "durationFrames": 150
     }
   ],
   "concerns": [],
