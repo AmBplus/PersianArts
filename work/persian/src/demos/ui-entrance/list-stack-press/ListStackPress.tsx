@@ -14,8 +14,17 @@
 // - Counter mirrors top-right → top-left, including text anchor, flex alignment
 //   and scale origin. Numeric order and continuous 8f rolls stay physical/LTR.
 //   Only its zero uses the Latin 0 glyph: Persian ۰ is a tiny ring at this size.
+//   Vazirmatn draws its Arabic-Indic digits with visibly heavier strokes than the
+//   Latin 0 at the same weight, so every digit cell carries an explicit
+//   fontWeight 700 — the held-zero state (f0–28, the longest counter state) then
+//   matches ۱..۵ in stroke weight and the counter never reads as two typefaces.
 //   Fixed-width cells with a taller line box fit the Persian digits; moving clips
 //   during rolls are the source odometer effect, settled glyphs are fully visible.
+// - The counter is a screen-space HUD overlay, exactly like the original's
+//   PAPER RADAR block (whose 0 also straddles the page header bar). It is raised
+//   (top 70→44, left 96→88) so at zoom 1.35 the digit and the «از ۳۱ مقالهٔ
+//   امروز» caption clear the bar's bottom rule and the فیلتر button, matching
+//   the original's clearance on the right.
 // - Project highlight grows from the right; trailing border is on the left.
 //   It lives inside the actual tag row, rather than at a percentage of card height.
 //   Last-card fade ends at f87 (source prompt's explicit end-of-shot compression).
@@ -77,7 +86,7 @@ const DigitRoll: React.FC<{ pos: number; lineH: number; color: string }> = ({ po
     <span style={{ display: 'inline-block', height: lineH }}>
       <span style={{ display: 'block', transform: `translateY(${-pos * lineH}px)` }}>
         {(DIGITS + DIGITS).split('').map((d, j) => (
-          <span key={j} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: lineH, fontSize: fs(96), lineHeight: FA_LH, color, fontVariantNumeric: 'tabular-nums' }}>
+          <span key={j} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: lineH, fontSize: fs(96), fontWeight: 700, lineHeight: FA_LH, color, fontVariantNumeric: 'tabular-nums' }}>
             {d}
           </span>
         ))}
@@ -142,7 +151,7 @@ export const ListStackPress: React.FC = () => {
             <div style={{ fontSize: fs(13), padding: '5px 14px', border: '1px solid #e6dfd5', borderRadius: 6, background: '#fffdfa', color: '#79736d' }}>فیلتر</div>
           </div>
           <div style={{ fontSize: fs(16), color: '#79736d', marginTop: 4 }}>مقاله‌های تازه در یادگیری ماشین و هوش مصنوعی</div>
-          <div style={{ position: 'absolute', insetInlineStart: 0, top: 86, width: '100%', borderBottom: '1px solid #e6dfd5', paddingBottom: 5, display: 'flex', justifyContent: 'space-between', fontSize: fs(13), color: '#77716a' }}><span><bdi dir="ltr">{faDigits('2026-07-05')}</bdi> · {faDigits(5)} مقالهٔ تازه</span><span>به‌روزرسانی روزانه · خلاصهٔ {faDigits(31)} مقاله</span></div>
+          <div style={{ position: 'absolute', insetInlineStart: 0, top: 86, width: '100%', borderBottom: '1px solid #e6dfd5', paddingBottom: 5, display: 'flex', justifyContent: 'space-between', fontSize: fs(14), color: '#77716a' }}><span><bdi dir="ltr">{faDigits('2026-07-05')}</bdi> · {faDigits(5)} مقالهٔ تازه</span><span>به‌روزرسانی روزانه · خلاصهٔ {faDigits(31)} مقاله</span></div>
         </div>
         {/* blank card slots fade as Persian cards land */}
         {cards.map((c, i) => (
@@ -192,20 +201,20 @@ export const ListStackPress: React.FC = () => {
                 <div style={{ display: 'flex', alignItems: 'center', gap: 12, fontSize: fs(13), color: '#817970', marginBottom: 8 }}><span><bdi dir="ltr">#{faDigits(i + 1)}</bdi> · <bdi dir="ltr">↑ {faDigits([63,51,87,44,72][i])}</bdi> رای</span><span>{PAPERS[i].meta.split(' · پیش‌چاپ')[0]} · <bdi dir="ltr">arXiv:2607.0100{i + 1}</bdi> · <bdi dir="ltr">HuggingFace ↗</bdi></span></div>
                 <div style={{ fontSize: fs(19), lineHeight: FA_LH, fontWeight: 750, whiteSpace: 'nowrap' }}>{PAPERS[i].title}</div>
                 <div style={{ fontSize: fs(13), color: '#726c65', marginTop: 4 }}>خلاصه: {PAPERS[i].summary}</div>
-                <div style={{ borderTop: '1px solid #ebe5dc', marginTop: 12, paddingTop: 8, fontSize: fs(12), color: '#847d75' }}>مرتبط با پروژه</div>
+                <div style={{ borderTop: '1px solid #ebe5dc', marginTop: 12, paddingTop: 8, fontSize: fs(13), color: '#847d75' }}>مرتبط با پروژه</div>
                 <div style={{ position: 'relative', fontSize: fs(14), color: '#a45a21', fontWeight: 700, marginTop: 2 }}>
                   {PAPERS[i].tag}
                   {hlGrow > 0 && hlFade > 0 ? (
                     <div style={{ position: 'absolute', right: 0, top: 0, width: hlGrow * c.w * 0.4, height: '100%', background: 'oklch(97% 0.028 85)', opacity: 0.6 * hlFade, borderLeft: `2px solid ${AMBER}`, pointerEvents: 'none' }} />
                   ) : null}
                 </div>
-                <div style={{ fontSize: fs(12), color: '#59544e', marginTop: 3, whiteSpace: 'nowrap' }}>{PAPERS[i].note}</div>
+                <div style={{ fontSize: fs(13), color: '#59544e', marginTop: 3, whiteSpace: 'nowrap' }}>{PAPERS[i].note}</div>
               </div>
             </div>
           );
         })}
 
-        <div style={{ position: 'absolute', left: cards[0].x, width: cards[0].w, top: cards[4].y + cards[4].h + 20, textAlign: 'center', fontSize: fs(12), lineHeight: FA_LH, color: '#847d75' }}>همهٔ مقاله‌ها بارگذاری شد</div>
+        <div style={{ position: 'absolute', left: cards[0].x, width: cards[0].w, top: cards[4].y + cards[4].h + 20, textAlign: 'center', fontSize: fs(13), lineHeight: FA_LH, color: '#847d75' }}>همهٔ مقاله‌ها بارگذاری شد</div>
 
         {/* page-space glaze sweeps in the RTL reading direction */}
         <div
@@ -221,7 +230,7 @@ export const ListStackPress: React.FC = () => {
       {/* screen-space counter, top-left — lands one digit per card */}
       <div
         style={{
-          position: 'absolute', top: 70, left: 96, width: 210, textAlign: 'left', lineHeight: FA_LH, direction: 'rtl', fontFamily: 'Vazirmatn',
+          position: 'absolute', top: 44, left: 88, width: 210, textAlign: 'left', lineHeight: FA_LH, direction: 'rtl', fontFamily: 'Vazirmatn',
           pointerEvents: 'none', opacity: counterOpacity,
           transform: `scale(${counterScale})`, transformOrigin: 'top left',
         }}
