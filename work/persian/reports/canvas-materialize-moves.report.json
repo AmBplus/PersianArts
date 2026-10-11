@@ -1,0 +1,52 @@
+{
+  "slug": "canvas-materialize-moves",
+  "status": "localized-and-visually-reviewed",
+  "font": {
+    "family": "Vazirmatn",
+    "reason": "A neutral product UI face that matches the source's Helvetica role; its variable file supplies real 600 and 700 weights and renders Persian joins and punctuation cleanly. FaRoot loads it before capture."
+  },
+  "components": {
+    "DiagramCascadeBuild": {
+      "text": [
+        {
+          "source": "Generate an entity-relationship diagram",
+          "persian": "نمودار رابطهٔ موجودیت‌ها را ترسیم کن",
+          "timing": "The source 39-character count drives the original 1.1-character/frame progress and confirmation frame. typeOn slices the 36-code-point Persian prefix, preserving contextual joins. Frames 21–24 were inspected consecutively."
+        }
+      ],
+      "rtlDecisions": [
+        {"what": "prompt bar", "action": "kept centered; placed the dot and start of text at the right using RTL flex order and marginInlineEnd", "why": "the bar is symmetric but prompt reading starts at the right"},
+        {"what": "prompt caret", "action": "kept the neutral caret after the typed prefix", "why": "it marks the leftward advancing Persian typing edge"},
+        {"what": "tree sibling positions", "action": "reflected each child and grandchild center across x=960 while retaining node ids and start frames", "why": "the first item in a Persian cascade belongs on the right"},
+        {"what": "elbow connectors", "action": "recomputed paths from mirrored node centers; kept 16-frame draws and the 8-frame lead", "why": "connectors must lead the same children in the mirrored tree"},
+        {"what": "node skeleton bars", "action": "anchored both placeholder lines to the right with direction:rtl", "why": "they stand in for RTL text"},
+        {"what": "breathing origin", "action": "kept 960px 620px", "why": "the tree's source visual center lies on the reflection axis"},
+        {"what": "vertical growth, background dots and spring easing", "action": "kept", "why": "they carry physical or symmetric motion, not reading order"}
+      ],
+      "raster": "None; all visible content is DOM/SVG and the background is a CSS dot grid.",
+      "visualEvidence": "Compared original and Persian frames 24, 60, 96 and 120; inspected Persian typewriter frames 21–24 and the full 145-frame ending. Prompt remains single-line and the tree has no clipped nodes."
+    },
+    "PanelToCanvasMaterialize": {
+      "text": [
+        {"source": "Add all to canvas", "persian": "افزودن همه به بوم", "timing": "Static button label; original button press remains at frame 46."}
+      ],
+      "rtlDecisions": [
+        {"what": "side panel and canvas zones", "action": "reflected the 620px panel from x=1210 to x=90", "why": "the source panel/card spatial relationship is a directional layout; the card zone now begins at the Persian reading side"},
+        {"what": "panel title, table placeholders and row content", "action": "inherited RTL; checkboxes and content bars start on the right, metadata is pushed to the left with marginInlineStart:auto", "why": "these marks represent text rows and reading order"},
+        {"what": "flying rows and three card landing positions", "action": "reflected every flight rectangle as x'=1920-x-width at its interpolated width", "why": "the migrating object must keep a continuous mirrored trajectory while changing shape"},
+        {"what": "card tilt", "action": "negated the original -2, 1.5 and 2 degree target angles", "why": "a true horizontal reflection reverses tilt without changing its magnitude"},
+        {"what": "card placeholder title, body and footer", "action": "inherited RTL so all text and footer avatar bars anchor at the right", "why": "they represent Persian card content"},
+        {"what": "cursor path and icon", "action": "reflected the cursor x path and SVG silhouette", "why": "the pointer must approach the mirrored button from the opposite side"},
+        {"what": "row collapse, vertical arc lift, check pop, button press and stagger", "action": "kept source frames, curves and numeric parameters", "why": "their timing and vertical physics do not depend on reading direction"}
+      ],
+      "raster": "None; all cards, slots, cursor and background are DOM/SVG/CSS.",
+      "visualEvidence": "Compared original and Persian frames 40, 75 and 96, plus check/launch/hold frames 12, 53, 60 and 120. The three dashed departure slots and card crossfades remain visible."
+    }
+  },
+  "rasterHandling": "No raster or video asset is used by either demo, so no baked-in foreign text remains.",
+  "timing": "No source frame cue, fps, spring setting, easing, random seed or exported duration constant was changed. The 36-code-point Persian prompt is mapped onto the source's 39-character typewriter window. Source prompt specifies a 160-frame cascade despite the 130-frame registry; the harness --duration 160 was used to inspect and render its final breathing beat. The panel MP4 was losslessly trimmed to its source 130-frame length after the shared-duration render; ffprobe confirmed 130 panel frames and 160 cascade frames.",
+  "concerns": [
+    "The upstream reference MP4s each end at frame 129. Cascade frames 130–159 can be judged against the source code and prompt but have no original video frame for a direct comparison."
+  ],
+  "lessons": []
+}

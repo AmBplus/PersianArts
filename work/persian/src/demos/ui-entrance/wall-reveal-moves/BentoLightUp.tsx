@@ -78,7 +78,7 @@ const Cell: React.FC<{ i: number; frame: number }> = ({ i, frame }) => {
           width={CELL_W}
           height={CELL_H}
           viewBox={`0 0 ${CELL_W} ${CELL_H}`}
-          style={{ position: 'absolute', left: 0, top: ty, overflow: 'visible', transform: `translateX(${CELL_W}px) scaleX(-1)` }}
+          style={{ position: 'absolute', left: 0, top: ty, overflow: 'visible', transform: 'scaleX(-1)' }}
         >
           <rect
             x={2}

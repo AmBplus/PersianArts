@@ -1,9 +1,9 @@
 // diagram-cascade-build (Persian / RTL) —— miro-promo 104–116s
 // LOCALIZATION NOTES
 // Text: only one real string exists: the prompt. "Generate an entity-relationship diagram" ->
-//   «یک نمودار موجودیت و رابطه بساز» (imperative, natural AI-prompt voice). The typewriter keeps the ORIGINAL beats:
+//   «نمودار رابطهٔ موجودیت‌ها را ترسیم کن» (imperative, natural AI-prompt voice). The typewriter keeps the ORIGINAL beats:
 //   progress p = chars*1.1/39 over the original 39-char length, so typing still starts at f6 and ends at f≈41
-//   (prompt border turns dark at the same frame) even though the Persian string is shorter. typeOn() prefix slicing
+//   (prompt border turns dark at the same frame) even though the Persian string is 36 vs 39 code points. typeOn() prefix slicing
 //   keeps correct contextual shaping on every frame (one letter per step, no per-word degradation).
 // Direction decisions:
 //  - Prompt bar: symmetric (460..1460) -> position kept; icon dot uses marginInlineEnd so it sits at the RIGHT (start) of the bar; text right-anchored.
@@ -20,7 +20,7 @@ import { AbsoluteFill, useCurrentFrame, interpolate, spring, useVideoConfig, Eas
 import { G } from '../../_fixtures/Fixtures';
 import { FaRoot, faText, typeOn } from '../../_fa';
 
-const PROMPT = 'یک نمودار موجودیت و رابطه بساز';
+const PROMPT = 'نمودار رابطهٔ موجودیت‌ها را ترسیم کن';
 const ORIG_PROMPT_LEN = 'Generate an entity-relationship diagram'.length; // 39: keeps the original typing beats
 const TYPE_START = 6;
 const TYPE_CPS = 1.1; // 字符/帧

@@ -1,6 +1,11 @@
 import React from 'react';
 import { AbsoluteFill, Easing, interpolate, useCurrentFrame } from 'remotion';
 import { FakeDashboard, G } from '../../_fixtures/Fixtures';
+import { FaRoot } from '../../_fa';
+
+// فارسی‌سازی: FakeDashboard و خطوط SVG فقط شکل‌های خاکستریِ بی‌متن‌اند؛ هیچ متن لاتین/چینی یا تصویر متنی وجود ندارد.
+// جهت: ریل کناری و چیدمان داشبورد با آینه‌کردن کل صفحه به راست منتقل می‌شوند؛ خط مادی‌سازی و ماسک از راست به چپ می‌روبند.
+// ترتیب رسم گروه‌ها، نمودار/seed، easing و همهٔ فریم‌ها دست‌نخورده‌اند؛ Vazirmatn برای هر متن احتمالی در ریشه بارگیری می‌شود.
 
 // wireframe-draw-on〔入场退场〕：界面先以蓝图细线描画成形（stroke-dashoffset
 // 分组错峰），随后一条发光竖线从左向右扫过，扫过之处线框实体化为真实灰阶界面。
@@ -41,7 +46,7 @@ export const WireframeDrawOn: React.FC = () => {
     extrapolateRight: 'clamp',
     easing: Easing.bezier(0.55, 0, 0.25, 1),
   });
-  const scanX = scan * 1920;
+  const scanX = (1 - scan) * 1920;
   const lineOpacity = interpolate(frame, [86, 92, 112, 120], [0, 1, 1, 0], {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
@@ -70,12 +75,13 @@ export const WireframeDrawOn: React.FC = () => {
 
   return (
     <AbsoluteFill style={{ background: G.bg, overflow: 'hidden' }}>
+      <FaRoot family="Vazirmatn">
       {/* —— 线框层（蓝图描线） —— */}
       <svg
         width={1920}
         height={1080}
         viewBox="0 0 1920 1080"
-        style={{ position: 'absolute', inset: 0 }}
+        style={{ position: 'absolute', inset: 0, transform: 'scaleX(-1)' }}
       >
         {/* 侧栏 */}
         <rect x={4} y={4} width={216} height={1072} rx={2} {...stroke(tSide)} />
@@ -125,7 +131,9 @@ export const WireframeDrawOn: React.FC = () => {
         style={{
           position: 'absolute',
           inset: 0,
+          direction: 'ltr',
           clipPath: `inset(0 ${(1 - scan) * 100}% 0 0)`,
+          transform: 'scaleX(-1)',
         }}
       >
         <FakeDashboard variant="A" />
@@ -145,6 +153,7 @@ export const WireframeDrawOn: React.FC = () => {
             '0 0 18px 6px rgba(232, 163, 61, 0.65), 0 0 60px 18px rgba(232, 163, 61, 0.28)',
         }}
       />
+      </FaRoot>
     </AbsoluteFill>
   );
 };

@@ -1,0 +1,53 @@
+{
+  "slug": "wall-reveal-moves",
+  "status": "localized",
+  "fps": 30,
+  "durationFrames": 150,
+  "font": {
+    "family": "Vazirmatn",
+    "reason": "Neutral, modern UI sans suited to the product feature heading. Loaded through FaRoot so the Persian title renders in the intended font. The other two demos use text-free gray fixture geometry; the same root provides a stable RTL/font context without adding copy."
+  },
+  "compositions": [
+    {
+      "id": "demo-BentoLightUp",
+      "component": "BentoLightUp",
+      "rtlDecisions": [
+        {"what": "Features title", "action": "Translated to «ویژگی‌ها», set RTL and right-aligned against the card wall's right edge.", "why": "The only visible label is a product feature heading; the right edge is the RTL reading start."},
+        {"what": "3×2 card order", "action": "Mirrored the three card columns so the activation order begins at the right; seeds and row order remain unchanged.", "why": "The sequential wall reveal follows reading order."},
+        {"what": "Amber outline draw", "action": "Mirrored the SVG rectangle's horizontal path direction in its own bounds.", "why": "The perimeter highlight now starts from the right edge while retaining its 8-frame traversal."},
+        {"what": "Vertical rise and camera push", "action": "Kept unchanged.", "why": "They express physical vertical movement and camera motion, not reading direction."},
+        {"what": "Typography", "action": "Used Vazirmatn, 64px (font size kept at the source title size), variable weight 700 and zero letter spacing.", "why": "A neutral UI face fits the source heading; a variable family supports the original strong title hierarchy."}
+      ],
+      "rasterHandling": "No raster or video assets. Card content is gray placeholder geometry without baked-in text.",
+      "timing": "All source frames, easing curves, activation intervals, seeds, and camera scale timing preserved.",
+      "visualVerification": "Compared Persian and original at frames 44 and 100; checked the title, mirrored sequence, aligned card bounds, and final wall."
+    },
+    {
+      "id": "demo-GridWaveFlip",
+      "component": "GridWaveFlip",
+      "rtlDecisions": [
+        {"what": "3×3 grid reading order", "action": "Used RTL grid placement so the DOM's first card occupies the rightmost column; diagonal delay is computed from the RTL column index.", "why": "The diagonal wave is a sequence of content reveals, so its first-to-last progression follows Persian reading order."},
+        {"what": "rotateX, perspective and specular highlight", "action": "Kept unchanged.", "why": "These describe physical card rotation, depth and light rather than reading direction."},
+        {"what": "Copy and font", "action": "No on-screen strings exist in this demo; loaded Vazirmatn in the RTL root without injecting visible copy.", "why": "The source is a text-free placeholder card wall, and adding words would change its design."}
+      ],
+      "rasterHandling": "No raster or video assets. Both faces are generated gray placeholder shapes with no text.",
+      "timing": "All 20-frame hold, 6-frame diagonal stagger, 14-frame flips, last-card overshoot/settle, easing, and seeds preserved.",
+      "visualVerification": "Compared Persian and original at frames 44 and 100; verified centered wall geometry, first wave position and end-state layout."
+    },
+    {
+      "id": "demo-WireframeDrawOn",
+      "component": "WireframeDrawOn",
+      "rtlDecisions": [
+        {"what": "Dashboard rail and columns", "action": "Mirrored the SVG blueprint and the text-free dashboard geometry horizontally; set the dashboard fixture's local direction to LTR before mirroring to avoid a double RTL flex reversal.", "why": "The sidebar and dashboard column order are layout semantics and belong on the right for Persian readers."},
+        {"what": "Blueprint-to-interface scan", "action": "Changed the scan position to move right-to-left and mirrored the entity clip edge to match the same scan progress.", "why": "The reveal follows reading direction; the bright scan line remains aligned to the materialization boundary."},
+        {"what": "Chart shape", "action": "Mirrored the chart with the rest of the interface; retained all generated points and seed math.", "why": "The chart is a category/layout element embedded in the dashboard, while its data values and generation remain unchanged."},
+        {"what": "Text and font", "action": "No visible text strings exist in the dashboard or SVG; Vazirmatn is loaded at the root without adding copy.", "why": "The source art consists solely of placeholder bars, shapes and a line chart."}
+      ],
+      "rasterHandling": "No raster or video assets. Dashboard is rendered from vector/DOM placeholder geometry and contains no baked text.",
+      "timing": "All source draw group start times, per-item offsets, scan frames 88–118, opacity beats, easing and seeds preserved.",
+      "visualVerification": "Compared Persian and original at frames 56, 100, and 118; confirmed the mirrored sidebar, right-to-left scan, and registered clip boundary."
+    }
+  ],
+  "concerns": [],
+  "lessons": []
+}

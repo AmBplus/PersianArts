@@ -1,6 +1,6 @@
 // panel-to-canvas-materialize — Persian / RTL localization.
 // Text: the sole literal UI string, "Add all to canvas", becomes «افزودن همه به بوم».
-// Direction: the side panel moves to the right-reading start (left side of the screen); the
+// Direction: the side panel moves to the left so the canvas cards occupy the right-reading start; the
 // three landing cards, their Bezier flights and cursor approach are reflected horizontally.
 // Their rotation signs reverse with the reflection. Row checkboxes, placeholder bars, and
 // card footer flow RTL; the trailing row metadata moves to the far left via a logical margin.

@@ -1,8 +1,8 @@
 {
- "generatedAt": "2026-10-11T16:09:23.406Z",
+ "generatedAt": "2026-10-11T16:14:40.238Z",
  "summary": {
-  "todo": 77,
-  "localized": 18,
+  "todo": 75,
+  "localized": 20,
   "approved": 51,
   "fixed": 10,
   "needs-fix": 1,
@@ -147,11 +147,11 @@
   },
   {
    "slug": "canvas-materialize-moves",
-   "status": "todo",
-   "font": "",
-   "videos": 0,
+   "status": "localized",
+   "font": "Vazirmatn",
+   "videos": 2,
    "majors": 0,
-   "concerns": 0
+   "concerns": 1
   },
   {
    "slug": "card-flip-reveal",
@@ -1227,9 +1227,9 @@
   },
   {
    "slug": "wall-reveal-moves",
-   "status": "todo",
-   "font": "",
-   "videos": 0,
+   "status": "localized",
+   "font": "Vazirmatn",
+   "videos": 2,
    "majors": 0,
    "concerns": 0
   },

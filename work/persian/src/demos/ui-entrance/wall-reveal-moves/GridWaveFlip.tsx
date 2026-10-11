@@ -60,7 +60,7 @@ export const GridWaveFlip: React.FC = () => {
         alignItems: 'center',
       }}
     >
-      <FaRoot family="Vazirmatn">
+      <FaRoot family="Vazirmatn" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
       {/* 卡片墙：共享 perspective 1200px 容器，整墙一个消失点 */}
       <div
         style={{
@@ -76,7 +76,7 @@ export const GridWaveFlip: React.FC = () => {
       >
         {Array.from({ length: ROWS * COLS }).map((_, i) => {
           const row = Math.floor(i / COLS);
-          const col = COLS - 1 - (i % COLS);
+          const col = i % COLS;
           const angle = angleAt(frame, row, col);
           // 高光线：翻到 90°（最薄处）时最亮，位置随角度从上缘扫向下缘
           const glow = Math.max(0, 1 - Math.abs(angle - 90) / 45);
