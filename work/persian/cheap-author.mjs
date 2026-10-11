@@ -44,8 +44,10 @@ await writeFile(promptFile, task, "utf8");
 
 // ---- guard snapshot of everything dirty/untracked outside the allowed dirs
 const git = (...a) => spawnSync("git", a, {cwd: root, encoding: "utf8", maxBuffer: 1 << 28}).stdout;
+// infrastructure paths other workers edit concurrently: never reported or restored by the guard
+const INFRA = ["scripts/", "docs/", "CLAUDE.md", "AGENTS.md", "work/persian/sound-task/", "work/persian/orders/", "work/persian/cheap-", "work/persian/review-prompt"];
 const dirty = () => git("ls-files", "-m", "-o", "-d", "--exclude-standard").split("\n").map((s) => s.trim()).filter(Boolean)
-  .filter((p) => !allowed.some((al) => p.startsWith(al)) && !(p.startsWith("work/persian/src/demos/") && !p.startsWith("work/persian/src/demos/_fa/")) && !p.startsWith("work/persian/out/") && !p.startsWith("work/persian/trial/") && !p.startsWith("work/persian/batch39") && !p.includes("/.tmp/") && !p.startsWith("work/persian/progress") && !p.startsWith("work/persian/reports/") && !p.startsWith("work/persian/PROGRESS"));
+  .filter((p) => !allowed.some((al) => p.startsWith(al)) && !(p.startsWith("work/persian/src/demos/") && !p.startsWith("work/persian/src/demos/_fa/")) && !p.startsWith("work/persian/out/") && !p.startsWith("work/persian/trial/") && !p.startsWith("work/persian/batch39") && !p.includes("/.tmp/") && !p.startsWith("work/persian/progress") && !p.startsWith("work/persian/reports/") && !p.startsWith("work/persian/PROGRESS") && !INFRA.some((ip) => p.startsWith(ip)));
 const hashOf = (p) => { try { return createHash("sha1").update(require_read(p)).digest("hex"); } catch { return "MISSING"; } };
 import {readFileSync} from "node:fs";
 function require_read(p) { return readFileSync(join(root, p)); }
