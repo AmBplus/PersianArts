@@ -1,0 +1,67 @@
+{
+  "slug": "list-reveal",
+  "status": "implementation-complete-render-blocked",
+  "components": [
+    {
+      "id": "demo-ListReveal",
+      "file": "ListReveal.tsx",
+      "durationFrames": 108,
+      "fps": 30,
+      "size": "1920x1080",
+      "translations": {
+        "Dashboard": "پیش‌خوان",
+        "Projects": "پروژه‌ها",
+        "Analytics": "تحلیل‌ها",
+        "Messages": "پیام‌ها",
+        "Settings": "تنظیمات",
+        "Sign out": "خروج از حساب"
+      },
+      "font": {
+        "family": "Vazirmatn",
+        "weight": 500,
+        "reason": "A compact, neutral Persian UI face that fills the original Inter-like product-navigation role while preserving joined glyphs and the ZWNJ in پروژه‌ها. FaRoot loads it before rendering."
+      },
+      "rtlDecisions": [
+        {
+          "what": "Navigation-item marker and label order",
+          "action": "Mirrored via FaRoot direction:rtl; the first flex child (the colour marker) is therefore at the right, followed by its Persian label toward the left.",
+          "why": "Icon/bullet placement is part of reading-order navigation semantics in Persian."
+        },
+        {
+          "what": "List item cascade",
+          "action": "Kept the original top-to-bottom LABELS order and its six 0.09 stagger windows.",
+          "why": "This is a vertical navigation sequence, whose order is unchanged by RTL; preserving it retains the designed readable cadence."
+        },
+        {
+          "what": "Item entrance and container drift",
+          "action": "Kept the scale-led translateY(14→0) entrance and the independent linear translateY(16→-16) drift exactly.",
+          "why": "Vertical motion is physical/universal rather than reading-direction motion; the source prompt defines these as two deliberately decoupled layers."
+        },
+        {
+          "what": "Centred composition, swatches and gradients",
+          "action": "Kept position, colour order, gradient angle, radius, scale transform and opacity curve.",
+          "why": "They are symmetrical or decorative, not directional language."
+        }
+      ],
+      "motionFidelity": "E.outBack, seg windows, opacity multiplier, scale range, vertical offset, gap, hue array, 108-frame duration and all timing values are unchanged. Persian labels vary in length but do not change any beat, stagger count or holding time.",
+      "rasterHandling": "No raster, video, SVG text or textured text assets are used by this component.",
+      "persianCraft": "No letter spacing, uppercase transform or per-character split is used. Labels are whole joined strings; the only ZWNJ-required label is پروژه‌ها. There are no digits, mixed bidi runs, typing, handwriting or character-level reveal effects."
+    }
+  ],
+  "sourceComparison": {
+    "originalFramesExtracted": [0, 8, 16, 24, 36, 54, 80, 107],
+    "originalFramesViewed": [24, 54, 107],
+    "observations": "The upstream frames confirm the intended gradual top-to-bottom row assembly, soft scale settling and final all-six-row hold."
+  },
+  "verification": {
+    "requestedHarness": "node work/persian/render-card.mjs --slug list-reveal --frames 0,8,16,24,36,54,80,107",
+    "result": "blocked before bundling: the Windows environment returns Error: spawn EPERM while Remotion/esbuild starts its service. The harness then masks its own failed bundle result with TypeError: (b.stdout + b.stderr).slice is not a function.",
+    "directBundleAttempt": "npx remotion bundle ... --log=error produced the same esbuild spawn EPERM.",
+    "finalVideoAttempt": "Not produced because the same bundler precondition is blocked; no false claim of Persian visual or full-timeline verification is made."
+  },
+  "concerns": [
+    "Persian stills and the requested MP4 could not be rendered in this sandbox due to esbuild process-spawn permission denial. Re-run the supplied harness in an environment where child process creation is permitted, then inspect frames 0, 8, 16, 24, 36, 54, 80 and 107 against the extracted upstream PNGs.",
+    "The harness itself currently obscures its bundle diagnostics after failure because it concatenates non-string spawn stdout/stderr values before calling .slice()."
+  ],
+  "newLessons": []
+}

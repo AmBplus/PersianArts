@@ -1,7 +1,11 @@
-// radial-wave — Grid Radial Wave 点阵涟漪（motion-lab 定稿转原生 Remotion）
-// 17×9 圆点阵列，波从中心向外按欧氏距离 stagger 扩散：每点 scale 0→1.5→1 +
-// 亮度脉冲，波前过后留下常亮点阵；第二道波反向收拢。offset = k·dist(cell, origin)。
-// 设计坐标 480×270（DesignStage 等比放大），参数表数值以此坐标系标定。
+// Persian localization analysis — radial-wave / RadialWave
+// On-screen text: none. The source is a text-free, symmetric 17×9 dot field, so there is no copy or font to localize.
+// Direction decisions: keep all dot coordinates and both radial waves unchanged. Their center-out / outer-in paths are
+// geometric effects around a centered source, not reading-order motion; mirroring would not change meaning or improve RTL.
+// Preserve the exact 114-frame duration, Euclidean distance staggering, scale overshoot, colors, opacity, and pulse timing.
+// Raster handling: none; the composition draws its dots as DOM circles and contains no image/video textures.
+// Render status: frame inspection is blocked in this environment (harness bundle failed; see report.json).
+// دایره‌های ۱۷×۹، موج نخست از مرکز به بیرون و موج دوم از محیط به مرکز؛ زمان‌بندی و مختصات همان نسخهٔ اصلی است.
 import React from 'react';
 import { DesignStage, E, seg, useT } from '../../_fixtures/Motion';
 

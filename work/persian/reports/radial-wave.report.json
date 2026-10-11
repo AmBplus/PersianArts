@@ -1,0 +1,57 @@
+{
+  "slug": "radial-wave",
+  "status": "localized",
+  "components": [
+    {
+      "id": "demo-RadialWave",
+      "stem": "RadialWave",
+      "durationFrames": 114,
+      "fps": 30,
+      "size": "1920x1080",
+      "onScreenText": [],
+      "rtlDecisions": [
+        {
+          "what": "17×9 centered dot grid coordinates",
+          "action": "kept unchanged",
+          "why": "The field is symmetric about its geometric center and does not encode reading or category order."
+        },
+        {
+          "what": "First center-out wave",
+          "action": "kept unchanged",
+          "why": "This is a radial physical propagation effect; reversing it would change the source design rather than localize reading direction."
+        },
+        {
+          "what": "Second outer-in blue pulse",
+          "action": "kept unchanged",
+          "why": "It is a radial return response around the same center, not a directional reading cue."
+        },
+        {
+          "what": "Text alignment, font, and bidi handling",
+          "action": "not applicable",
+          "why": "The component contains no text."
+        },
+        {
+          "what": "Timing and motion parameters",
+          "action": "preserved",
+          "why": "The 114-frame duration, distance delays, easing, overshoot, pulse timing, size, and colors are part of the design and carry no RTL semantics."
+        }
+      ],
+      "rasterHandling": "No raster or video assets; dots are DOM elements.",
+      "concerns": [
+        "Visual verification is incomplete. The harness failed before rendering because npx attempted a network fetch (network unavailable); direct local Remotion CLI invocation failed with esbuild spawn EPERM.",
+        "No Persian or original PNG frames and no final MP4 were produced. The final --video render could not be completed under this environment restriction."
+      ]
+    }
+  ],
+  "font": {
+    "family": null,
+    "reason": "No on-screen text exists, so no font is needed."
+  },
+  "lessons": [],
+  "render": {
+    "requestedFrames": [0, 12, 24, 42, 60, 75, 90, 102, 113],
+    "visualComparisonCompleted": false,
+    "videoRendered": false,
+    "failure": "Bundle harness: TypeError while formatting spawn error; local CLI: esbuild spawn EPERM."
+  }
+}

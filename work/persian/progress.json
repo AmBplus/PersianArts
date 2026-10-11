@@ -1,8 +1,8 @@
 {
- "generatedAt": "2026-10-11T14:29:06.753Z",
+ "generatedAt": "2026-10-11T14:34:23.380Z",
  "summary": {
-  "todo": 113,
-  "localized": 1,
+  "todo": 111,
+  "localized": 3,
   "approved": 36,
   "fixed": 7,
   "needs-fix": 0,
@@ -579,11 +579,11 @@
   },
   {
    "slug": "list-reveal",
-   "status": "todo",
+   "status": "localized",
    "font": "",
    "videos": 0,
    "majors": 0,
-   "concerns": 0
+   "concerns": 2
   },
   {
    "slug": "list-stack-press",
@@ -835,8 +835,8 @@
   },
   {
    "slug": "radial-wave",
-   "status": "todo",
-   "font": "",
+   "status": "localized",
+   "font": "{\"family\":null,\"reason\":\"No on-screen text exists, so no font is needed.\"}",
    "videos": 0,
    "majors": 0,
    "concerns": 0
