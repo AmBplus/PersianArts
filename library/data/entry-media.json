@@ -1,6 +1,6 @@
 {
  "schema": "persianarts/entry-media/v3",
- "generatedAt": "2026-10-11T13:37:33.856Z",
+ "generatedAt": "2026-10-11T21:49:11.681Z",
  "items": {
   "shotcraft/ai-stream-response": {
    "renderKind": "persian-local",
@@ -21,6 +21,44 @@
     }
    ]
   },
+  "shotcraft/autolayout-gap-dial": {
+   "renderKind": "persian-local",
+   "reviewStatus": "approved",
+   "video": "media/shotcraft/autolayout-gap-dial/fa/autolayout-gap-dial/preview.mp4",
+   "poster": "media/shotcraft/autolayout-gap-dial/fa/autolayout-gap-dial/poster.webp",
+   "thumbnail": "media/shotcraft/autolayout-gap-dial/fa/autolayout-gap-dial/thumb.webp",
+   "variants": [
+    {
+     "key": "autolayout-gap-dial",
+     "label": "autolayout-gap-dial",
+     "comp": "demo-AutolayoutGapDial",
+     "description": "间距拨盘驱动布局——一排链接块带框选描边+缝隙间距标注，徽章数字逐格跳动、块被参数实时推开再弹簧回弹归位；\"参数驱动布局\"的可视化",
+     "duration": 4.05,
+     "video": "media/shotcraft/autolayout-gap-dial/fa/autolayout-gap-dial/preview.mp4",
+     "poster": "media/shotcraft/autolayout-gap-dial/fa/autolayout-gap-dial/poster.webp",
+     "thumbnail": "media/shotcraft/autolayout-gap-dial/fa/autolayout-gap-dial/thumb.webp"
+    }
+   ]
+  },
+  "shotcraft/avatar-bracket-carousel": {
+   "renderKind": "persian-local",
+   "reviewStatus": "approved",
+   "video": "media/shotcraft/avatar-bracket-carousel/fa/avatar-bracket-carousel/preview.mp4",
+   "poster": "media/shotcraft/avatar-bracket-carousel/fa/avatar-bracket-carousel/poster.webp",
+   "thumbnail": "media/shotcraft/avatar-bracket-carousel/fa/avatar-bracket-carousel/thumb.webp",
+   "variants": [
+    {
+     "key": "avatar-bracket-carousel",
+     "label": "avatar-bracket-carousel",
+     "comp": "demo-AvatarBracketCarousel",
+     "description": "\"Your ___ teammates\" 填空排版，四角对焦框钉在句中不动，头像队列在框内垂直 spring 轮换三次，入框放大清晰、出框按距离缩小淡化模糊，角色标签同步更换，切换瞬间对焦框呼吸 7%",
+     "duration": 5.25,
+     "video": "media/shotcraft/avatar-bracket-carousel/fa/avatar-bracket-carousel/preview.mp4",
+     "poster": "media/shotcraft/avatar-bracket-carousel/fa/avatar-bracket-carousel/poster.webp",
+     "thumbnail": "media/shotcraft/avatar-bracket-carousel/fa/avatar-bracket-carousel/thumb.webp"
+    }
+   ]
+  },
   "shotcraft/beat-step-list-theme-cycle": {
    "renderKind": "persian-local",
    "reviewStatus": "approved",
@@ -37,6 +75,25 @@
      "video": "media/shotcraft/beat-step-list-theme-cycle/fa/beat-step-list-theme-cycle/preview.mp4",
      "poster": "media/shotcraft/beat-step-list-theme-cycle/fa/beat-step-list-theme-cycle/poster.webp",
      "thumbnail": "media/shotcraft/beat-step-list-theme-cycle/fa/beat-step-list-theme-cycle/thumb.webp"
+    }
+   ]
+  },
+  "shotcraft/bezier-source-converge-merge": {
+   "renderKind": "persian-local",
+   "reviewStatus": "fixed",
+   "video": "media/shotcraft/bezier-source-converge-merge/fa/bezier-source-converge-merge/preview.mp4",
+   "poster": "media/shotcraft/bezier-source-converge-merge/fa/bezier-source-converge-merge/poster.webp",
+   "thumbnail": "media/shotcraft/bezier-source-converge-merge/fa/bezier-source-converge-merge/thumb.webp",
+   "variants": [
+    {
+     "key": "bezier-source-converge-merge",
+     "label": "bezier-source-converge-merge",
+     "comp": "demo-BezierSourceConvergeMerge",
+     "description": "左侧四个来源节点各有一条细贝塞尔曲线连向右侧同一汇聚点，曲线先错峰由左向右 draw-on，节点沿自己的曲线滑向汇聚点并三段式加速缩小到消失，强调色数据包全程沿路径滑行，吞并完成后曲线从左端反向擦除只留圆形徽标",
+     "duration": 5.65,
+     "video": "media/shotcraft/bezier-source-converge-merge/fa/bezier-source-converge-merge/preview.mp4",
+     "poster": "media/shotcraft/bezier-source-converge-merge/fa/bezier-source-converge-merge/poster.webp",
+     "thumbnail": "media/shotcraft/bezier-source-converge-merge/fa/bezier-source-converge-merge/thumb.webp"
     }
    ]
   },
@@ -94,6 +151,54 @@
      "video": "media/shotcraft/brand-ink-open/fa/brand-ink-open/preview.mp4",
      "poster": "media/shotcraft/brand-ink-open/fa/brand-ink-open/poster.webp",
      "thumbnail": "media/shotcraft/brand-ink-open/fa/brand-ink-open/thumb.webp"
+    }
+   ]
+  },
+  "shotcraft/canvas-materialize-moves": {
+   "renderKind": "persian-local",
+   "reviewStatus": "approved",
+   "video": "media/shotcraft/canvas-materialize-moves/fa/panel-to-canvas/preview.mp4",
+   "poster": "media/shotcraft/canvas-materialize-moves/fa/panel-to-canvas/poster.webp",
+   "thumbnail": "media/shotcraft/canvas-materialize-moves/fa/panel-to-canvas/thumb.webp",
+   "variants": [
+    {
+     "key": "panel-to-canvas",
+     "label": "panel-to-canvas",
+     "comp": "demo-PanelToCanvasMaterialize",
+     "description": "复选框逐个自动打勾→按钮按下→三行沿上抛弧线错峰飞出，途中行形态与卡形态交叉淡化，落位带随机倾角；面板行槽塌陷成虚线留白",
+     "duration": 4.42,
+     "video": "media/shotcraft/canvas-materialize-moves/fa/panel-to-canvas/preview.mp4",
+     "poster": "media/shotcraft/canvas-materialize-moves/fa/panel-to-canvas/poster.webp",
+     "thumbnail": "media/shotcraft/canvas-materialize-moves/fa/panel-to-canvas/thumb.webp"
+    },
+    {
+     "key": "diagram-cascade",
+     "label": "diagram-cascade",
+     "comp": "demo-DiagramCascadeBuild",
+     "description": "prompt 逐字敲出（敲完描边变深确认）→根（深色）→2 子→4 孙逐层弹出，折角连线描线先行 8f，成树后整棵呼吸一拍",
+     "duration": 5.38,
+     "video": "media/shotcraft/canvas-materialize-moves/fa/diagram-cascade/preview.mp4",
+     "poster": "media/shotcraft/canvas-materialize-moves/fa/diagram-cascade/poster.webp",
+     "thumbnail": "media/shotcraft/canvas-materialize-moves/fa/diagram-cascade/thumb.webp"
+    }
+   ]
+  },
+  "shotcraft/card-stack": {
+   "renderKind": "persian-local",
+   "reviewStatus": "approved",
+   "video": "media/shotcraft/card-stack/fa/card-stack/preview.mp4",
+   "poster": "media/shotcraft/card-stack/fa/card-stack/poster.webp",
+   "thumbnail": "media/shotcraft/card-stack/fa/card-stack/thumb.webp",
+   "variants": [
+    {
+     "key": "card-stack",
+     "label": "card-stack",
+     "comp": "demo-CardStack",
+     "description": "8 张卡从屏幕下方逐张 spring 弹入叠成一摞，全员落位后整摞一次性展成 3D 扇面——每张按序号偏转 8°、横移 34px、向后退一层 z",
+     "duration": 4.25,
+     "video": "media/shotcraft/card-stack/fa/card-stack/preview.mp4",
+     "poster": "media/shotcraft/card-stack/fa/card-stack/poster.webp",
+     "thumbnail": "media/shotcraft/card-stack/fa/card-stack/thumb.webp"
     }
    ]
   },
@@ -174,6 +279,92 @@
     }
    ]
   },
+  "shotcraft/chip-grid-single-select-blackout": {
+   "renderKind": "persian-local",
+   "reviewStatus": "approved",
+   "video": "media/shotcraft/chip-grid-single-select-blackout/fa/chip-grid-single-select-blackout/preview.mp4",
+   "poster": "media/shotcraft/chip-grid-single-select-blackout/fa/chip-grid-single-select-blackout/poster.webp",
+   "thumbnail": "media/shotcraft/chip-grid-single-select-blackout/fa/chip-grid-single-select-blackout/thumb.webp",
+   "variants": [
+    {
+     "key": "chip-grid-single-select-blackout",
+     "label": "chip-grid-single-select-blackout",
+     "comp": "demo-ChipGridSingleSelectBlackout",
+     "description": "五个选项 chip 以 3+2 居中排布逐个淡入；选中帧先插一帧灰色按压块，紧接数帧内底色变纯黑、文字变白并做 1→1.04→1 极轻回弹，其余 chip 淡到 18% 但位置锁死；随后余项归零，黑 chip 上移收窄，下方浮现算式行",
+     "duration": 5.06,
+     "video": "media/shotcraft/chip-grid-single-select-blackout/fa/chip-grid-single-select-blackout/preview.mp4",
+     "poster": "media/shotcraft/chip-grid-single-select-blackout/fa/chip-grid-single-select-blackout/poster.webp",
+     "thumbnail": "media/shotcraft/chip-grid-single-select-blackout/fa/chip-grid-single-select-blackout/thumb.webp"
+    }
+   ]
+  },
+  "shotcraft/chip-lift-to-user-pill": {
+   "renderKind": "persian-local",
+   "reviewStatus": "approved",
+   "video": "media/shotcraft/chip-lift-to-user-pill/fa/chip-lift-to-user-pill/preview.mp4",
+   "poster": "media/shotcraft/chip-lift-to-user-pill/fa/chip-lift-to-user-pill/poster.webp",
+   "thumbnail": "media/shotcraft/chip-lift-to-user-pill/fa/chip-lift-to-user-pill/thumb.webp",
+   "variants": [
+    {
+     "key": "chip-lift-to-user-pill",
+     "label": "chip-lift-to-user-pill",
+     "comp": "demo-ChipLiftToUserPill",
+     "description": "网格里的目标 chip 先 3 帧硬切反色成黑底白字，其余 chip 按到它的曼哈顿距离交错淡出缩小；黑 chip 左缘锚定向右生长成药丸，内部逐字打出人名并点亮绿点，再拉一条 1px 连接线接到圆形徽标",
+     "duration": 5.06,
+     "video": "media/shotcraft/chip-lift-to-user-pill/fa/chip-lift-to-user-pill/preview.mp4",
+     "poster": "media/shotcraft/chip-lift-to-user-pill/fa/chip-lift-to-user-pill/poster.webp",
+     "thumbnail": "media/shotcraft/chip-lift-to-user-pill/fa/chip-lift-to-user-pill/thumb.webp"
+    }
+   ]
+  },
+  "shotcraft/cloner-depth-echo": {
+   "renderKind": "persian-local",
+   "reviewStatus": "approved",
+   "video": "media/shotcraft/cloner-depth-echo/fa/cloner-depth-echo/preview.mp4",
+   "poster": "media/shotcraft/cloner-depth-echo/fa/cloner-depth-echo/poster.webp",
+   "thumbnail": "media/shotcraft/cloner-depth-echo/fa/cloner-depth-echo/thumb.webp",
+   "variants": [
+    {
+     "key": "cloner-depth-echo",
+     "label": "cloner-depth-echo",
+     "comp": "demo-ClonerDepthEcho",
+     "description": "克隆纵队——主卡瞬间\"复印\"出 7 个半透明分身沿斜向纵深排开成队，停一拍后全体加速吸回本体合一+弹跳",
+     "duration": 4.05,
+     "video": "media/shotcraft/cloner-depth-echo/fa/cloner-depth-echo/preview.mp4",
+     "poster": "media/shotcraft/cloner-depth-echo/fa/cloner-depth-echo/poster.webp",
+     "thumbnail": "media/shotcraft/cloner-depth-echo/fa/cloner-depth-echo/thumb.webp"
+    }
+   ]
+  },
+  "shotcraft/collab-cursor-moves": {
+   "renderKind": "persian-local",
+   "reviewStatus": "approved",
+   "video": "media/shotcraft/collab-cursor-moves/fa/dialogue-duet/preview.mp4",
+   "poster": "media/shotcraft/collab-cursor-moves/fa/dialogue-duet/poster.webp",
+   "thumbnail": "media/shotcraft/collab-cursor-moves/fa/dialogue-duet/thumb.webp",
+   "variants": [
+    {
+     "key": "dialogue-duet",
+     "label": "dialogue-duet",
+     "comp": "demo-CursorDialogueDuet",
+     "description": "蓝/绿两枚具名光标：贝塞尔入场→相互靠近对话（脉冲呼吸）→上下弧线绕位交换→名牌一亮一暗灯光交接→绿光标 easeIn 放大数十倍成巨箭头当转场遮挡",
+     "duration": 4.71,
+     "video": "media/shotcraft/collab-cursor-moves/fa/dialogue-duet/preview.mp4",
+     "poster": "media/shotcraft/collab-cursor-moves/fa/dialogue-duet/poster.webp",
+     "thumbnail": "media/shotcraft/collab-cursor-moves/fa/dialogue-duet/thumb.webp"
+    },
+    {
+     "key": "cast-ensemble",
+     "label": "cast-ensemble",
+     "comp": "demo-CursorCastEnsemble",
+     "description": "5 枚具名彩色光标错峰 spring 飞入灰阶画布→双频正弦漂移驻场→一枚在便签上打字机补全一行→结尾全员 easeInOut 聚拢围观",
+     "duration": 4.71,
+     "video": "media/shotcraft/collab-cursor-moves/fa/cast-ensemble/preview.mp4",
+     "poster": "media/shotcraft/collab-cursor-moves/fa/cast-ensemble/poster.webp",
+     "thumbnail": "media/shotcraft/collab-cursor-moves/fa/cast-ensemble/thumb.webp"
+    }
+   ]
+  },
   "shotcraft/command-palette-summon": {
    "renderKind": "persian-local",
    "reviewStatus": "approved",
@@ -209,6 +400,44 @@
      "video": "media/shotcraft/countdown-arc-scatter/fa/countdown-arc-scatter/preview.mp4",
      "poster": "media/shotcraft/countdown-arc-scatter/fa/countdown-arc-scatter/poster.webp",
      "thumbnail": "media/shotcraft/countdown-arc-scatter/fa/countdown-arc-scatter/thumb.webp"
+    }
+   ]
+  },
+  "shotcraft/deck-deal-flyin": {
+   "renderKind": "persian-local",
+   "reviewStatus": "approved",
+   "video": "media/shotcraft/deck-deal-flyin/fa/deck-deal-flyin/preview.mp4",
+   "poster": "media/shotcraft/deck-deal-flyin/fa/deck-deal-flyin/poster.webp",
+   "thumbnail": "media/shotcraft/deck-deal-flyin/fa/deck-deal-flyin/thumb.webp",
+   "variants": [
+    {
+     "key": "deck-deal-flyin",
+     "label": "deck-deal-flyin",
+     "comp": "demo-DeckDealFlyin",
+     "description": "暗场金属背景里的实体牌堆特写环绕开局，拉远交给页面后一摞卡像发牌一样硬加速甩进网格，相机追着滚动、满板停半秒",
+     "duration": 3.82,
+     "video": "media/shotcraft/deck-deal-flyin/fa/deck-deal-flyin/preview.mp4",
+     "poster": "media/shotcraft/deck-deal-flyin/fa/deck-deal-flyin/poster.webp",
+     "thumbnail": "media/shotcraft/deck-deal-flyin/fa/deck-deal-flyin/thumb.webp"
+    }
+   ]
+  },
+  "shotcraft/doc-park-left-pill-deal": {
+   "renderKind": "persian-local",
+   "reviewStatus": "fixed",
+   "video": "media/shotcraft/doc-park-left-pill-deal/fa/doc-park-left-pill-deal/preview.mp4",
+   "poster": "media/shotcraft/doc-park-left-pill-deal/fa/doc-park-left-pill-deal/poster.webp",
+   "thumbnail": "media/shotcraft/doc-park-left-pill-deal/fa/doc-park-left-pill-deal/thumb.webp",
+   "variants": [
+    {
+     "key": "doc-park-left-pill-deal",
+     "label": "doc-park-left-pill-deal",
+     "comp": "demo-DocParkLeftPillDeal",
+     "description": "文档不淡出而是向左滑出只露约 35% 宽并微缩到 0.92，右侧按旁白节奏慢速发牌三张白底描边药丸（outBack 弹入），每张落定后其下方字幕逐词加深、下一张到来前整句淡出，左侧文档全程极缓慢自动滚动保持\"正在被读\"",
+     "duration": 5.85,
+     "video": "media/shotcraft/doc-park-left-pill-deal/fa/doc-park-left-pill-deal/preview.mp4",
+     "poster": "media/shotcraft/doc-park-left-pill-deal/fa/doc-park-left-pill-deal/poster.webp",
+     "thumbnail": "media/shotcraft/doc-park-left-pill-deal/fa/doc-park-left-pill-deal/thumb.webp"
     }
    ]
   },
@@ -250,6 +479,54 @@
     }
    ]
   },
+  "shotcraft/element-body-moves": {
+   "renderKind": "persian-local",
+   "reviewStatus": "approved",
+   "video": "media/shotcraft/element-body-moves/fa/axial-stretch/preview.mp4",
+   "poster": "media/shotcraft/element-body-moves/fa/axial-stretch/poster.webp",
+   "thumbnail": "media/shotcraft/element-body-moves/fa/axial-stretch/thumb.webp",
+   "variants": [
+    {
+     "key": "axial-stretch",
+     "label": "axial-stretch",
+     "comp": "demo-AxialStretch",
+     "description": "速度差分驱动轴向拉伸——飞得越快拉得越长（满拉伸 scaleX 2.2/scaleY 0.72），落点 8f 压扁回弹",
+     "duration": 5.06,
+     "video": "media/shotcraft/element-body-moves/fa/axial-stretch/preview.mp4",
+     "poster": "media/shotcraft/element-body-moves/fa/axial-stretch/poster.webp",
+     "thumbnail": "media/shotcraft/element-body-moves/fa/axial-stretch/thumb.webp"
+    },
+    {
+     "key": "contact-shadow-lift",
+     "label": "contact-shadow-lift",
+     "comp": "demo-ContactShadowLift",
+     "description": "抬起 10f out-cubic：卡 translateY(−28px)+scale(1.08)，独立椭圆阴影 scale 1→1.72 / opacity 0.55→0.18 同进度反向；落回 8f in-cubic + 2f 微压卡壳",
+     "duration": 5.06,
+     "video": "media/shotcraft/element-body-moves/fa/contact-shadow-lift/preview.mp4",
+     "poster": "media/shotcraft/element-body-moves/fa/contact-shadow-lift/poster.webp",
+     "thumbnail": "media/shotcraft/element-body-moves/fa/contact-shadow-lift/thumb.webp"
+    }
+   ]
+  },
+  "shotcraft/floating-glossy-label-pills": {
+   "renderKind": "persian-local",
+   "reviewStatus": "approved",
+   "video": "media/shotcraft/floating-glossy-label-pills/fa/floating-glossy-label-pills/preview.mp4",
+   "poster": "media/shotcraft/floating-glossy-label-pills/fa/floating-glossy-label-pills/poster.webp",
+   "thumbnail": "media/shotcraft/floating-glossy-label-pills/fa/floating-glossy-label-pills/thumb.webp",
+   "variants": [
+    {
+     "key": "floating-glossy-label-pills",
+     "label": "floating-glossy-label-pills",
+     "comp": "demo-FloatingGlossyLabelPills",
+     "description": "四块浅灰 dashboard wireframe 面板各顶一枚高光胶囊标签横向排队，轨道三拍向右换位（缓起→中段冲→缓收，首拍更慢带长尾），居中者放大清晰、两侧缩到 0.62 并下沉变淡微模糊形成走廊感，末段黑色描白边光标从右上斜滑到末位胶囊右端静止",
+     "duration": 4.05,
+     "video": "media/shotcraft/floating-glossy-label-pills/fa/floating-glossy-label-pills/preview.mp4",
+     "poster": "media/shotcraft/floating-glossy-label-pills/fa/floating-glossy-label-pills/poster.webp",
+     "thumbnail": "media/shotcraft/floating-glossy-label-pills/fa/floating-glossy-label-pills/thumb.webp"
+    }
+   ]
+  },
   "shotcraft/flying-words": {
    "renderKind": "persian-local",
    "reviewStatus": "approved",
@@ -266,6 +543,25 @@
      "video": "media/shotcraft/flying-words/fa/flying-words/preview.mp4",
      "poster": "media/shotcraft/flying-words/fa/flying-words/poster.webp",
      "thumbnail": "media/shotcraft/flying-words/fa/flying-words/thumb.webp"
+    }
+   ]
+  },
+  "shotcraft/glass-pill-dictation-typing": {
+   "renderKind": "persian-local",
+   "reviewStatus": "approved",
+   "video": "media/shotcraft/glass-pill-dictation-typing/fa/glass-pill-dictation-typing/preview.mp4",
+   "poster": "media/shotcraft/glass-pill-dictation-typing/fa/glass-pill-dictation-typing/poster.webp",
+   "thumbnail": "media/shotcraft/glass-pill-dictation-typing/fa/glass-pill-dictation-typing/thumb.webp",
+   "variants": [
+    {
+     "key": "glass-pill-dictation-typing",
+     "label": "glass-pill-dictation-typing",
+     "comp": "demo-GlassPillDictationTyping",
+     "description": "纯黑底上一条定宽玻璃胶囊以约 1.25 倍略大弹出后缓落到位，内部自左暗到右亮铺一层强调色光；光标先行、随后打字出现占位句，光随打字进度渐渐熄灭，收尾成中性深色玻璃条",
+     "duration": 1.73,
+     "video": "media/shotcraft/glass-pill-dictation-typing/fa/glass-pill-dictation-typing/preview.mp4",
+     "poster": "media/shotcraft/glass-pill-dictation-typing/fa/glass-pill-dictation-typing/poster.webp",
+     "thumbnail": "media/shotcraft/glass-pill-dictation-typing/fa/glass-pill-dictation-typing/thumb.webp"
     }
    ]
   },
@@ -323,6 +619,54 @@
      "video": "media/shotcraft/hashtag-to-pill-materialize/fa/hashtag-to-pill-materialize/preview.mp4",
      "poster": "media/shotcraft/hashtag-to-pill-materialize/fa/hashtag-to-pill-materialize/poster.webp",
      "thumbnail": "media/shotcraft/hashtag-to-pill-materialize/fa/hashtag-to-pill-materialize/thumb.webp"
+    }
+   ]
+  },
+  "shotcraft/input-trigger-moves": {
+   "renderKind": "persian-local",
+   "reviewStatus": "approved",
+   "video": "media/shotcraft/input-trigger-moves/fa/cursor-performance/preview.mp4",
+   "poster": "media/shotcraft/input-trigger-moves/fa/cursor-performance/poster.webp",
+   "thumbnail": "media/shotcraft/input-trigger-moves/fa/cursor-performance/thumb.webp",
+   "variants": [
+    {
+     "key": "cursor-performance",
+     "label": "cursor-performance",
+     "comp": "demo-CursorPerformancePunchIn",
+     "description": "光标三次贝塞尔弧线滑入+末端甩腕过冲，悬停提亮，点击帧按钮下陷+涟漪+推近 1.4x 停两拍缓退",
+     "duration": 5.06,
+     "video": "media/shotcraft/input-trigger-moves/fa/cursor-performance/preview.mp4",
+     "poster": "media/shotcraft/input-trigger-moves/fa/cursor-performance/poster.webp",
+     "thumbnail": "media/shotcraft/input-trigger-moves/fa/cursor-performance/thumb.webp"
+    },
+    {
+     "key": "keycap-smash-cut",
+     "label": "keycap-smash-cut",
+     "comp": "demo-KeycapSmashCut",
+     "description": "键帽呼吸悬浮→3f 压扁+亮环引信 + 30f 卡片四面冲镜持续加速轰鸣 + 动势最猛一帧硬切静止全景、键帽嵌顶栏",
+     "duration": 5.06,
+     "video": "media/shotcraft/input-trigger-moves/fa/keycap-smash-cut/preview.mp4",
+     "poster": "media/shotcraft/input-trigger-moves/fa/keycap-smash-cut/poster.webp",
+     "thumbnail": "media/shotcraft/input-trigger-moves/fa/keycap-smash-cut/thumb.webp"
+    }
+   ]
+  },
+  "shotcraft/integration-hub-map": {
+   "renderKind": "persian-local",
+   "reviewStatus": "fixed",
+   "video": "media/shotcraft/integration-hub-map/fa/integration-hub-map/preview.mp4",
+   "poster": "media/shotcraft/integration-hub-map/fa/integration-hub-map/poster.webp",
+   "thumbnail": "media/shotcraft/integration-hub-map/fa/integration-hub-map/thumb.webp",
+   "variants": [
+    {
+     "key": "integration-hub-map",
+     "label": "integration-hub-map",
+     "comp": "demo-IntegrationHubMap",
+     "description": "旧页面一次性快翻 180°（侧棱瞬间亮闪）落成新中枢页，五个集成 app 图标同帧弹现、随即五条彩虹光管同帧齐连，光管内输送脉冲持续流动——\"翻开新一页，生态一齐接入\"",
+     "duration": 5.06,
+     "video": "media/shotcraft/integration-hub-map/fa/integration-hub-map/preview.mp4",
+     "poster": "media/shotcraft/integration-hub-map/fa/integration-hub-map/poster.webp",
+     "thumbnail": "media/shotcraft/integration-hub-map/fa/integration-hub-map/thumb.webp"
     }
    ]
   },
@@ -422,6 +766,44 @@
     }
    ]
   },
+  "shotcraft/list-reveal": {
+   "renderKind": "persian-local",
+   "reviewStatus": "approved",
+   "video": "media/shotcraft/list-reveal/fa/list-reveal/preview.mp4",
+   "poster": "media/shotcraft/list-reveal/fa/list-reveal/poster.webp",
+   "thumbnail": "media/shotcraft/list-reveal/fa/list-reveal/thumb.webp",
+   "variants": [
+    {
+     "key": "list-reveal",
+     "label": "list-reveal",
+     "comp": "demo-ListReveal",
+     "description": "垂直菜单 6 项按 0.09 的间隔依次 scale 找位、outBack 轻微过冲落定，同时整个列表容器全程线性上移 32px——逐项入场与整体漂移是两层不相干的运动",
+     "duration": 3.65,
+     "video": "media/shotcraft/list-reveal/fa/list-reveal/preview.mp4",
+     "poster": "media/shotcraft/list-reveal/fa/list-reveal/poster.webp",
+     "thumbnail": "media/shotcraft/list-reveal/fa/list-reveal/thumb.webp"
+    }
+   ]
+  },
+  "shotcraft/list-stack-press": {
+   "renderKind": "persian-local",
+   "reviewStatus": "fixed",
+   "video": "media/shotcraft/list-stack-press/fa/list-stack-press/preview.mp4",
+   "poster": "media/shotcraft/list-stack-press/fa/list-stack-press/poster.webp",
+   "thumbnail": "media/shotcraft/list-stack-press/fa/list-stack-press/thumb.webp",
+   "variants": [
+    {
+     "key": "list-stack-press",
+     "label": "list-stack-press",
+     "comp": "demo-ListStackPress",
+     "description": "列表卡从画面底部逐张飞上摞起，每张落地压弹整摞、计数器同步跳一格",
+     "duration": 2.99,
+     "video": "media/shotcraft/list-stack-press/fa/list-stack-press/preview.mp4",
+     "poster": "media/shotcraft/list-stack-press/fa/list-stack-press/poster.webp",
+     "thumbnail": "media/shotcraft/list-stack-press/fa/list-stack-press/thumb.webp"
+    }
+   ]
+  },
   "shotcraft/marker-underline-title": {
    "renderKind": "persian-local",
    "reviewStatus": "approved",
@@ -438,6 +820,63 @@
      "video": "media/shotcraft/marker-underline-title/fa/marker-underline-title/preview.mp4",
      "poster": "media/shotcraft/marker-underline-title/fa/marker-underline-title/poster.webp",
      "thumbnail": "media/shotcraft/marker-underline-title/fa/marker-underline-title/thumb.webp"
+    }
+   ]
+  },
+  "shotcraft/morph-from-primitive": {
+   "renderKind": "persian-local",
+   "reviewStatus": "approved",
+   "video": "media/shotcraft/morph-from-primitive/fa/morph-from-primitive/preview.mp4",
+   "poster": "media/shotcraft/morph-from-primitive/fa/morph-from-primitive/poster.webp",
+   "thumbnail": "media/shotcraft/morph-from-primitive/fa/morph-from-primitive/thumb.webp",
+   "variants": [
+    {
+     "key": "morph-from-primitive",
+     "label": "morph-from-primitive",
+     "comp": "demo-MorphFromPrimitive",
+     "description": "原型变形——正圆呼吸一拍（anticipation）后 SVG path 插值 24f 长成圆角卡轮廓，内容淡入",
+     "duration": 4.71,
+     "video": "media/shotcraft/morph-from-primitive/fa/morph-from-primitive/preview.mp4",
+     "poster": "media/shotcraft/morph-from-primitive/fa/morph-from-primitive/poster.webp",
+     "thumbnail": "media/shotcraft/morph-from-primitive/fa/morph-from-primitive/thumb.webp"
+    }
+   ]
+  },
+  "shotcraft/neon-frame-forerun": {
+   "renderKind": "persian-local",
+   "reviewStatus": "approved",
+   "video": "media/shotcraft/neon-frame-forerun/fa/neon-frame-forerun/preview.mp4",
+   "poster": "media/shotcraft/neon-frame-forerun/fa/neon-frame-forerun/poster.webp",
+   "thumbnail": "media/shotcraft/neon-frame-forerun/fa/neon-frame-forerun/thumb.webp",
+   "variants": [
+    {
+     "key": "neon-frame-forerun",
+     "label": "neon-frame-forerun",
+     "comp": "demo-NeonFrameForerun",
+     "description": "强透视直角霓虹框自左缘两头奔画先行成型，页面在框内由暗转亮，同时框内组件/文字从 3D 上空带同形软影错峰贴落、随页面点亮同步完成贴合，背景霓虹管群终段熄灭让位",
+     "duration": 5.06,
+     "video": "media/shotcraft/neon-frame-forerun/fa/neon-frame-forerun/preview.mp4",
+     "poster": "media/shotcraft/neon-frame-forerun/fa/neon-frame-forerun/poster.webp",
+     "thumbnail": "media/shotcraft/neon-frame-forerun/fa/neon-frame-forerun/thumb.webp"
+    }
+   ]
+  },
+  "shotcraft/neon-frame-orbit-drop": {
+   "renderKind": "persian-local",
+   "reviewStatus": "approved",
+   "video": "media/shotcraft/neon-frame-orbit-drop/fa/neon-frame-orbit-drop/preview.mp4",
+   "poster": "media/shotcraft/neon-frame-orbit-drop/fa/neon-frame-orbit-drop/poster.webp",
+   "thumbnail": "media/shotcraft/neon-frame-orbit-drop/fa/neon-frame-orbit-drop/thumb.webp",
+   "variants": [
+    {
+     "key": "neon-frame-orbit-drop",
+     "label": "neon-frame-orbit-drop",
+     "comp": "demo-NeonFrameForerunOrbit",
+     "description": "霓虹框先行描框后，镜头绕页面左→右弧线旋转，页面全部组件/文字**同帧**从空中往下贴合（同形软影同步收敛）——整体登场式的框内安放",
+     "duration": 5.06,
+     "video": "media/shotcraft/neon-frame-orbit-drop/fa/neon-frame-orbit-drop/preview.mp4",
+     "poster": "media/shotcraft/neon-frame-orbit-drop/fa/neon-frame-orbit-drop/poster.webp",
+     "thumbnail": "media/shotcraft/neon-frame-orbit-drop/fa/neon-frame-orbit-drop/thumb.webp"
     }
    ]
   },
@@ -527,6 +966,54 @@
     }
    ]
   },
+  "shotcraft/page-waterfall-wall": {
+   "renderKind": "persian-local",
+   "reviewStatus": "approved",
+   "video": "media/shotcraft/page-waterfall-wall/fa/page-waterfall-wall/preview.mp4",
+   "poster": "media/shotcraft/page-waterfall-wall/fa/page-waterfall-wall/poster.webp",
+   "thumbnail": "media/shotcraft/page-waterfall-wall/fa/page-waterfall-wall/thumb.webp",
+   "variants": [
+    {
+     "key": "page-waterfall-wall",
+     "label": "page-waterfall-wall",
+     "comp": "demo-PageWaterfallWall",
+     "description": "页面瀑布墙——真实页面截图切成 3–4 列在 3D 后仰墙面上差速反向无限滚动，视差 + 镜头缓推做\"内容多到流不完\"的一览",
+     "duration": 5.06,
+     "video": "media/shotcraft/page-waterfall-wall/fa/page-waterfall-wall/preview.mp4",
+     "poster": "media/shotcraft/page-waterfall-wall/fa/page-waterfall-wall/poster.webp",
+     "thumbnail": "media/shotcraft/page-waterfall-wall/fa/page-waterfall-wall/thumb.webp"
+    }
+   ]
+  },
+  "shotcraft/paper-craft-moves": {
+   "renderKind": "persian-local",
+   "reviewStatus": "approved",
+   "video": "media/shotcraft/paper-craft-moves/fa/masking-tape-slap/preview.mp4",
+   "poster": "media/shotcraft/paper-craft-moves/fa/masking-tape-slap/poster.webp",
+   "thumbnail": "media/shotcraft/paper-craft-moves/fa/masking-tape-slap/thumb.webp",
+   "variants": [
+    {
+     "key": "masking-tape-slap",
+     "label": "masking-tape-slap",
+     "comp": "demo-MaskingTapeSlap",
+     "description": "晃动=幅度包络×正弦（rot ±1.5°/bob ±5px）；胶带扑入 6f：scale 1.45→1 + rotate 欠 16°→过冲 7°→回正 + 落帧 scaleY 0.72 一帧压扁；撕边 14 点 clipPath 锯齿",
+     "duration": 4.71,
+     "video": "media/shotcraft/paper-craft-moves/fa/masking-tape-slap/preview.mp4",
+     "poster": "media/shotcraft/paper-craft-moves/fa/masking-tape-slap/poster.webp",
+     "thumbnail": "media/shotcraft/paper-craft-moves/fa/masking-tape-slap/thumb.webp"
+    },
+    {
+     "key": "popup-book-rise",
+     "label": "popup-book-rise",
+     "comp": "demo-PopupBookRise",
+     "description": "双层 3D：场景 rotateX 75° 俯视（persp 2600），每卡 rotateX 0→-90° spring（damping 11 过冲 -95°），origin 底边，preserve-3d 贯通；远排先近排后错峰 7f",
+     "duration": 4.71,
+     "video": "media/shotcraft/paper-craft-moves/fa/popup-book-rise/preview.mp4",
+     "poster": "media/shotcraft/paper-craft-moves/fa/popup-book-rise/poster.webp",
+     "thumbnail": "media/shotcraft/paper-craft-moves/fa/popup-book-rise/thumb.webp"
+    }
+   ]
+  },
   "shotcraft/paper-title-card": {
    "renderKind": "persian-local",
    "reviewStatus": "approved",
@@ -543,6 +1030,25 @@
      "video": "media/shotcraft/paper-title-card/fa/paper-title-card/preview.mp4",
      "poster": "media/shotcraft/paper-title-card/fa/paper-title-card/poster.webp",
      "thumbnail": "media/shotcraft/paper-title-card/fa/paper-title-card/thumb.webp"
+    }
+   ]
+  },
+  "shotcraft/picker-carousel-feature-cycle": {
+   "renderKind": "persian-local",
+   "reviewStatus": "approved",
+   "video": "media/shotcraft/picker-carousel-feature-cycle/fa/picker-carousel-feature-cycle/preview.mp4",
+   "poster": "media/shotcraft/picker-carousel-feature-cycle/fa/picker-carousel-feature-cycle/poster.webp",
+   "thumbnail": "media/shotcraft/picker-carousel-feature-cycle/fa/picker-carousel-feature-cycle/thumb.webp",
+   "variants": [
+    {
+     "key": "picker-carousel-feature-cycle",
+     "label": "picker-carousel-feature-cycle",
+     "comp": "demo-PickerCarouselFeatureCycle",
+     "description": "移动端风竖向选择器——焦点药丸不动、内容穿过它，每项带明显 outQuint 减速吸附后完全静止，按到中心距离分层控制透明度/字号/灰度，落定时药丸做 scaleY 极轻呼吸",
+     "duration": 3.65,
+     "video": "media/shotcraft/picker-carousel-feature-cycle/fa/picker-carousel-feature-cycle/preview.mp4",
+     "poster": "media/shotcraft/picker-carousel-feature-cycle/fa/picker-carousel-feature-cycle/poster.webp",
+     "thumbnail": "media/shotcraft/picker-carousel-feature-cycle/fa/picker-carousel-feature-cycle/thumb.webp"
     }
    ]
   },
@@ -584,6 +1090,82 @@
     }
    ]
   },
+  "shotcraft/platform-hinge-rise": {
+   "renderKind": "persian-local",
+   "reviewStatus": "approved",
+   "video": "media/shotcraft/platform-hinge-rise/fa/platform-hinge-rise/preview.mp4",
+   "poster": "media/shotcraft/platform-hinge-rise/fa/platform-hinge-rise/poster.webp",
+   "thumbnail": "media/shotcraft/platform-hinge-rise/fa/platform-hinge-rise/thumb.webp",
+   "variants": [
+    {
+     "key": "platform-hinge-rise",
+     "label": "platform-hinge-rise",
+     "comp": "demo-PlatformHingeRise",
+     "description": "承托平台先横向建立，两块主体从相邻底部铰点反向翻起并做一次克制阻尼回摆，最后结论台从画外升入，形成“舞台→证据→结论”的三段式揭示",
+     "duration": 3.52,
+     "video": "media/shotcraft/platform-hinge-rise/fa/platform-hinge-rise/preview.mp4",
+     "poster": "media/shotcraft/platform-hinge-rise/fa/platform-hinge-rise/poster.webp",
+     "thumbnail": "media/shotcraft/platform-hinge-rise/fa/platform-hinge-rise/thumb.webp"
+    }
+   ]
+  },
+  "shotcraft/product-card-progressive-assemble": {
+   "renderKind": "persian-local",
+   "reviewStatus": "approved",
+   "video": "media/shotcraft/product-card-progressive-assemble/fa/product-card-progressive-assemble/preview.mp4",
+   "poster": "media/shotcraft/product-card-progressive-assemble/fa/product-card-progressive-assemble/poster.webp",
+   "thumbnail": "media/shotcraft/product-card-progressive-assemble/fa/product-card-progressive-assemble/thumb.webp",
+   "variants": [
+    {
+     "key": "product-card-progressive-assemble",
+     "label": "product-card-progressive-assemble",
+     "comp": "demo-ProductCardProgressiveAssemble",
+     "description": "详情卡像被逐字段抓取般自建——图→标题→breadcrumb pill 依次 pop→原价出现后被划线降级、强调色新价 spring 跳出→正文逐行揭示且高亮块由左向右刷过→色卡点亮，整卡全程极慢 scale 前推",
+     "duration": 5.06,
+     "video": "media/shotcraft/product-card-progressive-assemble/fa/product-card-progressive-assemble/preview.mp4",
+     "poster": "media/shotcraft/product-card-progressive-assemble/fa/product-card-progressive-assemble/poster.webp",
+     "thumbnail": "media/shotcraft/product-card-progressive-assemble/fa/product-card-progressive-assemble/thumb.webp"
+    }
+   ]
+  },
+  "shotcraft/radial-wave": {
+   "renderKind": "persian-local",
+   "reviewStatus": "approved",
+   "video": "media/shotcraft/radial-wave/fa/radial-wave/preview.mp4",
+   "poster": "media/shotcraft/radial-wave/fa/radial-wave/poster.webp",
+   "thumbnail": "media/shotcraft/radial-wave/fa/radial-wave/thumb.webp",
+   "variants": [
+    {
+     "key": "radial-wave",
+     "label": "radial-wave",
+     "comp": "demo-RadialWave",
+     "description": "17×9 圆点阵列按到波源的欧氏距离错峰点亮，每点 scale 过冲到 1.5 再落回常亮，第一道波扫完后第二道亮蓝脉冲从外圈反向收拢回中心",
+     "duration": 3.86,
+     "video": "media/shotcraft/radial-wave/fa/radial-wave/preview.mp4",
+     "poster": "media/shotcraft/radial-wave/fa/radial-wave/poster.webp",
+     "thumbnail": "media/shotcraft/radial-wave/fa/radial-wave/thumb.webp"
+    }
+   ]
+  },
+  "shotcraft/research-card-stack-scroll": {
+   "renderKind": "persian-local",
+   "reviewStatus": "approved",
+   "video": "media/shotcraft/research-card-stack-scroll/fa/research-card-stack-scroll/preview.mp4",
+   "poster": "media/shotcraft/research-card-stack-scroll/fa/research-card-stack-scroll/poster.webp",
+   "thumbnail": "media/shotcraft/research-card-stack-scroll/fa/research-card-stack-scroll/thumb.webp",
+   "variants": [
+    {
+     "key": "research-card-stack-scroll",
+     "label": "research-card-stack-scroll",
+     "comp": "demo-ResearchCardStackScroll",
+     "description": "深色论文卡每 12 帧一张沿右下轴线飞入中心叠压，落位带 1 帧压缩，只有最上一张全清晰渲染标题+作者+摘要，下方卡按堆积深度递增模糊变暗只露标题条，背景横向 grid 同步下移做速度参照",
+     "duration": 4.84,
+     "video": "media/shotcraft/research-card-stack-scroll/fa/research-card-stack-scroll/preview.mp4",
+     "poster": "media/shotcraft/research-card-stack-scroll/fa/research-card-stack-scroll/poster.webp",
+     "thumbnail": "media/shotcraft/research-card-stack-scroll/fa/research-card-stack-scroll/thumb.webp"
+    }
+   ]
+  },
   "shotcraft/riso-print-hits": {
    "renderKind": "persian-local",
    "reviewStatus": "approved",
@@ -613,6 +1195,44 @@
     }
    ]
   },
+  "shotcraft/row-embed": {
+   "renderKind": "persian-local",
+   "reviewStatus": "approved",
+   "video": "media/shotcraft/row-embed/fa/row-embed/preview.mp4",
+   "poster": "media/shotcraft/row-embed/fa/row-embed/poster.webp",
+   "thumbnail": "media/shotcraft/row-embed/fa/row-embed/thumb.webp",
+   "variants": [
+    {
+     "key": "row-embed",
+     "label": "row-embed",
+     "comp": "demo-RowEmbed",
+     "description": "内容行像卡片一样从空中降下、rotateX 收平、嵌入瞬间底边亮一道强调色的缝",
+     "duration": 2.33,
+     "video": "media/shotcraft/row-embed/fa/row-embed/preview.mp4",
+     "poster": "media/shotcraft/row-embed/fa/row-embed/poster.webp",
+     "thumbnail": "media/shotcraft/row-embed/fa/row-embed/thumb.webp"
+    }
+   ]
+  },
+  "shotcraft/runway-ground-skim": {
+   "renderKind": "persian-local",
+   "reviewStatus": "approved",
+   "video": "media/shotcraft/runway-ground-skim/fa/runway-ground-skim/preview.mp4",
+   "poster": "media/shotcraft/runway-ground-skim/fa/runway-ground-skim/poster.webp",
+   "thumbnail": "media/shotcraft/runway-ground-skim/fa/runway-ground-skim/thumb.webp",
+   "variants": [
+    {
+     "key": "runway-ground-skim",
+     "label": "runway-ground-skim",
+     "comp": "demo-RunwayGroundSkim",
+     "description": "低角度掠地机位下 UI 卡片群从空中一阵急雨式快速贴落（起点微错、下落大量重叠并行、着地即停零回弹），落齐后整页立起、视角转正收尾",
+     "duration": 5.06,
+     "video": "media/shotcraft/runway-ground-skim/fa/runway-ground-skim/preview.mp4",
+     "poster": "media/shotcraft/runway-ground-skim/fa/runway-ground-skim/poster.webp",
+     "thumbnail": "media/shotcraft/runway-ground-skim/fa/runway-ground-skim/thumb.webp"
+    }
+   ]
+  },
   "shotcraft/scramble": {
    "renderKind": "persian-local",
    "reviewStatus": "fixed",
@@ -629,6 +1249,44 @@
      "video": "media/shotcraft/scramble/fa/scramble/preview.mp4",
      "poster": "media/shotcraft/scramble/fa/scramble/poster.webp",
      "thumbnail": "media/shotcraft/scramble/fa/scramble/thumb.webp"
+    }
+   ]
+  },
+  "shotcraft/segmented-thumb-hero": {
+   "renderKind": "persian-local",
+   "reviewStatus": "approved",
+   "video": "media/shotcraft/segmented-thumb-hero/fa/segmented-thumb-hero/preview.mp4",
+   "poster": "media/shotcraft/segmented-thumb-hero/fa/segmented-thumb-hero/poster.webp",
+   "thumbnail": "media/shotcraft/segmented-thumb-hero/fa/segmented-thumb-hero/thumb.webp",
+   "variants": [
+    {
+     "key": "segmented-thumb-hero",
+     "label": "segmented-thumb-hero",
+     "comp": "demo-SegmentedThumbHero",
+     "description": "分段控件 thumb 位移当主角特写——超大胶囊 segmented control 弹簧浮入，描边箭头光标画外滑入按下，白 thumb 8f ease-out 滑到另一段，到位瞬间新图标 spring 弹出、旧图标收起",
+     "duration": 3.71,
+     "video": "media/shotcraft/segmented-thumb-hero/fa/segmented-thumb-hero/preview.mp4",
+     "poster": "media/shotcraft/segmented-thumb-hero/fa/segmented-thumb-hero/poster.webp",
+     "thumbnail": "media/shotcraft/segmented-thumb-hero/fa/segmented-thumb-hero/thumb.webp"
+    }
+   ]
+  },
+  "shotcraft/skeleton-reveal": {
+   "renderKind": "persian-local",
+   "reviewStatus": "fixed",
+   "video": "media/shotcraft/skeleton-reveal/fa/skeleton-reveal/preview.mp4",
+   "poster": "media/shotcraft/skeleton-reveal/fa/skeleton-reveal/poster.webp",
+   "thumbnail": "media/shotcraft/skeleton-reveal/fa/skeleton-reveal/thumb.webp",
+   "variants": [
+    {
+     "key": "skeleton-reveal",
+     "label": "skeleton-reveal",
+     "comp": "demo-SkeletonReveal",
+     "description": "草稿→骨架→内容三级显影——手绘涂鸦占位（煮沸抖动）一拍被灰条骨架窗口替换，骨架列表滚入后镜头推近、灰条逐行显影成头像+逐词文字，末词晚半拍落地",
+     "duration": 5.78,
+     "video": "media/shotcraft/skeleton-reveal/fa/skeleton-reveal/preview.mp4",
+     "poster": "media/shotcraft/skeleton-reveal/fa/skeleton-reveal/poster.webp",
+     "thumbnail": "media/shotcraft/skeleton-reveal/fa/skeleton-reveal/thumb.webp"
     }
    ]
   },
@@ -689,6 +1347,25 @@
     }
    ]
   },
+  "shotcraft/svg-shape-morph": {
+   "renderKind": "persian-local",
+   "reviewStatus": "approved",
+   "video": "media/shotcraft/svg-shape-morph/fa/svg-shape-morph/preview.mp4",
+   "poster": "media/shotcraft/svg-shape-morph/fa/svg-shape-morph/poster.webp",
+   "thumbnail": "media/shotcraft/svg-shape-morph/fa/svg-shape-morph/thumb.webp",
+   "variants": [
+    {
+     "key": "svg-shape-morph",
+     "label": "svg-shape-morph",
+     "comp": "demo-SvgShapeMorph",
+     "description": "一条 140 点闭合轮廓平滑变形为另一条再变回，两形状先在极坐标下重采样到相同点数、逐点半径插值 + inOutCubic，变形中段叠轻微 scale 呼吸、缓慢自转与色相从 185° 漂到 305°",
+     "duration": 5.25,
+     "video": "media/shotcraft/svg-shape-morph/fa/svg-shape-morph/preview.mp4",
+     "poster": "media/shotcraft/svg-shape-morph/fa/svg-shape-morph/poster.webp",
+     "thumbnail": "media/shotcraft/svg-shape-morph/fa/svg-shape-morph/thumb.webp"
+    }
+   ]
+  },
   "shotcraft/text-as-mask": {
    "renderKind": "persian-local",
    "reviewStatus": "approved",
@@ -727,6 +1404,35 @@
     }
    ]
   },
+  "shotcraft/theme-switch-moves": {
+   "renderKind": "persian-local",
+   "reviewStatus": "fixed",
+   "video": "media/shotcraft/theme-switch-moves/fa/theme-sweep-toggle/preview.mp4",
+   "poster": "media/shotcraft/theme-switch-moves/fa/theme-sweep-toggle/poster.webp",
+   "thumbnail": "media/shotcraft/theme-switch-moves/fa/theme-sweep-toggle/thumb.webp",
+   "variants": [
+    {
+     "key": "theme-sweep-toggle",
+     "label": "theme-sweep-toggle",
+     "comp": "demo-ThemeSweepToggle",
+     "description": "深色版 clip-path polygon 15° 斜边扫场（out poly3 先快后缓 ~38f），边界 4px 白亮线+18px 辉光，扫完 2f 淡出；深版 scale 1→0.995→1 坐实",
+     "duration": 5.72,
+     "video": "media/shotcraft/theme-switch-moves/fa/theme-sweep-toggle/preview.mp4",
+     "poster": "media/shotcraft/theme-switch-moves/fa/theme-sweep-toggle/poster.webp",
+     "thumbnail": "media/shotcraft/theme-switch-moves/fa/theme-sweep-toggle/thumb.webp"
+    },
+    {
+     "key": "palette-theme-ripple",
+     "label": "palette-theme-ripple",
+     "comp": "demo-PaletteThemeRipple",
+     "description": "面板 back(1.9) 弹落→逐字输入→回车面板 ease-in 收缩到 0 + 白色高光核钉住位置→圆形 clip 半径 12→1250px cubic-out 荡开，边缘 5px 白环双向辉光",
+     "duration": 5.72,
+     "video": "media/shotcraft/theme-switch-moves/fa/palette-theme-ripple/preview.mp4",
+     "poster": "media/shotcraft/theme-switch-moves/fa/palette-theme-ripple/poster.webp",
+     "thumbnail": "media/shotcraft/theme-switch-moves/fa/palette-theme-ripple/thumb.webp"
+    }
+   ]
+  },
   "shotcraft/title-demote-to-label": {
    "renderKind": "persian-local",
    "reviewStatus": "approved",
@@ -743,6 +1449,25 @@
      "video": "media/shotcraft/title-demote-to-label/fa/title-demote-to-label/preview.mp4",
      "poster": "media/shotcraft/title-demote-to-label/fa/title-demote-to-label/poster.webp",
      "thumbnail": "media/shotcraft/title-demote-to-label/fa/title-demote-to-label/thumb.webp"
+    }
+   ]
+  },
+  "shotcraft/type-and-filter": {
+   "renderKind": "persian-local",
+   "reviewStatus": "approved",
+   "video": "media/shotcraft/type-and-filter/fa/type-and-filter/preview.mp4",
+   "poster": "media/shotcraft/type-and-filter/fa/type-and-filter/poster.webp",
+   "thumbnail": "media/shotcraft/type-and-filter/fa/type-and-filter/thumb.webp",
+   "variants": [
+    {
+     "key": "type-and-filter",
+     "label": "type-and-filter",
+     "comp": "demo-TypeAndFilter",
+     "description": "真实 UI 上打字搜索、网格自己收敛成一张卡、点击穿透进详情页",
+     "duration": 2.5,
+     "video": "media/shotcraft/type-and-filter/fa/type-and-filter/preview.mp4",
+     "poster": "media/shotcraft/type-and-filter/fa/type-and-filter/poster.webp",
+     "thumbnail": "media/shotcraft/type-and-filter/fa/type-and-filter/thumb.webp"
     }
    ]
   },
@@ -901,6 +1626,25 @@
     }
    ]
   },
+  "shotcraft/value-stagger-gradient": {
+   "renderKind": "persian-local",
+   "reviewStatus": "approved",
+   "video": "media/shotcraft/value-stagger-gradient/fa/value-stagger-gradient/preview.mp4",
+   "poster": "media/shotcraft/value-stagger-gradient/fa/value-stagger-gradient/poster.webp",
+   "thumbnail": "media/shotcraft/value-stagger-gradient/fa/value-stagger-gradient/thumb.webp",
+   "variants": [
+    {
+     "key": "value-stagger-gradient",
+     "label": "value-stagger-gradient",
+     "comp": "demo-ValueStaggerGradient",
+     "description": "16 根柱入场时 delay 是时间错峰，同时高度/色相/位移/模糊四个属性各自铺成从首到末的数值梯度；第二拍把错峰原点换成中心，脉冲幅度以中心为最大重新铺开",
+     "duration": 5.06,
+     "video": "media/shotcraft/value-stagger-gradient/fa/value-stagger-gradient/preview.mp4",
+     "poster": "media/shotcraft/value-stagger-gradient/fa/value-stagger-gradient/poster.webp",
+     "thumbnail": "media/shotcraft/value-stagger-gradient/fa/value-stagger-gradient/thumb.webp"
+    }
+   ]
+  },
   "shotcraft/vertical-word-roll-blur-cycle": {
    "renderKind": "persian-local",
    "reviewStatus": "approved",
@@ -917,6 +1661,64 @@
      "video": "media/shotcraft/vertical-word-roll-blur-cycle/fa/vertical-word-roll-blur-cycle/preview.mp4",
      "poster": "media/shotcraft/vertical-word-roll-blur-cycle/fa/vertical-word-roll-blur-cycle/poster.webp",
      "thumbnail": "media/shotcraft/vertical-word-roll-blur-cycle/fa/vertical-word-roll-blur-cycle/thumb.webp"
+    }
+   ]
+  },
+  "shotcraft/voice-waveform-live": {
+   "renderKind": "persian-local",
+   "reviewStatus": "approved",
+   "video": "media/shotcraft/voice-waveform-live/fa/voice-waveform-live/preview.mp4",
+   "poster": "media/shotcraft/voice-waveform-live/fa/voice-waveform-live/poster.webp",
+   "thumbnail": "media/shotcraft/voice-waveform-live/fa/voice-waveform-live/thumb.webp",
+   "variants": [
+    {
+     "key": "voice-waveform-live",
+     "label": "voice-waveform-live",
+     "comp": "demo-VoiceWaveformLive",
+     "description": "录音胶囊实时声纹——64 根细竖条随\"说话\"起伏，说话时中部高耸、停顿缩成点线，波形从右往左滚动；说→停→说→提交塌缩的完整表演",
+     "duration": 5.06,
+     "video": "media/shotcraft/voice-waveform-live/fa/voice-waveform-live/preview.mp4",
+     "poster": "media/shotcraft/voice-waveform-live/fa/voice-waveform-live/poster.webp",
+     "thumbnail": "media/shotcraft/voice-waveform-live/fa/voice-waveform-live/thumb.webp"
+    }
+   ]
+  },
+  "shotcraft/wall-reveal-moves": {
+   "renderKind": "persian-local",
+   "reviewStatus": "approved",
+   "video": "media/shotcraft/wall-reveal-moves/fa/bento-light-up/preview.mp4",
+   "poster": "media/shotcraft/wall-reveal-moves/fa/bento-light-up/poster.webp",
+   "thumbnail": "media/shotcraft/wall-reveal-moves/fa/bento-light-up/thumb.webp",
+   "variants": [
+    {
+     "key": "bento-light-up",
+     "label": "bento-light-up",
+     "comp": "demo-BentoLightUp",
+     "description": "暗场 3×2 bento 墙压暗待命，琥珀流光逐格描边一圈、内容随即提亮上浮，全亮后镜头缓推收住",
+     "duration": 5.06,
+     "video": "media/shotcraft/wall-reveal-moves/fa/bento-light-up/preview.mp4",
+     "poster": "media/shotcraft/wall-reveal-moves/fa/bento-light-up/poster.webp",
+     "thumbnail": "media/shotcraft/wall-reveal-moves/fa/bento-light-up/thumb.webp"
+    },
+    {
+     "key": "grid-wave-flip",
+     "label": "grid-wave-flip",
+     "comp": "demo-GridWaveFlip",
+     "description": "3×3 灰背卡墙沿对角线波前依次 rotateX 原位翻转 180°，翻出正面内容，尾张过冲回弹",
+     "duration": 4.39,
+     "video": "media/shotcraft/wall-reveal-moves/fa/grid-wave-flip/preview.mp4",
+     "poster": "media/shotcraft/wall-reveal-moves/fa/grid-wave-flip/poster.webp",
+     "thumbnail": "media/shotcraft/wall-reveal-moves/fa/grid-wave-flip/thumb.webp"
+    },
+    {
+     "key": "wireframe-draw-on",
+     "label": "wireframe-draw-on",
+     "comp": "demo-WireframeDrawOn",
+     "description": "界面先以 SVG 细线蓝图分组描画，再一条琥珀发光竖线左→右扫过，扫过处线框实体化成真实界面",
+     "duration": 5.06,
+     "video": "media/shotcraft/wall-reveal-moves/fa/wireframe-draw-on/preview.mp4",
+     "poster": "media/shotcraft/wall-reveal-moves/fa/wireframe-draw-on/poster.webp",
+     "thumbnail": "media/shotcraft/wall-reveal-moves/fa/wireframe-draw-on/thumb.webp"
     }
    ]
   },
