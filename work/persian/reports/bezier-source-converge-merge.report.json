@@ -1,6 +1,6 @@
 {
   "slug": "bezier-source-converge-merge",
-  "status": "localized",
+  "status": "localized-fix-round-1",
   "composition": {
     "id": "demo-BezierSourceConvergeMerge",
     "component": "BezierSourceConvergeMerge",
@@ -8,90 +8,108 @@
     "fps": 30,
     "size": "1920x1080",
     "durationPreserved": true,
-    "motionPreserved": "All timing windows, easing curves, stagger offsets, path lengths, convergence progress, three-stage node scaling, packet cycles and phase offsets, badge pulse, erase, and caption reveal remain unchanged. Only horizontal geometry is mirrored where it expresses source-to-result reading order."
+    "motionPreserved": "All timing windows, easing curves, stagger offsets, path lengths, convergence progress, three-stage node scaling (44->15->0), packet cycle phases, badge pulse, reverse-erase window and caption reveal remain unchanged; only horizontal geometry is mirrored (x' = 440 - x) where it expresses source-to-result reading order."
   },
   "font": {
     "family": "Vazirmatn",
-    "reason": "Neutral, modern Persian UI sans that fits the source's sparse Swiss-style interface and is loaded through FaRoot.",
-    "weights": "Variable family; caption uses 600.",
-    "fontVerification": "Rendered Persian caption visibly uses Vazirmatn; shared kit loads the font before rendering."
+    "reason": "Neutral, modern Persian UI sans that fits the source's sparse Swiss-grey interface; variable 100-900 so weight 600 (caption) and 700 (node tags) are real weights, not faux bold. Loaded through FaRoot so there is no silent fallback.",
+    "weights": "Variable; caption 600, node tags 700.",
+    "fontVerification": "Persian caption «چهار منبع یکپارچه» and node tags «م۱»-«م۴» render visibly in Vazirmatn (checked on f14/f48/f145/f160/f167 stills); no fallback glyphs."
   },
+  "fixesApplied": [
+    {
+      "reviewerSeverity": "major",
+      "where": "Caption box position (left: 28, width: 200), frames 140-167",
+      "action": "Changed left: 28 -> left: 11. Badge centre = 440 - XC = 108 design units; box centre = 111.5, i.e. ~3.5 design px RIGHT of the badge centre. Measured the original: caption content centre sits ~3.5 design px (~13 screen px) LEFT of the badge centre (start-side bias), so the faithful mirror is ~3.5 design px right. Verified on fa.f167: caption centre ~528 screen px vs badge centre ~512 px - visually centred lockup.",
+      "why": "The caption is part of the badge lockup; a faithful mirror must reproduce the original's sub-centre bias in the opposite direction, not amplify it."
+    },
+    {
+      "reviewerSeverity": "minor",
+      "where": "SRCS tags S1-S4",
+      "action": "Replaced Latin identifiers with «م۱»-«م۴» (mem = منبع/source) via faDigits; added fs() scaling (x1.1) to the node label fontSize for the smaller Persian x-height.",
+      "why": "A Persian product names its sources in Persian; digits via faDigits keep Persian digit forms. Original rest positions, shrink stages and timings untouched - the Persian tags have the same 2-character footprint."
+    },
+    {
+      "reviewerSeverity": "minor",
+      "where": "Header comment / leftover Chinese comments",
+      "action": "Expanded the header with the exact mirror formula (path d M 462,y L 366,y C 254,y 226,YC 108,YC; pointAt x = 462 - sc on the lead-in and x = 440 - p.x on the cubic; rest-position threshold x <= 366; badge left: 440 - XC - 17) and the caption alignment decision; translated every remaining Chinese comment to English. No Chinese remains in the file.",
+      "why": "The header is the permanent record of the geometry mirroring; the reviewer must be able to re-derive every coordinate."
+    }
+  ],
   "translations": [
     {
       "source": "Four sources unified",
       "persian": "چهار منبع یکپارچه",
-      "reason": "Concise, natural product language for the single-result payoff."
+      "reason": "Concise, natural product language for the single-result payoff; three words map onto the same word-by-word darkening beats."
     },
     {
-      "source": "S1–S4",
-      "persian": "S1–S4",
-      "reason": "Neutral source identifiers retained as LTR technical tokens; they are not prose or user-facing copy."
+      "source": "S1-S4",
+      "persian": "م۱-م۴",
+      "reason": "Reviewer-flagged: Latin identifiers inside an all-Persian diagram read as leftovers; «م» + Persian digit is natural Persian product wording with the same footprint."
     }
   ],
   "rtlDecisions": [
     {
       "comp": "demo-BezierSourceConvergeMerge",
-      "what": "Four source nodes and their curves",
-      "action": "Mirrored horizontally: sources occupy the right side and converge toward the badge on the left; path control points and sampled x coordinates are mirrored together.",
-      "why": "Source-to-result order carries reading direction in this explanatory diagram. The nodes and packets must remain on the actual mirrored curves."
+      "what": "Four source nodes and their bezier curves",
+      "action": "Mirrored horizontally with the exact formula x' = 440 - x: path d becomes M 462,y L 366,y C 254,y 226,YC 108,YC; the arc-length pointAt returns x = 462 - sc on the straight lead-in and x = 440 - p.x on the cubic; the node rest-position search threshold flips from pointAt(...).x >= 74 to <= 366; badge left: 440 - XC - 17. Sources sit on the right and slide toward the badge on the left.",
+      "why": "Source-to-result flow carries reading direction in this explanatory diagram. Nodes and blue packets ride the actual mirrored curves (verified f14/f30/f42/f48/f96)."
     },
     {
       "comp": "demo-BezierSourceConvergeMerge",
       "what": "Path draw-on and reverse erase",
-      "action": "Kept the original progress formulas and phase timings; the mirrored path geometry makes the visible draw travel from the outer right toward the convergence point, with erase reversing it.",
-      "why": "The sweep direction carries the diagram's reading order; the original stagger and duration remain intact."
+      "action": "Kept the original progress formulas, stagger (0.04 + i*0.045), durations and easing; the mirrored geometry makes the visible draw travel right-to-left and the erase retreat toward the right start edge.",
+      "why": "The sweep direction carries the diagram's reading order; beats identical (verified f42 draw-on mid-flight, f145 erase tail on the badge's right, mirroring the orig tail on its left)."
     },
     {
       "comp": "demo-BezierSourceConvergeMerge",
-      "what": "S1–S4 labels and four-source vertical ordering",
-      "action": "Kept LTR identifier glyph order and top-to-bottom stacking; removed nonzero letter spacing.",
-      "why": "These are compact identifiers, and the vertical source arrangement is physical layout rather than horizontal reading order."
+      "what": "Node tags «م۱»-«م۴»",
+      "action": "Persian digits via faDigits inside the tags; RTL glyphs, letterSpacing 0, label size fs()-scaled. Vertical top-to-bottom stacking kept.",
+      "why": "Persian product wording; the vertical arrangement is physical layout, not reading order. Digits keep their numeric order inside the RTL tag via bidi."
     },
     {
       "comp": "demo-BezierSourceConvergeMerge",
-      "what": "Convergence badge and four-point mark",
-      "action": "Moved badge to the mirrored convergence coordinate; kept the mark's shape and orientation unchanged.",
-      "why": "Its location participates in the reading flow, while the centered geometric symbol is a physical, symmetric mark."
+      "what": "Convergence badge and four-point star",
+      "action": "Badge moved to the mirrored coordinate; star shape/orientation unchanged.",
+      "why": "Badge location participates in the reading flow; the symmetric star is a physical mark."
     },
     {
       "comp": "demo-BezierSourceConvergeMerge",
-      "what": "Final caption and word-color progression",
-      "action": "Translated to «چهار منبع یکپارچه», placed beneath the badge, and retained the original word-by-word color progression in RTL order. Removed tracking and used logical word spacing.",
-      "why": "The caption is Persian UI copy; reading and emphasis begin at the right edge."
+      "what": "Final caption lockup and word-color progression",
+      "action": "«چهار منبع یکپارچه», box width 200, justifyContent center, left: 11 (centre 111.5 = badge centre 108 + 3.5 mirrored bias). Word-by-word darkening kept on the original beats, starting at the right-most word «چهار» (mirrors original starting at 'Four'). Logical marginInlineEnd between words; letterSpacing 0; lineHeight FA_LH.",
+      "why": "Persian UI copy reads and emphasizes right-to-left; the caption belongs visually to the badge it names."
     },
     {
       "comp": "demo-BezierSourceConvergeMerge",
-      "what": "Canvas centering, vertical coordinates, circles, and star symbol",
-      "action": "Kept centered canvas, all y coordinates, circular shapes, and star orientation unchanged.",
-      "why": "These are symmetric or vertical composition/physical geometry and do not carry RTL reading semantics."
+      "what": "Canvas centering, vertical coordinates, circles, shadows, star",
+      "action": "Unchanged.",
+      "why": "Symmetric or vertical composition and physical depth cues carry no RTL semantics."
     }
   ],
   "rasterHandling": {
-    "assets": "None. The component uses vector paths and CSS shapes only.",
+    "assets": "None. The component uses SVG paths and CSS shapes only.",
     "bakedText": "None."
   },
   "verification": {
-    "renderCommand": "node work/persian/render-card.mjs --slug bezier-source-converge-merge --duration 168 --frames 8,20,48,80,110,126,145,160 --video",
+    "renderCommand": "node work/persian/render-card.mjs --slug bezier-source-converge-merge --frames 14,30,48,96,130,145,152,160,167  then  node work/persian/render-card.mjs --slug bezier-source-converge-merge --video",
     "renderErrors": [],
     "video": "BezierSourceConvergeMerge.fa.mp4",
-    "comparisons": "Viewed Persian and original side-by-side at frames 48, 80, and 160. Verified early convergence path alignment, mid-convergence node and packet alignment, and final Persian caption fit.",
-    "visualResult": "The mirrored path geometry, nodes, packets, badge, and caption are aligned; the caption fits and no unintended English or Chinese prose appears.",
-    "renderedFrames": [
-      8,
-      20,
-      48,
-      80,
-      110,
-      126,
-      145,
-      160
-    ],
+    "renderedFrames": [7, 14, 30, 42, 48, 84, 96, 110, 126, 130, 145, 152, 160, 163, 167],
     "viewedPairedFrames": [
-      48,
-      80,
-      160
-    ]
+      { "frame": 14, "note": "fa vs orig: nodes «م۱»/«م۲» vs S1/S2 rest positions mirrored; Persian tags render in Vazirmatn." },
+      { "frame": 42, "note": "staggered draw-on mid-flight, packets on curves, 4th curve drawing from the right start edge." },
+      { "frame": 48, "note": "full diagram: nodes, curves and blue packets all sit on the mirrored curves." },
+      { "frame": 96, "note": "mid-convergence cluster + shrink matches orig." },
+      { "frame": 145, "note": "caption fade-in: «چهار» darkest (right-most), rest light - mirrors orig 'Four' darkest (left-most); erase tail on badge right." },
+      { "frame": 160, "note": "caption darkening near-complete, still centred on badge." },
+      { "frame": 167, "note": "final resting lockup: caption centre ~528 px vs badge centre ~512 px (~3.5 design px, matching the mirrored original bias) - the reviewer's major issue is resolved." }
+    ],
+    "visualResult": "Every checked frame pairs 1:1 with the original beat-for-beat; no unintended English/Chinese text on screen; Persian shaping correct (Persian digits, ی/ک forms)."
   },
   "concerns": [],
-  "lessons": []
+  "lessons": [
+    "When the original places a caption with a small deliberate off-centre bias inside a lockup, the mirror must reproduce the same magnitude of bias flipped to the other side, not a larger offset; measure the original render (or box math) before choosing the mirrored coordinate instead of eyeballing a round number.",
+    "Compact node tags are worth localizing even when they look like 'identifiers': Latin S1-S4 inside an otherwise all-Persian diagram reads as an untranslated leftover; Persian digit tags («م۱») keep the same 2-character footprint so no timing or geometry changes are needed.",
+    "grep -P with \\x{...} ranges above the BMP fails on Git-Bash ('character value in \\x{} too large'); use the [一-龥] range form to scan for leftover CJK comments."
+  ]
 }

@@ -26,22 +26,22 @@ export const BEZIER_SOURCE_CONVERGE_MERGE_DURATION = 168; // 5600ms @30fps
 
 // ---- shared quantities (light-grey Swiss-minimal palette / font, matches effect.js) ----
 const SANS = 'Vazirmatn, sans-serif';
-const BG = '#F1F1F3'; // 页面浅灰
-const TXT = '#111111'; // 正文黑
-const DIM = '#C9C9CE'; // 浅灰占位字
-const LINE = '#E6E6EA'; // 描边
+const BG = '#F1F1F3'; // page light grey
+const TXT = '#111111'; // body black
+const DIM = '#C9C9CE'; // light grey placeholder text
+const LINE = '#E6E6EA'; // stroke
 const ACCENT = '#3B82F6';
 const ACCENT_WASH = 'rgba(59,130,246,.12)';
 
 const clamp01 = (v: number) => (v < 0 ? 0 : v > 1 ? 1 : v);
 const h2r = (h: string) => [parseInt(h.slice(1, 3), 16), parseInt(h.slice(3, 5), 16), parseInt(h.slice(5, 7), 16)];
-// 颜色插值：mix(p,'#C9C9CE','#111')
+// color interpolation: mix(p,'#C9C9CE','#111')
 const mix = (p: number, a: string, b: string) => {
   const A = h2r(a), B = h2r(b), q = clamp01(p);
   return `rgb(${Math.round(A[0] + (B[0] - A[0]) * q)},${Math.round(A[1] + (B[1] - A[1]) * q)},${Math.round(A[2] + (B[2] - A[2]) * q)})`;
 };
 
-const XC = 332, YC = 120; // 汇聚点
+const XC = 332, YC = 120; // convergence point (original coords; rendered mirrored to x' = 440 - XC)
 
 // Neutral source-node placeholders (grey-scale tiers, only to distinguish the four sources);
 // tags localized to «م۱»–«م۴» («منبع» = source) with Persian digits via faDigits.
@@ -64,9 +64,10 @@ const cubic = (y0: number, u: number): Pt => {
   };
 };
 
-// 路径几何 = 直线段 M -22,y L 74,y（定长 96）+ 上述 cubic。等价 getTotalLength /
-// getPointAtLength：cubic 段建累积弧长表（1600 段折线，误差远低于 0.01px），
-// 二分反查弧长→参数 u；纯模块级预计算，无 DOM 依赖，确定性渲染。
+// Path geometry = straight lead-in M -22,y L 74,y (fixed length 96, mirrored to 462→366) + cubic
+// above. Equivalent of getTotalLength / getPointAtLength: the cubic segment builds a cumulative
+// arc-length table (1600 segments, error well below 0.01px), binary search arc-length → parameter
+// u; pure module-level precomputation, no DOM dependency, deterministic rendering.
 const SAMPLES = 1600;
 const LINE_LEN = 96;
 const mkPathGeom = (y0: number) => {
@@ -94,7 +95,8 @@ const mkPathGeom = (y0: number) => {
     const p = cubic(y0, u);
     return { x: 440 - p.x, y: p.y };
   };
-  // 求节点静止位置对应的路径 frac（x ≈ 74），与 effect.js prime() 同算法
+  // Path frac for the node rest position (mirrored rest x ≈ 366 ⇔ original x ≈ 74), same
+  // algorithm as effect.js prime()
   let f0 = 0.2;
   for (let k = 1; k <= 40; k++) {
     const q = k / 40;
@@ -105,22 +107,22 @@ const mkPathGeom = (y0: number) => {
 
 const GEOMS = SRCS.map((s) => mkPathGeom(s.y));
 
-// 结尾字幕（逐词加深语法，只用到 show + inn 两态）
+// Closing caption (word-by-word darkening grammar, uses only the show + inn states)
 const CAP_WORDS = 'چهار منبع یکپارچه'.split(' ');
 const CAP_ST = 0.78 / CAP_WORDS.length;
 const CAP_WIN = CAP_ST * 1.5;
 
-// 白底圆形徽标（内含四角星，中性占位标记），size=34
+// White circular badge (contains a four-point star, neutral placeholder mark), size=34
 const BADGE_SIZE = 34;
 const BADGE_SVG = Number((BADGE_SIZE * 0.52).toFixed(1));
 
 export const BezierSourceConvergeMerge: React.FC = () => {
   const t = useT();
-  const conv = seg(t, 0.34, 0.74, E.inOutCubic);            // 汇聚主进度
-  const erase = seg(t, 0.78, 0.9, E.outQuad);               // 从起点擦除
-  const pkCycle = (seg(t, 0.1, 0.74, E.linear) * 2) % 1;    // 数据包循环（t=1 时整数周期）
+  const conv = seg(t, 0.34, 0.74, E.inOutCubic);            // main convergence progress
+  const erase = seg(t, 0.78, 0.9, E.outQuad);               // reverse erase from the start edge
+  const pkCycle = (seg(t, 0.1, 0.74, E.linear) * 2) % 1;    // packet cycle (integer cycles at t=1)
 
-  // 徽标呼吸：入场淡入 + 吞并完成瞬间 outBack 顶起再回落
+  // Badge breathe: entrance fade-in + outBack pop at merge completion then settle
   const bp = seg(t, 0.16, 0.26, E.outCubic);
   const badgeScale = lerp(bp, 0.7, 1) * (1 + seg(t, 0.7, 0.78, E.outBack) * 0.12 - seg(t, 0.78, 0.86, E.outQuad) * 0.12);
   const capShow = seg(t, 0.84, 0.9);
@@ -129,7 +131,7 @@ export const BezierSourceConvergeMerge: React.FC = () => {
   return (
     <DesignStage bg={BG}>
       <FaRoot family="Vazirmatn">
-      {/* 页面 + 440×240 定尺画布（居中） */}
+      {/* Page + fixed-size 440×240 canvas (centered) */}
       <div
         style={{
           position: 'absolute',
@@ -142,7 +144,7 @@ export const BezierSourceConvergeMerge: React.FC = () => {
         }}
       >
         <div style={{ position: 'absolute', left: '50%', top: '50%', width: 440, height: 240, margin: '-120px 0 0 -220px' }}>
-          {/* 四条贝塞尔曲线：dashoffset 正向 draw-on，erase 阶段反向擦除 */}
+          {/* Four bezier curves: positive dashoffset draw-on, reverse erase during the erase phase */}
           <svg width={440} height={240} viewBox="0 0 440 240" style={{ position: 'absolute', left: 0, top: 0, overflow: 'visible' }}>
             {SRCS.map((s, i) => {
               const { len } = GEOMS[i];
@@ -163,17 +165,18 @@ export const BezierSourceConvergeMerge: React.FC = () => {
             })}
           </svg>
 
-          {/* 来源节点 + 数据包层 */}
+          {/* Source nodes + packet layer */}
           <div style={{ position: 'absolute', left: 0, top: 0, width: 440, height: 240 }}>
             {SRCS.map((s, i) => {
               const { len, pointAt, f0 } = GEOMS[i];
-              // 节点沿路径滑向汇聚点，三段式缩小（44→15→0，像被吸进去）
+              // Node slides along its path toward the convergence point, three-stage shrink
+              // (44→15→0, as if sucked in)
               const tt = conv;
               const frac = f0 + (1 - f0) * tt;
               const pt = pointAt(len * frac);
               const size = tt < 0.75 ? lerp(tt / 0.75, 44, 15) : lerp((tt - 0.75) / 0.25, 15, 0);
               const appear = seg(t, 0.02 + i * 0.04, 0.02 + i * 0.04 + 0.1, E.outCubic);
-              // 数据包（相位偏移，恒定尺寸）
+              // Packet (phase offset, constant size)
               const pf = f0 + (1 - f0) * ((pkCycle + i * 0.13) % 1);
               const q = pointAt(len * pf);
               const pkOn = seg(t, 0.1, 0.16) * (1 - seg(t, 0.7, 0.76));
@@ -201,7 +204,7 @@ export const BezierSourceConvergeMerge: React.FC = () => {
                       width: Math.max(0.1, size),
                       height: Math.max(0.1, size),
                       transform: `translate(${(pt.x - size / 2).toFixed(2)}px,${(pt.y - size / 2).toFixed(2)}px) scale(${appear.toFixed(3)})`,
-                      fontSize: `${Math.max(4, size * 0.26).toFixed(1)}px`,
+                      fontSize: `${Math.max(4, fs(size * 0.26)).toFixed(1)}px`,
                       opacity: (appear * (tt > 0.92 ? clamp01((1 - tt) / 0.08) : 1)).toFixed(3),
                     }}
                   >
@@ -227,7 +230,7 @@ export const BezierSourceConvergeMerge: React.FC = () => {
             })}
           </div>
 
-          {/* 汇聚点徽标（白底圆 + 四角星） */}
+          {/* Convergence badge (white circle + four-point star) */}
           <div
             style={{
               position: 'absolute',
@@ -252,14 +255,16 @@ export const BezierSourceConvergeMerge: React.FC = () => {
             </svg>
           </div>
 
-          {/* 结尾字幕：逐词加深（浅灰占位 → 黑），整行透明度随 show 淡入 */}
+          {/* Closing caption: word-by-word darkening (light grey placeholder → black), whole-line
+              opacity fades with show. Centred on the badge: box centre = (440-XC) + 3.5 ≈ 111.5
+              mirrors the original's ~3.5 design-px start-side offset under the badge. */}
           <div
             style={{
               position: 'absolute',
               display: 'flex',
               alignItems: 'baseline',
               whiteSpace: 'nowrap',
-              left: 28,
+              left: 11,
               top: YC + 30,
               width: 200,
               justifyContent: 'center',
