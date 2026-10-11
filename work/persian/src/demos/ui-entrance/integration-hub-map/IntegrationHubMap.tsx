@@ -14,6 +14,18 @@
 // S3/S4 侧棱白热爆发+图标浮现 → S5/S6 新页转正、光管连入 → S7/S8 稳定输送。
 import React, { useId } from 'react';
 import { AbsoluteFill, useCurrentFrame, interpolate, Easing } from 'remotion';
+import { FaRoot, faText } from '../../_fa';
+
+// Persian localization analysis:
+// - Visible panel copy is translated idiomatically; product tokens MQL, Figma, GDrive and ClickUp stay Latin and are
+//   kept as isolated runs where they appear inside Persian copy. Persian digits are not needed in the visible copy.
+// - Vazirmatn is loaded by FaRoot because this is restrained enterprise UI; it has reliable joining, punctuation and
+//   real variable weights at the small list sizes. No letter-spacing or uppercase styling remains on Persian text.
+// - The panel's content order is mirrored semantically: the list is the reading-side/right column and filters sit on
+//   the left. RTL flex order handles the icon/text relationship; the separator moves from border-left to border-right.
+//   The 3D flip, camera path, pipe coordinates, pulse direction, seeded noise and all frame timings remain unchanged:
+//   these are physical/motion elements rather than reading-direction layout.
+// - There are no raster assets or baked-in text in this card; all brand marks are vector shapes and remain unchanged.
 
 const mulberry32 = (a: number) => () => {
   let t = (a += 0x6d2b79f5);
@@ -24,17 +36,15 @@ const mulberry32 = (a: number) => () => {
 const rand = mulberry32(20260718);
 const NOISE: number[] = Array.from({ length: 200 }, () => rand());
 
-const FONT = '"Avenir Next", "Helvetica Neue", Helvetica, sans-serif';
-
 // ---------- 中枢面板（Enterprise MQLs，内容对照截图 1/7） ----------
 const LIST: { icon: string; title: string; sub: string }[] = [
-  { icon: '#4a9fd8', title: 'Q3 Enterprise Deal', sub: 'Revenue · Pipeline · Q3 Quota' },
-  { icon: '#4a9fd8', title: 'Major Enterprise Account - UK', sub: 'Revenue · MQL · International' },
-  { icon: '#34a853', title: 'Enterprise Pitch Deck', sub: 'Open in GDrive' },
-  { icon: '#a259ff', title: 'MQL Lead Form Design', sub: 'Figma File · Last Edited' },
-  { icon: '#f2c744', title: 'Enterprise Sales', sub: 'ClickUp Space' },
-  { icon: '#9a9a98', title: 'Enterprise Closed Archive', sub: 'Archived · In Enterprise Sales' },
-  { icon: '#c8c8c6', title: 'Open Enterprise Lead - Follow up', sub: 'In Progress · In Enterprise Sales · Yesterday' },
+  { icon: '#4a9fd8', title: 'معامله سازمانی فصل سوم', sub: 'درآمد · پایپ‌لاین · سهمیه فصل سوم' },
+  { icon: '#4a9fd8', title: 'حساب سازمانی بزرگ - بریتانیا', sub: 'درآمد · MQL · بین‌الملل' },
+  { icon: '#34a853', title: 'ارائه فروش سازمانی', sub: 'باز کردن در GDrive' },
+  { icon: '#a259ff', title: 'طراحی فرم سرنخ MQL', sub: 'فایل Figma · آخرین ویرایش' },
+  { icon: '#f2c744', title: 'فروش سازمانی', sub: 'فضای ClickUp' },
+  { icon: '#9a9a98', title: 'بایگانی بسته‌شده سازمانی', sub: 'بایگانی‌شده · در فروش سازمانی' },
+  { icon: '#c8c8c6', title: 'سرنخ سازمانی باز - پیگیری', sub: 'در حال انجام · در فروش سازمانی · دیروز' },
 ];
 
 const HubPanel: React.FC<{ glow: number }> = ({ glow }) => (
@@ -46,7 +56,7 @@ const HubPanel: React.FC<{ glow: number }> = ({ glow }) => (
       borderRadius: 14,
       padding: '26px 30px',
       boxSizing: 'border-box',
-      fontFamily: FONT,
+      direction: 'rtl',
       boxShadow: `0 0 ${40 + glow * 110}px rgba(255,255,255,${0.3 + glow * 0.55}), 0 0 ${130 + glow * 140}px rgba(215,150,255,${0.22 + glow * 0.35})`,
       display: 'flex',
       gap: 26,
@@ -54,15 +64,15 @@ const HubPanel: React.FC<{ glow: number }> = ({ glow }) => (
     }}
   >
     <div style={{ flex: 2 }}>
-      <div style={{ fontSize: 27, fontWeight: 600, color: '#2f2f38' }}>Enterprise MQLs</div>
+      <div style={faText(27, { fontWeight: 600, color: '#2f2f38' })}>سرنخ‌های سازمانی <bdi>(MQL)</bdi></div>
       <div style={{ display: 'flex', gap: 16, marginTop: 12 }}>
-        {['All', 'Tasks', 'Docs', 'Whiteboards', 'Dashboards', 'Files', 'Chat', 'People'].map((t, i) => (
+        {['همه', 'کارها', 'اسناد', 'وایت‌بردها', 'داشبوردها', 'فایل‌ها', 'گفتگو', 'افراد'].map((t, i) => (
           <div key={t} style={{ fontSize: 12, color: i === 0 ? '#5b55c8' : '#98989f', fontWeight: i === 0 ? 700 : 400 }}>
             {t}
           </div>
         ))}
       </div>
-      <div style={{ fontSize: 12, color: '#8b8b92', marginTop: 14 }}>Recent</div>
+      <div style={{ ...faText(12), color: '#8b8b92', marginTop: 14 }}>اخیر</div>
       {LIST.map((it, i) => (
         <div key={i} style={{ display: 'flex', gap: 11, alignItems: 'center', marginTop: 13.5 }}>
           <div style={{ width: 22, height: 22, borderRadius: 6, background: it.icon, opacity: 0.85 }} />
@@ -73,7 +83,7 @@ const HubPanel: React.FC<{ glow: number }> = ({ glow }) => (
         </div>
       ))}
     </div>
-    <div style={{ flex: 1, borderLeft: '1px solid #e7e7e5', paddingLeft: 22 }}>
+    <div style={{ flex: 1, borderRight: '1px solid #e7e7e5', paddingRight: 22 }}>
       <div
         style={{
           height: 30,
@@ -88,14 +98,14 @@ const HubPanel: React.FC<{ glow: number }> = ({ glow }) => (
           justifyContent: 'center',
         }}
       >
-        + Add Location Filter
+        + افزودن فیلتر مکان
       </div>
-      <div style={{ fontSize: 10.5, color: '#adadb2', marginTop: 24, letterSpacing: 1 }}>QUICK FILTERS</div>
-      {['Assigned to Me', 'Created by Me'].map((t) => (
+      <div style={{ ...faText(10.5), color: '#adadb2', marginTop: 24 }}>فیلترهای سریع</div>
+      {['واگذارشده به من', 'ساخته‌شده توسط من'].map((t) => (
         <div key={t} style={{ fontSize: 13.5, color: '#55555c', marginTop: 11 }}>{t}</div>
       ))}
-      <div style={{ fontSize: 10.5, color: '#adadb2', marginTop: 24, letterSpacing: 1 }}>TASK FILTERS</div>
-      {['Open', 'Closed', 'Archived'].map((t) => (
+      <div style={{ ...faText(10.5), color: '#adadb2', marginTop: 24 }}>فیلترهای کار</div>
+      {['باز', 'بسته', 'بایگانی‌شده'].map((t) => (
         <div key={t} style={{ fontSize: 13.5, color: '#55555c', marginTop: 11 }}>{t}</div>
       ))}
     </div>
@@ -112,17 +122,17 @@ const FrontPanel: React.FC<{ glow: number }> = ({ glow }) => (
       borderRadius: 14,
       padding: '30px 34px',
       boxSizing: 'border-box',
-      fontFamily: FONT,
+      direction: 'rtl',
       boxShadow: `0 0 ${40 + glow * 110}px rgba(255,255,255,${0.3 + glow * 0.55})`,
       overflow: 'hidden',
     }}
   >
     <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
       <div style={{ width: 26, height: 26, borderRadius: 7, background: '#4a9fd8', opacity: 0.9 }} />
-      <div style={{ fontSize: 26, fontWeight: 600, color: '#2f2f38' }}>Q3 Enterprise Deal</div>
+      <div style={faText(26, { fontWeight: 600, color: '#2f2f38' })}>معامله سازمانی فصل سوم</div>
     </div>
     <div style={{ display: 'flex', gap: 14, marginTop: 10 }}>
-      {['Revenue', 'Pipeline', 'Q3 Quota'].map((t) => (
+      {['درآمد', 'پایپ‌لاین', 'سهمیه فصل سوم'].map((t) => (
         <div
           key={t}
           style={{
@@ -286,6 +296,7 @@ export const IntegrationHubMap: React.FC = () => {
   const mapIn = interpolate(frame, [34, 60], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
 
   return (
+    <FaRoot family="Vazirmatn">
     <AbsoluteFill style={{ background: '#08070c' }}>
       {/* 暗紫底噪 */}
       <AbsoluteFill
@@ -552,5 +563,6 @@ export const IntegrationHubMap: React.FC = () => {
         </AbsoluteFill>
       )}
     </AbsoluteFill>
+    </FaRoot>
   );
 };

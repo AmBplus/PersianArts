@@ -1,11 +1,15 @@
-// masking-tape-slap —— 纸胶带拍定
-// 一张 Card 轻飘入位后悬着微晃（±1.5° 正弦 + 5px 上下浮），两条半透明纸胶带
-// 先后从画外拍在对角（scale 1.45→1 + rotate 过冲 + 一帧压扁）。第一条拍下晃动减半，
-// 第二条拍下同帧卡片停晃、投影瞬间变薄、整卡 2px 下沉——"按死"的一瞬是主角。
-// 帧确定性：全部由 frame 派生，无随机。收尾 f86 后真静止 54f。
+// Persian localization — MaskingTapeSlap.
+// Copy: “MASKING TAPE SLAP” → «ضربهٔ چسب کاغذی». Lalezar has the bold poster
+// presence of the original title and is a single-weight face, so no synthetic bold.
+// RTL: the centered headline stays centered; the abstract card bars/avatar start on
+// the right; tape 1 goes to the top-right and tape 2 to the bottom-left. Their horizontal
+// approach, slant, and material gradient reflect; gravity, bob, freeze, shadows and
+// exact slap frames stay physical and unchanged. No raster/video assets or baked text.
+// The upstream registry ends at f38; the real motion ends at f86 and needs --duration 140.
 import React from 'react';
 import { useCurrentFrame, interpolate, Easing } from 'remotion';
-import { G, Card, TitleBlock } from '../../_fixtures/Fixtures';
+import { G, Card } from './PaperFixtures';
+import {FaRoot, faText, dir} from '../../_fa';
 
 const CARD_W = 560;
 const CARD_H = 350;
@@ -66,7 +70,7 @@ const Tape: React.FC<{
     extrapolateRight: 'clamp',
   });
   // rotate 过冲：来时欠 16° → 落帧过 7° → 4f 内回正
-  const r = interpolate(frame, [land - APPROACH, land, land + 4], [rot - 16, rot + 7, rot], {
+  const r = interpolate(frame, [land - APPROACH, land, land + 4], [rot + 16, rot - 7, rot], {
     easing: Easing.out(Easing.quad),
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
@@ -86,7 +90,7 @@ const Tape: React.FC<{
         transformOrigin: '50% 50%',
         opacity,
         background:
-          'linear-gradient(90deg, rgba(214,212,206,0.95) 0%, rgba(226,224,218,0.95) 30%, rgba(212,210,204,0.95) 60%, rgba(222,220,214,0.95) 100%)',
+          'linear-gradient(270deg, rgba(214,212,206,0.95) 0%, rgba(226,224,218,0.95) 30%, rgba(212,210,204,0.95) 60%, rgba(222,220,214,0.95) 100%)',
         // 撕边：两端锯齿
         clipPath:
           'polygon(0% 8%, 2.5% 0%, 97% 3%, 100% 12%, 98.2% 30%, 100% 52%, 98% 74%, 100% 90%, 96.5% 100%, 3% 97%, 0% 88%, 1.8% 64%, 0% 42%, 2% 22%)',
@@ -133,9 +137,11 @@ export const MaskingTapeSlap: React.FC = () => {
 
   return (
     <div style={{ width: 1920, height: 1080, background: G.bg, position: 'relative', overflow: 'hidden' }}>
-      <div style={{ position: 'absolute', top: 110, width: '100%', textAlign: 'center' }}>
-        <TitleBlock text="MASKING TAPE SLAP" size={72} />
-      </div>
+      <FaRoot family="Lalezar">
+        <div style={{ position: 'absolute', top: 100, width: '100%', textAlign: 'center', ...faText(82, {lineHeight: 1.5, color: G.ink}) }}>
+          ضربهٔ چسب کاغذی
+        </div>
+      </FaRoot>
 
       <div
         style={{
@@ -156,8 +162,8 @@ export const MaskingTapeSlap: React.FC = () => {
       </div>
 
       {/* 两条胶带钉在卡片对角（世界坐标，卡片在其下滑动微晃） */}
-      <Tape frame={frame} land={SLAP1} cx={CX + 55} cy={CY + 40} rot={-45} fromX={-170} fromY={-130} />
-      <Tape frame={frame} land={SLAP2} cx={CX + CARD_W - 55} cy={CY + CARD_H - 40} rot={-45} fromX={170} fromY={130} />
+      <Tape frame={frame} land={SLAP1} cx={CX + CARD_W - 55} cy={CY + 40} rot={45} fromX={dir(-170)} fromY={-130} />
+      <Tape frame={frame} land={SLAP2} cx={CX + 55} cy={CY + CARD_H - 40} rot={45} fromX={dir(170)} fromY={130} />
     </div>
   );
 };

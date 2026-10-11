@@ -57,9 +57,9 @@ const slotPos = (col: number, row: number) => ({ x: 4600 - GRID_X - col * COL_GA
 /* 平躺地面：Home 仪表盘（卡片槽位留空，由悬浮卡片落入） */
 const Ground: React.FC = () => (
   <div style={{ width: 4600, height: 2600, background: '#f6f6f5', borderRadius: 60, position: 'relative', overflow: 'hidden' }}>
-    <div style={{ display: 'flex', height: '100%', flexDirection: 'row-reverse', direction: 'rtl' }}>
+    <div style={{ display: 'flex', height: '100%', flexDirection: 'row-reverse', direction: 'ltr' }}>
       {/* 左侧栏 */}
-      <div style={{ width: 860, borderLeft: `4px solid ${FAINT}`, padding: '70px 60px 0', background: '#f1f1f0' }}>
+      <div style={{ width: 860, borderLeft: `4px solid ${FAINT}`, padding: '70px 60px 0', background: '#f1f1f0', direction: 'rtl' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 26 }}>
           <div style={{ width: 64, height: 64, borderRadius: 18, background: 'linear-gradient(135deg,#adadb3,#6b6b72)' }} />
           <div style={{ fontFamily: 'Arial, sans-serif', fontSize: 56, fontWeight: 800, color: INK, direction: 'ltr' }}>ClickUp</div>
@@ -78,14 +78,14 @@ const Ground: React.FC = () => (
         <div style={{ ...faText(38), fontFamily: FONT, color: MID, fontWeight: 600, paddingRight: 32 }}>فضاهای کاری</div>
         <div style={{ height: 16 }} />
         {['EPD', 'نقشهٔ راه محصول', 'طراحی', 'راهنمای طراحی', faDigits('3.0'), 'سیستم طراحی'].map((t) => (
-          <div key={t} style={{ display: 'flex', alignItems: 'center', gap: 30, height: 96, paddingLeft: 32 }}>
+          <div key={t} style={{ display: 'flex', alignItems: 'center', gap: 30, height: 96, paddingRight: 32 }}>
             <div style={{ width: 44, height: 44, borderRadius: 12, background: '#d6d6da' }} />
           <div style={{ ...faText(42), fontFamily: FONT, color: INK, direction: t === 'EPD' ? 'ltr' : 'rtl' }}>{t}</div>
           </div>
         ))}
       </div>
       {/* 主区 */}
-      <div style={{ flex: 1, padding: '70px 100px 0', position: 'relative' }}>
+      <div style={{ flex: 1, padding: '70px 100px 0', position: 'relative', direction: 'rtl' }}>
         {/* 顶部 tab 条 */}
         <div style={{ display: 'flex', gap: 110, fontFamily: FONT, fontSize: fs(42), color: MID, marginBottom: 60 }}>
           <div>تحلیل محصول</div><div style={{ fontWeight: 700, color: INK }}>ClickUp {faDigits('3.0')}</div>
@@ -126,7 +126,7 @@ const Ground: React.FC = () => (
           }}>
             <div style={{ width: 32, height: 32, borderRadius: 9, background: '#c04a6e' }} />
             <div style={{ ...faText(46), fontFamily: FONT, color: INK, fontWeight: 550 }}>{t}</div>
-            <div style={{ marginLeft: 'auto', width: 180, height: 16, background: '#e3e3e8', borderRadius: 8 }} />
+            <div style={{ marginInlineStart: 'auto', width: 180, height: 16, background: '#e3e3e8', borderRadius: 8 }} />
           </div>
         ))}
       </div>
@@ -230,7 +230,7 @@ export const RunwayGroundSkim: React.FC = () => {
   const airOp = 1 - riseP;
 
   return (
-    <FaRoot family="Vazirmatn">
+    <FaRoot family="Vazirmatn" style={{ direction: 'ltr' }}>
     <AbsoluteFill style={{ background: '#07060a' }}>
       {/* 地平线微光（转正后消失） */}
       <AbsoluteFill style={{

@@ -1,0 +1,65 @@
+{
+  "slug": "integration-hub-map",
+  "status": "localized",
+  "source": {
+    "file": "work/upstream/src/demos/ui-entrance/integration-hub-map/IntegrationHubMap.tsx",
+    "prompt": "work/upstream/src/gallery/source/integration-hub-map.md",
+    "composition": "demo-IntegrationHubMap",
+    "fps": 30,
+    "size": "1920x1080",
+    "frames": 150
+  },
+  "font": {
+    "families": ["Vazirmatn"],
+    "reason": "This is restrained enterprise/product UI. Vazirmatn is a loaded variable Persian UI sans with dependable joining, Persian punctuation, ZWNJ coverage and real weight variation for the title, list hierarchy and compact filters."
+  },
+  "translation": {
+    "scope": "Translated all visible copy on both faces of the flipping panel: enterprise list title/subtitles, tabs, recency label, location/filter controls, filter groups, and old-page title/tags.",
+    "preserved_tokens": ["MQL", "Figma", "GDrive", "ClickUp"],
+    "copy_notes": "Product and technical tokens remain Latin where appropriate and are visually isolated by the RTL browser shaping context. Persian uses ی/ک, ZWNJ in compounds such as بسته‌شده and ساخته‌شده, and idiomatic product wording. No Persian digit conversion was needed because visible numeric content is the Q3 label translated as فصل سوم."
+  },
+  "rtlDecisions": [
+    {
+      "component": "IntegrationHubMap",
+      "what": "Wrapped the composition in FaRoot with direction rtl and loaded Vazirmatn.",
+      "action": "Applied RTL only to the UI/panel content; retained absolute map coordinates and SVG geometry.",
+      "why": "The map, 3D card flip, camera movement, physical glow and pipe transport are motion/scene semantics, while the panel is reading-direction content."
+    },
+    {
+      "component": "HubPanel",
+      "what": "Main list and filter rail.",
+      "action": "RTL flex layout places the list on the right and the filter rail on the left; moved the separator to border-right and padding to padding-right. Icon/text rows inherit RTL so the colored marker sits at the reading-side edge.",
+      "why": "This mirrors the source's product-information hierarchy for Persian readers without changing the panel's physical size or placement."
+    },
+    {
+      "component": "FrontPanel",
+      "what": "Old-page title and metadata chips.",
+      "action": "Mirrored the header row so the marker sits to the right of the Persian title and translated the three metadata chips.",
+      "why": "The marker/title relationship is UI reading order; the page itself remains the physical front face of the existing 180-degree flip."
+    },
+    {
+      "component": "Tile and PIPES",
+      "what": "Figma, GitHub, Salesforce, GDrive and Dropbox vector marks plus colored connection pipes.",
+      "action": "Kept vector marks, coordinates, pipe paths, pulse direction and phase offsets unchanged.",
+      "why": "These are brand marks and physical network/map geometry, not text reading order; changing them would break source motion fidelity."
+    },
+    {
+      "component": "Flip/bloom/timing",
+      "what": "rotateY 0→180, four-frame bloom, map reveal, icon beat at 52f, pipe beat at 62f, nine-frame growth and continuous pulses.",
+      "action": "No timing, easing, seed, duration, fps or transform values changed.",
+      "why": "The source prompt identifies the uninterrupted fast flip with tail deceleration and two-beat synchronized connection as the card's identity."
+    }
+  ],
+  "rasterHandling": {
+    "assets": "none",
+    "action": "No raster or baked-in text assets are used. All brand marks are inline SVG/CSS vector shapes and were left intact."
+  },
+  "verification": {
+    "renderCommand": "node work/persian/render-card.mjs --slug integration-hub-map --frames 0,14,21,28,49,52,62,71,100,149 --duration 150",
+    "framesCompared": [0, 14, 21, 28, 49, 52, 62, 71, 100, 149],
+    "visualInspection": "Viewed Persian and original pairs at every requested beat, including pre-flip, side-edge bloom, post-flip icon reveal, synchronized pipe growth and final transport state.",
+    "timing": "Persian copy length changed glyph widths but did not alter any animation beat or duration; the fixed panel geometry remains readable without clipping or wrapping."
+  },
+  "concerns": [],
+  "lessons": []
+}

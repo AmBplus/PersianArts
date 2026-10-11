@@ -1,8 +1,8 @@
 {
- "generatedAt": "2026-10-11T15:53:29.105Z",
+ "generatedAt": "2026-10-11T15:58:47.618Z",
  "summary": {
-  "todo": 83,
-  "localized": 12,
+  "todo": 80,
+  "localized": 15,
   "approved": 51,
   "fixed": 10,
   "needs-fix": 1,
@@ -389,7 +389,7 @@
    "slug": "floating-glossy-label-pills",
    "status": "localized",
    "font": "Vazirmatn",
-   "videos": 0,
+   "videos": 1,
    "majors": 0,
    "concerns": 0
   },
@@ -531,9 +531,9 @@
   },
   {
    "slug": "integration-hub-map",
-   "status": "todo",
-   "font": "",
-   "videos": 0,
+   "status": "localized",
+   "font": "{\"families\":[\"Vazirmatn\"],\"reason\":\"This is restrained enterprise/product UI. Vazirmatn is a loaded variable Persian UI sans with dependable joining, Persian punctuation, ZWNJ coverage and real weight variation for the title, list hierarchy and compact filters.\"}",
+   "videos": 1,
    "majors": 0,
    "concerns": 0
   },
@@ -731,11 +731,11 @@
   },
   {
    "slug": "paper-craft-moves",
-   "status": "todo",
-   "font": "",
-   "videos": 0,
+   "status": "localized",
+   "font": "Lalezar",
+   "videos": 2,
    "majors": 0,
-   "concerns": 0
+   "concerns": 2
   },
   {
    "slug": "paper-plane-messenger",
@@ -883,9 +883,9 @@
   },
   {
    "slug": "runway-ground-skim",
-   "status": "todo",
-   "font": "",
-   "videos": 0,
+   "status": "localized",
+   "font": "Vazirmatn",
+   "videos": 1,
    "majors": 0,
    "concerns": 0
   },

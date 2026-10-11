@@ -1,12 +1,14 @@
-// popup-book-rise —— 立体书立起
-// FakeDashboard(A) 打平躺下（场景 rotateX 75° 透视俯视），6 张卡片是贴在页上的
-// 纸片，沿各自底边从平躺错峰立起（rotateX 90°→-5° 过冲→0° 回弹，即立到 95° 再回 90°），
-// 根部投影随立起角度收窄变淡。全部立起后整个场景轻微回正（75°→68°）收尾。
-// 卡片用独立网格复刻 dashboard A 区布局（Fixtures 内嵌卡无法单独驱动）。
-// 收尾 f108 后真静止 ≥52f。帧确定性：全由 frame 派生。
+// Persian localization — PopupBookRise.
+// There is no literal on-screen copy: gray bars are abstract UI placeholders. The
+// card-local PaperFixtures copy aligns those bars and avatar on the right; no font
+// is needed here. Sidebar moves to the right, header/nav order mirrors, and card
+// i=0 begins at the right so each row rises in Persian reading order. Far row still
+// rises before near row. The rotateX scene tilt, bottom-edge hinge, spring overshoot,
+// shadows and timings describe physical paper, so their signs and numbers stay fixed.
+// No raster/video assets. Registry ends at f34; real settle/rest beats are f83/f108.
 import React from 'react';
 import { useCurrentFrame, interpolate, spring, Easing } from 'remotion';
-import { G, Card } from '../../_fixtures/Fixtures';
+import { G, Card } from './PaperFixtures';
 
 const FPS = 30;
 const HOLD = 14; // 开头静置
@@ -52,7 +54,7 @@ const PageCard: React.FC<{ i: number; frame: number }> = ({ i, frame }) => {
     <div
       style={{
         position: 'absolute',
-        left: AREA_X + col * (CELL_W + GAP),
+        left: 1920 - AREA_X - col * (CELL_W + GAP) - CELL_W,
         top: AREA_Y + row * (CELL_H + GAP),
         width: CELL_W,
         height: CELL_H,
@@ -111,15 +113,15 @@ export const PopupBookRise: React.FC = () => {
         >
           {/* 书页底板：dashboard 的壳（侧栏+顶栏+空白页面） */}
           <div style={{ position: 'absolute', inset: 0, background: G.bg, boxShadow: '0 40px 80px rgba(0,0,0,0.25)' }}>
-            <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 220, background: G.side, padding: '28px 22px', boxSizing: 'border-box', display: 'flex', flexDirection: 'column', gap: 18 }}>
+            <div style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: 220, background: G.side, padding: '28px 22px', boxSizing: 'border-box', display: 'flex', flexDirection: 'column', gap: 18, alignItems: 'flex-end' }}>
               <div style={{ width: 40, height: 40, borderRadius: 10, background: '#777775' }} />
               {Array.from({ length: 7 }).map((_, i) => (
                 <div key={i} style={{ height: 12, width: `${60 + ((i * 29) % 35)}%`, background: G.sideBar, borderRadius: 6 }} />
               ))}
             </div>
-            <div style={{ position: 'absolute', left: 220, right: 0, top: 0, height: 72, background: G.panel, borderBottom: `2px solid ${G.line}`, display: 'flex', alignItems: 'center', padding: '0 32px', gap: 20, boxSizing: 'border-box' }}>
+            <div style={{ position: 'absolute', right: 220, left: 0, top: 0, height: 72, background: G.panel, borderBottom: `2px solid ${G.line}`, display: 'flex', direction: 'rtl', alignItems: 'center', padding: '0 32px', gap: 20, boxSizing: 'border-box' }}>
               <div style={{ height: 18, width: 180, background: G.bar, borderRadius: 9 }} />
-              <div style={{ marginLeft: 'auto', height: 36, width: 320, background: '#fff', border: `2px solid ${G.line}`, borderRadius: 18, boxSizing: 'border-box' }} />
+              <div style={{ marginInlineStart: 'auto', height: 36, width: 320, background: '#fff', border: `2px solid ${G.line}`, borderRadius: 18, boxSizing: 'border-box' }} />
               <div style={{ width: 36, height: 36, borderRadius: 18, background: G.mid }} />
             </div>
           </div>

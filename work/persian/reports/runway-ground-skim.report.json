@@ -1,0 +1,33 @@
+{
+  "slug": "runway-ground-skim",
+  "status": "localized",
+  "font": {
+    "family": "Vazirmatn",
+    "reason": "Neutral variable Persian sans suited to a product dashboard; supports the UI's multiple text weights and loaded through FaRoot."
+  },
+  "comps": [
+    {
+      "id": "demo-RunwayGroundSkim",
+      "file": "RunwayGroundSkim.tsx",
+      "fps": 30,
+      "size": "1920x1080",
+      "durationFrames": 150,
+      "rtlDecisions": [
+        { "what": "Dashboard sidebar and brand row", "action": "Moved sidebar from the left edge to the right; kept ClickUp wordmark LTR and mirrored the adjacent icon/text reading layout.", "why": "Workspace navigation follows Persian reading direction; brand spelling is a fixed Latin mark." },
+        { "what": "Navigation, workspace names, tabs, search, task labels, and task list", "action": "Translated to idiomatic Persian, set RTL alignment, changed physical left padding/margins to right or logical properties, and used Persian digits for 3.0.", "why": "These are reader-facing interface labels; their order and anchoring follow RTL. EPD and CSS remain Latin technical acronyms." },
+        { "what": "Seven floating dashboard cards", "action": "Translated each title/subtitle and mirrored each column coordinate. The first card in the unchanged array now lands in the rightmost slot; remaining card order reads right-to-left.", "why": "The original top-left-to-right row order is a reading-order sequence. Keeping the same array order, stagger, jitter seed, fall curves, and landing frames preserves its timing and energy." },
+        { "what": "Card interiors and dashboard rows", "action": "Applied RTL text direction; placed checkboxes and category markers on the right, with trailing progress bars on the left.", "why": "These elements are attached to Persian labels and follow their reading order." },
+        { "what": "Fall, camera, 3D perspective, light, and atmosphere", "action": "Kept physical vertical falls, camera transforms, perspective origin, brightness curves, shadows, gradients, and timing unchanged. Kept the outer 3D scene coordinate root LTR; applied RTL only within dashboard regions.", "why": "These are physical/camera effects and are not reading-direction semantics. Root RTL caused the scene to leave frame, so the scene coordinate system stays stable while UI regions explicitly use RTL." }
+      ],
+      "rasterHandling": "No raster or video assets are used. All visible interface text is live JSX and was translated; ClickUp remains as a brand mark.",
+      "verification": {
+        "renderCommand": "node work/persian/render-card.mjs --slug runway-ground-skim --duration 150 --frames 0,6,12,20,32,38,66,94,120,149 --video",
+        "result": "ok; one composition; no render errors; full Persian MP4 rendered.",
+        "viewedPersianAndOriginalFramePairs": [0, 6, 12, 20, 32, 38, 66, 94, 120, 149],
+        "visualNotes": "Compared source and localized stills at hover, overlapping landing, transition, and final hold beats. Persian typography is shaped and legible; the final dashboard is fully in frame with right-side navigation. Landing and rise timing match the source."
+      },
+      "concerns": []
+    }
+  ],
+  "lessons": []
+}

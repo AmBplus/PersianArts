@@ -1,0 +1,58 @@
+{
+  "slug": "paper-craft-moves",
+  "status": "localized-and-rendered-for-review",
+  "font": {
+    "family": "Lalezar",
+    "reason": "The only visible copy is a bold display title in MaskingTapeSlap. Lalezar supplies comparable impact with naturally joined Persian forms; it is loaded through FaRoot and no synthetic weight is requested. PopupBookRise has no visible glyphs, only abstract placeholder bars."
+  },
+  "components": [
+    {
+      "name": "MaskingTapeSlap",
+      "translation": [
+        {"source": "MASKING TAPE SLAP", "persian": "ضربهٔ چسب کاغذی", "note": "Short, centered motion-demo title; there is no per-character animation or timing dependency."}
+      ],
+      "rtlDecisions": [
+        {"what": "Display headline", "action": "Translate, use Lalezar at a Persian-sized scale, retain central anchoring", "why": "The original poster title is centered; reading direction changes the script, not the composition axis."},
+        {"what": "Card title and body placeholder bars", "action": "Anchor their unequal lengths to the right in a card-local fixture", "why": "Abstract lines stand for Persian text and must begin at the reading start."},
+        {"what": "Card footer avatar and label bar", "action": "Place avatar at the right with the bar immediately to its left", "why": "The footer is a reading-order pair."},
+        {"what": "First and second tape locations", "action": "Reflect top-left to top-right and bottom-right to bottom-left", "why": "The taped corners form a reading-direction diagonal around the localized card."},
+        {"what": "Tape approach and angular overshoot", "action": "Negate horizontal approach offsets and reflect the slant and both overshoot offsets", "why": "The full six-frame trajectory must mirror, not merely the resting angle."},
+        {"what": "Tape material gradient", "action": "Reflect its 90-degree direction to 270 degrees", "why": "Its subtle left-to-right material lighting is part of the reflected tape surface."},
+        {"what": "Jagged torn-edge polygon", "action": "Keep its hand-torn irregularity", "why": "The tears are physical texture rather than reading-order information."},
+        {"what": "Card floating, sine wobble, downward settling, shadow compression, tape squash", "action": "Keep the original formulas, easing, and frame cues", "why": "These describe physical paper and the two impact beats, not text direction."}
+      ],
+      "rasterHandling": "No raster or video assets. Tape and cards are CSS shapes; the fixture contains no baked foreign text.",
+      "verifiedFrames": {"persian": [20, 33, 52, 58, 76, 82, 86, 108, 139], "upstreamVideo": [20, 33]},
+      "motionTiming": "Unchanged: float f12-f38, slaps f58/f82, freeze by f84, static hold through f139. The translated title is static and changes no timing beat."
+    },
+    {
+      "name": "PopupBookRise",
+      "translation": [],
+      "rtlDecisions": [
+        {"what": "Dashboard sidebar and its placeholder rows", "action": "Move sidebar to the right and align bars/logo to its right edge", "why": "A Persian dashboard begins navigation at the reading start."},
+        {"what": "Header navigation, search box, avatar", "action": "Move header beside the right sidebar and use RTL flex order with logical auto margin", "why": "Toolbar sequence follows Persian reading order while preserving the original gaps and dimensions."},
+        {"what": "Six card grid", "action": "Reflect each absolute x position; index zero becomes the rightmost card", "why": "Grid categories and their stagger should progress right to left."},
+        {"what": "Card placeholder bars and footer pairs", "action": "Use the same right-anchored card-local fixture", "why": "Their lengths remain source-faithful but their alignment represents Persian text."},
+        {"what": "Far-row then near-row stagger", "action": "Keep row order and seven-frame spacing; within each row, physical positions are mirrored", "why": "Depth ordering is physical while horizontal reading order is RTL."},
+        {"what": "Scene perspective, rotateX hinge, spring, root shadows and final camera settling", "action": "Keep all signs and numeric values", "why": "They describe a real paper mechanism and camera tilt, not reading direction."}
+      ],
+      "rasterHandling": "No raster or video assets and no baked text. The gray bars are abstract fixture geometry.",
+      "verifiedFrames": {"persian": [20, 33, 52, 58, 76, 82, 86, 108, 139], "upstreamVideo": [20, 33]},
+      "motionTiming": "Unchanged: first card starts f14, seven-frame stagger, last starts f49, all settle near f83, camera settles f108, static through f139. There is no text length or per-character timing dependency."
+    }
+  ],
+  "verification": {
+    "method": "Rendered and visually opened original/Persian same-frame PNG pairs where upstream MP4 frames exist; opened Persian entrance, hits, stagger, settling and final frames for both components. Final harness --duration 140 --video completed with ok:true and no render errors for both compositions.",
+    "videos": ["MaskingTapeSlap.fa.mp4", "PopupBookRise.fa.mp4"],
+    "durationOverrideFrames": 140,
+    "sourceRegistryFrames": {"MaskingTapeSlap": 38, "PopupBookRise": 34}
+  },
+  "concerns": [
+    "Upstream MP4s stop at frames 37 and 33, before both major payoffs. Late Persian beats were checked against the source prompt and unchanged source timing formulas; late original video frame pairs do not exist. The harness lists orig paths for those late frames even though FFmpeg did not create the files.",
+    "The repository registry durations are still 38/34 frames, so normal registry previews omit the two slap hits and most of the book rise. This card-level task forbids registry edits; the delivered full-length videos use the 140-frame harness override."
+  ],
+  "lessons": [
+    {"symptom": "A mirrored absolute-positioned sidebar still shows its flex-column placeholder rows against its left edge", "cause": "RTL direction does not change the cross-axis alignment of a column flex container", "fix": "Set alignItems:flex-end after moving the sidebar to the right; verify the projected 3D frame."},
+    {"symptom": "A reflected tape lands at the correct mirrored angle but travels through the wrong angular anticipation and overshoot", "cause": "The approach and overshoot angle offsets retain their original signs", "fix": "Reflect the offsets too (rot+16 to rot-7 to rot), while preserving their magnitudes, easing, and frame cues."}
+  ]
+}
