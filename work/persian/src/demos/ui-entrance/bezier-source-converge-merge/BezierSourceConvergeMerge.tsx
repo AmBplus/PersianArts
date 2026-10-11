@@ -1,15 +1,17 @@
-// bezier-source-converge-merge — Bezier Converge 多源曲线汇流吞并（motion-lab 定稿转原生 Remotion）
-// 左侧四个来源节点各由一条细黑贝塞尔曲线连向右侧同一汇聚点：曲线先由左向右 draw-on，
-// 节点沿自己的曲线滑向汇聚点并三段式加速缩小（像被吸进去），强调色数据包小圆持续沿
-// 路径滑行，吞并完成后曲线从左端反向擦除，只留圆形徽标 + 逐词加深字幕。
-// 设计坐标 480×270（DesignStage 等比放大），440×240 定尺画布居中排版。
+// Persian RTL localization. Timing, easing, geometry distances, phase offsets and cycles remain
+// unchanged. Source nodes move from right toward the left-side badge because source-to-result
+// order follows Persian reading direction; paths and draw/erase direction mirror with them.
+// The four-point badge remains a physical mark. S1–S4 remain LTR identifiers. The final caption
+// is idiomatic Persian and deepens word-by-word in RTL order. Font: Vazirmatn, neutral UI sans.
+// No raster assets or baked text are used.
 import React from 'react';
 import { DesignStage, E, lerp, seg, useT } from '../../_fixtures/Motion';
+import { FaRoot, faText, FA_LH } from '../../_fa';
 
 export const BEZIER_SOURCE_CONVERGE_MERGE_DURATION = 168; // 5600ms @30fps
 
 // ---- 本卡共享量（浅灰瑞士极简系配色 / 字体，与 effect.js 一致） ----
-const SANS = '-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif';
+const SANS = 'Vazirmatn, sans-serif';
 const BG = '#F1F1F3'; // 页面浅灰
 const TXT = '#111111'; // 正文黑
 const DIM = '#C9C9CE'; // 浅灰占位字
@@ -87,7 +89,7 @@ const mkPathGeom = (y0: number) => {
 const GEOMS = SRCS.map((s) => mkPathGeom(s.y));
 
 // 结尾字幕（逐词加深语法，只用到 show + inn 两态）
-const CAP_WORDS = 'Four sources unified'.split(' ');
+const CAP_WORDS = 'چهار منبع یکپارچه'.split(' ');
 const CAP_ST = 0.78 / CAP_WORDS.length;
 const CAP_WIN = CAP_ST * 1.5;
 
@@ -109,6 +111,7 @@ export const BezierSourceConvergeMerge: React.FC = () => {
 
   return (
     <DesignStage bg={BG}>
+      <FaRoot family="Vazirmatn">
       {/* 页面 + 440×240 定尺画布（居中） */}
       <div
         style={{
@@ -117,6 +120,7 @@ export const BezierSourceConvergeMerge: React.FC = () => {
           background: BG,
           overflow: 'hidden',
           fontFamily: SANS,
+          direction: 'rtl',
           WebkitFontSmoothing: 'antialiased',
         }}
       >
@@ -130,7 +134,7 @@ export const BezierSourceConvergeMerge: React.FC = () => {
               return (
                 <path
                   key={i}
-                  d={`M -22,${s.y} L 74,${s.y} C 186,${s.y} 214,${YC} ${XC},${YC}`}
+                  d={`M 462,${s.y} L 366,${s.y} C 254,${s.y} 226,${YC} 108,${YC}`}
                   fill="none"
                   stroke={TXT}
                   strokeWidth={1.2}
@@ -175,7 +179,7 @@ export const BezierSourceConvergeMerge: React.FC = () => {
                       lineHeight: 1,
                       fontFamily: SANS,
                       color: s.c,
-                      letterSpacing: 0.3,
+                      letterSpacing: 0,
                       willChange: 'transform',
                       width: Math.max(0.1, size),
                       height: Math.max(0.1, size),
@@ -220,7 +224,7 @@ export const BezierSourceConvergeMerge: React.FC = () => {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              left: XC - 17,
+              left: 440 - XC - 17,
               top: YC - 17,
               opacity: bp,
               transform: `scale(${badgeScale})`,
@@ -238,9 +242,10 @@ export const BezierSourceConvergeMerge: React.FC = () => {
               display: 'flex',
               alignItems: 'baseline',
               whiteSpace: 'nowrap',
-              left: XC - 60,
+              left: 440 - XC - 60,
               top: YC + 30,
               opacity: capShow,
+              direction: 'rtl',
             }}
           >
             {CAP_WORDS.map((w, i) => {
@@ -249,10 +254,9 @@ export const BezierSourceConvergeMerge: React.FC = () => {
                 <span
                   key={i}
                   style={{
-                    font: `600 12px/1.25 ${SANS}`,
+                    ...faText(12, {fontWeight: 600, lineHeight: FA_LH}),
                     color: mix(q, DIM, TXT),
-                    letterSpacing: (-0.03 * (1 - q)).toFixed(4) + 'em',
-                    marginRight: i === CAP_WORDS.length - 1 ? 0 : 4.5,
+                    marginInlineEnd: i === CAP_WORDS.length - 1 ? 0 : 4.5,
                   }}
                 >
                   {w}
@@ -262,6 +266,7 @@ export const BezierSourceConvergeMerge: React.FC = () => {
           </div>
         </div>
       </div>
+      </FaRoot>
     </DesignStage>
   );
 };

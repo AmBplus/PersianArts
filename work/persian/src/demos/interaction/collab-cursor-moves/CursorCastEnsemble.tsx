@@ -1,10 +1,16 @@
-// cursor-cast-ensemble —— figma 0:05 (cursor-badge-cast) + miro 全片 cursor-ensemble-ambience
-// 5 枚具名彩色光标从画外飞入（弹簧减速+名牌淡入），落位后在灰阶画布上持续漂移、
-// 指向、聚拢；灰阶便签当环境道具；其中一枚(Rita)在便签上实时打字补全一行文本
-// （pitch collaborator-cameo 的打字戏并入）。
+// PERSIAN (RTL) localization of shotcraft "cursor-cast-ensemble".
+// RTL decisions: all five identity badges are Persian transliterations, while their
+// physical attachment to each cursor stays unchanged: the pointer is an actor and
+// its path/relationship to the canvas is not a reading-order layout. The note text
+// is right-aligned and uses a real RTL typewriter prefix (one added Unicode character
+// per original timing beat), so shaping remains valid at every intermediate frame.
+// Motion, seed, spring settings, positions, drift, gather timing and SVG geometry are
+// untouched. Font: Vazirmatn, a neutral variable UI face with reliable Persian glyph
+// coverage, chosen to preserve the original collaborative-canvas tone.
 import React from 'react';
 import { useCurrentFrame, spring, interpolate } from 'remotion';
 import { G } from '../../_fixtures/Fixtures';
+import { FaRoot, faText, typeOn } from '../../_fa';
 
 const mulberry32 = (a: number) => () => {
   let t = (a += 0x6d2b79f5);
@@ -24,14 +30,14 @@ type Actor = {
 };
 
 const ACTORS: Actor[] = [
-  { name: 'Lisa', color: '#4C8DF6', from: [-160, 200], home: [430, 330], delay: 0, phase: 0.0 },
-  { name: 'Lucas', color: '#2FBF71', from: [2080, 160], home: [1370, 290], delay: 5, phase: 1.7 },
-  { name: 'Marta', color: '#F2994A', from: [-160, 900], home: [560, 760], delay: 9, phase: 3.1 },
-  { name: 'Niko', color: '#4C8DF6', from: [2080, 950], home: [1420, 780], delay: 13, phase: 4.4 },
-  { name: 'Rita', color: '#2FBF71', from: [900, -180], home: [960, 545], delay: 17, phase: 5.6 },
+  { name: 'لیزا', color: '#4C8DF6', from: [-160, 200], home: [430, 330], delay: 0, phase: 0.0 },
+  { name: 'لوکاس', color: '#2FBF71', from: [2080, 160], home: [1370, 290], delay: 5, phase: 1.7 },
+  { name: 'مارتا', color: '#F2994A', from: [-160, 900], home: [560, 760], delay: 9, phase: 3.1 },
+  { name: 'نیکو', color: '#4C8DF6', from: [2080, 950], home: [1420, 780], delay: 13, phase: 4.4 },
+  { name: 'ریتا', color: '#2FBF71', from: [900, -180], home: [960, 545], delay: 17, phase: 5.6 },
 ];
 
-const TYPED = 'Our customers love it';
+const TYPED = 'مشتری‌ها دوستش دارند';
 
 const CursorActor: React.FC<{ x: number; y: number; a: Actor; badge: number; scale?: number }> = ({
   x, y, a, badge, scale = 2.1,
@@ -44,7 +50,7 @@ const CursorActor: React.FC<{ x: number; y: number; a: Actor; badge: number; sca
     <div style={{
       position: 'absolute', left: 24, top: 40, whiteSpace: 'nowrap',
       background: a.color, color: '#fff', borderRadius: 7, padding: '4px 11px',
-      fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 700, fontSize: 14,
+      ...faText(14, {fontWeight: 700, direction: 'rtl', unicodeBidi: 'isolate'}),
       opacity: badge, transform: `translateY(${(1 - badge) * 10}px)`,
     }}>
       {a.name}
@@ -71,7 +77,7 @@ export const CursorCastEnsemble: React.FC = () => {
   const caretOn = Math.floor(f / 8) % 2 === 0;
 
   return (
-    <div style={{ width: 1920, height: 1080, background: G.bg, position: 'relative', overflow: 'hidden' }}>
+    <FaRoot family="Vazirmatn" style={{ width: 1920, height: 1080, background: G.bg, position: 'relative', overflow: 'hidden' }}>
       {/* 点阵无限画布底 */}
       <div style={{
         position: 'absolute', inset: 0,
@@ -102,13 +108,12 @@ export const CursorCastEnsemble: React.FC = () => {
       }}>
         <div style={{ height: 14, width: 180, background: G.bar, borderRadius: 7, marginBottom: 24 }} />
         <div style={{
-          fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 700, fontSize: 44,
-          color: G.ink, letterSpacing: -0.5, minHeight: 56,
+          ...faText(44, {fontWeight: 700, color: G.ink, minHeight: 56, textAlign: 'right', lineHeight: 1.35}),
         }}>
-          {TYPED.slice(0, typedCount)}
+          {typeOn(TYPED, typedCount / TYPED.length)}
           <span style={{
             display: 'inline-block', width: 4, height: 44, background: '#2FBF71',
-            marginLeft: 3, verticalAlign: 'middle',
+            marginInlineStart: 3, verticalAlign: 'middle',
             opacity: f > 50 && typedCount < TYPED.length ? (caretOn ? 1 : 0.15) : 0,
           }} />
         </div>
@@ -131,6 +136,6 @@ export const CursorCastEnsemble: React.FC = () => {
         const badge = clamp01((f - a.delay - 12) / 12);
         return <CursorActor key={a.name} x={x} y={y} a={a} badge={badge} />;
       })}
-    </div>
+    </FaRoot>
   );
 };

@@ -23,7 +23,8 @@ const projects: Project[] = [
 export const PersianCard: React.FC<{index: number; height: number}> = ({index, height}) => {
   const p = projects[index % projects.length];
   return <div style={{width: '100%', height: '100%', boxSizing: 'border-box', background: '#fffdfb', border: `1px solid ${line}`, borderRadius: 16, direction: 'rtl', fontFamily: 'Vazirmatn', color: ink, padding: '20px 20px 18px', position: 'relative', overflow: 'hidden'}}>
-    <div style={{...faText(11), color: '#89542f', lineHeight: 1.2, textAlign: 'right'}}>{p.days >= 30 ? `${faDigits(Math.round(p.days / 30))} ماه پیش` : `${faDigits(p.days)} روز پیش`}</div>
+    <div style={{...faText(11), color: '#89542f', lineHeight: 1.2, textAlign: index === 4 ? 'left' : 'right'}}>{p.days >= 30 ? `${faDigits(Math.round(p.days / 30))} ماه پیش` : `${faDigits(p.days)} روز پیش`}</div>
+    {index === 4 ? <div style={{position: 'absolute', top: 15, right: 20, borderRadius: 20, background: '#dff5ea', color: '#348b62', padding: '2px 7px', ...faText(10)}}>تکمیل‌شده</div> : null}
     <div style={{...faText(15), fontWeight: 700, lineHeight: 1.4, marginTop: 17, maxHeight: 42, overflow: 'hidden'}}>{p.title}</div>
     <div style={{...faText(12), color: muted, lineHeight: 1.55, marginTop: 5, height: 40, overflow: 'hidden'}}>{p.summary}</div>
     <div style={{display: 'grid', gridTemplateColumns: '60px 1fr', rowGap: 2, marginTop: 7, ...faText(10), lineHeight: 1.45}}>

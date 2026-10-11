@@ -8,7 +8,7 @@
 // Raster handling: none; all shapes are live CSS/SVG, with no embedded foreign-language text.
 import React from 'react';
 import { DesignStage, E, lerp, rand, seg, useT } from '../../_fixtures/Motion';
-import { FaRoot, faText, fs } from '../../_fa';
+import { FaRoot, faText } from '../../_fa';
 
 export const DOC_PARK_LEFT_PILL_DEAL_DURATION = 174; // 5800ms @30fps
 
@@ -43,12 +43,12 @@ const Caption: React.FC<{text: string; right: number; top: number; size: number;
   const st = 0.78 / n, win = st * 1.5;
   const stw = 0.55 / n;
   const rowOpacity = outP > 0 ? clamp01(1 - (outP - 0.7) / 0.3) : showV;
-  return <div style={{ position: 'absolute', display: 'flex', alignItems: 'baseline', whiteSpace: 'nowrap', right, top, opacity: rowOpacity, direction: 'rtl', lineHeight: 1.5 }}>
+  return <div style={{ position: 'absolute', display: 'flex', alignItems: 'baseline', whiteSpace: 'nowrap', width: 172, right, top, opacity: rowOpacity, direction: 'rtl', lineHeight: 1.5 }}>
     {words.map((w, i) => {
       const q = clamp01((innP - i * st) / win);
       let color = mix(q, DIM, TXT);
       if (outP > 0) color = mix(1 - clamp01((outP - i * stw) / (stw * 1.4)), DIM, TXT);
-      return <span key={i} style={{ ...faText(size, { fontFamily: SANS, fontWeight: 600, lineHeight: 1.5, color }), marginLeft: i === n - 1 ? 0 : 4.5 }}>{w}</span>;
+      return <span key={i} style={{ ...faText(size, { fontFamily: SANS, fontWeight: 600, lineHeight: 1.5, color }), marginInlineStart: i === n - 1 ? 0 : 4.5 }}>{w}</span>;
     })}
   </div>;
 };
@@ -60,9 +60,9 @@ const DOC_COLS = Array.from({ length: COLS }, (_, c) => {
   return { x, headW: (COL_W * 0.72).toFixed(1), rows: Array.from({ length: 7 }, (_, r) => (COL_W * (0.55 + rand(c * 13 + r * 7) * 0.45)).toFixed(1)) };
 });
 const ITEMS: { n: string; ic: 'leaf' | 'bowl' | 'wrap'; cap: string }[] = [
-  { n: 'شروع سریع', ic: 'leaf', cap: 'شروع با سلیقه‌شان هماهنگ است' },
-  { n: 'طرح پیشنهادی', ic: 'bowl', cap: 'این برنامه به کار روزهای کاری‌شان می‌آید' },
-  { n: 'بستهٔ آغاز', ic: 'wrap', cap: 'این بسته را بیشتر از همه دوباره می‌خواهند' },
+  { n: 'شروع سریع', ic: 'leaf', cap: 'هماهنگ با سلیقه' },
+  { n: 'طرح پیشنهادی', ic: 'bowl', cap: 'مناسب روزهای کاری' },
+  { n: 'بستهٔ آغاز', ic: 'wrap', cap: 'محبوب برای خرید دوباره' },
 ];
 const PX = 54, PY = 54, PH = 34, PG = 14;
 const T0 = [0.26, 0.48, 0.70];
@@ -96,7 +96,7 @@ export const DocParkLeftPillDeal: React.FC = () => {
                 <Icon k={it.ic} size={16} />
                 <div style={{ ...faText(12.5, { fontFamily: SANS, fontWeight: 600, color: TXT, whiteSpace: 'nowrap' }), lineHeight: 1 }}>{it.n}</div>
               </div>
-              <Caption text={it.cap} right={PX + 4} top={PY + k * (PH + PG) + PH + 7} size={11} showV={showV} innP={innP} outP={outP} />
+              <Caption text={it.cap} right={440 - PX - 4 - 172} top={PY + k * (PH + PG) + PH + 7} size={11} showV={showV} innP={innP} outP={outP} />
             </React.Fragment>;
           })}
         </div>

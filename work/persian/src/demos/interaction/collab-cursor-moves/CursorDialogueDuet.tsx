@@ -1,8 +1,13 @@
-// cursor-dialogue-duet —— figma-devmode 0:16–0:20
-// 纯暗场上 Designer(蓝)/Developer(绿) 两枚具名光标做"对话式"双人舞：
-// 相互靠近 → 绕位交换 → 名牌一亮一暗交接 → 一枚放大成巨箭头当转场。
+// PERSIAN (RTL) localization of shotcraft "cursor-dialogue-duet".
+// RTL decisions: Designer/Developer become the idiomatic role labels «طراح» and
+// «توسعه‌دهنده». Badge placement remains physically attached to each pointer: the
+// cursor choreography is actor movement, not a reading-order rail, so all Bezier
+// paths, arc direction, exit direction and the giant-arrow transition stay exact.
+// Font: Vazirmatn, a neutral variable UI face with dependable Persian shaping and
+// weights, matching the original restrained product-collaboration mood.
 import React from 'react';
 import { useCurrentFrame, interpolate } from 'remotion';
+import { FaRoot, faText } from '../../_fa';
 
 const BLUE = '#4C8DF6';
 const GREEN = '#2FBF71';
@@ -41,7 +46,7 @@ const Cursor: React.FC<{
     <div style={{
       position: 'absolute', left: 34, top: 56, whiteSpace: 'nowrap',
       background: color, color: '#fff', borderRadius: 8, padding: '5px 13px',
-      fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 700, fontSize: 16,
+      ...faText(16, {fontWeight: 700, direction: 'rtl', unicodeBidi: 'isolate'}),
       opacity: badgeOpacity * (0.28 + 0.72 * badgeLit),
       filter: `saturate(${0.35 + 0.65 * badgeLit})`,
       boxShadow: badgeLit > 0.6 ? `0 0 ${22 * badgeLit}px ${color}` : 'none',
@@ -128,18 +133,18 @@ export const CursorDialogueDuet: React.FC = () => {
   const dPulse = f > 26 && f < 60 ? 1 + Math.sin((f - 26) * 0.5) * 0.05 : 1;
 
   return (
-    <div style={{ width: 1920, height: 1080, background: DARK, position: 'relative', overflow: 'hidden' }}>
+    <FaRoot family="Vazirmatn" style={{ width: 1920, height: 1080, background: DARK, position: 'relative', overflow: 'hidden' }}>
       {/* 暗场微光晕，给纯黑一点空间感 */}
       <div style={{
         position: 'absolute', inset: 0,
         background: `radial-gradient(ellipse 1100px 700px at 50% 48%, rgba(255,255,255,0.045), transparent 70%)`,
       }} />
       {f <= 132 && (
-        <Cursor x={dx} y={dy} scale={2.8 * dPulse} color={BLUE} name="Designer"
+        <Cursor x={dx} y={dy} scale={2.8 * dPulse} color={BLUE} name="طراح"
           badgeLit={dLit} badgeOpacity={dBadgeIn * (f > 104 ? 1 - easeInCubic(clamp01((f - 104) / 18)) : 1)} />
       )}
-      <Cursor x={gx} y={gy} scale={gScale} color={GREEN} name="Developer"
+      <Cursor x={gx} y={gy} scale={gScale} color={GREEN} name="توسعه‌دهنده"
         badgeLit={gLit} badgeOpacity={gBadgeIn * (1 - clamp01((f - 102) / 12))} />
-    </div>
+    </FaRoot>
   );
 };

@@ -1,15 +1,19 @@
-// chip-lift-to-user-pill — Chip Lift 选中 chip 长成人名药丸（motion-lab 定稿转原生 Remotion）
-// 网格里的目标 chip 先 3 帧硬切反色成黑底白字，其余 chip 按到它的距离交错淡出并缩到 0.9；
-// 黑 chip 保持左缘不动向右生长成药丸，内部逐字打出人名并点亮绿点，再拉一条 1px 连接线
-// 接到圆形徽标，最后走逐词加深字幕。
-// 设计坐标 480×270（DesignStage 等比放大），440×240 定尺画布居中排版。
+// Persian localization — chip-lift-to-user-pill. All source timing/easing, colours, sizes and distance cues remain.
+// Text: twelve initials, the selected initials, full name and closing caption are idiomatic Persian.
+// RTL: mirror grid slots within the 440px stage, retaining each chip's Manhattan distance to the target;
+// anchor the selected pill at its right edge so expansion moves left; pin the typed name to its right inset;
+// pin the green status dot to the growing left tip; extend the connector leftward to the mirrored badge;
+// anchor and advance the caption from right to left. These motions express reading/selection direction.
+// The badge's four-point mark, vertical motion, colours and physical scale stay unchanged.
+// Font: Vazirmatn, a loaded variable face with clear small Persian UI glyphs, matches the neutral Swiss UI.
+// No raster or video assets occur in this card. Persian typing uses a shaped prefix, never isolated letters.
 import React from 'react';
 import { DesignStage, E, lerp, seg, useT } from '../../_fixtures/Motion';
+import {FaRoot, faText, typeOn} from '../../_fa';
 
 export const CHIP_LIFT_TO_USER_PILL_DURATION = 150; // 5000ms @30fps
 
 // ---- 本卡共享量（浅灰瑞士极简系配色 / 字体；BG/DIM/h2r 取自 motion-lab/fx/b09.js 同批定义） ----
-const SANS = '-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif';
 const BG = '#F1F1F3'; // 页面浅灰
 const INK = '#0B0B0C'; // 纯黑
 const TXT = '#111111'; // 正文黑
@@ -27,7 +31,7 @@ const mix = (p: number, a: string, b: string) => {
 // ---- 网格参数（与 effect.js 完全一致） ----
 const COLS = 4, ROWS = 3, CW = 40, CH = 24, GX = 10, GY = 9, GX0 = 8, GY0 = 70;
 const TC = 1, TR = 1; // 目标 chip 的列/行
-const LABELS = ['JD', 'MK', 'CD', 'RL', 'AV', 'TP', 'KN', 'BW', 'CE', 'HR', 'LM', 'DQ'];
+const LABELS = ['جا', 'مه', 'پر', 'رو', 'آو', 'کی', 'کا', 'به', 'نا', 'ها', 'لی', 'دا'];
 // 目标 chip 左上角坐标（左缘锚定，生长时不动）
 const TX = GX0 + TC * (CW + GX); // 58
 const TY = GY0 + TR * (CH + GY); // 103
@@ -35,7 +39,7 @@ const TY = GY0 + TR * (CH + GY); // 103
 const OTHERS = Array.from({ length: ROWS * COLS }, (_, i) => {
   const r = Math.floor(i / COLS), c = i % COLS;
   return {
-    x: GX0 + c * (CW + GX),
+    x: 440 - (GX0 + c * (CW + GX)) - CW,
     y: GY0 + r * (CH + GY),
     label: LABELS[i],
     dist: Math.abs(c - TC) + Math.abs(r - TR),
@@ -44,10 +48,12 @@ const OTHERS = Array.from({ length: ROWS * COLS }, (_, i) => {
 }).filter((o) => !o.isT);
 
 const PW0 = CW, PW1 = 190; // 药丸生长的起止宽度
-const NAME_CHARS = 'Casey Doe'.split(''); // 药丸内逐字打出的人名
+const NAME = 'کیان رضایی';
+const NAME_CHARS = [...NAME];
+const ORIGINAL_LAST_CHAR_START = 0.18 + 8 * 0.062;
 
 // 结尾字幕（逐词加深语法，只用到 show + inn 两态）
-const CAP_WORDS = 'Starting with Casey'.split(' ');
+const CAP_WORDS = 'شروع با کیان'.split(' ');
 const CAP_ST = 0.78 / CAP_WORDS.length;
 const CAP_WIN = CAP_ST * 1.5;
 
@@ -66,6 +72,8 @@ export const ChipLiftToUserPill: React.FC = () => {
   const g = seg(t, 0.26, 0.44, E.outCubic);
   const w = lerp(g, PW0, PW1);
   const dq = seg(g, 0.85, 1, E.outBack);
+  const charStep = (ORIGINAL_LAST_CHAR_START - 0.18) / (NAME_CHARS.length - 1);
+  const visibleChars = g < 0.18 ? 0 : Math.min(NAME_CHARS.length, Math.floor((g - 0.18) / charStep) + 1);
 
   // D 连接线 → 徽标 → 字幕
   const cw = seg(t, 0.47, 0.57, E.outQuad);
@@ -75,6 +83,7 @@ export const ChipLiftToUserPill: React.FC = () => {
 
   return (
     <DesignStage bg={BG}>
+      <FaRoot family="Vazirmatn">
       {/* 页面 + 440×240 定尺画布（居中） */}
       <div
         style={{
@@ -82,7 +91,6 @@ export const ChipLiftToUserPill: React.FC = () => {
           inset: 0,
           background: BG,
           overflow: 'hidden',
-          fontFamily: SANS,
           WebkitFontSmoothing: 'antialiased',
         }}
       >
@@ -115,15 +123,14 @@ export const ChipLiftToUserPill: React.FC = () => {
                 <div
                   style={{
                     position: 'absolute',
-                    left: 0,
+                  right: 0,
                     top: 0,
                     width: CW,
                     height: CH,
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    font: `600 10.5px/1 ${SANS}`,
-                    letterSpacing: '.6px',
+                    ...faText(10.5, {fontWeight: 600, lineHeight: 1.2, textAlign: 'center'}),
                     color: TXT,
                   }}
                 >
@@ -137,7 +144,7 @@ export const ChipLiftToUserPill: React.FC = () => {
           <div
             style={{
               position: 'absolute',
-              left: TX,
+              right: TX,
               top: TY,
               width: w,
               height: CH,
@@ -155,59 +162,45 @@ export const ChipLiftToUserPill: React.FC = () => {
             <div
               style={{
                 position: 'absolute',
-                left: 0,
+                right: 0,
                 top: 0,
                 width: CW,
                 height: CH,
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                font: `600 10.5px/1 ${SANS}`,
-                letterSpacing: '.6px',
+                ...faText(10.5, {fontWeight: 600, lineHeight: 1.2, textAlign: 'center'}),
                 color: mix(aq, TXT, '#ffffff'),
                 opacity: 1 - clamp01(g * 5),
               }}
             >
-              CD
+              کی
             </div>
             {/* 人名逐字打出（stagger 跑在生长进度 g 上） */}
             <div
               style={{
                 position: 'absolute',
+                right: 13,
                 left: 13,
                 top: 0,
                 height: CH,
                 display: 'flex',
                 alignItems: 'center',
+                justifyContent: 'flex-start',
                 whiteSpace: 'nowrap',
+                direction: 'rtl',
               }}
             >
-              {NAME_CHARS.map((ch, i) => {
-                const p = seg(g, 0.18 + i * 0.062, 0.18 + i * 0.062 + 0.05, E.outQuad);
-                return (
-                  <span
-                    key={i}
-                    style={{
-                      font: `600 11px/1 ${SANS}`,
-                      color: '#fff',
-                      opacity: p,
-                      whiteSpace: 'pre',
-                      letterSpacing: '.2px',
-                      transform: `translateY(${lerp(p, 2, 0)}px)`,
-                      display: 'inline-block',
-                    }}
-                  >
-                    {ch}
-                  </span>
-                );
-              })}
+              <span style={{...faText(11, {fontWeight: 600, lineHeight: 1.5, unicodeBidi: 'isolate'}), color: '#fff', whiteSpace: 'pre', display: 'block'}}>
+                {typeOn(NAME, visibleChars / NAME_CHARS.length)}
+              </span>
             </div>
             {/* 在线绿点：outBack 弹出，钉在药丸右缘内侧 */}
             <div
               style={{
                 position: 'absolute',
                 top: (CH - 7) / 2,
-                left: w - 15,
+                right: w - 15,
                 width: 7,
                 height: 7,
                 borderRadius: '50%',
@@ -223,11 +216,12 @@ export const ChipLiftToUserPill: React.FC = () => {
           <div
             style={{
               position: 'absolute',
-              left: TX + PW1,
+              right: TX + PW1,
               top: TY + CH / 2,
               height: 1,
               width: `${(cw * 90).toFixed(1)}px`,
               background: TXT,
+              transformOrigin: 'right center',
             }}
           />
 
@@ -245,7 +239,7 @@ export const ChipLiftToUserPill: React.FC = () => {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              left: TX + PW1 + 90 - 2,
+              left: 440 - (TX + PW1 + 90 - 2) - BADGE_SIZE,
               top: TY + CH / 2 - 13,
               opacity: bp,
               transform: `scale(${lerp(bp, 0.8, 1)})`,
@@ -263,9 +257,10 @@ export const ChipLiftToUserPill: React.FC = () => {
               display: 'flex',
               alignItems: 'baseline',
               whiteSpace: 'nowrap',
-              left: TX + PW1 - 18,
+              right: TX + PW1 - 18,
               top: TY + CH + 34,
               opacity: capShow,
+              direction: 'rtl',
             }}
           >
             {CAP_WORDS.map((wd, i) => {
@@ -274,10 +269,9 @@ export const ChipLiftToUserPill: React.FC = () => {
                 <span
                   key={i}
                   style={{
-                    font: `600 13px/1.25 ${SANS}`,
+                    ...faText(13, {fontWeight: 600, lineHeight: 1.5}),
                     color: mix(q, DIM, TXT),
-                    letterSpacing: (-0.03 * (1 - q)).toFixed(4) + 'em',
-                    marginRight: i === CAP_WORDS.length - 1 ? 0 : 4.5,
+                    marginInlineEnd: i === CAP_WORDS.length - 1 ? 0 : 4.5,
                   }}
                 >
                   {wd}
@@ -287,6 +281,7 @@ export const ChipLiftToUserPill: React.FC = () => {
           </div>
         </div>
       </div>
+      </FaRoot>
     </DesignStage>
   );
 };

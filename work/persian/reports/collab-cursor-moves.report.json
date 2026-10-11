@@ -1,0 +1,73 @@
+{
+  "slug": "collab-cursor-moves",
+  "status": "localized",
+  "font": {
+    "families": ["Vazirmatn"],
+    "reason": "Vazirmatn is a neutral variable Persian UI face with dependable joining, Persian punctuation and ZWNJ coverage. It matches the original collaborative-canvas/product tone and supplies a real 700 weight for the compact identity badges and headline cameo."
+  },
+  "comps": [
+    {
+      "name": "CursorCastEnsemble",
+      "rtlDecisions": [
+        {
+          "what": "Five identity names: Lisa, Lucas, Marta, Niko, Rita",
+          "action": "Translated as لیزا، لوکاس، مارتا، نیکو، ریتا and rendered with FaRoot/Vazirmatn.",
+          "why": "Names are on-screen identity labels; Persian transliteration removes leftover Latin while preserving identity and color coding."
+        },
+        {
+          "what": "Cursor badge placement and pointer geometry",
+          "action": "Kept the original physical left/top attachment, SVG silhouette, paths, positions and trajectories unchanged.",
+          "why": "The cursor is an actor and its physical pointer-to-badge relationship is scene choreography, not a reading-order layout."
+        },
+        {
+          "what": "Typed cameo 'Our customers love it'",
+          "action": "Localized to the compact idiomatic Persian sentence «مشتری‌ها دوستش دارند»، right-aligned in the note, with typeOn() prefix slicing and no letter spacing.",
+          "why": "RTL text should type from the right with valid contextual shaping. The compact wording preserves the source single-line composition and the exact 58–118 frame beat."
+        },
+        {
+          "what": "Typing caret",
+          "action": "Replaced physical marginLeft with marginInlineStart inside the RTL text run; kept 8-frame blink and dimensions.",
+          "why": "The caret remains at the RTL inline edge without changing its original timing or blink rhythm."
+        },
+        {
+          "what": "Canvas and sticky notes",
+          "action": "Kept the gray physical canvas, generated notes, random seed 88, note rotations and all motion unchanged.",
+          "why": "These are non-text physical/environmental elements; no reading-direction meaning requires mirroring."
+        }
+      ],
+      "rasterHandling": "None. The scene uses CSS-generated canvas/sticky-note shapes and inline SVG cursors; no raster asset contains text.",
+      "timing": "All source timing, spring parameters, seed, drift frequencies, gather easing and 140-frame duration are unchanged. The shorter Persian cameo keeps the original 58–118 start/end beats.",
+      "visualVerification": [0, 12, 24, 36, 58, 60, 78, 96, 110, 118, 130, 139]
+    },
+    {
+      "name": "CursorDialogueDuet",
+      "rtlDecisions": [
+        {
+          "what": "Designer and Developer identity badges",
+          "action": "Translated as طراح and توسعه‌دهنده, including the Persian نیم‌فاصله in توسعه‌دهنده, with Vazirmatn and RTL shaping.",
+          "why": "These are literal on-screen role labels; Persian role wording is clearer and avoids leftover English."
+        },
+        {
+          "what": "Badge placement and cursor paths",
+          "action": "Kept physical attachment, all Bezier control points, left/right entry and exit, upper/lower exchange arcs, and pointer SVG unchanged.",
+          "why": "The motion tells the design-to-development handoff through actor position; mirroring the choreography would change the authored scene rather than localize reading order."
+        },
+        {
+          "what": "Role badge text direction",
+          "action": "Applied FaRoot plus isolated RTL text styling with zero letter spacing and preserved badge light/dark opacity, saturation and glow formulas.",
+          "why": "Persian labels need contextual joining while the badge lighting remains the source's dialogue handoff cue."
+        },
+        {
+          "what": "Giant-arrow transition",
+          "action": "Kept the original easeIn enlargement, scale, centerward motion, crop and final 140-frame endpoint unchanged.",
+          "why": "The giant pointer is a physical transition mask, not text or a reading-direction sweep."
+        }
+      ],
+      "rasterHandling": "None. The scene uses generated CSS glow and inline SVG cursors; no raster asset contains text.",
+      "timing": "All source timing, easing, arc phases, handoff frames 70–84, badge fades, giant-arrow scale and 140-frame duration are unchanged.",
+      "visualVerification": [0, 12, 24, 36, 58, 60, 78, 96, 110, 118, 130, 139]
+    }
+  ],
+  "concerns": [],
+  "lessons": []
+}

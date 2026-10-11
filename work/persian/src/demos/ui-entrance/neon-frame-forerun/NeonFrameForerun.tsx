@@ -1,3 +1,18 @@
+// Persian/RTL localization of neon-frame-forerun.
+//
+// Source-fidelity record:
+// - The source contains no readable text and no raster assets: GrayHome is an abstract
+//   skeleton UI, so there is nothing to translate or blur. Vazirmatn is loaded through
+//   FaRoot as the neutral Persian UI family for any future textual chrome.
+// - RTL layout decisions: the sidebar moves from the physical left to the reading-start
+//   right (row-reverse + borderInlineStart); the main card grid and trailing avatar group
+//   follow the same reading order. The search icon/line pair is mirrored inside its row.
+// - The frame is a directional UI entrance, so its two-headed trace now starts at the
+//   right-edge midpoint. Its perspective, horizontal rim shadows, and gradient angle are
+//   mirrored; vertical motion, 3D fall physics, random seed, frame beats, easing, sizes,
+//   and all numeric values remain unchanged.
+// - No text was split, tracked, uppercased, rasterized, or exposed in the original.
+//
 // neon-frame-forerun v3 —— v2 基础上按用户意见新增（clickup04 五张）：
 // 框内各组件/文字初始悬空在页面上空（3D 抬起），悬空时在面板上映射
 // 同形软影，随页面点亮进程同步先后贴合（FloatWrap 模式，对标截图③：
@@ -5,6 +20,7 @@
 // 两头奔画、面板原地由暗转亮、背景霓虹管框群中亮尾熄。
 import React, { useId } from 'react';
 import { AbsoluteFill, useCurrentFrame, interpolate, Easing } from 'remotion';
+import { FaRoot } from '../../_fa';
 
 const easeFall = Easing.bezier(0.5, 0.05, 0.6, 1); // 加速下落、末端软着陆
 
@@ -47,8 +63,8 @@ const PW = 1330;
 const PH = 900;
 const PL = 1000; // 归一路径长
 
-// 直角矩形路径：从左缘中点出发（对应截图①左缘先亮）
-const FRAME_D = `M 0 ${PH / 2} L 0 0 L ${PW} 0 L ${PW} ${PH} L 0 ${PH} Z`;
+// RTL 直角矩形路径：从右缘中点出发；两头仍以完全相同的节拍奔画。
+const FRAME_D = `M ${PW} ${PH / 2} L ${PW} 0 L 0 0 L 0 ${PH} L ${PW} ${PH} Z`;
 
 const Chip: React.FC<{ w: number }> = ({ w }) => (
   <div style={{
@@ -66,8 +82,8 @@ const Chip: React.FC<{ w: number }> = ({ w }) => (
 const GrayHome: React.FC<{ t?: number }> = ({ t = 1 }) => {
   const L = (land: number, H = 72) => liftOf(t, land, H * 1.7);
   return (
-  <div style={{ width: PW, height: PH, background: '#f5f5f4', borderRadius: 6, display: 'flex', overflow: 'hidden', boxSizing: 'border-box' }}>
-    <div style={{ width: 290, borderRight: `2px solid ${line}`, padding: '26px 24px', boxSizing: 'border-box' }}>
+  <div style={{ width: PW, height: PH, background: '#f5f5f4', borderRadius: 6, display: 'flex', flexDirection: 'row-reverse', direction: 'rtl', overflow: 'hidden', boxSizing: 'border-box' }}>
+    <div style={{ width: 290, borderInlineStart: `2px solid ${line}`, padding: '26px 24px', boxSizing: 'border-box' }}>
       <FloatWrap h={L(0.24, 84)}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 28 }}>
           <div style={{ width: 28, height: 28, borderRadius: 8, background: ink }} />
@@ -99,9 +115,9 @@ const GrayHome: React.FC<{ t?: number }> = ({ t = 1 }) => {
         <div style={{ height: 24, width: 130, background: '#565654', borderRadius: 10, marginBottom: 22 }} />
       </FloatWrap>
       <FloatWrap h={L(0.34, 80)}>
-        <div style={{ height: 46, border: `2px solid ${line}`, borderRadius: 12, marginBottom: 26, display: 'flex', alignItems: 'center', padding: '0 16px', background: '#f5f5f4' }}>
-          <div style={{ width: 17, height: 17, borderRadius: 9, border: `2px solid ${mid}` }} />
-          <div style={{ height: 10, width: 250, background: line, borderRadius: 5, marginLeft: 12 }} />
+          <div style={{ height: 46, border: `2px solid ${line}`, borderRadius: 12, marginBottom: 26, display: 'flex', flexDirection: 'row-reverse', alignItems: 'center', padding: '0 16px', background: '#f5f5f4' }}>
+            <div style={{ width: 17, height: 17, borderRadius: 9, border: `2px solid ${mid}` }} />
+          <div style={{ height: 10, width: 250, background: line, borderRadius: 5, marginRight: 12 }} />
         </div>
       </FloatWrap>
       <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', marginBottom: 30 }}>
@@ -120,10 +136,10 @@ const GrayHome: React.FC<{ t?: number }> = ({ t = 1 }) => {
       </FloatWrap>
       {[0, 1, 2, 3].map((i) => (
         <FloatWrap key={i} h={L(0.78 + i * 0.055, 64)}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 14, height: 46, borderBottom: `2px solid ${line}` }}>
+          <div style={{ display: 'flex', flexDirection: 'row-reverse', alignItems: 'center', gap: 14, height: 46, borderBottom: `2px solid ${line}` }}>
             <div style={{ width: 13, height: 13, borderRadius: 7, background: '#c26a6a' }} />
             <div style={{ height: 11, width: 160 + ((i * 37) % 70), background: '#b6b6b4', borderRadius: 5 }} />
-            <div style={{ marginLeft: 'auto', display: 'flex', gap: 7 }}>
+            <div style={{ marginRight: 'auto', display: 'flex', gap: 7 }}>
               {[0, 1, 2].map((k) => <div key={k} style={{ width: 20, height: 20, borderRadius: 10, background: '#d2d2d0' }} />)}
             </div>
           </div>
@@ -188,6 +204,7 @@ export const NeonFrameForerun: React.FC = () => {
   });
 
   return (
+    <FaRoot family="Vazirmatn">
     <AbsoluteFill style={{ background: '#060509', overflow: 'hidden' }}>
       {/* 背景霓虹管框群 */}
       <svg width={1920} height={1080} style={{ position: 'absolute' }}>
@@ -210,10 +227,10 @@ export const NeonFrameForerun: React.FC = () => {
         })}
       </svg>
       {/* 主体：强透视斜置的框 + 面板 */}
-      <div style={{ position: 'absolute', inset: 0, perspective: 1600, perspectiveOrigin: '42% 40%' }}>
+      <div style={{ position: 'absolute', inset: 0, perspective: 1600, perspectiveOrigin: '58% 40%', direction: 'rtl', fontFamily: 'Vazirmatn, sans-serif' }}>
         <div style={{
           position: 'absolute', left: (1920 - PW) / 2, top: (1080 - PH) / 2 - 10,
-          transform: `scale(${scale}) rotateY(${rotY}deg) rotateX(${rotX}deg) rotateZ(${rotZ}deg)`,
+          transform: `scale(${scale}) rotateY(${-rotY}deg) rotateX(${rotX}deg) rotateZ(${-rotZ}deg)`,
           transformStyle: 'preserve-3d',
         }}>
           {/* 面板：原地由暗转亮（无位移缩放） */}
@@ -222,7 +239,7 @@ export const NeonFrameForerun: React.FC = () => {
             {/* 未点亮时的冷色压暗罩 */}
             <div style={{
               position: 'absolute', inset: 0, borderRadius: 6,
-              background: 'linear-gradient(150deg, rgba(30,20,60,0.5), rgba(0,0,0,0.78))',
+              background: 'linear-gradient(30deg, rgba(30,20,60,0.5), rgba(0,0,0,0.78))',
               opacity: 1 - lit,
             }} />
           </div>
@@ -230,7 +247,7 @@ export const NeonFrameForerun: React.FC = () => {
           <div style={{
             position: 'absolute', left: -10, top: -10, width: PW + 20, height: PH + 20,
             borderRadius: 12, opacity: rimGlow * Math.min(1, trace * 1.6),
-            boxShadow: '-18px -8px 42px 6px rgba(185,95,240,0.42), 22px 24px 56px 12px rgba(240,150,90,0.30), 0 14px 80px 22px rgba(200,100,220,0.20)',
+            boxShadow: '18px -8px 42px 6px rgba(185,95,240,0.42), -22px 24px 56px 12px rgba(240,150,90,0.30), 0 14px 80px 22px rgba(200,100,220,0.20)',
           }} />
           {/* 霓虹描边框：左缘中点出发两头奔画，直角转角 */}
           <svg width={PW + 80} height={PH + 80} viewBox={`-40 -40 ${PW + 80} ${PH + 80}`}
@@ -277,5 +294,6 @@ export const NeonFrameForerun: React.FC = () => {
         </div>
       </div>
     </AbsoluteFill>
+    </FaRoot>
   );
 };

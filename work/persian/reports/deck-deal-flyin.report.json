@@ -1,0 +1,45 @@
+{
+  "slug": "deck-deal-flyin",
+  "status": "localized-and-rendered",
+  "components": ["DeckDealFlyin"],
+  "font": {
+    "family": "Vazirmatn",
+    "reason": "Its variable weights, Persian glyph coverage, and restrained product UI tone match the source's clean research card wall. FaRoot loads it before render."
+  },
+  "rtlDecisions": {
+    "DeckDealFlyin": [
+      {"what": "Project card grid and stagger order", "action": "Reflect each card x as 1920 - x - width, then sort each row from right to left before assigning the original cue formula.", "why": "The first project belongs at the rightmost position in Persian reading order; the 26-card accelerating sequence still begins on frame 36 and uses the original cue intervals."},
+      {"what": "Pile and anticipation", "action": "Reflect the pile position and the top card's 30 px pull while preserving the 48 px downward press.", "why": "The pile must launch toward the mirrored grid; gravity and the anticipation magnitude are unchanged."},
+      {"what": "Camera", "action": "Reflect opening camera x offsets and the horizontal orientation angles, keep the original vertical positions, zooms, perspective, frame keys, and easing.", "why": "The orbit and chase retain the source's silhouette while following the RTL card flow."},
+      {"what": "Card surfaces", "action": "Replace every raster card, including the flying ghost, with an opaque Persian React card; right-align dates, titles, descriptions, metadata, and tags.", "why": "The source card PNGs contain baked-in English and Chinese, and card details must stay legible during the opening close-up."},
+      {"what": "Page chrome", "action": "Cover the source page raster with an opaque Persian page, placing the search field at the right and the filter control at the left.", "why": "The page texture has baked-in foreign text; navigation and form order follow RTL reading order."},
+      {"what": "Coordinate system", "action": "Keep FaRoot's camera container LTR and set explicit RTL on PersianPage and PersianCard.", "why": "Inheriting RTL into PageCam2D shifts its auto-positioned zoom transform and moves the pile off-screen."},
+      {"what": "Depth, gravity, texture, shadows, and paper extension", "action": "Keep their original vertical/z behavior, physical shading, dimensions, and material gradients.", "why": "They describe physical motion and lighting rather than reading direction."},
+      {"what": "Digits and technical tokens", "action": "Use Persian digits for all visible dates and counts; retain CI as a conventional technical token.", "why": "Project UI counts should read naturally in Persian without changing technical meaning."}
+    ]
+  },
+  "rasterHandling": {
+    "projects-empty.png": "Fully covered by an opaque PersianPage at the same 1920 by 1746 page coordinates; its English and Chinese labels never show in localized frames.",
+    "card1.png through card10.png": "Replaced by PersianCard for all 10 original cards and 16 repeated extras. The same replacement is used for motion-blur ghosts. Source images are not rendered visibly.",
+    "metal": "CSS brushed-metal material retained; it contains no text."
+  },
+  "motionFidelity": {
+    "durationFrames": 113,
+    "fps": 30,
+    "cardCount": 26,
+    "unchanged": ["deal cue formula", "8-frame dive", "4-frame settle", "press rebound", "90 px z arc", "3 px stack step", "deterministic per-card jitter", "camera frame keys and zoom values", "metal fade frames", "15-frame final hold"],
+    "textTiming": "The source has no typewriter or text-driven stagger; Persian copy length does not move any cue or camera beat."
+  },
+  "verification": {
+    "visualComparisonFrames": [0, 28, 34, 40, 56, 70, 88, 98, 112],
+    "method": "Viewed matching original and Persian stills at the opening, anticipation, first deals, chase, and resting grid. The mirrored stack, card destinations, typography, and lack of visible source text were checked.",
+    "fullVideo": "DeckDealFlyin.fa.mp4",
+    "renderErrors": []
+  },
+  "concerns": [
+    "The source card textures are raster facsimiles with very small text. Persian React cards preserve their hierarchy and geometry, but condensed Persian descriptions and web-font metrics change microspacing within the cards."
+  ],
+  "lessons": [
+    {"symptom": "A mirrored card camera rendered only its metal table at the opening and shifted the final grid rightward.", "cause": "An RTL parent changed the auto placement of PageCam2D's zoomed, absolutely positioned camera plane.", "fix": "Keep the camera coordinate wrapper LTR; reflect page-space x values deliberately and give only the actual page and card surfaces direction: rtl."}
+  ]
+}

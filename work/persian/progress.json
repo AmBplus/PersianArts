@@ -1,8 +1,8 @@
 {
- "generatedAt": "2026-10-11T15:42:54.844Z",
+ "generatedAt": "2026-10-11T15:48:11.973Z",
  "summary": {
-  "todo": 89,
-  "localized": 6,
+  "todo": 87,
+  "localized": 8,
   "approved": 51,
   "fixed": 10,
   "needs-fix": 1,
@@ -235,9 +235,9 @@
   },
   {
    "slug": "collab-cursor-moves",
-   "status": "todo",
-   "font": "",
-   "videos": 0,
+   "status": "localized",
+   "font": "{\"families\":[\"Vazirmatn\"],\"reason\":\"Vazirmatn is a neutral variable Persian UI face with dependable joining, Persian punctuation and ZWNJ coverage. It matches the original collaborative-canvas/product tone and supplies a real 700 weight for the compact identity badges and headline cameo.\"}",
+   "videos": 2,
    "majors": 0,
    "concerns": 0
   },
@@ -332,10 +332,10 @@
   {
    "slug": "deck-deal-flyin",
    "status": "localized",
-   "font": "",
+   "font": "Vazirmatn",
    "videos": 1,
    "majors": 0,
-   "concerns": 0
+   "concerns": 1
   },
   {
    "slug": "depth-layer-moves",
@@ -347,9 +347,9 @@
   },
   {
    "slug": "doc-park-left-pill-deal",
-   "status": "todo",
-   "font": "",
-   "videos": 0,
+   "status": "localized",
+   "font": "{\"families\":[\"Vazirmatn\"],\"reason\":\"The card is a restrained product interface. Variable Vazirmatn supplies the source's regular-to-semibold hierarchy, reliable Persian glyph coverage and natural joining at the pill and caption sizes. FaRoot loads it before rendering.\"}",
+   "videos": 1,
    "majors": 0,
    "concerns": 0
   },

@@ -3,6 +3,8 @@
 // RTL: grid columns and deal order reverse because projects are read from the right; pile and camera x positions reflect with them.
 // The camera's horizontal orbit angles and card roll signs reflect to retain the same viewed perspective. Vertical motion, z arc,
 // gravity, shadow physics, timing and the brushed-metal material remain physical rather than reading-direction changes.
+// Camera coordinates stay LTR; only the rendered page/card surfaces are RTL. FaRoot's RTL inheritance otherwise shifts
+// PageCam2D's auto-positioned, zoomed transform and can push the whole pile off-screen.
 // Font: Vazirmatn, a variable neutral UI face with sound Persian shaping, fits the source's restrained product cards.
 import { interpolate, useCurrentFrame, Easing } from 'remotion';
 import { PageCam2D, CamKey2D } from '../../_fixtures/PageCam2D';
@@ -118,7 +120,7 @@ export const DeckDealFlyin: React.FC = () => {
         }}
       />
 
-      {/* 26 cards: pile at top-right, each deals itself on accelerating cadence */}
+      {/* 26 cards: mirrored pile at top-left, each deals itself on the original accelerating cadence */}
       {grid.map((c, i) => {
         const { cue } = c;
         const radius = 16;
