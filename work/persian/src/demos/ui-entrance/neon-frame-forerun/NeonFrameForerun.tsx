@@ -82,8 +82,8 @@ const Chip: React.FC<{ w: number }> = ({ w }) => (
 const GrayHome: React.FC<{ t?: number }> = ({ t = 1 }) => {
   const L = (land: number, H = 72) => liftOf(t, land, H * 1.7);
   return (
-  <div style={{ width: PW, height: PH, background: '#f5f5f4', borderRadius: 6, display: 'flex', flexDirection: 'row-reverse', direction: 'rtl', overflow: 'hidden', boxSizing: 'border-box' }}>
-    <div style={{ width: 290, borderInlineStart: `2px solid ${line}`, padding: '26px 24px', boxSizing: 'border-box' }}>
+  <div style={{ width: PW, height: PH, background: '#f5f5f4', borderRadius: 6, display: 'flex', flexDirection: 'row-reverse', direction: 'ltr', overflow: 'hidden', boxSizing: 'border-box' }}>
+    <div style={{ width: 290, direction: 'rtl', borderInlineEnd: `2px solid ${line}`, padding: '26px 24px', boxSizing: 'border-box' }}>
       <FloatWrap h={L(0.24, 84)}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 28 }}>
           <div style={{ width: 28, height: 28, borderRadius: 8, background: ink }} />
@@ -110,12 +110,12 @@ const GrayHome: React.FC<{ t?: number }> = ({ t = 1 }) => {
         </FloatWrap>
       ))}
     </div>
-    <div style={{ flex: 1, padding: '30px 40px', boxSizing: 'border-box' }}>
+    <div style={{ flex: 1, direction: 'rtl', padding: '30px 40px', boxSizing: 'border-box' }}>
       <FloatWrap h={L(0.26, 90)}>
         <div style={{ height: 24, width: 130, background: '#565654', borderRadius: 10, marginBottom: 22 }} />
       </FloatWrap>
       <FloatWrap h={L(0.34, 80)}>
-          <div style={{ height: 46, border: `2px solid ${line}`, borderRadius: 12, marginBottom: 26, display: 'flex', flexDirection: 'row-reverse', alignItems: 'center', padding: '0 16px', background: '#f5f5f4' }}>
+          <div style={{ height: 46, border: `2px solid ${line}`, borderRadius: 12, marginBottom: 26, display: 'flex', alignItems: 'center', padding: '0 16px', background: '#f5f5f4' }}>
             <div style={{ width: 17, height: 17, borderRadius: 9, border: `2px solid ${mid}` }} />
           <div style={{ height: 10, width: 250, background: line, borderRadius: 5, marginRight: 12 }} />
         </div>
@@ -136,10 +136,10 @@ const GrayHome: React.FC<{ t?: number }> = ({ t = 1 }) => {
       </FloatWrap>
       {[0, 1, 2, 3].map((i) => (
         <FloatWrap key={i} h={L(0.78 + i * 0.055, 64)}>
-          <div style={{ display: 'flex', flexDirection: 'row-reverse', alignItems: 'center', gap: 14, height: 46, borderBottom: `2px solid ${line}` }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 14, height: 46, borderBottom: `2px solid ${line}` }}>
             <div style={{ width: 13, height: 13, borderRadius: 7, background: '#c26a6a' }} />
             <div style={{ height: 11, width: 160 + ((i * 37) % 70), background: '#b6b6b4', borderRadius: 5 }} />
-            <div style={{ marginRight: 'auto', display: 'flex', gap: 7 }}>
+            <div style={{ marginInlineStart: 'auto', display: 'flex', gap: 7 }}>
               {[0, 1, 2].map((k) => <div key={k} style={{ width: 20, height: 20, borderRadius: 10, background: '#d2d2d0' }} />)}
             </div>
           </div>
@@ -166,7 +166,7 @@ export const NeonFrameForerun: React.FC = () => {
   const frame = useCurrentFrame();
   // 滤镜/渐变 ID 按实例生成，多实例同场不串引（useId 的 «:» 在 url() 里非法，需清洗）
   const uid = useId().replace(/[^a-zA-Z0-9]/g, '');
-  // 主框描画：左缘中点向两头奔跑，26 帧成型（截图①→②）
+  // 主框描画：右缘中点向两头奔跑，26 帧成型（截图①→②）
   const trace = interpolate(frame, [2, 28], [0, 1], {
     extrapolateLeft: 'clamp', extrapolateRight: 'clamp',
     easing: Easing.bezier(0.3, 0.1, 0.3, 1),
@@ -249,7 +249,7 @@ export const NeonFrameForerun: React.FC = () => {
             borderRadius: 12, opacity: rimGlow * Math.min(1, trace * 1.6),
             boxShadow: '18px -8px 42px 6px rgba(185,95,240,0.42), -22px 24px 56px 12px rgba(240,150,90,0.30), 0 14px 80px 22px rgba(200,100,220,0.20)',
           }} />
-          {/* 霓虹描边框：左缘中点出发两头奔画，直角转角 */}
+          {/* RTL 霓虹描边框：右缘中点出发两头奔画，直角转角 */}
           <svg width={PW + 80} height={PH + 80} viewBox={`-40 -40 ${PW + 80} ${PH + 80}`}
             style={{ position: 'absolute', left: -40, top: -40 }}>
             <defs>

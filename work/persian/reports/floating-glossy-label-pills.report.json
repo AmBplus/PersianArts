@@ -1,0 +1,42 @@
+{
+  "slug": "floating-glossy-label-pills",
+  "status": "localized_and_verified",
+  "font": {
+    "family": "Vazirmatn",
+    "reason": "Neutral, variable-weight Persian UI sans suited to the source product-dashboard capsule labels; loaded through FaRoot so the render does not use fallback glyphs.",
+    "weights": "700 for labels; variable family supports the requested weight without fake bolding"
+  },
+  "comps": [
+    {
+      "id": "demo-FloatingGlossyLabelPills",
+      "frames": 120,
+      "fps": 30,
+      "text": {
+        "translated": [
+          {"source": "Feature A", "persian": "قابلیت الف"},
+          {"source": "Feature B", "persian": "قابلیت ب"},
+          {"source": "Feature C", "persian": "قابلیت پ"},
+          {"source": "Feature D", "persian": "قابلیت ت"}
+        ],
+        "notes": "The dashboard wireframes contain only skeleton bars and functional color blocks, with no literal UI copy to translate. Persian labels are whole text runs; no letter-by-letter splitting, tracking, uppercase transform, or timing-dependent text reveal is used."
+      },
+      "rtlDecisions": [
+        {"what": "Carousel item order and track direction", "action": "Changed the track accumulation from increasing/rightward to decreasing/leftward and changed ring positions from trackX - i*SP to trackX + i*SP.", "why": "The next item now starts on the right reading-side rail and advances into the center from right to left, preserving the A→B→C→D feature sequence for RTL readers while keeping all beat values and easing unchanged."},
+        {"what": "Dashboard chrome and sidebar", "action": "Horizontally mirrored the complete text-free wireframe body inside each panel.", "why": "The source left navigation rail and topbar order are reading/layout-direction semantics; RTL places the navigation rail on the right. Mirroring the whole skeleton also keeps its repeated cards, chart, rows, switches, and controls visually coherent."},
+        {"what": "Background fog composition", "action": "Mirrored the three fog anchor positions and radial-gradient x anchors.", "why": "The asymmetric color atmosphere supports the layout balance and should follow the mirrored composition; vertical positions and drift equations are unchanged."},
+        {"what": "Cursor approach", "action": "Mirrored the x path from 403→281 to 77→199 and flipped the cursor horizontally with the opposite rotation sign.", "why": "The cursor is an interaction/attention handoff tied to the reading-side carousel. It now approaches the final capsule's left edge from the left while retaining the original hard-appear frame, outQuart travel, endpoint beat, and vertical coordinates."},
+        {"what": "Capsule text direction and typography", "action": "Wrapped labels in FaRoot with direction:rtl and faText(14), letterSpacing 0 and lineHeight 1.", "why": "Persian joins correctly as a single run, and the compact one-line capsule keeps the source geometry and readability."},
+        {"what": "Physical motion and numeric geometry", "action": "Kept vertical sinking, scale/opacity/blur formulas, ring size, panel dimensions, chart waveform shape, functional colors, seeds, cursor timing, and duration unchanged.", "why": "These are physical/universal visual behavior or source motion fidelity, not reading-direction semantics."}
+      ],
+      "rasterHandling": "No raster assets are used. All dashboard content is vector/CSS skeleton geometry; no baked-in foreign-language text remains.",
+      "timing": "Original 120-frame timeline and all BEATS values (0.200/0.483/0.688 with original durations and first-beat tail) were preserved exactly. Label widths were visually checked at the payoff and did not require timing or stage-size changes.",
+      "visualVerification": {
+        "framesCompared": [0, 6, 24, 30, 50, 62, 72, 85, 100, 119],
+        "pairsViewed": "Persian and matching original stills for every listed frame",
+        "result": "Pass: label shaping is connected and legible; mirrored rails and carousel direction are coherent; transition beats, resting frame, and cursor handoff are visible and clean."
+      }
+    }
+  ],
+  "concerns": [],
+  "lessons": []
+}

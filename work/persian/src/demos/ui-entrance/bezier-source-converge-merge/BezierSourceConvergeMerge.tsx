@@ -65,7 +65,7 @@ const mkPathGeom = (y0: number) => {
   const len = LINE_LEN + acc;
   const pointAt = (s: number): Pt => {
     const sc = Math.max(0, Math.min(len, s));
-    if (sc <= LINE_LEN) return { x: -22 + sc, y: y0 };
+    if (sc <= LINE_LEN) return { x: 462 - sc, y: y0 };
     const target = sc - LINE_LEN;
     let lo = 0, hi = SAMPLES;
     while (lo < hi) {
@@ -75,13 +75,14 @@ const mkPathGeom = (y0: number) => {
     const i = Math.max(1, lo);
     const s0 = cum[i - 1], s1 = cum[i];
     const u = (i - 1 + (s1 > s0 ? (target - s0) / (s1 - s0) : 0)) / SAMPLES;
-    return cubic(y0, u);
+    const p = cubic(y0, u);
+    return { x: 440 - p.x, y: p.y };
   };
   // 求节点静止位置对应的路径 frac（x ≈ 74），与 effect.js prime() 同算法
   let f0 = 0.2;
   for (let k = 1; k <= 40; k++) {
     const q = k / 40;
-    if (pointAt(len * q).x >= 74) { f0 = q; break; }
+    if (pointAt(len * q).x <= 366) { f0 = q; break; }
   }
   return { len, pointAt, f0 };
 };
@@ -242,8 +243,10 @@ export const BezierSourceConvergeMerge: React.FC = () => {
               display: 'flex',
               alignItems: 'baseline',
               whiteSpace: 'nowrap',
-              left: 440 - XC - 60,
+              left: 28,
               top: YC + 30,
+              width: 200,
+              justifyContent: 'center',
               opacity: capShow,
               direction: 'rtl',
             }}

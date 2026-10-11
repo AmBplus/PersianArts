@@ -1,8 +1,8 @@
 {
- "generatedAt": "2026-10-11T15:48:11.973Z",
+ "generatedAt": "2026-10-11T15:53:29.105Z",
  "summary": {
-  "todo": 87,
-  "localized": 8,
+  "todo": 83,
+  "localized": 12,
   "approved": 51,
   "fixed": 10,
   "needs-fix": 1,
@@ -91,9 +91,9 @@
   },
   {
    "slug": "bezier-source-converge-merge",
-   "status": "todo",
-   "font": "",
-   "videos": 0,
+   "status": "localized",
+   "font": "Vazirmatn",
+   "videos": 1,
    "majors": 0,
    "concerns": 0
   },
@@ -211,11 +211,11 @@
   },
   {
    "slug": "chip-lift-to-user-pill",
-   "status": "todo",
-   "font": "",
-   "videos": 0,
+   "status": "localized",
+   "font": "Vazirmatn",
+   "videos": 1,
    "majors": 0,
-   "concerns": 0
+   "concerns": 1
   },
   {
    "slug": "circle-match-iris",
@@ -387,8 +387,8 @@
   },
   {
    "slug": "floating-glossy-label-pills",
-   "status": "todo",
-   "font": "",
+   "status": "localized",
+   "font": "Vazirmatn",
    "videos": 0,
    "majors": 0,
    "concerns": 0
@@ -643,9 +643,9 @@
   },
   {
    "slug": "neon-frame-forerun",
-   "status": "todo",
-   "font": "",
-   "videos": 0,
+   "status": "localized",
+   "font": "{\"families\":[\"Vazirmatn\"],\"reason\":\"The card is a neutral product/UI skeleton. Vazirmatn is a loaded variable Persian UI sans with dependable glyph coverage and real weight variation; it is appropriate for any future Persian chrome without fallback shaping or fake bold.\",\"usedOnScreen\":false}",
+   "videos": 1,
    "majors": 0,
    "concerns": 0
   },

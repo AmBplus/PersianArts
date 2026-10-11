@@ -1,0 +1,97 @@
+{
+  "slug": "bezier-source-converge-merge",
+  "status": "localized",
+  "composition": {
+    "id": "demo-BezierSourceConvergeMerge",
+    "component": "BezierSourceConvergeMerge",
+    "durationFrames": 168,
+    "fps": 30,
+    "size": "1920x1080",
+    "durationPreserved": true,
+    "motionPreserved": "All timing windows, easing curves, stagger offsets, path lengths, convergence progress, three-stage node scaling, packet cycles and phase offsets, badge pulse, erase, and caption reveal remain unchanged. Only horizontal geometry is mirrored where it expresses source-to-result reading order."
+  },
+  "font": {
+    "family": "Vazirmatn",
+    "reason": "Neutral, modern Persian UI sans that fits the source's sparse Swiss-style interface and is loaded through FaRoot.",
+    "weights": "Variable family; caption uses 600.",
+    "fontVerification": "Rendered Persian caption visibly uses Vazirmatn; shared kit loads the font before rendering."
+  },
+  "translations": [
+    {
+      "source": "Four sources unified",
+      "persian": "چهار منبع یکپارچه",
+      "reason": "Concise, natural product language for the single-result payoff."
+    },
+    {
+      "source": "S1–S4",
+      "persian": "S1–S4",
+      "reason": "Neutral source identifiers retained as LTR technical tokens; they are not prose or user-facing copy."
+    }
+  ],
+  "rtlDecisions": [
+    {
+      "comp": "demo-BezierSourceConvergeMerge",
+      "what": "Four source nodes and their curves",
+      "action": "Mirrored horizontally: sources occupy the right side and converge toward the badge on the left; path control points and sampled x coordinates are mirrored together.",
+      "why": "Source-to-result order carries reading direction in this explanatory diagram. The nodes and packets must remain on the actual mirrored curves."
+    },
+    {
+      "comp": "demo-BezierSourceConvergeMerge",
+      "what": "Path draw-on and reverse erase",
+      "action": "Kept the original progress formulas and phase timings; the mirrored path geometry makes the visible draw travel from the outer right toward the convergence point, with erase reversing it.",
+      "why": "The sweep direction carries the diagram's reading order; the original stagger and duration remain intact."
+    },
+    {
+      "comp": "demo-BezierSourceConvergeMerge",
+      "what": "S1–S4 labels and four-source vertical ordering",
+      "action": "Kept LTR identifier glyph order and top-to-bottom stacking; removed nonzero letter spacing.",
+      "why": "These are compact identifiers, and the vertical source arrangement is physical layout rather than horizontal reading order."
+    },
+    {
+      "comp": "demo-BezierSourceConvergeMerge",
+      "what": "Convergence badge and four-point mark",
+      "action": "Moved badge to the mirrored convergence coordinate; kept the mark's shape and orientation unchanged.",
+      "why": "Its location participates in the reading flow, while the centered geometric symbol is a physical, symmetric mark."
+    },
+    {
+      "comp": "demo-BezierSourceConvergeMerge",
+      "what": "Final caption and word-color progression",
+      "action": "Translated to «چهار منبع یکپارچه», placed beneath the badge, and retained the original word-by-word color progression in RTL order. Removed tracking and used logical word spacing.",
+      "why": "The caption is Persian UI copy; reading and emphasis begin at the right edge."
+    },
+    {
+      "comp": "demo-BezierSourceConvergeMerge",
+      "what": "Canvas centering, vertical coordinates, circles, and star symbol",
+      "action": "Kept centered canvas, all y coordinates, circular shapes, and star orientation unchanged.",
+      "why": "These are symmetric or vertical composition/physical geometry and do not carry RTL reading semantics."
+    }
+  ],
+  "rasterHandling": {
+    "assets": "None. The component uses vector paths and CSS shapes only.",
+    "bakedText": "None."
+  },
+  "verification": {
+    "renderCommand": "node work/persian/render-card.mjs --slug bezier-source-converge-merge --duration 168 --frames 8,20,48,80,110,126,145,160 --video",
+    "renderErrors": [],
+    "video": "BezierSourceConvergeMerge.fa.mp4",
+    "comparisons": "Viewed Persian and original side-by-side at frames 48, 80, and 160. Verified early convergence path alignment, mid-convergence node and packet alignment, and final Persian caption fit.",
+    "visualResult": "The mirrored path geometry, nodes, packets, badge, and caption are aligned; the caption fits and no unintended English or Chinese prose appears.",
+    "renderedFrames": [
+      8,
+      20,
+      48,
+      80,
+      110,
+      126,
+      145,
+      160
+    ],
+    "viewedPairedFrames": [
+      48,
+      80,
+      160
+    ]
+  },
+  "concerns": [],
+  "lessons": []
+}

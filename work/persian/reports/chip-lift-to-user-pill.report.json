@@ -1,0 +1,102 @@
+{
+  "slug": "chip-lift-to-user-pill",
+  "status": "done",
+  "font": {
+    "family": "Vazirmatn",
+    "reason": "Its loaded variable weights and clear small Persian forms preserve the original neutral, Swiss product UI character; 600 is a real supported weight."
+  },
+  "comps": [
+    {
+      "id": "demo-ChipLiftToUserPill",
+      "source": "work/upstream/src/demos/interaction/chip-lift-to-user-pill/ChipLiftToUserPill.tsx",
+      "sourcePrompt": "work/upstream/src/gallery/source/chip-lift-to-user-pill.md",
+      "localized": "work/persian/src/demos/interaction/chip-lift-to-user-pill/ChipLiftToUserPill.tsx",
+      "video": "work/persian/out/chip-lift-to-user-pill/ChipLiftToUserPill.fa.mp4",
+      "frames": 150,
+      "fps": 30,
+      "size": "1920x1080",
+      "translatedSummary": "All twelve placeholder initials became compact Persian name initials; the selected initial is «کی», the typed user name is «کیان پارسا», and the caption is «شروع با کیان». No foreign text remains on screen.",
+      "rtlDecisions": [
+        {
+          "what": "four by three chip grid and target slot",
+          "action": "mirrored every chip x coordinate within the 440px design stage; target remains row two, column two in RTL reading order",
+          "why": "the grid is a list of candidates read from right to left"
+        },
+        {
+          "what": "Manhattan-distance stagger and each chip's fade/scale",
+          "action": "kept original per-slot distance, start times, easing, opacity and scale values",
+          "why": "the spatial fade still radiates from the same selected candidate after mirroring"
+        },
+        {
+          "what": "selected chip hard inversion",
+          "action": "kept the source three-level colour step and cue window",
+          "why": "the hard pressed-state accent has no horizontal direction"
+        },
+        {
+          "what": "pill growth",
+          "action": "anchored its right edge and grew left from 40px to 190px on the original easing and frames",
+          "why": "the expansion leads toward the Persian reading direction and stays attached to its original chip"
+        },
+        {
+          "what": "initial and full name inside pill",
+          "action": "anchored both at the right; replaced detached per-character boxes with a shaped prefix from typeOn",
+          "why": "Persian letters must stay joined while the name is typed from right to left"
+        },
+        {
+          "what": "typed-name character count",
+          "action": "rescaled the per-character step interval so the first and final character starts match the source g=0.18 and g=0.676 beats",
+          "why": "«کیان پارسا» has a different number of characters from Casey Doe; the phrase must finish on the original beat"
+        },
+        {
+          "what": "green status dot",
+          "action": "pinned to the moving left tip using right=w-15, retaining its outBack pop and glow",
+          "why": "the tip is now the left end of the growing pill"
+        },
+        {
+          "what": "connector and circular badge",
+          "action": "drew the 1px line leftward from the final pill tip and mirrored the badge position; kept the four-point symbol unflipped",
+          "why": "the connector progresses in reading direction while the symmetrical badge mark has no directional meaning"
+        },
+        {
+          "what": "three-word closing caption",
+          "action": "anchored the line at its right edge, used RTL flex order and logical word margins; kept each word's colour cue",
+          "why": "the sentence and word-by-word darkening must advance right to left"
+        },
+        {
+          "what": "type scale and tracking",
+          "action": "used faText sizes, removed letter spacing and used Persian line height",
+          "why": "tracking breaks joins and Persian dots and descenders need more line space"
+        },
+        {
+          "what": "badge scale, vertical coordinates, circles, colours, shadows and timing",
+          "action": "kept",
+          "why": "these are physical or symmetric rather than reading-direction cues"
+        }
+      ],
+      "visualEvidence": {
+        "comparedOriginalAndPersianFrames": [2, 8, 22, 42, 47, 62, 72, 92, 140],
+        "consecutiveTypingFramesViewed": [41, 42, 43, 44, 45, 46, 47],
+        "findings": "Grid order, selection flash, distance fade, right-anchored pill growth, leftward line, badge handoff and final caption match the source beats. The final name and caption fit with no visible clipping."
+      }
+    }
+  ],
+  "rasterTextHandling": "No raster or video assets are used by this card; there is no baked-in foreign text.",
+  "concerns": [
+    "The source gives each Latin letter a short independent opacity and 2px rise. The Persian name instead reveals one newly shaped prefix step at a time, so every letter stays correctly joined; the first and last typing beats remain aligned."
+  ],
+  "lessons": [
+    {
+      "symptom": "A temporary Persian name ending in the partial prefix «کیان رض» rendered only its final glyph at one intermediate frame, even though adjacent prefix frames rendered normally.",
+      "cause": "The exact Chromium shaping or clipping interaction for that incomplete prefix was not isolated.",
+      "fix": "Use an equally natural name without that problematic intermediate prefix and inspect consecutive frames across every letter transition. «کیان پارسا» rendered all inspected prefixes correctly."
+    }
+  ],
+  "verification": {
+    "stillRender": "passed",
+    "fullVideoRender": "passed",
+    "videoFrames": 150,
+    "videoFps": 30,
+    "videoWidth": 1920,
+    "videoHeight": 1080
+  }
+}

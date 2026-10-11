@@ -1,0 +1,92 @@
+{
+  "slug": "neon-frame-forerun",
+  "status": "localized",
+  "source": {
+    "prompt": "work/upstream/src/gallery/source/neon-frame-forerun.md",
+    "originalFile": "work/upstream/src/demos/ui-entrance/neon-frame-forerun/NeonFrameForerun.tsx",
+    "localizedFile": "work/persian/src/demos/ui-entrance/neon-frame-forerun/NeonFrameForerun.tsx",
+    "composition": "demo-NeonFrameForerun",
+    "fps": 30,
+    "size": [1920, 1080],
+    "durationFrames": 150
+  },
+  "font": {
+    "families": ["Vazirmatn"],
+    "reason": "The card is a neutral product/UI skeleton. Vazirmatn is a loaded variable Persian UI sans with dependable glyph coverage and real weight variation; it is appropriate for any future Persian chrome without fallback shaping or fake bold.",
+    "usedOnScreen": false
+  },
+  "text": {
+    "translatedStrings": [],
+    "sourceHasReadableText": false,
+    "notes": "GrayHome is made only of geometric placeholder bars, dots, cards and lines. No JSX text, SVG text, number label, URL, code island, or baked-in foreign-language copy appears on screen."
+  },
+  "rtlDecisions": [
+    {
+      "what": "GrayHome sidebar and main content columns",
+      "action": "Moved the sidebar to the right with row-reverse; used a start-side divider on the sidebar and explicit RTL direction inside both regions.",
+      "why": "The sidebar is a reading/layout rail, so Persian UI start belongs on the right. The visual width and all vertical spacing remain unchanged."
+    },
+    {
+      "what": "Sidebar rows and main content rows",
+      "action": "Kept physical dimensions but let rows inherit RTL order; mirrored the search icon/line pair and the trailing avatar group with logical margin.",
+      "why": "These are UI reading-order relationships, not physical-world motion. The first control/marker therefore remains at the Persian start edge."
+    },
+    {
+      "what": "Main neon frame trace",
+      "action": "Changed FRAME_D start from the left midpoint to the right midpoint while preserving the two-headed strokeDasharray, path length, easing and frame range.",
+      "why": "The frame is a UI entrance announcing the reading-start panel edge; its directional reveal carries layout meaning and must mirror in RTL."
+    },
+    {
+      "what": "3D perspective and panel tilt",
+      "action": "Mirrored perspectiveOrigin horizontally and negated rotateY/rotateZ signs; kept rotateX, scale, fall physics and all interpolation frames unchanged.",
+      "why": "The horizontal perspective bias is part of the directional composition of the UI frame. Vertical depth/settling is physical and remains the same."
+    },
+    {
+      "what": "Panel cold overlay and rim glow",
+      "action": "Mirrored the diagonal gradient angle and swapped the horizontal box-shadow offsets; kept vertical offsets, blur, opacity and colors unchanged.",
+      "why": "The gradient/shadow bias implies the same horizontal light/composition direction as the mirrored frame and must remain balanced after the sidebar moves."
+    },
+    {
+      "what": "Background neon tube field",
+      "action": "Kept the generated field, seed 20260718, phase, periods and skew values unchanged.",
+      "why": "It is abstract physical atmosphere with no text or reading-order semantics; mirroring it would change the authored random composition unnecessarily."
+    },
+    {
+      "what": "FloatWrap lift and shadow",
+      "action": "Kept horizontal/vertical lift, shadow offset, blur and easing unchanged.",
+      "why": "This is physical 3D elevation and gravity-like settling, not reading direction. The motion beats must match the source exactly."
+    }
+  ],
+  "motionFidelity": {
+    "changedTiming": false,
+    "changedEasing": false,
+    "changedSeed": false,
+    "changedFpsOrSize": false,
+    "beats": [
+      "Frame trace 2-28",
+      "Panel lighting 24-78",
+      "Panel rim transition 50-90",
+      "Component drop 34-98",
+      "Background neon fade 96-128",
+      "Final resting frame 149"
+    ],
+    "verificationFrames": [0, 8, 20, 28, 40, 60, 78, 98, 128, 149]
+  },
+  "rasterHandling": {
+    "assets": [],
+    "action": "No raster or video assets exist in this card; no blur, replacement, regeneration, or mirroring was necessary."
+  },
+  "visualVerification": {
+    "performed": true,
+    "method": "Viewed Persian and original PNGs at matching frames for the only composition.",
+    "checked": [
+      "Frame-start direction and bright-head positions",
+      "Perspective and panel balance",
+      "Right-side Persian sidebar at frames 60, 98 and 149",
+      "Drop shadows and intermediate lit state",
+      "Final background fade and resting composition"
+    ]
+  },
+  "concerns": [],
+  "lessons": []
+}

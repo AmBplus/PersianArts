@@ -1,3 +1,12 @@
+// PERSIAN (RTL) localization of floating-glossy-label-pills.
+// Text: Feature A–D -> قابلیت الف/ب/پ/ت. Wireframes are text-free skeleton UI,
+// so no raster/text replacement was needed. Font: Vazirmatn, a neutral product UI
+// face, loaded explicitly by FaRoot. The carousel track, fog composition, dashboard
+// chrome and cursor approach are mirrored for RTL; vertical motion, dimensions,
+// random seeds, beat times, easing and duration remain source-identical.
+// The cursor endpoint is mirrored to the final pill's left edge, preserving the
+// original handoff beat while making its approach follow RTL reading direction.
+//
 // floating-glossy-label-pills — Glossy Pills Carousel 高光胶囊横滑走廊（motion-lab 定稿转原生 Remotion）
 // 白底四角强调色雾霭，四块浅灰 dashboard 占位 mockup（三栏卡片 / 折线图仪表盘 /
 // 列表表格 / 表单+开关列表）横向排队，各顶一枚高光强调色胶囊标签（Feature A–D）；
@@ -9,6 +18,7 @@
 // 设计坐标 480×270（DesignStage 等比放大），参数表数值以此坐标系标定。
 import React from 'react';
 import { DesignStage, E, lerp, rand, seg, useT } from '../../_fixtures/Motion';
+import { FaRoot, faText } from '../../_fa';
 
 export const FLOATING_GLOSSY_LABEL_PILLS_DURATION = 120; // 4000ms @30fps
 
@@ -167,17 +177,17 @@ const BForm: React.FC = () => (
 
 // 四组：胶囊 + 占位 mockup 横向排队（i 越大越靠左，滑入中央越晚），轨道循环
 const GROUPS: { txt: string; Body: React.FC }[] = [
-  { txt: 'Feature A', Body: BCards },
-  { txt: 'Feature B', Body: BDash },
-  { txt: 'Feature C', Body: BTable },
-  { txt: 'Feature D', Body: BForm },
+  { txt: 'قابلیت الف', Body: BCards },
+  { txt: 'قابلیت ب', Body: BDash },
+  { txt: 'قابلیت پ', Body: BTable },
+  { txt: 'قابلیت ت', Body: BForm },
 ];
 
 // 雾块静态参数（位置 / 颜色）
 const FOGS = [
-  { left: '68%', top: '8%', rgb: AD_RGB },
-  { left: '4%', top: '60%', rgb: A_RGB },
-  { left: '40%', top: '82%', rgb: AL_RGB },
+  { left: '32%', top: '8%', rgb: AD_RGB },
+  { left: '96%', top: '60%', rgb: A_RGB },
+  { left: '60%', top: '82%', rgb: AL_RGB },
 ];
 
 // 轨道三拍：起点 t≈0.20 / 0.483 / 0.688，inOutCubic 缓起→中段冲→缓收；
@@ -190,13 +200,14 @@ const BEATS = [
 
 export const FloatingGlossyLabelPills: React.FC = () => {
   const t = useT();
-  // 开场有上一拍的收尾余量：t=0 时轨道偏左 11px，t≈0.19 归位
-  let trackX = -11 * (1 - seg(t, 0, 0.19, E.outQuart));
+  // RTL mirror: the opening tail is on the right, and each next feature moves
+  // from the right rail into the center (the reading-side carousel direction).
+  let trackX = 11 * (1 - seg(t, 0, 0.19, E.outQuart));
   for (const B of BEATS) {
     const p = B.tail
       ? 0.85 * seg(t, B.b, B.b + B.d, E.inOutCubic) + 0.15 * seg(t, B.b, B.b + B.tail, E.outCubic)
       : seg(t, B.b, B.b + B.d, E.inOutCubic);
-    trackX += p * SP;
+    trackX -= p * SP;
   }
   const N = GROUPS.length, RING = N * SP;
   // 光标：t≈0.717 于右上（x≈403,y≈36）一帧硬现，减速斜滑向左下，
@@ -204,14 +215,15 @@ export const FloatingGlossyLabelPills: React.FC = () => {
   const cp = seg(t, 0.717, 0.90, E.outQuart);
   return (
     <DesignStage bg="#fbfbfc">
+      <FaRoot family="Vazirmatn">
       <div
         style={{
           position: 'absolute',
           inset: 0,
           overflow: 'hidden',
-          background: `radial-gradient(55% 75% at 106% 42%, rgba(${A_RGB},.55), transparent 70%),
-      radial-gradient(42% 50% at -6% 88%, rgba(${AD_RGB},.42), transparent 70%),
-      radial-gradient(48% 40% at 12% -10%, rgba(${AL_RGB},.5), transparent 70%),
+          background: `radial-gradient(55% 75% at -6% 42%, rgba(${A_RGB},.55), transparent 70%),
+      radial-gradient(42% 50% at 106% 88%, rgba(${AD_RGB},.42), transparent 70%),
+      radial-gradient(48% 40% at 88% -10%, rgba(${AL_RGB},.5), transparent 70%),
       #fbfbfc`,
         }}
       >
@@ -234,8 +246,8 @@ export const FloatingGlossyLabelPills: React.FC = () => {
         ))}
 
         {GROUPS.map(({ txt, Body }, i) => {
-          // 环形轨道：面板绕 4 位循环，保证任一拍都有左右邻居各露一截在画面边缘
-          let wx = trackX - i * SP;
+          // RTL ring: the next item is on the right and moves left into center.
+          let wx = trackX + i * SP;
           wx = ((wx % RING) + RING * 1.5) % RING - RING / 2;
           const d = Math.min(1, Math.abs(wx) / SP); // 0=正居中，1=已到邻位
           const close = 1 - d;
@@ -286,7 +298,7 @@ export const FloatingGlossyLabelPills: React.FC = () => {
                     fontFamily: F,
                   }}
                 >
-                  <Body />
+                  <div style={{transform: 'scaleX(-1)', transformOrigin: '50% 0', width: '100%', height: '100%'}}><Body /></div>
                 </div>
               </div>
               {/* 胶囊：实测中心 y 从 45（居中）沉到 102（邻位），比面板沉得更多，
@@ -301,7 +313,7 @@ export const FloatingGlossyLabelPills: React.FC = () => {
                   borderRadius: 999,
                   whiteSpace: 'nowrap',
                   // 原 cssText 中 font 简写在 line-height:1 之后，实际生效行高为 normal
-                  font: `700 14px ${F}`,
+                  ...faText(14, {fontWeight: 700, lineHeight: 1}),
                   color: '#fff',
                   background: `linear-gradient(180deg,${ACCENT_LIGHT} 0%,${ACCENT} 45%,${ACCENT_DEEP} 100%)`,
                   boxShadow: `inset 0 2px 3px rgba(255,255,255,.65), inset 0 -4px 8px rgba(34,39,47,.5),
@@ -337,14 +349,15 @@ export const FloatingGlossyLabelPills: React.FC = () => {
             borderRight: '4px solid transparent',
             borderBottom: '14px solid transparent',
             filter: 'drop-shadow(0 0 1px #fff) drop-shadow(0 0 1px #fff) drop-shadow(0 2px 3px rgba(0,0,0,.3))',
-            transform: 'rotate(-16deg)',
+            transform: 'rotate(16deg) scaleX(-1)',
             opacity: seg(t, 0.717, 0.725),
             zIndex: 5,
-            left: `${(lerp(cp, 403, 281) / 480) * 100}%`,
+            left: `${(lerp(cp, 77, 199) / 480) * 100}%`,
             top: `${(lerp(cp, 36, 56) / 270) * 100}%`,
           }}
         />
       </div>
+      </FaRoot>
     </DesignStage>
   );
 };

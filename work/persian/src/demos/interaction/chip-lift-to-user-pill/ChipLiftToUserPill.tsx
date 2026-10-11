@@ -1,4 +1,4 @@
-// Persian localization — chip-lift-to-user-pill. All source timing/easing, colours, sizes and distance cues remain.
+// Persian localization — chip-lift-to-user-pill. Source phase timing/easing, colours, sizes and distance cues remain.
 // Text: twelve initials, the selected initials, full name and closing caption are idiomatic Persian.
 // RTL: mirror grid slots within the 440px stage, retaining each chip's Manhattan distance to the target;
 // anchor the selected pill at its right edge so expansion moves left; pin the typed name to its right inset;
@@ -6,7 +6,8 @@
 // anchor and advance the caption from right to left. These motions express reading/selection direction.
 // The badge's four-point mark, vertical motion, colours and physical scale stay unchanged.
 // Font: Vazirmatn, a loaded variable face with clear small Persian UI glyphs, matches the neutral Swiss UI.
-// No raster or video assets occur in this card. Persian typing uses a shaped prefix, never isolated letters.
+// No raster or video assets occur in this card. Persian typing uses a shaped prefix, never isolated letters;
+// its step spacing preserves the source first/last character beats despite a different character count.
 import React from 'react';
 import { DesignStage, E, lerp, seg, useT } from '../../_fixtures/Motion';
 import {FaRoot, faText, typeOn} from '../../_fa';
@@ -48,7 +49,7 @@ const OTHERS = Array.from({ length: ROWS * COLS }, (_, i) => {
 }).filter((o) => !o.isT);
 
 const PW0 = CW, PW1 = 190; // 药丸生长的起止宽度
-const NAME = 'کیان رضایی';
+const NAME = 'کیان پارسا';
 const NAME_CHARS = [...NAME];
 const ORIGINAL_LAST_CHAR_START = 0.18 + 8 * 0.062;
 
@@ -177,24 +178,13 @@ export const ChipLiftToUserPill: React.FC = () => {
               کی
             </div>
             {/* 人名逐字打出（stagger 跑在生长进度 g 上） */}
-            <div
-              style={{
-                position: 'absolute',
-                right: 13,
-                left: 13,
-                top: 0,
-                height: CH,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'flex-start',
-                whiteSpace: 'nowrap',
-                direction: 'rtl',
-              }}
-            >
-              <span style={{...faText(11, {fontWeight: 600, lineHeight: 1.5, unicodeBidi: 'isolate'}), color: '#fff', whiteSpace: 'pre', display: 'block'}}>
-                {typeOn(NAME, visibleChars / NAME_CHARS.length)}
-              </span>
-            </div>
+            <span style={{
+              ...faText(11, {fontWeight: 600, lineHeight: 1.5, unicodeBidi: 'isolate'}),
+              position: 'absolute', right: 13, top: '50%',
+              transform: 'translateY(-50%)', color: '#fff', whiteSpace: 'pre',
+            }}>
+              {typeOn(NAME, visibleChars / NAME_CHARS.length)}
+            </span>
             {/* 在线绿点：outBack 弹出，钉在药丸右缘内侧 */}
             <div
               style={{
