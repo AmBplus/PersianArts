@@ -1,19 +1,31 @@
-// Persian RTL localization of palette-theme-ripple (command palette + dark-mode ripple).
-// Text: the Latin query "dark" becomes «تیره»; the keyboard shortcut ⌘K remains a familiar LTR key token.
-// Direction: both dashboard layers are mirrored so the sidebar and card reading order sit on the RTL side; the
-// centered command panel stays pinned to (960,470), so its collapse point and the ripple origin remain identical.
-// The command input is RTL and reveals the four Persian letters on the original four cue frames (38/46/54/62).
-// Font: loaded Vazirmatn, a variable-weight product UI sans with reliable Persian shaping and compact legibility.
-// Raster handling: none; both dashboards are vector/CSS skeletons with no baked text or images.
-// FakeDashboard 静置 → 整屏压暗+blur → ⌘K 面板弹落 → 模拟输入"dark"
-// （灰块字符逐个弹出）→ 回车帧面板 5f 收缩成一个亮点 → 深色扫场边界
-// **从该亮点位置**荡开（clip-path 圆扩张 + 亮边缘环）扫过全 UI 变深色版 → 真静止。
-// 组合命门：扫场起点必须是面板收缩点（960,470），收缩完成帧=扫场起始帧
-// （RIPPLE=73），从别处/别帧开始就断了因果。
-// 关键帧：0–15 浅色静置 → 15–22 压暗 blur → 22–30 面板弹落（超调）→
-// 38–62 逐字输入 d/a/r/k → 68 回车 → 68–73 面板收缩成亮点 → 73–95 扫场
-// 荡开 → 95–170 深色真静止 75f。深色版为手工反转 G 色板的本地 DarkDashboard。
-// 帧确定，无随机源。
+// Persian RTL localization of palette-theme-ripple (⌘K command palette → dark-mode ripple).
+// Per-element decisions and reasons:
+// - Query text: the Latin query "dark" becomes «تیره», typed RIGHT-TO-LEFT on the SAME four cue
+//   frames (38/46/54/62). The visible text is a single prefix-sliced run (typeOn-style), so
+//   Persian shaping re-flows correctly at every frame. The whole run pops with the original
+//   back(2.2) overshoot scale on each cue, so every beat still reads as a "hit" — per-letter
+//   transform boxes would need inline-block and would break letter joining (kit rule).
+// - Cursor: the input text cell is shrink-wrapped (NO fixed minWidth), so the blinking caret
+//   sits directly LEFT of the last typed letter — the RTL typing end, mirroring the original's
+//   caret-after-last-block in LTR. Blink cadence (every 8f) unchanged.
+// - ⌘K badge: kept as an isolated LTR keyboard token (keyboard notation is universal); in the
+//   RTL flex row it now sits at the RIGHT edge, i.e. the reading start.
+// - Dashboards (light + dark): both layers are mirrored with scaleX(-1) so the sidebar rail and
+//   card reading order sit on the RTL side. The skeleton is textless gray geometry (no glyphs),
+//   so a mirror is visually identical to relaying it out RTL and keeps the light/dark layers
+//   pixel-aligned — the sweep reads as "the same UI re-skinned". The light layer is dimmed +
+//   blurred and conditionally unmounted once the ripple completes (true rest).
+// - Ripple origin (960,470), white flash dot, circular clip and bright ring: kept pinned and
+//   UNCHANGED — the panel is horizontally centered, so the shrink point = ripple origin stays
+//   exact, and a circle/ring is radial and symmetric (no reading direction to mirror).
+// Font: Vazirmatn (variable 100–900) — neutral product-UI sans with reliable Persian shaping,
+//   Persian digits and ZWNJ coverage; fits the ⌘K command-palette product world.
+// Raster handling: none; dashboards and panel are pure CSS geometry with no baked text.
+// Beat map (identical to upstream): 0–15 light idle → 15–22 dim+blur → 22–30 panel drop-in
+//   (back 1.9) → 38/46/54/62 type «ت / دی / دیر... / تیره» (one letter per cue, pop on run)
+//   → 68 Enter → 68–73 panel shrinks to the flash point → 73–95 circular ripple + bright
+//   ring → 95–170 true rest on dark UI. Constraint: RIPPLE=73 must equal the shrink-complete
+//   frame and the origin must be the shrink point, or the causal chain breaks.
 import React from 'react';
 import { useCurrentFrame, interpolate, Easing } from 'remotion';
 import { G, FakeDashboard } from '../../_fixtures/Fixtures';
@@ -23,12 +35,12 @@ const DIM_START = 15;
 const PANEL_IN = 22;
 const TYPE_FRAMES = [38, 46, 54, 62]; // d a r k
 const ENTER = 68;
-const RIPPLE = 73; // 面板收缩完成帧 = 扫场起始帧（组合命门）
+const RIPPLE = 73; // shrink-complete frame = ripple start frame (composition-critical)
 const RIPPLE_END = 95;
-const ORIGIN = { x: 960, y: 470 }; // 面板中心 = 收缩点 = 扫场圆心
+const ORIGIN = { x: 960, y: 470 }; // panel center = shrink point = ripple circle center
 const MAX_R = 1250;
 
-// 手工反转 G 色板的深色版
+// Dark version of the G palette (hand-inverted mapping)
 const D = {
   bg: '#1a1a1c', panel: '#232325', line: '#3a3a38', bar: '#6f6f6d',
   ink: '#e8e8e6', mid: '#7a7a78', card: '#262628', border: '#454543',
@@ -52,7 +64,7 @@ const DarkCard: React.FC<{ seed: number }> = ({ seed }) => {
   );
 };
 
-// 与 FakeDashboard variant A 布局逐像素一致的深色版——扫场读作"同一 UI 换肤"
+// Dark dashboard pixel-identical in layout to FakeDashboard variant A — the sweep reads as "same UI, re-skinned"
 const DarkDashboard: React.FC = () => (
   <div style={{ width: 1920, height: 1080, background: D.bg, display: 'flex', direction: 'ltr' }}>
     <div style={{ width: 220, background: D.side, padding: '28px 22px', boxSizing: 'border-box', display: 'flex', flexDirection: 'column', gap: 18 }}>
@@ -98,13 +110,18 @@ export const PaletteThemeRipple: React.FC = () => {
   const panelScale = f < ENTER ? panelT : shrink;
   const panelDropY = f < ENTER ? interpolate(panelT, [0, 1], [-120, 0]) : 0;
 
-// 逐字输入：每个字 4f 内弹出（Persian prefix shaping preserves the source's four beats）
-  const charScale = (i: number) =>
-    interpolate(f, [TYPE_FRAMES[i], TYPE_FRAMES[i] + 4], [0, 1], {
+// Typing beat: one Persian letter lands per cue frame (38/46/54/62). The visible text is ONE
+  // shaped prefix run; the whole run pops with the original back(2.2) overshoot so each cue
+  // reads as a hit (per-letter transforms would need inline-block and would break joining).
+  const runPop = (cue: number) =>
+    interpolate(f, [cue, cue + 4], [1.16, 1], {
       extrapolateLeft: 'clamp', extrapolateRight: 'clamp',
       easing: Easing.out(Easing.back(2.2)),
     });
   const typedCount = TYPE_FRAMES.filter((t) => f >= t).length;
+  let lastCue = -1;
+  for (const t of TYPE_FRAMES) if (f >= t) lastCue = t;
+  const pop = typedCount > 0 ? runPop(lastCue) : 1;
 
   // 扫场：圆从收缩点荡开（ease-out，先快后缓），边缘带亮环
   const r = interpolate(f, [RIPPLE, RIPPLE_END], [12, MAX_R], {
@@ -191,12 +208,15 @@ export const PaletteThemeRipple: React.FC = () => {
             gap: 16,
           }}
         >
-          {/* 输入行：⌘K 标识 + 逐字灰块 */}
+          {/* Input row: ⌘K badge (right = reading start) + typed Persian prefix + caret hugging the RTL typing end */}
           <div style={{ height: 62, border: `2px solid ${G.line}`, borderRadius: 12, display: 'flex', alignItems: 'center', gap: 14, padding: '0 18px', boxSizing: 'border-box', direction: 'rtl' }}>
-            <div style={{ padding: '6px 12px', borderRadius: 8, background: G.side, color: '#fff', fontFamily: 'Arial, sans-serif', fontWeight: 800, fontSize: 22, direction: 'ltr', unicodeBidi: 'isolate' }}>⌘K</div>
-            <div style={{ minWidth: 168, color: G.ink, fontFamily: 'Vazirmatn, sans-serif', fontWeight: 500, fontSize: 28, lineHeight: 1.5, whiteSpace: 'nowrap' }}>{[...'تیره'.slice(0, typedCount)].map((ch, i) => <span key={i} style={{ opacity: charScale(i) }}>{ch}</span>)}</div>
-            {/* 光标：帧确定闪烁（每 8f 翻转） */}
-            <div style={{ width: 4, height: 34, background: G.ink, opacity: Math.floor(f / 8) % 2 === 0 ? 1 : 0 }} />
+            <div style={{ padding: '6px 12px', borderRadius: 8, background: G.side, color: '#fff', fontFamily: 'Arial, sans-serif', fontWeight: 800, fontSize: 22, direction: 'ltr', unicodeBidi: 'isolate', flexShrink: 0 }}>⌘K</div>
+            {/* Shrink-wrapped text cell: NO fixed width, so the caret sits directly left of the last typed letter */}
+            <div style={{ color: G.ink, fontFamily: 'Vazirmatn, sans-serif', fontWeight: 600, fontSize: 38, lineHeight: 1, whiteSpace: 'nowrap', transform: `scale(${pop})`, transformOrigin: 'right center' }}>
+              {'تیره'.slice(0, typedCount)}
+            </div>
+            {/* Caret: frame-determined blink (flips every 8f); RTL flex puts it LEFT of the text = typing end */}
+            <div style={{ width: 4, height: 40, background: G.ink, opacity: Math.floor(f / 8) % 2 === 0 ? 1 : 0, flexShrink: 0 }} />
           </div>
           {/* 结果行：输入完成后首行加深表示选中 */}
           {Array.from({ length: 3 }).map((_, i) => (

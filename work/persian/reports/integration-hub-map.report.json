@@ -1,1 +1,81 @@
-{}
+{
+  "slug": "integration-hub-map",
+  "status": "localized",
+  "fixRound": "Round 2 (reviewer fixes applied): list vertical rhythm restored, all small texts routed through faText (1.1x Persian size compensation + explicit line-heights), ASCII hyphens replaced with en dashes, and the non-mirrored map composition explicitly justified in the file header.",
+  "source": {
+    "file": "work/upstream/src/demos/ui-entrance/integration-hub-map/IntegrationHubMap.tsx",
+    "prompt": "work/upstream/src/gallery/source/integration-hub-map.md",
+    "composition": "demo-IntegrationHubMap",
+    "fps": 30,
+    "size": "1920x1080",
+    "frames": 150
+  },
+  "font": {
+    "families": ["Vazirmatn"],
+    "reason": "Restrained enterprise/product UI (a Salesforce-like MQL list). Vazirmatn is a variable Persian UI sans with dependable joining, Persian punctuation, ZWNJ coverage and real weight variation for the title/list hierarchy at 11-15px sizes. Verified rendered (no fallback) in all inspected frames."
+  },
+  "translation": {
+    "scope": "All visible copy on both faces of the flipping panel: enterprise list title + 7 row titles/subtitles, tab row, recency label, location-filter button, two filter groups, and the old-page title/metadata chips. Persian digits were not needed (Q3 is translated as فصل سوم).",
+    "preserved_tokens": ["MQL", "Figma", "GDrive", "ClickUp"],
+    "copy_notes": "Latin product tokens kept inside Persian copy, isolated with <bdi> where needed ((MQL) in the panel title renders with correct paren placement). ZWNJ in بسته‌شده، ساخته‌شده، وایت‌بردها، فایل‌ها، پایپ‌لاین، سرنخ‌ها. ASCII ' - ' separator replaced with ' – ' (en dash with spaces) in حساب سازمانی بزرگ – بریتانیا and سرنخ سازمانی باز – پیگیری. Persian ی/ک throughout."
+  },
+  "rtlDecisions": [
+    {
+      "component": "IntegrationHubMap (root)",
+      "what": "FaRoot wrapper: direction rtl + Vazirmatn for the whole demo.",
+      "action": "RTL applies to the panel UI surfaces only; map SVG geometry, tile coordinates, camera path and all timings untouched.",
+      "why": "Reading-direction styling belongs to text surfaces; the scene is physical."
+    },
+    {
+      "component": "HubPanel (list + filter rail)",
+      "what": "Main enterprise list (right column) and filter rail (left column).",
+      "action": "RTL flex mirrors the reading hierarchy: list on the right (reading side), filter rail on the left; separator border-left→border-right with padding on the correct side of it; row icons sit at the reading-side edge; header row/marker and chips right-aligned.",
+      "why": "Sidebar/rail/list order follows reading direction. Panel size, radius, glow and placement unchanged."
+    },
+    {
+      "component": "HubPanel list vertical rhythm (fix-round change)",
+      "what": "Row pitch and bottom padding of the 7-row list.",
+      "action": "Explicit lineHeight 1.25 on row title/sub (fs-scaled 15px/12px), row marginTop 13.5→9, panel title lineHeight 1.25, tabs/labels lineHeight 1.35. Result: ~43px pitch (original ~41px) and the list now ends with ~95px of empty bottom padding inside the 520px panel, matching the original's ~100px instead of crowding the edge (~17px before the fix).",
+      "why": "Vazirmatn's default line box is far taller than the Latin original's, which inflated the pitch to ~52px and pushed the last row against the panel bottom. The original's airy bottom whitespace is part of the composition; the rhythm was re-derived, not the panel geometry changed."
+    },
+    {
+      "component": "Small-text sizing (fix-round change)",
+      "what": "Tabs, recency label, row title/sub, filter button label, filter group labels and filter items.",
+      "action": "All routed through faText() (1.1x Persian size compensation, letterSpacing 0, no textTransform) with explicit line-heights; the 8-item tab row still fits its column at the larger size (gap 16→15).",
+      "why": "11-12px raw Persian text was undersized and low-contrast at 1920x1080; the kit's compensation applies uniformly, and the layout was re-measured to stay within panel bounds."
+    },
+    {
+      "component": "FrontPanel (old page)",
+      "what": "Page title, marker and metadata chips.",
+      "action": "Mirrored header (marker right of Persian title), chips translated with faText(11.5, lineHeight 1.3); gray document bars right-aligned as ragged RTL text-block surrogates, widths unchanged.",
+      "why": "Reading-order UI; the bars are abstract placeholders so their physical widths carry no reading semantics."
+    },
+    {
+      "component": "Map composition (tiles, pipes, rects) — NOT mirrored",
+      "what": "Figma/GitHub (left of centre), Salesforce (top), GDrive/Dropbox (right), 9 neon rectangles, pulses flowing icon→hub.",
+      "action": "Deliberately left in original coordinates; pulse direction and per-pipe phase offsets unchanged.",
+      "why": "(a) It is a radial network centred on the hub panel — a symmetric, direction-neutral constellation with no reading-order meaning; (b) tiles are brand marks (physical, keep-side); (c) pulses are a physical delivery metaphor (apps push data into the hub), not a reading sweep; (d) the panel sits dead-centre on the flip axis, so there is no left/right-weighted layout to re-balance. This rationale is now written in the file header comment."
+    },
+    {
+      "component": "Flip / bloom / timing",
+      "what": "rotateY 0→180 (f14–49, ease-out cubic), 90° bloom pulse at ~f21, icons f52, pipes f62, 9-frame growth, continuous transport flow.",
+      "action": "No timing, easing, seed, duration, fps or transform values changed.",
+      "why": "The fast flip with tail deceleration and the two-beat synchronized connection are the card's identity per the source prompt."
+    }
+  ],
+  "rasterHandling": {
+    "assets": "none",
+    "action": "No raster or baked-in text assets. All brand marks are inline SVG/CSS vectors left intact."
+  },
+  "verification": {
+    "renderCommand": "node work/persian/render-card.mjs --slug integration-hub-map --frames 10,38,52,100,149 --duration 150 (stills) then --video (full MP4)",
+    "framesCompared": [10, 38, 52, 100, 149],
+    "visualInspection": "Viewed fa/orig pairs after the fix: f10 (front panel: mirrored header, chips, gray bars), f38 (mid-flip back face: list fits with clear bottom padding), f100 and f149 (resting hub page: list ends ~95px above the panel bottom like the original ~100px, en dashes render, tabs on one line, filter rail compact and top-anchored, (MQL) parens correct, no leftover Latin/Chinese). Full timeline renders clean (IntegrationHubMap.fa.mp4).",
+    "timing": "No animation beat moved; only panel-internal text sizing/line-height/margins changed, all inside the fixed 820x520 panel."
+  },
+  "concerns": [],
+  "lessons": [
+    "FaRoot inherits the browser default line-height of the loaded Persian font; variable Persian UI fonts like Vazirmatn have a much taller default line box than Latin UI stacks (Avenir/Helvetica ~1.2). Fixed-size mock-UI panels must re-derive every stack pitch with explicit line-heights (~1.25) instead of trusting the inherited default, or lists overflow the panel's intended bottom padding.",
+    "When applying faText()'s 1.1x size compensation late (fix round), audit dense tab/filter rows for horizontal overflow at the same time — the 8-item tab row needed its gap trimmed 16→15 to stay on one line."
+  ]
+}
