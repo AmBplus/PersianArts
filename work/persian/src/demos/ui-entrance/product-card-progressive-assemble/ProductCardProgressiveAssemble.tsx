@@ -9,7 +9,9 @@
 // the right and the details column stays beside it on the left; pill, price, and
 // swatch rows reverse naturally. The marker sweep changes from left-origin to
 // right-origin because it follows reading direction. The centered zipper stays
-// physical and unmirrored. All placeholder copy is idiomatic Persian; dollar
+// physical and unmirrored; the bag silhouette's internal offsets, symmetric
+// corners, centered card anchor and gradient lighting stay physical geometry.
+// All placeholder copy is idiomatic Persian; dollar
 // tokens stay LTR-isolated while digits become Persian. Vazirmatn is a loaded,
 // variable UI sans with real 800 weight and dependable Persian shaping. There is
 // no raster or baked-in text: the product image is CSS geometry.

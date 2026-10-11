@@ -1,0 +1,59 @@
+{
+  "slug": "chip-grid-single-select-blackout",
+  "status": "localized",
+  "font": {
+    "families": ["Vazirmatn"],
+    "reason": "Vazirmatn is a variable-weight, well-covered Persian UI sans that preserves the source's restrained Swiss/product-interface tone and renders Persian joining and digits reliably at this small chip size."
+  },
+  "components": [
+    {
+      "name": "ChipGridSingleSelectBlackout",
+      "duration": 150,
+      "fps": 30,
+      "rtlDecisions": [
+        {
+          "what": "The title OPTION GROUP became «گروه گزینه‌ها».",
+          "action": "Translated idiomatically, removed uppercase and the 2.4px tracking, and used Vazirmatn with FA_LH.",
+          "why": "Uppercase/tracking has no Persian equivalent and tracking would break joining; the neutral UI label keeps the original hierarchy."
+        },
+        {
+          "what": "The five option labels became «طرح گزینه یک»، «طرح گزینه دو»، «طرح گزینه سوم با نام بلند»، «طرح گزینه چهار»، and «طرح گزینه پنج ویژه». ",
+          "action": "Kept the original array/index order and rendered the chip rows under the inherited RTL direction.",
+          "why": "Flex reading order mirrors so the first/selectable option occupies the right side, while the 3+2 centered geometry and locked positions stay intact. The long third label remains the width stress test."
+        },
+        {
+          "what": "The selected first chip's lift-to-center translation.",
+          "action": "Kept the measured physical center calculation and the original vertical lift/scale timing; RTL row placement makes the selected chip start on the right and move inward.",
+          "why": "The motion carries reading/layout direction, but the lift and scale are direction-neutral. Measuring once avoids reflow during the shrink."
+        },
+        {
+          "what": "Unselected chips and their fade.",
+          "action": "Kept transform:none and the original opacity curve; only the visual row order is mirrored by direction:rtl.",
+          "why": "The source intent explicitly requires position lock so dimming reads as single selection rather than a page re-layout."
+        },
+        {
+          "what": "The result line «۱۸٪ تخفیف  ·  ۴۲٫۰۰  ←  ۳۴٫۴۴».",
+          "action": "Used Persian digits, percent sign, decimal separator and left-pointing arrow; retained the original double-space token skeleton and per-word darkening beats. The old value remains on the right of the arrow and the new value on its left.",
+          "why": "Numeric glyph order is kept intact, while the price-flow arrow follows RTL reading direction. The effect is per word, so no Persian letters are split into unsafe animated spans."
+        },
+        {
+          "what": "Grey press flash, black confirmation, bounce, easing, seeds and all frame timings.",
+          "action": "Preserved the upstream formulas and constants exactly.",
+          "why": "These are physical/UI state transitions rather than text-direction semantics; changing them would lose the one-frame press and three/five-frame confirmation beats."
+        }
+      ],
+      "timingNotes": "Persian copy is longer in the long chip and uses 1.1x sizing, but all chip widths are content-driven inside the same centered rows, and the original d/FS/lift/caption intervals remain unchanged."
+    }
+  ],
+  "rasterHandling": {
+    "assets": [],
+    "action": "None required; the composition is entirely vector/CSS text and shapes with no raster asset or baked-in foreign text."
+  },
+  "verification": {
+    "stillCommand": "node work/persian/render-card.mjs --slug chip-grid-single-select-blackout --frames 0,4,10,20,40,66,75,90,110,130,149",
+    "framesViewed": ["0", "4", "40", "66", "68", "75", "110", "130"],
+    "comparison": "Viewed Persian and matching original PNGs for entrance, press flash, selected state, lift-to-center, caption reveal and final hold."
+  },
+  "concerns": [],
+  "lessons": []
+}

@@ -1,0 +1,78 @@
+{
+  "slug": "product-card-progressive-assemble",
+  "status": "done",
+  "author": "main session",
+  "font": {
+    "family": "Vazirmatn",
+    "reason": "Loaded variable-weight Persian UI sans with reliable shaping and glyph coverage; neutral, compact product typography matching the source system sans, with 800 available for the title and highlights."
+  },
+  "comps": [
+    {
+      "id": "demo-ProductCardProgressiveAssemble",
+      "video": "work/persian/out/product-card-progressive-assemble/ProductCardProgressiveAssemble.fa.mp4",
+      "fps": 30,
+      "size": "1920x1080",
+      "frames": 150,
+      "translatedSummary": "«کیف شهریِ مینیمال»، برچسب‌های «اکسسوری / روزمره / جزئیات»، قیمت‌های ۲۴۹ و ۱۸۹ دلار، و سه خط توصیف محصول با دو تأکید رنگی.",
+      "rtlDecisions": [
+        {
+          "what": "Product card columns (image and details)",
+          "action": "mirrored via RTL flex direction",
+          "why": "Column order follows Persian reading order; product image is on the right and text details on the left."
+        },
+        {
+          "what": "Title, prices, description alignment and pill order",
+          "action": "mirrored via inherited direction:rtl",
+          "why": "Text anchors and category sequence follow right-to-left reading; pills appear from right to left while preserving their original stagger times."
+        },
+        {
+          "what": "Sale price and old price sequence",
+          "action": "adapted through RTL row direction; currency and amount isolated LTR",
+          "why": "The old price remains identifiable and struck through, followed by the emphasized new price in Persian reading order; dollar sign and Persian digits stay together using bdi."
+        },
+        {
+          "what": "Description highlight marker sweeps",
+          "action": "mirrored from left-origin to right-origin",
+          "why": "The marker follows the Persian reading direction; its 5-frame sweep window remains unchanged."
+        },
+        {
+          "what": "Three color swatches",
+          "action": "mirrored slot order through RTL flex direction",
+          "why": "Swatches are a visual option sequence in the product detail flow; pop cues remain at their original frames."
+        },
+        {
+          "what": "Product illustration zipper",
+          "action": "kept centered and vertical",
+          "why": "It is a physical zipper detail with no reading-direction meaning."
+        },
+        {
+          "what": "Card scale push, field rise/pop curves, price downgrade at recipe frame 26, and event timing",
+          "action": "kept unchanged",
+          "why": "These motions carry the source's progressive-assembly rhythm rather than reading direction; preserving them retains motion fidelity and the final reading hold."
+        },
+        {
+          "what": "Letter spacing and capitalization",
+          "action": "removed; Persian style uses zero tracking",
+          "why": "Persian has no uppercase and nonzero letter spacing breaks joining."
+        },
+        {
+          "what": "Card anchor, internal bag offsets, symmetric corners, and gradient lighting",
+          "action": "kept",
+          "why": "The anchor is centered, the offsets place parts within a physical product silhouette, and the gradient represents lighting; none encode reading direction."
+        }
+      ]
+    }
+  ],
+  "rasterTextHandling": "No raster or video assets. The product image is CSS geometry with no baked-in text; no blur or replacement was needed.",
+  "visualVerification": {
+    "method": "Viewed matching Persian and original PNG pairs for frames 25, 40, 65, 110, and 149.",
+    "observations": "Persian column order and text anchoring read correctly; title and description fit the card at sampled beats; highlight blocks align with their emphasized phrases; final composition preserves the source hold and slow push."
+  },
+  "timing": "All source recipe frames and durations are unchanged. The final line and swatches settle before the source's long final hold.",
+  "concerns": [
+    "The original illustration is intentionally abstract (a CSS product placeholder), so it remains an untextured shape rather than a specific bag photo.",
+    "No independent reviewer was run in this task."
+  ],
+  "iterations": 1,
+  "lessons": []
+}

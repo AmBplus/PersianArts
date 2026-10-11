@@ -5,8 +5,9 @@
 // Direction decisions: this is a vertical physical picker, so vertical travel, item order, fixed centre pill,
 // opacity/size falloff, gradient, and the outQuint/hold/breath timings stay exactly as source. The icon moves to
 // the RTL start (right) of each feature label. The fixed AI badge retains the equivalent right-side position in
-// this symmetric centered composition; its fade is unchanged. Its Latin mark and the symbol icons use system
-// sans/symbol fonts to preserve the source glyph design. There are no raster assets. Persian text has no tracking,
+// this symmetric centered composition; its fade is unchanged. The Latin mark is bidi-isolated; the refresh
+// symbol is an inline SVG because the render environment's font fallback distorted U+21BA into a hook.
+// Other icons retain their source glyphs. There are no raster assets. Persian text has no tracking,
 // uppercase, or per-character splitting; sizes use fs() and the one-line leading remains deliberately compact.
 import React from 'react';
 import { DesignStage, E, lerp, seg, useT } from '../../_fixtures/Motion';
@@ -27,7 +28,7 @@ const ITEMS = [
   'گردش‌کارهای خودکار',
   'آزمون نسخه‌ها',
 ];
-const ICONS = ['◎', '✉', '◧', '◈', '★', '↺', '⚑'];
+const ICONS = ['◎', '✉', '◧', '◈', '★', null, '⚑'];
 const STEPS = 5; // Five snap advances.
 const HOLD = 5 / 14; // Still tail of each step (about 4–5 frames).
 
@@ -116,14 +117,20 @@ export const PickerCarouselFeatureCycle: React.FC = () => {
                       opacity: o,
                     }}
                   >
-                  {/* The row icon appears only near the focus position. */}
+                    {/* The row icon appears only near the focus position. */}
                     <span style={{
                       fontSize: fs(14),
                       opacity: Math.max(0, 1 - d * 1.6),
                       flexShrink: 0,
                       fontFamily: "-apple-system, 'Helvetica Neue', 'Segoe UI Symbol', sans-serif",
+                      display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
                     }}>
-                      {ICONS[i]}
+                      {i === 5 ? (
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                          <path d="M2.5 7.25a5.5 5.5 0 1 1 1.7 4.4M2.5 7.25v-3.5m0 3.5H6"
+                            stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      ) : ICONS[i]}
                     </span>
                     <span>{txt}</span>
                   </div>

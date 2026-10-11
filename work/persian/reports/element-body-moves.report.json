@@ -1,0 +1,100 @@
+{
+  "slug": "element-body-moves",
+  "status": "localized",
+  "sourcePrompt": "work/upstream/src/gallery/source/element-body-moves.md",
+  "comps": [
+    {
+      "id": "demo-AxialStretch",
+      "file": "work/persian/src/demos/ui-entrance/element-body-moves/AxialStretch.tsx",
+      "font": {
+        "families": ["Noto Kufi Arabic"],
+        "reason": "Geometric Persian-capable display face that preserves the heavy, technical UI title mood of the source sans while shaping «کشش محوری» cleanly."
+      },
+      "text": [
+        {
+          "source": "AXIAL STRETCH",
+          "persian": "کشش محوری",
+          "reason": "Natural Persian rendering of the motion technique; uppercase/tracking were removed because they have no Persian equivalent and damage joining."
+        }
+      ],
+      "rtlDecisions": [
+        {
+          "what": "Three target slots and the three-card target order",
+          "action": "Mirrored the target x positions with ROW_X0 + (2 - i) * (CARD_W + GAP).",
+          "why": "The sequence is a reading-order row; the first item belongs at the right/start edge in RTL."
+        },
+        {
+          "what": "Horizontal entrance",
+          "action": "Mirrored START_X from 1980 to -440 so cards fly from the left to the mirrored targets.",
+          "why": "The entrance direction follows the mirrored reading flow while preserving the same travel distance, 36f flight, 12f stagger and easing."
+        },
+        {
+          "what": "Stretch transform origin",
+          "action": "Changed origin from 100% 50% to 0% 50%.",
+          "why": "The left edge is the trailing edge after the entrance is mirrored to rightward travel; this preserves the source's speed-body relationship."
+        },
+        {
+          "what": "Vertical and landing motion",
+          "action": "Kept scaleY squash, velocity difference, 8f landing overshoot and all frame constants unchanged.",
+          "why": "These are physical body motion, not language direction."
+        },
+        {
+          "what": "Card content and seeds",
+          "action": "Kept the shared geometric Card fixture and original seed per mirrored card.",
+          "why": "The fixture contains no text; preserving seeds maintains source visual identity."
+        }
+      ],
+      "rasterHandling": {
+        "assets": [],
+        "action": "None required; the demo is composed entirely of CSS geometry and placeholder bars."
+      },
+      "timing": "All source timing and easing constants remain unchanged; Persian title length does not affect animation timing."
+    },
+    {
+      "id": "demo-ContactShadowLift",
+      "file": "work/persian/src/demos/ui-entrance/element-body-moves/ContactShadowLift.tsx",
+      "font": {
+        "families": [],
+        "reason": "No visible text is present; adding a font would not affect the geometric placeholder scene."
+      },
+      "text": [],
+      "rtlDecisions": [
+        {
+          "what": "Three-card row order",
+          "action": "Mirrored each card and its shadow with x = 1920 - CARD_W - sourceX.",
+          "why": "The cards form a reading-order sequence; the first named card is rightmost in RTL."
+        },
+        {
+          "what": "Dashboard top-bar chrome",
+          "action": "Applied direction: rtl and retained the logical auto margin via marginInlineStart.",
+          "why": "The placeholder controls represent UI order and should reverse horizontally; no physical motion is changed."
+        },
+        {
+          "what": "Lift, shadow, and landing physics",
+          "action": "Kept translateY(-28px), scale(1.08), shadow scale/opacity, easing, one-at-a-time sequencing and final rest unchanged.",
+          "why": "Vertical gravity and contact-shadow behavior are physical/universal rather than reading-direction semantics."
+        }
+      ],
+      "rasterHandling": {
+        "assets": [],
+        "action": "None required; the demo is composed entirely of CSS geometry and placeholder bars."
+      },
+      "timing": "All source timing and easing constants remain unchanged, including starts [2, 42, 82], the 43f local motion, and the 35f final rest."
+    }
+  ],
+  "visualVerification": {
+    "viewedMatchedFrames": [
+      "AxialStretch: 0, 10, 22, 34, 46, 70, 94, 110, 125, 149",
+      "ContactShadowLift: 0, 10, 22, 34, 46, 58, 70, 94, 110, 125, 149"
+    ],
+    "checks": [
+      "Compared Persian and original PNGs at entrance, peak/transition, sequential-action, and rest beats.",
+      "Verified Persian title shaping and absence of unintended Latin/Chinese on-screen text.",
+      "Verified contact shadows stay under their corresponding mirrored cards."
+    ]
+  },
+  "concerns": [
+    "The harness emitted intermittent Remotion browser-resource errors late in one multi-still batch, but all requested comparison still files for both compositions were produced and visually inspected; the final two MP4 renders completed successfully with no errors."
+  ],
+  "lessons": []
+}

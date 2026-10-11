@@ -10,6 +10,14 @@
 //  - Selection frame + 8 handles: symmetric, kept. Dot grid: symmetric, kept.
 //  - Timing, easing, spring, seeds, step-2 counter and tick pulse: unchanged.
 // RASTER: none.
+// FIX (review round 2): during the spring undershoot gapShown goes negative (min -4, frames ~70-95).
+// In an RTL context faDigits(-4) rendered as «۴-» (minus on the wrong side) in the title badge and
+// all 4 measurement badges. faNum() swaps the hyphen for a true minus U+2212 and the value is
+// rendered as an LTR island (direction:'ltr' + unicodeBidi:'isolate'), so it always reads "-۴"
+// like the original's "-4". Numbers are bidirectionally LTR even in Persian typesetting.
+// Applied to all five badges. No timing/spring/easing change.
+const NUM_ISLAND: React.CSSProperties = { direction: 'ltr', unicodeBidi: 'isolate' };
+const faNum = (v: number): string => faDigits(v).replace(/-/g, '−'); // U+2212 MINUS SIGN
 // The shared gap drives the centered row, four measurements, and five synchronized readouts.
 // The source's 120-frame curve grows from 12 to 110, holds, then returns with spring overshoot.
 import React from 'react';
@@ -81,7 +89,7 @@ export const AutolayoutGapDial: React.FC = () => {
       <div style={{ position: 'absolute', top: 250, width: '100%', textAlign: 'center', fontWeight: 800, fontSize: fs(44), lineHeight: 1.5, color: G.mid, letterSpacing: 0 }}>
         فاصله
         <span style={{ display: 'inline-block', minWidth: 130, marginInlineStart: 24, padding: '0px 22px', textAlign: 'center', borderRadius: 12, background: G.ink, color: '#f2f2f0', fontVariantNumeric: 'tabular-nums', transform: `scale(${tickPulse})` }}>
-          {faDigits(gapShown)}
+          <span style={NUM_ISLAND}>{faNum(gapShown)}</span>
         </span>
       </div>
 
@@ -176,7 +184,7 @@ export const AutolayoutGapDial: React.FC = () => {
                 fontVariantNumeric: 'tabular-nums',
               }}
             >
-              {faDigits(gapShown)}
+              <span style={NUM_ISLAND}>{faNum(gapShown)}</span>
             </div>
           </div>
         );

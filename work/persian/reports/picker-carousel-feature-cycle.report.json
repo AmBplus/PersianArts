@@ -39,8 +39,8 @@
     {
       "component": "demo-PickerCarouselFeatureCycle",
       "what": "Refresh icon glyph",
-      "action": "Kept the original ↺ character and assigned the icon span a system symbol-safe font stack.",
-      "why": "Vazirmatn's symbol fallback rendered the refresh glyph like a hook; the system symbol font preserves the intended open circular arrow."
+      "action": "Replaced only the visible refresh glyph in row six with a 16px inline SVG open circular arrow, using currentColor and the original icon opacity falloff.",
+      "why": "The U+21BA font glyph rendered as a hook even with a system symbol font stack. The SVG makes the source's refresh-arrow meaning explicit and renders consistently."
     },
     {
       "component": "demo-PickerCarouselFeatureCycle",
@@ -70,9 +70,18 @@
   },
   "verification": {
     "stillFramesViewed": [5, 17, 24, 36, 43, 55, 62, 74, 81, 90, 102, 105, 107],
-    "comparison": "Viewed Persian and original paired renders across entry, cycle/settle sequences, and final resting frames. After the fix, specifically compared frames 90, 102, and 107 to confirm the system-font ↺ is an open circular refresh arrow matching the source, and checked the restored Latin badge, Persian shaping, one-line fit, icon placement, fixed focus pill, and vertical composition.",
+    "comparison": "Viewed Persian and original paired renders across entry, cycle/settle sequences, and final resting frames. After the SVG fix, freshly rendered and compared frames 90 and 107. The icon now clearly reads as an open circular refresh arrow at the RTL start of the selected label; the previous hooked fallback glyph is gone. The Persian label remains on one line, and the fixed pill, badge position and vertical composition still match their intended source roles.",
     "finalRender": "PickerCarouselFeatureCycle.fa.mp4 rendered successfully with --video; harness returned ok:true and no errors."
   },
   "concerns": [],
-  "newLessons": []
+  "lessons": [
+    {
+      "symptom": "U+21BA refresh rendered as a small hooked letterform after adding a system symbol font stack.",
+      "cause": "The render environment still resolves that code point through an unsuitable glyph fallback.",
+      "fix": "Use a small inline SVG with currentColor and the existing opacity animation for meaning-critical symbols when font fallback cannot be verified visually."
+    }
+  ],
+  "newLessons": [
+    "A system symbol font stack did not reliably render U+21BA in this Remotion environment; a currentColor inline SVG preserved the refresh meaning and existing opacity timing."
+  ]
 }

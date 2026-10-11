@@ -1,31 +1,27 @@
 // PERSIAN (RTL) localization of the page-waterfall-wall card.
 //
-// TEXT: the composition has no live JSX copy. Its page slices are raster screenshots
-// containing baked English/Chinese UI text, so the assets remain the same visual
-// material but are strongly blurred (16px) below to prevent foreign copy from being
-// legible in the Persian reconstruction.
-// DIRECTION: the wall is a visual, vertical catalog rather than a horizontal reading
-// sequence. FaRoot establishes RTL for any future page chrome, while the three columns
-// stay centered in their original order: changing their order would alter the intended
-// differential-parallax composition. Vertical motion is physical/content flow and is
-// kept exactly: columns 1 and 3 move up, the middle column moves down.
-// MOTION: loop durations, direction signs, 20deg tilt, perspective, scale, gap, seeds,
-// and the outer 1.0->1.06 camera push are unchanged. No text font is rendered here;
-// Vazirmatn is loaded by FaRoot as the neutral Persian UI default for the card.
-// RASTER HANDLING: use the checked-in texture set under textures/live and blur each
-// screenshot before display; no source image is mirrored because its layout is not a
-// directional cue once text is intentionally de-emphasized.
+// TEXT / RASTER: all 12 source PNG slices contain baked English/Chinese UI. Each is
+// rebuilt as live Persian page content in PersianPages.tsx, with its exact source aspect
+// ratio. The source PNGs are reference only; no blur or foreign text appears in output.
+// DIRECTION: page contents use RTL. The source's top-right age stamp moves to top-left;
+// titles, description, metadata and counters start at the right; search icons and
+// category headers follow the RTL reading edge. The three-column wall keeps its
+// centered physical order: it is a parallax tableau, not a horizontal reading list.
+// Vertical flow (outer columns up, middle down) and top/bottom fades stay physical.
+// FONT: Vazirmatn variable supports the product UI's many weights, Persian digits,
+// punctuation and ZWNJ; FaRoot loads it before rendering the live page text.
+// MOTION: 12/9/14s loops, 20deg rotateX, perspective 1000, scale 1.2, gap 30,
+// and the outer 1.0->1.06 camera push are unchanged from upstream.
 import React from 'react';
 import {
   AbsoluteFill,
-  Img,
   interpolate,
-  staticFile,
   useCurrentFrame,
   useVideoConfig,
 } from 'remotion';
 import { VerticalTicker, TickerColumn } from './VerticalTicker';
 import { FaRoot } from '../../_fa';
+import {PersianPage} from './PersianPages';
 
 const BG = '#101014';
 
@@ -38,10 +34,7 @@ const shot = (file: string) => (
       background: '#fff',
     }}
   >
-    <Img
-      src={staticFile(`textures/live/${file}`)}
-      style={{ width: '100%', display: 'block', filter: 'blur(16px)', transform: 'scale(1.04)' }}
-    />
+    <PersianPage file={file}/>
   </div>
 );
 

@@ -1,11 +1,11 @@
 {
- "generatedAt": "2026-10-11T15:32:20.038Z",
+ "generatedAt": "2026-10-11T15:37:37.379Z",
  "summary": {
-  "todo": 95,
-  "localized": 3,
-  "approved": 48,
-  "fixed": 8,
-  "needs-fix": 3,
+  "todo": 92,
+  "localized": 6,
+  "approved": 49,
+  "fixed": 9,
+  "needs-fix": 1,
   "total": 157
  },
  "cards": [
@@ -203,8 +203,8 @@
   },
   {
    "slug": "chip-grid-single-select-blackout",
-   "status": "todo",
-   "font": "",
+   "status": "localized",
+   "font": "{\"families\":[\"Vazirmatn\"],\"reason\":\"Vazirmatn is a variable-weight, well-covered Persian UI sans that preserves the source's restrained Swiss/product-interface tone and renders Persian joining and digits reliably at this small chip size.\"}",
    "videos": 0,
    "majors": 0,
    "concerns": 0
@@ -379,11 +379,11 @@
   },
   {
    "slug": "element-body-moves",
-   "status": "todo",
+   "status": "localized",
    "font": "",
-   "videos": 0,
+   "videos": 2,
    "majors": 0,
-   "concerns": 0
+   "concerns": 1
   },
   {
    "slug": "floating-glossy-label-pills",
@@ -715,11 +715,11 @@
   },
   {
    "slug": "page-waterfall-wall",
-   "status": "needs-fix",
-   "font": "{\"families\":[\"Vazirmatn\"],\"reason\":\"No live Persian copy is rendered by this card; Vazirmatn is loaded by FaRoot as the neutral, well-covered Persian UI default for any inherited page chrome and keeps the card contract consistent.\"}",
+   "status": "fixed",
+   "font": "{\"families\":[\"Vazirmatn\"],\"reason\":\"The source is a restrained research-project UI. Vazirmatn variable supplies readable Persian at small card sizes, supports the source regular/bold hierarchy, and covers Persian digits, punctuation and ZWNJ. FaRoot loads the font before capture.\"}",
    "videos": 1,
    "majors": 3,
-   "concerns": 2
+   "concerns": 1
   },
   {
    "slug": "panel-grid-moves",
@@ -771,7 +771,7 @@
   },
   {
    "slug": "picker-carousel-feature-cycle",
-   "status": "needs-fix",
+   "status": "fixed",
    "font": "Vazirmatn",
    "videos": 1,
    "majors": 1,
@@ -811,11 +811,11 @@
   },
   {
    "slug": "product-card-progressive-assemble",
-   "status": "todo",
-   "font": "",
-   "videos": 0,
+   "status": "localized",
+   "font": "Vazirmatn",
+   "videos": 1,
    "majors": 0,
-   "concerns": 0
+   "concerns": 2
   },
   {
    "slug": "quad-split-parallel-scenes",
@@ -939,10 +939,10 @@
   },
   {
    "slug": "segmented-thumb-hero",
-   "status": "fixed",
+   "status": "approved",
    "font": "",
    "videos": 1,
-   "majors": 1,
+   "majors": 0,
    "concerns": 0
   },
   {
@@ -1140,7 +1140,7 @@
   {
    "slug": "type-and-filter",
    "status": "localized",
-   "font": "{\"families\":[\"Vazirmatn\"],\"reason\":\"Vazirmatn is a neutral, variable-weight Persian product-UI sans with reliable shaping and glyph coverage; it is the closest functional counterpart to the source UI sans.\"}",
+   "font": "Vazirmatn",
    "videos": 1,
    "majors": 0,
    "concerns": 1
