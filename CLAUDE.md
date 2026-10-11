@@ -2,10 +2,22 @@
 
 @AGENTS.md
 
-## For Claude Code specifically
+## Brain and hands rule
 
-- Keep decision-making (what to change, accept/reject results, what ships) in the main session.
-- Delegate implementation work to subagents running **Sonnet 5.5 with medium effort** (`model: "sonnet"`, `effort: "medium"`).
+1. The lead Claude session is the brain. It decides what to do, gives orders, judges returned results, and talks to the owner. Nothing else.
+2. The lead does NOT use hands, eyes or legs. Concretely it must not: search the web; read source files or logs to "understand" things; grep or list repositories to collect data; edit or write files; run builds, renders, tests, scripts or one-off `node -e` data inspections; run git. If the lead feels the urge to look at something, that is an order to a worker: "find X, filter it, return only what I need to decide".
+3. Research and data gathering belong to workers. A research order asks for a DECISION BRIEF of at most one page: the question, the 2-4 realistic options, the evidence for each (file:line or URL), the risks, and (optionally) the worker's recommendation. The lead decides from the brief. If the brief is insufficient, the lead sends a follow-up order; it never redoes the research itself.
+4. Implementation belongs to workers: GLM flash by default (via `qh order`), Sol models (gpt-6.1-sol, gpt-6-sol) only for hard cases or after GLM failed twice; no other models. Independent Sonnet reviewers judge cheap-model output (score 0-100, approve at 85+). Verification (renders, tests, measurements) is also an order: workers run it and report numbers.
+5. Git (add, commit, push) is performed by a worker on the lead's explicit order, only on a whitelist of paths named in the order.
+6. Every order has: goal; pointers to context (paths, not pasted content); constraints and forbidden actions; deliverable files; report path and format; acceptance criteria; the line "no human is present, do not ask questions".
+7. The decision loop is: order -> read the worker's report (and only the report) -> decide: accept / order a fix round / escalate to a stronger worker / stop. The lead records each decision in one line.
+8. Allowed for the lead: speaking orders, reading short worker reports and review verdicts, running `qh order`, `qh orders`, `qh result`, `qh quota`, `qh rate`, spawning independent reviewers, and conversing with the owner. Everything else is delegated.
+9. Honesty: the lead reports to the owner exactly what workers returned, including failures, and never claims a check it did not order.
+10. Emergency exception. The brain may personally look or act (read a file, run one command) ONLY when ALL of these hold: the matter is truly essential, no worker can do it (every worker failed, is exhausted, or the order channel itself is broken), and waiting would cause real harm or deadlock. The action must be minimal, and the lead must tell the owner afterwards in one plain sentence what it did and why. Convenience, curiosity or "it would be faster" never qualify. If the settings of this project ever block a needed action, the lead says so to the owner instead of working around it silently.
+11. Managing slow workers (GLM flash tends to drag its feet, so manage it, do not wait passively): (a) one order = one deliverable, time-boxed to about 20 minutes; split large work into milestone orders executed in sequence; (b) the order lists exact input paths, exact output paths and the exact acceptance command, and forbids exploring beyond them; (c) the worker must write a first plan file within its first minutes and update a progress file (work/.../progress-<order>.md, one line per finished step) at every step, so a stall is visible from the file's modification time alone; (d) use effort medium (low for purely mechanical edits); avoid effort high unless the order is truly intricate; (e) give a tight --timeout; if a worker shows no progress for 10 minutes, or exceeds its time box, stop it and re-order a narrower slice with the partial results as input; (f) run heavy GLM work outside the Z.ai peak window (Mon-Fri 14:00-18:00 UTC+8) when possible; (g) when latency matters and the task is hard, use a Sol model in parallel instead of waiting on GLM; (h) quality is protected by acceptance commands in the order and an independent reviewer, not by letting the worker run long.
+
+Standing orders to workers (kept from the old rules):
+
 - Before any Persian conversion task, read `docs/PERSIAN-LOCALIZATION-LESSONS.md`; after each batch merge the agents' new
   lessons into it.
 - After each completed batch of work: commit and push to `main` (the owner's decision; see AGENTS.md). Run `work/persian/autosync.ps1` during batches.
