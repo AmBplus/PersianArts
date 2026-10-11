@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-11T13:33:23.015Z",
+ "generatedAt": "2026-10-11T13:41:33.976Z",
  "summary": {
   "todo": 113,
   "localized": 1,
@@ -13,7 +13,7 @@
    "slug": "ai-stream-response",
    "status": "localized",
    "font": "Vazirmatn",
-   "videos": 0,
+   "videos": 1,
    "majors": 0,
    "concerns": 1
   },
