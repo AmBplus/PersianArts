@@ -1,6 +1,7 @@
 // avatar-bracket-carousel — Persian (RTL) localization.
 // TEXT: "Your ___ teammates" -> «هم‌تیمی‌های ___ شما» (reads right-to-left: هم‌تیمی‌های [slot] شما = "your designer teammates").
-//   Roles: Designer/Support/Analyst/Writer -> طراح / پشتیبان / تحلیلگر / نویسنده (short nouns, same slot role as the English ones).
+//   Roles: Designer/Support/Analyst/Writer -> طراح / پشتیبانی / تحلیلگر / نویسنده (short role nouns, same slot role as the English ones;
+//   «پشتیبانی» is the idiomatic Persian product-UI role word for "Support").
 // DIRECTION: the sentence is a flex row under direction:rtl, so the first word sits on the right and the closing word on the left;
 //   the 92px slot stays pinned at the centre, so mirroring needs no coordinates. KEPT (with reason): the avatar queue moves
 //   vertically (physical, no reading-direction meaning), the focus brackets are 4-fold symmetric, scale/blur/opacity/breath are
@@ -23,7 +24,7 @@ const ACCENT = '#3b82f6';
 // 头像底色走中性灰阶梯度（仅用于区分队列项），强调色只留在对焦框上
 const AV = [
   { c: '#4a4d59', e: '🎨', role: 'طراح' },
-  { c: '#5b6070', e: '💬', role: 'پشتیبان' },
+  { c: '#5b6070', e: '💬', role: 'پشتیبانی' },
   { c: '#6d7383', e: '📊', role: 'تحلیلگر' },
   { c: '#828796', e: '✍️', role: 'نویسنده' },
 ];

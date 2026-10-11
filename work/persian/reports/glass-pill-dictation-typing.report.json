@@ -1,0 +1,56 @@
+{
+  "slug": "glass-pill-dictation-typing",
+  "status": "localized",
+  "components": [
+    {
+      "name": "GlassPillDictationTyping",
+      "duration": 50,
+      "fps": 30,
+      "size": "1920x1080",
+      "font": {
+        "families": ["Vazirmatn"],
+        "reason": "Vazirmatn is a neutral variable UI sans with reliable Persian glyph coverage, matching the original restrained system-input treatment without synthetic bold."
+      },
+      "text": [
+        {
+          "source": "Speak or type here",
+          "persian": "صحبت کنید یا بنویسید",
+          "method": "typeOn() prefix slicing",
+          "timing": "The original 0.06–0.73 typing window, cursor cues, and 50-frame duration remain unchanged. The Persian string has 20 code points rather than 18, so its per-character rate is proportionally faster while the same start and end beats are retained."
+        }
+      ],
+      "rtlDecisions": [
+        {
+          "what": "Input text, caret and voice-control order",
+          "action": "Mirrored",
+          "why": "They communicate text-entry reading order: text starts at the right, the caret follows the Persian prefix toward the left, and the voice action moves to the left end."
+        },
+        {
+          "what": "Internal purple waiting-light gradient",
+          "action": "Mirrored from 90deg to 270deg",
+          "why": "The gradient is part of the input’s directional affordance, so its bright control-end is retained after the control mirrors."
+        },
+        {
+          "what": "Pill scale/opacity, vertical waveform geometry and sinusoidal breathing",
+          "action": "Kept",
+          "why": "These are physical or non-reading-direction motion; preserving them maintains the original quiet entrance and resting beat."
+        }
+      ],
+      "typography": {
+        "letterSpacing": 0,
+        "lineHeight": "single-line input",
+        "shaping": "No per-glyph boxes or transforms. typeOn() exposes logical string prefixes so joining is recomputed correctly at every typing step.",
+        "measurement": "The fixed pill width is measured with offsetWidth from a hidden Vazirmatn run after document.fonts.load(), avoiding fallback-font or stage-transform measurements."
+      },
+      "rasterHandling": "No raster or external visual assets are used.",
+      "visualVerification": {
+        "originalAndPersianFramesViewed": [3, 8, 18, 30, 38, 49],
+        "observations": "Compared corresponding original and Persian stills for pop-in, cursor-first state, early/mid/late typing, glow fade and final neutral pill. Persian frames are clean and contain no foreign visible text."
+      },
+      "concerns": [],
+      "lessons": [
+        "When a measurement node sits inside a scaled DesignStage, use offsetWidth rather than getBoundingClientRect().width; the latter includes stage scaling and can make a fixed Persian input pill dramatically oversized."
+      ]
+    }
+  ]
+}

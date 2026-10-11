@@ -1,0 +1,11 @@
+{
+  "slug": "platform-hinge-rise",
+  "verdict": "approve",
+  "score": 90,
+  "issues": [
+    {"severity": "minor", "where": "PlatformHingeRise.tsx lines ~73-75 and ~122-124 (SubjectPanel and context circle styles)", "problem": "Dead leftover fontSize/fontWeight (10/800, 9/800) immediately overridden by the faText(...) spread, and the circle label 'زمینه' uses a bare 8.5 scale; hygiene only, no visual effect.", "suggestedFix": "Delete the redundant fontSize/fontWeight lines before the faText spread."},
+    {"severity": "minor", "where": "SubjectPanel left/right geometry (x 165/249, larger panel on the left)", "problem": "The pair is kept unmirrored (larger/darker panel left). Justified as hinge mechanics and the report/header say so, but a reading-order purist could mirror the asymmetry for RTL.", "suggestedFix": "Optional: swap which side is the larger panel (x -> 480-x-w, swap origins and rotation signs). Not required."},
+    {"severity": "minor", "where": "Context label 'زمینه' inside circle", "problem": "Label is small relative to the circle (low-emphasis by design, like the original), so it reads slightly weaker than CONTEXT did.", "suggestedFix": "Optionally bump faText size from 8.5 to ~9.5."}
+  ],
+  "notes": "Re-rendered 13 frames (0,8,15,18,24,30,33,36,42,46,56,66,103) and compared fa vs orig at f18, f33, f56, f103: geometry, hinge origins, rotation signs, wobble, occlusion, conclusion rise and final hold are pixel-aligned with the original. Persian labels (موضوع، زمینه، نتیجه) are correctly shaped and joined, centered, uncut, with Vazirmatn actually loaded (no fallback) and variable weights. No letterSpacing/uppercase left; no Chinese/English text left; no rasters. Exports, DURATION constant (104), easing and frame timings are unchanged (diffed against upstream). Header comment matches the code. Direction decision (keep physical mechanism unmirrored) is defensible. Only hygiene-level nits remain."
+}

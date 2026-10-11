@@ -1,11 +1,11 @@
 {
- "generatedAt": "2026-10-11T15:16:28.762Z",
+ "generatedAt": "2026-10-11T15:21:45.954Z",
  "summary": {
-  "todo": 100,
-  "localized": 10,
-  "approved": 39,
+  "todo": 97,
+  "localized": 8,
+  "approved": 42,
   "fixed": 8,
-  "needs-fix": 0,
+  "needs-fix": 2,
   "total": 157
  },
  "cards": [
@@ -43,9 +43,9 @@
   },
   {
    "slug": "avatar-bracket-carousel",
-   "status": "todo",
+   "status": "localized",
    "font": "",
-   "videos": 0,
+   "videos": 1,
    "majors": 0,
    "concerns": 0
   },
@@ -171,7 +171,7 @@
   },
   {
    "slug": "card-stack",
-   "status": "localized",
+   "status": "approved",
    "font": "Vazirmatn",
    "videos": 1,
    "majors": 0,
@@ -427,9 +427,9 @@
   },
   {
    "slug": "glass-pill-dictation-typing",
-   "status": "todo",
+   "status": "localized",
    "font": "",
-   "videos": 0,
+   "videos": 1,
    "majors": 0,
    "concerns": 0
   },
@@ -627,7 +627,7 @@
   },
   {
    "slug": "morph-from-primitive",
-   "status": "localized",
+   "status": "approved",
    "font": "",
    "videos": 1,
    "majors": 0,
@@ -771,10 +771,10 @@
   },
   {
    "slug": "picker-carousel-feature-cycle",
-   "status": "localized",
+   "status": "needs-fix",
    "font": "Vazirmatn",
    "videos": 1,
-   "majors": 0,
+   "majors": 1,
    "concerns": 0
   },
   {
@@ -795,7 +795,7 @@
   },
   {
    "slug": "platform-hinge-rise",
-   "status": "localized",
+   "status": "approved",
    "font": "{\"families\":[\"Vazirmatn\"],\"reason\":\"Neutral product/UI sans with variable weights and reliable Persian glyph coverage; it preserves the restrained explanatory tone of the original Arial treatment without fake bold or broken shaping.\"}",
    "videos": 1,
    "majors": 0,
@@ -875,10 +875,10 @@
   },
   {
    "slug": "row-embed",
-   "status": "localized",
+   "status": "needs-fix",
    "font": "",
    "videos": 1,
-   "majors": 0,
+   "majors": 3,
    "concerns": 0
   },
   {
@@ -939,9 +939,9 @@
   },
   {
    "slug": "segmented-thumb-hero",
-   "status": "todo",
+   "status": "localized",
    "font": "",
-   "videos": 0,
+   "videos": 1,
    "majors": 0,
    "concerns": 0
   },

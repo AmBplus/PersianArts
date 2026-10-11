@@ -7,3 +7,6 @@
 {"slug":"autolayout-gap-dial","role":"author","worker":"codex-b","model":"gpt-6-sol","effort":"medium","jobId":158,"status":"ok","durationS":199,"quotaDeltaPct":5,"violations":[],"hasReport":true,"videos":["AutolayoutGapDial.fa.mp4"]}
 {"slug":"research-card-stack-scroll","role":"author","worker":"codex-b","model":"gpt-6-luna","effort":"medium","jobId":153,"status":"ok","durationS":263,"quotaDeltaPct":7,"violations":[],"hasReport":true,"videos":["ResearchCardStackScroll.fa.mp4"]}
 {"slug":"value-stagger-gradient","role":"author","worker":"glm","model":"glm-5.3-flash","effort":"medium","jobId":144,"status":"ok","durationS":531,"quotaDeltaPct":3,"violations":[],"hasReport":true,"videos":["ValueStaggerGradient.fa.mp4"]}
+{"slug":"product-card-progressive-assemble","status":"wrapper-error","raw":""}
+{"slug":"segmented-thumb-hero","role":"author","worker":"codex-b","model":"gpt-6-luna","effort":"medium","jobId":169,"status":"ok","durationS":236,"quotaDeltaPct":2,"violations":[],"hasReport":true,"videos":["SegmentedThumbHero.fa.mp4"]}
+{"slug":"glass-pill-dictation-typing","role":"author","worker":"codex-a","model":"gpt-5.6-terra","effort":"low","jobId":161,"status":"ok","durationS":399,"quotaDeltaPct":19,"violations":[],"hasReport":true,"videos":["GlassPillDictationTyping.fa.mp4"]}

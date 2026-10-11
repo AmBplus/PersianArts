@@ -1,0 +1,20 @@
+{
+  "slug": "morph-from-primitive",
+  "verdict": "approve",
+  "score": 90,
+  "issues": [
+    {
+      "severity": "minor",
+      "where": "work/persian/src/demos/ui-entrance/morph-from-primitive/MorphFromPrimitive.tsx header comment / report.json concerns",
+      "problem": "The upstream registry/reference MP4 is only 20 frames, so the morph, content fade and resting card cannot be compared against original frames. Fidelity rests on the code diff, which shows only the FaRoot wrapper, the import, and the dropped position:relative.",
+      "suggestedFix": "Not a defect of the localization. Raise the registry duration to 140 (a library-level change outside this card) so future reviews have original frames to compare."
+    },
+    {
+      "severity": "minor",
+      "where": "Content bars (right-anchored) vs the symmetric outline",
+      "problem": "Right-anchoring is a legitimate RTL decision. It is a judgement call because the bars are abstract and the card has no text, so the weight shift is subtle.",
+      "suggestedFix": "None required."
+    }
+  ],
+  "notes": "Rendered frames 0,15,20,36,42,48,54,60,66,139 with --duration 140. The circle at frame 15 and frame 0 are pixel-identical in layout to the original (same radius, center, stroke, background). The mid-morph barrel contour at frame 48 matches the source prompt's description, with no self-intersection or spikes. At frame 139 the card outline is centered and unclipped. The header bar and two body bars are right-anchored at the same start edge with the original 58%/86%/72% widths. The footer avatar sits on the right with the short bar to its left, consistent with the RTL decisions in the header comment. Diffed against the original: the path math, constants, easing and frame cues (10/20/30, 30-54, 56-68) are identical. The only changes are the FaRoot wrapper (direction rtl, Vazirmatn) and the import. There is no text, so no shaping, letter-spacing, ZWNJ, digit or foreign-text concerns. There is no raster. The geometry correctly stays unmirrored since the circle and outline are symmetric. Grep hits for left/top are the absolute card box, which is centered (CX - RECT_W/2) and so needs no mirroring. Nothing blocks shipping."
+}

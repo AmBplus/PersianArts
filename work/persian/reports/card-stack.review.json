@@ -1,0 +1,20 @@
+{
+  "slug": "card-stack",
+  "verdict": "approve",
+  "score": 88,
+  "issues": [
+    {
+      "severity": "minor",
+      "where": "CardStack.tsx glyph div (fontSize 30, top 62%), frames 12/72/95/125",
+      "problem": "The centred glyph sits about 9-15 px (1920 scale) higher than in the original (star centre y~565 vs ~580 at f125). Cause: FaRoot's Vazirmatn line-height/fallback metrics change the glyph box. The report claims the glyphs match.",
+      "suggestedFix": "Give the glyph div an explicit lineHeight:1 (or fontFamily matching the original fallback) so it lands at the original y; optional, cosmetic."
+    },
+    {
+      "severity": "minor",
+      "where": "CardStack.tsx header and JSX indentation",
+      "problem": "The header says Vazirmatn is chosen for 'future text', but there is no text, so FaRoot only adds the font-metric shift above. The <FaRoot> children are not re-indented, and the Chinese comments are kept.",
+      "suggestedFix": "Either drop the font claim or set lineHeight:1 on the glyph, and re-indent the JSX."
+    }
+  ],
+  "notes": "Diffed against upstream: durations, timings, easing, seeds, N/HUES/GLYPHS, 34px/8deg steps, perspective and transform-origin are unchanged. The demo has no text, so there are no shaping, digit or ZWNJ issues, no raster text and no leftovers. Mirroring is correct and consistent: dir() is applied to both tx and rot, so the fan is an exact mirror (hue order, top card and star position at f95/f125 are the mirror of the original). The skeleton bars moved to right:12, which reads correctly as RTL text lines and matches the original bars mirrored across the card (f12/f25/f72). Vertical spring entrance, tz, zIndex, 165deg gradient and shadow are correctly kept as physical or symmetric. No cut-off cards, clipping or overlap beyond what the original has (outer cards bleed off the edge in both). The only deviation is the small glyph y shift. Ships as is."
+}
