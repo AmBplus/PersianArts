@@ -1,0 +1,43 @@
+{
+  "version": "3.1",
+  "fps": 30,
+  "width": 1920,
+  "height": 1080,
+  "durationFrames": 2118,
+  "music": {
+    "file": "audio/v3/dana31-remix.wav",
+    "edit": "REMIX — Total War[0-16.8] + Total War[52.55-65.6] (early climax) + Risk[9.9-29.6] (features) + Risk[31-34.8] (breath) + Total War[52.55-70.6] (closing climax), 0.5s equal-power crossfades, RMS-matched",
+    "licenses": ["Pixabay Content License (Total War — AntipodeanWriter? no: composer on track page)", "Pixabay Content License (Risk — StudioKolomna)"],
+    "measured_onsets_s": [16.49, 17.06, 17.55, 18.05, 18.56, 19.06, 19.55, 20.06, 20.55, 21.06, 21.55, 22.06, 22.56, 23.06, 23.55, 24.04, 24.54, 28.56, 35.31, 36.05, 38.06, 39.3, 40.05, 41.55, 42.05, 44.05, 46.06, 48.05, 48.81, 50.55, 52.56, 53.3, 54.13, 55.29, 56.13, 56.8, 57.79, 58.63, 59.29, 60.01, 60.29, 64.3]
+  },
+  "stops": [
+    {"id": "C0a", "from": 0,    "dur": 104, "card": "BrandInkOpen",        "src": "typography/brand-ink-open/BrandInkOpen.tsx"},
+    {"id": "C0b", "from": 104,  "dur": 55,  "card": "PaperTitleCard",      "src": "typography/paper-title-card/PaperTitleCard.tsx"},
+    {"id": "C0c", "from": 159,  "dur": 114, "card": "BlurSlide",           "src": "typography/blur-slide/BlurSlide.tsx"},
+    {"id": "A0",  "from": 273,  "dur": 222, "card": "DarkHold",            "src": "NEW (film-level: navy + small white wordmark breathing)"},
+    {"id": "B1",  "from": 495,  "dur": 30,  "card": "CelFlashStomp",       "src": "typography/cel-flash-stomp/CelFlashStomp.tsx"},
+    {"id": "B2",  "from": 525,  "dur": 77,  "card": "OutlineWordFill",     "src": "typography/outline-word-fill/OutlineWordFill.tsx"},
+    {"id": "B3",  "from": 602,  "dur": 119, "card": "SpectrumMorphUi",     "src": "rhythm/spectrum-morph-ui/SpectrumMorphUi.tsx"},
+    {"id": "B4",  "from": 721,  "dur": 146, "card": "LogoLockupFast",      "src": "NEW (LogoLockupFa mode=fast; pulse on the 28.56 hit)"},
+    {"id": "C1",  "from": 876,  "dur": 108, "card": "ListReveal",          "src": "ui-entrance/list-reveal/ListReveal.tsx"},
+    {"id": "C2",  "from": 984,  "dur": 75,  "card": "SegmentedThumbHero",  "src": "interaction/segmented-thumb-hero/SegmentedThumbHero.tsx"},
+    {"id": "C3",  "from": 1059, "dur": 83,  "card": "SplitFlapFlip",       "src": "typography/split-flap-title/SplitFlapFlip.tsx"},
+    {"id": "C4",  "from": 1142, "dur": 60,  "card": "VoiceWaveformLive",   "src": "interaction/voice-waveform-live/VoiceWaveformLive.tsx"},
+    {"id": "C5",  "from": 1202, "dur": 120, "card": "IntegrationHubMap",   "src": "ui-entrance/integration-hub-map/IntegrationHubMap.tsx"},
+    {"id": "C6",  "from": 1322, "dur": 142, "card": "ValueStaggerGradient","src": "ui-entrance/value-stagger-gradient/ValueStaggerGradient.tsx"},
+    {"id": "D",   "from": 1464, "dur": 105, "card": "RadialWave",          "src": "ui-entrance/radial-wave/RadialWave.tsx"},
+    {"id": "E1",  "from": 1569, "dur": 180, "card": "FlyingWords",         "src": "typography/flying-words/FlyingWords.tsx"},
+    {"id": "E2",  "from": 1749, "dur": 60,  "card": "DarkBeat",            "src": "NEW (film-level: 2s near-dark breath before the lockup)"},
+    {"id": "E3",  "from": 1809, "dur": 309, "card": "LogoLockupFull",      "src": "NEW (LogoLockupFa mode=full; pulse lands on the 64.3 hit)"}
+  ],
+  "sfx_events": [
+    {"t_s": 16.50, "sample": "RunwayGroundSkim.wav", "gain_db": -22},
+    {"t_s": 16.56, "sample": "CelFlashStomp.wav", "gain_db": -16},
+    {"t_s": 28.55, "sample": "CountdownArcScatter.wav", "gain_db": -16},
+    {"t_s": 29.20, "sample": "RunwayGroundSkim.wav", "gain_db": -22},
+    {"t_s": 37.20, "sample": "SplitFlapFlip.wav", "gain_db": -20},
+    {"t_s": 48.80, "sample": "RunwayGroundSkim.wav", "gain_db": -22},
+    {"t_s": 64.55, "sample": "RadialWave.wav", "gain_db": -16}
+  ],
+  "master": {"lufs": -14.0, "true_peak_dbfs": -1.5}
+}

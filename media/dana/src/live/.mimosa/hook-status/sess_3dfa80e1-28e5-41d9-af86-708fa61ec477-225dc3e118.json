@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "mimosa-hook-status/v1",
+  "recordedAt": "2026-10-11T21:40:34.469Z",
+  "sessionId": "sess_3dfa80e1-28e5-41d9-af86-708fa61ec477",
+  "event": "PostToolUse",
+  "toolName": "Write",
+  "file": "D:\\P\\project\\persianArts\\media\\dana\\build_audio_v31.py",
+  "outcome": "inconclusive",
+  "coverage": "partial",
+  "findingCount": 0,
+  "durationMs": 10,
+  "hostState": "hook_complete",
+  "reportHint": ".mimosa/reports/"
+}

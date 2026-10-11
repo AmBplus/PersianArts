@@ -1,0 +1,21 @@
+{
+  "name": "dana-film",
+  "private": true,
+  "version": "3.1.0",
+  "type": "module",
+  "description": "Dana motion film v3.1 (snapshot of work/dana). Deps mirror work/persian/src/workbench; in the live workspace node_modules is a junction to its install — here run `npm install` first.",
+  "scripts": {
+    "list": "node render.mjs --list",
+    "render": "node render.mjs"
+  },
+  "dependencies": {
+    "react": "19.2.7",
+    "react-dom": "19.2.7",
+    "remotion": "4.0.484"
+  },
+  "devDependencies": {
+    "@remotion/cli": "4.0.484",
+    "@types/react": "19.2.17",
+    "typescript": "~5.9.0"
+  }
+}
