@@ -63,7 +63,12 @@ node work/persian/progress.mjs          # refresh PROGRESS.md / progress.json fr
    merge new lessons into `docs/PERSIAN-LOCALIZATION-LESSONS.md`; import the agents' returned results (reviewers that approve
    often skip writing review.json, fixers sometimes skip report.json) with
    `node work/persian/import-journal.mjs <journal.jsonl …>` (journals: `~/.claude/projects/<project>/<session>/subagents/workflows/wf_*/journal.jsonl`),
-   then run `node work/persian/progress.mjs`.
+   then run `node work/persian/progress.mjs`, then **publish the new renders to the library**:
+   `node scripts/link-persian-shotcraft-media.mjs` (packages every `*.fa.mp4` into `library/media/shotcraft/<card>/fa/<style>/`
+   and rewrites `library/data/entry-media.json`) and rebuild the UI with `npx vite build` in `library-app/`.
+   Local comparison only: `node scripts/link-upstream-baseline-media.mjs` (reference renders → git-ignored
+   `library/media/reference`). Preview: `node work/serve.mjs library 4174` → http://localhost:4174 ("فقط فارسی‌شده" filter,
+   "اصلی (مرجع)" toggle in the drawer).
    Note: the workflow script must stay free of control characters (no CR line endings, ZWNJ written as `‌`) or the
    Workflow approval dialog rejects it.
 4. Commit and push to `main` (owner's decision 2026-10-11; `main` deploys the library on `library/**` changes).
