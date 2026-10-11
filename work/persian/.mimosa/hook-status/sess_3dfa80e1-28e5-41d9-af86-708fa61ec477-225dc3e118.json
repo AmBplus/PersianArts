@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "mimosa-hook-status/v1",
+  "recordedAt": "2026-10-11T20:46:53.560Z",
+  "sessionId": "sess_3dfa80e1-28e5-41d9-af86-708fa61ec477",
+  "event": "PostToolUse",
+  "toolName": "Write",
+  "file": "D:\\P\\project\\persianArts\\work\\dana\\fork-cards.mjs",
+  "outcome": "clear",
+  "coverage": "complete",
+  "findingCount": 0,
+  "durationMs": 6,
+  "hostState": "hook_complete",
+  "reportHint": ".mimosa/reports/"
+}
