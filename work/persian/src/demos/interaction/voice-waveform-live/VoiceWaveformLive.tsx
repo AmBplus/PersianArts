@@ -1,9 +1,34 @@
-// voice-waveform-live —— raycast-teams 19.5–26s：
-// 录音胶囊内实时声纹：细竖条随"说话"起伏（种子随机+相邻插值），
-// 说话时中部高耸、停顿缩成点线，波形从右往左滚动；右端提交钮。
-// 演：说(0.5–1.9s) → 停(1.9–2.7s) → 说(2.7–4.1s) → 提交(4.1–5s)。
+// PERSIAN (RTL) localization of shotcraft "voice-waveform-live" — motion/timing untouched, direction adapted.
+// Source-prompt intent: a FUNCTIONAL live voice waveform ("it really is listening"): 64 thin bars driven by
+// frame-deterministic value noise; talk 15-57f -> pause 80-124f -> talk -> submit-collapse at 126f. No terminal value,
+// no UI copy — the liveness itself carries the shot.
+//
+// TEXT: the original has ZERO on-screen strings (a mic emoji, an up-arrow SVG icon, and bars). Nothing needed
+// translating and nothing was invented — adding a Persian label would change the composition and break faithfulness.
+// Frames were checked: no Latin/Chinese text remains visible (there never was any rendered text).
+//
+// RTL decisions (each with a reason):
+//  1. MIRROR the capsule row order via direction:rtl (FaRoot): mic -> waveform -> submit becomes mic at the RIGHT edge
+//     (reading start) and submit at the LEFT edge (reading end) — the Persian analogue of mic-left/submit-right, same
+//     reasoning as the mirrored ai-stream-response header. Both 96px buttons keep flexShrink:0.
+//  2. KEEP the waveform time direction (lessons list "music/waveform time direction" as physical/universal, and the
+//     source prompt names the right->left scroll as a core trait — it also coincides with Persian reading direction):
+//     the newest sample stays at the RIGHT end of the bar strip, history flows leftward. The bars container is an
+//     explicit direction:'ltr' island inside the mirrored capsule so the per-bar sample math
+//     (sampleT = f - (N-1-i)*1.6) and every bar height stay bit-identical to the original.
+//  3. KEEP the up-arrow submit glyph (universal "send/commit", no reading-direction meaning), the mic emoji
+//     (script-neutral placeholder; grayscale filter kept as designed), the vertical border gradient (180deg) and the
+//     background light drift translate(+x,+y) (physical light, no reading semantics).
+//
+// FONT: Vazirmatn (variable, neutral product-UI sans) declared through FaRoot — the right register for a raycast-style
+// voice-input capsule. No glyph is actually drawn in this comp, so nothing can silently fall back.
+//
+// RASTER ASSETS: none in the original (pure DOM/SVG/emoji) — nothing to blur, replace or mirror.
+// No letterSpacing / textTransform / per-codepoint splits exist or were introduced. fps, size, seeds, easing and every
+// frame timing are unchanged.
 import React from 'react';
 import { AbsoluteFill, Easing, interpolate, useCurrentFrame } from 'remotion';
+import { FaRoot } from '../../_fa';
 
 const mulberry32 = (a: number) => () => {
   let t = (a += 0x6d2b79f5);
@@ -84,6 +109,7 @@ export const VoiceWaveformLive: React.FC = () => {
   const micGlow = submitted ? 0 : nowEnv;
 
   return (
+    <FaRoot family="Vazirmatn">
     <AbsoluteFill style={{ background: '#08080a', overflow: 'hidden' }}>
       {/* 暗场绸缎底光 */}
       <div style={{
@@ -127,10 +153,12 @@ export const VoiceWaveformLive: React.FC = () => {
               🎙️
             </div>
 
-            {/* 声纹条区 */}
+            {/* 声纹条区 — direction:'ltr' island: the waveform time axis is physical/universal (lessons doc),
+                and the source prompt fixes the scroll as right->left with the newest bar at the right end.
+                Keeping this row LTR inside the mirrored capsule preserves every bar height bit-exactly. */}
             <div style={{
               flex: 1, height: 244, display: 'flex', alignItems: 'center',
-              gap: 6, overflow: 'hidden',
+              gap: 6, overflow: 'hidden', direction: 'ltr',
             }}>
               {bars.map((h, i) => (
                 <div
@@ -167,5 +195,6 @@ export const VoiceWaveformLive: React.FC = () => {
         </div>
       </AbsoluteFill>
     </AbsoluteFill>
+    </FaRoot>
   );
 };

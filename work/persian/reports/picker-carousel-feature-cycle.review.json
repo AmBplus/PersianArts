@@ -1,26 +1,26 @@
 {
   "slug": "picker-carousel-feature-cycle",
   "verdict": "fix",
-  "score": 80,
+  "score": 82,
   "issues": [
     {
       "severity": "major",
-      "where": "PickerCarouselFeatureCycle.tsx icon span (ICONS[5] '↺'); visible in fa frames 90, 102-107 (final resting frame)",
-      "problem": "The icon span inherits Vazirmatn through FaRoot, and Vazirmatn (or its fallback) draws U+21BA as a small curled glyph that looks like an Arabic letter/hook, not the counter-clockwise refresh arrow the original shows (orig f107 shows a proper open circular arrow). The final resting frame therefore shows a wrong-looking icon. Other icons (◎ ✉ ◧ ◈ ★ ⚑) render acceptably.",
-      "suggestedFix": "Give the icon span its own symbol-safe font stack (e.g. fontFamily: \"-apple-system,'Helvetica Neue','Segoe UI Symbol',sans-serif\", the original's family) or replace the glyph with a small inline SVG; re-render f90/f107 and compare with orig."
+      "where": "PickerCarouselFeatureCycle.tsx lines 120-127 (icon span, ICONS[5] U+21BA); fa frame 107 (final resting frame) and f90",
+      "problem": "Round-1 finding NOT fixed. The span now has an explicit fontFamily stack (-apple-system, Helvetica Neue, Segoe UI Symbol), but the re-rendered fa f107 still shows a tiny curled hook that reads like an Arabic letter (ى) instead of the open counter-clockwise refresh arrow seen in orig f107. The system-font stack does not resolve U+21BA in the render environment, so the glyph still comes from a wrong fallback. The header comment claims the symbol icons preserve the source glyph design, which is false for this icon.",
+      "suggestedFix": "Replace the U+21BA text glyph with a small inline SVG (about 14-16px open circular arrow, currentColor stroke, same opacity logic), or use a font verified to carry U+21BA in this environment. Re-render f90 and f107 and compare with orig."
     },
     {
       "severity": "minor",
-      "where": "Header comment / AI badge",
-      "problem": "The badge originally set its own Helvetica fontFamily; it now falls back to Vazirmatn Latin glyphs (heavier/rounder 'AI') and keeps letterSpacing 0.5. Header comment claims no tracking on Persian only; acceptable, but the badge look differs slightly from the source. Also the badge is mirrored to the right although the picker is symmetric, which is a defensible but unverified choice (document or keep).",
-      "suggestedFix": "Optionally restore a Latin sans fontFamily on the badge to match the source mark."
+      "where": "AI badge (lines 144-167)",
+      "problem": "Badge font stack is not the original Helvetica; the AI mark falls back to a rounder sans and keeps letterSpacing 0.5. Mirroring the badge to the right is defensible and now documented in the header.",
+      "suggestedFix": "Optional: leave as is, or use a Latin sans verified to be present so the mark matches the source."
     },
     {
       "severity": "minor",
-      "where": "Code hygiene (icon span ~line 118, closing FaRoot indentation)",
-      "problem": "Misaligned indentation of the icon span and of the FaRoot wrapper; Persian comments mixed with leftover Chinese comments (non-visible).",
-      "suggestedFix": "Re-indent the span and wrapper."
+      "where": "Indentation, lines 119-125 (comment and span) and mixed leftover non-visible comments",
+      "problem": "The comment and span are still mis-indented relative to their parent div.",
+      "suggestedFix": "Re-indent."
     }
   ],
-  "notes": "Verified by re-rendering frames 0,3,8,14,20,31,45,60,75,90,107 and viewing fa vs orig (f3, f20, f45, f60, f90, f107). Translations are idiomatic (ZWNJ in پاک‌سازی، بخش‌بندی، اقدام‌های، گردش‌کارهای، آزمون نسخه‌ها; ی/ک correct, no letter-spacing, one line each, no overflow). Exports and the 108-frame duration are unchanged; vertical motion, pill breath, gradient and holds match the original beats (diff shows only text/font/icon-order/badge changes). Icon moves to the right (RTL start) of each label correctly; vertical list order and travel direction rightly unmirrored. No raster assets, no leftover Chinese/English except the intentional AI mark. Only real defect is the ↺ glyph substitution; otherwise near ship-ready."
+  "notes": "Re-rendered frames 0,3,8,20,45,60,90,107 and viewed fa vs orig at f45 and f107. Translations are idiomatic with correct ZWNJ and Persian ی/ک, no letter-spacing on Persian, single line per row, no overflow, and the pill and gradient fades match the source. Icon sits on the right of each label (RTL start), and vertical travel and order are correctly not mirrored. Exports and the 108-frame duration are unchanged. The only substantive defect is the still-wrong refresh glyph on the final resting frame, which is exactly the round-1 major finding. Fix it (SVG recommended) and this is ship-ready."
 }

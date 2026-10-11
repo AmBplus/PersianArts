@@ -24,15 +24,15 @@
         {"what": "Segment order", "action": "Mirrored: source پرسش is on the right and destination رایانه is on the left.", "why": "The two options express reading-order progression in an RTL interface."},
         {"what": "Thumb travel", "action": "Mirrored from right to left over frames 52–60, preserving the exact 8-frame cubic ease-out.", "why": "The thumb communicates progression from the initial mode to the destination mode."},
         {"what": "Cursor path", "action": "Mirrored horizontally; enters from the left at frame 20 and reaches the left destination at frame 44. Vertical path and arrow silhouette stay unchanged.", "why": "The cursor approaches the destination segment in the mirrored layout; cursor shape is a physical pointer, not a text direction cue."},
-        {"what": "Click ripple", "action": "Repositioned to the mirrored destination click point while retaining its original 12-frame expansion and fade.", "why": "The ripple marks the click on the رایانه destination, not a directional decoration."},
+        {"what": "Click ripple", "action": "Centered on the mirrored destination «رایانه» in the left segment using right = PAD + SEGW + SEGW/2 - 130*rippleT; restored the original top = CH/2 - PAD - 130*rippleT. The 12-frame expansion and fade are unchanged.", "why": "The ripple marks the destination click point where the cursor presses, rather than the source option."},
         {"what": "Labels and icons", "action": "RTL flex order places each leading icon at the right of its Persian label; the question and smiling laptop drawings retain their physical shape.", "why": "Icon placement follows reading order, while the icons depict objects and keep their internal geometry."},
         {"what": "Vertical composition and pill", "action": "Kept centered; entrance remains upward from below and spring parameters remain unchanged.", "why": "Vertical motion is physical and the pill is horizontally symmetric."}
       ],
       "rasterHandling": "No raster or video assets are used; all graphic content is vector UI artwork with no baked-in text.",
       "visualVerification": {
-        "renderedFrames": [0, 10, 20, 32, 44, 48, 52, 56, 60, 70, 100],
-        "comparedFaAndOriginalAt": [44, 56, 100],
-        "result": "Verified the cursor approach, mid-slide and ripple, settled destination icon, and final hold against matching original frames. Persian labels join correctly and remain within the control."
+        "renderedFrames": [0, 10, 20, 32, 44, 48, 50, 52, 57, 60, 70, 100],
+        "comparedFaAndOriginalAt": [44, 50, 57, 100],
+        "result": "After correcting the ripple center, compared Persian and original frames 50 and 57 directly: the growing/fading ring is centered on the left-hand destination «رایانه», aligned with the cursor press; the ring uses the original vertical offset. Also verified cursor approach, mid-slide, settled destination icon, final hold, and Persian label shaping."
       },
       "concerns": [],
       "lessons": []

@@ -1,0 +1,63 @@
+{
+  "slug": "voice-waveform-live",
+  "category": "interaction",
+  "comps": ["demo-VoiceWaveformLive (VoiceWaveformLive.tsx, 150f @30fps, 1920x1080)"],
+  "font": {
+    "family": "Vazirmatn",
+    "reason": "Neutral variable product-UI sans, the right register for a raycast-style voice-input capsule. This comp draws no glyphs at all (the original has zero on-screen text), so nothing can silently fall back; the family is declared through FaRoot so direction:rtl and a correct Persian face are in place for any inherited content."
+  },
+  "textTranslation": {
+    "stringsFound": 0,
+    "note": "The original contains NO on-screen strings: a grayscale mic emoji (script-neutral placeholder per the source prompt), an up-arrow SVG submit glyph, and 64 waveform bars. Nothing was translated because there is nothing to translate; no Persian label was invented because adding UI copy would change the composition and break faithfulness. Verified frame-by-frame: no Latin/Chinese text visible in any frame of the Persian render.",
+    "timingImpact": "none (no text, no per-character effects; every frame timing, seed, easing curve, fps and size unchanged)"
+  },
+  "rtlDecisions": [
+    {
+      "comp": "demo-VoiceWaveformLive",
+      "what": "Capsule inner flex row order (mic | waveform | submit)",
+      "action": "MIRRORED via direction:rtl from FaRoot: mic now at the RIGHT edge (reading start), submit at the LEFT edge (reading end).",
+      "why": "The row is an input->commit flow that follows reading direction, exactly like the mirrored header in the reference ai-stream-response localization. Both 96px buttons keep flexShrink:0 so the mirrored row cannot shrink the icons."
+    },
+    {
+      "comp": "demo-VoiceWaveformLive",
+      "what": "Waveform scroll direction (newest sample at right end, history flowing right->left)",
+      "action": "KEPT bit-exactly; the bars container is an explicit direction:'ltr' island inside the mirrored capsule. Per-bar sample math (sampleT = f - (N-1-i)*1.6, mulberry32 seeds, sin^0.8 center weight, 5px silence clamp) untouched.",
+      "why": "The lessons doc lists waveform/music time direction as physical/universal (KEEP), and the source prompt names the right->left scroll a core design trait; it also coincides with Persian reading direction. A naive rtl flex would have silently reversed bar order (newest at the left), flipping the scroll to left->right and contradicting the design."
+    },
+    {
+      "comp": "demo-VoiceWaveformLive",
+      "what": "Submit button up-arrow glyph",
+      "action": "KEPT pointing up.",
+      "why": "Universal send/commit glyph; no reading-direction meaning (not a back/next chevron)."
+    },
+    {
+      "comp": "demo-VoiceWaveformLive",
+      "what": "Background radial light drift translate(+0.6f, +0.25f) and 180deg capsule border gradient",
+      "action": "KEPT.",
+      "why": "Physical light-source motion and a vertical gradient carry no reading-direction semantics."
+    },
+    {
+      "comp": "demo-VoiceWaveformLive",
+      "what": "Mic emoji with grayscale filter",
+      "action": "KEPT as-is.",
+      "why": "Script-neutral pictograph; the source prompt itself notes it is a placeholder to be swapped for an SVG icon in production, not a localization concern."
+    }
+  ],
+  "rasterHandling": "None needed: the original uses no raster/video assets (pure DOM/SVG/emoji on a dark gradient field). Nothing to blur, replace or mirror.",
+  "verification": {
+    "stillsViewed": [
+      "fa vs orig f3 (entrance, dot line, dim capsule)",
+      "fa vs orig f40 (mid talk-1 mountain)",
+      "fa vs orig f75 (silence between talks)",
+      "fa vs orig f100 (pause dot line)",
+      "fa vs orig f130 (submit press, glowing button, collapsing wave)",
+      "fa vs orig f149 (post-collapse dot line with residual bump)"
+    ],
+    "result": "Every Persian frame is the exact horizontal mirror of the original with identical bar data, glow states and beats; the full Persian MP4 (VoiceWaveformLive.fa.mp4, 150f) rendered without errors."
+  },
+  "concerns": [
+    "The card localizes to zero visible Persian text because the source design has none; a reviewer wanting an added Persian status label should know that would be new content, not localization.",
+    "Chinese code comments from upstream were intentionally left in the source (they never render on screen); the header comment documenting all RTL decisions is in English."
+  ],
+  "lessons": []
+}

@@ -1,0 +1,10 @@
+{
+ "slug": "avatar-bracket-carousel",
+ "verdict": "approve",
+ "score": 90,
+ "issues": [
+  {"severity": "minor", "where": "AvatarBracketCarousel.tsx, flex row (all frames)", "problem": "Slot/bracket centre sits at x~712 (orig ~752) because the Persian words have unequal widths (long هم‌تیمی‌های vs short شما); the focus frame is ~250px left of canvas centre. Same kind of off-centre as the original but slightly stronger.", "suggestedFix": "Optional: give both word boxes equal min-width or compensate with a small translateX on the row so the slot is nearer the canvas centre."},
+  {"severity": "minor", "where": "role label at f41/f52", "problem": "Persian label is slightly smaller/lighter in visual weight than the tracked Latin original.", "suggestedFix": "Optionally bump fs(12) to fs(13)."}
+ ],
+ "notes": "Rendered f3..f155 myself and compared with orig. Diff vs upstream shows only text, FaRoot/Vazirmatn, fs/FA_LH, letterSpacing 0; all timings, constants, springs, exports unchanged. Shaping correct, ZWNJ present, reading order right-to-left (هم‌تیمی‌های [طراح] شما). Vertical carousel, symmetric brackets, centred label correctly kept un-mirrored. Variable font weights real; font loaded. No leftover foreign text, no raster text. Persian role words idiomatic."
+}

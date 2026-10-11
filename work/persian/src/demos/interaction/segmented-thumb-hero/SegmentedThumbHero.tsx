@@ -88,8 +88,8 @@ export const SegmentedThumbHero: React.FC = () => {
           display: 'flex', alignItems: 'center', padding: PAD, boxSizing: 'border-box', direction: 'rtl' }}>
           <div style={{ position: 'absolute', right: thumbRight, top: PAD, width: SEGW, height: CH - PAD * 2,
             borderRadius: (CH - PAD * 2) / 2, background: '#fff', boxShadow: '0 6px 20px rgba(0,0,0,0.18)', zIndex: 1 }} />
-          {rippleT > 0 && rippleT < 1 && <div style={{ position: 'absolute', right: PAD + SEGW / 2 - 130 * rippleT,
-            top: CH / 2 - 130 * rippleT, width: 260 * rippleT, height: 260 * rippleT, borderRadius: '50%',
+          {rippleT > 0 && rippleT < 1 && <div style={{ position: 'absolute', right: PAD + SEGW + SEGW / 2 - 130 * rippleT,
+            top: CH / 2 - PAD - 130 * rippleT, width: 260 * rippleT, height: 260 * rippleT, borderRadius: '50%',
             border: `4px solid ${G.mid}`, opacity: 1 - rippleT, zIndex: 3 }} />}
           <div style={labelStyle(askActive)}>
             <span style={{ display: 'inline-flex', transform: `scale(${askScale})`, width: askScale < 0.05 ? 0 : 78, overflow: 'visible', flexShrink: 0 }}><AskIcon size={78} /></span>

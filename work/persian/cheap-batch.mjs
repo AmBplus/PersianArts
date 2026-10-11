@@ -14,8 +14,7 @@ const skip = new Set((arg("skip", "") || "").split(",").filter(Boolean));
 const await_readdir = (c) => readdirSync(join(root, "work/persian/out", c));
 const redo = new Set((arg("redo", "") || "").split(",").filter(Boolean));
 const authored = (c) => existsSync(join(root, "work/persian/out", c)) && (await_readdir(c)).some((f) => f.endsWith(".fa.mp4"));
-cards = cards.filter((c) => redo.has(c) || (!skip.has(c) && !authored(c)))
-cards = cards.filter((c) => redo.has(c) || (!skip.has(c) && !existsSync(join(root, "work/persian/out", c, "review.json")) && !existsSync(join(root, "work/persian/out", c, `${c}.done`)));
+cards = cards.filter((c) => redo.has(c) || (!skip.has(c) && !authored(c) && !existsSync(join(root, "work/persian/out", c, "review.json"))));
 if (arg("max")) cards = cards.slice(0, Number(arg("max")));
 
 const DEFAULT_SLOTS = [

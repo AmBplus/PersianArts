@@ -1,10 +1,17 @@
-// axial-stretch —— 轴向拉伸速度感
+// Persian (RTL) localization of axial-stretch.
+// Visible copy: «کشش محوری» replaces the source title; cards contain only geometry.
+// RTL: target order and the horizontal entrance are mirrored so the first card is
+// rightmost and flies in from the left. The trailing transform origin flips too.
+// All seeds, easing, velocity-difference stretch, timings and rest frames are exact.
+// Font: Noto Kufi Arabic, chosen for the source's geometric heavy display mood.
+// No raster assets or baked-in foreign text are present.
 // 三张 Card 从右外依次横向飞入落位，飞行途中沿运动轴速度驱动拉伸
 // （scaleX 峰值 ≈2.2 / scaleY ≈0.72，糖稀拉丝感），落点 Back.out 式回弹。
 // 速度用位置差分 p(f)-p(f-1) 驱动，低于阈值不拉伸。收尾真静止 ≥35f。
 import React from 'react';
 import { useCurrentFrame, interpolate, Easing } from 'remotion';
-import { G, Card, TitleBlock } from '../../_fixtures/Fixtures';
+import { G, Card } from '../../_fixtures/Fixtures';
+import { FaRoot, faText } from '../../_fa';
 
 const W = 1920;
 const CARD_W = 380;
@@ -14,7 +21,7 @@ const ROW_W = 3 * CARD_W + 2 * GAP; // 1260
 const ROW_X0 = (W - ROW_W) / 2; // 330
 const ROW_Y = (1080 - CARD_H) / 2; // 425
 
-const START_X = 1980; // 完全在画面右外
+const START_X = -440; // mirrored source start, completely outside the left edge
 const FLIGHT = 36; // 飞行帧数
 const STAGGER = 12; // 错峰
 const FIRST = 10; // 首卡起飞帧
@@ -37,7 +44,7 @@ const posAt = (f: number, start: number, targetX: number): number =>
 
 const FlyCard: React.FC<{ i: number; frame: number }> = ({ i, frame }) => {
   const start = FIRST + i * STAGGER;
-  const targetX = ROW_X0 + i * (CARD_W + GAP);
+  const targetX = ROW_X0 + (2 - i) * (CARD_W + GAP);
   const land = start + FLIGHT;
 
   const x = posAt(frame, start, targetX);
@@ -66,9 +73,9 @@ const FlyCard: React.FC<{ i: number; frame: number }> = ({ i, frame }) => {
         position: 'absolute',
         left: 0,
         top: ROW_Y,
-        // 顺序：先 translate 再 scale；transformOrigin 设运动后缘（向左飞 → 右缘）
+        // Translate before scale; the left edge is the trailing edge for rightward flight.
         transform: `translateX(${x}px) scaleX(${stretchX * sqX}) scaleY(${stretchY * sqY})`,
-        transformOrigin: '100% 50%',
+        transformOrigin: '0% 50%',
       }}
     >
       <Card w={CARD_W} h={CARD_H} seed={i + 1} />
@@ -84,17 +91,19 @@ export const AxialStretch: React.FC = () => {
   });
 
   return (
-    <div style={{ width: 1920, height: 1080, background: G.bg, position: 'relative', overflow: 'hidden' }}>
-      <div style={{ position: 'absolute', top: 120, width: '100%', textAlign: 'center', opacity: titleOp }}>
-        <TitleBlock text="AXIAL STRETCH" size={72} />
-      </div>
+    <div style={{ width: 1920, height: 1080, background: G.bg, position: 'relative', overflow: 'hidden', direction: 'rtl' }}>
+      <FaRoot family="Noto Kufi Arabic">
+        <div style={{ position: 'absolute', top: 120, width: '100%', textAlign: 'center', opacity: titleOp }}>
+          <div style={{...faText(72), fontFamily: '"Noto Kufi Arabic"', fontWeight: 800, color: G.ink}}>کشش محوری</div>
+        </div>
+      </FaRoot>
       {/* 落位虚线槽，标出目标位置 */}
       {[0, 1, 2].map((i) => (
         <div
           key={`slot-${i}`}
           style={{
             position: 'absolute',
-            left: ROW_X0 + i * (CARD_W + GAP),
+            left: ROW_X0 + (2 - i) * (CARD_W + GAP),
             top: ROW_Y,
             width: CARD_W,
             height: CARD_H,

@@ -1,4 +1,8 @@
-// contact-shadow-lift｜接触阴影离面抬升
+// Persian (RTL) localization of contact-shadow-lift.
+// No visible copy, raster asset, or baked-in foreign text exists in this demo.
+// RTL: mirror the three-card reading order and top-bar chrome; the first card is
+// rightmost and remains the only lifted card. Vertical lift, shadow physics,
+// seeds, timing, easing and the final rest are physical and remain unchanged.
 // 浅底上一排 3 张卡，逐张被"点名"抬起：卡 translateY(-28px)+scale(1.08)，
 // 其正下方独立椭圆阴影同步放大变淡——纸片离桌感；落回时阴影收紧变实，
 // 落地 2f 卡壳 scale 0.99 微压。三张依次各来一遍。收尾真静止 ≥35f。
@@ -65,16 +69,17 @@ export const ContactShadowLift: React.FC = () => {
   return (
     <div style={{ width: 1920, height: 1080, background: G.bg, position: 'relative', overflow: 'hidden' }}>
       {/* 假 dashboard 式顶栏，给浅底一点场景感 */}
-      <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 84, background: G.panel, borderBottom: `2px solid ${G.line}`, display: 'flex', alignItems: 'center', padding: '0 48px', gap: 24, boxSizing: 'border-box' }}>
+      <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 84, background: G.panel, borderBottom: `2px solid ${G.line}`, display: 'flex', alignItems: 'center', padding: '0 48px', gap: 24, boxSizing: 'border-box', direction: 'rtl' }}>
         <div style={{ width: 40, height: 40, borderRadius: 10, background: G.side }} />
         <div style={{ height: 18, width: 220, background: G.bar, borderRadius: 9 }} />
-        <div style={{ marginLeft: 'auto', width: 36, height: 36, borderRadius: 18, background: G.mid }} />
+        <div style={{ marginInlineStart: 'auto', width: 36, height: 36, borderRadius: 18, background: G.mid }} />
       </div>
 
       {[0, 1, 2].map((i) => {
         const t = frame - STARTS[i];
         const { y, s, lift } = cardMotion(t);
-        const x = left0 + i * (CARD_W + GAP);
+        const sourceX = left0 + i * (CARD_W + GAP);
+        const x = 1920 - CARD_W - sourceX;
 
         // 独立接触阴影（不是 box-shadow）：卡正下方椭圆径向渐变
         const shScale = 1 + 0.72 * lift;     // 1.0 → 1.72（对比再拉大）

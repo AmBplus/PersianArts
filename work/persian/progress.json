@@ -1,10 +1,10 @@
 {
- "generatedAt": "2026-10-11T15:27:02.735Z",
+ "generatedAt": "2026-10-11T15:32:20.038Z",
  "summary": {
-  "todo": 96,
+  "todo": 95,
   "localized": 3,
-  "approved": 46,
-  "fixed": 9,
+  "approved": 48,
+  "fixed": 8,
   "needs-fix": 3,
   "total": 157
  },
@@ -43,7 +43,7 @@
   },
   {
    "slug": "avatar-bracket-carousel",
-   "status": "localized",
+   "status": "approved",
    "font": "Vazirmatn",
    "videos": 1,
    "majors": 0,
@@ -771,7 +771,7 @@
   },
   {
    "slug": "picker-carousel-feature-cycle",
-   "status": "fixed",
+   "status": "needs-fix",
    "font": "Vazirmatn",
    "videos": 1,
    "majors": 1,
@@ -875,10 +875,10 @@
   },
   {
    "slug": "row-embed",
-   "status": "fixed",
+   "status": "approved",
    "font": "",
    "videos": 1,
-   "majors": 3,
+   "majors": 0,
    "concerns": 0
   },
   {
@@ -939,7 +939,7 @@
   },
   {
    "slug": "segmented-thumb-hero",
-   "status": "needs-fix",
+   "status": "fixed",
    "font": "",
    "videos": 1,
    "majors": 1,
@@ -1219,11 +1219,11 @@
   },
   {
    "slug": "voice-waveform-live",
-   "status": "todo",
-   "font": "",
-   "videos": 0,
+   "status": "localized",
+   "font": "Vazirmatn",
+   "videos": 1,
    "majors": 0,
-   "concerns": 0
+   "concerns": 2
   },
   {
    "slug": "wall-reveal-moves",
