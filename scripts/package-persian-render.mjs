@@ -31,6 +31,7 @@ variant.thumbnail = `${rel}/thumb.webp`;
 variant.prompt = `${rel}/prompt.fa.md`;
 variant.metadata = `${rel}/meta.json`;
 variant.scene = `${rel}/scene.json`;
+variant.audio = existsSync(resolve(renderDir, "music.m4a")) ? `${rel}/music.m4a` : null;
 entry.status = entry.variants.every((item) => ["rendered-persian", "verified", "published"].includes(item.status)) ? "rendered-persian" : "in-progress";
 await writeFile(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`, "utf8");
 console.log(`Packaged ${modelId}[${variantIndex}] ${variantKey}: ${rel}`);

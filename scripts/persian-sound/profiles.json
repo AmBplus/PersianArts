@@ -1,0 +1,163 @@
+{
+  "clean-tech": {
+    "when": "ui-entrance, interaction, data",
+    "bpm": [104, 116],
+    "swing": 0.0,
+    "reverb_wet": 0.18,
+    "scale": ["A3", "C4", "D4", "E4", "G4", "A4", "C5", "D5", "E5"],
+    "layers": {
+      "kick": { "pattern": "light", "gain": -12 },
+      "clap": null,
+      "hat": { "pattern": "8ths", "gain": -22 },
+      "bass": { "pattern": "roots", "gain": -18 },
+      "pad": { "degrees": [0, 2, 4], "gain": -26 },
+      "pluck": { "pattern": "motif", "step": 2, "engine": "karplus", "gain": -20 },
+      "sparkle": { "gain": -26 },
+      "tick": { "pattern": "typewriter", "gain": -14 },
+      "pop": null,
+      "drone": null
+    },
+    "sfx": { "riser": false, "impact": false }
+  },
+  "cinematic": {
+    "when": "opening, outro, camera",
+    "bpm": [84, 96],
+    "swing": 0.0,
+    "reverb_wet": 0.22,
+    "scale": ["D2", "D3", "F3", "A3", "C4", "D4", "F4", "A4", "D5"],
+    "layers": {
+      "kick": { "pattern": "light", "gain": -14 },
+      "clap": null,
+      "hat": null,
+      "bass": { "pattern": "roots", "gain": -18 },
+      "pad": { "degrees": [0, 2, 4, 6], "gain": -22 },
+      "pluck": { "pattern": "sparse", "step": 1, "engine": "karplus", "gain": -22 },
+      "sparkle": { "gain": -26 },
+      "tick": null,
+      "pop": null,
+      "drone": { "notes": ["D2", "A2"], "gain": -24 }
+    },
+    "sfx": { "riser": true, "impact": true }
+  },
+  "punchy": {
+    "when": "rhythm, effects (glitch, flash, slam)",
+    "bpm": [120, 128],
+    "swing": 0.0,
+    "reverb_wet": 0.10,
+    "scale": ["E3", "F3", "G3", "A3", "B3", "C4", "D4", "E4"],
+    "layers": {
+      "kick": { "pattern": "4-floor", "gain": -12 },
+      "clap": { "pattern": "2/4", "gain": -16 },
+      "hat": { "pattern": "8ths", "gain": -22 },
+      "bass": { "pattern": "4-floor", "gain": -18 },
+      "pad": null,
+      "pluck": { "pattern": "motif", "step": 4, "engine": "karplus", "gain": -20 },
+      "sparkle": null,
+      "tick": null,
+      "pop": null,
+      "drone": null
+    },
+    "sfx": { "riser": false, "impact": false }
+  },
+  "editorial": {
+    "when": "typography",
+    "bpm": [88, 100],
+    "swing": 0.0,
+    "reverb_wet": 0.18,
+    "scale": ["A3", "B3", "C4", "D4", "E4", "F#4", "G4", "A4", "B4", "D5"],
+    "layers": {
+      "kick": null,
+      "clap": null,
+      "hat": { "pattern": "offbeats", "gain": -26 },
+      "bass": { "pattern": "roots", "gain": -20 },
+      "pad": { "degrees": [0, 2, 4], "gain": -24 },
+      "pluck": { "pattern": "sparse", "step": 1, "engine": "karplus", "gain": -20 },
+      "sparkle": { "gain": -26 },
+      "tick": { "pattern": "typewriter", "gain": -14 },
+      "pop": null,
+      "drone": null
+    },
+    "sfx": { "riser": false, "impact": false }
+  },
+  "persian-shur": {
+    "when": "calligraphy, ink, poetry, elegant (Aref Ruqaa, Amiri, Nastaliq, ink, brush, poem)",
+    "bpm": [76, 88],
+    "swing": 0.0,
+    "reverb_wet": 0.24,
+    "scale": ["D3", "E3-50", "F3", "G3", "A3", "Bb3", "C4", "D4", "E4-50", "F4", "G4", "A4"],
+    "layers": {
+      "kick": null,
+      "clap": null,
+      "hat": { "pattern": "offbeats", "gain": -28 },
+      "bass": null,
+      "pad": null,
+      "pluck": { "pattern": "motif", "step": 2, "engine": "setar", "ornament": true, "gain": -20 },
+      "sparkle": { "gain": -26 },
+      "tick": null,
+      "pop": null,
+      "drone": { "notes": ["D2", "A2"], "gain": -26 }
+    },
+    "sfx": { "riser": false, "impact": false }
+  },
+  "playful": {
+    "when": "tags friendly/casual/pill/chip",
+    "bpm": [108, 118],
+    "swing": 0.54,
+    "reverb_wet": 0.14,
+    "scale": ["C4", "D4", "E4", "G4", "A4", "C5", "D5", "E5", "G5"],
+    "layers": {
+      "kick": { "pattern": "light", "gain": -16 },
+      "clap": { "pattern": "2/4", "gain": -20 },
+      "hat": { "pattern": "8ths", "gain": -24 },
+      "bass": { "pattern": "roots", "gain": -18 },
+      "pad": null,
+      "pluck": { "pattern": "motif", "step": 2, "engine": "marimba", "gain": -20 },
+      "sparkle": null,
+      "tick": null,
+      "pop": { "pattern": "pops", "gain": -16 },
+      "drone": null
+    },
+    "sfx": { "riser": false, "impact": false }
+  },
+  "transition": {
+    "when": "transition",
+    "bpm": [112, 122],
+    "swing": 0.0,
+    "reverb_wet": 0.20,
+    "scale": ["G3", "A3", "Bb3", "C4", "D4", "Eb4", "F4", "G4", "Bb4"],
+    "layers": {
+      "kick": { "pattern": "4-floor", "gain": -14 },
+      "clap": null,
+      "hat": null,
+      "bass": { "pattern": "4-floor", "gain": -18 },
+      "pad": { "degrees": [0, 2, 4], "gain": -26 },
+      "pluck": { "pattern": "sparse", "step": 1, "engine": "karplus", "gain": -22 },
+      "sparkle": null,
+      "tick": null,
+      "pop": null,
+      "drone": null
+    },
+    "sfx": { "riser": true, "impact": false }
+  },
+  "default": {
+    "_comment": "fallback when no category/tag mapping; identical to clean-tech",
+    "when": "fallback",
+    "bpm": [104, 116],
+    "swing": 0.0,
+    "reverb_wet": 0.18,
+    "scale": ["A3", "C4", "D4", "E4", "G4", "A4", "C5", "D5", "E5"],
+    "layers": {
+      "kick": { "pattern": "light", "gain": -12 },
+      "clap": null,
+      "hat": { "pattern": "8ths", "gain": -22 },
+      "bass": { "pattern": "roots", "gain": -18 },
+      "pad": { "degrees": [0, 2, 4], "gain": -26 },
+      "pluck": { "pattern": "motif", "step": 2, "engine": "karplus", "gain": -20 },
+      "sparkle": { "gain": -26 },
+      "tick": { "pattern": "typewriter", "gain": -14 },
+      "pop": null,
+      "drone": null
+    },
+    "sfx": { "riser": false, "impact": false }
+  }
+}

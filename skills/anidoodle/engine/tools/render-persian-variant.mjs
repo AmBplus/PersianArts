@@ -26,10 +26,13 @@ try {
   // The deterministic engine export is intentionally conservative. Public previews
   // use one explicit web profile so every variant has bounded, fast-start delivery.
   const compressed = join(output, "preview.compressed.mp4");
-  const compression = spawnSync("ffmpeg", ["-y", "-loglevel", "error", "-i", preview, "-map", "0:v:0", "-an", "-c:v", "libx264", "-preset", "slow", "-crf", "22", "-pix_fmt", "yuv420p", "-movflags", "+faststart", "-map_metadata", "-1", compressed]);
+  const compression = spawnSync("ffmpeg", ["-y", "-loglevel", "error", "-i", preview, "-map", "0:v:0", "-map", "0:a:0?", "-c:v", "libx264", "-preset", "slow", "-crf", "22", "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "128k", "-shortest", "-movflags", "+faststart", "-map_metadata", "-1", compressed]);
   if (compression.status !== 0) throw new Error(`Web MP4 compression failed: ${compression.stderr?.toString() ?? "unknown ffmpeg error"}`);
   await rm(preview, {force: true});
   await rename(compressed, preview);
+  const music = join(output, "music.m4a");
+  const audioExtract = spawnSync("ffmpeg", ["-y", "-loglevel", "error", "-i", preview, "-vn", "-c:a", "aac", "-b:a", "128k", music]);
+  if (audioExtract.status !== 0) await rm(music, {force: true});
   const ffmpeg = "ffmpeg";
   for (const [from, to] of [[`persianVariant-0.png`, "thumb.webp"], [`persianVariant-${mid}.png`, "poster.webp"]]) {
     const source = join(stillDir, from), target = join(output, to);
@@ -42,7 +45,7 @@ try {
   await writeFile(join(output, "scene.json"), `${JSON.stringify(spec, null, 2)}\n`, "utf8");
   const probe = spawnSync("ffprobe", ["-v", "error", "-show_entries", "format=duration,size:stream=codec_name,width,height,nb_frames,pix_fmt", "-of", "json", preview], {encoding: "utf8"});
   if (probe.status !== 0) throw new Error(`ffprobe failed: ${probe.stderr}`);
-  const report = {modelId: spec.modelId, variantKey: spec.variantKey, family: spec.family, output: "preview.mp4", poster: "poster.webp", thumbnail: "thumb.webp", encoding: {codec: "h264", crf: 22, preset: "slow", fastStart: true}, probe: JSON.parse(probe.stdout)};
+  const report = {modelId: spec.modelId, variantKey: spec.variantKey, family: spec.family, output: "preview.mp4", audio: existsSync(music) ? "music.m4a" : null, poster: "poster.webp", thumbnail: "thumb.webp", encoding: {codec: "h264", crf: 22, preset: "slow", fastStart: true}, probe: JSON.parse(probe.stdout)};
   await writeFile(join(output, "meta.json"), `${JSON.stringify({...report, spec}, null, 2)}\n`, "utf8");
   console.log(`Packaged Persian variant: ${output}`);
 } finally {
