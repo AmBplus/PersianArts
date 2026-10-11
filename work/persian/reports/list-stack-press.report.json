@@ -1,6 +1,6 @@
 {
   "slug": "list-stack-press",
-  "status": "fixed-rendered-awaiting-independent-review",
+  "status": "round3-fixed-rendered-awaiting-independent-review",
   "component": "ListStackPress",
   "duration": 88,
   "fps": 30,
@@ -63,8 +63,14 @@
     {
       "comp": "demo-ListStackPress",
       "what": "Odometer digits, zero and cell geometry",
-      "action": "Use Persian ۱–۹, with Latin 0 only for zero, direction:ltr. Window width=88, lineH=fs(96)*FA_LH=159px; center each digit vertically; preserve 8-frame continuous rolls.",
-      "why": "The original Persian zero was a tiny ring that read as a bullet. The reviewer explicitly allowed an LTR Latin zero. Larger line boxes fit settled Persian glyphs while preserving the source moving-strip clipping effect and all roll beats."
+      "action": "Use Persian ۱–۹, with Latin 0 only for zero, direction:ltr. Window width=88, lineH=fs(96)*FA_LH=159px; center each digit vertically; every digit cell carries explicit fontWeight:700; preserve 8-frame continuous rolls.",
+      "why": "The original Persian zero was a tiny ring that read as a bullet; the round-1 Latin 0 at inherited weight 400 was a visibly thin, condensed oval next to Vazirmatn's much heavier Arabic-Indic digits (the longest-held state, f0–f28, looked like a different typeface). Explicit 700 on all cells gives the 0 the same stroke weight as ۱–۵ and keeps the counter one consistent bold voice. Larger line boxes fit settled Persian glyphs while preserving the source moving-strip clipping effect and all roll beats."
+    },
+    {
+      "comp": "demo-ListStackPress",
+      "what": "Screen-space counter placement",
+      "action": "Raise the mirrored counter rail from (left:96, top:70) to (left:88, top:44).",
+      "why": "At zoom 1.35 the digit straddled the page header bar's top rule more deeply than the original's PAPER RADAR block (whose 0 also overlaps the bar, so overlap itself is the intended HUD behaviour). Raising it restores the original's clearance and drops the «از ۳۱ مقالهٔ امروز» caption below the bar's bottom rule, well clear of the فیلتر chip."
     },
     {
       "comp": "demo-ListStackPress",
@@ -111,7 +117,7 @@
       "arXiv",
       "HuggingFace",
       "arXiv identifiers",
-      "counter zero 0"
+      "counter zero 0 (Vazirmatn Latin glyph, fontWeight 700 to match the Persian digit strokes)"
     ],
     "copyScope": "Retained existing concise Persian reconstructions of the research subjects, adding source row, ranking/upvote markers, summary prefix, date, filter and footer."
   },
@@ -175,6 +181,21 @@
       "resolution": "Recognizable LTR Latin 0, fixed-width/taller digit cells; opening and settled digits inspected."
     },
     {
+      "severity": "major (round 3)",
+      "issue": "Latin 0 mismatched the heavy Persian digits (thin 400-weight oval vs thick ۱–۵; longest-held counter state looked like a different typeface)",
+      "resolution": "Explicit fontWeight:700 on every DigitRoll cell. Zoomed crops at f0/f6 (0) vs f70 (۴) and f87 (۵) now show matching stroke weights (~14px at 96px size). Zoom evidence: work/persian/src/workbench/.tmp/list-stack-press/n-f{0,6,70,87}-counter.png."
+    },
+    {
+      "severity": "minor (round 3)",
+      "issue": "Counter digit/caption crowded the page header bar and فیلتر chip at zoom 1.35",
+      "resolution": "Counter rail moved from (96,70) to (88,44); caption now sits below the bar rule with ~75px clearance from the فیلتر chip. The residual digit-over-bar overlap matches the original's own HUD overlay (PAPER RADAR 0 also straddles the bar top edge)."
+    },
+    {
+      "severity": "minor (round 3)",
+      "issue": "Date island ordering doubted; smallest captions felt small for Persian x-height",
+      "resolution": "Zoomed crop f6-date.png verifies the bdi LTR island renders ۲۰۲۶-۰۷-۰۵ in correct ISO order (year leftmost) — no swap. Date row fs 13→14, «مرتبط با پروژه», per-card note and footer fs 12→13. Card meta row kept at 13px because enlarging it would wrap the longest author line inside the fixed-height cards."
+    },
+    {
       "severity": "minor",
       "issue": "ID formatting / rank-vote semantics",
       "resolution": "LTR technical IDs with period, #rank and ↑votes, رای spelling."
@@ -196,30 +217,38 @@
     }
   ],
   "verification": {
-    "renderCommand": "node work/persian/render-card.mjs --slug list-stack-press --frames 0,6,12,14,30,32,35,70,84,87 --video",
+    "renderCommand": "node work/persian/render-card.mjs --slug list-stack-press --frames 0,6,22,30,70,87 --video (round 3; round 2 used --frames 0,6,12,14,30,32,35,70,84,87 --video)",
     "renderSucceeded": true,
     "errors": [],
     "video": "work/persian/out/list-stack-press/ListStackPress.fa.mp4",
     "viewedFaAndOriginalFrames": [
       0,
+      4,
       6,
-      12,
-      14,
+      22,
       30,
-      32,
-      35,
+      44,
       70,
-      84,
       87
+    ],
+    "zoomedCropsViewed": [
+      "work/persian/src/workbench/.tmp/list-stack-press/n-f0-counter.png",
+      "work/persian/src/workbench/.tmp/list-stack-press/n-f6-counter.png",
+      "work/persian/src/workbench/.tmp/list-stack-press/n-f70-counter.png",
+      "work/persian/src/workbench/.tmp/list-stack-press/n-f87-counter.png",
+      "work/persian/src/workbench/.tmp/list-stack-press/f6-date.png",
+      "work/persian/src/workbench/.tmp/list-stack-press/f70-meta.png"
     ],
     "compositionsViewed": [
       "demo-ListStackPress"
     ],
     "visualNotes": [
+      "Round-3 major fixed: bold 0 at f0/f4/f6/f22 has the same stroke weight as ۴ (f70) and ۵ (f87); the counter no longer reads as two typefaces (zoomed crops).",
+      "Counter raised: digit and caption clear the header bar rule and the فیلتر chip; residual bar overlap mirrors the original's own PAPER RADAR overlay.",
+      "Date island verified at 3x zoom: renders ۲۰۲۶-۰۷-۰۵ in ISO order, no bidi swap; meta rows show intact #۱ / ↑ ۶۳ / arXiv / HuggingFace islands.",
       "Opening brand/title/subtitle are entirely inside frame and header edges match the column.",
-      "Subtitle/meta rows are distinct; rule is intact, not partly hidden by slot masks.",
-      "Initial zero is an oval numeral. f30/f32 show normal moving odometer clipping, comparable to source; f35/f70/f84/f87 show whole settled Persian glyphs.",
-      "Highlight at f30/f32/f35/f70/f84 is on the project-name row and does not cover the note. f87 overlay/border is absent.",
+      "Initial zero is a bold oval numeral. Mid-roll frames (f30, f44) show normal moving odometer clipping, comparable to source; settled frames show whole bold Persian glyphs.",
+      "Highlight at f30/f70 is on the project-name row and does not cover the note. f87 overlay/border is absent.",
       "All five Persian cards and restored footer are visible at the end; no unintended Chinese or English prose.",
       "Persian joins and lines are intact; technical source tokens are intentionally isolated."
     ],
@@ -234,21 +263,21 @@
       },
       {
         "comp": "demo-ListStackPress",
+        "frame": 4,
+        "localized": "ListStackPress.fa.f4.png",
+        "original": "ListStackPress.orig.f4.png"
+      },
+      {
+        "comp": "demo-ListStackPress",
         "frame": 6,
         "localized": "ListStackPress.fa.f6.png",
         "original": "ListStackPress.orig.f6.png"
       },
       {
         "comp": "demo-ListStackPress",
-        "frame": 12,
-        "localized": "ListStackPress.fa.f12.png",
-        "original": "ListStackPress.orig.f12.png"
-      },
-      {
-        "comp": "demo-ListStackPress",
-        "frame": 14,
-        "localized": "ListStackPress.fa.f14.png",
-        "original": "ListStackPress.orig.f14.png"
+        "frame": 22,
+        "localized": "ListStackPress.fa.f22.png",
+        "original": "ListStackPress.orig.f22.png"
       },
       {
         "comp": "demo-ListStackPress",
@@ -258,27 +287,15 @@
       },
       {
         "comp": "demo-ListStackPress",
-        "frame": 32,
-        "localized": "ListStackPress.fa.f32.png",
-        "original": "ListStackPress.orig.f32.png"
-      },
-      {
-        "comp": "demo-ListStackPress",
-        "frame": 35,
-        "localized": "ListStackPress.fa.f35.png",
-        "original": "ListStackPress.orig.f35.png"
+        "frame": 44,
+        "localized": "ListStackPress.fa.f44.png",
+        "original": "ListStackPress.orig.f44.png"
       },
       {
         "comp": "demo-ListStackPress",
         "frame": 70,
         "localized": "ListStackPress.fa.f70.png",
         "original": "ListStackPress.orig.f70.png"
-      },
-      {
-        "comp": "demo-ListStackPress",
-        "frame": 84,
-        "localized": "ListStackPress.fa.f84.png",
-        "original": "ListStackPress.orig.f84.png"
       },
       {
         "comp": "demo-ListStackPress",
@@ -290,7 +307,9 @@
   },
   "concerns": [
     "Existing paper summaries/notes remain concise reconstructions, not a verbatim translation of every raster sentence; an independent reviewer may still require copy expansion.",
-    "Counter zero intentionally uses Latin 0 as allowed by the reviewer; other counter/count/ranking digits are Persian, identifiers keep Latin digits.",
+    "Counter zero intentionally uses Latin 0 (at fontWeight 700 to match the Persian digit strokes) as allowed by the reviewer; other counter/count/ranking digits are Persian, identifiers keep Latin digits.",
+    "At f0–f12 the raised counter still overlaps the page header bar slightly — this matches the original's own screen-space PAPER RADAR overlay, whose 0 also straddles the bar's top edge; overlap is intended HUD behaviour, and the caption now clears the فیلتر chip by ~75px.",
+    "Card meta row kept at 13px: enlarging it would wrap the longest author line inside the fixed-height cards. Other 12px runs were raised to 13px and the date row to 14px.",
     "Odometer glyphs are partially masked during transit as in the original; settled glyphs fit the window.",
     "Public release is not claimed: this report records local fixes and visual evidence for independent review."
   ],
@@ -304,6 +323,16 @@
       "symptom": "Highlight covers a note rather than the project name after Persian typography changes.",
       "cause": "Fixed percentage-of-card positioning ignores actual translated row geometry.",
       "fix": "Nest the overlay within the project-name row; preserve source width/growth and mirror its inline origin."
+    },
+    {
+      "symptom": "A mixed Latin/Persian numeral strip (Latin 0 next to Persian ۱–۵ in Vazirmatn) shows two different stroke weights even at identical font-size and inherited weight — the zero looks like a different typeface.",
+      "cause": "Vazirmatn draws Arabic-Indic digits far heavier than its Latin digits at the same weight, so an unstyled cell inherits weight 400 and reads thin next to the Persian glyphs.",
+      "fix": "Set an explicit fontWeight (700) on every digit cell of the odometer so Latin and Persian numerals share the same stroke weight; verify with zoomed crops of the held-zero frames AND the settled Persian-digit frames."
+    },
+    {
+      "symptom": "The render harness wipes work/persian/src/workbench/.tmp between runs.",
+      "cause": "The harness uses that directory as its bundle temp dir and clears it.",
+      "fix": "Treat .tmp as disposable: recreate any inspection helpers after each render run, or keep them elsewhere in your own card dir."
     }
   ]
 }

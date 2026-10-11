@@ -1,16 +1,30 @@
-// Persian RTL localization. Timing, easing, geometry distances, phase offsets and cycles remain
-// unchanged. Source nodes move from right toward the left-side badge because source-to-result
-// order follows Persian reading direction; paths and draw/erase direction mirror with them.
-// The four-point badge remains a physical mark. S1–S4 remain LTR identifiers. The final caption
-// is idiomatic Persian and deepens word-by-word in RTL order. Font: Vazirmatn, neutral UI sans.
-// No raster assets or baked text are used.
+// Persian RTL localization of bezier-source-converge-merge (fix round 1).
+// MIRROR FORMULA (the only geometric change): every path/point x becomes x' = 440 - x.
+//   - Path d:  M -22,y L 74,y C 186,y 214,YC 332,YC  →  M 462,y L 366,y C 254,y 226,YC 108,YC
+//   - Arc-length pointAt: linear lead-in returns {x: 462 - sc, y}; cubic sample returns {x: 440 - p.x, y}.
+//   - Node rest-position threshold: original pointAt(...).x >= 74  →  mirrored pointAt(...).x <= 366.
+//   - Badge anchor: left: XC - 17  →  left: 440 - XC - 17.
+// What is mirrored and why: source-to-result flow carries reading order, so the four source nodes
+// now sit on the RIGHT and slide toward the badge on the LEFT; the dash draw-on therefore travels
+// right-to-left and the reverse erase back toward the right start edge — same beats, stagger
+// offsets, easing, three-stage shrink, packet cycle phases and seed (all unchanged; duration 168).
+// Kept (physical/universal): vertical source ordering, circles/shadows, the symmetric four-point
+// star, canvas centering, all y coordinates, packet time direction.
+// Node tags: Latin S1–S4 became Persian «م۱»–«م۴» (faDigits), natural for a Persian product;
+// node label font size is fs()-scaled (×1.1) because Persian glyphs read smaller at equal px.
+// Caption: «چهار منبع یکپارچه», word-by-word darkening starts at the RIGHT (چهار first), RTL order.
+//   Alignment: in the original the caption centre sits ~3.5 design px LEFT of the badge centre
+//   (start-side bias). Mirrored: centre ~3.5 design px RIGHT of badge centre → box centre = (440-XC)
+//   + 3.5 ≈ 111.5 → left: 11 with width 200 + justifyContent:center. Verified centred on the badge.
+// Font: Vazirmatn (variable 100–900) — neutral modern Persian UI sans matching the sparse Swiss
+// grey palette; loaded via FaRoot so no silent fallback. No raster assets or baked text are used.
 import React from 'react';
 import { DesignStage, E, lerp, seg, useT } from '../../_fixtures/Motion';
-import { FaRoot, faText, FA_LH } from '../../_fa';
+import { FaRoot, faText, faDigits, fs, FA_LH } from '../../_fa';
 
 export const BEZIER_SOURCE_CONVERGE_MERGE_DURATION = 168; // 5600ms @30fps
 
-// ---- 本卡共享量（浅灰瑞士极简系配色 / 字体，与 effect.js 一致） ----
+// ---- shared quantities (light-grey Swiss-minimal palette / font, matches effect.js) ----
 const SANS = 'Vazirmatn, sans-serif';
 const BG = '#F1F1F3'; // 页面浅灰
 const TXT = '#111111'; // 正文黑
@@ -29,17 +43,19 @@ const mix = (p: number, a: string, b: string) => {
 
 const XC = 332, YC = 120; // 汇聚点
 
-// 中性来源节点占位（灰阶分层，仅用于区分四路来源）
+// Neutral source-node placeholders (grey-scale tiers, only to distinguish the four sources);
+// tags localized to «م۱»–«م۴» («منبع» = source) with Persian digits via faDigits.
 const SRCS = [
-  { y: 36, tag: 'S1', c: '#111111' },
-  { y: 92, tag: 'S2', c: '#4A4A50' },
-  { y: 148, tag: 'S3', c: '#7A7A82' },
-  { y: 204, tag: 'S4', c: '#A3A3AA' },
+  { y: 36, tag: `م${faDigits(1)}`, c: '#111111' },
+  { y: 92, tag: `م${faDigits(2)}`, c: '#4A4A50' },
+  { y: 148, tag: `م${faDigits(3)}`, c: '#7A7A82' },
+  { y: 204, tag: `م${faDigits(4)}`, c: '#A3A3AA' },
 ];
 
 type Pt = { x: number; y: number };
 
-// 手写 cubic bezier 采样：P0=(74,y0) P1=(186,y0) P2=(214,YC) P3=(XC,YC)
+// Hand-rolled cubic bezier sampling: original P0=(74,y0) P1=(186,y0) P2=(214,YC) P3=(XC,YC);
+// rendered mirrored via pointAt's x' = 440 - x.
 const cubic = (y0: number, u: number): Pt => {
   const v = 1 - u;
   return {

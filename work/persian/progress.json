@@ -1,11 +1,11 @@
 {
- "generatedAt": "2026-10-11T18:15:51.316Z",
+ "generatedAt": "2026-10-11T18:21:06.092Z",
  "summary": {
   "todo": 75,
   "localized": 1,
   "approved": 68,
-  "fixed": 9,
-  "needs-fix": 4,
+  "fixed": 10,
+  "needs-fix": 3,
   "total": 157
  },
  "cards": [
@@ -587,11 +587,11 @@
   },
   {
    "slug": "list-stack-press",
-   "status": "needs-fix",
+   "status": "fixed",
    "font": "{\"families\":[\"Vazirmatn\"],\"reason\":\"Loaded with FaRoot. Its neutral UI proportions and genuine variable weights fit the restrained academic feed; Persian joins, ZWNJ, digits and Latin technical tokens have coverage. FA_LH=1.5 gives Persian dots and descenders space.\"}",
    "videos": 1,
    "majors": 1,
-   "concerns": 4
+   "concerns": 6
   },
   {
    "slug": "logo-shrink-wordmark-lockup",
