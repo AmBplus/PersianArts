@@ -1,11 +1,11 @@
 {
- "generatedAt": "2026-10-11T16:35:48.024Z",
+ "generatedAt": "2026-10-11T16:41:05.170Z",
  "summary": {
   "todo": 75,
-  "localized": 20,
-  "approved": 52,
-  "fixed": 9,
-  "needs-fix": 1,
+  "localized": 15,
+  "approved": 57,
+  "fixed": 8,
+  "needs-fix": 2,
   "total": 157
  },
  "cards": [
@@ -35,10 +35,10 @@
   },
   {
    "slug": "autolayout-gap-dial",
-   "status": "fixed",
+   "status": "approved",
    "font": "",
    "videos": 1,
-   "majors": 1,
+   "majors": 0,
    "concerns": 0
   },
   {
@@ -203,7 +203,7 @@
   },
   {
    "slug": "chip-grid-single-select-blackout",
-   "status": "localized",
+   "status": "approved",
    "font": "{\"families\":[\"Vazirmatn\"],\"reason\":\"Vazirmatn is a variable-weight, well-covered Persian UI sans that preserves the source's restrained Swiss/product-interface tone and renders Persian joining and digits reliably at this small chip size.\"}",
    "videos": 1,
    "majors": 0,
@@ -331,7 +331,7 @@
   },
   {
    "slug": "deck-deal-flyin",
-   "status": "localized",
+   "status": "approved",
    "font": "Vazirmatn",
    "videos": 1,
    "majors": 0,
@@ -347,10 +347,10 @@
   },
   {
    "slug": "doc-park-left-pill-deal",
-   "status": "localized",
+   "status": "needs-fix",
    "font": "{\"families\":[\"Vazirmatn\"],\"reason\":\"The card is a restrained product interface. Variable Vazirmatn supplies the source's regular-to-semibold hierarchy, reliable Persian glyph coverage and natural joining at the pill and caption sizes. FaRoot loads it before rendering.\"}",
    "videos": 1,
-   "majors": 0,
+   "majors": 1,
    "concerns": 0
   },
   {
@@ -379,11 +379,11 @@
   },
   {
    "slug": "element-body-moves",
-   "status": "needs-fix",
+   "status": "fixed",
    "font": "",
    "videos": 2,
    "majors": 1,
-   "concerns": 1
+   "concerns": 0
   },
   {
    "slug": "floating-glossy-label-pills",
@@ -587,10 +587,10 @@
   },
   {
    "slug": "list-stack-press",
-   "status": "localized",
+   "status": "needs-fix",
    "font": "{\"families\":[\"Vazirmatn\"],\"reason\":\"A neutral variable-weight Persian UI sans suits the restrained academic paper feed, supports the range of UI weights, and shapes Persian and Persian digits reliably.\"}",
    "videos": 1,
-   "majors": 0,
+   "majors": 3,
    "concerns": 1
   },
   {
@@ -771,10 +771,10 @@
   },
   {
    "slug": "picker-carousel-feature-cycle",
-   "status": "fixed",
+   "status": "approved",
    "font": "Vazirmatn",
    "videos": 1,
-   "majors": 1,
+   "majors": 0,
    "concerns": 0
   },
   {
@@ -1139,7 +1139,7 @@
   },
   {
    "slug": "type-and-filter",
-   "status": "localized",
+   "status": "approved",
    "font": "Vazirmatn",
    "videos": 1,
    "majors": 0,

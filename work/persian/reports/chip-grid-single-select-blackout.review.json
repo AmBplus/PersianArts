@@ -1,0 +1,32 @@
+{
+  "slug": "chip-grid-single-select-blackout",
+  "verdict": "approve",
+  "score": 86,
+  "issues": [
+    {
+      "severity": "minor",
+      "where": "ChipGridSingleSelectBlackout.tsx line 46 (CAP_TEXT), frames 130/149",
+      "problem": "The percent sign renders to the right of the number (۱۸٪ as written left-to-right inside an EN-run), whereas Persian typography normally shows ٪ to the left of the digits. The word-level darkening and the arrow direction are otherwise correct.",
+      "suggestedFix": "Optional: render the first caption word with the digits as a direction:ltr island and put ٪ after it in DOM so it shows on the left (see lessons section 3, percent in RTL flex rows), or keep as is."
+    },
+    {
+      "severity": "minor",
+      "where": "ChipGridSingleSelectBlackout.tsx line 40 (NAMES[2])",
+      "problem": "Chip labels mix cardinals (یک، دو، چهار، پنج) with an ordinal («سوم»); the original is 'three'.",
+      "suggestedFix": "Use «طرح گزینه سه با نام بلند» (still the long-name stress test)."
+    },
+    {
+      "severity": "minor",
+      "where": "ChipGridSingleSelectBlackout.tsx line 24",
+      "problem": "Dead constant SANS (Latin font stack) is left unused after the font switch to Vazirmatn.",
+      "suggestedFix": "Delete the SANS constant."
+    },
+    {
+      "severity": "minor",
+      "where": "ChipGridSingleSelectBlackout.tsx cx measurement (useLayoutEffect, line ~60)",
+      "problem": "cx is measured once at mount; lessons file warns measurement can use the fallback font. The final frame is correct (black chip centred at x=960), so it works in the harness, but it relies on the font already being loaded when measuring.",
+      "suggestedFix": "Optionally re-measure after document.fonts.load inside a delayRender for robustness."
+    }
+  ],
+  "notes": "Rendered the harness myself (frames 0,4,8,14,22,40,66,67,68,70,72,76,90,100,110,115,130,149) and compared fa vs orig. Entrance order is mirrored (chip 1 appears at the right), 3+2 rows stay centred and position-locked, the one-frame grey press flash (f67) and the blackout/18% dimming (f90) match the original beats, the black chip lifts and returns to the centre line (final chip spans 790-1130, centre 960), caption words darken right-to-left, arrow points left toward the new price. Timings, easing, exports and the duration constant are unchanged versus the original (diff shows only text, FaRoot wrapper, letterSpacing removal, marginRight to marginInlineEnd, line-height). No letterSpacing, uppercase or fake bold; Vazirmatn variable 600 is appropriate for neutral UI and rendered (not a fallback). No raster assets and no leftover Latin/Chinese text. The header comment is truthful. Only polish items remain."
+}

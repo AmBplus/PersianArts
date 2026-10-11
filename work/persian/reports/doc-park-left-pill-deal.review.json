@@ -1,0 +1,32 @@
+{
+  "slug": "doc-park-left-pill-deal",
+  "verdict": "fix",
+  "score": 66,
+  "issues": [
+    {
+      "severity": "major",
+      "where": "DocParkLeftPillDeal.tsx line 51 (Caption word spans, marginInlineStart); visible at frames 95 and 150",
+      "problem": "The last two words of every caption have no gap. In the RTL flex row marginInlineStart sits on the right side of each word, and the last word is given 0, so the space between words n-2 and n-1 is lost. Frame 150 reads 'محبوب برای خریددوباره' (words fused) and frame 95 reads 'مناسب روزهای‌کاری'. This looks like a shaping/word-order defect, and the first word also gets a spurious right margin.",
+      "suggestedFix": "Put the margin on the trailing side: marginInlineEnd: i === n-1 ? 0 : 4.5 (or gap in the flex container). Word spacing then matches the original."
+    },
+    {
+      "severity": "minor",
+      "where": "DocParkLeftPillDeal.tsx lines 81-85 (skeleton bars, left: x)",
+      "problem": "Mirroring is incomplete inside the document. Column slots and the title bars are mirrored (title right-anchored), but the header and row bars in each column are still left-aligned at the column start (frames 0 and 14: bars start at the left edge of each column). The result is mixed alignment, whereas the original has everything left-aligned.",
+      "suggestedFix": "Anchor header and row bars to the column's right edge: left = x + COL_W - width (or position with right). Keep the widths and seeds unchanged."
+    },
+    {
+      "severity": "minor",
+      "where": "DocParkLeftPillDeal.tsx line 99 (Caption right={440-PX-4-172})",
+      "problem": "The caption right edge is flush with the pill's outer right edge (x≈980 in frames 95 and 150), but in the original the caption is inset 4px from the pill's start edge. The mirror inset is lost (roughly 8 design px off).",
+      "suggestedFix": "Use right = 440 - PX - 172 + 4 = 218 so the caption is inset 4px inside the pill edge."
+    },
+    {
+      "severity": "minor",
+      "where": "Header comment lines 1-8 and report.json",
+      "problem": "The comment says nothing about the caption word-gap handling and claims skeleton columns mirror as a whole, which is only partly true (see the bar alignment issue). The report states 'concerns: []' and that all frames are clean, but the fused caption words are plainly visible at frames 95 and 150.",
+      "suggestedFix": "Update the comment and report once the fixes are in."
+    }
+  ],
+  "notes": "Positives: no cheating (all text is real Persian, nothing blurred or hidden); Vazirmatn is loaded and fits the neutral product-UI tone; weight 600 is valid on the variable font; the translations are idiomatic with correct ی/ک and ZWNJ in 'روزهای‌کاری'; letterSpacing is removed; the pills and doc are mirrored correctly (doc parks right with origin 100% 50%, pills on the left, icon at the right of each label); the vertical scroll, T0 beats, easing and seg windows, DURATION=174 and the exports are unchanged against the original; the doc park, pill deal-in and caption out/in read like the source; the final resting frame is balanced. Per-word darkening is word-level, as in the original, so there is no letter-by-letter requirement. The word-gap bug is a visible defect in shipped captions, so this should be fixed before approval."
+}

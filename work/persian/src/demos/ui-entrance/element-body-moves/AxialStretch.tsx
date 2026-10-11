@@ -1,6 +1,10 @@
 // Persian (RTL) localization of axial-stretch.
 // Visible copy: «کشش محوری» replaces the source title; cards contain only geometry.
-// RTL: target order and the horizontal entrance are mirrored so the first card is
+// RTL: the whole scene sits inside FaRoot, so direction:rtl is inherited by
+// everything — the title centers as before, and the shared Card fixture
+// interiors (title bar, text bars, avatar+label footer) lay out right-to-left,
+// exactly like ContactShadowLift (the two comps stay consistent).
+// Target order and the horizontal entrance are mirrored so the first card is
 // rightmost and flies in from the left. The trailing transform origin flips too.
 // All seeds, easing, velocity-difference stretch, timings and rest frames are exact.
 // Font: Noto Kufi Arabic, chosen for the source's geometric heavy display mood.
@@ -91,12 +95,11 @@ export const AxialStretch: React.FC = () => {
   });
 
   return (
-    <div style={{ width: 1920, height: 1080, background: G.bg, position: 'relative', overflow: 'hidden', direction: 'rtl' }}>
-      <FaRoot family="Noto Kufi Arabic">
-        <div style={{ position: 'absolute', top: 120, width: '100%', textAlign: 'center', opacity: titleOp }}>
+    <FaRoot family="Noto Kufi Arabic">
+      <div style={{ width: 1920, height: 1080, background: G.bg, position: 'relative', overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', top: 110, width: '100%', textAlign: 'center', opacity: titleOp }}>
           <div style={{...faText(72), fontFamily: '"Noto Kufi Arabic"', fontWeight: 800, color: G.ink}}>کشش محوری</div>
         </div>
-      </FaRoot>
       {/* 落位虚线槽，标出目标位置 */}
       {[0, 1, 2].map((i) => (
         <div
@@ -116,6 +119,7 @@ export const AxialStretch: React.FC = () => {
       {[0, 1, 2].map((i) => (
         <FlyCard key={i} i={i} frame={frame} />
       ))}
-    </div>
+      </div>
+    </FaRoot>
   );
 };

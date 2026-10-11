@@ -2,6 +2,30 @@
   "slug": "element-body-moves",
   "status": "localized",
   "sourcePrompt": "work/upstream/src/gallery/source/element-body-moves.md",
+  "fixRound": {
+    "round": 2,
+    "reviewerVerdict": "fix (round 1: score 80)",
+    "resolved": [
+      {
+        "severity": "major",
+        "issue": "ContactShadowLift card interiors were LTR: direction:rtl existed only on the top bar, so the shared Card fixture laid out its title bar, text bars and avatar+label footer left-aligned inside every card, making the two comps of the card inconsistent (AxialStretch cards were already RTL via root inheritance).",
+        "fix": "Added direction:'rtl' to the ContactShadowLift scene root div, so every Card inherits RTL exactly like in AxialStretch. Header comment updated to state the inheritance mechanism.",
+        "verified": "Re-rendered f10/f50/f94/f149 and viewed fa vs orig: card title/text bars now start at the right edge and the avatar+label footer sits at the right in all three cards, matching AxialStretch; lift, shadows and top-bar mirroring unchanged."
+      },
+      {
+        "severity": "minor",
+        "issue": "AxialStretch wrapped only the title in FaRoot and set direction:rtl manually on the root div; the header comment did not record that card interiors become RTL through inheritance.",
+        "fix": "The whole scene now sits inside FaRoot (family 'Noto Kufi Arabic'); the manual direction:'rtl' on the inner div was removed as redundant (inherited). Header comment explicitly records that Card fixture interiors lay out right-to-left through inheritance and that the two comps stay consistent.",
+        "verified": "Re-rendered f94/f149: title shaping correct and card interiors still RTL; motion beats untouched."
+      },
+      {
+        "severity": "minor (optional)",
+        "issue": "AxialStretch title sat ~18px lower than the original baseline.",
+        "fix": "Title top nudged from 120 to 110 so the optical center matches the original more closely.",
+        "verified": "Compared AxialStretch f94 fa vs orig: title block optically balanced against the original 'AXIAL STRETCH' position."
+      }
+    ]
+  },
   "comps": [
     {
       "id": "demo-AxialStretch",
@@ -18,6 +42,16 @@
         }
       ],
       "rtlDecisions": [
+        {
+          "what": "Scene root / card interiors",
+          "action": "Whole scene wrapped in FaRoot (direction:rtl + Noto Kufi Arabic). Card fixture interiors (title bar, text bars, avatar+label footer) become RTL through inheritance.",
+          "why": "The cards represent reading-order UI content; their internal layout must read right-to-left, consistent with ContactShadowLift. FIX ROUND 2: previously only the title was inside FaRoot and the inheritance was undocumented."
+        },
+        {
+          "what": "Title optical position",
+          "action": "Title top nudged 120 -> 110 (vertical nudge only; no frame timing change).",
+          "why": "Kufi vertical metrics sat the title ~18px lower than the source baseline; FIX ROUND 2 re-centers it optically."
+        },
         {
           "what": "Three target slots and the three-card target order",
           "action": "Mirrored the target x positions with ROW_X0 + (2 - i) * (CARD_W + GAP).",
@@ -60,13 +94,18 @@
       "text": [],
       "rtlDecisions": [
         {
+          "what": "Scene root / card interiors",
+          "action": "Added direction:'rtl' to the scene root div; the shared Card fixture inherits it, so each card's title bar, text bars and avatar+label footer start at the right edge.",
+          "why": "The cards represent reading-order UI content and must read as an RTL interface. FIX ROUND 2: previously only the top bar was RTL and the card interiors stayed LTR, making the two comps inconsistent — now both comps mirror identically."
+        },
+        {
           "what": "Three-card row order",
           "action": "Mirrored each card and its shadow with x = 1920 - CARD_W - sourceX.",
           "why": "The cards form a reading-order sequence; the first named card is rightmost in RTL."
         },
         {
           "what": "Dashboard top-bar chrome",
-          "action": "Applied direction: rtl and retained the logical auto margin via marginInlineStart.",
+          "action": "direction:rtl (now inherited from the scene root; explicit value kept harmlessly) with the logical auto margin via marginInlineStart: logo/wordmark right, avatar left.",
           "why": "The placeholder controls represent UI order and should reverse horizontally; no physical motion is changed."
         },
         {
@@ -84,17 +123,19 @@
   ],
   "visualVerification": {
     "viewedMatchedFrames": [
-      "AxialStretch: 0, 10, 22, 34, 46, 70, 94, 110, 125, 149",
-      "ContactShadowLift: 0, 10, 22, 34, 46, 58, 70, 94, 110, 125, 149"
+      "AxialStretch: 0, 2, 10, 14, 22, 30, 34, 46, 50, 56, 58, 60, 70, 94, 100, 110, 125, 149 (f94/f149 re-viewed after fix round 2)",
+      "ContactShadowLift: 0, 10, 14, 22, 30, 34, 46, 50, 56, 58, 60, 70, 94, 100, 110, 125, 149 (f10/f50/f94/f149 re-viewed after fix round 2)"
     ],
     "checks": [
       "Compared Persian and original PNGs at entrance, peak/transition, sequential-action, and rest beats.",
-      "Verified Persian title shaping and absence of unintended Latin/Chinese on-screen text.",
-      "Verified contact shadows stay under their corresponding mirrored cards."
+      "FIX ROUND 2: confirmed ContactShadowLift card interiors (title bar, text bars, avatar+label footer) are right-aligned in all three cards at f10/f50/f94/f149 and consistent with AxialStretch cards.",
+      "Verified Persian title shaping (Noto Kufi Arabic actually rendered, no fallback, no letter-spacing/uppercase) and absence of unintended Latin/Chinese on-screen text.",
+      "Verified contact shadows stay under their corresponding mirrored cards and the lift sequence order mirrors (rightmost first).",
+      "Final --video render completed for both comps with no errors."
     ]
   },
-  "concerns": [
-    "The harness emitted intermittent Remotion browser-resource errors late in one multi-still batch, but all requested comparison still files for both compositions were produced and visually inspected; the final two MP4 renders completed successfully with no errors."
-  ],
-  "lessons": []
+  "concerns": [],
+  "lessons": [
+    "When a demo composes a shared fixture (e.g. _fixtures Card) inside an absolutely-positioned scene, direction:rtl must be set on the SCENE ROOT, not on individual chrome bars — the fixture inherits direction, and setting RTL on one bar while leaving the root LTR produces comps whose interiors disagree (the round-1 major finding)."
+  ]
 }

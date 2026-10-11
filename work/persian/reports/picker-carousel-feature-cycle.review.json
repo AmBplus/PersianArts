@@ -1,26 +1,20 @@
 {
   "slug": "picker-carousel-feature-cycle",
-  "verdict": "fix",
-  "score": 82,
+  "verdict": "approve",
+  "score": 91,
   "issues": [
     {
-      "severity": "major",
-      "where": "PickerCarouselFeatureCycle.tsx lines 120-127 (icon span, ICONS[5] U+21BA); fa frame 107 (final resting frame) and f90",
-      "problem": "Round-1 finding NOT fixed. The span now has an explicit fontFamily stack (-apple-system, Helvetica Neue, Segoe UI Symbol), but the re-rendered fa f107 still shows a tiny curled hook that reads like an Arabic letter (ى) instead of the open counter-clockwise refresh arrow seen in orig f107. The system-font stack does not resolve U+21BA in the render environment, so the glyph still comes from a wrong fallback. The header comment claims the symbol icons preserve the source glyph design, which is false for this icon.",
-      "suggestedFix": "Replace the U+21BA text glyph with a small inline SVG (about 14-16px open circular arrow, currentColor stroke, same opacity logic), or use a font verified to carry U+21BA in this environment. Re-render f90 and f107 and compare with orig."
+      "severity": "minor",
+      "where": "AI badge, lines ~144-167 of PickerCarouselFeatureCycle.tsx",
+      "problem": "The AI mark uses a Helvetica-style stack that falls back to a DejaVu-like sans in the render, so it looks slightly rounder than the source. Letter-spacing 0.5 is applied only to the Latin mark, which is acceptable.",
+      "suggestedFix": "Optional: use a Latin face verified to be loaded, or Vazirmatn 700."
     },
     {
       "severity": "minor",
-      "where": "AI badge (lines 144-167)",
-      "problem": "Badge font stack is not the original Helvetica; the AI mark falls back to a rounder sans and keeps letterSpacing 0.5. Mirroring the badge to the right is defensible and now documented in the header.",
-      "suggestedFix": "Optional: leave as is, or use a Latin sans verified to be present so the mark matches the source."
-    },
-    {
-      "severity": "minor",
-      "where": "Indentation, lines 119-125 (comment and span) and mixed leftover non-visible comments",
-      "problem": "The comment and span are still mis-indented relative to their parent div.",
-      "suggestedFix": "Re-indent."
+      "where": "Icon span, lines ~118-135",
+      "problem": "The remaining glyph icons (◎ ✉ ◧ ◈ ★ ⚑) still come from system font fallback. They render fine in the checked frames, but the SVG arrow is a stroked glyph that is slightly heavier and has a filled arrow tip compared with the source thin U+21BA. This is cosmetic.",
+      "suggestedFix": "Optional: reduce strokeWidth to about 1.5 to match the weight."
     }
   ],
-  "notes": "Re-rendered frames 0,3,8,20,45,60,90,107 and viewed fa vs orig at f45 and f107. Translations are idiomatic with correct ZWNJ and Persian ی/ک, no letter-spacing on Persian, single line per row, no overflow, and the pill and gradient fades match the source. Icon sits on the right of each label (RTL start), and vertical travel and order are correctly not mirrored. Exports and the 108-frame duration are unchanged. The only substantive defect is the still-wrong refresh glyph on the final resting frame, which is exactly the round-1 major finding. Fix it (SVG recommended) and this is ship-ready."
+  "notes": "Round-3 check: re-rendered frames 0,8,20,45,60,90,107 with the harness and viewed fa vs orig. The U+21BA glyph is now an inline SVG (open counter-clockwise circular arrow with an arrowhead at the upper left) and reads clearly as a refresh icon at f90 and f107; on a zoomed crop there is no stray curl. The main finding is truly fixed. Persian labels are idiomatic with correct ZWNJ, ی/ک and the ezafe mark on برنامهٔ; there is no letter-spacing on Persian, no overflow, and each row is a single line. The vertical travel, order, outQuint snap, hold, breath and gradient fades match the source and are correctly not mirrored. The icon sits on the right (RTL start) of the label. The AI badge moved to the right, which is defensible and documented in the header. Exports and the 108-frame duration are unchanged. The header comment is accurate. No leftover English text apart from the AI mark."
 }
