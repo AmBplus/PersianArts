@@ -1,8 +1,8 @@
 {
- "generatedAt": "2026-10-11T16:04:06.506Z",
+ "generatedAt": "2026-10-11T16:09:23.406Z",
  "summary": {
-  "todo": 79,
-  "localized": 16,
+  "todo": 77,
+  "localized": 18,
   "approved": 51,
   "fixed": 10,
   "needs-fix": 1,
@@ -523,9 +523,9 @@
   },
   {
    "slug": "input-trigger-moves",
-   "status": "todo",
-   "font": "",
-   "videos": 0,
+   "status": "localized",
+   "font": "Vazirmatn",
+   "videos": 2,
    "majors": 0,
    "concerns": 0
   },
@@ -1091,11 +1091,11 @@
   },
   {
    "slug": "theme-switch-moves",
-   "status": "todo",
+   "status": "localized",
    "font": "",
-   "videos": 0,
+   "videos": 2,
    "majors": 0,
-   "concerns": 0
+   "concerns": 1
   },
   {
    "slug": "timeline-travel",

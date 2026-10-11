@@ -1,9 +1,16 @@
-// panel-to-canvas-materialize —— miro-promo 84–92s
-// 侧面板表格行复选框自动逐个打勾 → 按钮按下 → 三行内容飞出面板、
-// 物化成画布上三张独立卡片落位（行→卡跨容器形态迁移，尺寸/形状插值）。
+// panel-to-canvas-materialize — Persian / RTL localization.
+// Text: the sole literal UI string, "Add all to canvas", becomes «افزودن همه به بوم».
+// Direction: the side panel moves to the right-reading start (left side of the screen); the
+// three landing cards, their Bezier flights and cursor approach are reflected horizontally.
+// Their rotation signs reverse with the reflection. Row checkboxes, placeholder bars, and
+// card footer flow RTL; the trailing row metadata moves to the far left via a logical margin.
+// Button, row collapse, flight springs, crossfade, stagger and cursor beats retain the source values.
+// The dotted canvas and vertical motion are symmetric/physical and stay unchanged.
+// Font: Vazirmatn, a neutral variable product-UI face with a real 700 weight. Raster: none.
 import React from 'react';
 import { AbsoluteFill, useCurrentFrame, interpolate, spring, useVideoConfig, Easing } from 'remotion';
 import { G } from '../../_fixtures/Fixtures';
+import { FaRoot, faText } from '../../_fa';
 
 const PANEL_X = 1210;
 const PANEL_Y = 90;
@@ -35,6 +42,7 @@ export const PanelToCanvasMaterialize: React.FC = () => {
 
   return (
     <AbsoluteFill style={{ background: G.bg, overflow: 'hidden' }}>
+      <FaRoot family="Vazirmatn">
       {/* 画布点阵底 */}
       <AbsoluteFill
         style={{
@@ -47,7 +55,7 @@ export const PanelToCanvasMaterialize: React.FC = () => {
       <div
         style={{
           position: 'absolute',
-          left: PANEL_X,
+          left: 1920 - PANEL_X - PANEL_W,
           top: PANEL_Y,
           width: PANEL_W,
           height: 900,
@@ -84,8 +92,8 @@ export const PanelToCanvasMaterialize: React.FC = () => {
             justifyContent: 'center',
           }}
         >
-          <div style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 700, fontSize: 22, color: '#f2f2f0', letterSpacing: 0.5 }}>
-            Add all to canvas
+          <div style={{ ...faText(22, { fontWeight: 700 }), color: '#f2f2f0' }}>
+            افزودن همه به بوم
           </div>
         </div>
       </div>
@@ -97,6 +105,7 @@ export const PanelToCanvasMaterialize: React.FC = () => {
 
       {/* 光标 */}
       <Cursor frame={frame} />
+      </FaRoot>
     </AbsoluteFill>
   );
 };
@@ -149,7 +158,7 @@ const RowSlot: React.FC<{ idx: number; frame: number; fps: number }> = ({ idx, f
             )}
           </div>
           <div style={{ height: 14, width: 180 + idx * 40, background: G.bar, borderRadius: 7 }} />
-          <div style={{ marginLeft: 'auto', height: 12, width: 90, background: G.line, borderRadius: 6 }} />
+          <div style={{ marginInlineStart: 'auto', height: 12, width: 90, background: G.line, borderRadius: 6 }} />
         </>
       )}
     </div>
@@ -190,7 +199,7 @@ const FlyingCard: React.FC<{ idx: number; frame: number; fps: number }> = ({ idx
     <div
       style={{
         position: 'absolute',
-        left: x,
+        left: 1920 - x - w,
         top: y,
         width: w,
         height: h,
@@ -198,7 +207,7 @@ const FlyingCard: React.FC<{ idx: number; frame: number; fps: number }> = ({ idx
         border: `2px solid ${G.border}`,
         borderRadius: radius,
         boxShadow: `0 ${10 + 14 * u}px ${24 + 20 * u}px rgba(0,0,0,${shadow})`,
-        transform: `rotate(${rot}deg)`,
+        transform: `rotate(${-rot}deg)`,
         boxSizing: 'border-box',
         overflow: 'hidden',
         zIndex: 10 + idx,
@@ -246,9 +255,9 @@ const Cursor: React.FC<{ frame: number }> = ({ frame }) => {
       width={40}
       height={44}
       viewBox="0 0 20 22"
-      style={{ position: 'absolute', left: x, top: y, transform: `scale(${press})`, zIndex: 40 }}
+      style={{ position: 'absolute', left: 1920 - x - 40, top: y, transform: `scale(${press})`, zIndex: 40 }}
     >
-      <path d="M2 1 L2 17 L6.5 13.2 L9.4 20 L12.4 18.7 L9.5 12 L15 11.6 Z" fill={G.ink} stroke="#fff" strokeWidth="1.4" />
+      <path d="M2 1 L2 17 L6.5 13.2 L9.4 20 L12.4 18.7 L9.5 12 L15 11.6 Z" transform="translate(20 0) scale(-1 1)" fill={G.ink} stroke="#fff" strokeWidth="1.4" />
     </svg>
   );
 };

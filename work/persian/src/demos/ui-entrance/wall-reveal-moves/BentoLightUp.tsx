@@ -1,6 +1,11 @@
 import React from 'react';
 import { AbsoluteFill, Easing, interpolate, useCurrentFrame } from 'remotion';
-import { Card, TitleBlock } from '../../_fixtures/Fixtures';
+import { Card } from '../../_fixtures/Fixtures';
+import { FaRoot, faText } from '../../_fa';
+
+// فارسی‌سازی: Features به «ویژگی‌ها» تبدیل شده و فونت Vazirmatn برای تیتر محصولی انتخاب شده است.
+// جهت: ترتیب روشن‌شدن در هر ردیف از راست به چپ است؛ ستون‌ها و مسیر دور قاب آینه شده‌اند تا موج خوانش RTL بماند.
+// حرکت عمودی، بزرگ‌نمایی دوربین، فاصله‌های زمانی، easing و seedها عیناً حفظ شده‌اند. کارت‌ها فقط اسکلت خاکستری‌اند و متن تصویری ندارند.
 
 // bento-light-up：暗场里 3×2 bento 墙压暗待命，随节拍逐格点亮——
 // 边框流光先描一圈（琥珀），格内内容随后提亮上浮弹出；六格全亮后整体微推收住。
@@ -21,7 +26,7 @@ const Cell: React.FC<{ i: number; frame: number }> = ({ i, frame }) => {
   const start = FIRST + i * GAP;
   const col = i % 3;
   const row = Math.floor(i / 3);
-  const x = LEFT + col * (CELL_W + GUT);
+  const x = LEFT + (2 - col) * (CELL_W + GUT);
   const y = TOP + row * (CELL_H + GUT);
 
   // ① 边框流光：pathLength=100 的 dashoffset 描边，8f 走完一圈
@@ -73,7 +78,7 @@ const Cell: React.FC<{ i: number; frame: number }> = ({ i, frame }) => {
           width={CELL_W}
           height={CELL_H}
           viewBox={`0 0 ${CELL_W} ${CELL_H}`}
-          style={{ position: 'absolute', left: 0, top: ty, overflow: 'visible' }}
+          style={{ position: 'absolute', left: 0, top: ty, overflow: 'visible', transform: `translateX(${CELL_W}px) scaleX(-1)` }}
         >
           <rect
             x={2}
@@ -115,6 +120,7 @@ export const BentoLightUp: React.FC = () => {
 
   return (
     <AbsoluteFill style={{ background: BG, overflow: 'hidden' }}>
+      <FaRoot family="Vazirmatn">
       <div
         style={{
           position: 'absolute',
@@ -123,13 +129,14 @@ export const BentoLightUp: React.FC = () => {
           transformOrigin: '960px 540px',
         }}
       >
-        <div style={{ position: 'absolute', left: LEFT, top: TOP - 110, opacity: titleLit, filter: 'invert(1)' }}>
-          <TitleBlock text="Features" size={64} />
+        <div style={{ position: 'absolute', left: LEFT, top: TOP - 110, width: CELL_W * 3 + GUT * 2, opacity: titleLit, filter: 'invert(1)', direction: 'rtl', textAlign: 'right', ...faText(64, { fontWeight: 700, color: '#2f2f2f' }) }}>
+          ویژگی‌ها
         </div>
         {Array.from({ length: 6 }).map((_, i) => (
           <Cell key={i} i={i} frame={frame} />
         ))}
       </div>
+      </FaRoot>
     </AbsoluteFill>
   );
 };

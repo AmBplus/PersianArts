@@ -1,14 +1,15 @@
-// keycap-smash-cut｜键帽引信+猛切句号（keycap-press-trigger × smash-cut）
-// 0–25f 浅底中央 3D 键帽（⌘⏎）悬浮呼吸 → 25–28f 砰按下（3f 下沉 14px +
-// 底座 12→3px 压扁 + 键面变暗）+ 底部亮环（扩散 out-cubic / 消散线性解耦）
-// → 按下即引爆轰鸣段 28–58f：5 张卡 + 1 面板从四面八方高速飞入冲镜
-// （ease-in 全程加速 + scale 1.5→3 冲脸 + 速度门控 blur），背景整体
-// ease-in 推近 1→1.3 + 滚动 1.5°——切点前一刻动势最猛 → 58f 一帧猛切：
-// FakeDashboard variant="A" 整齐静止全景，键帽已缩成小元素稳稳嵌在
-// 顶栏角落（引信呼应），死寂 82f（>50f）。总 140f。
+// RTL analysis: the keycap bears universal keyboard symbols (⌘⏎), retained in
+// a LTR symbol island; no foreign-language words occur. Vazirmatn is loaded for
+// the RTL dashboard, matching its neutral product-UI mood. The local fixture
+// mirrors sidebar, header, grid, and placeholders. The final miniature keycap
+// mirrors from x464 to x1412 so it stays in the equivalent header gap.
+// Fly x paths and tilt signs mirror for RTL screen traversal; their seeds,
+// timing, easing, scale and blur remain exact. Center keycap, gravity, light,
+// ring and physical camera roll are unchanged. No raster assets or text.
 import React from 'react';
 import { useCurrentFrame, interpolate, Easing } from 'remotion';
-import { G, Card, FakeDashboard } from '../../_fixtures/Fixtures';
+import { G, Card, FakeDashboard } from './Fixtures';
+import { FaRoot } from '../../_fa';
 
 const T = {
   press: 25,      // 按下起始（呼吸周期 25f，此帧位移恰好归零）
@@ -39,7 +40,7 @@ const Keycap: React.FC<{ size: number; thick: number; bright: number; label?: st
   }}>
     <div style={{
       fontSize: size * 0.3, fontWeight: 700, color: G.ink,
-      fontFamily: 'Helvetica, Arial, sans-serif',
+      fontFamily: 'Arial, sans-serif', direction: 'ltr', unicodeBidi: 'isolate',
     }}>
       {label}
     </div>
@@ -106,9 +107,9 @@ const FlyItem: React.FC<{ fly: Fly; i: number; frame: number }> = ({ fly, i, fra
     extrapolateLeft: 'clamp', extrapolateRight: 'clamp',
     easing: Easing.in(Easing.quad),
   });
-  const x = fly.from[0] + (fly.to[0] - fly.from[0]) * p;
+  const x = -(fly.from[0] + (fly.to[0] - fly.from[0]) * p);
   const y = fly.from[1] + (fly.to[1] - fly.from[1]) * p;
-  const rot = fly.rot[0] + (fly.rot[1] - fly.rot[0]) * p;
+  const rot = -(fly.rot[0] + (fly.rot[1] - fly.rot[0]) * p);
   const scale = 1.5 + 1.5 * p; // 冲脸
   const blur = 1 + 4 * p;      // 速度门控方向糊感（ease-in 下速度 ∝ p）
   return (
@@ -132,13 +133,13 @@ export const KeycapSmashCut: React.FC = () => {
   //    无任何随帧变化的属性 ——
   if (frame >= T.cut) {
     return (
-      <div style={{ width: 1920, height: 1080, position: 'relative' }}>
+      <FaRoot family="Vazirmatn" style={{ width: 1920, height: 1080 }}>
         <FakeDashboard variant="A" />
-        {/* 键帽句号：稳稳嵌在顶栏（标题条右侧空档），呼应引信 */}
-        <div style={{ position: 'absolute', left: 464, top: 12 }}>
+        {/* Keycap lands in the mirrored header gap and holds still */}
+        <div style={{ position: 'absolute', left: 1412, top: 12 }}>
           <Keycap size={44} thick={4} bright={1} />
         </div>
-      </div>
+      </FaRoot>
     );
   }
 
@@ -182,7 +183,7 @@ export const KeycapSmashCut: React.FC = () => {
   });
 
   return (
-    <div style={{
+    <FaRoot family="Vazirmatn" style={{
       width: 1920, height: 1080, background: G.bg,
       position: 'relative', overflow: 'hidden',
     }}>
@@ -212,6 +213,6 @@ export const KeycapSmashCut: React.FC = () => {
       {frame >= T.pressEnd && FLIES.map((fly, i) => (
         <FlyItem key={i} fly={fly} i={i} frame={frame} />
       ))}
-    </div>
+    </FaRoot>
   );
 };

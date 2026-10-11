@@ -1,0 +1,78 @@
+{
+  "slug": "theme-switch-moves",
+  "status": "localized",
+  "fonts": {
+    "families": ["Vazirmatn"],
+    "reason": "Loaded variable Vazirmatn gives the command palette a readable, neutral Persian product UI voice and reliable joining. The shortcut remains an isolated LTR token. The second composition contains no visible text, but uses the same UI family for consistency."
+  },
+  "compositions": [
+    {
+      "id": "demo-PaletteThemeRipple",
+      "rtlDecisions": [
+        {
+          "what": "Search query dark",
+          "action": "Translated to «تیره» and revealed one Persian character on each original cue at frames 38, 46, 54, and 62; inline opacity spans preserve shaping between letters.",
+          "why": "The source types four characters; Persian must keep the same four beats while reading from the right."
+        },
+        {
+          "what": "⌘K keyboard shortcut",
+          "action": "Kept unchanged as an LTR isolated keyboard token at the right edge of the RTL input.",
+          "why": "Keyboard notation is a universal Latin-direction token."
+        },
+        {
+          "what": "Dashboard layers and command palette",
+          "action": "Mirrored both textless dashboard layers horizontally so the sidebar and UI reading order sit on the right. Kept the command panel centered at (960, 470).",
+          "why": "Dashboard rail and card layout follow reading direction; preserving the center keeps the collapse point coincident with the ripple origin."
+        },
+        {
+          "what": "Collapse point and circular ripple",
+          "action": "Kept the point at (960, 470) and the circular reveal expanding uniformly with the original radius, easing, and timing.",
+          "why": "The center is established by the centered panel; a circle has no reading direction and the causal anchor must remain exact."
+        },
+        {
+          "what": "Timing and theme colors",
+          "action": "Preserved all original frame cues, easing, scales, colors, and seeded skeleton geometry.",
+          "why": "These define the source motion and the in-place theme change."
+        }
+      ],
+      "rasterHandling": "No raster assets. Dashboards and panel are CSS geometry; there is no baked-in text.",
+      "visualVerification": "Compared Persian and original at frames 38, 46, and 80; inspected consecutive Persian typing frames 38–42 and 46–48 for progressive, connected shaping."
+    },
+    {
+      "id": "demo-ThemeSweepToggle",
+      "rtlDecisions": [
+        {
+          "what": "Dashboard sidebar and card order",
+          "action": "Mirrored both light and dark dashboard layers horizontally, moving the sidebar to the right and preserving pixel-identical structure between themes.",
+          "why": "The rail and card sequence communicate interface reading order. Matching geometry preserves the same-UI theme-switch effect."
+        },
+        {
+          "what": "Diagonal theme sweep and highlight edge",
+          "action": "Mirrored the clip polygon and highlight line so the sweep travels from upper-right toward lower-left; negated the line rotation and mirrored its x-position.",
+          "why": "The sweep carries reading-direction meaning. Its 15-degree angle, easing, frame range, line glow, and settle scale remain the same."
+        },
+        {
+          "what": "Physical and temporal axes",
+          "action": "Kept vertical positions, gravity-free dashboard geometry, and all timing unchanged.",
+          "why": "These do not encode reading direction."
+        }
+      ],
+      "rasterHandling": "No raster assets or visible text. Both theme versions are CSS skeleton dashboards.",
+      "visualVerification": "Compared Persian and original at frames 14, 38, 52, and 54; inspected transition and settled frames through 70 and 169."
+    }
+  ],
+  "render": {
+    "command": "node work/persian/render-card.mjs --slug theme-switch-moves --duration 170 --frames 0,14,15,18,22,24,30,38,39,40,42,46,47,48,52,54,56,62,64,68,70,73,80,94,149,169 --video",
+    "ok": true,
+    "errors": [],
+    "videos": [
+      "PaletteThemeRipple.fa.mp4",
+      "ThemeSweepToggle.fa.mp4"
+    ],
+    "durationNote": "The registry reports 95 frames for PaletteThemeRipple; the source design continues to frame 170. Used the harness --duration 170 for inspection and full Persian video rendering without changing the registered duration."
+  },
+  "concerns": [
+    "The card registry truncates PaletteThemeRipple at 95 frames even though its source timeline specifies a 170-frame dark hold. The rendered video uses the source's intended 170-frame timeline via the harness duration flag; registry metadata was left unchanged."
+  ],
+  "lessons": []
+}

@@ -1,0 +1,46 @@
+{
+  "slug": "input-trigger-moves",
+  "status": "localized-and-visually-checked",
+  "font": {
+    "family": "Vazirmatn",
+    "reason": "Variable, well-shaped Persian product UI face; it keeps the small action legible and matches the neutral grayscale dashboard. FaRoot loads the font before rendering.",
+    "symbolIsland": "Arial is used only for the universal ⌘⏎ keyboard symbols, isolated LTR to preserve the physical key legend."
+  },
+  "comps": {
+    "CursorPerformancePunchIn": {
+      "text": [{"source": "Deploy", "persian": "انتشار", "reason": "Concise, idiomatic action wording fitting the original button."}],
+      "rtlDecisions": [
+        {"what": "Dashboard sidebar and header", "action": "Mirror to the right; reverse header placeholder order through RTL flex layout", "why": "Navigation and toolbar order follow Persian reading direction."},
+        {"what": "Six dashboard cards and their internal placeholder lines and footers", "action": "Start the grid on the right and right-align the internal rows", "why": "Card scan order and text anchoring follow Persian reading direction."},
+        {"what": "Action button and click point", "action": "Mirror x positions from 1560/1665 to 160/255; keep y, dimensions and scale", "why": "The action stays in the equivalent upper card on the RTL dashboard."},
+        {"what": "Cursor approach and cursor icon", "action": "Mirror all Bezier x coordinates and the SVG arrow silhouette; retain the 24-frame overshoot and 30-frame settlement", "why": "The pointer still approaches the action with the original performance from the opposite reading side."},
+        {"what": "Click-centered camera zoom and ripple", "action": "Mirror the zoom origin and ripple center with the click; retain scale, diameter, opacity, easing and all frame beats", "why": "The camera remains anchored to the clicked button."},
+        {"what": "Vertical dip, physical shadow and round shapes", "action": "Keep", "why": "These convey gravity, depth or symmetry rather than reading direction."}
+      ],
+      "rasterHandling": "No raster or video assets appear in this composition; the fixture is CSS shapes with no baked text.",
+      "timing": "Unchanged: approach 0-30, click 40, zoom 40-52, hold 52-72, return 72-90, still to 150. The replacement is a fixed label, so its different length does not change any beat.",
+      "comparedFrames": [0, 24, 35, 40, 51, 90, 140],
+      "concerns": []
+    },
+    "KeycapSmashCut": {
+      "text": [{"source": "⌘⏎", "persian": "⌘⏎", "reason": "Universal keyboard symbols identify the physical shortcut and contain no foreign-language copy."}],
+      "rtlDecisions": [
+        {"what": "Dashboard revealed at the cut", "action": "Use the same card-local RTL dashboard fixture", "why": "The final static product view must read right to left."},
+        {"what": "Final miniature keycap", "action": "Mirror its left coordinate from 464 to 1412", "why": "It remains in the equivalent header gap next to the mirrored title placeholder."},
+        {"what": "Six fly-through cards and panel", "action": "Negate horizontal pass coordinates and tilt angles; preserve pass windows, seed, sizes, scale and blur", "why": "Directional screen traversal follows the mirrored composition while the accelerating smash keeps its original energy."},
+        {"what": "Large keycap, press, ring, light gradient, shadows and camera roll", "action": "Keep centered positions and physical effects", "why": "The key and ring are symmetrical; gravity, lighting and camera motion carry no reading order."},
+        {"what": "Keyboard legend", "action": "Keep symbols and isolate LTR", "why": "They represent an actual shortcut rather than a sentence."}
+      ],
+      "rasterHandling": "No raster or video assets appear in this composition; flying cards and panel are CSS placeholders with no baked text.",
+      "timing": "Unchanged: breath 0-25, three-frame press 25-28, accelerating passes 28-58, hard cut at 58 and static hold thereafter. The source design says 140 frames while the registered comp is 150, so the render holds 92 frames after the cut. No translated string changes stagger count or timing.",
+      "comparedFrames": [0, 24, 27, 35, 40, 51, 57, 58, 90, 140],
+      "concerns": ["The upstream implementation contains no sound, although the source prompt says these triggers benefit from synchronized click/key samples. Audio was outside the literal-text localization scope and remains as upstream.", "The source prompt describes 140 frames, but the registry uses 150. The extra ten frames only lengthen the static ending; the registered duration was preserved."]
+    }
+  },
+  "verification": {
+    "method": "Viewed matching original and Persian PNG frames for both compositions at entrance, trigger, peak, cut and hold beats; checked Persian label shaping, button fit, mirrored layout, cursor contact and keycap placement.",
+    "renderErrors": [],
+    "fullVideo": ["CursorPerformancePunchIn.fa.mp4", "KeycapSmashCut.fa.mp4"]
+  },
+  "lessons": []
+}

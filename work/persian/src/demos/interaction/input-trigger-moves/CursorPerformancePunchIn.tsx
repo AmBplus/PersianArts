@@ -1,10 +1,14 @@
-// cursor-performance-punch-in —— 光标拟人表演 + 点击跟随推近
-// 放大光标沿贝塞尔曲线从左下滑入（末端甩腕过冲）→ 悬停按钮微亮响应 →
-// 点击：按钮下陷 + 涟漪扩散 + 整画布以点击点为原点推近 1→1.4 → 停 → 缓退回。
-// 推近"有去有回"区别 crash-zoom。收尾真静止 ≥35f。全灰阶。
+// RTL analysis: "Deploy" is the only literal copy; use «انتشار» in Vazirmatn
+// 700, a neutral UI face with proper Persian shaping. The sidebar, toolbar,
+// card reading order and placeholder rows are mirrored in the local fixture.
+// The top action moves to the left, and every cursor Bezier x-coordinate and
+// click-centered zoom origin mirrors around the 1920px canvas. The cursor icon
+// mirrors so its tip still leads its RTL approach. Ripple, hover, press, zoom,
+// and return retain their original frames and easing. No raster assets or text.
 import React from 'react';
 import { useCurrentFrame, interpolate, Easing } from 'remotion';
-import { FakeDashboard, G } from '../../_fixtures/Fixtures';
+import { FakeDashboard, G } from './Fixtures';
+import { FaRoot, faText } from '../../_fa';
 
 // 时间轴（30fps，共 150f）
 const T = {
@@ -17,13 +21,13 @@ const T = {
 };
 
 // 按钮与点击点（画布坐标）
-const BTN = { x: 1560, y: 130, w: 200, h: 64 };
-const CLICK = { x: 1665, y: 168 };
+const BTN = { x: 160, y: 130, w: 200, h: 64 };
+const CLICK = { x: 255, y: 168 };
 
-// 光标贝塞尔路径：左下滑入，先沉后扬，曲线有性格
-const P0 = { x: 180, y: 1000 };
-const P1 = { x: 820, y: 1075 };
-const P2 = { x: 1795, y: 560 };
+// Mirrored Bezier: the cursor approaches from the lower right.
+const P0 = { x: 1740, y: 1000 };
+const P1 = { x: 1100, y: 1075 };
+const P2 = { x: 125, y: 560 };
 const P3 = { x: CLICK.x, y: CLICK.y };
 const bez = (t: number) => {
   const u = 1 - t;
@@ -40,9 +44,10 @@ const Cursor: React.FC<{ x: number; y: number }> = ({ x, y }) => (
     viewBox="0 0 28 28"
     style={{
       position: 'absolute',
-      left: x - 3.4,
+      left: x - 44.6,
       top: y - 1.7,
       filter: 'drop-shadow(0 4px 7px rgba(0,0,0,0.4))',
+      transform: 'scaleX(-1)',
     }}
   >
     <path
@@ -113,7 +118,7 @@ export const CursorPerformancePunchIn: React.FC = () => {
   });
 
   return (
-    <div style={{ width: 1920, height: 1080, background: G.bg, overflow: 'hidden', position: 'relative' }}>
+    <FaRoot family="Vazirmatn" style={{ width: 1920, height: 1080, background: G.bg, overflow: 'hidden' }}>
       {/* 整画布以点击点为原点推近 */}
       <div style={{
         position: 'absolute', inset: 0,
@@ -122,17 +127,16 @@ export const CursorPerformancePunchIn: React.FC = () => {
       }}>
         <FakeDashboard variant="A" />
 
-        {/* 右上自绘 Deploy 按钮（叠在页面上） */}
+        {/* Persian action, anchored in the mirrored upper-left card */}
         <div style={{
           position: 'absolute', left: BTN.x, top: BTN.y, width: BTN.w, height: BTN.h,
           borderRadius: 14, background: `rgb(${c},${c},${c - 2})`,
           boxShadow: '0 6px 18px rgba(0,0,0,0.28)',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           transform: `scale(${hoverScale * press})`,
-          fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 700,
-          fontSize: 27, color: '#ffffff', letterSpacing: 0.5,
+          ...faText(27, { fontWeight: 700, color: '#ffffff', lineHeight: 1.4 }),
         }}>
-          Deploy
+          انتشار
         </div>
 
         {/* 涟漪圆环：条件挂载，f66 后摘除 */}
@@ -149,6 +153,6 @@ export const CursorPerformancePunchIn: React.FC = () => {
         {/* 放大光标（随画布一起被推近，钉在按钮上） */}
         <Cursor x={cur.x} y={cur.y + dip} />
       </div>
-    </div>
+    </FaRoot>
   );
 };

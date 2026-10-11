@@ -1,6 +1,11 @@
 import React from 'react';
 import { AbsoluteFill, Easing, interpolate, useCurrentFrame } from 'remotion';
 import { Card, G } from '../../_fixtures/Fixtures';
+import { FaRoot } from '../../_fa';
+
+// فارسی‌سازی: این دمو کارت‌های جایگزین بدون نوشته دارد؛ متن تصویری یا رشتهٔ UI برای ترجمه ندارد.
+// جهت: ستون موج قطری از راست به چپ پیش می‌رود (col در ترتیب تاخیر آینه شده)، اما rotateX، عمق و نور فیزیکی حفظ شده‌اند.
+// فونت Vazirmatn روی ریشه رزرو شده تا در صورت افزودن متن محلی، رندر RTL و فونت قطعی باشد؛ هندسه و زمان‌بندی تغییر نکرده‌اند.
 
 // grid-wave-flip〔入场退场〕：3×3 灰背卡片墙沿对角线波前依次 rotateX 翻转 180°，
 // 灰背翻成正面内容卡；波浪约一秒扫完全屏，最后一张落定带轻微过冲。
@@ -55,6 +60,7 @@ export const GridWaveFlip: React.FC = () => {
         alignItems: 'center',
       }}
     >
+      <FaRoot family="Vazirmatn">
       {/* 卡片墙：共享 perspective 1200px 容器，整墙一个消失点 */}
       <div
         style={{
@@ -70,7 +76,7 @@ export const GridWaveFlip: React.FC = () => {
       >
         {Array.from({ length: ROWS * COLS }).map((_, i) => {
           const row = Math.floor(i / COLS);
-          const col = i % COLS;
+          const col = COLS - 1 - (i % COLS);
           const angle = angleAt(frame, row, col);
           // 高光线：翻到 90°（最薄处）时最亮，位置随角度从上缘扫向下缘
           const glow = Math.max(0, 1 - Math.abs(angle - 90) / 45);
@@ -155,6 +161,7 @@ export const GridWaveFlip: React.FC = () => {
           );
         })}
       </div>
+      </FaRoot>
     </AbsoluteFill>
   );
 };
