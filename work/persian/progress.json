@@ -1,11 +1,11 @@
 {
- "generatedAt": "2026-10-11T15:21:45.954Z",
+ "generatedAt": "2026-10-11T15:27:02.735Z",
  "summary": {
-  "todo": 97,
-  "localized": 8,
-  "approved": 42,
-  "fixed": 8,
-  "needs-fix": 2,
+  "todo": 96,
+  "localized": 3,
+  "approved": 46,
+  "fixed": 9,
+  "needs-fix": 3,
   "total": 157
  },
  "cards": [
@@ -35,19 +35,19 @@
   },
   {
    "slug": "autolayout-gap-dial",
-   "status": "localized",
+   "status": "needs-fix",
    "font": "",
    "videos": 1,
-   "majors": 0,
+   "majors": 1,
    "concerns": 0
   },
   {
    "slug": "avatar-bracket-carousel",
    "status": "localized",
-   "font": "",
+   "font": "Vazirmatn",
    "videos": 1,
    "majors": 0,
-   "concerns": 0
+   "concerns": 2
   },
   {
    "slug": "avatar-grid-radial-build-colorize",
@@ -227,10 +227,10 @@
   },
   {
    "slug": "cloner-depth-echo",
-   "status": "fixed",
+   "status": "approved",
    "font": "{\"families\":[\"Vazirmatn\"],\"reason\":\"Loaded variable Vazirmatn 800 provides reliable Persian glyph coverage and a compact, heavy UI/display sans suitable for the original bold heading. The fixture is geometric and contains no text.\"}",
    "videos": 1,
-   "majors": 3,
+   "majors": 0,
    "concerns": 2
   },
   {
@@ -427,7 +427,7 @@
   },
   {
    "slug": "glass-pill-dictation-typing",
-   "status": "localized",
+   "status": "approved",
    "font": "",
    "videos": 1,
    "majors": 0,
@@ -715,10 +715,10 @@
   },
   {
    "slug": "page-waterfall-wall",
-   "status": "localized",
+   "status": "needs-fix",
    "font": "{\"families\":[\"Vazirmatn\"],\"reason\":\"No live Persian copy is rendered by this card; Vazirmatn is loaded by FaRoot as the neutral, well-covered Persian UI default for any inherited page chrome and keeps the card contract consistent.\"}",
    "videos": 1,
-   "majors": 0,
+   "majors": 3,
    "concerns": 2
   },
   {
@@ -771,7 +771,7 @@
   },
   {
    "slug": "picker-carousel-feature-cycle",
-   "status": "needs-fix",
+   "status": "fixed",
    "font": "Vazirmatn",
    "videos": 1,
    "majors": 1,
@@ -843,7 +843,7 @@
   },
   {
    "slug": "research-card-stack-scroll",
-   "status": "localized",
+   "status": "approved",
    "font": "{\"families\":[\"Vazirmatn\"],\"reason\":\"Neutral variable UI sans suited to academic research cards; reliable Persian glyph coverage, natural shaping, and variable weights preserve the restrained SF/Arial-like source tone.\"}",
    "videos": 1,
    "majors": 0,
@@ -875,7 +875,7 @@
   },
   {
    "slug": "row-embed",
-   "status": "needs-fix",
+   "status": "fixed",
    "font": "",
    "videos": 1,
    "majors": 3,
@@ -939,10 +939,10 @@
   },
   {
    "slug": "segmented-thumb-hero",
-   "status": "localized",
+   "status": "needs-fix",
    "font": "",
    "videos": 1,
-   "majors": 0,
+   "majors": 1,
    "concerns": 0
   },
   {
@@ -1139,11 +1139,11 @@
   },
   {
    "slug": "type-and-filter",
-   "status": "todo",
-   "font": "",
-   "videos": 0,
+   "status": "localized",
+   "font": "{\"families\":[\"Vazirmatn\"],\"reason\":\"Vazirmatn is a neutral, variable-weight Persian product-UI sans with reliable shaping and glyph coverage; it is the closest functional counterpart to the source UI sans.\"}",
+   "videos": 1,
    "majors": 0,
-   "concerns": 0
+   "concerns": 1
   },
   {
    "slug": "type-assembly-moves",
@@ -1203,7 +1203,7 @@
   },
   {
    "slug": "value-stagger-gradient",
-   "status": "localized",
+   "status": "approved",
    "font": "Vazirmatn",
    "videos": 1,
    "majors": 0,

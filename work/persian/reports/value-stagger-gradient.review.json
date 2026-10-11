@@ -1,0 +1,10 @@
+{
+  "slug": "value-stagger-gradient",
+  "verdict": "approve",
+  "score": 88,
+  "issues": [
+    {"severity":"minor","where":"ValueStaggerGradient.tsx caption (faText(10)) ~line 118","problem":"Caption is a short semantic Persian title at fs(10)=11px-scale, visually much smaller/narrower (~640px) than the original 1500px monospace code caption; it also drops the explicit stagger([..]) parameters the source prompt says the caption should state.","suggestedFix":"Optionally add an LTR bdi island with the stagger parameters after the Persian label, or raise the size slightly. Not blocking: the source prompt itself says the caption is a technique annotation and may become a semantic title."},
+    {"severity":"minor","where":"fonts / caption","problem":"Original caption was monospace chrome with 1.5px tracking; Persian uses Vazirmatn at low contrast (#5b6480 on near black, opacity .5-1). Legible but faint.","suggestedFix":"Optional: brighten colour slightly."}
+  ],
+  "notes": "Rendered with harness at frames 0,10,20,40,70,77,80,100,115,149 and compared fa vs orig (viewed 20, 100, 149). Code diff vs upstream: only added FaRoot wrapper, left->right anchors (bars and dots, same +1.2% dot offset), Persian caption, removed monospace fontFamily; DURATION=150, N, seeds, seg windows, easings, caption cut at t=0.52 all unchanged. Mirror is correct: first/blue/tallest bar now at right, ramp reads right-to-left, dots stay centred under bars, composition balanced (margins ~148/152px). Centre pulse correctly kept symmetric (f100 shows pulse bulging mid-row, matching the orig mirrored). Caption shaping correct (ZWNJ not needed, ی/ک right, colon and plus placed properly, no overflow), font Vazirmatn loaded (no fallback). No cheating (nothing blurred/hidden), no raster assets, no letterSpacing/uppercase left; header comment truthfully lists decisions. Shippable."
+}

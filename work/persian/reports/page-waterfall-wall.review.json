@@ -1,0 +1,38 @@
+{
+  "slug": "page-waterfall-wall",
+  "verdict": "fix",
+  "score": 22,
+  "issues": [
+    {
+      "severity": "blocker",
+      "where": "PageWaterfallWall.tsx shot() lines ~41-44 (filter: blur(16px) + scale(1.04)); all frames (fa f0/f30/f75/f120/f149)",
+      "problem": "The only 'localization' is a blanket 16px blur over every card raster. The source cards (work/persian/src/workbench/public/textures/live/card*.png, projects-empty, float-search) are real page cards with baked English/Chinese text (titles, '1 个月前', 负责人/客户/行业, tags). Blurring hides content instead of localizing it: the wall turns into grey mush with no recognizable page outlines, which contradicts the source prompt (card blocks must have a recognizable outline; the wall must read as 'real pages flowing by'). Checklist item 5 requires blur/replace/regenerate so the result is a believable Persian product page, and the lessons file lists blur only as a minimum; here the entire visual is destroyed. It is the cheating pattern the review brief warns about.",
+      "suggestedFix": "Rebuild the 12 card slices as live React/HTML mock page cards in Persian (RTL) inside the card directory: title, description, meta rows (مسئول / مشتری / صنعت), counters with faDigits, tags, a '۱ ماه پیش' stamp, with Vazirmatn/Estedad, direction:rtl, same card size/aspect and rounded corners/shadow as the PNGs so ticker heights and the seamless -50% loop stay identical. Alternatively regenerate Persian PNG textures. Keep at most a very light softening, not 16px blur."
+    },
+    {
+      "severity": "major",
+      "where": "PageWaterfallWall.tsx header comment and report.json (font, rtlDecisions)",
+      "problem": "Author claims 'no live Persian copy' and reports the Persian font as inert; 'FaRoot ... for any future page chrome' is a placeholder, not a decision. Since the content is raster, no Persian text exists anywhere in the output, so the deliverable is effectively not Persian at all.",
+      "suggestedFix": "After replacing rasters with Persian mock cards, document the font choice (Vazirmatn/Estedad for product UI) and the direction decisions truthfully in the header comment."
+    },
+    {
+      "severity": "major",
+      "where": "textures path change: staticFile('textures/live/...') in PageWaterfallWall.tsx; originals in textures/ missing",
+      "problem": "Original per-card comparison is impossible (upstream MP4 missing), and the source images were swapped to a different directory without evidence they are the same assets as the original; the author could not verify fidelity. Even so, the screenshots visible in the live set are mixed Chinese/English UI, so nothing was verified as foreign-text-free beyond blur.",
+      "suggestedFix": "Document the asset origin; verify against the source prompt (3 columns, loops 12/9/14s, middle reversed, rotateX 20deg, perspective 1000, scale 1.2->1.26 push) after the rebuild."
+    },
+    {
+      "severity": "minor",
+      "where": "buildColumns() column order / Direction decision",
+      "problem": "Column order is kept unmirrored with a reasoned note, acceptable for a symmetric 3-column wall, but once cards are Persian with RTL content, card internal layout (stamp top-left, labels right-aligned) must be mirrored; the current approach cannot show this.",
+      "suggestedFix": "Mirror internal card layout via direction:rtl in the rebuilt cards; keep column order and vertical motion directions (justified physical/vertical motion)."
+    },
+    {
+      "severity": "minor",
+      "where": "VerticalTicker.tsx",
+      "problem": "Only a header comment was added; no functional issues. Timing/exports (buildColumns, PageWaterfallWall, SeamTest, loops, camera push) are unchanged vs upstream per diff.",
+      "suggestedFix": "None needed."
+    }
+  ],
+  "notes": "Diffed against upstream: timing, exports, seeds, perspective/rotateX/scale, push unchanged; only FaRoot wrapper, texture dir swap and blur were added. Rendered fa frames 0/30/75/120/149 with the harness; upstream orig MP4 absent so no orig frames. No broken shaping or overflow, because no text is visible at all. The result is a blurred grey wall; it hides foreign text rather than localizing it, so it is not shippable as a Persian version."
+}

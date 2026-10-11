@@ -1,0 +1,26 @@
+{
+  "slug": "segmented-thumb-hero",
+  "verdict": "fix",
+  "score": 72,
+  "issues": [
+    {
+      "severity": "major",
+      "where": "SegmentedThumbHero.tsx ripple div (right: PAD + SEGW/2 - 130*rippleT), frames 48-60 (verified at f50, f57)",
+      "problem": "The click ripple is centered on the RIGHT segment (the source 'پرسش'), while the cursor presses on the LEFT destination 'رایانه'. In the original the ripple sits on the destination label (Computer). The author's report claims it was repositioned to the destination click point; the render shows the opposite (f50: ripple on the pursesh label, cursor far left; f57: large faint ring around پرسش).",
+      "suggestedFix": "Mirror correctly: right = PAD + SEGW + SEGW/2 - 130*rippleT (destination = left segment center). Optionally keep the original vertical offset (top: CH/2 - PAD - 130*rippleT) for fidelity; current top is CH/2 - 130*rippleT."
+    },
+    {
+      "severity": "minor",
+      "where": "report.json visualVerification / rtlDecisions 'Click ripple'",
+      "problem": "Report claims the ripple was verified at the mirrored destination; it was not.",
+      "suggestedFix": "Correct the report after fixing the ripple."
+    },
+    {
+      "severity": "minor",
+      "where": "ripple vertical position",
+      "problem": "Ripple top changed from original CH/2 - PAD - 130r to CH/2 - 130r (16px shift), an unrequested deviation.",
+      "suggestedFix": "Restore the original vertical formula unless there is a reason."
+    }
+  ],
+  "notes": "Everything else is good: labels پرسش/رایانه shape correctly, Vazirmatn 700 is loaded and fits, no letterSpacing/uppercase, segment order and thumb travel (right to left, 8f cubic ease-out) are mirrored consistently, cursor path is the exact mirror (x 1780->10, 1210->580) and lands under the destination segment, icons sit at the reading-start side, timings/spring configs/constants identical to the original, no raster/foreign text, header comment is accurate apart from the ripple claim. The only real defect is the ripple on the wrong segment."
+}

@@ -9,63 +9,43 @@
       "size": "1920x1080",
       "frames": 68,
       "font": {
-        "families": [],
-        "reason": "No live text is rendered by the component. The only words belong to the baked screenshot and are blurred because they cannot be faithfully replaced as live Persian typography without rebuilding the screenshot UI."
+        "families": ["Vazirmatn"],
+        "reason": "Variable Vazirmatn matches the neutral research UI, supplies real 600 and 800 weights, shapes Persian and its digits correctly, and is loaded before capture by FaRoot."
       },
+      "translatedContent": [
+        "Brand and navigation: آزمایشگاه بنیاد هوش مصنوعی، هفته‌نامه، مقاله‌ها",
+        "Project label, title, tags and description for the autonomous research loop",
+        "Metadata headings, expand action, owner, field and running state",
+        "Research questions, experiments and assets tabs with Persian digits",
+        "Filter and sort controls; five table headings",
+        "Five research row titles and descriptions, status chips, type, owner and Persian-digit dates"
+      ],
       "rtlDecisions": [
-        {
-          "what": "Five row positions and screenshot crop coordinates",
-          "action": "Kept their original x/y positions and crop offsets.",
-          "why": "The rows represent a physical top-down drop into pre-existing page slots. The source prompt defines no reading-order sequence across columns; mirroring would detach the crops from their slots."
-        },
-        {
-          "what": "Row entrance direction, gravity and rotateX",
-          "action": "Kept vertical descent, translateY, rotateX, perspective and scale values unchanged.",
-          "why": "These express gravity and physical embedding, not text reading direction."
-        },
-        {
-          "what": "Stagger schedule and landing beats",
-          "action": "Kept cue = 12 + i*9, 12-frame flight, 4-frame landing settle, and 8-frame seam lifetime unchanged.",
-          "why": "Preserves the original five-row rain and final landing/seam ending at frame 68."
-        },
-        {
-          "what": "Bottom seam reveal",
-          "action": "Kept its symmetric center-out expansion and fade unchanged.",
-          "why": "The seam is a physical embed flash, not a directional reading reveal."
-        },
-        {
-          "what": "Camera movement",
-          "action": "Kept the centered camera and downward cy movement unchanged.",
-          "why": "This is a physical pan across the page; there is no reading-direction implication."
-        },
-        {
-          "what": "Baked raster copy in page and row crops",
-          "action": "Applied a 40px blur to the raster page and flying row crops in a card-local PageCam2D copy.",
-          "why": "The screenshot contains Chinese UI strings and legible English research titles, descriptions, names and dates. The blur is strong enough to make that copy unreadable at output scale while retaining the page layout, row surfaces, warm palette and motion. A 16px trial still left large headings readable."
-        }
+        {"what":"Brand and top navigation","action":"Placed brand at the right and navigation entries after it in RTL flex order.","why":"Header order follows reading direction."},
+        {"what":"Project title, tags, summary and metadata","action":"Anchored text to the right; set RTL text direction and moved the expand action to the left end of its strip.","why":"These are reading-order page elements; the secondary action belongs at the far end."},
+        {"what":"Tabs, filters and column headings","action":"Ordered tabs and controls from the right; placed the title column on the right and status, type, owner and update date successively to its left.","why":"This is a Persian data table, so category order and text start at the right. Numeric date digits retain their normal sequence."},
+        {"what":"Five row slots and flyer x coordinates","action":"Kept layout.detail slot x/y/w/h and centered 1104px page width unchanged; rebuilt each row's content in RTL order and reused that same component in the flyer.","why":"The page area is centered and the slots are vertically stacked. Their screen coordinates carry no left/right reading meaning, while content inside each slot does. Identical DOM avoids a crop/repaint mismatch."},
+        {"what":"Row descent, rotateX, scale and shadow","action":"Preserved perspective(900px), translateY(-120*air), rotateX(16*air), scale settle, cue=12+i*9, 12-frame flight and 4-frame settle.","why":"They express gravity and physical embedding rather than reading direction."},
+        {"what":"Empty slot patch","action":"Matched the patch to the exact row slot bounds and page paper color; retained its original two-frame fade after landing.","why":"It must hide the destination row until the flyer lands without leaving the earlier bright slab."},
+        {"what":"Amber landing seam","action":"Kept its 2px bottom edge, center-out five-frame spread, eight-frame fade and original easing.","why":"The landing flash is symmetric and physical."},
+        {"what":"Camera","action":"Kept cx=960, cy=300→760, zoom=1.1→1 and the upstream interpolation/easing in the card-local camera.","why":"The pan is vertical and independent of reading direction."}
       ],
       "rasterHandling": {
         "asset": "textures/live/detail-full.png",
-        "handling": "Blurred at 40px in the local camera helper and on flying screenshot crops; the shared texture and shared fixture were not edited.",
-        "reason": "The asset includes extensive baked Chinese and English UI text. No external raster text remains legible in the reviewed frames."
+        "handling": "Removed from the rendered scene and replaced with a live Persian detail page. No raster screenshot or crop remains.",
+        "reason": "The original image baked in Chinese and English UI copy; blurring it erased the legibility central to this card."
       },
+      "timing": "Persian strings differ in length, but rows animate as whole cards. Original cue, landing, seam, camera and 68-frame duration values are unchanged, so text length does not shift any beat.",
       "concerns": [
-        "The raster UI copy is intentionally unreadable rather than translated, so the screenshot loses fine text detail. Its geometry and tonal composition remain visible."
+        "The source screenshot's fine type metrics cannot be matched exactly with a new Persian font; the content geometry, row slots, warm palette and animation beats are retained.",
+        "During flight, a row can temporarily overlap its destination and nearby content. This also occurs in the upstream effect and resolves on landing."
       ],
       "lessons": [
-        "At 1920x1080, a 16px CSS blur on a high-resolution screenshot still left large baked headings readable after camera scaling; inspect at final output size and raise blur until text is genuinely illegible."
+        "A heavily blurred baked page cannot serve as a localized background when the animation is about rows embedding into readable UI. Rebuild the page and flying rows with one shared live component, then use the original slot coordinates and timing."
       ],
       "visualVerification": {
-        "framesComparedFaAndOriginal": [
-          5,
-          12,
-          24,
-          33,
-          42,
-          60,
-          67
-        ],
-        "result": "Reviewed paired renders across early setup, individual row landings, later row entrances and the final resting state. Original retains crisp screenshot text; Persian render preserves the camera/row timing and masks screenshot text through strong blur."
+        "framesComparedFaAndOriginal": [3, 14, 22, 31, 40, 50, 60, 67],
+        "result": "Viewed original and Persian frames at setup, successive flights/landings and the final rest. Persian text remains legible, the page and table read RTL, the row copies align with their slots, and no baked foreign text is rendered."
       }
     }
   ],

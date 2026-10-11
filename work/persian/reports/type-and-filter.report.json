@@ -1,0 +1,71 @@
+{
+  "slug": "type-and-filter",
+  "status": "localized",
+  "font": {
+    "families": ["Vazirmatn"],
+    "reason": "Vazirmatn is a neutral, variable-weight Persian product-UI sans with reliable shaping and glyph coverage; it is the closest functional counterpart to the source UI sans."
+  },
+  "text": {
+    "translations": [
+      {
+        "source": "nano-lab",
+        "persian": "نانو-لب",
+        "context": "The editable search query; the remaining source UI copy is rasterized and is not emitted as editable text."
+      }
+    ],
+    "typing": "typeOn(QUERY, progress) renders prefix slices of the entire Persian string, so joins reshape correctly at every reveal frame. Its seven Persian-visible characters are distributed across the original 24-frame typing span (frames 10–31), retaining the source pause before filtering at frame 42."
+  },
+  "rtlDecisions": [
+    {
+      "comp": "TypeAndFilter",
+      "what": "Project grid positions and target-card start/settled slot",
+      "action": "Mirrored with mirrorX(x, width).",
+      "why": "Grid/card order is a reading-order UI convention; the filtered result belongs in the RTL first-row slot at the right."
+    },
+    {
+      "comp": "TypeAndFilter",
+      "what": "Non-target filter cascade",
+      "action": "Reversed its reading-order rank.",
+      "why": "The right-most card is read first in RTL, while the original 0.4-frame stagger and five-frame fade/sink are unchanged."
+    },
+    {
+      "comp": "TypeAndFilter",
+      "what": "Search icon, typed query and caret",
+      "action": "Rebuilt as a right-anchored RTL row; physical marginLeft/letterSpacing were removed in favor of logical marginInlineStart and faText().",
+      "why": "A Persian search field starts at the right and must retain joined glyph shaping."
+    },
+    {
+      "comp": "TypeAndFilter",
+      "what": "Click point and final camera target",
+      "action": "Mirrored horizontally with the settled result card.",
+      "why": "The simulated click must remain on the selected RTL result; camera zoom remains the same physical motion."
+    },
+    {
+      "comp": "TypeAndFilter",
+      "what": "Vertical sink, card lift/scale/shadow, ripple radius and camera zoom",
+      "action": "Kept unchanged.",
+      "why": "These are physical/depth cues rather than reading-direction semantics."
+    }
+  ],
+  "rasterHandling": {
+    "assets": ["textures/live/projects-empty.png", "textures/live/<card crop>"],
+    "issue": "They contain baked English and Chinese project-page copy that cannot be truthfully translated without editing shared assets.",
+    "treatment": "A backdrop blur is applied to the full source page before interaction layers, and each reintroduced card crop receives blur(8px). The localized search field is drawn crisply above the plate. This removes legible foreign-language text while retaining the page/card geometry, filtering choreography and selected-card silhouette."
+  },
+  "motionFidelity": {
+    "duration": 73,
+    "unchangedBeats": ["typing starts frame 10", "typing completes frame 31", "filter starts frame 42", "target slide lasts 10 frames", "ripples start frames 58 and 61", "outline starts frame 60", "camera push ends frame 72"],
+    "note": "No fps, duration, easing curve, seed, or timing constant was changed."
+  },
+  "verification": {
+    "stillFramesInspected": [0, 10, 13, 16, 22, 28, 31, 41, 43, 47, 52, 58, 61, 66, 72],
+    "pairedOriginalFramesInspected": [0, 24, 47, 52],
+    "focus": "Typing progression, pre-filter hold, stagger/slide, ripple and zoom end state."
+  },
+  "concerns": [
+    "The source card/page content is intentionally blurred because its baked copy cannot be translated under the card-only editing constraint. Its geometric layout and interaction timing remain visible, but the individual project details are no longer readable by design."
+  ],
+  "lessons": [
+    "For raster-backed UI demos, placing a backdrop-filter blur as the first PageCam child anonymizes the baked base before crisp localized overlays; using PageCam's blur prop instead would also blur the replacement Persian UI layer."
+  ]
+}

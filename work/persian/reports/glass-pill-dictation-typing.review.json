@@ -1,0 +1,10 @@
+{
+  "slug": "glass-pill-dictation-typing",
+  "verdict": "approve",
+  "score": 91,
+  "issues": [
+    {"severity": "minor", "where": "GlassPillDictationTyping.tsx BASE waveform bars (direction:ltr island)", "problem": "Waveform bars keep the original left-tall/right-short profile; in the mirrored control this is unmirrored. Defensible as a physical/audio-time icon but not documented as a mirror decision.", "suggestedFix": "Optionally reverse BASE order, or note in the header why it is kept."},
+    {"severity": "minor", "where": "Typing beats", "problem": "Persian string is 20 code points (including spaces) vs 18 in the original; per-character rate is ~11% faster though start/end beats (0.06-0.73) are preserved. Report mentions it.", "suggestedFix": "None required."}
+  ],
+  "notes": "Rendered and viewed fa vs orig at frames 0,2,4,6,8,10,13,14,18-21,25,30,38,40,48,49. Typing is per-character via typeOn prefix slicing; consecutive frames show correct shaping (ص, صحب, صحبت, صحبت ک, ... صحبت کنید یا بنو), caret follows the prefix on the left. Text starts at the right, voice icon at left, gradient mirrored (270deg, bright at the icon end), padding mirrored, caret margin logical, font Vazirmatn actually loaded. Final frame is a clean neutral glass bar with no leftover English or Chinese. Timing constants, exports, scale/opacity/glow curves unchanged vs the original. No letterSpacing, uppercase, or raster content. Pill is wider than the original (width = measured Persian text + 168, per the source prompt rule) and remains well balanced and on-canvas. No cheating observed."
+}

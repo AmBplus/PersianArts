@@ -3,7 +3,7 @@
 // Usage: node work/persian/cheap-batch.mjs [--cards a,b,c | --file work/persian/batch39.json] [--skip x,y] [--max N]
 // Results are appended to work/persian/trial/batch-results.jsonl (one JSON object per finished card).
 import {readFile, appendFile, mkdir} from "node:fs/promises";
-import {existsSync} from "node:fs";
+import {existsSync, readdirSync} from "node:fs";
 import {spawn} from "node:child_process";
 import {resolve, join} from "node:path";
 
@@ -11,16 +11,21 @@ const arg = (n, d) => { const i = process.argv.indexOf(`--${n}`); return i < 0 ?
 const root = resolve(import.meta.dirname, "..", "..");
 let cards = arg("cards") ? arg("cards").split(",") : JSON.parse(await readFile(join(root, arg("file", "work/persian/batch39.json")), "utf8"));
 const skip = new Set((arg("skip", "") || "").split(",").filter(Boolean));
-cards = cards.filter((c) => !skip.has(c) && !existsSync(join(root, "work/persian/out", c, "review.json")) && !existsSync(join(root, "work/persian/out", c, `${c}.done`)));
+const await_readdir = (c) => readdirSync(join(root, "work/persian/out", c));
+const redo = new Set((arg("redo", "") || "").split(",").filter(Boolean));
+const authored = (c) => existsSync(join(root, "work/persian/out", c)) && (await_readdir(c)).some((f) => f.endsWith(".fa.mp4"));
+cards = cards.filter((c) => redo.has(c) || (!skip.has(c) && !authored(c)))
+cards = cards.filter((c) => redo.has(c) || (!skip.has(c) && !existsSync(join(root, "work/persian/out", c, "review.json")) && !existsSync(join(root, "work/persian/out", c, `${c}.done`)));
 if (arg("max")) cards = cards.slice(0, Number(arg("max")));
 
-const SLOTS = [
+const DEFAULT_SLOTS = [
   {worker: "glm", model: "glm-5.3-flash", effort: "medium"},
   {worker: "codex-b", model: "gpt-6-luna", effort: "medium"},
   {worker: "codex-a", model: "gpt-5.6-luna", effort: "medium"},
   {worker: "codex-b", model: "gpt-6-sol", effort: "medium"},
   {worker: "codex-a", model: "gpt-5.6-terra", effort: "low"},
 ];
+const SLOTS = arg("slots") ? arg("slots").split(",").map((x) => { const [worker, model, effort] = x.split(":"); return {worker, model, effort}; }) : DEFAULT_SLOTS;
 const queues = SLOTS.map(() => []);
 cards.forEach((c, i) => queues[i % SLOTS.length].push(c));
 const results = join(root, "work/persian/trial/batch-results.jsonl");

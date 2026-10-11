@@ -1,16 +1,21 @@
-// Persian RTL localization of row-embed. All five table rows, headers, labels, values,
-// descriptions, dates and follow-up titles are part of a baked screenshot, so the page
-// texture is strongly blurred (16px) to make its English/Chinese copy illegible; row
-// flyers use the same blurred source to preserve the crop-and-embed illusion.
-// Layout/camera coordinates stay fixed: this page has no meaningful reading-order motion
-// inside the texture; row rain, vertical gravity, rotateX, camera pan and center-out seam
-// are physical/symmetric and retain their original directions and timing.
-// No Persian typography is added because all visible copy belongs to the raster page.
-// Font: none; there is no live Persian text, and the raster lettering is deliberately blurred.
+// Persian RTL localization of row-embed. The baked English/Chinese screenshot is replaced
+// by live Persian UI: brand/nav, project title/tags/description, metadata, tabs, filters,
+// five column headers, and five research rows with status, type, owner and Persian date.
+// Layout follows reading order: brand and nav start at right; title, tabs, filters and
+// row titles start at right; table columns run title -> status -> type -> owner -> date
+// from right to left; the expand action ends at the left. The centered 1104px page area
+// and five row slot coordinates are symmetric, so their physical x positions stay put.
+// Gravity, rotateX, camera pan and center-out amber seam express physical embedding and
+// retain upstream directions, frame cues, easing and duration. One DetailRow component
+// paints both a flying row and its landing site so the text and geometry match exactly.
+// Font: variable Vazirmatn, loaded by FaRoot, for the source's restrained product UI.
+// Raster handling: detail-full.png is removed; no baked foreign text is rendered.
 import React from 'react';
-import { interpolate, staticFile, useCurrentFrame, Easing } from 'remotion';
+import { interpolate, useCurrentFrame, Easing } from 'remotion';
 import { PageCam2D, CamKey2D } from './PageCam2D';
 import layout from '../../_textures/live-layout.json';
+import {FaRoot} from '../../_fa';
+import {DetailRow, PersianPage} from './PersianPage';
 
 export const ROW_EMBED_DURATION = 68;
 
@@ -23,13 +28,13 @@ const DETAIL_CAM: CamKey2D[] = [
 ];
 
 const FLY_EASE = Easing.bezier(0.3, 0, 0.25, 1);
-const detailSrc = staticFile('textures/live/detail-full.png');
 
 export const RowEmbed: React.FC = () => {
   const frame = useCurrentFrame();
 
   return (
-    <PageCam2D src="textures/live/detail-full.png" pageH={DETAIL_H} keys={DETAIL_CAM}>
+    <FaRoot family="Vazirmatn">
+    <PageCam2D page={<PersianPage />} pageH={DETAIL_H} keys={DETAIL_CAM}>
       {rows.map((r, i) => {
         const cue = 12 + i * 9;
         const land = cue + 12;
@@ -39,7 +44,7 @@ export const RowEmbed: React.FC = () => {
           extrapolateLeft: 'clamp', extrapolateRight: 'clamp',
         });
 
-        // flying row: texture-crop dropping in from the air
+        // flying row: same live component as the row in the page
         let flyer: React.ReactNode = null;
         if (frame >= cue && frame < cue + 16) {
           const p = interpolate(frame, [cue, cue + 12], [0, 1], {
@@ -60,17 +65,13 @@ export const RowEmbed: React.FC = () => {
               key={`row-${i}`}
               style={{
                 position: 'absolute', left: r.x, top: r.y, width: r.w, height: r.h,
-                borderRadius: 8, backgroundColor: '#fff',
-                backgroundImage: `url(${detailSrc})`,
-                backgroundSize: `1920px ${DETAIL_H}px`,
-                backgroundPosition: `-${r.x}px -${r.y}px`,
+                borderRadius: 8, backgroundColor: '#fff', overflow: 'hidden',
                 opacity: appear,
-                filter: 'blur(16px)',
                 transform: `perspective(900px) translateY(${-120 * air}px) rotateX(${16 * air}deg) scale(${scale})`,
                 boxShadow: `0 ${30 * air}px ${60 * air}px rgba(30,25,18,${0.22 * air}), 0 ${8 * air}px ${16 * air}px rgba(30,25,18,${0.12 * air})`,
                 zIndex: 3, pointerEvents: 'none',
               }}
-            />
+            ><DetailRow index={i} flying /></div>
           );
         }
 
@@ -107,8 +108,8 @@ export const RowEmbed: React.FC = () => {
               <div
                 key={`patch-${i}`}
                 style={{
-                  position: 'absolute', left: r.x - 8, top: r.y - 4,
-                  width: r.w + 24, height: r.h + 8, background: '#fdfcfa',
+                  position: 'absolute', left: r.x, top: r.y,
+                  width: r.w, height: r.h, background: '#faf7f2',
                   opacity: patchOpacity, zIndex: 1, pointerEvents: 'none',
                 }}
               />
@@ -119,5 +120,6 @@ export const RowEmbed: React.FC = () => {
         );
       })}
     </PageCam2D>
+    </FaRoot>
   );
 };

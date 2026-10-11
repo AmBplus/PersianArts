@@ -1,0 +1,84 @@
+{
+  "slug": "avatar-bracket-carousel",
+  "status": "complete",
+  "card": {
+    "comps": ["demo-AvatarBracketCarousel"],
+    "durationFrames": 156,
+    "fps": 30,
+    "size": "1920x1080",
+    "designCoordinateSpace": "480x270 (DesignStage uniform upscale)"
+  },
+  "font": {
+    "family": "Vazirmatn",
+    "weights": { "headline": 800, "roleLabel": 600 },
+    "reason": "The original is a neutral product-UI system-ui sentence ('-apple-system, system-ui, sans-serif') with a heavy 800 fill-in-blank headline and a 600 role label. Vazirmatn is the variable (100-900) neutral Persian UI sans that plays the same role; being variable, both 800 and 600 are real weights (no fake bold). Persian sizes scaled x1.1 via fs() (34 -> 37px) because Persian glyphs read smaller at equal px; lineHeight FA_LH=1.5 added. Verified rendered (no fallback): headline/labels in the stills are clearly Vazirmatn."
+  },
+  "text": {
+    "headline": "'Your ___ teammates' -> «هم‌تیمی‌های ___ شما» — under direction:rtl the first DOM word «هم‌تیمی‌های» sits right-most and «شما» left-most, so the sentence reads right-to-left exactly as the English reads left-to-right; the 92px slot stays pinned at screen centre (flex justify-content:center), so the fill-in-blank mechanism is untouched. ZWNJ used in «هم‌تیمی‌های».",
+    "roles": [
+      "Designer -> طراح",
+      "Support -> پشتیبانی (idiomatic Persian product-UI role word; «هم‌تیمی‌های پشتیبانی شما» reads naturally; string changed after the first render pass and re-verified at frame 41)",
+      "Analyst -> تحلیلگر",
+      "Writer -> نویسنده"
+    ],
+    "digits": "No digits on screen; nothing to convert (92/76/etc. in source are geometry constants, not on-screen text).",
+    "shaping": "letterSpacing 0 everywhere (original had -0.5 on headline and 1 on the tracked role labels — tracking/uppercase have no Persian equivalent and letterSpacing breaks joining); textTransform none; no per-code-point splitting anywhere (no per-unit text animation exists in this demo — the only animated text property is the role label's opacity, applied to whole words)."
+  },
+  "rtlDecisions": [
+    {
+      "comp": "demo-AvatarBracketCarousel",
+      "what": "Sentence flex row: Your | slot | teammates",
+      "action": "direction:rtl via FaRoot on the row container; DOM order kept (هم‌تیمی‌های, slot, شما)",
+      "why": "Reading-order content: Persian reads right-to-left, so the first word must be right-most. The row is justify-content:center with gap 22 and no absolute coordinates, so the mirror needs zero geometry changes and the slot remains dead-centre (the source prompt's pitfall about the slot drifting off-centre does not apply because the slot is a 92px flex:none item between two text words under centering)."
+    },
+    {
+      "comp": "demo-AvatarBracketCarousel",
+      "what": "Avatar queue motion (vertical spring carousel, translateY=(k-pos)*76)",
+      "action": "KEPT identical",
+      "why": "Vertical movement is physical (a vertical list rotated through a slot), carries no reading-direction meaning; steps/springs/timing unchanged."
+    },
+    {
+      "comp": "demo-AvatarBracketCarousel",
+      "what": "Focus-bracket corners (4 SVG paths in a 92x92 viewBox) + 7% breath pulse",
+      "action": "KEPT identical",
+      "why": "4-fold symmetric framing device; mirroring a symmetric bracket is a no-op, and the breath scale is direction-free."
+    },
+    {
+      "comp": "demo-AvatarBracketCarousel",
+      "what": "Role label position (translate(-50%,64px) below the slot, centred)",
+      "action": "KEPT (translateX -50% is a symmetric self-centring offset, not a left-anchored position); label text runs RTL under FaRoot",
+      "why": "The label is centred under the slot in the original; centring is direction-neutral. Its steep opacity falloff (2.2, never two labels visible) preserved as-is."
+    },
+    {
+      "comp": "demo-AvatarBracketCarousel",
+      "what": "Entrance stagger seg(t, 0.02+k*0.03, 0.12+k*0.03) over the 4 avatars",
+      "action": "KEPT identical",
+      "why": "The queue is a vertical stack; its stagger order is top-to-bottom, not left/right, so no mirroring applies. All beats unchanged (switches 0.24/0.46/0.68, window 0.14, spring damping 0.25, STEP 76, decay slopes 0.38/0.62/2.4/2.2)."
+    },
+    {
+      "comp": "demo-AvatarBracketCarousel",
+      "what": "Emoji avatars (🎨 💬 📊 ✍️) on neutral grey circles",
+      "action": "KEPT unchanged",
+      "why": "Emoji are universal pictographs, not text; per the source prompt the accent colour stays only on the bracket corners."
+    }
+  ],
+  "rasterHandling": "No raster/video assets in this demo (flat #0b0c12 background, emoji glyphs only). Nothing to blur, replace or mirror.",
+  "verification": {
+    "framesViewed": [6, 30, 41, 75, 82, 110, 150],
+    "comparedAgainstOriginal": [6, 30, 41, 150],
+    "notes": [
+      "f6: entrance stagger mid-build, avatar dim in slot — matches original beat.",
+      "f30: settled on طراح/Designer, headline legible, slot centred, label below — composition balance matches the original (Persian headline word «هم‌تیمی‌های» is longer than 'Your' and «شما» shorter than 'teammates', but the centred flex keeps the slot central and both words fit with margin).",
+      "f41: mid first switch — queue shows outgoing avatar blurred above, incoming blurred below, label fading, exactly like the original at the same frame.",
+      "f75/f82/f110/f150: later beats (analyst settle, second switch, third switch, final rest on نویسنده/Writer) all match the original's beats; final resting frame identical in structure.",
+      "Full Persian MP4 rendered end-to-end with no errors: work/persian/out/avatar-bracket-carousel/AvatarBracketCarousel.fa.mp4."
+    ]
+  },
+  "concerns": [
+    "No blockers. Minor note: the role label at mid-switch frames overlaps the blurred incoming avatar — the original does exactly the same ('Support' over the blurred 📊 circle at f41), so it is faithful, not a defect.",
+    "The Persian headline words have different widths than 'Your'/'teammates'; because the row is centred the slot never moves, verified at every viewed frame."
+  ],
+  "lessons": [
+    "Fill-in-the-blank headlines ('Your ___ teammates') localize cleanly under direction:rtl with unchanged DOM order: centred flex automatically keeps the slot pinned at screen centre for any word widths — no coordinate recompute needed, as long as the slot element keeps flex:none and its fixed px size."
+  ]
+}

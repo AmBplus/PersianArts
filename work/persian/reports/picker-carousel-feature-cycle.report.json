@@ -1,6 +1,6 @@
 {
   "slug": "picker-carousel-feature-cycle",
-  "status": "localized-and-rendered",
+  "status": "fixed-and-rendered",
   "component": {
     "id": "demo-PickerCarouselFeatureCycle",
     "file": "PickerCarouselFeatureCycle.tsx",
@@ -33,8 +33,14 @@
     {
       "component": "demo-PickerCarouselFeatureCycle",
       "what": "AI badge",
-      "action": "Mirrored the badge from the source's left exterior to the equivalent right exterior position; preserved its dimensions and fade timing. The Latin token is bidi-isolated.",
-      "why": "It is a reading-side companion to the picker, while AI itself is a technical token conventionally retained in Latin script."
+      "action": "Placed the badge at the equivalent right exterior position in the centered symmetric composition; preserved its dimensions and fade timing. Restored the source-like system Latin sans and bidi-isolated AI.",
+      "why": "The badge remains balanced beside a symmetric centered picker; the Latin technical mark keeps its source typography."
+    },
+    {
+      "component": "demo-PickerCarouselFeatureCycle",
+      "what": "Refresh icon glyph",
+      "action": "Kept the original ↺ character and assigned the icon span a system symbol-safe font stack.",
+      "why": "Vazirmatn's symbol fallback rendered the refresh glyph like a hook; the system symbol font preserves the intended open circular arrow."
     },
     {
       "component": "demo-PickerCarouselFeatureCycle",
@@ -50,7 +56,7 @@
     }
   ],
   "typography": {
-    "letterSpacing": "No tracking on Persian labels. The sole 0.5px tracking declaration is restricted to the retained Latin AI mark.",
+    "letterSpacing": "No tracking on Persian labels. The source's 0.5px tracking is preserved only on the Latin AI mark.",
     "shaping": "Labels are intact text runs; no Persian characters are split, transformed individually or uppercased.",
     "fit": "Persian sizes use the shared fs/faText scaling. All labels stay on one line inside the 300px design viewport in inspected frames."
   },
@@ -63,8 +69,8 @@
     "details": "PICKER_CAROUSEL_FEATURE_CYCLE_DURATION remains 108. FPS, stage size, five snap steps, HOLD=5/14, easing, row height, opacity/size falloff, and landing breath are unchanged. Translation length does not change any timing because labels are whole-row content rather than character-timed animation."
   },
   "verification": {
-    "stillFramesViewed": [5, 17, 24, 36, 43, 55, 62, 74, 81, 93, 102, 105],
-    "comparison": "Viewed Persian and original paired renders at early entry, every cycle/settle sequence, and the final resting phase. Checked Persian font shaping, one-line fit, mirrored badge/icon placement, fixed focus pill, and matching vertical composition.",
+    "stillFramesViewed": [5, 17, 24, 36, 43, 55, 62, 74, 81, 90, 102, 105, 107],
+    "comparison": "Viewed Persian and original paired renders across entry, cycle/settle sequences, and final resting frames. After the fix, specifically compared frames 90, 102, and 107 to confirm the system-font ↺ is an open circular refresh arrow matching the source, and checked the restored Latin badge, Persian shaping, one-line fit, icon placement, fixed focus pill, and vertical composition.",
     "finalRender": "PickerCarouselFeatureCycle.fa.mp4 rendered successfully with --video; harness returned ok:true and no errors."
   },
   "concerns": [],
