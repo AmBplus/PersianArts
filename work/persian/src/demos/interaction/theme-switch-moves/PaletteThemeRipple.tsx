@@ -217,7 +217,7 @@ export const PaletteThemeRipple: React.FC = () => {
             {/* Caret: frame-determined blink (flips every 8f); RTL flex puts it LEFT of the text = typing end */}
             <div style={{ width: 4, height: 40, background: G.ink, opacity: Math.floor(f / 8) % 2 === 0 ? 1 : 0, flexShrink: 0 }} />
           </div>
-          {/* 结果行：输入完成后首行加深表示选中 */}
+          {/* Result rows: once typing completes, the first row darkens to read as selected */}
           {Array.from({ length: 3 }).map((_, i) => (
             <div key={i} style={{ height: 44, borderRadius: 10, background: i === 0 && typedCount === 4 ? G.line : G.panel, display: 'flex', alignItems: 'center', gap: 14, padding: '0 16px', boxSizing: 'border-box' }}>
               <div style={{ width: 24, height: 24, borderRadius: 6, background: G.mid }} />
