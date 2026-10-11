@@ -1,0 +1,20 @@
+{
+  "slug": "radial-wave",
+  "verdict": "approve",
+  "score": 93,
+  "issues": [
+    {
+      "severity": "minor",
+      "where": "RadialWave.tsx header comment (lines 1-7)",
+      "problem": "Header is truthful but thin: it does not record that the dot field is pixel-symmetric about both axes (so mirroring is a no-op), nor the known source quirk that the centre dot is still pulsing on the last frame (loop pitfall in the source prompt). report.json mentions the latter.",
+      "suggestedFix": "Optional: add one line to the header noting the symmetric grid and the preserved non-static final frame."
+    },
+    {
+      "severity": "minor",
+      "where": "report.json",
+      "problem": "Does not explain why Persian-render PNG sizes differ from original ones, which could trigger false alarms.",
+      "suggestedFix": "Optional: add a note that orig stills are decoded from the lossy H.264 MP4 while fa stills are rendered losslessly."
+    }
+  ],
+  "notes": "Code diff vs upstream: only the header comment and a trailing blank line differ; component name, RADIAL_WAVE_DURATION=114, grid, easing, timings, colours, glow threshold and margins are byte-identical. _fixtures/Motion.tsx is identical to upstream, so the render path is unchanged. No on-screen text, no raster, no font needed; no direction-sensitive items (grid is symmetric about both axes, wave is radial from centre, second pulse reverses inward), so no mirroring is correct. Grep hits for left/margin are only the percent-positioned dots with the -5px margin pair, correctly untouched. File-size discrepancy explained: orig stills are frames decoded from a lossy H.264 mp4 (yuvj420p; compression noise on the dark gradient-free background inflates PNG size 2-4x), the Persian stills are lossless renders straight from Remotion. PSNR between matching fa/orig frames 0,8,45,75,86,105,113 is 37.7-45.9 dB (pure codec noise); fa.mp4 is 114 frames, 30fps, 1920x1080, same as original. Viewed f22 fa vs orig: identical composition. Mirroring skipped legitimately."
+}

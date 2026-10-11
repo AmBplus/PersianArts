@@ -1,9 +1,9 @@
 {
- "generatedAt": "2026-10-11T14:50:04.244Z",
+ "generatedAt": "2026-10-11T14:55:21.006Z",
  "summary": {
   "todo": 111,
-  "localized": 3,
-  "approved": 36,
+  "localized": 2,
+  "approved": 37,
   "fixed": 7,
   "needs-fix": 0,
   "total": 157
@@ -835,7 +835,7 @@
   },
   {
    "slug": "radial-wave",
-   "status": "localized",
+   "status": "approved",
    "font": "",
    "videos": 1,
    "majors": 0,

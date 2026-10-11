@@ -69,7 +69,7 @@ for (const p of new Set([...before.keys(), ...after])) {
     if (before.get(p) !== h) { violations.push(p); if (existsSync(join(backup, p))) await cp(join(backup, p), join(root, p)); else await rm(join(root, p), {force: true}); }
   } else { // newly dirty/untracked outside allowed
     violations.push(p);
-    if (trackedAll.includes(p)) git("checkout", "--", p); else await rm(join(root, p), {recursive: true, force: true});
+    if (trackedAll.includes(p)) git("checkout", "--", p); /* new untracked files are only reported, never deleted (concurrent legit work) */
   }
 }
 await rm(backup, {recursive: true, force: true});
