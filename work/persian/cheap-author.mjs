@@ -45,7 +45,7 @@ await writeFile(promptFile, task, "utf8");
 // ---- guard snapshot of everything dirty/untracked outside the allowed dirs
 const git = (...a) => spawnSync("git", a, {cwd: root, encoding: "utf8", maxBuffer: 1 << 28}).stdout;
 const dirty = () => git("ls-files", "-m", "-o", "-d", "--exclude-standard").split("\n").map((s) => s.trim()).filter(Boolean)
-  .filter((p) => !allowed.some((al) => p.startsWith(al)) && !(p.startsWith("work/persian/src/demos/") && !p.startsWith("work/persian/src/demos/_fa/")) && !p.startsWith("work/persian/out/") && !p.includes("/.tmp/") && !p.startsWith("work/persian/progress") && !p.startsWith("work/persian/reports/") && !p.startsWith("work/persian/PROGRESS"));
+  .filter((p) => !allowed.some((al) => p.startsWith(al)) && !(p.startsWith("work/persian/src/demos/") && !p.startsWith("work/persian/src/demos/_fa/")) && !p.startsWith("work/persian/out/") && !p.startsWith("work/persian/trial/") && !p.startsWith("work/persian/batch39") && !p.includes("/.tmp/") && !p.startsWith("work/persian/progress") && !p.startsWith("work/persian/reports/") && !p.startsWith("work/persian/PROGRESS"));
 const hashOf = (p) => { try { return createHash("sha1").update(require_read(p)).digest("hex"); } catch { return "MISSING"; } };
 import {readFileSync} from "node:fs";
 function require_read(p) { return readFileSync(join(root, p)); }
@@ -55,8 +55,9 @@ const backup = join(process.env.TEMP, `qh-guard-${slug}-${Date.now()}`);
 for (const p of before.keys()) if (existsSync(join(root, p))) { await mkdir(join(backup, p, ".."), {recursive: true}); await cp(join(root, p), join(backup, p)); }
 
 const t0 = Date.now();
+const runEnv = {...process.env, QH_CODEX_FULL: "1", QH_GLM_ALLOWED: "Bash(node work/persian/render-card.mjs:*)|Bash(node work/persian/card-info.mjs:*)|Bash(ls:*)|Bash(cat:*)|Bash(grep:*)|Read|Edit|Write|Glob|Grep"};
 const run = spawnSync(process.execPath, [QH, "run", "--worker", worker, "--model", model, "--effort", effort, "--cwd", root,
-  "--task-file", promptFile, "--kind", `persian-${role}`, "--title", `${role} ${slug}`, "--timeout", timeout, "--json"], {cwd: root, encoding: "utf8", maxBuffer: 1 << 28});
+  "--task-file", promptFile, "--kind", `persian-${role}`, "--title", `${role} ${slug}`, "--timeout", timeout, "--json"], {cwd: root, encoding: "utf8", maxBuffer: 1 << 28, env: runEnv});
 let result = {}; try { result = JSON.parse(run.stdout.trim().split("\n").pop()); } catch { result = {status: "error", raw: (run.stdout + run.stderr).slice(-500)}; }
 
 // ---- guard check + restore
