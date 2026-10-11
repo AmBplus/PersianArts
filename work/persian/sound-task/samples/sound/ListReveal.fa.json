@@ -1,0 +1,59 @@
+{
+ "slug": "list-reveal",
+ "stem": "ListReveal.fa",
+ "profile": "clean-tech",
+ "bpm": 107.95,
+ "grid_offset": 0.267,
+ "duration": 3.648,
+ "cues": [
+  {
+   "frame": 0,
+   "time": 0.0,
+   "kind": "intro",
+   "strength": 0.0,
+   "gain": 0.0
+  },
+  {
+   "frame": 8,
+   "time": 0.267,
+   "kind": "impact",
+   "strength": 1.0,
+   "gain": -6.0
+  },
+  {
+   "frame": 18,
+   "time": 0.6,
+   "kind": "pop",
+   "strength": 0.731,
+   "gain": -16.0
+  },
+  {
+   "frame": 28,
+   "time": 0.933,
+   "kind": "pop",
+   "strength": 0.644,
+   "gain": -16.0
+  },
+  {
+   "frame": 37,
+   "time": 1.233,
+   "kind": "pop",
+   "strength": 0.782,
+   "gain": -16.0
+  },
+  {
+   "frame": 47,
+   "time": 1.567,
+   "kind": "pop",
+   "strength": 0.698,
+   "gain": -16.0
+  },
+  {
+   "frame": 57,
+   "time": 1.9,
+   "kind": "whoosh",
+   "strength": 0.659,
+   "gain": -10.0
+  }
+ ]
+}

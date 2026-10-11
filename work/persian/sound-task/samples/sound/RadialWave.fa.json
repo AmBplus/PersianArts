@@ -1,0 +1,31 @@
+{
+ "slug": "radial-wave",
+ "stem": "RadialWave.fa",
+ "profile": "clean-tech",
+ "bpm": 107.99,
+ "grid_offset": 0.2776,
+ "duration": 3.861,
+ "cues": [
+  {
+   "frame": 0,
+   "time": 0.0,
+   "kind": "intro",
+   "strength": 0.0,
+   "gain": -12.0
+  },
+  {
+   "frame": 75,
+   "time": 2.5,
+   "kind": "whoosh",
+   "strength": 0.686,
+   "gain": -10.0
+  },
+  {
+   "frame": 86,
+   "time": 2.867,
+   "kind": "whoosh",
+   "strength": 1.0,
+   "gain": -10.0
+  }
+ ]
+}
