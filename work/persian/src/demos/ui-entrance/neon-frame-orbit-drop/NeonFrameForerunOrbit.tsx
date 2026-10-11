@@ -1,11 +1,18 @@
-// neon-frame-forerun-orbit v5（批次 14 #1）。用户意见（逐字）：
-// "这个应该是所有组件和文字同时从空中往下贴合"
-// ——单点修正：v4 的错峰贴落改为**所有组件和文字同时**从空中往下贴合
-// （同帧起落、同帧贴合，同形软影同步收敛）。判例：整体登场镜=同时贴合，
-// 错峰是巡礼镜的语法。其余全部保留：同款霓虹渐变框+灰面板+背景霓虹管
-// 框群；镜头视角 rotateY 从左侧(+38°) 连续弧线旋到右侧(-26°)。
+// Persian RTL localization — neon-frame-orbit-drop.
+// The source renders no literal on-screen text: every UI line is a geometric placeholder,
+// so adding Persian labels would change the source design. No raster/video assets exist.
+// RTL: move the sidebar to the right; let navigation, search, chips, tabs, row bullets
+// and row actions run from the right. The sidebar divider and spacing use logical sides.
+// Mirror the frame's reading-start trace, colour progression, asymmetric glow, and
+// the horizontal offset of floating elements and their shadows. The seeded neon tubes
+// are ambient scenery, so their positions/skews stay fixed. The camera orbit and its
+// perspective origin are physical camera motion, so their angles and timing stay fixed.
+// Landing remains simultaneous: all FloatWrap instances use the original LAND/FALL.
+// Font: Vazirmatn, the neutral product-UI face; loaded for this RTL mock UI, although
+// its current placeholders contain no glyphs. No letter animation or raster handling.
 import React, { useId } from 'react';
 import { AbsoluteFill, useCurrentFrame, interpolate, Easing } from 'remotion';
+import { FaRoot, dir } from '../../_fa';
 
 const easeFall = Easing.bezier(0.5, 0.05, 0.6, 1); // 加速下落、末端软着陆
 
@@ -16,13 +23,13 @@ const FloatWrap: React.FC<{ h: number; children: React.ReactNode }> = ({ h, chil
     {h > 1 && (
       <div style={{
         position: 'absolute', inset: 0,
-        transform: `translate(${h * 0.26}px, ${h * 0.48}px) scale(${1 + h * 0.0012})`,
+        transform: `translate(${dir(h * 0.26)}px, ${h * 0.48}px) scale(${1 + h * 0.0012})`,
         filter: `blur(${2.5 + h * 0.09}px) brightness(0.32) saturate(0.4)`,
         opacity: Math.min(0.4, 0.16 + h * 0.005),
         pointerEvents: 'none',
       }}>{children}</div>
     )}
-    <div style={{ transform: `translate(${-h * 0.36}px, ${-h * 0.82}px)` }}>{children}</div>
+    <div style={{ transform: `translate(${dir(-h * 0.36)}px, ${-h * 0.82}px)` }}>{children}</div>
   </div>
 );
 
@@ -51,7 +58,7 @@ const PW = 1330;
 const PH = 900;
 const PL = 1000;
 
-const FRAME_D = `M 0 ${PH / 2} L 0 0 L ${PW} 0 L ${PW} ${PH} L 0 ${PH} Z`;
+const FRAME_D = `M ${PW} ${PH / 2} L ${PW} 0 L 0 0 L 0 ${PH} L ${PW} ${PH} Z`;
 
 const Chip: React.FC<{ w: number }> = ({ w }) => (
   <div style={{
@@ -68,8 +75,8 @@ const Chip: React.FC<{ w: number }> = ({ w }) => (
 const GrayHome: React.FC<{ t?: number }> = ({ t = 1 }) => {
   const L = (land: number, H = 72) => liftOf(t, land, H * 1.7);
   return (
-  <div style={{ width: PW, height: PH, background: '#f5f5f4', borderRadius: 6, display: 'flex', overflow: 'hidden', boxSizing: 'border-box' }}>
-    <div style={{ width: 290, borderRight: `2px solid ${line}`, padding: '26px 24px', boxSizing: 'border-box' }}>
+  <div style={{ width: PW, height: PH, background: '#f5f5f4', borderRadius: 6, display: 'flex', direction: 'rtl', overflow: 'hidden', boxSizing: 'border-box' }}>
+    <div style={{ width: 290, borderInlineEnd: `2px solid ${line}`, padding: '26px 24px', boxSizing: 'border-box' }}>
       <FloatWrap h={L(0.24, 84)}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 28 }}>
           <div style={{ width: 28, height: 28, borderRadius: 8, background: ink }} />
@@ -103,7 +110,7 @@ const GrayHome: React.FC<{ t?: number }> = ({ t = 1 }) => {
       <FloatWrap h={L(0.34, 80)}>
         <div style={{ height: 46, border: `2px solid ${line}`, borderRadius: 12, marginBottom: 26, display: 'flex', alignItems: 'center', padding: '0 16px', background: '#f5f5f4' }}>
           <div style={{ width: 17, height: 17, borderRadius: 9, border: `2px solid ${mid}` }} />
-          <div style={{ height: 10, width: 250, background: line, borderRadius: 5, marginLeft: 12 }} />
+          <div style={{ height: 10, width: 250, background: line, borderRadius: 5, marginInlineStart: 12 }} />
         </div>
       </FloatWrap>
       <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', marginBottom: 30 }}>
@@ -125,7 +132,7 @@ const GrayHome: React.FC<{ t?: number }> = ({ t = 1 }) => {
           <div style={{ display: 'flex', alignItems: 'center', gap: 14, height: 46, borderBottom: `2px solid ${line}` }}>
             <div style={{ width: 13, height: 13, borderRadius: 7, background: '#c26a6a' }} />
             <div style={{ height: 11, width: 160 + ((i * 37) % 70), background: '#b6b6b4', borderRadius: 5 }} />
-            <div style={{ marginLeft: 'auto', display: 'flex', gap: 7 }}>
+            <div style={{ marginInlineStart: 'auto', display: 'flex', gap: 7 }}>
               {[0, 1, 2].map((k) => <div key={k} style={{ width: 20, height: 20, borderRadius: 10, background: '#d2d2d0' }} />)}
             </div>
           </div>
@@ -189,6 +196,7 @@ export const NeonFrameForerunOrbit: React.FC = () => {
   });
 
   return (
+    <FaRoot family="Vazirmatn">
     <AbsoluteFill style={{ background: '#060509', overflow: 'hidden' }}>
       {/* 背景霓虹管框群（同款） */}
       <svg width={1920} height={1080} style={{ position: 'absolute' }}>
@@ -221,19 +229,19 @@ export const NeonFrameForerunOrbit: React.FC = () => {
             <GrayHome t={drop} />
             <div style={{
               position: 'absolute', inset: 0, borderRadius: 6,
-              background: 'linear-gradient(150deg, rgba(30,20,60,0.5), rgba(0,0,0,0.78))',
+              background: 'linear-gradient(210deg, rgba(30,20,60,0.5), rgba(0,0,0,0.78))',
               opacity: 1 - lit,
             }} />
           </div>
           <div style={{
             position: 'absolute', left: -10, top: -10, width: PW + 20, height: PH + 20,
             borderRadius: 12, opacity: rimGlow * Math.min(1, trace * 1.6),
-            boxShadow: '-18px -8px 42px 6px rgba(185,95,240,0.42), 22px 24px 56px 12px rgba(240,150,90,0.30), 0 14px 80px 22px rgba(200,100,220,0.20)',
+            boxShadow: '18px -8px 42px 6px rgba(185,95,240,0.42), -22px 24px 56px 12px rgba(240,150,90,0.30), 0 14px 80px 22px rgba(200,100,220,0.20)',
           }} />
           <svg width={PW + 80} height={PH + 80} viewBox={`-40 -40 ${PW + 80} ${PH + 80}`}
             style={{ position: 'absolute', left: -40, top: -40 }}>
             <defs>
-              <linearGradient id={`omainfg-${uid}`} gradientUnits="userSpaceOnUse" x1={0} y1={0} x2={PW} y2={PH}>
+              <linearGradient id={`omainfg-${uid}`} gradientUnits="userSpaceOnUse" x1={PW} y1={0} x2={0} y2={PH}>
                 <stop offset="0%" stopColor="#c07af5" />
                 <stop offset="38%" stopColor="#e58bd8" />
                 <stop offset="72%" stopColor="#f0b06a" />
@@ -271,5 +279,6 @@ export const NeonFrameForerunOrbit: React.FC = () => {
         </div>
       </div>
     </AbsoluteFill>
+    </FaRoot>
   );
 };

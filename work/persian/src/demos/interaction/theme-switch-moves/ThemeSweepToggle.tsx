@@ -1,9 +1,10 @@
-// theme-sweep-toggle —— 深浅模式扫场
-// 同一 dashboard 深浅两版叠放（深版手工映射 G 色板），上层深版用 clip-path
-// polygon 15° 斜边从左上扫到右下（先快后缓），边界带 2px 亮线；
-// 扫完深版整体 scale 0.995→1 "坐实"。f=70 后全静止（70f）。
+// Persian RTL localization: dashboard rails and card reading order mirror horizontally, with the sidebar on the right.
+// The diagonal reading sweep mirrors to run from upper-right toward lower-left; its 15° edge, timing, easing,
+// settle scale, and colors stay unchanged. The dashboard is a textless gray skeleton; no raster assets.
+// Vazirmatn is loaded for the Persian UI tone, though this composition contains no visible copy.
 import React from 'react';
 import { useCurrentFrame, interpolate, Easing } from 'remotion';
+import {FaFonts} from '../../_fa';
 
 const CL = { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' } as const;
 
@@ -23,7 +24,7 @@ const DARK: Pal = {
 
 // 带色板参数的 dashboard（结构同 Fixtures.FakeDashboard variant A）
 const Dash: React.FC<{ p: Pal }> = ({ p }) => (
-  <div style={{ width: 1920, height: 1080, background: p.bg, display: 'flex' }}>
+  <div style={{ width: 1920, height: 1080, background: p.bg, display: 'flex', direction: 'ltr' }}>
     <div style={{ width: 220, background: p.side, padding: '28px 22px', boxSizing: 'border-box', display: 'flex', flexDirection: 'column', gap: 18 }}>
       <div style={{ width: 40, height: 40, borderRadius: 10, background: p.sideBar }} />
       {Array.from({ length: 7 }).map((_, i) => (
@@ -86,38 +87,38 @@ export const ThemeSweepToggle: React.FC = () => {
   const sweeping = frame >= SWEEP0 && frame < SWEEP1 + 2;
 
   return (
-    <div style={{ width: 1920, height: 1080, position: 'relative', overflow: 'hidden', background: LIGHT.bg }}>
+    <FaFonts families={["Vazirmatn"]}><div style={{ width: 1920, height: 1080, position: 'relative', overflow: 'hidden', background: LIGHT.bg, direction: 'rtl', fontFamily: 'Vazirmatn, sans-serif' }}>
       {/* 底层浅色版 */}
-      <Dash p={LIGHT} />
+      <div style={{ position: 'absolute', inset: 0, transform: 'scaleX(-1)', direction: 'ltr' }}><Dash p={LIGHT} /></div>
       {/* 上层深色版，clip-path 斜切揭出 */}
       <div
         style={{
           position: 'absolute',
           inset: 0,
-          clipPath: `polygon(0 0, ${p}px 0, ${p - SLANT}px 1080px, 0 1080px)`,
+          clipPath: `polygon(100% 0, ${1920 - p}px 0, ${1920 - p + SLANT}px 1080px, 100% 1080px)`,
           transform: `scale(${settle})`,
           transformOrigin: '50% 50%',
         }}
       >
-        <Dash p={DARK} />
+        <div style={{ position: 'absolute', inset: 0, transform: 'scaleX(-1)', direction: 'ltr' }}><Dash p={DARK} /></div>
       </div>
       {/* 2px 亮线边界（条件卸载） */}
       {sweeping && (
         <div
           style={{
             position: 'absolute',
-            left: p - SLANT / 2 - 2,
+            left: 1920 - p + SLANT / 2 - 2,
             top: 540 - 620,
             width: 4,
             height: 1240,
             background: '#ffffff',
             boxShadow: '0 0 18px 4px rgba(255,255,255,0.75)',
-            transform: 'rotate(15deg)',
+            transform: 'rotate(-15deg)',
             transformOrigin: '50% 50%',
             opacity: lineOp,
           }}
         />
       )}
-    </div>
+    </div></FaFonts>
   );
 };

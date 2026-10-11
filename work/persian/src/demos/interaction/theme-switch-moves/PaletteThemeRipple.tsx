@@ -1,4 +1,10 @@
-// 组合：命令面板 × 深浅扫场（palette-theme-ripple）
+// Persian RTL localization of palette-theme-ripple (command palette + dark-mode ripple).
+// Text: the Latin query "dark" becomes «تیره»; the keyboard shortcut ⌘K remains a familiar LTR key token.
+// Direction: both dashboard layers are mirrored so the sidebar and card reading order sit on the RTL side; the
+// centered command panel stays pinned to (960,470), so its collapse point and the ripple origin remain identical.
+// The command input is RTL and reveals the four Persian letters on the original four cue frames (38/46/54/62).
+// Font: loaded Vazirmatn, a variable-weight product UI sans with reliable Persian shaping and compact legibility.
+// Raster handling: none; both dashboards are vector/CSS skeletons with no baked text or images.
 // FakeDashboard 静置 → 整屏压暗+blur → ⌘K 面板弹落 → 模拟输入"dark"
 // （灰块字符逐个弹出）→ 回车帧面板 5f 收缩成一个亮点 → 深色扫场边界
 // **从该亮点位置**荡开（clip-path 圆扩张 + 亮边缘环）扫过全 UI 变深色版 → 真静止。
@@ -11,6 +17,7 @@
 import React from 'react';
 import { useCurrentFrame, interpolate, Easing } from 'remotion';
 import { G, FakeDashboard } from '../../_fixtures/Fixtures';
+import {FaFonts} from '../../_fa';
 
 const DIM_START = 15;
 const PANEL_IN = 22;
@@ -47,7 +54,7 @@ const DarkCard: React.FC<{ seed: number }> = ({ seed }) => {
 
 // 与 FakeDashboard variant A 布局逐像素一致的深色版——扫场读作"同一 UI 换肤"
 const DarkDashboard: React.FC = () => (
-  <div style={{ width: 1920, height: 1080, background: D.bg, display: 'flex' }}>
+  <div style={{ width: 1920, height: 1080, background: D.bg, display: 'flex', direction: 'ltr' }}>
     <div style={{ width: 220, background: D.side, padding: '28px 22px', boxSizing: 'border-box', display: 'flex', flexDirection: 'column', gap: 18 }}>
       <div style={{ width: 40, height: 40, borderRadius: 10, background: '#8a8a88' }} />
       {Array.from({ length: 7 }).map((_, i) => (
@@ -91,7 +98,7 @@ export const PaletteThemeRipple: React.FC = () => {
   const panelScale = f < ENTER ? panelT : shrink;
   const panelDropY = f < ENTER ? interpolate(panelT, [0, 1], [-120, 0]) : 0;
 
-  // 逐字输入：每个灰块 4f 内弹出
+// 逐字输入：每个字 4f 内弹出（Persian prefix shaping preserves the source's four beats）
   const charScale = (i: number) =>
     interpolate(f, [TYPE_FRAMES[i], TYPE_FRAMES[i] + 4], [0, 1], {
       extrapolateLeft: 'clamp', extrapolateRight: 'clamp',
@@ -114,18 +121,18 @@ export const PaletteThemeRipple: React.FC = () => {
   const dotOn = f >= ENTER + 2 && f < RIPPLE + 3;
 
   return (
-    <div style={{ width: 1920, height: 1080, background: D.bg, position: 'relative', overflow: 'hidden' }}>
+    <FaFonts families={["Vazirmatn"]}><div style={{ width: 1920, height: 1080, background: D.bg, position: 'relative', overflow: 'hidden', direction: 'rtl', fontFamily: 'Vazirmatn, sans-serif' }}>
       {/* 浅色层：扫场完成后条件卸载（真静止） */}
       {!done && (
         <div style={{ position: 'absolute', inset: 0, filter: dim > 0 ? `brightness(${1 - dim * 0.45}) blur(${dim * 6}px)` : 'none' }}>
-          <FakeDashboard variant="A" />
+          <div style={{ position: 'absolute', inset: 0, transform: 'scaleX(-1)', direction: 'ltr' }}><FakeDashboard variant="A" /></div>
         </div>
       )}
 
       {/* 深色层：从收缩点起被圆形 clip 揭开；完成后铺满且无 clip */}
       {(rippling || done) && (
         <div style={{ position: 'absolute', inset: 0, clipPath: done ? 'none' : `circle(${r}px at ${ORIGIN.x}px ${ORIGIN.y}px)` }}>
-          <DarkDashboard />
+          <div style={{ position: 'absolute', inset: 0, transform: 'scaleX(-1)', direction: 'ltr' }}><DarkDashboard /></div>
         </div>
       )}
 
@@ -162,7 +169,7 @@ export const PaletteThemeRipple: React.FC = () => {
         />
       )}
 
-      {/* ⌘K 命令面板 */}
+      {/* فرمان ⌘K؛ ورودی فارسی از لبهٔ راست پیش می‌رود. */}
       {panelMounted && (
         <div
           style={{
@@ -185,11 +192,9 @@ export const PaletteThemeRipple: React.FC = () => {
           }}
         >
           {/* 输入行：⌘K 标识 + 逐字灰块 */}
-          <div style={{ height: 62, border: `2px solid ${G.line}`, borderRadius: 12, display: 'flex', alignItems: 'center', gap: 14, padding: '0 18px', boxSizing: 'border-box' }}>
-            <div style={{ padding: '6px 12px', borderRadius: 8, background: G.side, color: '#fff', fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 800, fontSize: 22 }}>⌘K</div>
-            {TYPE_FRAMES.map((_, i) => (
-              <div key={i} style={{ width: 30, height: 30, borderRadius: 6, background: G.ink, transform: `scale(${charScale(i)})` }} />
-            ))}
+          <div style={{ height: 62, border: `2px solid ${G.line}`, borderRadius: 12, display: 'flex', alignItems: 'center', gap: 14, padding: '0 18px', boxSizing: 'border-box', direction: 'rtl' }}>
+            <div style={{ padding: '6px 12px', borderRadius: 8, background: G.side, color: '#fff', fontFamily: 'Arial, sans-serif', fontWeight: 800, fontSize: 22, direction: 'ltr', unicodeBidi: 'isolate' }}>⌘K</div>
+            <div style={{ minWidth: 168, color: G.ink, fontFamily: 'Vazirmatn, sans-serif', fontWeight: 500, fontSize: 28, lineHeight: 1.5, whiteSpace: 'nowrap' }}>{[...'تیره'.slice(0, typedCount)].map((ch, i) => <span key={i} style={{ opacity: charScale(i) }}>{ch}</span>)}</div>
             {/* 光标：帧确定闪烁（每 8f 翻转） */}
             <div style={{ width: 4, height: 34, background: G.ink, opacity: Math.floor(f / 8) % 2 === 0 ? 1 : 0 }} />
           </div>
@@ -202,6 +207,6 @@ export const PaletteThemeRipple: React.FC = () => {
           ))}
         </div>
       )}
-    </div>
+    </div></FaFonts>
   );
 };

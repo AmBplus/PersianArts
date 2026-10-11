@@ -29,3 +29,4 @@
 {"slug":"integration-hub-map","role":"author","worker":"codex-b","model":"gpt-5.6-luna","effort":"medium","jobId":230,"status":"ok","durationS":165,"quotaDeltaPct":3,"violations":[],"hasReport":true,"videos":["IntegrationHubMap.fa.mp4"]}
 {"slug":"runway-ground-skim","role":"author","worker":"codex-b","model":"gpt-6-luna","effort":"medium","jobId":227,"status":"ok","durationS":410,"quotaDeltaPct":10,"violations":[],"hasReport":true,"videos":["RunwayGroundSkim.fa.mp4"]}
 {"slug":"paper-craft-moves","role":"author","worker":"codex-b","model":"gpt-6-sol","effort":"medium","jobId":229,"status":"ok","durationS":389,"quotaDeltaPct":7,"violations":[],"hasReport":true,"videos":["MaskingTapeSlap.fa.mp4","PopupBookRise.fa.mp4"]}
+{"slug":"neon-frame-orbit-drop","role":"author","worker":"codex-b","model":"gpt-6-sol","effort":"medium","jobId":232,"status":"ok","durationS":230,"quotaDeltaPct":4,"violations":[],"hasReport":true,"videos":["NeonFrameForerunOrbit.fa.mp4"]}

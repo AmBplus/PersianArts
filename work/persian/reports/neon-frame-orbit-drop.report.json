@@ -1,0 +1,60 @@
+{
+  "slug": "neon-frame-orbit-drop",
+  "status": "localized-and-visually-reviewed",
+  "sourceFile": "work/upstream/src/demos/ui-entrance/neon-frame-orbit-drop/NeonFrameForerunOrbit.tsx",
+  "persianFile": "work/persian/src/demos/ui-entrance/neon-frame-orbit-drop/NeonFrameForerunOrbit.tsx",
+  "sourcePrompt": "work/upstream/src/gallery/source/neon-frame-orbit-drop.md",
+  "compositions": [
+    {
+      "id": "demo-NeonFrameForerunOrbit",
+      "export": "NeonFrameForerunOrbit",
+      "frames": 150,
+      "fps": 30,
+      "size": "1920x1080",
+      "onScreenText": {
+        "source": [],
+        "localized": [],
+        "reason": "The source's sidebar, cards, tabs, search and rows are geometric placeholder bars and shapes, with no literal text to translate. Adding labels would alter the source design and landing silhouettes."
+      },
+      "font": {
+        "family": "Vazirmatn",
+        "reason": "Neutral product UI family appropriate to the mock dashboard; FaRoot loads it and sets RTL. No glyphs are currently drawn, so visual glyph verification is inapplicable."
+      },
+      "rtlDecisions": [
+        {"what": "Dashboard sidebar and content columns", "action": "Set GrayHome direction to rtl; sidebar moves to the right and the main pane starts on its left.", "why": "A sidebar is the first reading and navigation region in a Persian UI."},
+        {"what": "Sidebar divider", "action": "Use borderInlineEnd in place of the physical right border.", "why": "The separator belongs between the sidebar and content after the sidebar moves right."},
+        {"what": "Sidebar logo and navigation rows", "action": "Inherit rtl flex ordering; icons sit before placeholder labels at the right.", "why": "Navigation items follow Persian reading order."},
+        {"what": "Main title and search field", "action": "Inherit rtl alignment; search icon moves to the right and the placeholder line follows it; spacing uses marginInlineStart.", "why": "The search affordance and entered query begin at the reading start."},
+        {"what": "Chip grid and each chip's two placeholder lines", "action": "Inherit rtl row order and right alignment while keeping the original card widths and wrapping.", "why": "Cards and their content should scan from right to left."},
+        {"what": "Tabs and list rows", "action": "Inherit rtl flex order; the active tab and row bullet move to the right, with row actions on the left via marginInlineStart:auto.", "why": "Labels and bullets start a Persian row, while secondary actions close it."},
+        {"what": "Floating panel offsets and same-shape soft shadows", "action": "Negate only the horizontal offsets through dir(); preserve vertical heights, blur, opacity, and easing.", "why": "The diagonal lift should point toward the mirrored reading side without changing gravity or landing beats."},
+        {"what": "Neon frame trace", "action": "Mirror the SVG path start to the right midpoint; preserve trace interpolation, dash lengths, and 14-frame draw duration.", "why": "The frame reveal begins at the UI reading start and runs in both directions as in the source."},
+        {"what": "Main frame gradient, rim glow, and dim overlay", "action": "Reverse horizontal gradient endpoints, flip asymmetric shadow X offsets, and change CSS gradient angle from 150 to 210 degrees.", "why": "These asymmetries travel with the mirrored frame and maintain the same purple-to-orange balance."},
+        {"what": "3D orbit and perspective origin", "action": "Keep rotateY +38 to -26 degrees, rotateX, rotateZ, perspective origin 30 to 64 percent, scale and all frame timings.", "why": "The source prompt defines a physical left-to-right camera arc rather than a reading-order gesture."},
+        {"what": "Background neon tubes", "action": "Keep seeded positions, hue sequence, skew, and breathing motion.", "why": "They are ambient scene geometry, not an ordered UI list."},
+        {"what": "All component landing", "action": "Keep one shared LAND=0.52, FALL=0.3 and the original easing with no stagger.", "why": "The source prompt requires a simultaneous whole-page arrival."}
+      ],
+      "rasterHandling": {
+        "assets": [],
+        "action": "No raster or video assets exist in this component; all visible surfaces are JSX/CSS/SVG geometry."
+      },
+      "motionFidelity": {
+        "retained": ["150-frame duration", "30 fps", "14-frame frame trace", "orbit angles and perspective path", "shared landing interval and ease", "seed 20260718", "all background frame breathing"],
+        "comparisonFrames": [7, 40, 70, 145],
+        "additionalRenderedFrames": [0, 14, 25, 55, 90, 118],
+        "observation": "Original and localized PNGs were viewed side by side at entrance, descent, settled layout, and final camera pose. The RTL layout and mirrored trace are visible; temporal stages and physical camera pose correspond."
+      },
+      "video": "work/persian/out/neon-frame-orbit-drop/NeonFrameForerunOrbit.fa.mp4",
+      "concerns": ["Because the source has no visible letters, the selected font cannot be judged for glyph shape in this card; FaRoot loads the file for future literal text."],
+      "lessons": [
+        {
+          "symptom": "A textless placeholder dashboard still looks LTR after a nominal Persian font change.",
+          "cause": "The spatial grammar is carried by sidebar placement, icon order, cards, tabs, bullets, and the frame trace rather than glyphs.",
+          "fix": "Apply RTL to the inner UI panel and logical spacing, mirror the reading-start frame trace and its light, while retaining the physical camera orbit and ambient background geometry."
+        }
+      ]
+    }
+  ],
+  "concerns": ["No raster text, foreign on-screen text, per-character animation, or source text timing exists in this card."],
+  "lessons": ["For placeholder-only UI, RTL fidelity must be evaluated through geometry and motion origin even when there is no on-screen string to translate."]
+}
