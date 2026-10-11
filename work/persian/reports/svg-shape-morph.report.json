@@ -1,0 +1,44 @@
+{
+  "slug": "svg-shape-morph",
+  "status": "done",
+  "comps": ["demo-SvgShapeMorph"],
+  "font": {
+    "family": "Vazirmatn",
+    "reason": "The card's only text is a single quiet technical caption on a dark neon-tech frame. Vazirmatn (variable, full weight range) is the neutral Persian product-UI sans and matches the muted monospace caption role of the original ('SF Mono',Menlo). Loaded via FaRoot so no silent fallback; verified rendered correctly (no fallback glyphs) in f40/f70/f100/f155 stills.",
+    "weightsUsed": [400]
+  },
+  "rtlDecisions": [
+    {
+      "comp": "demo-SvgShapeMorph",
+      "what": "Morphing 140-point polar outline, per-point radius lerp, inOutCubic windows (0.08-0.42 / 0.58-0.92), breath scale, sin(t*2pi)*4deg self-rotation, hue 185->305, caption opacity 0.4+0.6*|m-0.5|*2",
+      "action": "kept unchanged (numeric values, frames, easing, seeds identical)",
+      "why": "Pure physical/rotational geometry with no reading-direction meaning: radially symmetric organic lobes, whole-number rotation cycle returning to 0 on the last frame, hue tied to form identity. Mirroring a rotationally symmetric morph would change nothing legible and would violate 'keep physical motion'. Verified by fa-vs-orig stills at f12/40/70/100/130/155: identical shape, glow, hue and beat at every frame."
+    },
+    {
+      "comp": "demo-SvgShapeMorph",
+      "what": "Caption text 'morphTo(shapeB)' / 'morphTo(shapeA)'",
+      "action": "translated to semantic Persian: «تبدیل به پیکرهٔ ب» / «تبدیل به پیکرهٔ الف»",
+      "why": "The source prompt explicitly flags the original caption as a self-describing API placeholder that 'in the final video should become semantic text or be removed'. Persian letters الف/ب label the two shapes idiomatically; no Latin island remains so no bdi/unicodeBidi isolation is needed. textAnchor=middle is direction-neutral; the opacity cue (dimmest mid-morph) and switch threshold m>0.5 kept exactly."
+    },
+    {
+      "comp": "demo-SvgShapeMorph",
+      "what": "letterSpacing:'2px' + monospace stack on the SVG text element",
+      "action": "removed (letterSpacing 0 via faText); font set to Vazirmatn, size fs(10)=11px",
+      "why": "letter-spacing breaks Persian letter joining (shared lesson #1). The Latin 'tracking' look has no Persian equivalent on a one-line label; hierarchy is carried by the muted colour/opacity as in the original. fs() x1.1 compensates smaller Persian x-height."
+    },
+    {
+      "comp": "demo-SvgShapeMorph",
+      "what": "RTL root",
+      "action": "whole demo wrapped in FaRoot (direction:rtl + font)",
+      "why": "Single centered text run; RTL root is the kit default and costs nothing while guaranteeing correct bidi base direction for the Persian caption."
+    }
+  ],
+  "rasterHandling": "No raster/video assets in this card (pure SVG). Nothing to blur, replace or mirror.",
+  "text": {
+    "translated": ["morphTo(shapeB) -> تبدیل به پیکرهٔ ب", "morphTo(shapeA) -> تبدیل به پیکرهٔ الف"],
+    "timingNote": "Caption swaps on the same m>0.5 threshold frame as the original; Persian strings have no animation of their own, so no beats shift. Persian caption is slightly wider than the Latin mono caption but stays well within the frame (verified f40/f70 stills)."
+  },
+  "verification": "Viewed fa vs orig stills at frames 12, 40, 70, 100, 130, 155 (entrance, mid-morph A->B, B-hold, return breath, final resting A). Shape, glow, hue, breathing and caption state match frame-for-frame; Persian caption renders in real Vazirmatn with correct joining and the hamze on «پیکرهٔ». Full Persian MP4 rendered without errors (work/persian/out/svg-shape-morph/SvgShapeMorph.fa.mp4).",
+  "concerns": [],
+  "lessons": []
+}

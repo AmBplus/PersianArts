@@ -1,8 +1,8 @@
 {
- "generatedAt": "2026-10-11T15:00:37.631Z",
+ "generatedAt": "2026-10-11T15:05:54.449Z",
  "summary": {
-  "todo": 111,
-  "localized": 2,
+  "todo": 109,
+  "localized": 4,
   "approved": 37,
   "fixed": 7,
   "needs-fix": 0,
@@ -227,11 +227,11 @@
   },
   {
    "slug": "cloner-depth-echo",
-   "status": "todo",
-   "font": "",
-   "videos": 0,
+   "status": "localized",
+   "font": "{\"families\":[\"Vazirmatn\"],\"reason\":\"Neutral variable Persian sans appropriate for a minimal product/UI motion card; its loaded variable 800 weight preserves the original heavy display hierarchy and has reliable Persian glyph coverage.\"}",
+   "videos": 1,
    "majors": 0,
-   "concerns": 0
+   "concerns": 2
   },
   {
    "slug": "collab-cursor-moves",
@@ -581,9 +581,9 @@
    "slug": "list-reveal",
    "status": "localized",
    "font": "",
-   "videos": 0,
+   "videos": 1,
    "majors": 0,
-   "concerns": 2
+   "concerns": 0
   },
   {
    "slug": "list-stack-press",
@@ -1043,9 +1043,9 @@
   },
   {
    "slug": "svg-shape-morph",
-   "status": "todo",
-   "font": "",
-   "videos": 0,
+   "status": "localized",
+   "font": "Vazirmatn",
+   "videos": 1,
    "majors": 0,
    "concerns": 0
   },

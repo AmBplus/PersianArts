@@ -1,6 +1,6 @@
 {
   "slug": "list-reveal",
-  "status": "implementation-complete-render-blocked",
+  "status": "localized",
   "components": [
     {
       "id": "demo-ListReveal",
@@ -19,49 +19,62 @@
       "font": {
         "family": "Vazirmatn",
         "weight": 500,
-        "reason": "A compact, neutral Persian UI face that fills the original Inter-like product-navigation role while preserving joined glyphs and the ZWNJ in پروژه‌ها. FaRoot loads it before rendering."
+        "reason": "A neutral Persian product UI sans suited to the compact navigation labels. Its connected forms and ZWNJ render cleanly; FaRoot loads the font before frames are rendered."
       },
       "rtlDecisions": [
         {
-          "what": "Navigation-item marker and label order",
-          "action": "Mirrored via FaRoot direction:rtl; the first flex child (the colour marker) is therefore at the right, followed by its Persian label toward the left.",
-          "why": "Icon/bullet placement is part of reading-order navigation semantics in Persian."
+          "what": "Marker and label within each navigation row",
+          "action": "Inherited direction:rtl places the first flex child, the hue swatch, at the right; the Persian label follows to its left.",
+          "why": "Marker placement follows the reading order of a Persian navigation item."
         },
         {
-          "what": "List item cascade",
-          "action": "Kept the original top-to-bottom LABELS order and its six 0.09 stagger windows.",
-          "why": "This is a vertical navigation sequence, whose order is unchanged by RTL; preserving it retains the designed readable cadence."
+          "what": "Order of the six navigation entries",
+          "action": "Kept the original top-to-bottom order and all six stagger positions.",
+          "why": "Vertical sequence is unaffected by writing direction; preserving it retains the intended menu order and cadence."
         },
         {
-          "what": "Item entrance and container drift",
-          "action": "Kept the scale-led translateY(14→0) entrance and the independent linear translateY(16→-16) drift exactly.",
-          "why": "Vertical motion is physical/universal rather than reading-direction motion; the source prompt defines these as two deliberately decoupled layers."
+          "what": "Per-row arrival",
+          "action": "Kept the original scale and vertical translateY entrance, opacity curve, easing, and timing windows.",
+          "why": "The motion is vertical and physical, with no reading-direction meaning."
         },
         {
-          "what": "Centred composition, swatches and gradients",
-          "action": "Kept position, colour order, gradient angle, radius, scale transform and opacity curve.",
-          "why": "They are symmetrical or decorative, not directional language."
+          "what": "Whole-list drift",
+          "action": "Kept the original linear translateY(16 to -16) across the full duration.",
+          "why": "Vertical drift is physical and the prompt defines it as an independent, continuous motion layer."
+        },
+        {
+          "what": "Centered stack, row geometry, and hue swatches",
+          "action": "Kept the centered composition, hue sequence, gradient angle, and decorative shapes; adjusted vertical padding from 9px to 8px and line-height from 1 to 1.25.",
+          "why": "Centering and hue decoration have no reading direction. Slightly reduced padding compensates for the Persian font size and taller line box, maintaining row proportions."
         }
       ],
-      "motionFidelity": "E.outBack, seg windows, opacity multiplier, scale range, vertical offset, gap, hue array, 108-frame duration and all timing values are unchanged. Persian labels vary in length but do not change any beat, stagger count or holding time.",
-      "rasterHandling": "No raster, video, SVG text or textured text assets are used by this component.",
-      "persianCraft": "No letter spacing, uppercase transform or per-character split is used. Labels are whole joined strings; the only ZWNJ-required label is پروژه‌ها. There are no digits, mixed bidi runs, typing, handwriting or character-level reveal effects."
+      "motionFidelity": "Duration remains 108 frames at 30 fps. E.outBack, six seg windows (0.06 + i*0.09 through +0.24), scale range, opacity multiplier, 14-to-0px row offset, and linear 16-to--16px container drift are unchanged. Persian label lengths do not alter any beat, stagger count, or hold.",
+      "rasterHandling": "No raster, video, or baked-in text assets are used. The colored swatches are CSS gradients without text.",
+      "persianCraft": "All labels are rendered as whole joined strings; no character splitting, letter spacing, or uppercase transform. ZWNJ is present in پروژه‌ها. No digits, Latin mixed-direction runs, typing, or handwriting effects occur.",
+      "visualReview": "Viewed Persian and original frame pairs at frames 0, 8, 16, 24, 36, 54, 72, 90, and 107. Frame 36 confirms the fourth row is entering while the first three are settled in both versions; later frames show all six rows and the continuing upward drift. Persian shaping and icon/label order are legible with no clipping."
     }
   ],
   "sourceComparison": {
-    "originalFramesExtracted": [0, 8, 16, 24, 36, 54, 80, 107],
-    "originalFramesViewed": [24, 54, 107],
-    "observations": "The upstream frames confirm the intended gradual top-to-bottom row assembly, soft scale settling and final all-six-row hold."
+    "prompt": "work/upstream/src/gallery/source/list-reveal.md",
+    "sourceFramesCompared": [
+      0,
+      8,
+      16,
+      24,
+      36,
+      54,
+      72,
+      90,
+      107
+    ],
+    "summary": "The vertical list retains the gradual six-row assembly, soft scale settling, independent continuous container drift, and end hold."
   },
   "verification": {
-    "requestedHarness": "node work/persian/render-card.mjs --slug list-reveal --frames 0,8,16,24,36,54,80,107",
-    "result": "blocked before bundling: the Windows environment returns Error: spawn EPERM while Remotion/esbuild starts its service. The harness then masks its own failed bundle result with TypeError: (b.stdout + b.stderr).slice is not a function.",
-    "directBundleAttempt": "npx remotion bundle ... --log=error produced the same esbuild spawn EPERM.",
-    "finalVideoAttempt": "Not produced because the same bundler precondition is blocked; no false claim of Persian visual or full-timeline verification is made."
+    "stillRenderCommand": "node work/persian/render-card.mjs --slug list-reveal --frames 0,8,16,24,36,54,72,90,107",
+    "stillRenderResult": "Succeeded; one composition rendered all requested Persian and original frames with no reported errors.",
+    "finalVideoCommand": "node work/persian/render-card.mjs --slug list-reveal --video",
+    "finalVideoResult": "Succeeded; harness rendered the 108-frame Persian MP4 for demo-ListReveal with no reported errors."
   },
-  "concerns": [
-    "Persian stills and the requested MP4 could not be rendered in this sandbox due to esbuild process-spawn permission denial. Re-run the supplied harness in an environment where child process creation is permitted, then inspect frames 0, 8, 16, 24, 36, 54, 80 and 107 against the extracted upstream PNGs.",
-    "The harness itself currently obscures its bundle diagnostics after failure because it concatenates non-string spawn stdout/stderr values before calling .slice()."
-  ],
-  "newLessons": []
+  "concerns": [],
+  "lessons": []
 }

@@ -5,7 +5,8 @@
 // upward 32px container drift are physical/universal here, so both remain unchanged. The colour swatches, their hue order,
 // gradient angle and centred composition are non-reading-direction decoration and remain unchanged.
 // Font: Vazirmatn (500), a compact neutral product-UI face that fills Inter's role while retaining clear joined Persian glyphs.
-// No raster assets. Persian labels intentionally retain the six original stagger windows and full hold, even where their length differs.
+// Vertical padding is 8px (source 9px) to compensate for the enlarged Persian font and 1.25 line box, keeping row heights
+// close to the source. No raster assets. Labels retain all six original stagger windows and the full hold.
 import React from 'react';
 import { DesignStage, E, lerp, seg, useT } from '../../_fixtures/Motion';
 import { FaRoot, faText } from '../../_fa';

@@ -1,1 +1,1 @@
-{"slug":"list-reveal","role":"author","worker":"codex-a","model":"gpt-5.6-terra","effort":"medium","jobId":13,"status":"ok","durationS":268,"quotaDeltaPct":10,"violations":["work/persian/trial/radial-wave.json"],"hasReport":true,"videos":[]}
+{"slug":"list-reveal","role":"author","worker":"codex-b","model":"gpt-6-luna","effort":"medium","jobId":132,"status":"ok","durationS":161,"quotaDeltaPct":2,"violations":[],"hasReport":true,"videos":["ListReveal.fa.mp4"]}
