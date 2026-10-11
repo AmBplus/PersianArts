@@ -1,0 +1,52 @@
+{
+ "slug": "svg-shape-morph",
+ "stem": "SvgShapeMorph.fa",
+ "profile": "clean-tech",
+ "bpm": 104.82,
+ "grid_offset": 0.867,
+ "duration": 5.248,
+ "cues": [
+  {
+   "frame": 2,
+   "time": 0.067,
+   "kind": "pop",
+   "strength": 0.249,
+   "gain": -16.0
+  },
+  {
+   "frame": 26,
+   "time": 0.867,
+   "kind": "whoosh",
+   "strength": 0.69,
+   "gain": -10.0
+  },
+  {
+   "frame": 32,
+   "time": 1.067,
+   "kind": "whoosh",
+   "strength": 1.0,
+   "gain": -10.0
+  },
+  {
+   "frame": 107,
+   "time": 3.567,
+   "kind": "whoosh",
+   "strength": 0.677,
+   "gain": -10.0
+  },
+  {
+   "frame": 113,
+   "time": 3.767,
+   "kind": "whoosh",
+   "strength": 0.719,
+   "gain": -10.0
+  },
+  {
+   "frame": 119,
+   "time": 3.967,
+   "kind": "whoosh",
+   "strength": 0.494,
+   "gain": -10.0
+  }
+ ]
+}
