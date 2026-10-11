@@ -1,0 +1,76 @@
+{
+  "slug": "card-stack",
+  "status": "complete",
+  "component": "CardStack",
+  "source": "work/upstream/src/demos/ui-entrance/card-stack/CardStack.tsx",
+  "localized": "work/persian/src/demos/ui-entrance/card-stack/CardStack.tsx",
+  "composition": {
+    "id": "demo-CardStack",
+    "frames": 126,
+    "fps": 30,
+    "size": "1920x1080",
+    "video": "work/persian/out/card-stack/CardStack.fa.mp4"
+  },
+  "text": {
+    "onScreenOriginal": "None. Each card contains two skeleton bars and one geometric symbol.",
+    "onScreenPersian": "None required. The eight universal geometric symbols remain unchanged.",
+    "digits": "No on-screen numbers.",
+    "timingImpact": "None; there are no strings or per-character effects."
+  },
+  "font": {
+    "family": "Vazirmatn",
+    "reason": "A neutral Persian product-UI face matching the placeholder cards' interface setting. FaRoot sets RTL and loads the family; the current artwork contains no letters, so font shaping does not affect the visible design.",
+    "loadedBy": "FaRoot"
+  },
+  "rtlDecisions": [
+    {
+      "comp": "demo-CardStack",
+      "what": "Fan card order and horizontal offset",
+      "action": "Mirror tx using dir(k * 34); the earliest card now settles at the right end.",
+      "why": "The reveal of a set has reading order; RTL viewers begin at the right. The 34 px offset magnitude stays unchanged."
+    },
+    {
+      "comp": "demo-CardStack",
+      "what": "Fan card rotation",
+      "action": "Mirror rot using dir(k * 8), preserving the original easing and 8 degree step.",
+      "why": "The card tilt must follow its mirrored fan position so each card still opens outward around the same hand-held pivot."
+    },
+    {
+      "comp": "demo-CardStack",
+      "what": "Skeleton title and subtitle bars",
+      "action": "Move both anchors from left: 12 to right: 12; keep widths, vertical positions, hues and rand seeds.",
+      "why": "These bars stand in for text lines and should start at the right edge in a Persian interface."
+    },
+    {
+      "comp": "demo-CardStack",
+      "what": "Stagger and hue sequence",
+      "action": "Keep the original index sequence and frame timing; the mirrored fan makes its first card and first hue appear at the right.",
+      "why": "This preserves the source's one-card-at-a-time rhythm while changing the settled scan order to RTL."
+    },
+    {
+      "comp": "demo-CardStack",
+      "what": "Entrance, depth, perspective and layering",
+      "action": "Keep the spring rise from below, 0.55 to 0.8 fan window, translateZ, perspective, zIndex, opacity and transform-origin at 50% 130%.",
+      "why": "Vertical movement, depth and the centered hand-held pivot are physical or symmetric, not reading-direction cues."
+    },
+    {
+      "comp": "demo-CardStack",
+      "what": "Centered anchors and glyphs, gradient, corners and shadow",
+      "action": "Keep the absolute 50% anchors, centered glyphs, mostly vertical 165 degree gradient, symmetric radii and shadow.",
+      "why": "These define card geometry and lighting. Their appearance remains balanced after the fan order is mirrored."
+    }
+  ],
+  "rasterHandling": {
+    "assets": "None; all visible cards, bars and symbols are CSS and text glyphs.",
+    "action": "No raster replacement, blur or image mirroring needed."
+  },
+  "motionFidelity": "The 126-frame source duration, 30 fps, eight cards, spring and cubic easing, entrance stagger, reveal window, random seeds, 34 px fan step, 8 degree rotation step, depth and z-order are preserved. Only the reading-direction horizontal offsets and paired tilt signs were mirrored.",
+  "verification": {
+    "renderCommand": "node work/persian/render-card.mjs --slug card-stack --frames 10,40,70,90,125 --video",
+    "result": "ok; no render errors; full Persian MP4 generated",
+    "visuallyComparedFrames": [10, 40, 70, 90, 125],
+    "observations": "At frame 10 the bars move to the right while the spring position and symbol match. At 40 and 70 the stack lands at the original beats. At 90 and 125 the completed fan is the source composition mirrored across the center, with reversed hue order and no clipping or foreign on-screen text."
+  },
+  "concerns": [],
+  "lessons": []
+}

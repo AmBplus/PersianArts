@@ -1,0 +1,79 @@
+{
+  "slug": "row-embed",
+  "status": "localized",
+  "components": [
+    {
+      "id": "demo-RowEmbed",
+      "file": "RowEmbed.tsx",
+      "fps": 30,
+      "size": "1920x1080",
+      "frames": 68,
+      "font": {
+        "families": [],
+        "reason": "No live text is rendered by the component. The only words belong to the baked screenshot and are blurred because they cannot be faithfully replaced as live Persian typography without rebuilding the screenshot UI."
+      },
+      "rtlDecisions": [
+        {
+          "what": "Five row positions and screenshot crop coordinates",
+          "action": "Kept their original x/y positions and crop offsets.",
+          "why": "The rows represent a physical top-down drop into pre-existing page slots. The source prompt defines no reading-order sequence across columns; mirroring would detach the crops from their slots."
+        },
+        {
+          "what": "Row entrance direction, gravity and rotateX",
+          "action": "Kept vertical descent, translateY, rotateX, perspective and scale values unchanged.",
+          "why": "These express gravity and physical embedding, not text reading direction."
+        },
+        {
+          "what": "Stagger schedule and landing beats",
+          "action": "Kept cue = 12 + i*9, 12-frame flight, 4-frame landing settle, and 8-frame seam lifetime unchanged.",
+          "why": "Preserves the original five-row rain and final landing/seam ending at frame 68."
+        },
+        {
+          "what": "Bottom seam reveal",
+          "action": "Kept its symmetric center-out expansion and fade unchanged.",
+          "why": "The seam is a physical embed flash, not a directional reading reveal."
+        },
+        {
+          "what": "Camera movement",
+          "action": "Kept the centered camera and downward cy movement unchanged.",
+          "why": "This is a physical pan across the page; there is no reading-direction implication."
+        },
+        {
+          "what": "Baked raster copy in page and row crops",
+          "action": "Applied a 40px blur to the raster page and flying row crops in a card-local PageCam2D copy.",
+          "why": "The screenshot contains Chinese UI strings and legible English research titles, descriptions, names and dates. The blur is strong enough to make that copy unreadable at output scale while retaining the page layout, row surfaces, warm palette and motion. A 16px trial still left large headings readable."
+        }
+      ],
+      "rasterHandling": {
+        "asset": "textures/live/detail-full.png",
+        "handling": "Blurred at 40px in the local camera helper and on flying screenshot crops; the shared texture and shared fixture were not edited.",
+        "reason": "The asset includes extensive baked Chinese and English UI text. No external raster text remains legible in the reviewed frames."
+      },
+      "concerns": [
+        "The raster UI copy is intentionally unreadable rather than translated, so the screenshot loses fine text detail. Its geometry and tonal composition remain visible."
+      ],
+      "lessons": [
+        "At 1920x1080, a 16px CSS blur on a high-resolution screenshot still left large baked headings readable after camera scaling; inspect at final output size and raise blur until text is genuinely illegible."
+      ],
+      "visualVerification": {
+        "framesComparedFaAndOriginal": [
+          5,
+          12,
+          24,
+          33,
+          42,
+          60,
+          67
+        ],
+        "result": "Reviewed paired renders across early setup, individual row landings, later row entrances and the final resting state. Original retains crisp screenshot text; Persian render preserves the camera/row timing and masks screenshot text through strong blur."
+      }
+    }
+  ],
+  "render": {
+    "stillRenderOk": true,
+    "finalVideoRequested": true,
+    "harnessErrors": [],
+    "finalVideoRendered": true,
+    "video": "RowEmbed.fa.mp4"
+  }
+}

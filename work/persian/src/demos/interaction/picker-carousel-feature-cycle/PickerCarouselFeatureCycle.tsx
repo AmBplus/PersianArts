@@ -1,10 +1,15 @@
-// picker-carousel-feature-cycle — Picker Carousel 功能名吸附轮播（motion-lab 定稿转原生 Remotion）
-// 移动端风竖向选择器：焦点药丸不动、内容穿过它，每项停靠 0.45s 且带明显 outQuint
-// 减速吸附 + 4–5 帧静止；按到中心距离分层控制 opacity/字号/灰度，落定时药丸做
-// scaleY 1→1.06→1 极轻呼吸，左外侧固定方形 AI 徽标。
-// 设计坐标 480×270（DesignStage 等比放大），参数表数值以此坐标系标定。
+// PERSIAN (RTL) localization of shotcraft "picker-carousel-feature-cycle".
+// Text: the seven product-feature labels become concise Persian UI labels; the AI token remains Latin as a
+// universally recognised technical mark. Vazirmatn is loaded through FaRoot: its variable weights retain the
+// compact, neutral product-UI role of Helvetica while its Persian glyphs remain legible in the 34px rows.
+// Direction decisions: this is a vertical physical picker, so vertical travel, item order, fixed centre pill,
+// opacity/size falloff, gradient, and the outQuint/hold/breath timings stay exactly as source. The icon moves to
+// the RTL start (right) of each feature label. The fixed AI badge mirrors from the source's left exterior to the
+// reading-side right exterior; its fade is unchanged. There are no raster assets. Persian text has no tracking,
+// uppercase, or per-character splitting; sizes use fs() and the one-line leading remains deliberately compact.
 import React from 'react';
 import { DesignStage, E, lerp, seg, useT } from '../../_fixtures/Motion';
+import { FaRoot, faText, fs } from '../../_fa';
 
 export const PICKER_CAROUSEL_FEATURE_CYCLE_DURATION = 108; // 3600ms @30fps
 
@@ -13,13 +18,13 @@ const INK = '#111113';
 const MID = '#8A8A8F';
 const ROW_H = 34; // 单行高度
 const ITEMS = [
-  'Data Cleanup',
-  'Direct Message',
-  'Smart Segments',
-  'Batch Actions',
-  'Reward Program',
-  'Automated Flows',
-  'Variant Testing',
+  'پاک‌سازی داده‌ها',
+  'پیام مستقیم',
+  'بخش‌بندی هوشمند',
+  'اقدام‌های گروهی',
+  'برنامهٔ پاداش',
+  'گردش‌کارهای خودکار',
+  'آزمون نسخه‌ها',
 ];
 const ICONS = ['◎', '✉', '◧', '◈', '★', '↺', '⚑'];
 const STEPS = 5; // 五次吸附推进
@@ -42,13 +47,13 @@ export const PickerCarouselFeatureCycle: React.FC = () => {
   return (
     <DesignStage bg={PAPER}>
       {/* 纸面底 —— 与原采集页 paper() 容器一致 */}
+      <FaRoot family="Vazirmatn">
       <div
         style={{
           position: 'absolute',
           inset: 0,
           overflow: 'hidden',
           background: PAPER,
-          fontFamily: "-apple-system,'Helvetica Neue',Helvetica,Arial,sans-serif",
         }}
       >
         {/* 选择器视口：300×(34×5) 居中，整体在开头 5% 内淡入 */}
@@ -106,15 +111,13 @@ export const PickerCarouselFeatureCycle: React.FC = () => {
                     justifyContent: 'center',
                     gap: 8,
                     fontWeight: 600,
-                    fontSize: lerp(Math.min(1, d / 2), 17, 14),
-                    lineHeight: 1,
-                    fontFamily: "-apple-system,'Helvetica Neue',sans-serif",
+                    ...faText(lerp(Math.min(1, d / 2), 17, 14), {lineHeight: 1.2}),
                     color: d < 0.5 ? INK : d < 1.5 ? MID : '#B9B9BE',
                     opacity: o,
                   }}
                 >
                   {/* 图标仅在贴近焦点时浮现（d<0.625 内可见） */}
-                  <span style={{ fontSize: 14, opacity: Math.max(0, 1 - d * 1.6) }}>
+                    <span style={{ fontSize: fs(14), opacity: Math.max(0, 1 - d * 1.6), flexShrink: 0 }}>
                     {ICONS[i]}
                   </span>
                   <span>{txt}</span>
@@ -132,13 +135,13 @@ export const PickerCarouselFeatureCycle: React.FC = () => {
             }}
           />
         </div>
-        {/* 左外侧固定 AI 徽标：黑底白字方形圆角，开头略滞后淡入 */}
+        {/* RTL reading-side fixed AI badge: black rounded square, slightly delayed fade-in. */}
         <div
           style={{
             position: 'absolute',
             left: '50%',
             top: '50%',
-            margin: '-11px 0 0 -186px',
+            margin: '-11px 0 0 160px',
             width: 26,
             height: 22,
             borderRadius: 6,
@@ -150,14 +153,14 @@ export const PickerCarouselFeatureCycle: React.FC = () => {
             fontWeight: 700,
             fontSize: 10,
             lineHeight: 1,
-            fontFamily: '-apple-system,sans-serif',
             letterSpacing: 0.5,
             opacity: seg(t, 0.02, 0.09),
           }}
         >
-          AI
+          <bdi dir="ltr">AI</bdi>
         </div>
       </div>
+      </FaRoot>
     </DesignStage>
   );
 };

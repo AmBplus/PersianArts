@@ -1,8 +1,21 @@
-// platform-hinge-rise — 平台建立后，两块主体从相邻底部铰点反向翻起，最后结论台升入。
-// 从独立 motion-blocking 研究中整理为纯 DOM/SVG 的通用 Remotion demo。
+// Persian RTL localization of platform-hinge-rise.
+//
+// Copy: SUBJECT → «موضوع»، CONTEXT → «زمینه»، OUTCOME → «نتیجه».
+// Font: Vazirmatn, a neutral UI sans with variable weights and reliable Persian
+// glyph coverage; it preserves the restrained product-demo tone of the source.
+// Direction decisions: the labels are centered and therefore need no anchoring
+// change. The platform's center-out build, the vertical conclusion rise, and the
+// two opposite hinge rotations are physical staging mechanics rather than reading
+// order, so their coordinates, transform origins, rotation signs, and timing stay
+// unchanged. The pair is intentionally asymmetric (size, height, amplitude), as
+// required by the source motion intent. The scene is wrapped in FaRoot for RTL and
+// loaded Persian shaping; source letter-spacing/tracking is removed because it
+// breaks joined Persian glyphs. No raster asset contains text; DesignStage's
+// raster="zoom" is only the original rendering pipeline and is retained.
 import React from 'react';
 import { Easing, interpolate, useCurrentFrame } from 'remotion';
 import { DesignStage } from '../../_fixtures/Motion';
+import { FaRoot, faText } from '../../_fa';
 
 export const PLATFORM_HINGE_RISE_DURATION = 104;
 
@@ -57,13 +70,12 @@ const SubjectPanel: React.FC<{
         display: 'grid',
         placeItems: 'center',
         color: '#f7f7f5',
-        fontFamily: 'Arial, sans-serif',
         fontSize: 10,
         fontWeight: 800,
-        letterSpacing: 1,
+        ...faText(8.5, {fontWeight: 700, lineHeight: 1}),
       }}
     >
-      SUBJECT
+      موضوع
     </div>
   );
 };
@@ -80,12 +92,12 @@ export const PlatformHingeRise: React.FC = () => {
 
   return (
     <DesignStage bg="#f4f4f1" raster="zoom">
+      <FaRoot family="Vazirmatn">
       <div
         style={{
           position: 'absolute',
           inset: 0,
           overflow: 'hidden',
-          fontFamily: 'Arial, sans-serif',
         }}
       >
         <div
@@ -110,10 +122,10 @@ export const PlatformHingeRise: React.FC = () => {
             color: '#77787a',
             fontSize: 9,
             fontWeight: 800,
-            letterSpacing: 0.8,
+            ...faText(8.5, {fontWeight: 700, lineHeight: 1}),
           }}
         >
-          CONTEXT
+          زمینه
         </div>
 
         <div
@@ -151,14 +163,13 @@ export const PlatformHingeRise: React.FC = () => {
             paddingTop: 19,
             boxSizing: 'border-box',
             color: '#4f5053',
-            fontSize: 20,
-            fontWeight: 850,
-            letterSpacing: 1.8,
+            ...faText(20, {fontWeight: 800, lineHeight: 1}),
           }}
         >
-          OUTCOME
+          نتیجه
         </div>
       </div>
+      </FaRoot>
     </DesignStage>
   );
 };

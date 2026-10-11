@@ -1,0 +1,38 @@
+{
+  "slug": "cloner-depth-echo",
+  "verdict": "fix",
+  "score": 52,
+  "issues": [
+    {
+      "severity": "blocker",
+      "where": "ClonerDepthEcho.tsx, stage wrapper (position:absolute; left: 960-260; transformStyle preserve-3d) inside <FaRoot> (direction:rtl); frames f0, f45, f68, f119",
+      "problem": "FaRoot's direction:rtl changes the static position of the absolutely positioned child divs (clones and hero have no left/right). They anchor to the right edge of the zero-width stage box and the cards extend leftwards. The hero card renders at x~112..698 instead of the original x~700..1190, so the whole composition is shoved to the far left under a centered title, and the right half of the frame is empty. The clone queue (spreading up and to the right) is cramped against the left edge. report.json claims 'all constants unchanged', but the visual centering of the original is lost.",
+      "suggestedFix": "Give the stage wrapper a fixed width:520 (or give every absolute child left:0 / insetInlineStart:0, or set direction:'ltr' on the 3D stage) so the hero card is again centered at x=960 as in the original (compare orig f0: card spans 700..1190). Then re-check f45: the queue should fan out to the upper right of a centered card and stay in frame."
+    },
+    {
+      "severity": "major",
+      "where": "Card placeholder internals (Fixtures Card), frames f0/f45",
+      "problem": "Card contents are mirrored by the inherited RTL direction (title bars right-aligned, avatar and line at bottom-right), whereas the original has them left-aligned with the avatar at bottom-left. This is neither documented nor intentional: the header and report state the Card is 'reused unchanged' and has 'no directional meaning'. It does mirror correctly for RTL in principle, but the author did not decide it, and the file's rtlDecisions entry is false.",
+      "suggestedFix": "Decide explicitly. Preferred: keep the mirrored content (valid for RTL UI placeholder) and document it in the header and report, or wrap the Card in direction:ltr to keep the original. Either way fix the claim."
+    },
+    {
+      "severity": "major",
+      "where": "Direction decision for the diagonal queue (dx=+64*idx), header comment and report rtlDecisions",
+      "problem": "The clone fan goes up-right (visible in f45). With a correct centered layout this is a justifiable physical-depth choice, but the author never viewed the original later frames (only f0) and never verified the composition. Consider mirroring dx and rotateY sign (and perspectiveOrigin 58% -> 42%) so the echo trails toward the reading start (right side) for RTL balance; at minimum document the reasoning with evidence.",
+      "suggestedFix": "Either mirror dx to -64*idx, rotateY(-16deg), perspectiveOrigin '42% 46%' (keeping timing/z/dy), or keep it and justify after viewing a centered render."
+    },
+    {
+      "severity": "minor",
+      "where": "Title: lineHeight 1.15 / header comment",
+      "problem": "Title shapes correctly (no letter-spacing, ZWNJ in کلون‌ها, Vazirmatn 800 loaded) but 'پژواکِ عمقِ کلون‌ها' with explicit kasra marks is slightly stilted; marks sit tight under line box at 1.15. Idiomatic alternative: «پژواک عمق کلون‌ها» or «ردپای کلون‌ها در عمق». Also title weight/mood is plain compared to the heavy Impact-like original (Lalezar could match the slam feel).",
+      "suggestedFix": "Drop the ezafe kasra diacritics, use lineHeight ~1.4 in a fixed-height box so title stays at y=100 baseline-equivalent, consider Lalezar/Vazirmatn 900 for the poster feel."
+    },
+    {
+      "severity": "minor",
+      "where": "report.json visualVerification",
+      "problem": "Only original f0 compared; later orig frames are unavailable (truncated to 10 frames) but the composition error at f0 was visible in a direct fa/orig f0 comparison and was missed. Timing constants and exports are identical to the original (verified by diff), so fidelity of timing is fine.",
+      "suggestedFix": "Compare f0 positions of the hero card between fa and orig after the fix."
+    }
+  ],
+  "notes": "Verified by diff: all numeric constants, springs, easing, seed, fps, size, exported name unchanged; no leftover Latin/Chinese text, no letter-spacing/uppercase, no raster assets. Title shaping is correct. The shipped render is, however, visibly off-center (hero card pinned to the left edge) due to the RTL static-position side effect, which is a real regression versus the original centered composition."
+}

@@ -1,0 +1,66 @@
+{
+  "slug": "platform-hinge-rise",
+  "status": "localized",
+  "font": {
+    "families": ["Vazirmatn"],
+    "reason": "Neutral product/UI sans with variable weights and reliable Persian glyph coverage; it preserves the restrained explanatory tone of the original Arial treatment without fake bold or broken shaping."
+  },
+  "comps": [
+    {
+      "id": "demo-PlatformHingeRise",
+      "stem": "PlatformHingeRise",
+      "fps": 30,
+      "size": "1920x1080",
+      "durationFrames": 104,
+      "translatedText": [
+        {"source": "SUBJECT", "localized": "موضوع", "location": "both hinged subject panels"},
+        {"source": "CONTEXT", "localized": "زمینه", "location": "background context circle"},
+        {"source": "OUTCOME", "localized": "نتیجه", "location": "rising conclusion platform"}
+      ],
+      "rtlDecisions": [
+        {
+          "what": "All on-screen labels",
+          "action": "Translated to idiomatic Persian and rendered through FaRoot with direction rtl; labels remain centered.",
+          "why": "The labels are centered inside geometric objects, so RTL changes shaping and font but not the visual anchor."
+        },
+        {
+          "what": "Left/right subject-panel geometry",
+          "action": "Kept source x positions, unequal dimensions, opposite rotation signs, adjacent bottom hinge origins, and wobble amplitudes.",
+          "why": "These are physical staging mechanics: the meaning is two neighboring hinges opening in opposite directions, not a reading-order list. Mirroring would reverse the designed mechanical relationship."
+        },
+        {
+          "what": "Platform build",
+          "action": "Kept center-origin scaleX build and the original trapezoid clip path.",
+          "why": "The source prompt defines this as a physical support surface establishing from the center; it carries no reading direction."
+        },
+        {
+          "what": "Context circle and conclusion platform",
+          "action": "Kept centered placement, vertical motion, opacity ramps, and conclusion hold unchanged.",
+          "why": "These are vertical staging layers, not directional UI reveals."
+        },
+        {
+          "what": "Typography tracking",
+          "action": "Removed letter-spacing and uppercase styling; used variable Vazirmatn weights and slightly compensated Persian sizing through faText.",
+          "why": "Tracking and uppercase are invalid for Persian joining and hierarchy is preserved by weight, size, contrast, and centered placement."
+        }
+      ],
+      "motionFidelity": {
+        "preserved": ["f0–15 platform scaleX", "f12–32 context entrance", "f14–30 opposite hinge rise", "f30–46 damped wobble with one-frame right delay", "f52–74 conclusion rise", "f74–103 static hold"],
+        "timingChanged": false
+      }
+    }
+  ],
+  "rasterHandling": {
+    "assets": "None. The card uses only DOM geometry and text; DesignStage raster=\"zoom\" is a rendering pipeline setting, not a text-bearing raster asset.",
+    "action": "No raster replacement, blur, or mirroring was needed."
+  },
+  "verification": {
+    "command": "node work/persian/render-card.mjs --slug platform-hinge-rise --duration 104 --frames 0,12,14,20,30,34,40,52,60,74,103",
+    "result": "ok; 11 Persian/original still pairs rendered with zero harness errors; final full-card Persian MP4 rendered successfully",
+    "video": "PlatformHingeRise.fa.mp4",
+    "inspectedPairs": ["f20", "f34", "f60", "f103"],
+    "observations": "Persian and original geometry, occlusion, hinge motion, conclusion entrance, and final hold align at the inspected beats; Persian labels are shaped, legible, and contained."
+  },
+  "concerns": [],
+  "lessons": []
+}

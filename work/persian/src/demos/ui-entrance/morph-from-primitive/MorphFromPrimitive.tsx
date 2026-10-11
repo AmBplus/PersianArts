@@ -1,9 +1,15 @@
-// morph-from-primitive｜原型变形
-// 正圆呼吸一拍(anticipation) → path d 逐数值插值变形成 520×300 圆角矩形卡片轮廓
-// → 卡片内部灰阶内容条淡入。全部帧驱动、确定性。
+// Persian/RTL localization of morph-from-primitive.
+// Visible copy: none. The card contains only abstract grayscale placeholder bars; no text is invented.
+// Direction: the centered circle, symmetric outline, breath, and path morph stay physical and unchanged.
+// The card content inherits RTL: header and body bars start at the right reading edge, and the
+// footer's avatar precedes its short bar from the right. The absolute card box remains centered.
+// Font: Vazirmatn, the neutral product UI choice; it is loaded by FaRoot for any future copy,
+// although this text-free composition does not draw glyphs. No raster assets are used.
+// All easing, seeds (none), frame cues, sizes, and the 140-frame source design are unchanged.
 import React from 'react';
 import { useCurrentFrame, interpolate, Easing } from 'remotion';
 import { G } from '../../_fixtures/Fixtures';
+import { FaRoot } from '../../_fa';
 
 const CX = 960;
 const CY = 540;
@@ -150,7 +156,7 @@ export const MorphFromPrimitive: React.FC = () => {
   const d = morphPath(t);
 
   return (
-    <div style={{ width: 1920, height: 1080, background: G.bg, position: 'relative' }}>
+    <FaRoot family="Vazirmatn" style={{ width: 1920, height: 1080, background: G.bg }}>
       <svg
         width={1920}
         height={1080}
@@ -185,6 +191,6 @@ export const MorphFromPrimitive: React.FC = () => {
           <div style={{ height: 16, width: 120, background: G.line, borderRadius: 8 }} />
         </div>
       </div>
-    </div>
+    </FaRoot>
   );
 };

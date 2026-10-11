@@ -1,13 +1,15 @@
-// row-embed —— 内容行从空中降下、rotateX 收平、嵌入瞬间底边亮强调色缝
-// "结构化数据长进页面"的详情页/列表镜头。参考实现从 template SceneDetail 剥离：
-// 行按节拍逐条从上空飞入（perspective translateY(−120·air) + rotateX(16°·air) +
-// scale 略过冲后 press 回弹），行位先盖页面底色补丁占位、落地后消失让纹理透出，
-// 嵌入瞬间行底边 2px 强调色缝从中心向两侧展开后淡出，相机同时匀速下摇。
-// 节拍：第 i 行 cue = 12 + i·9，飞行 12f，最后一行 60f 落地、强调色缝 68f 收尾。
-// 飞行体 = 整页截图 backgroundImage 负偏移裁片（Q1：裁片不重绘内容）。
+// Persian RTL localization of row-embed. All five table rows, headers, labels, values,
+// descriptions, dates and follow-up titles are part of a baked screenshot, so the page
+// texture is strongly blurred (16px) to make its English/Chinese copy illegible; row
+// flyers use the same blurred source to preserve the crop-and-embed illusion.
+// Layout/camera coordinates stay fixed: this page has no meaningful reading-order motion
+// inside the texture; row rain, vertical gravity, rotateX, camera pan and center-out seam
+// are physical/symmetric and retain their original directions and timing.
+// No Persian typography is added because all visible copy belongs to the raster page.
+// Font: none; there is no live Persian text, and the raster lettering is deliberately blurred.
 import React from 'react';
 import { interpolate, staticFile, useCurrentFrame, Easing } from 'remotion';
-import { PageCam2D, CamKey2D } from '../../_fixtures/PageCam2D';
+import { PageCam2D, CamKey2D } from './PageCam2D';
 import layout from '../../_textures/live-layout.json';
 
 export const ROW_EMBED_DURATION = 68;
@@ -63,6 +65,7 @@ export const RowEmbed: React.FC = () => {
                 backgroundSize: `1920px ${DETAIL_H}px`,
                 backgroundPosition: `-${r.x}px -${r.y}px`,
                 opacity: appear,
+                filter: 'blur(16px)',
                 transform: `perspective(900px) translateY(${-120 * air}px) rotateX(${16 * air}deg) scale(${scale})`,
                 boxShadow: `0 ${30 * air}px ${60 * air}px rgba(30,25,18,${0.22 * air}), 0 ${8 * air}px ${16 * air}px rgba(30,25,18,${0.12 * air})`,
                 zIndex: 3, pointerEvents: 'none',

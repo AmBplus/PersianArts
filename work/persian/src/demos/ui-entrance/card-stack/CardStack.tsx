@@ -11,8 +11,10 @@
 //    pivot under the hand), zIndex (symmetric), tz depth (physical), perspective, timing/easing/stagger (stagger order
 //    now runs right-to-left because card 0 is the right-most card, which is the RTL cascade order).
 //  - Hue ramp 222->334 keeps its index order, so it now runs right-to-left across the fan.
-// FONT: Vazirmatn via FaRoot (no Persian text is shown; it only supplies the RTL root and a consistent glyph fallback
-//   for the geometric symbols).
+//  - KEPT: absolute 50% anchors, centred glyphs, symmetric corner radii and shadow, and the mostly vertical
+//    165deg card gradient; these describe card geometry and lighting rather than reading order.
+// FONT: Vazirmatn via FaRoot gives the card an RTL root and a neutral product-UI face for any future text;
+//   the current artwork has no Persian letters to typeset.
 // RASTER: none.
 // card-stack — Card Stack 3D 扇形展开（motion-lab 定稿转原生 Remotion）
 // 8 张卡片从屏下 spring 弹入（stagger 3 帧），叠成一摞后呈扇形展开：每张

@@ -1,11 +1,11 @@
 {
- "generatedAt": "2026-10-11T15:05:54.449Z",
+ "generatedAt": "2026-10-11T15:11:11.278Z",
  "summary": {
-  "todo": 109,
+  "todo": 106,
   "localized": 4,
-  "approved": 37,
+  "approved": 39,
   "fixed": 7,
-  "needs-fix": 0,
+  "needs-fix": 1,
   "total": 157
  },
  "cards": [
@@ -171,9 +171,9 @@
   },
   {
    "slug": "card-stack",
-   "status": "todo",
-   "font": "",
-   "videos": 0,
+   "status": "localized",
+   "font": "Vazirmatn",
+   "videos": 1,
    "majors": 0,
    "concerns": 0
   },
@@ -227,10 +227,10 @@
   },
   {
    "slug": "cloner-depth-echo",
-   "status": "localized",
+   "status": "needs-fix",
    "font": "{\"families\":[\"Vazirmatn\"],\"reason\":\"Neutral variable Persian sans appropriate for a minimal product/UI motion card; its loaded variable 800 weight preserves the original heavy display hierarchy and has reliable Persian glyph coverage.\"}",
    "videos": 1,
-   "majors": 0,
+   "majors": 3,
    "concerns": 2
   },
   {
@@ -579,7 +579,7 @@
   },
   {
    "slug": "list-reveal",
-   "status": "localized",
+   "status": "approved",
    "font": "",
    "videos": 1,
    "majors": 0,
@@ -795,9 +795,9 @@
   },
   {
    "slug": "platform-hinge-rise",
-   "status": "todo",
-   "font": "",
-   "videos": 0,
+   "status": "localized",
+   "font": "{\"families\":[\"Vazirmatn\"],\"reason\":\"Neutral product/UI sans with variable weights and reliable Persian glyph coverage; it preserves the restrained explanatory tone of the original Arial treatment without fake bold or broken shaping.\"}",
+   "videos": 1,
    "majors": 0,
    "concerns": 0
   },
@@ -875,9 +875,9 @@
   },
   {
    "slug": "row-embed",
-   "status": "todo",
+   "status": "localized",
    "font": "",
-   "videos": 0,
+   "videos": 1,
    "majors": 0,
    "concerns": 0
   },
@@ -1043,7 +1043,7 @@
   },
   {
    "slug": "svg-shape-morph",
-   "status": "localized",
+   "status": "approved",
    "font": "Vazirmatn",
    "videos": 1,
    "majors": 0,

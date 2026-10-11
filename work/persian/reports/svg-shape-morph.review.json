@@ -1,0 +1,10 @@
+{
+  "slug": "svg-shape-morph",
+  "verdict": "approve",
+  "score": 92,
+  "issues": [
+    {"severity":"minor","where":"SvgShapeMorph.tsx caption text","problem":"Single-letter label 'ب' ends the caption ('تبدیل به پیکرهٔ ب'); reads slightly sparse, though correct and idiomatic as a shape label.","suggestedFix":"Optional: use 'شکل ۱/۲' style wording or keep as is."},
+    {"severity":"minor","where":"SvgShapeMorph.tsx header comment","problem":"Says caption font size fs(10)=11px; actual size is in 480x270 viewBox units (scaled 4x) so wording is slightly misleading.","suggestedFix":"Clarify units in comment."}
+  ],
+  "notes": "Diffed against original: geometry, timings, easing, seeds, DURATION export (156) unchanged. Shape/hue/glow/breath identical to orig at frames 0,5,20,40,60,70,78,100,117,140,155 (viewed 155,70,40,117 side by side). Caption translated from API placeholder to Persian, joins and hamze correct, letterSpacing removed, Vazirmatn loaded via FaRoot (no fallback), centered, no overflow. Not mirroring the radially symmetric morph is a justified decision. No Latin/Chinese leftovers, no raster assets."
+}
