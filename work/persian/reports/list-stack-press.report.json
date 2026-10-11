@@ -1,0 +1,73 @@
+{
+  "slug": "list-stack-press",
+  "status": "localized-rendered",
+  "component": "ListStackPress",
+  "duration": 88,
+  "fps": 30,
+  "size": "1920x1080",
+  "font": {
+    "families": ["Vazirmatn"],
+    "reason": "A neutral variable-weight Persian UI sans suits the restrained academic paper feed, supports the range of UI weights, and shapes Persian and Persian digits reliably."
+  },
+  "rtlDecisions": [
+    {
+      "comp": "demo-ListStackPress",
+      "what": "Paper-feed header, navigation, article titles, metadata, summaries, project labels and descriptions",
+      "action": "Rebuilt as Persian DOM text, right-aligned and set direction:rtl; replaced the source screenshot surface with a matching paper-feed layout.",
+      "why": "These are localized UI strings and follow Persian reading order. Raster screenshots baked in Chinese and English text that could not be translated in place."
+    },
+    {
+      "comp": "demo-ListStackPress",
+      "what": "Screen-space Paper Radar counter",
+      "action": "Translated to «رادار مقاله» and «از ۳۱ مقالهٔ امروز»; moved the counter from top-right to top-left; changed the odometer strip to Persian digits ۰–۹.",
+      "why": "The counter is a feed-side UI element, so its placement follows the mirrored reading/layout order. Numeric progression and digit order remain unchanged."
+    },
+    {
+      "comp": "demo-ListStackPress",
+      "what": "Card entry positions, alternating tilt, stack compression and camera follow",
+      "action": "Kept positions, cues, easing, scale, tilt signs, stack press values, camera keyframes and frame timings unchanged.",
+      "why": "Vertical entrance, gravity and camera tracking are physical motion; the centered stack has no meaningful horizontal reading sequence to mirror."
+    },
+    {
+      "comp": "demo-ListStackPress",
+      "what": "Amber linked-project highlight",
+      "action": "Anchored the highlight to the card's inline end (right) and moved its accent edge to the left; retained width and grow/fade timing.",
+      "why": "The highlight is attached to the RTL project label; its origin and trailing edge follow the text direction."
+    },
+    {
+      "comp": "demo-ListStackPress",
+      "what": "Final glaze sweep",
+      "action": "Reversed the horizontal sweep anchor and gradient angle; negated the decorative 14° tilt.",
+      "why": "This single finishing sweep carries directional reading flow and should travel right-to-left."
+    },
+    {
+      "comp": "demo-ListStackPress",
+      "what": "Header text and number formatting",
+      "action": "Used Persian digits for visible counts and removed uppercase/tracking treatment from the counter labels.",
+      "why": "Persian UI uses Persian digits; letter-spacing and uppercase styling are unsuitable for Persian shaping."
+    }
+  ],
+  "rasterHandling": {
+    "source": "papers-full.png and paper1.png through paper5.png",
+    "action": "The full source screenshot plate is covered by a newly typeset Persian page surface. The flying screenshot cards were replaced with Persian DOM-built card surfaces and translated article-style titles, metadata, summaries, project tags and descriptions. No source raster text is visible in the localized render.",
+    "note": "Card copy is a concise Persian reconstruction of the visible research-feed subjects and layout, not a line-by-line transcription of every baked screenshot string."
+  },
+  "motionFidelity": {
+    "preserved": ["88-frame duration", "CUES [6,18,30,42,54]", "22-frame card flights", "original easing", "alternating ±2° tilt", "6px/8-frame stack press", "8-frame digit rolls", "camera keyframes", "highlight grow/fade beats"],
+    "rtlChanges": ["counter moved to top-left", "glaze sweep mirrored"],
+    "timingNote": "Persian card copy is static within each card, so the original per-card landing and counter beats remain unchanged."
+  },
+  "verification": {
+    "renderCommand": "node work/persian/render-card.mjs --slug list-stack-press --frames 0,6,18,30,42,54,66,76,84,87 --video",
+    "renderSucceeded": true,
+    "video": "work/persian/out/list-stack-press/ListStackPress.fa.mp4",
+    "viewedFaAndOriginalFrames": [0, 18, 30, 54, 66, 76, 87],
+    "compositionsViewed": ["demo-ListStackPress"],
+    "visualNotes": "Compared localized/original frames at the entrance, card arrivals and final stack. Persian page text and cards render without visible source screenshot text; all five card surfaces are present by the final frame and the counter settles at ۵."
+  },
+  "concerns": [
+    "The source screenshot contains dense baked research copy. The localized card copy preserves the research-feed subject and visual hierarchy but is a concise reconstruction rather than a verbatim translation of every raster line."
+  ],
+  "lessons": []
+}
+

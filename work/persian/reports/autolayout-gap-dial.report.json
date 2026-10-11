@@ -1,6 +1,13 @@
 {
   "slug": "autolayout-gap-dial",
   "status": "complete",
+  "fixRound": 2,
+  "fixRound2Summary": {
+    "reviewerIssue": "major: during the spring undershoot (frames ~70-95) gapShown is negative (-4) and faDigits(-4) rendered as '۴-' (minus on the wrong side) in the title badge and all 4 measurement badges; original shows '-4'.",
+    "fix": "Added faNum(v) = faDigits(v) with the hyphen replaced by U+2212 MINUS SIGN, and wrapped every badge value in an LTR island (direction:'ltr' + unicodeBidi:'isolate') via the shared NUM_ISLAND style. Applied to all five badges.",
+    "why": "Numbers, including their sign, are bidirectionally LTR runs even in Persian typesetting; without isolation the RTL paragraph flips the minus to the digit's right side.",
+    "sideEffects": "None: no timing, spring, easing, or layout change; positive values are unaffected (U+2212 only replaces a leading '-')."
+  },
   "components": [
     {
       "id": "demo-AutolayoutGapDial",
@@ -14,9 +21,9 @@
           "reason": "Natural, concise label for the spacing control in a Persian design tool."
         },
         {
-          "source": "numeric gap readouts",
-          "persian": "Persian digits through faDigits",
-          "reason": "The same stepped numeric value appears in the title badge and all four measurement badges."
+          "source": "numeric gap readouts (title badge + 4 measurement badges)",
+          "persian": "Persian digits via faNum()/faDigits, rendered as LTR islands (direction:'ltr' + unicodeBidi:'isolate'), minus sign U+2212 for negatives",
+          "reason": "Same stepped value in all five badges; numbers are LTR bidirectional runs, so the sign must stay on the visual left ('-۴' during the undershoot), matching the original '-4'."
         }
       ],
       "font": {
@@ -42,6 +49,11 @@
           "why": "The label-to-value sequence is reading-direction content, while the centered heading is part of the original composition."
         },
         {
+          "what": "Badge numeric values (all five) [FIX ROUND 2]",
+          "action": "Render each value as an LTR island (direction:'ltr' + unicodeBidi:'isolate') with U+2212 for negative values, via faNum() + NUM_ISLAND in the card file.",
+          "why": "During the spring undershoot the gap dips below zero (min -4); in the RTL context the bare hyphen migrated to the digit's right ('۴-'). Numbers with signs are LTR runs in Persian typesetting, so '-۴' must match the original '-4'."
+        },
+        {
           "what": "Selection rectangle and eight handles",
           "action": "Keep the centered rectangle and all corner and midpoint handles at their original geometric positions.",
           "why": "This selection geometry is symmetric and has no reading-order meaning."
@@ -62,8 +74,8 @@
         "action": "None: the original card uses CSS shapes and text only."
       },
       "visualVerification": {
-        "method": "Viewed matching original and Persian PNGs at frames 0, 14, 33, 52, 65, 72, 86, and 119.",
-        "result": "Persian text and digits fit, the RTL row remains centered, the gap markers stay on the block edges, and the expansion, hold, overshoot, and final rest match the source beats. No foreign on-screen text is visible.",
+        "method": "Fix round 2: viewed fa vs orig PNGs at frames 52, 76, 80, 84, 90, 119 (undershoot beat f80 compared side-by-side with the original). Round 1 had already covered 0, 5, 10, 14, 20, 30, 33, 40, 48, 60, 65, 70, 72, 86, 116.",
+        "result": "f80 Persian now reads '-۴' in the title badge and all four measurement badges, matching the original '-4'; f52 shows «۱۱۰» at the hold, f84/f90 recovering positive values, f119 resting at «۱۲». Mirrored row, gap tracking lines, selection frame and pulse all match the original beats. No foreign on-screen text.",
         "fullVideo": "AutolayoutGapDial.fa.mp4",
         "videoRendered": true
       },
@@ -71,5 +83,7 @@
     }
   ],
   "concerns": [],
-  "lessons": []
+  "lessons": [
+    "Negative numeric readouts in an RTL context must be rendered as LTR islands (direction:'ltr' + unicodeBidi:'isolate') with a true minus (U+2212), otherwise the sign flips to the digit's right ('۴-' instead of '-۴') — this can pass on positive frames and only appears during a spring undershoot/dip below zero."
+  ]
 }

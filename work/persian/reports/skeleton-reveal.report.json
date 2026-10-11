@@ -1,0 +1,65 @@
+{
+  "slug": "skeleton-reveal",
+  "status": "localized",
+  "sourcePrompt": "work/upstream/src/gallery/source/skeleton-reveal.md",
+  "compositions": [
+    {
+      "id": "demo-SkeletonReveal",
+      "component": "SkeletonReveal",
+      "fps": 30,
+      "size": "1920x1080",
+      "frames": 172,
+      "rtlDecisions": [
+        {
+          "what": "Full-screen hand-drawn placeholder",
+          "action": "Mirrored the complete doodle layer with scaleX(-1)",
+          "why": "The doodle depicts a UI window, sidebar, divider, avatar column and message lines; these are layout-order semantics in an RTL product interface. Mirroring the complete layer preserves exact wobble geometry, seeds and timing while moving the sidebar to the right."
+        },
+        {
+          "what": "Skeleton/live panel flex layout",
+          "action": "Applied direction: rtl to the panel, retained the original child order, and kept the sidebar as a fixed-width flex child",
+          "why": "RTL flex flow places the sidebar on the right and the main content on the left without changing the panel coordinates or animation timing."
+        },
+        {
+          "what": "Message row avatar and text order",
+          "action": "Applied direction: rtl to both skeleton and content rows so the avatar stays at the right edge and text grows to its left",
+          "why": "Avatar/text pairing follows reading and scan order in an RTL message list. Vertical row order remains unchanged because it is the chronological list axis, not a left-to-right reading axis."
+        },
+        {
+          "what": "Word-by-word content reveal",
+          "action": "Translated messages and animated each Persian word as a joined word span while preserving whitespace tokens",
+          "why": "The source uses word-level opacity and 14px rise. Preserving word units keeps the same final polish and timing without splitting Persian letters or breaking contextual joining."
+        },
+        {
+          "what": "Names and timestamps",
+          "action": "Localized mock names to آنا، بن، کای، میا; converted timestamp digits with faDigits and used ق.ظ",
+          "why": "The card requires natural Persian UI copy; the names are mock content, while time remains a numeric/time island with Persian digits."
+        },
+        {
+          "what": "Camera push and vertical motion",
+          "action": "Kept transform origin, zoom range, vertical row slides, spring, easing, frame offsets and seed progression unchanged",
+          "why": "These are motion fidelity and physical/visual timing decisions, not language-direction semantics."
+        }
+      ],
+      "timing": {
+        "preserved": true,
+        "notes": "SWAP=32, 8-frame doodle exit, 6-frame row stagger, zoom 66-142, 13-frame row reveal stagger, 2.5-frame word stagger and +14-frame final word delay are unchanged. Persian copy length does not shift the beats."
+      },
+      "visualVerification": {
+        "matchedFramesViewed": [0, 16, 32, 40, 58, 80, 100, 120, 142, 171],
+        "faAndOriginalViewedForEveryFrame": true,
+        "observations": "Frame 0 shows the mirrored doodle; frames 32-58 show the right-hand sidebar and skeleton entrance; frames 80-142 show row and word reveals with joined Persian glyphs; frame 171 shows all four rows settled."
+      }
+    }
+  ],
+  "font": {
+    "families": ["Vazirmatn"],
+    "reason": "Vazirmatn is a loaded variable UI sans with dependable Persian glyph coverage and real weight variation for the compact names, timestamps and message copy. It matches the restrained Helvetica-like product UI mood without fake bold or fallback shaping."
+  },
+  "rasterHandling": {
+    "assets": [],
+    "action": "None required; the card contains only procedural SVG doodle geometry and CSS UI shapes."
+  },
+  "concerns": [],
+  "newLessons": []
+}

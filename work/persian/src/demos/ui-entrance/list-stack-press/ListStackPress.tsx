@@ -206,13 +206,13 @@ export const ListStackPress: React.FC = () => {
         style={{
           position: 'absolute', top: 70, left: 96, textAlign: 'left', direction: 'rtl', fontFamily: 'Vazirmatn',
           pointerEvents: 'none', opacity: counterOpacity,
-          transform: `scale(${counterScale})`, transformOrigin: 'top right',
+          transform: `scale(${counterScale})`, transformOrigin: 'top left',
         }}
       >
         <div style={{ ...faText(24), color: 'oklch(50% 0.006 82)', fontWeight: 650 }}>
           رادار مقاله
         </div>
-        <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 6 }}>
+        <div style={{ display: 'flex', justifyContent: 'flex-start', marginTop: 6 }}>
           <DigitRoll pos={rollPos} lineH={96 * 1.15} color={AMBER} />
         </div>
         <div style={{ ...faText(20), color: 'oklch(50% 0.006 82)', marginTop: 4 }}>

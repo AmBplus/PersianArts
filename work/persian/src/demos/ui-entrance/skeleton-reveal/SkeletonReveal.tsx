@@ -1,4 +1,10 @@
-// skeleton-reveal —— slack-promo 4–15s 合并
+// PERSIAN (RTL) localization of skeleton-reveal — motion, timing, easing, seeds and geometry are preserved.
+// RTL decisions: the hand-drawn placeholder is mirrored as a whole because its sidebar, divider and message
+// order describe reading/layout order; the live UI uses direction:rtl so the sidebar is on the right, each
+// avatar is on the right of its message, and the word reveal progresses in Persian reading order. The camera
+// push, vertical row order, wobble physics and all frame constants remain unchanged. The mock names/messages
+// are translated idiomatically; timestamps use Persian digits and Persian morning punctuation. No raster assets.
+// Font: Vazirmatn — a loaded variable UI sans with dependable Persian shaping and the weights used by this card.
 // 三级显影：全屏手绘粗笔触涂鸦占位（圆头 blob 线稿，煮沸抖动）→ 一拍内被
 // 灰条骨架 UI 窗口替换 → 骨架消息列表滚入，镜头推近时灰条逐行"显影"成
 // 头像+文字内容（最后一行末词晚半拍到）。
@@ -11,6 +17,7 @@ import {
   spring,
   Easing,
 } from 'remotion';
+import {FaRoot, faDigits, faText, fs, words} from '../../_fa';
 
 const mulberry32 = (a: number) => () => {
   let t = (a += 0x6d2b79f5);
@@ -110,23 +117,24 @@ const Doodle: React.FC<{ boil: number }> = ({ boil }) => {
 };
 
 // ——— 骨架/内容消息行 ———
-const NAMES = ['Ana', 'Ben', 'Kai', 'Mia'];
+const NAMES = ['آنا', 'بن', 'کای', 'میا'];
 const AVA = ['#5a5a58', '#7a7a78', '#4a4a48', '#8f8f8d'];
 const MSGS = [
-  'Morning! Kicking off the rebrand today',
-  'Logo drafts are ready for review',
-  'Nice — shipping the deck this afternoon',
-  'Love it. Can we make it pink?',
+  'صبح بخیر! امروز بازطراحی را شروع می‌کنیم',
+  'پیش‌طرح‌های لوگو برای بررسی آماده‌اند',
+  'عالیه — ارائه را امروز بعدازظهر منتشر می‌کنیم',
+  'دوستش دارم. می‌شود صورتی‌اش کنیم؟',
 ];
 
 const Row: React.FC<{ i: number; dev: number; wordAt: (w: number, n: number) => number }> = ({
   i, dev, wordAt,
 }) => {
-  const words = MSGS[i].split(' ');
+  const tokens = words(MSGS[i]);
+  let wordIndex = 0;
   return (
     <div style={{ position: 'relative', height: 96 }}>
       {/* 骨架层 */}
-      <div style={{ position: 'absolute', inset: 0, display: 'flex', gap: 22, opacity: 1 - dev }}>
+      <div style={{ position: 'absolute', inset: 0, display: 'flex', gap: 22, opacity: 1 - dev, direction: 'rtl' }}>
         <div style={{ width: 72, height: 72, borderRadius: 16, background: '#d5d5d3' }} />
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 14, paddingTop: 6 }}>
           <div style={{ height: 18, width: 180 + ((i * 67) % 90), background: '#d5d5d3', borderRadius: 9 }} />
@@ -134,36 +142,38 @@ const Row: React.FC<{ i: number; dev: number; wordAt: (w: number, n: number) => 
         </div>
       </div>
       {/* 内容层（逐词显影） */}
-      <div style={{ position: 'absolute', inset: 0, display: 'flex', gap: 22, opacity: dev > 0.02 ? 1 : 0 }}>
+      <div style={{ position: 'absolute', inset: 0, display: 'flex', gap: 22, opacity: dev > 0.02 ? 1 : 0, direction: 'rtl' }}>
         <div
           style={{
             width: 72, height: 72, borderRadius: 16, background: AVA[i],
             color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center',
-            fontSize: 32, fontWeight: 800, opacity: dev,
+            fontSize: fs(32), fontWeight: 800, opacity: dev,
             transform: `scale(${0.7 + 0.3 * dev})`,
           }}
         >
           {NAMES[i][0]}
         </div>
         <div style={{ flex: 1, paddingTop: 2 }}>
-          <div style={{ fontSize: 26, fontWeight: 800, color: INK, opacity: dev }}>
+          <div style={{ ...faText(26), fontWeight: 800, color: INK, opacity: dev }}>
             {NAMES[i]}
-            <span style={{ fontWeight: 400, fontSize: 19, color: '#9a9a98', marginLeft: 12 }}>9:0{i + 1} AM</span>
+            <span style={{ ...faText(19), fontWeight: 400, color: '#9a9a98', marginInlineStart: 12 }}>{faDigits(`9:0${i + 1}`)} ق.ظ</span>
           </div>
-          <div style={{ fontSize: 27, color: '#3c3c3a', marginTop: 8 }}>
-            {words.map((w, wi) => {
-              const p = wordAt(wi, words.length);
+          <div style={{ ...faText(27), color: '#3c3c3a', marginTop: 8, lineHeight: 1.5 }}>
+            {tokens.map((token, ti) => {
+              if (/^\s+$/.test(token)) return <span key={ti}>{token}</span>;
+              const wi = wordIndex++;
+              const p = wordAt(wi, tokens.filter((t) => /\S/.test(t)).length);
               return (
                 <span
-                  key={wi}
+                  key={ti}
                   style={{
                     display: 'inline-block',
-                    marginRight: 9,
+                    marginInlineEnd: 9,
                     opacity: p,
                     transform: `translateY(${(1 - p) * 14}px)`,
                   }}
                 >
-                  {w}
+                  {token}
                 </span>
               );
             })}
@@ -222,7 +232,7 @@ export const SkeletonReveal: React.FC = () => {
   };
 
   return (
-    <AbsoluteFill style={{ background: PAPER, fontFamily: 'Helvetica, Arial, sans-serif', overflow: 'hidden' }}>
+    <AbsoluteFill style={{ background: PAPER, overflow: 'hidden' }}>
       {/* 第三/二拍：骨架 UI 窗口 */}
       {f >= SWAP && (
         <AbsoluteFill
@@ -231,25 +241,26 @@ export const SkeletonReveal: React.FC = () => {
             transformOrigin: '58% 46%',
           }}
         >
+          <FaRoot family="Vazirmatn">
           <div
             style={{
               position: 'absolute', left: 250, top: 140, width: 1420, height: 800,
               background: '#ffffff', border: '2px solid #d8d8d6', borderRadius: 22,
-              overflow: 'hidden', display: 'flex',
+              overflow: 'hidden', display: 'flex', direction: 'rtl',
               boxShadow: '0 12px 40px rgba(0,0,0,0.10)',
               opacity: Math.min(1, winIn * 2),
               transform: `scale(${interpolate(winIn, [0, 1], [1.08, 1])})`,
             }}
           >
             {/* 侧栏 */}
-            <div style={{ width: 300, background: '#3a3a3a', padding: '30px 26px', boxSizing: 'border-box', display: 'flex', flexDirection: 'column', gap: 22 }}>
+            <div style={{ width: 300, background: '#3a3a3a', padding: '30px 26px', boxSizing: 'border-box', display: 'flex', flexDirection: 'column', gap: 22, flexShrink: 0 }}>
               <div style={{ width: 46, height: 46, borderRadius: 12, background: '#777775' }} />
               {Array.from({ length: 7 }).map((_, i) => (
                 <div key={i} style={{ height: 13, width: `${55 + ((i * 37) % 40)}%`, background: '#5a5a58', borderRadius: 7 }} />
               ))}
             </div>
             {/* 主区 */}
-            <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0 }}>
               <div style={{ height: 72, borderBottom: '2px solid #e4e4e2', display: 'flex', alignItems: 'center', padding: '0 34px' }}>
                 <div style={{ height: 18, width: 230, background: '#d5d5d3', borderRadius: 9 }} />
               </div>
@@ -262,6 +273,7 @@ export const SkeletonReveal: React.FC = () => {
               </div>
             </div>
           </div>
+          </FaRoot>
         </AbsoluteFill>
       )}
 
@@ -275,7 +287,7 @@ export const SkeletonReveal: React.FC = () => {
             transformOrigin: '50% 50%',
           }}
         >
-          <Doodle boil={boil} />
+            <div style={{position: 'absolute', inset: 0, transform: 'scaleX(-1)'}}><Doodle boil={boil} /></div>
         </AbsoluteFill>
       )}
     </AbsoluteFill>

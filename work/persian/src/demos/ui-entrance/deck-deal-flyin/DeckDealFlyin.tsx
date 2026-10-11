@@ -1,17 +1,14 @@
-// deck-deal-flyin —— 实体牌堆特写环绕开局 → 拉远 → 一摞卡硬加速甩进网格 →
-// 相机追逐滚动 → 满板停半秒。展示"内容量大/源源不断汇入"的列表页第一印象。
-// 参考实现从 template SceneFlyIn 0–113 段剥离（self-contained），保留三段核心：
-//   1) 0–35 orbit 环绕特写：26 卡叠成有物理高度的实体牌堆，暗色拉丝金属背景，
-//      相机侧斜特写绕堆环绕（四件套：侧面倾斜角+可感知高度+orbit+反差深色材质）；
-//   2) 预备拍（anticipation）：首张出牌前牌堆整体下压 + 顶卡向出牌反方向回拉，
-//      幅度必须过肉眼阈值（48/30px 判例）；
-//   3) 36–113 发牌 + 追逐 scroll + 0.5s 满板 rest：26 卡按阅读序发向网格，
-//      出牌间隔硬加速收缩（gap 4f→0.2f），单卡飞行带 z 弧顶 + settle 过冲 +
-//      press 回弹，相机追逐向下滚动越来越快，满板静止 0.5s。
-// 运动模糊（相机快速段）本 demo 用残影 ghost 近似，不依赖 @remotion/motion-blur。
-import { Img, interpolate, staticFile, useCurrentFrame, Easing } from 'remotion';
+// Persian localization of the 26-card deal. Original timing, easing, stack depth, seeds and vertical camera chase are intact.
+// Text: the page and every card texture had baked-in English/Chinese; opaque Persian React surfaces replace both, including ghost cards.
+// RTL: grid columns and deal order reverse because projects are read from the right; pile and camera x positions reflect with them.
+// The camera's horizontal orbit angles and card roll signs reflect to retain the same viewed perspective. Vertical motion, z arc,
+// gravity, shadow physics, timing and the brushed-metal material remain physical rather than reading-direction changes.
+// Font: Vazirmatn, a variable neutral UI face with sound Persian shaping, fits the source's restrained product cards.
+import { interpolate, useCurrentFrame, Easing } from 'remotion';
 import { PageCam2D, CamKey2D } from '../../_fixtures/PageCam2D';
 import layout from '../../_textures/live-layout.json';
+import {FaRoot} from '../../_fa';
+import {PersianCard, PersianPage} from './PersianSurfaces';
 
 export const DECK_DEAL_FLYIN_DURATION = 113;
 
@@ -34,7 +31,7 @@ const extras = Array.from({ length: 16 }, (_, i) => ({
   title: '',
 }));
 
-const PILE = { x: 1430, y: 240 };
+const PILE = { x: 1920 - 1430 - CARD_W, y: 240 };
 const N_CARDS = 26;
 const DEAL_START = 36;
 const STACK_STEP = 3;
@@ -45,13 +42,14 @@ const grid = [
   ...cards.map((c) => ({ file: c.file, x: c.x, y: c.y, w: c.w, h: c.h, title: c.title })),
   ...extras,
 ]
-  .sort((a, b) => a.y - b.y || a.x - b.x)
+  .map((c) => ({...c, x: 1920 - c.x - c.w}))
+  .sort((a, b) => a.y - b.y || b.x - a.x)
   .map((c, k) => ({
     ...c,
     cue: DEAL_START + 4 * k - 0.0792 * k * (k - 1),
     px: PILE.x + (((k * 7) % 9) - 4) * 2,
     py: PILE.y + (((k * 5) % 7) - 3) * 2,
-    protZ: ((k * 11) % 7) - 3,
+    protZ: -(((k * 11) % 7) - 3),
     pz: (N_CARDS - k) * STACK_STEP,
   }));
 
@@ -72,9 +70,9 @@ const ANTICIPATE = {
 };
 
 const CAM_KEYS: CamKey2D[] = [
-  { frame: 0, cx: PILE_CX - 30, cy: PILE_CY + 60, zoom: 1.95, rotX: 46, rotY: -30, rotZ: 9, persp: 1100 },
-  { frame: 34, cx: PILE_CX + 30, cy: PILE_CY + 40, zoom: 1.85, rotX: 42, rotY: 26, rotZ: -7, persp: 1100 },
-  { frame: 62, cx: 960, cy: 900, zoom: 0.88, rotX: 26, rotY: 0, rotZ: 2, persp: 1300 },
+  { frame: 0, cx: PILE_CX + 30, cy: PILE_CY + 60, zoom: 1.95, rotX: 46, rotY: 30, rotZ: -9, persp: 1100 },
+  { frame: 34, cx: PILE_CX - 30, cy: PILE_CY + 40, zoom: 1.85, rotX: 42, rotY: -26, rotZ: 7, persp: 1100 },
+  { frame: 62, cx: 960, cy: 900, zoom: 0.88, rotX: 26, rotY: 0, rotZ: -2, persp: 1300 },
   { frame: 82, cx: 950, cy: 1900, zoom: 0.78, rotX: 14, rotY: 0, rotZ: 0, persp: 1300 },
   { frame: 98, cx: 960, cy: 3032, zoom: 0.72, rotX: 0, rotY: 0, rotZ: 0, persp: 1300 },
   { frame: 113, cx: 960, cy: 3032, zoom: 0.72, rotX: 0, rotY: 0, rotZ: 0, persp: 1300 },
@@ -90,7 +88,9 @@ export const DeckDealFlyin: React.FC = () => {
   const antDone = frame >= ANTICIPATE.to;
 
   return (
+    <FaRoot family="Vazirmatn" style={{direction: 'ltr'}}>
     <PageCam2D src="textures/live/projects-empty.png" pageH={PAGE_H} keys={CAM_KEYS}>
+      <PersianPage />
       {/* dark brushed-metal table under the opening pile close-up */}
       {frame < METAL_FADE[1] ? (
         <div
@@ -154,7 +154,7 @@ export const DeckDealFlyin: React.FC = () => {
         const transform = landed
           ? 'translate3d(0px, 0px, 0px)'
           : inPile
-            ? `translate3d(${c.px - c.x - antPull}px, ${c.py - c.y + antDy}px, ${c.pz}px) rotateZ(${c.protZ}deg)`
+            ? `translate3d(${c.px - c.x + antPull}px, ${c.py - c.y + antDy}px, ${c.pz}px) rotateZ(${c.protZ}deg)`
             : `translate3d(${dx}px, ${dy}px, ${z}px) rotateZ(${rotFlight}deg) scale(${scale})`;
 
         const shadow = landed
@@ -179,7 +179,7 @@ export const DeckDealFlyin: React.FC = () => {
                   filter: 'blur(6px)', borderRadius: radius, overflow: 'hidden', pointerEvents: 'none',
                 }}
               >
-                <Img src={staticFile(`textures/live/${c.file}`)} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', display: 'block' }} />
+                <PersianCard index={Number(c.file.match(/card(\d+)/)?.[1] ?? 1) - 1} height={c.h} />
               </div>
             ) : null}
 
@@ -190,7 +190,7 @@ export const DeckDealFlyin: React.FC = () => {
                 borderRadius: radius, overflow: 'hidden',
               }}
             >
-              <Img src={staticFile(`textures/live/${c.file}`)} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', display: 'block' }} />
+              <PersianCard index={Number(c.file.match(/card(\d+)/)?.[1] ?? 1) - 1} height={c.h} />
             </div>
           </div>
         );
@@ -205,5 +205,6 @@ export const DeckDealFlyin: React.FC = () => {
         }}
       />
     </PageCam2D>
+    </FaRoot>
   );
 };
