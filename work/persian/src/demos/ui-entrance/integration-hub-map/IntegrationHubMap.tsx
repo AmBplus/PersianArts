@@ -20,11 +20,22 @@ import { FaRoot, faText } from '../../_fa';
 // - Visible panel copy is translated idiomatically; product tokens MQL, Figma, GDrive and ClickUp stay Latin and are
 //   kept as isolated runs where they appear inside Persian copy. Persian digits are not needed in the visible copy.
 // - Vazirmatn is loaded by FaRoot because this is restrained enterprise UI; it has reliable joining, punctuation and
-//   real variable weights at the small list sizes. No letter-spacing or uppercase styling remains on Persian text.
+//   real variable weights at the small list sizes. No letter-spacing or uppercase styling remains on Persian text. All
+//   Persian strings go through faText(), which applies the kit's 1.1x size compensation and FA-safe line-heights; the
+//   row pitch was re-derived (marginTop 13.5→9, explicit lineHeight 1.25) so the seven Persian rows end with the same
+//   ~80px of empty bottom padding as the original's ~100px, instead of crowding the panel edge.
 // - The panel's content order is mirrored semantically: the list is the reading-side/right column and filters sit on
 //   the left. RTL flex order handles the icon/text relationship; the separator moves from border-left to border-right.
 //   The 3D flip, camera path, pipe coordinates, pulse direction, seeded noise and all frame timings remain unchanged:
 //   these are physical/motion elements rather than reading-direction layout.
+// - The surrounding map composition (Figma/GitHub tiles left of centre, Salesforce top, GDrive/Dropbox right, neon
+//   rectangles, pulses travelling icon→hub) is deliberately NOT mirrored. Reasons: (a) it is a radial network centred
+//   on the hub panel — a symmetric composition with no reading-order meaning, so left/right tile placement carries no
+//   text semantics; (b) the tiles are brand marks (physical, keep-side per the kit rules); (c) the pulse flow is a
+//   physical delivery metaphor (app pushes data into the hub), not a reading sweep; (d) the panel sits dead-centre, so
+//   the flip axis and camera path stay balanced — there is no left- vs right-weighted layout to re-balance. The panel
+//   interior (the only reading-direction surface) IS mirrored, so the frame reads as an RTL product UI floating in a
+//   direction-neutral constellation.
 // - There are no raster assets or baked-in text in this card; all brand marks are vector shapes and remain unchanged.
 
 const mulberry32 = (a: number) => () => {
@@ -39,12 +50,12 @@ const NOISE: number[] = Array.from({ length: 200 }, () => rand());
 // ---------- 中枢面板（Enterprise MQLs，内容对照截图 1/7） ----------
 const LIST: { icon: string; title: string; sub: string }[] = [
   { icon: '#4a9fd8', title: 'معامله سازمانی فصل سوم', sub: 'درآمد · پایپ‌لاین · سهمیه فصل سوم' },
-  { icon: '#4a9fd8', title: 'حساب سازمانی بزرگ - بریتانیا', sub: 'درآمد · MQL · بین‌الملل' },
+  { icon: '#4a9fd8', title: 'حساب سازمانی بزرگ – بریتانیا', sub: 'درآمد · MQL · بین‌الملل' },
   { icon: '#34a853', title: 'ارائه فروش سازمانی', sub: 'باز کردن در GDrive' },
   { icon: '#a259ff', title: 'طراحی فرم سرنخ MQL', sub: 'فایل Figma · آخرین ویرایش' },
   { icon: '#f2c744', title: 'فروش سازمانی', sub: 'فضای ClickUp' },
   { icon: '#9a9a98', title: 'بایگانی بسته‌شده سازمانی', sub: 'بایگانی‌شده · در فروش سازمانی' },
-  { icon: '#c8c8c6', title: 'سرنخ سازمانی باز - پیگیری', sub: 'در حال انجام · در فروش سازمانی · دیروز' },
+  { icon: '#c8c8c6', title: 'سرنخ سازمانی باز – پیگیری', sub: 'در حال انجام · در فروش سازمانی · دیروز' },
 ];
 
 const HubPanel: React.FC<{ glow: number }> = ({ glow }) => (
@@ -64,21 +75,24 @@ const HubPanel: React.FC<{ glow: number }> = ({ glow }) => (
     }}
   >
     <div style={{ flex: 2 }}>
-      <div style={faText(27, { fontWeight: 600, color: '#2f2f38' })}>سرنخ‌های سازمانی <bdi>(MQL)</bdi></div>
-      <div style={{ display: 'flex', gap: 16, marginTop: 12 }}>
+      {/* Explicit line-heights everywhere: Vazirmatn's default line box is much taller than the Latin original's,
+          which pushed the last list row to ~17px from the panel bottom. lh 1.25 on rows restores the original ~41px
+          row pitch so the list ends with the same airy bottom padding as the source. */}
+      <div style={faText(27, { fontWeight: 600, color: '#2f2f38', lineHeight: 1.25 })}>سرنخ‌های سازمانی <bdi>(MQL)</bdi></div>
+      <div style={{ display: 'flex', gap: 15, marginTop: 11 }}>
         {['همه', 'کارها', 'اسناد', 'وایت‌بردها', 'داشبوردها', 'فایل‌ها', 'گفتگو', 'افراد'].map((t, i) => (
-          <div key={t} style={{ fontSize: 12, color: i === 0 ? '#5b55c8' : '#98989f', fontWeight: i === 0 ? 700 : 400 }}>
+          <div key={t} style={{ ...faText(12, { lineHeight: 1.35 }), color: i === 0 ? '#5b55c8' : '#98989f', fontWeight: i === 0 ? 700 : 400 }}>
             {t}
           </div>
         ))}
       </div>
-      <div style={{ ...faText(12), color: '#8b8b92', marginTop: 14 }}>اخیر</div>
+      <div style={{ ...faText(12, { lineHeight: 1.35 }), color: '#8b8b92', marginTop: 12 }}>اخیر</div>
       {LIST.map((it, i) => (
-        <div key={i} style={{ display: 'flex', gap: 11, alignItems: 'center', marginTop: 13.5 }}>
-          <div style={{ width: 22, height: 22, borderRadius: 6, background: it.icon, opacity: 0.85 }} />
+        <div key={i} style={{ display: 'flex', gap: 11, alignItems: 'center', marginTop: 9 }}>
+          <div style={{ width: 22, height: 22, borderRadius: 6, background: it.icon, opacity: 0.85, flexShrink: 0 }} />
           <div>
-            <div style={{ fontSize: 13.5, fontWeight: 600, color: '#3c3c44' }}>{it.title}</div>
-            <div style={{ fontSize: 11, color: '#a2a2a8', marginTop: 1 }}>{it.sub}</div>
+            <div style={faText(13.5, { fontWeight: 600, color: '#3c3c44', lineHeight: 1.25 })}>{it.title}</div>
+            <div style={faText(11, { color: '#a2a2a8', lineHeight: 1.25, marginTop: 1 })}>{it.sub}</div>
           </div>
         </div>
       ))}
@@ -91,7 +105,7 @@ const HubPanel: React.FC<{ glow: number }> = ({ glow }) => (
           border: '1.5px solid #cacac8',
           borderRadius: 8,
           marginTop: 4,
-          fontSize: 12,
+          ...faText(12, { lineHeight: 1.2 }),
           color: '#6a6a70',
           display: 'flex',
           alignItems: 'center',
@@ -100,13 +114,13 @@ const HubPanel: React.FC<{ glow: number }> = ({ glow }) => (
       >
         + افزودن فیلتر مکان
       </div>
-      <div style={{ ...faText(10.5), color: '#adadb2', marginTop: 24 }}>فیلترهای سریع</div>
+      <div style={{ ...faText(10.5, { lineHeight: 1.3 }), color: '#adadb2', marginTop: 24 }}>فیلترهای سریع</div>
       {['واگذارشده به من', 'ساخته‌شده توسط من'].map((t) => (
-        <div key={t} style={{ fontSize: 13.5, color: '#55555c', marginTop: 11 }}>{t}</div>
+        <div key={t} style={faText(13.5, { color: '#55555c', lineHeight: 1.35, marginTop: 11 })}>{t}</div>
       ))}
-      <div style={{ ...faText(10.5), color: '#adadb2', marginTop: 24 }}>فیلترهای کار</div>
+      <div style={{ ...faText(10.5, { lineHeight: 1.3 }), color: '#adadb2', marginTop: 24 }}>فیلترهای کار</div>
       {['باز', 'بسته', 'بایگانی‌شده'].map((t) => (
-        <div key={t} style={{ fontSize: 13.5, color: '#55555c', marginTop: 11 }}>{t}</div>
+        <div key={t} style={faText(13.5, { color: '#55555c', lineHeight: 1.35, marginTop: 11 })}>{t}</div>
       ))}
     </div>
   </div>
@@ -129,14 +143,14 @@ const FrontPanel: React.FC<{ glow: number }> = ({ glow }) => (
   >
     <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
       <div style={{ width: 26, height: 26, borderRadius: 7, background: '#4a9fd8', opacity: 0.9 }} />
-      <div style={faText(26, { fontWeight: 600, color: '#2f2f38' })}>معامله سازمانی فصل سوم</div>
+      <div style={faText(26, { fontWeight: 600, color: '#2f2f38', lineHeight: 1.25 })}>معامله سازمانی فصل سوم</div>
     </div>
     <div style={{ display: 'flex', gap: 14, marginTop: 10 }}>
       {['درآمد', 'پایپ‌لاین', 'سهمیه فصل سوم'].map((t) => (
         <div
           key={t}
           style={{
-            fontSize: 11.5,
+            ...faText(11.5, { lineHeight: 1.3 }),
             color: '#6a6a70',
             background: '#efeff0',
             borderRadius: 6,

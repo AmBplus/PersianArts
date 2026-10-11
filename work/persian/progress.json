@@ -1,11 +1,11 @@
 {
- "generatedAt": "2026-10-11T18:26:20.987Z",
+ "generatedAt": "2026-10-11T18:31:35.799Z",
  "summary": {
   "todo": 75,
   "localized": 1,
   "approved": 68,
-  "fixed": 11,
-  "needs-fix": 2,
+  "fixed": 12,
+  "needs-fix": 1,
   "total": 157
  },
  "cards": [
@@ -531,8 +531,8 @@
   },
   {
    "slug": "integration-hub-map",
-   "status": "needs-fix",
-   "font": "{\"families\":[\"Vazirmatn\"],\"reason\":\"This is restrained enterprise/product UI. Vazirmatn is a loaded variable Persian UI sans with dependable joining, Persian punctuation, ZWNJ coverage and real weight variation for the title, list hierarchy and compact filters.\"}",
+   "status": "fixed",
+   "font": "",
    "videos": 1,
    "majors": 1,
    "concerns": 0
