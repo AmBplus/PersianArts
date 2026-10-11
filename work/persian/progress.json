@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-11T16:14:40.238Z",
+ "generatedAt": "2026-10-11T16:19:57.078Z",
  "summary": {
   "todo": 75,
   "localized": 20,
@@ -1229,7 +1229,7 @@
    "slug": "wall-reveal-moves",
    "status": "localized",
    "font": "Vazirmatn",
-   "videos": 2,
+   "videos": 3,
    "majors": 0,
    "concerns": 0
   },
