@@ -1,11 +1,11 @@
 {
- "generatedAt": "2026-10-11T16:51:40.805Z",
+ "generatedAt": "2026-10-11T16:56:58.498Z",
  "summary": {
   "todo": 75,
   "localized": 1,
   "approved": 68,
-  "fixed": 8,
-  "needs-fix": 5,
+  "fixed": 9,
+  "needs-fix": 4,
   "total": 157
  },
  "cards": [
@@ -955,11 +955,11 @@
   },
   {
    "slug": "skeleton-reveal",
-   "status": "needs-fix",
-   "font": "{\"families\":[\"Vazirmatn\"],\"reason\":\"Vazirmatn is a loaded variable UI sans with dependable Persian glyph coverage and real weight variation for the compact names, timestamps and message copy. It matches the restrained Helvetica-like product UI mood without fake bold or fallback shaping.\"}",
+   "status": "fixed",
+   "font": "{\"families\":[\"Vazirmatn\"],\"reason\":\"Vazirmatn is a loaded variable UI sans with dependable Persian glyph coverage and real weight variation for the compact names, timestamps and message copy. It matches the restrained Helvetica-like product UI mood. Verified rendering (correct shaping of می‌کنیم/پیش‌طرح‌های/صورتی‌اش incl. ZWNJ, Persian digits, ی/ک) — no fallback.\"}",
    "videos": 1,
    "majors": 2,
-   "concerns": 0
+   "concerns": 2
   },
   {
    "slug": "slam-entrance-moves",

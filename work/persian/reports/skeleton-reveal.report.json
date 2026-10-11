@@ -1,6 +1,8 @@
 {
   "slug": "skeleton-reveal",
   "status": "localized",
+  "fixRound": "Round 2 (post-review fixes applied, re-rendered and re-verified)",
+  "round1Verdict": "fix (score 52) — all blocker/major/minor findings addressed this round",
   "sourcePrompt": "work/upstream/src/gallery/source/skeleton-reveal.md",
   "compositions": [
     {
@@ -12,33 +14,43 @@
       "rtlDecisions": [
         {
           "what": "Full-screen hand-drawn placeholder",
-          "action": "Mirrored the complete doodle layer with scaleX(-1)",
-          "why": "The doodle depicts a UI window, sidebar, divider, avatar column and message lines; these are layout-order semantics in an RTL product interface. Mirroring the complete layer preserves exact wobble geometry, seeds and timing while moving the sidebar to the right."
+          "action": "Mirrored the complete doodle layer with scaleX(-1) (kept from round 1)",
+          "why": "The doodle depicts a UI window, sidebar, divider, avatar column and message lines; these are layout-order semantics in an RTL product interface. Mirroring the complete layer preserves exact wobble geometry, seeds, boil and timing while moving the sidebar to the right."
         },
         {
           "what": "Skeleton/live panel flex layout",
-          "action": "Applied direction: rtl to the panel, retained the original child order, and kept the sidebar as a fixed-width flex child",
-          "why": "RTL flex flow places the sidebar on the right and the main content on the left without changing the panel coordinates or animation timing."
+          "action": "Applied direction: rtl to the panel, retained the original child order, kept the sidebar as a fixed-width flex child (kept from round 1)",
+          "why": "RTL flex flow places the sidebar on the right and the main content on the left without changing panel coordinates or animation timing."
         },
         {
           "what": "Message row avatar and text order",
-          "action": "Applied direction: rtl to both skeleton and content rows so the avatar stays at the right edge and text grows to its left",
-          "why": "Avatar/text pairing follows reading and scan order in an RTL message list. Vertical row order remains unchanged because it is the chronological list axis, not a left-to-right reading axis."
+          "action": "direction: rtl on both skeleton and content rows so the avatar sits at the right edge and message text starts at the right, flush under the name (kept from round 1)",
+          "why": "Avatar/text pairing follows reading and scan order in an RTL message list. Vertical row order is unchanged (chronological axis, not reading axis)."
+        },
+        {
+          "what": "FIX (round-1 blocker): message line bidi order and alignment",
+          "action": "Message line now uses faText(27, {unicodeBidi:'normal', textAlign:'start'}) instead of faText's plaintext default",
+          "why": "The message line is built entirely from inline-block word spans, which are bidi-neutral; a unicodeBidi:'plaintext' paragraph with no strong characters resolves LTR, laying the words out left-to-right in the wrong reading order and flush left, far from the avatar. unicodeBidi:'normal' makes the line inherit direction:rtl from FaRoot and textAlign:'start' right-aligns it. Verified at f88/f95/f110/f142/f160/f171: words read right-to-left (صبح بخیر! امروز بازطراحی را شروع می‌کنیم) and the line sits under the name beside the avatar, mirroring the original composition."
         },
         {
           "what": "Word-by-word content reveal",
-          "action": "Translated messages and animated each Persian word as a joined word span while preserving whitespace tokens",
-          "why": "The source uses word-level opacity and 14px rise. Preserving word units keeps the same final polish and timing without splitting Persian letters or breaking contextual joining."
+          "action": "Each Persian word is a joined word span animated with the original wordAt beats (row*13 stagger, 2.5-frame word stagger, +14-frame delayed last word of row 4); whitespace tokens kept as real text nodes, and the round-1 marginInlineEnd:9 was REMOVED so word gaps come from whitespace only",
+          "why": "Keeps the word-level opacity/rise and identical timing without splitting Persian letters or breaking contextual joining; the margin fix removes the double spacing (whitespace token + 9px margin ≈ 40px gaps) so line density matches the original."
         },
         {
-          "what": "Names and timestamps",
-          "action": "Localized mock names to آنا، بن، کای، میا; converted timestamp digits with faDigits and used ق.ظ",
-          "why": "The card requires natural Persian UI copy; the names are mock content, while time remains a numeric/time island with Persian digits."
+          "what": "FIX (round-1 major): camera push origin",
+          "action": "transformOrigin mirrored from '58% 46%' to '42% 46%'",
+          "why": "The zoom drifts toward the content area on the reading side of the window; after the RTL layout flip the content column is on the LEFT, so an unmirrored 58% origin pushed the crop onto the header/content while the dark sidebar stayed fully in frame, flipping the composition's emphasis. Verified at f142/f160/f171: the right-hand sidebar is cropped and the message column fills the frame, mirroring the original."
         },
         {
-          "what": "Camera push and vertical motion",
-          "action": "Kept transform origin, zoom range, vertical row slides, spring, easing, frame offsets and seed progression unchanged",
-          "why": "These are motion fidelity and physical/visual timing decisions, not language-direction semantics."
+          "what": "FIX (round-1 minor): timestamp order",
+          "action": "Digits wrapped in <bdi dir=\"ltr\"> followed by ' ق.ظ' in DOM order, inside a span with unicodeBidi:'normal'",
+          "why": "Makes the order deterministic instead of relying on bidi heuristics: in the RTL paragraph the isolated digit run sits to the RIGHT of ق.ظ, so reading right-to-left gives the time first, then the morning marker (۹:۰۱ ق.ظ), the Persian convention; the bdi also guarantees digit/colon order inside the time."
+        },
+        {
+          "what": "Names and copy",
+          "action": "Mock names آنا، بن، کای، میا; idiomatic messages (عالیه، ارائه، صورتی‌اش، می‌شود with ZWNJ) (kept from round 1)",
+          "why": "Natural Persian product-chat copy; length differences do not shift any beat (f95/f142 show the same revealed-word counts as the original at the same frames)."
         }
       ],
       "timing": {
@@ -46,20 +58,25 @@
         "notes": "SWAP=32, 8-frame doodle exit, 6-frame row stagger, zoom 66-142, 13-frame row reveal stagger, 2.5-frame word stagger and +14-frame final word delay are unchanged. Persian copy length does not shift the beats."
       },
       "visualVerification": {
-        "matchedFramesViewed": [0, 16, 32, 40, 58, 80, 100, 120, 142, 171],
-        "faAndOriginalViewedForEveryFrame": true,
-        "observations": "Frame 0 shows the mirrored doodle; frames 32-58 show the right-hand sidebar and skeleton entrance; frames 80-142 show row and word reveals with joined Persian glyphs; frame 171 shows all four rows settled."
+        "matchedFramesViewed": [88, 95, 110, 142, 160, 171],
+        "faAndOriginalViewed": "fa vs orig compared at f88, f95(≈orig beat), f142, f171 this round; the doodle/swap/skeleton-entrance beats (f0-f58) are untouched since round 1 where they were verified",
+        "observations": "f88: first message starts at the right under آنا with the reveal marching leftwards (mirrors orig 'Morning! Kicking'). f95: five words in with the newest word faded/rising at the left end. f110/f142: rows 3/4 mid-reveal in correct RTL word order with the delayed final word pending, like the original. f160/f171: all rows settled, messages flush right under the names, right-hand sidebar cropped by the mirrored camera push exactly mirroring the original. Timestamps render digits right of ق.ظ."
       }
     }
   ],
   "font": {
     "families": ["Vazirmatn"],
-    "reason": "Vazirmatn is a loaded variable UI sans with dependable Persian glyph coverage and real weight variation for the compact names, timestamps and message copy. It matches the restrained Helvetica-like product UI mood without fake bold or fallback shaping."
+    "reason": "Vazirmatn is a loaded variable UI sans with dependable Persian glyph coverage and real weight variation for the compact names, timestamps and message copy. It matches the restrained Helvetica-like product UI mood. Verified rendering (correct shaping of می‌کنیم/پیش‌طرح‌های/صورتی‌اش incl. ZWNJ, Persian digits, ی/ک) — no fallback."
   },
   "rasterHandling": {
     "assets": [],
     "action": "None required; the card contains only procedural SVG doodle geometry and CSS UI shapes."
   },
-  "concerns": [],
-  "newLessons": []
+  "concerns": [
+    "ImageMagick/PIL crops were blocked by the sandbox permission layer, so the timestamp digit/marker order was verified on full-resolution frame views plus deterministic bidi reasoning (<bdi dir=ltr> digits + ق.ظ in an RTL paragraph places the digits right of ق.ظ), which the full-frame renders confirm.",
+    "The round-1 reviewer hit a transient f76 bundler error; all render runs this round completed with errors:[]."
+  ],
+  "newLessons": [
+    "faText()'s unicodeBidi:'plaintext' is only safe when the paragraph contains strong RTL characters directly in its text flow. A line built entirely from inline-block (bidi-neutral) spans resolves to LTR under plaintext: words end up in the wrong visual order and the line flushes left. For such lines override to unicodeBidi:'normal' (+ textAlign:'start') so the line inherits direction:rtl from FaRoot."
+  ]
 }
