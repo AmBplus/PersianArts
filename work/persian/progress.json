@@ -1,11 +1,11 @@
 {
- "generatedAt": "2026-10-11T18:47:20.644Z",
+ "generatedAt": "2026-10-11T18:52:35.513Z",
  "summary": {
   "todo": 75,
   "localized": 1,
   "approved": 68,
-  "fixed": 12,
-  "needs-fix": 1,
+  "fixed": 13,
+  "needs-fix": 0,
   "total": 157
  },
  "cards": [
@@ -1091,11 +1091,11 @@
   },
   {
    "slug": "theme-switch-moves",
-   "status": "needs-fix",
-   "font": "",
+   "status": "fixed",
+   "font": "{\"families\":[\"Vazirmatn\"],\"reason\":\"Vazirmatn (variable 100-900) is the neutral Persian product-UI sans: reliable joining, Persian digits, ZWNJ coverage, multiple real weights; it matches the command-palette/product-dashboard world of both demos. Loaded only where copy exists: PaletteThemeRipple wraps with FaFonts; ThemeSweepToggle has zero visible text, so its pointless FaFonts wrapper was REMOVED this round (reviewer minor issue).\"}",
    "videos": 2,
    "majors": 2,
-   "concerns": 1
+   "concerns": 3
   },
   {
    "slug": "timeline-travel",

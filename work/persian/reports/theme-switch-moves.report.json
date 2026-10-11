@@ -1,78 +1,130 @@
 {
   "slug": "theme-switch-moves",
-  "status": "localized",
-  "fonts": {
+  "status": "localized (fix round 2 complete)",
+  "font": {
     "families": ["Vazirmatn"],
-    "reason": "Loaded variable Vazirmatn gives the command palette a readable, neutral Persian product UI voice and reliable joining. The shortcut remains an isolated LTR token. The second composition contains no visible text, but uses the same UI family for consistency."
+    "reason": "Vazirmatn (variable 100-900) is the neutral Persian product-UI sans: reliable joining, Persian digits, ZWNJ coverage, multiple real weights; it matches the command-palette/product-dashboard world of both demos. Loaded only where copy exists: PaletteThemeRipple wraps with FaFonts; ThemeSweepToggle has zero visible text, so its pointless FaFonts wrapper was REMOVED this round (reviewer minor issue)."
+  },
+  "fixRound2": {
+    "input": "Reviewer findings (verdict: fix, score 78)",
+    "fixes": [
+      {
+        "issue": "major: detached caret - fixed minWidth:168 on the typed-query cell put the blinking cursor ~140px left of the typed word",
+        "action": "Removed minWidth; the text cell is now shrink-wrapped, so in the RTL flex row the caret sits directly LEFT of the last typed letter (the RTL typing end), mirroring the original's caret-after-last-block. Verified in renders: f38/f54/f68 show the caret hugging the word; blink cadence (every 8f) unchanged so fa and orig blink states coincide.",
+        "why": "A caret must sit at the typing point; a fixed-width cell only made sense for the original's fixed 30px blocks."
+      },
+      {
+        "issue": "major: lost pop beat - original had four 30px blocks scaling in with back(2.2); the Persian word was 28px, low-contrast, opacity-fade only, reading incomplete at f62-65",
+        "action": "Kept the word (the query is real copy worth translating) but rebuilt the beat: the visible text is ONE prefix-sliced shaped run ('تیره'.slice(0, typedCount)) at 38px / weight 600 / G.ink on the white card, and the whole run pops with the original Easing.out(back(2.2)) from scale 1.16 to 1 over 4f on each cue frame (38/46/54/62). Per-letter transform boxes were NOT used because inline-block breaks Persian joining (kit rule 1c); the run-level pop preserves the hit while prefix slicing preserves shaping. Verified: f38 shows the new letter landing large at the caret, f40 settled; the word is complete and high-contrast from f62.",
+        "why": "Motion fidelity: each of the four typing cues must still read as a hit with overshoot, not a fade."
+      },
+      {
+        "issue": "minor: header comments lacked per-element reasons and mixed original Chinese notes with the localization header",
+        "action": "Rewrote both headers in English with an explicit per-element decision list and reasons (sweep polygon mirror x -> 1920-x, bright-line rotate sign flipped to -15deg so it stays on the clip edge, scaleX(-1) mirror justified by the textless skeleton, ripple origin radial/symmetric so unchanged, settle scale unchanged). Translated ALL remaining Chinese inline comments; a CJK scan confirms zero Chinese characters in both files.",
+        "why": "Header comments are the permanent record; reviewers flag mixed or reason-free headers."
+      },
+      {
+        "issue": "minor: ThemeSweepToggle loaded Vazirmatn 'though no visible copy' - pointless FaFonts wrapper",
+        "action": "Removed the FaFonts wrapper, the _fa import, and the fontFamily/direction from the root div of ThemeSweepToggle. Re-rendered f20/f30: identical correct mirrored sweep (sidebar right, dark theme entering from the right edge, bright edge line on the clip boundary).",
+        "why": "A font wrapper with zero visible text is dead weight plus a needless delayRender."
+      },
+      {
+        "issue": "minor: scaleX(-1) mirror of the fixtures dashboards undocumented",
+        "action": "Documented in both headers: the skeleton is textless gray geometry (no glyphs anywhere), so a mirror is visually identical to relaying it out RTL and keeps the light/dark layers pixel-aligned so the sweep reads as the same UI re-skinned. The light layer is dimmed+blurred and conditionally unmounted once the ripple completes, so the mirror never carries text.",
+        "why": "Reviewer asked for the explicit note that mirroring (rather than RTL re-layout) is safe here."
+      }
+    ]
   },
   "compositions": [
     {
       "id": "demo-PaletteThemeRipple",
       "rtlDecisions": [
         {
-          "what": "Search query dark",
-          "action": "Translated to «تیره» and revealed one Persian character on each original cue at frames 38, 46, 54, and 62; inline opacity spans preserve shaping between letters.",
-          "why": "The source types four characters; Persian must keep the same four beats while reading from the right."
+          "what": "Search query 'dark'",
+          "action": "Translated to «تیره», typed right-to-left on the ORIGINAL four cue frames (38/46/54/62, one letter each). Visible text is a single prefix-sliced run (typeOn-style), so shaping re-flows correctly at every frame (e.g. isolated ت at f38 gains its join to ی at f46). The whole run does a back(2.2) scale pop (1.16 to 1, 4f) on each cue. 38px, weight 600, G.ink.",
+          "why": "Keeps the four-beat typing rhythm and the overshoot hit energy of the original blocks; per-letter transforms would need inline-block and break joining. Persian typing reads right-to-left, so the caret mirrors to the left of the word."
         },
         {
-          "what": "⌘K keyboard shortcut",
-          "action": "Kept unchanged as an LTR isolated keyboard token at the right edge of the RTL input.",
-          "why": "Keyboard notation is a universal Latin-direction token."
+          "what": "Typed-query cell and caret",
+          "action": "Cell is shrink-wrapped (no fixed width; flexShrink 0 on caret and badge); caret 4x40px sits immediately LEFT of the typed prefix; blink flips every 8f exactly like the original.",
+          "why": "Caret must sit at the RTL typing end; a fixed-width cell only fits the original's fixed-size blocks and detaches the caret."
         },
         {
-          "what": "Dashboard layers and command palette",
-          "action": "Mirrored both textless dashboard layers horizontally so the sidebar and UI reading order sit on the right. Kept the command panel centered at (960, 470).",
-          "why": "Dashboard rail and card layout follow reading direction; preserving the center keeps the collapse point coincident with the ripple origin."
+          "what": "⌘K keyboard badge",
+          "action": "Kept unchanged as an LTR-isolated token (direction ltr + unicodeBidi isolate, Arial 800); in the RTL input row it sits at the RIGHT edge (reading start).",
+          "why": "Keyboard notation is a universal Latin-direction token Persian UIs keep."
         },
         {
-          "what": "Collapse point and circular ripple",
-          "action": "Kept the point at (960, 470) and the circular reveal expanding uniformly with the original radius, easing, and timing.",
-          "why": "The center is established by the centered panel; a circle has no reading direction and the causal anchor must remain exact."
+          "what": "Dashboard layers (light + dark)",
+          "action": "Both mirrored with scaleX(-1) so the sidebar and card reading order sit on the RTL side; DarkDashboard keeps pixel-identical geometry to FakeDashboard variant A.",
+          "why": "Skeletons are textless, so mirroring equals RTL re-layout visually and keeps the two themes aligned for the in-place re-skin read. The light layer is dimmed+blurred, then unmounted at RIPPLE_END (true rest)."
         },
         {
-          "what": "Timing and theme colors",
-          "action": "Preserved all original frame cues, easing, scales, colors, and seeded skeleton geometry.",
-          "why": "These define the source motion and the in-place theme change."
+          "what": "Panel, collapse point, flash dot, circular ripple and bright ring",
+          "action": "All UNCHANGED: panel centered at ORIGIN (960,470), shrink 68-73 ease-in cubic, flash dot ~3f, circle 12-1250px ease-out cubic, 5px white ring with symmetric glow.",
+          "why": "The panel is horizontally centered so the causal chain (shrink point = ripple origin at RIPPLE 73) stays exact; a circle and its ring are radial/symmetric - no reading direction to mirror."
+        },
+        {
+          "what": "Timing, easing, colors, seeds",
+          "action": "All original constants preserved (DIM_START 15, PANEL_IN 22, TYPE_FRAMES 38/46/54/62, ENTER 68, RIPPLE 73, RIPPLE_END 95, MAX_R 1250, back(1.9) panel drop). Exported names and values unchanged.",
+          "why": "Motion fidelity; RTL did not require any timing change."
         }
       ],
-      "rasterHandling": "No raster assets. Dashboards and panel are CSS geometry; there is no baked-in text.",
-      "visualVerification": "Compared Persian and original at frames 38, 46, and 80; inspected consecutive Persian typing frames 38–42 and 46–48 for progressive, connected shaping."
+      "rasterHandling": "No raster assets. Both dashboards and the panel are CSS geometry with no baked-in text; nothing to blur or replace.",
+      "visualVerification": "Viewed fa vs orig at f46 and f54 (caret + typed prefix, same blink states, pop mid-flight), f38/f40 (first letter lands large then settles; correct isolated-to-joined shaping), f62 (complete word, first result row darkened = selected, matching orig), f68 (caret on, shrink starting), f80 (ring mid-ripple), f169 (dark true-rest frame, no foreign text)."
     },
     {
       "id": "demo-ThemeSweepToggle",
       "rtlDecisions": [
         {
-          "what": "Dashboard sidebar and card order",
-          "action": "Mirrored both light and dark dashboard layers horizontally, moving the sidebar to the right and preserving pixel-identical structure between themes.",
-          "why": "The rail and card sequence communicate interface reading order. Matching geometry preserves the same-UI theme-switch effect."
+          "what": "Dashboard layers (light + dark)",
+          "action": "Both mirrored with scaleX(-1), sidebar on the right; identical textless skeleton geometry in both themes.",
+          "why": "Rail/card order is reading-direction; mirroring is visually identical to RTL re-layout because there are no glyphs, and it keeps the sweep reading as the same UI re-skinned."
         },
         {
-          "what": "Diagonal theme sweep and highlight edge",
-          "action": "Mirrored the clip polygon and highlight line so the sweep travels from upper-right toward lower-left; negated the line rotation and mirrored its x-position.",
-          "why": "The sweep carries reading-direction meaning. Its 15-degree angle, easing, frame range, line glow, and settle scale remain the same."
+          "what": "Diagonal sweep clip polygon",
+          "action": "Mirrored horizontally: x -> 1920 - x (polygon 100% 0 / 1920-p 0 / 1920-p+SLANT 1080 / 100% 1080), so the dark theme enters from the RIGHT edge and travels toward lower-left. 15deg slant, poly(3) out easing, SWEEP0=14 / SWEEP1=52 unchanged.",
+          "why": "The sweep direction carries reading-direction meaning; the slant angle and the timing are physical/temporal and stay."
         },
         {
-          "what": "Physical and temporal axes",
-          "action": "Kept vertical positions, gravity-free dashboard geometry, and all timing unchanged.",
-          "why": "These do not encode reading direction."
+          "what": "Bright edge line",
+          "action": "x position mirrored with the same mapping (left = 1920 - p + SLANT/2 - 2) and rotation sign NEGATED: rotate(15deg) -> rotate(-15deg), so the 4px line + glow stays exactly on the clip polygon's slanted edge (top vertex 1920-p, bottom 1920-p+SLANT).",
+          "why": "The line must track the mirrored clip edge; keeping +15deg would tilt it against the boundary."
+        },
+        {
+          "what": "Settle scale, timings, colors",
+          "action": "Unchanged (1 -> 0.995 -> 1 over frames 52-64, cubic out; all palettes identical to upstream).",
+          "why": "Uniform/physical; no reading-direction meaning."
+        },
+        {
+          "what": "Font loading",
+          "action": "FaFonts wrapper REMOVED this round (no visible copy in this composition); the header now documents the omission deliberately.",
+          "why": "Zero visible text - the wrapper was a pointless delayRender and the old header falsely claimed it set the Persian UI tone."
         }
       ],
-      "rasterHandling": "No raster assets or visible text. Both theme versions are CSS skeleton dashboards.",
-      "visualVerification": "Compared Persian and original at frames 14, 38, 52, and 54; inspected transition and settled frames through 70 and 169."
+      "rasterHandling": "No raster assets or visible text; both theme versions are CSS skeleton dashboards.",
+      "visualVerification": "Viewed fa vs orig at f30 after the wrapper removal: mirrored sweep from the right, sidebar right, dark theme covering, edge aligned; identical structure to the previously verified render."
     }
   ],
   "render": {
-    "command": "node work/persian/render-card.mjs --slug theme-switch-moves --duration 170 --frames 0,14,15,18,22,24,30,38,39,40,42,46,47,48,52,54,56,62,64,68,70,73,80,94,149,169 --video",
+    "command": "node work/persian/render-card.mjs --slug theme-switch-moves --frames 38,40,46,54,58,62,66,68,70,20,30,76,80,94 then --duration 170 --frames 169, then --video --duration 170",
     "ok": true,
     "errors": [],
     "videos": [
       "PaletteThemeRipple.fa.mp4",
       "ThemeSweepToggle.fa.mp4"
     ],
-    "durationNote": "The registry reports 95 frames for PaletteThemeRipple; the source design continues to frame 170. Used the harness --duration 170 for inspection and full Persian video rendering without changing the registered duration."
+    "durationNote": "The registry reports 95 frames for PaletteThemeRipple; the source design continues to frame 170. Used the harness --duration 170 for inspection stills (f169) and for the full Persian video render, without changing the registered duration or any frame constants."
   },
+  "leftovers": "Grep confirms: no letterSpacing, no textTransform/uppercase, no fixed-width text cells, no per-code-point transform spans, and zero CJK characters in both card files. Persian copy uses ی/ک (never ي/ك); «تیره» needs no ZWNJ; Persian digits are not applicable (⌘K is the only token on screen and stays Latin by convention); Persian punctuation not applicable (no sentences on screen).",
   "concerns": [
-    "The card registry truncates PaletteThemeRipple at 95 frames even though its source timeline specifies a 170-frame dark hold. The rendered video uses the source's intended 170-frame timeline via the harness duration flag; registry metadata was left unchanged."
+    "The card registry truncates PaletteThemeRipple at 95 frames even though its source timeline specifies a 170-frame dark hold. Inspection stills and the rendered video use the intended 170-frame timeline via the harness duration flag; registry metadata was left unchanged.",
+    "The whole-run pop means letters 2-4 briefly re-pulse the entire word on their cue frames rather than only the new letter scaling (a per-letter scale would break joining). Judged frame-by-frame as a faithful typing-hit rhythm; documented as an intentional adaptation.",
+    "ThemeSweepToggle's sweep timing was verified identical by the round-1 reviewer; this round only removed the font wrapper, and f20/f30 stills confirm nothing moved."
   ],
-  "lessons": []
+  "lessons": [
+    "Command-palette/typing mocks: never give the typed-text cell a fixed minWidth - the caret must sit at the RTL typing end. Shrink-wrap the text cell; in a direction:rtl flex row the caret element automatically lands left of the prefix (the correct mirrored position) with no coordinate maths.",
+    "When a placeholder motif (per-character gray blocks with no literal text) is replaced by real Persian copy, rebuild the pop beat on the whole run: one prefix-sliced shaped string + a run-level back() scale pop on the original cue frames. Opacity-only fades read as a weaker beat, and per-letter transform boxes break joining.",
+    "Do not wrap textless compositions in FaFonts/FaRoot 'for tone': it is a pointless delayRender and reviewers flag it. Load fonts only where visible copy exists."
+  ]
 }
