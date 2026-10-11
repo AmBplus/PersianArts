@@ -1,8 +1,12 @@
 // Persian (RTL) localization of contact-shadow-lift.
 // No visible copy, raster asset, or baked-in foreign text exists in this demo.
-// RTL: mirror the three-card reading order and top-bar chrome; the first card is
-// rightmost and remains the only lifted card. Vertical lift, shadow physics,
-// seeds, timing, easing and the final rest are physical and remain unchanged.
+// RTL: mirror the three-card reading order, the top-bar chrome AND the card
+// interiors. direction:'rtl' on the scene root is inherited by the shared Card
+// fixture, so each card's title bar, text bars and avatar+label footer start at
+// the RIGHT edge (same treatment as AxialStretch — the two comps stay
+// consistent). Card order: the first named card is rightmost and remains the
+// only lifted card. Vertical lift, shadow physics, seeds, timing, easing and
+// the final rest are physical and remain unchanged.
 // 浅底上一排 3 张卡，逐张被"点名"抬起：卡 translateY(-28px)+scale(1.08)，
 // 其正下方独立椭圆阴影同步放大变淡——纸片离桌感；落回时阴影收紧变实，
 // 落地 2f 卡壳 scale 0.99 微压。三张依次各来一遍。收尾真静止 ≥35f。
@@ -67,8 +71,8 @@ export const ContactShadowLift: React.FC = () => {
   const top = (1080 - CARD_H) / 2 - 20;
 
   return (
-    <div style={{ width: 1920, height: 1080, background: G.bg, position: 'relative', overflow: 'hidden' }}>
-      {/* 假 dashboard 式顶栏，给浅底一点场景感 */}
+    <div style={{ width: 1920, height: 1080, background: G.bg, position: 'relative', overflow: 'hidden', direction: 'rtl' }}>
+      {/* 假 dashboard 式顶栏，给浅底一点场景感（RTL 由根继承） */}
       <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 84, background: G.panel, borderBottom: `2px solid ${G.line}`, display: 'flex', alignItems: 'center', padding: '0 48px', gap: 24, boxSizing: 'border-box', direction: 'rtl' }}>
         <div style={{ width: 40, height: 40, borderRadius: 10, background: G.side }} />
         <div style={{ height: 18, width: 220, background: G.bar, borderRadius: 9 }} />

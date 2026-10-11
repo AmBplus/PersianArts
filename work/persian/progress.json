@@ -1,10 +1,10 @@
 {
- "generatedAt": "2026-10-11T16:30:31.037Z",
+ "generatedAt": "2026-10-11T16:35:48.024Z",
  "summary": {
   "todo": 75,
   "localized": 20,
-  "approved": 51,
-  "fixed": 10,
+  "approved": 52,
+  "fixed": 9,
   "needs-fix": 1,
   "total": 157
  },
@@ -715,10 +715,10 @@
   },
   {
    "slug": "page-waterfall-wall",
-   "status": "fixed",
+   "status": "approved",
    "font": "{\"families\":[\"Vazirmatn\"],\"reason\":\"The source is a restrained research-project UI. Vazirmatn variable supplies readable Persian at small card sizes, supports the source regular/bold hierarchy, and covers Persian digits, punctuation and ZWNJ. FaRoot loads the font before capture.\"}",
    "videos": 1,
-   "majors": 3,
+   "majors": 0,
    "concerns": 1
   },
   {
