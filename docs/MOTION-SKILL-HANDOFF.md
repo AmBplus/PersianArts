@@ -36,3 +36,10 @@
 
 ## Next step on the other system
 Open docs/MOTION-SKILL-PLAN.md §7 (quality ladder) and §8 (open decisions), then start step پ۱ (one ingredient × 3 themes) or the main sound test if the owner has chosen a PASS track.
+
+## Owner decisions (2026-10-12)
+- حالت پیش‌فرض skill: خودکار (autonomous). Every stage still writes its artifacts; decisions go to decisions.jsonl; the brief gets the assumption "copy not reviewed by a native reader" and the delivery report says the same.
+- مجموعه کارت‌های فارسی: A/B یک کارت اول. Compare old Persian vs new English vs new Persian on one card before any bulk re-port. Do not re-port 59 redesigned cards or remove 15 retired cards yet.
+- نام دستور (command): /amb-persianArts (update the name in the plugin only when the owner asks; record it here now).
+- پاس صفر (مرجع): pending. The owner will send 3–5 motion-graphics references (links or files) that he judges good. Until then, do not start the scorecard calibration.
+- محل پوشه‌ها: inside the project repo. Anything meant to be in git (project files, films, scenes, sound sidecars) lives inside the repo and must be committable. Only items that must stay out of git (raw audio, renders, samples, licensed tracks) stay outside the repo, with a pointer in this file. The owner stressed this is important.
