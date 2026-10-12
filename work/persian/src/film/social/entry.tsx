@@ -1,4 +1,4 @@
-// Standalone Remotion entry for the social film. One composition per aspect ratio (only 9:16 is rendered in milestone 3a).
+// Standalone Remotion entry for the social film. One composition per aspect ratio ; duration follows the last beat-grid cut in motion.ts.
 import React from "react";
 import {Composition, registerRoot} from "remotion";
 import {SocialFilm} from "./SocialFilm";

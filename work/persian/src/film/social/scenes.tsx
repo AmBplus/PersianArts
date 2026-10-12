@@ -3,8 +3,8 @@ import React from "react";
 import {useCurrentFrame} from "remotion";
 import {THEME} from "./theme";
 import {Box, LayoutRow, slot} from "./layout";
-import {BEAT, clamp, inBack, inExpo, inOutSine, lerp, outBack, outCubic, outExpo, prog, shake} from "./motion";
-import {Pen, inkPoints, partial, toPath} from "./Pen";
+import {BEAT_REF as BEAT, clamp, inBack, inExpo, inOutSine, lerp, outBack, outCubic, outExpo, prog, shake, useSceneFrame} from "./motion";
+import {Pen, Ribbon, inkPoints, nib, partial, toPath} from "./Pen";
 
 const C = THEME.colors;
 export const LayoutCtx = React.createContext<LayoutRow | null>(null);
@@ -43,7 +43,7 @@ const Badge: React.FC<{n: string; size: number; bg: string; fg: string; s?: numb
 
 // ---------- 1. HOOK  (0–2 s) mechanic: word-block STOMP + shaky scribble. Pen is ashamed.
 export const SceneHook: React.FC = () => {
-  const f = useCurrentFrame();
+  const f = useSceneFrame();
   const L = useL();
   const t = slot(L, "hookText"), a = slot(L, "hookArt");
   const sh = shake(f, 3, 22) + shake(f, BEAT, 30);
@@ -55,7 +55,7 @@ export const SceneHook: React.FC = () => {
   const size = L.type.hero * 0.8;
   return (
     <Frame bg={C.bg[0]} svg={<>
-      <path d={toPath(line)} stroke={C.inkMessy} strokeWidth={THEME.stroke.ink * 1.6} fill="none" strokeLinecap="round" strokeLinejoin="round" />
+      <Ribbon pts={line} total={pts.length - 1} width={nib(THEME.stroke.ink * 0.5, THEME.stroke.ink * 3.4, 35)} fill={C.inkMessy} />
       <g transform={`translate(${a.x + a.w * 0.5} ${a.y + a.h * 0.72}) scale(${cross})`} opacity={prog(f, 40, 2)}>
         <line x1={-a.w * 0.32} y1={-a.h * 0.22} x2={a.w * 0.32} y2={a.h * 0.22} stroke={C.paper} strokeWidth={22} strokeLinecap="round" />
       </g>
@@ -72,7 +72,7 @@ export const SceneHook: React.FC = () => {
 // ---------- 2. PROMISE (2–4 s) mechanic: COUNTER ROLL of the digit + stopwatch ring. Pen looks up.
 const DIGITS = ["۰", "۱", "۲", "۳"];
 export const SceneCount: React.FC = () => {
-  const f = useCurrentFrame();
+  const f = useSceneFrame();
   const L = useL();
   const t = slot(L, "countText"), a = slot(L, "countArt");
   const D = L.type.digit, cell = D * 1.2;
@@ -80,16 +80,27 @@ export const SceneCount: React.FC = () => {
   const word = outExpo(prog(f, 12, 10));
   const sub = outExpo(prog(f, BEAT * 2, 10));
   const ring = prog(f, 4, 56);
-  const r = Math.min(a.w, a.h) * 0.3;
-  const cx = a.x + a.w * 0.62, cy = a.y + a.h * 0.5;
+  // tall art slot (1:1): stopwatch on top, pen below; otherwise side by side with the pen at the far (left) edge
+  const tall = a.h > a.w * 1.2;
+  const r = tall ? Math.min(a.w * 0.4, a.h * 0.24) : Math.min(a.w * 0.28, a.h * 0.4);
+  const cx = tall ? a.x + a.w * 0.58 : a.x + a.w - r - 20, cy = tall ? a.y + r + 50 : a.y + a.h * 0.5;
   const ang = -Math.PI / 2 - ring * 2 * Math.PI; // counter-clockwise sweep (RTL)
+  // The pen hurries in, hops on each tick of the countdown (beats 1 and 2), then crouches into its writing pose: ready.
+  const penS = tall ? (a.h * 0.42) / 410 : Math.max(L.penScale * 0.85, Math.min((a.h * 0.55) / 410, 1.2));
+  const enter = outBack(prog(f, 0, 12));
+  const hop = (at: number) => Math.sin(prog(f, at, 9) * Math.PI);
+  const crouch = inOutSine(prog(f, 38, 10));
+  const penX = lerp(a.x - 220 * penS, a.x + a.w * (tall ? 0.3 : 0.12), enter);
+  const penY = a.y + a.h * (tall ? 0.97 : 0.92) - (hop(BEAT) + hop(BEAT * 2)) * 70 * penS;
+  const penAng = lerp(-18, 20, outBack(prog(f, 40, 10)));
+  const penSquash = 1 - 0.14 * (Math.sin(prog(f, BEAT - 3, 3) * Math.PI) + Math.sin(prog(f, BEAT * 2 - 3, 3) * Math.PI)) - 0.1 * crouch;
   return (
     <Frame bg={C.bg[1]} svg={<>
       <circle cx={cx} cy={cy} r={r} stroke="rgba(246,239,226,0.18)" strokeWidth={18} fill="none" />
       <path d={`M ${cx} ${cy - r} A ${r} ${r} 0 ${ring > 0.5 ? 1 : 0} 0 ${cx + r * Math.cos(ang)} ${cy + r * Math.sin(ang)}`} stroke={C.yellow} strokeWidth={18} fill="none" strokeLinecap="round" />
       <line x1={cx} y1={cy} x2={cx + r * 0.7 * Math.cos(ang)} y2={cy + r * 0.7 * Math.sin(ang)} stroke={C.paper} strokeWidth={10} strokeLinecap="round" />
       <rect x={cx - 16} y={cy - r - 46} width={32} height={30} rx={6} fill={C.paper} />
-      <Pen x={a.x + a.w * 0.2} y={a.y + a.h * 0.95} angle={-18} scale={L.penScale * 0.6} frame={f} mood={lerp(-0.6, 0, prog(f, 20, 20))} sharp={0} calm={0} tremble={2} />
+      <Pen x={penX} y={penY} angle={penAng} scale={penS} squash={penSquash} frame={f} mood={lerp(-0.6, 0.45, prog(f, 38, 12))} sharp={0} calm={lerp(0, 0.45, prog(f, 40, 10))} tremble={lerp(2.5, 0, prog(f, 30, 16))} />
     </>}>
       <Txt box={t} size={L.type.h1} weight={THEME.weights.head} color={C.fg[1]}>
         <div style={{display: "flex", flexDirection: "row", alignItems: "center", gap: L.type.h1 * 0.3}}>
@@ -100,7 +111,7 @@ export const SceneCount: React.FC = () => {
           </div>
           <div style={{fontSize: L.type.h1 * 1.25, opacity: word, transform: `translateX(${(1 - word) * -L.type.h1}px)`}}>نکته،</div>
         </div>
-        <div style={{fontFamily: `"${THEME.fonts.body}"`, fontWeight: THEME.weights.sub, fontSize: L.type.h2, opacity: sub, transform: `translateY(${(1 - sub) * 40}px)`}}>بیست ثانیه</div>
+        <div style={{fontFamily: `"${THEME.fonts.body}"`, fontWeight: THEME.weights.sub, fontSize: L.type.h2, opacity: sub, transform: `translateY(${(1 - sub) * 40}px)`}}>برای دست‌خط بهتر</div>
       </Txt>
     </Frame>
   );
@@ -108,7 +119,7 @@ export const SceneCount: React.FC = () => {
 
 // ---------- 3. TIP 1 (4–7 s) mechanic: SHAPE MORPH of the pen tip (blunt -> fine nib) with inBack anticipation.
 export const ScenePen: React.FC = () => {
-  const f = useCurrentFrame();
+  const f = useSceneFrame();
   const L = useL();
   const t = slot(L, "penText"), a = slot(L, "penArt");
   const s = L.penScale * 1.35;
@@ -128,7 +139,7 @@ export const ScenePen: React.FC = () => {
   return (
     <Frame bg={C.bg[2]} svg={<>
       <path d={toPath(lt)} stroke={C.ink} strokeWidth={34} fill="none" strokeLinecap="round" opacity={1 - 0.6 * prog(f, 50, 10)} />
-      <path d={toPath(ln)} stroke={C.blue} strokeWidth={THEME.stroke.inkThin} fill="none" strokeLinecap="round" />
+      <Ribbon pts={ln} total={thin.length - 1} width={nib(3, THEME.stroke.inkThin * 2.2, 40)} fill={C.blue} />
       {spark > 0 && spark < 1 ? Array.from({length: 8}, (_, i) => {
         const ang = (i / 8) * Math.PI * 2;
         const r0 = 30 + 110 * outExpo(spark), r1 = r0 + 50 * (1 - spark);
@@ -148,7 +159,7 @@ export const ScenePen: React.FC = () => {
 
 // ---------- 4. TIP 2 (7–10 s) mechanic: slow LINE SWEEP right-to-left; text revealed by the same sweep; shake decays.
 export const SceneSlow: React.FC = () => {
-  const f = useCurrentFrame();
+  const f = useSceneFrame();
   const L = useL();
   const t = slot(L, "slowText"), a = slot(L, "slowArt");
   const p = inOutSine(prog(f, 6, 72));
@@ -158,7 +169,7 @@ export const SceneSlow: React.FC = () => {
   const reveal = inOutSine(prog(f, 2, 24));
   return (
     <Frame bg={C.bg[3]} svg={<>
-      <path d={toPath(line)} stroke={C.inkGood} strokeWidth={THEME.stroke.ink} fill="none" strokeLinecap="round" strokeLinejoin="round" />
+      <Ribbon pts={line} total={pts.length - 1} width={nib(THEME.stroke.ink * 0.45, THEME.stroke.ink * 1.9, 40)} fill={C.inkGood} />
       <Pen x={tip[0]} y={tip[1]} scale={L.penScale} frame={f} mood={lerp(0.1, 0.6, p)} sharp={1} calm={lerp(0.3, 0.92, prog(f, 10, 20))} tremble={lerp(4, 0, p)} />
     </>}>
       <Txt box={t} size={L.type.h1 * 1.35} weight={THEME.weights.hero} color={C.fg[3]}>
@@ -175,7 +186,7 @@ export const SceneSlow: React.FC = () => {
 // ---------- 5. TIP 3 (10–13.5 s) mechanic: LIST STAGGER of seven days; each day's line is calmer than the last.
 const DAYS = ["روز ۱", "روز ۲", "روز ۳", "روز ۴", "روز ۵", "روز ۶", "روز ۷"];
 export const SceneDaily: React.FC = () => {
-  const f = useCurrentFrame();
+  const f = useSceneFrame();
   const L = useL();
   const t = slot(L, "listTitle"), r = slot(L, "listRows");
   const rowH = r.h / DAYS.length;
@@ -184,7 +195,7 @@ export const SceneDaily: React.FC = () => {
   const rows = DAYS.map((d, i) => {
     const at = 8 + i * step;
     const y = r.y + rowH * (i + 0.5);
-    const pts = inkPoints({x0: r.x + r.w - labelW - 30, x1: r.x + rowH * 0.9, y, amp: rowH * 0.12, waves: 2, jag: rowH * 0.16 * (1 - i / 6), seed: i * 1.7});
+    const pts = inkPoints({x0: r.x + r.w - labelW - L.type.label * 0.8, x1: r.x + rowH * 0.9, y, amp: rowH * 0.12, waves: 2, jag: rowH * 0.16 * (1 - i / 6), seed: i * 1.7});
     return {d, i, at, y, pts, p: outCubic(prog(f, at + 3, drawLen)), enter: outExpo(prog(f, at, 10)), check: outBack(prog(f, at + 3 + drawLen, 8))};
   });
   const active = rows.filter((w) => f >= w.at + 3).pop() ?? rows[0];
@@ -197,14 +208,14 @@ export const SceneDaily: React.FC = () => {
       {rows.map((w) => (
         <g key={w.d} opacity={w.enter} transform={`translate(${(1 - w.enter) * 200} 0)`}>
           <line x1={r.x} x2={r.x + r.w} y1={w.y + rowH * 0.48} y2={w.y + rowH * 0.48} stroke="rgba(22,20,31,0.15)" strokeWidth={3} />
-          <path d={toPath(partial(w.pts, w.p))} stroke={C.ink} strokeWidth={THEME.stroke.inkThin} fill="none" strokeLinecap="round" strokeLinejoin="round" />
+          <Ribbon pts={partial(w.pts, w.p)} total={w.pts.length - 1} width={nib(3, THEME.stroke.inkThin * 1.8, 40)} fill={C.ink} />
           <g transform={`translate(${r.x + rowH * 0.35} ${w.y}) scale(${w.check})`}>
             <circle r={rowH * 0.3} fill={w.i === 6 ? C.coral : C.mint} />
             <path d={`M ${-rowH * 0.13} 0 L ${-rowH * 0.03} ${rowH * 0.1} L ${rowH * 0.15} ${-rowH * 0.1}`} stroke={C.ink} strokeWidth={7} fill="none" strokeLinecap="round" strokeLinejoin="round" />
           </g>
         </g>
       ))}
-      <Pen x={penTip[0]} y={penTip[1] + bounce} scale={L.penScale * 0.5} frame={f} mood={lerp(0, 1, prog(f, 8, 60))} sharp={1} calm={0} tremble={0} />
+      <Pen x={penTip[0]} y={penTip[1] + bounce} scale={L.penScale * 0.5} angle={-6} frame={f} mood={lerp(0, 1, prog(f, 8, 60))} sharp={1} calm={0} tremble={0} />
     </>}>
       <Txt box={t} size={L.type.h2} weight={THEME.weights.head} color={C.fg[4]}>
         <div style={{display: "flex", alignItems: "center", gap: L.type.h2 * 0.25, ...stomp(f, 0, 1.8, 6)}}>
@@ -223,7 +234,7 @@ export const SceneDaily: React.FC = () => {
 
 // ---------- 6. PAYOFF + CTA (13.5–17 s) mechanic: calligraphic LOOP FLOURISH + pill POP that pulses on the beat. Pen is proud.
 export const SceneCta: React.FC = () => {
-  const f = useCurrentFrame();
+  const f = useSceneFrame();
   const L = useL();
   const t = slot(L, "ctaText"), a = slot(L, "ctaArt");
   const pts = inkPoints({x0: a.x + a.w * 0.92, x1: a.x + a.w * 0.08, y: a.y + a.h * 0.85, amp: 0, waves: 3, jag: 0, seed: 0, loop: a.h * 0.14});
@@ -233,14 +244,19 @@ export const SceneCta: React.FC = () => {
   const after = prog(f, 36, 14);
   // after the flourish the pen stands up on the end of its line and bounces on every beat
   const px = end[0];
-  const py = end[1] - Math.sin(after * Math.PI) * 80 - (f > 50 ? Math.abs(Math.sin(((f - 50) / BEAT) * Math.PI)) * 30 : 0);
+  const bounceOn = f > 50 && f < 50 + BEAT * 1.5;
+  const py = end[1] - Math.sin(after * Math.PI) * 80 - (bounceOn ? Math.abs(Math.sin(((f - 50) / BEAT) * Math.PI)) * 30 : 0);
+  // closing gesture: the proud pen takes a bow towards the frame centre, eyes closed, then straightens up
+  const bowDown = inOutSine(prog(f, 74, 9)), bowUp = outBack(prog(f, 89, 9));
+  const bow = bowDown * (1 - bowUp);
+  const penAngle = lerp(28, 0, outBack(after)) + 40 * bow;
   const pop = outBack(prog(f, 24, 12));
   const beat = f > 36 ? 1 + 0.045 * Math.exp(-((f - 36) % BEAT) / 4) : 1;
   const sub = outExpo(prog(f, 36, 12));
   return (
     <Frame bg={C.bg[5]} svg={<>
-      <path d={toPath(line)} stroke={C.mint} strokeWidth={THEME.stroke.ink} fill="none" strokeLinecap="round" strokeLinejoin="round" />
-      <Pen x={px} y={py} scale={L.penScale * 0.8} angle={lerp(28, 0, outBack(after))} frame={f} mood={1} sharp={1} calm={0} tremble={0} />
+      <Ribbon pts={line} total={pts.length - 1} width={nib(THEME.stroke.ink * 0.4, THEME.stroke.ink * 2.6, 40)} fill={C.mint} />
+      <Pen x={px} y={py} scale={L.penScale * 0.8} angle={penAngle} squash={1 - 0.08 * bow} frame={f} mood={1} sharp={1} calm={bow * 0.95} tremble={0} />
     </>}>
       <Txt box={t} size={L.type.h1} weight={THEME.weights.hero} color={C.fg[5]} justify="flex-start">
         <div style={{background: C.coral, color: C.paper, borderRadius: 999, padding: `${L.type.h1 * 0.1}px ${L.type.h1 * 0.55}px`, transform: `scale(${pop * beat})`, lineHeight: 1.45}}>دنبال کن</div>
