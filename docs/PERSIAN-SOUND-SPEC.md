@@ -1,5 +1,7 @@
 # PERSIAN-SOUND-SPEC — sound for the Persian shotcraft renders
 
+> **Superseded in part (2026-10-12, owner decision).** Synthesized music and SFX are no longer used. Use recorded, curated SFX and background music only, following video-shotcraft's method (music first → beat-grid acceptance → picture on the grid → authored SFX table → post-render backtest). Rationale and evidence: `docs/research/SHOTCRAFT-AUDIO-STUDY.md`. Tooling: `sound/`. The analysis/loudness parts of this spec remain valid where they don't contradict this.
+
 Decisions by the main Claude session (2026-10-11). Implementation by cheaper models per the delegation rule
 (see `~/.claude/skills/quota-hub`). The upstream demos are silent; the Persian renders become short product-film clips
 with music + picture-timed SFX. Everything is **synthesized, deterministic and project-owned** (no stock audio, so no
