@@ -22,3 +22,4 @@ Standing orders to workers (kept from the old rules):
 - Before any Persian conversion task, read `docs/PERSIAN-LOCALIZATION-LESSONS.md`; after each batch merge the agents' new
   lessons into it.
 - After each completed batch of work: commit and push to `main` (the owner's decision; see AGENTS.md). Run `work/persian/autosync.ps1` during batches.
+Motion project: New chats read docs/motion/README.md first; when asked to build a motion follow docs/motion/PLAYBOOK-BUILD-MOTION.md; record every confirmed finding in docs/motion/DECISIONS.jsonl and the docs/motion/PLAYBOOK-*.md files.

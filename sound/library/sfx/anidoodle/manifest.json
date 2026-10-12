@@ -1,0 +1,24 @@
+{
+  "source": "anidoodle sound-effects kit (code-synthesised, not sampled)",
+  "sourcePath": "plugins/anidoodle/skills/anidoodle/engine/tools/sfx.mjs (plus src/canvas-core/music/sfxKit.ts, sfxCore.ts)",
+  "generatedWith": "node tools/sfx.mjs one <kind> <variant> <seed> <out.wav>, run from skills/anidoodle/engine",
+  "generatedOn": "2026-10-12",
+  "licence": "Apache-2.0",
+  "licenceEvidence": "plugins/anidoodle/LICENSE:1-4 (Copyright 2026 Alex Greenshpun, Apache License 2.0); plugins/anidoodle/README.md:22; plugins/anidoodle/NOTICE (no third-party audio in the effects path); skills/anidoodle/references/music/sound-design.md:3-4 (effects are built in code, no samples or recordings)",
+  "author": "Alex Greenshpun",
+  "attributionRequired": false,
+  "files": [
+    {"file": "paper-pencil/pencil-line-1.wav", "kind": "scratch", "variant": "pencil", "seed": 1, "durationS": 1.148, "category": "paper-pencil", "use": "graphite pencil line being drawn"},
+    {"file": "paper-pencil/pencil-line-2.wav", "kind": "scratch", "variant": "pencil", "seed": 2, "durationS": 1.150, "category": "paper-pencil", "use": "graphite pencil line, alt"},
+    {"file": "paper-pencil/pen-nib-line-1.wav", "kind": "scratch", "variant": "nib", "seed": 1, "durationS": 1.121, "category": "paper-pencil", "use": "metal pen nib writing"},
+    {"file": "paper-pencil/marker-line-1.wav", "kind": "scratch", "variant": "marker", "seed": 1, "durationS": 1.150, "category": "paper-pencil", "use": "felt marker line"},
+    {"file": "paper-pencil/paper-slide-1.wav", "kind": "paper", "variant": "slide", "seed": 1, "durationS": 0.714, "category": "paper-pencil", "use": "sheet sliding and landing"},
+    {"file": "paper-pencil/paper-flip-1.wav", "kind": "paper", "variant": "flip", "seed": 1, "durationS": 0.584, "category": "paper-pencil", "use": "page turn"},
+    {"file": "pop/ink-drop-plip-1.wav", "kind": "ink", "variant": "plip", "seed": 1, "durationS": 0.573, "category": "pop", "use": "ink drop landing"},
+    {"file": "pop/pop-appear-1.wav", "kind": "pop", "variant": "pop", "seed": 1, "durationS": 0.321, "category": "pop", "use": "element appears, pop"}
+  ],
+  "skipped": {
+    "skills/anidoodle/engine/.tmp/persianVariant.wav": "render artefact of the project, not an asset; no licence statement",
+    "sound pack (VCSL CC0 instruments, OpenAIR CC BY 4.0 rooms)": "not installed in the repo (optional soundfetch download); not used by effects"
+  }
+}

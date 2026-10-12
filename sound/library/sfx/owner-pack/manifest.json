@@ -1,0 +1,2402 @@
+{
+  "schema": "persianarts.sfx_manifest/1",
+  "source": "owner-pack",
+  "source_folder": "owner's local folder 'New folder (4)' (read-only, copied not moved)",
+  "generatedOn": "2026-10-12T21:11:53Z",
+  "note": "key = category/filename under sound/library/sfx/owner-pack/. Non-SFX root music tracks are listed in excluded_non_sfx and were not imported.",
+  "count": 202,
+  "total_bytes": 257246413,
+  "category_counts": {
+    "ambience": 20,
+    "camera-shutter": 11,
+    "click": 1,
+    "ding-chime": 13,
+    "glitch": 1,
+    "impact": 36,
+    "misc": 28,
+    "paper-pencil": 22,
+    "riser": 6,
+    "slide": 11,
+    "sparkle-magic": 1,
+    "stinger": 10,
+    "typing": 31,
+    "whoosh": 11
+  },
+  "duplicates_within_source": [],
+  "excluded_non_sfx": [
+    {
+      "path": "arpmedia-piano-background-music-577850.mp3",
+      "bytes": 3306893,
+      "reason": "outside songpack (music/BGM, not SFX)"
+    },
+    {
+      "path": "atlasaudio-music-background-594872.mp3",
+      "bytes": 4992940,
+      "reason": "outside songpack (music/BGM, not SFX)"
+    },
+    {
+      "path": "echoes_of_lumen-epic-background-music-595722.mp3",
+      "bytes": 4750080,
+      "reason": "outside songpack (music/BGM, not SFX)"
+    },
+    {
+      "path": "hot_dope-epic-power-short-version-2-146811.mp3",
+      "bytes": 910315,
+      "reason": "outside songpack (music/BGM, not SFX)"
+    },
+    {
+      "path": "leberch-music-background-608014.mp3",
+      "bytes": 4865044,
+      "reason": "outside songpack (music/BGM, not SFX)"
+    },
+    {
+      "path": "litesaturation-an-epic-1-min-16060.mp3",
+      "bytes": 2048835,
+      "reason": "outside songpack (music/BGM, not SFX)"
+    },
+    {
+      "path": "lnplusmusic-background-background-music-597024.mp3",
+      "bytes": 4819069,
+      "reason": "outside songpack (music/BGM, not SFX)"
+    },
+    {
+      "path": "lnplusmusic-epic-epic-music-597967.mp3",
+      "bytes": 2729273,
+      "reason": "outside songpack (music/BGM, not SFX)"
+    },
+    {
+      "path": "meshkat_score.wav",
+      "bytes": 3840044,
+      "reason": "outside songpack (music/BGM, not SFX)"
+    },
+    {
+      "path": "meshkat_score_40.wav",
+      "bytes": 7680044,
+      "reason": "outside songpack (music/BGM, not SFX)"
+    },
+    {
+      "path": "meshkat_score_50.wav",
+      "bytes": 9600044,
+      "reason": "outside songpack (music/BGM, not SFX)"
+    },
+    {
+      "path": "miromaxmusic-music-promotion-513944.mp3",
+      "bytes": 4361822,
+      "reason": "outside songpack (music/BGM, not SFX)"
+    },
+    {
+      "path": "nastelbom-advertising-advertising-music-606719.mp3",
+      "bytes": 7016698,
+      "reason": "outside songpack (music/BGM, not SFX)"
+    },
+    {
+      "path": "nastelbom-award-award-music-606702.mp3",
+      "bytes": 4838295,
+      "reason": "outside songpack (music/BGM, not SFX)"
+    },
+    {
+      "path": "nastelbom-award-awards-ceremony-music-602450.mp3",
+      "bytes": 2349766,
+      "reason": "outside songpack (music/BGM, not SFX)"
+    },
+    {
+      "path": "nastelbom-background-music-602518.mp3",
+      "bytes": 3512529,
+      "reason": "outside songpack (music/BGM, not SFX)"
+    },
+    {
+      "path": "nastelbom-background-music-606712.mp3",
+      "bytes": 3948042,
+      "reason": "outside songpack (music/BGM, not SFX)"
+    },
+    {
+      "path": "nastelbom-cinematic-adventure-606707.mp3",
+      "bytes": 5069009,
+      "reason": "outside songpack (music/BGM, not SFX)"
+    },
+    {
+      "path": "nastelbom-cinematic-cinematic-music-602515.mp3",
+      "bytes": 2892277,
+      "reason": "outside songpack (music/BGM, not SFX)"
+    },
+    {
+      "path": "nastelbom-commercial-commercial-music-606728.mp3",
+      "bytes": 4099343,
+      "reason": "outside songpack (music/BGM, not SFX)"
+    },
+    {
+      "path": "nastelbom-epic-cinematic-602522.mp3",
+      "bytes": 4062563,
+      "reason": "outside songpack (music/BGM, not SFX)"
+    },
+    {
+      "path": "nastelbom-presentation-presentation-music-606737.mp3",
+      "bytes": 4977058,
+      "reason": "outside songpack (music/BGM, not SFX)"
+    },
+    {
+      "path": "nastelbom-technology-technology-music-602443.mp3",
+      "bytes": 4162873,
+      "reason": "outside songpack (music/BGM, not SFX)"
+    },
+    {
+      "path": "nastelbom-trailer-trailer-music-602442.mp3",
+      "bytes": 4181263,
+      "reason": "outside songpack (music/BGM, not SFX)"
+    },
+    {
+      "path": "nastelbom-uplifting-uplifting-music-606716.mp3",
+      "bytes": 4749688,
+      "reason": "outside songpack (music/BGM, not SFX)"
+    },
+    {
+      "path": "paulyudin-background-background-music-574010.mp3",
+      "bytes": 5041423,
+      "reason": "outside songpack (music/BGM, not SFX)"
+    },
+    {
+      "path": "px-109s-a.mp3",
+      "bytes": 3512529,
+      "reason": "outside songpack (music/BGM, not SFX)"
+    },
+    {
+      "path": "px-123s-g.mp3",
+      "bytes": 3948042,
+      "reason": "outside songpack (music/BGM, not SFX)"
+    },
+    {
+      "path": "px-128s-b.mp3",
+      "bytes": 4102687,
+      "reason": "outside songpack (music/BGM, not SFX)"
+    },
+    {
+      "path": "px-143s-c.mp3",
+      "bytes": 4590027,
+      "reason": "outside songpack (music/BGM, not SFX)"
+    },
+    {
+      "path": "px-41s-f.mp3",
+      "bytes": 1319079,
+      "reason": "outside songpack (music/BGM, not SFX)"
+    },
+    {
+      "path": "px-43s-h.mp3",
+      "bytes": 1397760,
+      "reason": "outside songpack (music/BGM, not SFX)"
+    },
+    {
+      "path": "px-61s-e.mp3",
+      "bytes": 1970259,
+      "reason": "outside songpack (music/BGM, not SFX)"
+    },
+    {
+      "path": "px-99s-d.mp3",
+      "bytes": 3190272,
+      "reason": "outside songpack (music/BGM, not SFX)"
+    },
+    {
+      "path": "ShahvarPromotion_music.mp3",
+      "bytes": 3009333,
+      "reason": "outside songpack (music/BGM, not SFX)"
+    },
+    {
+      "path": "the_mountain-cinematic-epic-576562.mp3",
+      "bytes": 3532591,
+      "reason": "outside songpack (music/BGM, not SFX)"
+    },
+    {
+      "path": "the_mountain-epic-610137.mp3",
+      "bytes": 2933237,
+      "reason": "outside songpack (music/BGM, not SFX)"
+    },
+    {
+      "path": "the_mountain-epic-cinematic-610135.mp3",
+      "bytes": 3385469,
+      "reason": "outside songpack (music/BGM, not SFX)"
+    },
+    {
+      "path": "white_records-epic-background-short-music-dramatic-hip-hop-instrumental-49-second-176720.mp3",
+      "bytes": 1569018,
+      "reason": "outside songpack (music/BGM, not SFX)"
+    }
+  ],
+  "files": {
+    "ambience/dark-scary-drone.wav": {
+      "category": "ambience",
+      "file": "dark-scary-drone.wav",
+      "original_relpath": "songpack/abstract/dark-scary-drone.wav",
+      "sha1": "18e1b2b9d532792941320f4d23845ea9e1d851b8",
+      "bytes": 827700,
+      "duration_s": 4.311,
+      "peak_dbfs": -2.6,
+      "flags": []
+    },
+    "ambience/freeze-airy.wav": {
+      "category": "ambience",
+      "file": "freeze-airy.wav",
+      "original_relpath": "songpack/abstract/freeze-airy.wav",
+      "sha1": "8a7517e0e41e3fbd4cf3562195ce0d4e9da87b07",
+      "bytes": 1002856,
+      "duration_s": 5.223,
+      "peak_dbfs": -0.1,
+      "flags": []
+    },
+    "ambience/freeze-icy-crackling.wav": {
+      "category": "ambience",
+      "file": "freeze-icy-crackling.wav",
+      "original_relpath": "songpack/abstract/freeze-icy-crackling.wav",
+      "sha1": "b792a77ed18e751fb5acd9a16c076475650b1ef0",
+      "bytes": 667308,
+      "duration_s": 3.475,
+      "peak_dbfs": -1.6,
+      "flags": []
+    },
+    "ambience/freeze-strong-wind.wav": {
+      "category": "ambience",
+      "file": "freeze-strong-wind.wav",
+      "original_relpath": "songpack/abstract/freeze-strong-wind.wav",
+      "sha1": "e4476ae2530e814eb499cb597fc61bc4f1888bf7",
+      "bytes": 603360,
+      "duration_s": 3.142,
+      "peak_dbfs": -1.9,
+      "flags": []
+    },
+    "ambience/ice-crackling-01-thin-ice.wav": {
+      "category": "ambience",
+      "file": "ice-crackling-01-thin-ice.wav",
+      "original_relpath": "songpack/abstract/ice-crackling-01-thin-ice.wav",
+      "sha1": "24802c0a711d4701c4011ff4742802ff956d4709",
+      "bytes": 836580,
+      "duration_s": 4.357,
+      "peak_dbfs": -2.2,
+      "flags": []
+    },
+    "ambience/ice-crackling-02-thin-ice-louder.wav": {
+      "category": "ambience",
+      "file": "ice-crackling-02-thin-ice-louder.wav",
+      "original_relpath": "songpack/abstract/ice-crackling-02-thin-ice-louder.wav",
+      "sha1": "2860fa422982152bba1c0d4b1515147b6bd6c8ac",
+      "bytes": 1785908,
+      "duration_s": 9.301,
+      "peak_dbfs": -6.4,
+      "flags": []
+    },
+    "ambience/radio-snow-01.wav": {
+      "category": "ambience",
+      "file": "radio-snow-01.wav",
+      "original_relpath": "songpack/abstract/radio-snow-01.wav",
+      "sha1": "055f3011e6cda5f2326d628e17cc70c5744d57b9",
+      "bytes": 3198004,
+      "duration_s": 16.656,
+      "peak_dbfs": -12.3,
+      "flags": [
+        "over_15s"
+      ]
+    },
+    "ambience/radio-snow-02.wav": {
+      "category": "ambience",
+      "file": "radio-snow-02.wav",
+      "original_relpath": "songpack/abstract/radio-snow-02.wav",
+      "sha1": "7775c8eb81bbd45cf4a93df9763398596960b3de",
+      "bytes": 3294260,
+      "duration_s": 17.157,
+      "peak_dbfs": -15.9,
+      "flags": [
+        "over_15s"
+      ]
+    },
+    "ambience/radio-snow-03.wav": {
+      "category": "ambience",
+      "file": "radio-snow-03.wav",
+      "original_relpath": "songpack/abstract/radio-snow-03.wav",
+      "sha1": "048087ca405dbc98941b46d0235920663d5592dc",
+      "bytes": 1930292,
+      "duration_s": 10.053,
+      "peak_dbfs": -4.3,
+      "flags": []
+    },
+    "ambience/radio-snow-04.wav": {
+      "category": "ambience",
+      "file": "radio-snow-04.wav",
+      "original_relpath": "songpack/abstract/radio-snow-04.wav",
+      "sha1": "0a43dcc5cf6cf4e9f1f30a0cae2e1dae1d63583e",
+      "bytes": 2024500,
+      "duration_s": 10.544,
+      "peak_dbfs": -7.7,
+      "flags": []
+    },
+    "ambience/radio-snow-05.wav": {
+      "category": "ambience",
+      "file": "radio-snow-05.wav",
+      "original_relpath": "songpack/abstract/radio-snow-05.wav",
+      "sha1": "2a79067d82e096a16b9c12c439abff8735d97077",
+      "bytes": 2841652,
+      "duration_s": 14.8,
+      "peak_dbfs": -14.8,
+      "flags": []
+    },
+    "ambience/radio-snow-06.wav": {
+      "category": "ambience",
+      "file": "radio-snow-06.wav",
+      "original_relpath": "songpack/abstract/radio-snow-06.wav",
+      "sha1": "adb5c56a8631e27b4345cd9d2c8f9faf17696c94",
+      "bytes": 2055220,
+      "duration_s": 10.704,
+      "peak_dbfs": -11.6,
+      "flags": []
+    },
+    "ambience/radio-snow-07.wav": {
+      "category": "ambience",
+      "file": "radio-snow-07.wav",
+      "original_relpath": "songpack/abstract/radio-snow-07.wav",
+      "sha1": "12c930f288378d168aee7d348e7173b1b5e35975",
+      "bytes": 3294260,
+      "duration_s": 17.157,
+      "peak_dbfs": -6.7,
+      "flags": [
+        "over_15s"
+      ]
+    },
+    "ambience/radio-snow-08.wav": {
+      "category": "ambience",
+      "file": "radio-snow-08.wav",
+      "original_relpath": "songpack/abstract/radio-snow-08.wav",
+      "sha1": "c0e90016b39d6d10e7d1c5703a11db3bd8cdb2d4",
+      "bytes": 2976820,
+      "duration_s": 15.504,
+      "peak_dbfs": -12.8,
+      "flags": [
+        "over_15s"
+      ]
+    },
+    "ambience/radio-snow-09.wav": {
+      "category": "ambience",
+      "file": "radio-snow-09.wav",
+      "original_relpath": "songpack/abstract/radio-snow-09.wav",
+      "sha1": "531923c6d61f0c4a783ffce07e9269952f283583",
+      "bytes": 2976820,
+      "duration_s": 15.504,
+      "peak_dbfs": -7.6,
+      "flags": [
+        "over_15s"
+      ]
+    },
+    "ambience/radio-snow.wav": {
+      "category": "ambience",
+      "file": "radio-snow.wav",
+      "original_relpath": "songpack/abstract/radio-snow.wav",
+      "sha1": "c8b7ad73778f5059dd4fae0a34d101e38b258623",
+      "bytes": 1797172,
+      "duration_s": 9.36,
+      "peak_dbfs": -7.1,
+      "flags": []
+    },
+    "ambience/rain-light.wav": {
+      "category": "ambience",
+      "file": "rain-light.wav",
+      "original_relpath": "songpack/abstract/rain-light.wav",
+      "sha1": "dc2546f729f483c5eae37ece639a7b3c39012892",
+      "bytes": 1921076,
+      "duration_s": 10.005,
+      "peak_dbfs": -6.1,
+      "flags": []
+    },
+    "ambience/rain-loud.wav": {
+      "category": "ambience",
+      "file": "rain-loud.wav",
+      "original_relpath": "songpack/abstract/rain-loud.wav",
+      "sha1": "cd91f09250a3a4da4665dcbeb43a9eb35da8123d",
+      "bytes": 1921076,
+      "duration_s": 10.005,
+      "peak_dbfs": -2.4,
+      "flags": []
+    },
+    "ambience/tv-noise-fast.wav": {
+      "category": "ambience",
+      "file": "tv-noise-fast.wav",
+      "original_relpath": "songpack/abstract/tv-noise-fast.wav",
+      "sha1": "e9162295fe1adca01c77c30291defbdf35da330a",
+      "bytes": 41652,
+      "duration_s": 0.217,
+      "peak_dbfs": -8.4,
+      "flags": []
+    },
+    "ambience/tv-noise-static.wav": {
+      "category": "ambience",
+      "file": "tv-noise-static.wav",
+      "original_relpath": "songpack/abstract/tv-noise-static.wav",
+      "sha1": "24b6548986f9482893708d36372980c3c037e368",
+      "bytes": 2160692,
+      "duration_s": 11.253,
+      "peak_dbfs": -5.0,
+      "flags": []
+    },
+    "camera-shutter/camera-01.mp3": {
+      "category": "camera-shutter",
+      "file": "camera-01.mp3",
+      "original_relpath": "songpack/camera/camera-01.mp3",
+      "sha1": "3641e288817711ef971fa8a8665a3dd28ba83ccb",
+      "bytes": 1188700,
+      "duration_s": 1.152,
+      "peak_dbfs": -7.9,
+      "flags": []
+    },
+    "camera-shutter/camera-02.wav": {
+      "category": "camera-shutter",
+      "file": "camera-02.wav",
+      "original_relpath": "songpack/camera/camera-02.wav",
+      "sha1": "1e042c227d6d1af5f8858af55cc908435583f015",
+      "bytes": 1217362,
+      "duration_s": 0.434,
+      "peak_dbfs": -6.1,
+      "flags": []
+    },
+    "camera-shutter/camera-03.mp3": {
+      "category": "camera-shutter",
+      "file": "camera-03.mp3",
+      "original_relpath": "songpack/camera/camera-03.mp3",
+      "sha1": "8de37940e9d0d80b0fa337de0eff44a518692422",
+      "bytes": 1169500,
+      "duration_s": 0.672,
+      "peak_dbfs": -7.6,
+      "flags": []
+    },
+    "camera-shutter/camera-04.wav": {
+      "category": "camera-shutter",
+      "file": "camera-04.wav",
+      "original_relpath": "songpack/camera/camera-04.wav",
+      "sha1": "966ff124c2398a75af3bda2ab2c83f78f8fda03d",
+      "bytes": 1351814,
+      "duration_s": 1.197,
+      "peak_dbfs": -5.5,
+      "flags": []
+    },
+    "camera-shutter/camera-05.wav": {
+      "category": "camera-shutter",
+      "file": "camera-05.wav",
+      "original_relpath": "songpack/camera/camera-05.wav",
+      "sha1": "6855c77cc506ef7daa579e33bb27ad0065766da0",
+      "bytes": 1188166,
+      "duration_s": 0.535,
+      "peak_dbfs": -4.5,
+      "flags": []
+    },
+    "camera-shutter/camera-06.wav": {
+      "category": "camera-shutter",
+      "file": "camera-06.wav",
+      "original_relpath": "songpack/camera/camera-06.wav",
+      "sha1": "1deef94dd9ca988f1fd1f7fec89a0e5967ef6422",
+      "bytes": 1159972,
+      "duration_s": 0.217,
+      "peak_dbfs": -4.9,
+      "flags": []
+    },
+    "camera-shutter/camera-07.wav": {
+      "category": "camera-shutter",
+      "file": "camera-07.wav",
+      "original_relpath": "songpack/camera/camera-07.wav",
+      "sha1": "b06ffcf5accf9ed62ad6e5753ab6d6ec727e856f",
+      "bytes": 1169474,
+      "duration_s": 0.324,
+      "peak_dbfs": -4.8,
+      "flags": []
+    },
+    "camera-shutter/camera-08.wav": {
+      "category": "camera-shutter",
+      "file": "camera-08.wav",
+      "original_relpath": "songpack/camera/camera-08.wav",
+      "sha1": "2f9b94433e2eb32d308381969d6d9e7d2af327ec",
+      "bytes": 1260534,
+      "duration_s": 0.63,
+      "peak_dbfs": -3.2,
+      "flags": []
+    },
+    "camera-shutter/camera-09.mp3": {
+      "category": "camera-shutter",
+      "file": "camera-09.mp3",
+      "original_relpath": "songpack/camera/camera-09.mp3",
+      "sha1": "704686f643e6b4dda1601d9a317630433cb7b6a9",
+      "bytes": 1169500,
+      "duration_s": 0.672,
+      "peak_dbfs": -6.0,
+      "flags": []
+    },
+    "camera-shutter/camera-10.wav": {
+      "category": "camera-shutter",
+      "file": "camera-10.wav",
+      "original_relpath": "songpack/camera/camera-10.wav",
+      "sha1": "aee3086482b0ff5abbc281e829cb36d338b51312",
+      "bytes": 1344738,
+      "duration_s": 1.156,
+      "peak_dbfs": -6.2,
+      "flags": []
+    },
+    "camera-shutter/camera-11.wav": {
+      "category": "camera-shutter",
+      "file": "camera-11.wav",
+      "original_relpath": "songpack/camera/camera-11.wav",
+      "sha1": "317acc3c90174286d766725b637291b0d5ede260",
+      "bytes": 1379614,
+      "duration_s": 1.354,
+      "peak_dbfs": -5.8,
+      "flags": []
+    },
+    "click/switch.wav": {
+      "category": "click",
+      "file": "switch.wav",
+      "original_relpath": "songpack/typewriter-antique/switch.wav",
+      "sha1": "fe1f599c812fe96dfe3a605ae6cdf5e641d138f8",
+      "bytes": 149014,
+      "duration_s": 0.844,
+      "peak_dbfs": -0.3,
+      "flags": [
+        "category_doubt"
+      ]
+    },
+    "ding-chime/bell.wav": {
+      "category": "ding-chime",
+      "file": "bell.wav",
+      "original_relpath": "songpack/typewriter-antique/bell.wav",
+      "sha1": "631d621135f154a256853e3aba64a635ef4939b2",
+      "bytes": 683730,
+      "duration_s": 3.875,
+      "peak_dbfs": -6.3,
+      "flags": []
+    },
+    "ding-chime/end-bell-solo.wav": {
+      "category": "ding-chime",
+      "file": "end-bell-solo.wav",
+      "original_relpath": "songpack/typewriter/end-bell-solo.wav",
+      "sha1": "422749c7e3c535f42e4d98499720aa632fd4a021",
+      "bytes": 1209482,
+      "duration_s": 3.428,
+      "peak_dbfs": -5.1,
+      "flags": []
+    },
+    "ding-chime/end-bell-tab.wav": {
+      "category": "ding-chime",
+      "file": "end-bell-tab.wav",
+      "original_relpath": "songpack/typewriter/end-bell-tab.wav",
+      "sha1": "9964167aa6909fd3ab1411157b60ddf24c0b12ab",
+      "bytes": 1586746,
+      "duration_s": 4.497,
+      "peak_dbfs": -5.4,
+      "flags": []
+    },
+    "ding-chime/single-note-01.wav": {
+      "category": "ding-chime",
+      "file": "single-note-01.wav",
+      "original_relpath": "songpack/single-note/single-note-01.wav",
+      "sha1": "b4abf0718bbfd5fab480dcb12f4cef48f612928b",
+      "bytes": 1243006,
+      "duration_s": 1.12,
+      "peak_dbfs": -8.9,
+      "flags": [
+        "category_doubt"
+      ]
+    },
+    "ding-chime/single-note-02.wav": {
+      "category": "ding-chime",
+      "file": "single-note-02.wav",
+      "original_relpath": "songpack/single-note/single-note-02.wav",
+      "sha1": "d456e8b87886221c3f41d20bd27c3cac4e3286c5",
+      "bytes": 1258662,
+      "duration_s": 1.297,
+      "peak_dbfs": -8.0,
+      "flags": [
+        "category_doubt"
+      ]
+    },
+    "ding-chime/single-note-03.wav": {
+      "category": "ding-chime",
+      "file": "single-note-03.wav",
+      "original_relpath": "songpack/single-note/single-note-03.wav",
+      "sha1": "0987f3b4e1740e2ec75483b0d790d15efaa988ce",
+      "bytes": 1299440,
+      "duration_s": 1.758,
+      "peak_dbfs": -7.7,
+      "flags": [
+        "category_doubt"
+      ]
+    },
+    "ding-chime/single-note-04.wav": {
+      "category": "ding-chime",
+      "file": "single-note-04.wav",
+      "original_relpath": "songpack/single-note/single-note-04.wav",
+      "sha1": "f240514ae9ddd55345faf23c87c5c027ee55b7d7",
+      "bytes": 1273850,
+      "duration_s": 1.469,
+      "peak_dbfs": -2.7,
+      "flags": [
+        "category_doubt"
+      ]
+    },
+    "ding-chime/single-note-05.wav": {
+      "category": "ding-chime",
+      "file": "single-note-05.wav",
+      "original_relpath": "songpack/single-note/single-note-05.wav",
+      "sha1": "5f26f4cb6b511f9b870feb40c6e7ba85e009018a",
+      "bytes": 1238564,
+      "duration_s": 1.07,
+      "peak_dbfs": -3.7,
+      "flags": [
+        "category_doubt"
+      ]
+    },
+    "ding-chime/single-note-06.wav": {
+      "category": "ding-chime",
+      "file": "single-note-06.wav",
+      "original_relpath": "songpack/single-note/single-note-06.wav",
+      "sha1": "0a1a6dd406a744c8142d7ddcd40997326a7798f3",
+      "bytes": 1279942,
+      "duration_s": 1.537,
+      "peak_dbfs": -3.4,
+      "flags": [
+        "category_doubt"
+      ]
+    },
+    "ding-chime/single-note-07.wav": {
+      "category": "ding-chime",
+      "file": "single-note-07.wav",
+      "original_relpath": "songpack/single-note/single-note-07.wav",
+      "sha1": "76396a45f59661135a9edc1bed84cedea7693a6a",
+      "bytes": 1257904,
+      "duration_s": 1.288,
+      "peak_dbfs": -4.6,
+      "flags": [
+        "category_doubt"
+      ]
+    },
+    "ding-chime/single-note-08.wav": {
+      "category": "ding-chime",
+      "file": "single-note-08.wav",
+      "original_relpath": "songpack/single-note/single-note-08.wav",
+      "sha1": "4a45f4957e5665f89cd9e213ed2ddbe968829c67",
+      "bytes": 1255138,
+      "duration_s": 1.257,
+      "peak_dbfs": -9.3,
+      "flags": [
+        "category_doubt"
+      ]
+    },
+    "ding-chime/single-note-09.wav": {
+      "category": "ding-chime",
+      "file": "single-note-09.wav",
+      "original_relpath": "songpack/single-note/single-note-09.wav",
+      "sha1": "04a16a7e62c666b4ce94421a02fc00fd27054c02",
+      "bytes": 1243876,
+      "duration_s": 1.13,
+      "peak_dbfs": -4.2,
+      "flags": [
+        "category_doubt"
+      ]
+    },
+    "ding-chime/single-note-10.wav": {
+      "category": "ding-chime",
+      "file": "single-note-10.wav",
+      "original_relpath": "songpack/single-note/single-note-10.wav",
+      "sha1": "c3ad2b52fcc5825420958997a052676efe4d66ca",
+      "bytes": 1280884,
+      "duration_s": 1.548,
+      "peak_dbfs": -5.9,
+      "flags": [
+        "category_doubt"
+      ]
+    },
+    "glitch/distortion-squiggly.wav": {
+      "category": "glitch",
+      "file": "distortion-squiggly.wav",
+      "original_relpath": "songpack/abstract/distortion-squiggly.wav",
+      "sha1": "4a7d84fdf1e30988f2c0b2960a649919173d90cd",
+      "bytes": 3298356,
+      "duration_s": 17.179,
+      "peak_dbfs": -7.5,
+      "flags": [
+        "over_15s",
+        "category_doubt"
+      ]
+    },
+    "impact/crash-with-glass.wav": {
+      "category": "impact",
+      "file": "crash-with-glass.wav",
+      "original_relpath": "songpack/abstract/crash-with-glass.wav",
+      "sha1": "af262880980439e4c433090197d8a081eb9ff841",
+      "bytes": 658232,
+      "duration_s": 3.428,
+      "peak_dbfs": -3.7,
+      "flags": []
+    },
+    "impact/door-01.wav": {
+      "category": "impact",
+      "file": "door-01.wav",
+      "original_relpath": "songpack/door/door-01.wav",
+      "sha1": "0e14b96604c7b7822abc1ef839b5ae25b6bef8e6",
+      "bytes": 1445468,
+      "duration_s": 3.441,
+      "peak_dbfs": -1.7,
+      "flags": [
+        "category_doubt"
+      ]
+    },
+    "impact/door-02.wav": {
+      "category": "impact",
+      "file": "door-02.wav",
+      "original_relpath": "songpack/door/door-02.wav",
+      "sha1": "60a76ae78cda07d076fcf164c0a2077dc968f3f6",
+      "bytes": 1528626,
+      "duration_s": 4.381,
+      "peak_dbfs": -2.0,
+      "flags": [
+        "category_doubt"
+      ]
+    },
+    "impact/door-03.wav": {
+      "category": "impact",
+      "file": "door-03.wav",
+      "original_relpath": "songpack/door/door-03.wav",
+      "sha1": "9da4b4209d73b23c3bc65210cc7196299e223adb",
+      "bytes": 1547944,
+      "duration_s": 4.599,
+      "peak_dbfs": -1.7,
+      "flags": [
+        "category_doubt"
+      ]
+    },
+    "impact/door-04.wav": {
+      "category": "impact",
+      "file": "door-04.wav",
+      "original_relpath": "songpack/door/door-04.wav",
+      "sha1": "a786a8b0ecc51ffee3c57a209662583b853c51d1",
+      "bytes": 1370078,
+      "duration_s": 2.59,
+      "peak_dbfs": 0.0,
+      "flags": [
+        "category_doubt"
+      ]
+    },
+    "impact/door-05.wav": {
+      "category": "impact",
+      "file": "door-05.wav",
+      "original_relpath": "songpack/door/door-05.wav",
+      "sha1": "f53fb273a986b90ddc3fce69524f742144b7c25d",
+      "bytes": 1258352,
+      "duration_s": 1.328,
+      "peak_dbfs": 0.0,
+      "flags": [
+        "category_doubt"
+      ]
+    },
+    "impact/door-06.wav": {
+      "category": "impact",
+      "file": "door-06.wav",
+      "original_relpath": "songpack/door/door-06.wav",
+      "sha1": "ded16e2ac273c0b71d8f8efbbcfb70a293470e01",
+      "bytes": 1359058,
+      "duration_s": 1.238,
+      "peak_dbfs": -0.3,
+      "flags": [
+        "category_doubt"
+      ]
+    },
+    "impact/door-07.wav": {
+      "category": "impact",
+      "file": "door-07.wav",
+      "original_relpath": "songpack/door/door-07.wav",
+      "sha1": "333202ffddf963ba457d9c81f4dbe7312063a509",
+      "bytes": 1357318,
+      "duration_s": 1.228,
+      "peak_dbfs": -0.4,
+      "flags": [
+        "category_doubt"
+      ]
+    },
+    "impact/door-08.wav": {
+      "category": "impact",
+      "file": "door-08.wav",
+      "original_relpath": "songpack/door/door-08.wav",
+      "sha1": "ec64d9172bf6504d27802fa9f45addf8175b2cbd",
+      "bytes": 1357666,
+      "duration_s": 1.23,
+      "peak_dbfs": -1.6,
+      "flags": [
+        "category_doubt"
+      ]
+    },
+    "impact/door-09.wav": {
+      "category": "impact",
+      "file": "door-09.wav",
+      "original_relpath": "songpack/door/door-09.wav",
+      "sha1": "90e70ff7e9a93005c466b2bb7e9ec9f55b274eeb",
+      "bytes": 2325322,
+      "duration_s": 6.715,
+      "peak_dbfs": -20.0,
+      "flags": [
+        "category_doubt"
+      ]
+    },
+    "impact/door-10.wav": {
+      "category": "impact",
+      "file": "door-10.wav",
+      "original_relpath": "songpack/door/door-10.wav",
+      "sha1": "c39ec868ad7cdad029c3fe2f4881d7b7bad7c22e",
+      "bytes": 1835886,
+      "duration_s": 7.851,
+      "peak_dbfs": -0.4,
+      "flags": [
+        "category_doubt"
+      ]
+    },
+    "impact/glass-break-01.wav": {
+      "category": "impact",
+      "file": "glass-break-01.wav",
+      "original_relpath": "songpack/abstract/glass-break-01.wav",
+      "sha1": "d0008608d754adc603371d942d2e6824ab0584e8",
+      "bytes": 268852,
+      "duration_s": 1.4,
+      "peak_dbfs": 0.0,
+      "flags": []
+    },
+    "impact/glass-break-02-high.wav": {
+      "category": "impact",
+      "file": "glass-break-02-high.wav",
+      "original_relpath": "songpack/abstract/glass-break-02-high.wav",
+      "sha1": "50c4631c7464c7ff9828ba7af28f0042fe83178e",
+      "bytes": 186376,
+      "duration_s": 0.97,
+      "peak_dbfs": 0.0,
+      "flags": []
+    },
+    "impact/glass-break-03-sharp.wav": {
+      "category": "impact",
+      "file": "glass-break-03-sharp.wav",
+      "original_relpath": "songpack/abstract/glass-break-03-sharp.wav",
+      "sha1": "7eb6af0883464652777913079317ecc211161eba",
+      "bytes": 121012,
+      "duration_s": 0.63,
+      "peak_dbfs": 0.0,
+      "flags": []
+    },
+    "impact/glass-break-05-short-dull.wav": {
+      "category": "impact",
+      "file": "glass-break-05-short-dull.wav",
+      "original_relpath": "songpack/abstract/glass-break-05-short-dull.wav",
+      "sha1": "f24e2e694c37ff9c1229055500c79e59db87813f",
+      "bytes": 183732,
+      "duration_s": 0.957,
+      "peak_dbfs": 0.0,
+      "flags": []
+    },
+    "impact/glass-break-06-bounce.wav": {
+      "category": "impact",
+      "file": "glass-break-06-bounce.wav",
+      "original_relpath": "songpack/abstract/glass-break-06-bounce.wav",
+      "sha1": "b8dd55dc6702acb2bf87804809d0ac277196ed04",
+      "bytes": 137652,
+      "duration_s": 0.717,
+      "peak_dbfs": 0.0,
+      "flags": []
+    },
+    "impact/glass-break-07-pop.wav": {
+      "category": "impact",
+      "file": "glass-break-07-pop.wav",
+      "original_relpath": "songpack/abstract/glass-break-07-pop.wav",
+      "sha1": "2e1a1cf287e7a6b51da4719710aef6eaf7dec27d",
+      "bytes": 140724,
+      "duration_s": 0.733,
+      "peak_dbfs": 0.0,
+      "flags": []
+    },
+    "impact/glass-break-08-short.wav": {
+      "category": "impact",
+      "file": "glass-break-08-short.wav",
+      "original_relpath": "songpack/abstract/glass-break-08-short.wav",
+      "sha1": "2262d64edd73ffec40dae294cadc39dfa8c1ab0d",
+      "bytes": 134196,
+      "duration_s": 0.699,
+      "peak_dbfs": 0.0,
+      "flags": []
+    },
+    "impact/glass-break-09-dropped.wav": {
+      "category": "impact",
+      "file": "glass-break-09-dropped.wav",
+      "original_relpath": "songpack/abstract/glass-break-09-dropped.wav",
+      "sha1": "619e55dbd0a96cb65220e4ed82507e07f6726c50",
+      "bytes": 210100,
+      "duration_s": 1.094,
+      "peak_dbfs": 0.0,
+      "flags": []
+    },
+    "impact/glass-break-10-light.wav": {
+      "category": "impact",
+      "file": "glass-break-10-light.wav",
+      "original_relpath": "songpack/abstract/glass-break-10-light.wav",
+      "sha1": "8402b2b43b37bdefd8186c3c522d705102803a05",
+      "bytes": 503244,
+      "duration_s": 2.621,
+      "peak_dbfs": -1.2,
+      "flags": []
+    },
+    "impact/glass-break-11-multiple-pieces.wav": {
+      "category": "impact",
+      "file": "glass-break-11-multiple-pieces.wav",
+      "original_relpath": "songpack/abstract/glass-break-11-multiple-pieces.wav",
+      "sha1": "614c3e96d56b86054885df541e4df3dc48588c49",
+      "bytes": 428084,
+      "duration_s": 2.229,
+      "peak_dbfs": 0.0,
+      "flags": []
+    },
+    "impact/glass-break-12-sharp.wav": {
+      "category": "impact",
+      "file": "glass-break-12-sharp.wav",
+      "original_relpath": "songpack/abstract/glass-break-12-sharp.wav",
+      "sha1": "cddff6247d6840e615a29ffb7c21fa702d8b7b1c",
+      "bytes": 280116,
+      "duration_s": 1.459,
+      "peak_dbfs": 0.0,
+      "flags": []
+    },
+    "impact/glass-break-13-small-pieces-chipped.wav": {
+      "category": "impact",
+      "file": "glass-break-13-small-pieces-chipped.wav",
+      "original_relpath": "songpack/abstract/glass-break-13-small-pieces-chipped.wav",
+      "sha1": "15ea5efca6468aa3d43896e30502406c7a0d3e31",
+      "bytes": 209716,
+      "duration_s": 1.092,
+      "peak_dbfs": 0.0,
+      "flags": []
+    },
+    "impact/glass-stomp-01-golden.wav": {
+      "category": "impact",
+      "file": "glass-stomp-01-golden.wav",
+      "original_relpath": "songpack/abstract/glass-stomp-01-golden.wav",
+      "sha1": "1bb405b7f4f59db559efce0fa61c9c780fbf9111",
+      "bytes": 219332,
+      "duration_s": 1.142,
+      "peak_dbfs": 0.0,
+      "flags": []
+    },
+    "impact/glass-stomp-02-stones-chipped.wav": {
+      "category": "impact",
+      "file": "glass-stomp-02-stones-chipped.wav",
+      "original_relpath": "songpack/abstract/glass-stomp-02-stones-chipped.wav",
+      "sha1": "c0a3e8cc6b9014a24052a93d4fefd1d2a7d893f6",
+      "bytes": 257076,
+      "duration_s": 1.339,
+      "peak_dbfs": 0.0,
+      "flags": []
+    },
+    "impact/guitar-hit-01-reverb.wav": {
+      "category": "impact",
+      "file": "guitar-hit-01-reverb.wav",
+      "original_relpath": "songpack/abstract/guitar-hit-01-reverb.wav",
+      "sha1": "d67569fd6d4577eb724c4c84e58b9864bbcd1e9f",
+      "bytes": 723508,
+      "duration_s": 3.768,
+      "peak_dbfs": 0.0,
+      "flags": [
+        "category_doubt"
+      ]
+    },
+    "impact/guitar-hit-02-short.wav": {
+      "category": "impact",
+      "file": "guitar-hit-02-short.wav",
+      "original_relpath": "songpack/abstract/guitar-hit-02-short.wav",
+      "sha1": "05286e26302edb42e8c2d8acf2af7ccf1715c89a",
+      "bytes": 736564,
+      "duration_s": 3.836,
+      "peak_dbfs": 0.0,
+      "flags": [
+        "category_doubt"
+      ]
+    },
+    "impact/smashed.wav": {
+      "category": "impact",
+      "file": "smashed.wav",
+      "original_relpath": "songpack/abstract/smashed.wav",
+      "sha1": "db61c8e5198fb47d8ab055ddc2b5700e270bceb7",
+      "bytes": 542260,
+      "duration_s": 2.824,
+      "peak_dbfs": -6.4,
+      "flags": []
+    },
+    "impact/typewriter-drop.wav": {
+      "category": "impact",
+      "file": "typewriter-drop.wav",
+      "original_relpath": "songpack/typewriter-antique/typewriter-drop.wav",
+      "sha1": "773fc6cf1ce34328337940c8a5246b90fd510d81",
+      "bytes": 985342,
+      "duration_s": 5.585,
+      "peak_dbfs": -0.3,
+      "flags": []
+    },
+    "impact/wet-splat-01.wav": {
+      "category": "impact",
+      "file": "wet-splat-01.wav",
+      "original_relpath": "songpack/abstract/wet-splat-01.wav",
+      "sha1": "664111827816f1e707e350728ed11fa06ea0b0f1",
+      "bytes": 223796,
+      "duration_s": 1.165,
+      "peak_dbfs": -0.2,
+      "flags": []
+    },
+    "impact/wet-splat-02.wav": {
+      "category": "impact",
+      "file": "wet-splat-02.wav",
+      "original_relpath": "songpack/abstract/wet-splat-02.wav",
+      "sha1": "d23379685f8107d2fb1f77a5bdd443387dbf2309",
+      "bytes": 359604,
+      "duration_s": 1.873,
+      "peak_dbfs": 0.0,
+      "flags": []
+    },
+    "impact/wet-splat-03.wav": {
+      "category": "impact",
+      "file": "wet-splat-03.wav",
+      "original_relpath": "songpack/abstract/wet-splat-03.wav",
+      "sha1": "0edb994f485697a1ee2ba8edc45c4247c50d6a5a",
+      "bytes": 146740,
+      "duration_s": 0.764,
+      "peak_dbfs": -1.8,
+      "flags": []
+    },
+    "impact/wet-splat-04.wav": {
+      "category": "impact",
+      "file": "wet-splat-04.wav",
+      "original_relpath": "songpack/abstract/wet-splat-04.wav",
+      "sha1": "22889bdf28ccab84d2e57e1dca8f0468dbaf8876",
+      "bytes": 283188,
+      "duration_s": 1.475,
+      "peak_dbfs": -6.3,
+      "flags": []
+    },
+    "impact/wet-splat-05.wav": {
+      "category": "impact",
+      "file": "wet-splat-05.wav",
+      "original_relpath": "songpack/abstract/wet-splat-05.wav",
+      "sha1": "d37ebdc9b7161f666a3b246a16ffba81a0fe2e20",
+      "bytes": 354772,
+      "duration_s": 1.848,
+      "peak_dbfs": -6.5,
+      "flags": []
+    },
+    "impact/window-crack-01.wav": {
+      "category": "impact",
+      "file": "window-crack-01.wav",
+      "original_relpath": "songpack/abstract/window-crack-01.wav",
+      "sha1": "384f285744f1c38742b355bf9ffdd6e42c1de56f",
+      "bytes": 127540,
+      "duration_s": 0.664,
+      "peak_dbfs": 0.0,
+      "flags": []
+    },
+    "impact/window-crack-02.wav": {
+      "category": "impact",
+      "file": "window-crack-02.wav",
+      "original_relpath": "songpack/abstract/window-crack-02.wav",
+      "sha1": "05b6da68a7cff214448e60172d74340a936ffed2",
+      "bytes": 199220,
+      "duration_s": 1.037,
+      "peak_dbfs": 0.0,
+      "flags": []
+    },
+    "misc/digital-01.wav": {
+      "category": "misc",
+      "file": "digital-01.wav",
+      "original_relpath": "songpack/digital/digital-01.wav",
+      "sha1": "019a0e7a0942efe094057affb54a8621da7398f3",
+      "bytes": 1906162,
+      "duration_s": 2.586,
+      "peak_dbfs": 0.0,
+      "flags": [
+        "category_doubt"
+      ]
+    },
+    "misc/digital-02.wav": {
+      "category": "misc",
+      "file": "digital-02.wav",
+      "original_relpath": "songpack/digital/digital-02.wav",
+      "sha1": "b7f7c78cce5df997921097efc6eee9cd77ab89f7",
+      "bytes": 1709088,
+      "duration_s": 1.919,
+      "peak_dbfs": 0.0,
+      "flags": [
+        "category_doubt"
+      ]
+    },
+    "misc/digital-03.wav": {
+      "category": "misc",
+      "file": "digital-03.wav",
+      "original_relpath": "songpack/digital/digital-03.wav",
+      "sha1": "79861732210fc600e5d16108b23dd267cdec7171",
+      "bytes": 2058410,
+      "duration_s": 3.128,
+      "peak_dbfs": 0.0,
+      "flags": [
+        "category_doubt"
+      ]
+    },
+    "misc/digital-04.wav": {
+      "category": "misc",
+      "file": "digital-04.wav",
+      "original_relpath": "songpack/digital/digital-04.wav",
+      "sha1": "51805843c6d780cb76a02d5b6435b58abf86785f",
+      "bytes": 2011870,
+      "duration_s": 2.961,
+      "peak_dbfs": -0.1,
+      "flags": [
+        "category_doubt"
+      ]
+    },
+    "misc/digital-05.wav": {
+      "category": "misc",
+      "file": "digital-05.wav",
+      "original_relpath": "songpack/digital/digital-05.wav",
+      "sha1": "21443fc18a3e3646871fa52ac2b5f012ef0dec23",
+      "bytes": 1652338,
+      "duration_s": 1.71,
+      "peak_dbfs": -0.8,
+      "flags": [
+        "category_doubt"
+      ]
+    },
+    "misc/digital-06.wav": {
+      "category": "misc",
+      "file": "digital-06.wav",
+      "original_relpath": "songpack/digital/digital-06.wav",
+      "sha1": "ed5239b7c80f3d1cb947311cf1b0b09a5cd8cb14",
+      "bytes": 1845666,
+      "duration_s": 2.377,
+      "peak_dbfs": 0.0,
+      "flags": [
+        "category_doubt"
+      ]
+    },
+    "misc/digital-07.wav": {
+      "category": "misc",
+      "file": "digital-07.wav",
+      "original_relpath": "songpack/digital/digital-07.wav",
+      "sha1": "9e79febb290d7f2632f3e904875ae09186f9f883",
+      "bytes": 1928926,
+      "duration_s": 2.669,
+      "peak_dbfs": 0.0,
+      "flags": [
+        "category_doubt"
+      ]
+    },
+    "misc/digital-08.wav": {
+      "category": "misc",
+      "file": "digital-08.wav",
+      "original_relpath": "songpack/digital/digital-08.wav",
+      "sha1": "50a525e1d632cbd9aa879202d37cb980f2890a77",
+      "bytes": 1722908,
+      "duration_s": 1.96,
+      "peak_dbfs": 0.0,
+      "flags": [
+        "category_doubt"
+      ]
+    },
+    "misc/digital-09.wav": {
+      "category": "misc",
+      "file": "digital-09.wav",
+      "original_relpath": "songpack/digital/digital-09.wav",
+      "sha1": "e85c52600cb5d33d950e8ef9e539a976cc5d0a4c",
+      "bytes": 1781884,
+      "duration_s": 2.169,
+      "peak_dbfs": -2.6,
+      "flags": [
+        "category_doubt"
+      ]
+    },
+    "misc/digital-10.wav": {
+      "category": "misc",
+      "file": "digital-10.wav",
+      "original_relpath": "songpack/digital/digital-10.wav",
+      "sha1": "220b36b2587457cb9f0227d83fabd9c1fc8a1664",
+      "bytes": 1918928,
+      "duration_s": 2.628,
+      "peak_dbfs": -0.8,
+      "flags": [
+        "category_doubt"
+      ]
+    },
+    "misc/guitar-amp-noise-feedback.wav": {
+      "category": "misc",
+      "file": "guitar-amp-noise-feedback.wav",
+      "original_relpath": "songpack/abstract/guitar-amp-noise-feedback.wav",
+      "sha1": "cdf284d6549d98a787bcda75e14696968a2fa0ff",
+      "bytes": 1955892,
+      "duration_s": 10.187,
+      "peak_dbfs": -8.5,
+      "flags": [
+        "category_doubt"
+      ]
+    },
+    "misc/heartbeat-progressive-slow-to-fast.wav": {
+      "category": "misc",
+      "file": "heartbeat-progressive-slow-to-fast.wav",
+      "original_relpath": "songpack/abstract/heartbeat-progressive-slow-to-fast.wav",
+      "sha1": "7120fa56baed8009e406a2084c0c2765e38c5c2b",
+      "bytes": 3561268,
+      "duration_s": 18.548,
+      "peak_dbfs": -7.1,
+      "flags": [
+        "over_15s",
+        "category_doubt"
+      ]
+    },
+    "misc/heartbeat-slow.wav": {
+      "category": "misc",
+      "file": "heartbeat-slow.wav",
+      "original_relpath": "songpack/abstract/heartbeat-slow.wav",
+      "sha1": "dc690932049d6ceef59c0d4861d13e51d9374da1",
+      "bytes": 2526772,
+      "duration_s": 13.16,
+      "peak_dbfs": -3.6,
+      "flags": [
+        "category_doubt"
+      ]
+    },
+    "misc/heartbeat.wav": {
+      "category": "misc",
+      "file": "heartbeat.wav",
+      "original_relpath": "songpack/abstract/heartbeat.wav",
+      "sha1": "b1cbefb4d80b65c9254f3a466d8474ff622079e2",
+      "bytes": 2973748,
+      "duration_s": 15.488,
+      "peak_dbfs": 0.0,
+      "flags": [
+        "over_15s",
+        "category_doubt"
+      ]
+    },
+    "misc/hot-sizzle-reverb.wav": {
+      "category": "misc",
+      "file": "hot-sizzle-reverb.wav",
+      "original_relpath": "songpack/abstract/hot-sizzle-reverb.wav",
+      "sha1": "49faea3ee602ab0141b4e7c4811122f1bccf763d",
+      "bytes": 1742648,
+      "duration_s": 9.076,
+      "peak_dbfs": -3.2,
+      "flags": [
+        "category_doubt"
+      ]
+    },
+    "misc/liquid-filling-up-echo-sewer.wav": {
+      "category": "misc",
+      "file": "liquid-filling-up-echo-sewer.wav",
+      "original_relpath": "songpack/abstract/liquid-filling-up-echo-sewer.wav",
+      "sha1": "624cb1da4e6444085b5bfe987305537a7f519ef8",
+      "bytes": 2404404,
+      "duration_s": 12.523,
+      "peak_dbfs": -7.9,
+      "flags": [
+        "category_doubt"
+      ]
+    },
+    "misc/medical-heart-fast-01.wav": {
+      "category": "misc",
+      "file": "medical-heart-fast-01.wav",
+      "original_relpath": "songpack/heartbeat/medical-heart-fast-01.wav",
+      "sha1": "912f09d12c2000a83d0c1774224ffe93585a881f",
+      "bytes": 5404410,
+      "duration_s": 9.375,
+      "peak_dbfs": 0.0,
+      "flags": []
+    },
+    "misc/medical-heart-slow-01.wav": {
+      "category": "misc",
+      "file": "medical-heart-slow-01.wav",
+      "original_relpath": "songpack/heartbeat/medical-heart-slow-01.wav",
+      "sha1": "393368feb4dbfc63923e8673838f77aec7d03287",
+      "bytes": 3315894,
+      "duration_s": 5.749,
+      "peak_dbfs": 0.0,
+      "flags": []
+    },
+    "misc/medical-heart-stopping-01.wav": {
+      "category": "misc",
+      "file": "medical-heart-stopping-01.wav",
+      "original_relpath": "songpack/heartbeat/medical-heart-stopping-01.wav",
+      "sha1": "5964556674a3ca6ea39512fdc9a8e3d1952b8614",
+      "bytes": 9727218,
+      "duration_s": 16.88,
+      "peak_dbfs": 0.0,
+      "flags": [
+        "over_15s"
+      ]
+    },
+    "misc/radio-station-search.wav": {
+      "category": "misc",
+      "file": "radio-station-search.wav",
+      "original_relpath": "songpack/abstract/radio-station-search.wav",
+      "sha1": "0d0d9401fd47e1073f8ef6c947bfd310d1aa7f01",
+      "bytes": 2410548,
+      "duration_s": 12.555,
+      "peak_dbfs": -4.2,
+      "flags": [
+        "category_doubt"
+      ]
+    },
+    "misc/record-mix.wav": {
+      "category": "misc",
+      "file": "record-mix.wav",
+      "original_relpath": "songpack/abstract/record-mix.wav",
+      "sha1": "47cc7f5f4b3a40b66c379383ca413776ee20754f",
+      "bytes": 142388,
+      "duration_s": 0.741,
+      "peak_dbfs": -1.5,
+      "flags": [
+        "category_doubt"
+      ]
+    },
+    "misc/record-scratch.wav": {
+      "category": "misc",
+      "file": "record-scratch.wav",
+      "original_relpath": "songpack/abstract/record-scratch.wav",
+      "sha1": "d6edf4f3fbc52251d436ba8be4751e44e696244d",
+      "bytes": 508192,
+      "duration_s": 2.647,
+      "peak_dbfs": 0.0,
+      "flags": [
+        "category_doubt"
+      ]
+    },
+    "misc/sizzle-scolding.wav": {
+      "category": "misc",
+      "file": "sizzle-scolding.wav",
+      "original_relpath": "songpack/abstract/sizzle-scolding.wav",
+      "sha1": "8a3acb4a12780da8593ee9854d8da069d1052c83",
+      "bytes": 1551924,
+      "duration_s": 8.083,
+      "peak_dbfs": 0.0,
+      "flags": [
+        "category_doubt"
+      ]
+    },
+    "misc/tone-cross.wav": {
+      "category": "misc",
+      "file": "tone-cross.wav",
+      "original_relpath": "songpack/abstract/tone-cross.wav",
+      "sha1": "aeab8d5f7c59b2f1d41970db7f224d24e1c4c2d6",
+      "bytes": 827700,
+      "duration_s": 4.311,
+      "peak_dbfs": -2.4,
+      "flags": [
+        "category_doubt"
+      ]
+    },
+    "misc/tv-off.wav": {
+      "category": "misc",
+      "file": "tv-off.wav",
+      "original_relpath": "songpack/abstract/tv-off.wav",
+      "sha1": "07224f1f3e7cf4fcb2292141be45bc79d15778ed",
+      "bytes": 44596,
+      "duration_s": 0.232,
+      "peak_dbfs": -5.3,
+      "flags": [
+        "category_doubt"
+      ]
+    },
+    "misc/water-slosh.wav": {
+      "category": "misc",
+      "file": "water-slosh.wav",
+      "original_relpath": "songpack/abstract/water-slosh.wav",
+      "sha1": "adf85d884ef9b8c43e99ad7e9406c60964baa9ad",
+      "bytes": 849972,
+      "duration_s": 4.427,
+      "peak_dbfs": -8.3,
+      "flags": [
+        "category_doubt"
+      ]
+    },
+    "misc/water-splashes-dark.wav": {
+      "category": "misc",
+      "file": "water-splashes-dark.wav",
+      "original_relpath": "songpack/abstract/water-splashes-dark.wav",
+      "sha1": "d6e66bb6363c2f58996d86402c14c564a5a86fef",
+      "bytes": 1433652,
+      "duration_s": 7.467,
+      "peak_dbfs": -9.8,
+      "flags": [
+        "category_doubt"
+      ]
+    },
+    "misc/weird-noise.wav": {
+      "category": "misc",
+      "file": "weird-noise.wav",
+      "original_relpath": "songpack/abstract/weird-noise.wav",
+      "sha1": "ed3d32cedfd116d6db1ad9db7f735cdd22241f66",
+      "bytes": 1311476,
+      "duration_s": 6.83,
+      "peak_dbfs": 0.0,
+      "flags": [
+        "category_doubt"
+      ]
+    },
+    "paper-pencil/calligraphy-stroke-6s.mp3": {
+      "category": "paper-pencil",
+      "file": "calligraphy-stroke-6s.mp3",
+      "original_relpath": "songpack/calligraphy/calligraphy-stroke-6s.mp3",
+      "sha1": "bf5e36757f545fd5fc47dec1183d92473825c38f",
+      "bytes": 54480,
+      "duration_s": 6.048,
+      "peak_dbfs": -20.2,
+      "flags": []
+    },
+    "paper-pencil/nib-bite-1s.mp3": {
+      "category": "paper-pencil",
+      "file": "nib-bite-1s.mp3",
+      "original_relpath": "songpack/calligraphy/nib-bite-1s.mp3",
+      "sha1": "c89f4ddfbea8e30e8ca69d164709cf99ab7de9f2",
+      "bytes": 10001,
+      "duration_s": 1.097,
+      "peak_dbfs": -0.1,
+      "flags": []
+    },
+    "paper-pencil/page-feed.wav": {
+      "category": "paper-pencil",
+      "file": "page-feed.wav",
+      "original_relpath": "songpack/typewriter/page-feed.wav",
+      "sha1": "2ec527b07c09fa915585936c67310338e09a8d36",
+      "bytes": 1693546,
+      "duration_s": 4.8,
+      "peak_dbfs": -11.6,
+      "flags": []
+    },
+    "paper-pencil/page-holder-close.wav": {
+      "category": "paper-pencil",
+      "file": "page-holder-close.wav",
+      "original_relpath": "songpack/typewriter/page-holder-close.wav",
+      "sha1": "9d9bb7afa387b00a1655f3951c650821fd4bad62",
+      "bytes": 489410,
+      "duration_s": 1.387,
+      "peak_dbfs": -0.3,
+      "flags": []
+    },
+    "paper-pencil/paper-crumble-01.wav": {
+      "category": "paper-pencil",
+      "file": "paper-crumble-01.wav",
+      "original_relpath": "songpack/abstract/paper-crumble-01.wav",
+      "sha1": "c2e2d34d41491bbe41d354e89ab16c953009e259",
+      "bytes": 697396,
+      "duration_s": 3.632,
+      "peak_dbfs": 0.0,
+      "flags": []
+    },
+    "paper-pencil/paper-crumble-02.wav": {
+      "category": "paper-pencil",
+      "file": "paper-crumble-02.wav",
+      "original_relpath": "songpack/abstract/paper-crumble-02.wav",
+      "sha1": "347a88a47316d4b419685f96b49d5104d1ae475e",
+      "bytes": 458804,
+      "duration_s": 2.389,
+      "peak_dbfs": -0.0,
+      "flags": []
+    },
+    "paper-pencil/paper-crumble-03-short.wav": {
+      "category": "paper-pencil",
+      "file": "paper-crumble-03-short.wav",
+      "original_relpath": "songpack/abstract/paper-crumble-03-short.wav",
+      "sha1": "cc3f8ce75295928d20a4bd22ea964e992194196a",
+      "bytes": 368692,
+      "duration_s": 1.92,
+      "peak_dbfs": -4.0,
+      "flags": []
+    },
+    "paper-pencil/paper-crunch.wav": {
+      "category": "paper-pencil",
+      "file": "paper-crunch.wav",
+      "original_relpath": "songpack/typewriter-antique/paper-crunch.wav",
+      "sha1": "1adcb3d7ca2bb037379f970308ab6fb465466d3e",
+      "bytes": 396290,
+      "duration_s": 2.246,
+      "peak_dbfs": -0.3,
+      "flags": []
+    },
+    "paper-pencil/paper-feed.wav": {
+      "category": "paper-pencil",
+      "file": "paper-feed.wav",
+      "original_relpath": "songpack/typewriter-antique/paper-feed.wav",
+      "sha1": "cf195c8a434f639dca078b922503e6193809fe5f",
+      "bytes": 660890,
+      "duration_s": 3.746,
+      "peak_dbfs": -6.9,
+      "flags": []
+    },
+    "paper-pencil/paper-finished.wav": {
+      "category": "paper-pencil",
+      "file": "paper-finished.wav",
+      "original_relpath": "songpack/typewriter-antique/paper-finished.wav",
+      "sha1": "8f4e7dbaae4dbc905fc3e86e6e92de53dedb7aeb",
+      "bytes": 480554,
+      "duration_s": 2.723,
+      "peak_dbfs": -0.3,
+      "flags": []
+    },
+    "paper-pencil/paper-fold.wav": {
+      "category": "paper-pencil",
+      "file": "paper-fold.wav",
+      "original_relpath": "songpack/typewriter-antique/paper-fold.wav",
+      "sha1": "790f5fc89c524950c7ce172d06efe53d27aa87ef",
+      "bytes": 444330,
+      "duration_s": 2.518,
+      "peak_dbfs": -2.5,
+      "flags": []
+    },
+    "paper-pencil/paper-guide-close.wav": {
+      "category": "paper-pencil",
+      "file": "paper-guide-close.wav",
+      "original_relpath": "songpack/typewriter-antique/paper-guide-close.wav",
+      "sha1": "6de6bbca1859275ea41d86d7983c8e87f37a0a69",
+      "bytes": 135626,
+      "duration_s": 0.768,
+      "peak_dbfs": -0.3,
+      "flags": []
+    },
+    "paper-pencil/paper-load.wav": {
+      "category": "paper-pencil",
+      "file": "paper-load.wav",
+      "original_relpath": "songpack/typewriter-antique/paper-load.wav",
+      "sha1": "206eb007122cb2577aaae17006bc0eea0016cc7b",
+      "bytes": 663254,
+      "duration_s": 3.759,
+      "peak_dbfs": -0.3,
+      "flags": []
+    },
+    "paper-pencil/paper-rip-fast-01-scratch-duct-tape.wav": {
+      "category": "paper-pencil",
+      "file": "paper-rip-fast-01-scratch-duct-tape.wav",
+      "original_relpath": "songpack/abstract/paper-rip-fast-01-scratch-duct-tape.wav",
+      "sha1": "a9871d09a2a59dce02e65512b30142ec04978f11",
+      "bytes": 74484,
+      "duration_s": 0.388,
+      "peak_dbfs": -3.1,
+      "flags": []
+    },
+    "paper-pencil/paper-rip-fast-02-scratch-duct-tape.wav": {
+      "category": "paper-pencil",
+      "file": "paper-rip-fast-02-scratch-duct-tape.wav",
+      "original_relpath": "songpack/abstract/paper-rip-fast-02-scratch-duct-tape.wav",
+      "sha1": "6e8d1f8dc295872f8be562c16b079ad68f6d103b",
+      "bytes": 89268,
+      "duration_s": 0.465,
+      "peak_dbfs": -1.3,
+      "flags": []
+    },
+    "paper-pencil/paper-tear-fast-scratch.wav": {
+      "category": "paper-pencil",
+      "file": "paper-tear-fast-scratch.wav",
+      "original_relpath": "songpack/abstract/paper-tear-fast-scratch.wav",
+      "sha1": "95e89ebda961f8620eb75f3c8563d7fe3f6e99d4",
+      "bytes": 64436,
+      "duration_s": 0.335,
+      "peak_dbfs": -8.7,
+      "flags": []
+    },
+    "paper-pencil/paper-tear-harsh.wav": {
+      "category": "paper-pencil",
+      "file": "paper-tear-harsh.wav",
+      "original_relpath": "songpack/abstract/paper-tear-harsh.wav",
+      "sha1": "1aca04e88b0c695d3196767d17e2f0df2a40a856",
+      "bytes": 297524,
+      "duration_s": 1.549,
+      "peak_dbfs": -7.2,
+      "flags": []
+    },
+    "paper-pencil/paper-tear-long-and-slow-scratch.wav": {
+      "category": "paper-pencil",
+      "file": "paper-tear-long-and-slow-scratch.wav",
+      "original_relpath": "songpack/abstract/paper-tear-long-and-slow-scratch.wav",
+      "sha1": "f22504efff9c9458e765cbf7ebbe418cd43df70d",
+      "bytes": 986164,
+      "duration_s": 5.136,
+      "peak_dbfs": 0.0,
+      "flags": []
+    },
+    "paper-pencil/paper-tear-slow-scratch.wav": {
+      "category": "paper-pencil",
+      "file": "paper-tear-slow-scratch.wav",
+      "original_relpath": "songpack/abstract/paper-tear-slow-scratch.wav",
+      "sha1": "7ab8a04aacac20ecdb30a8601612581e0bdfecba",
+      "bytes": 491572,
+      "duration_s": 2.56,
+      "peak_dbfs": -1.4,
+      "flags": []
+    },
+    "paper-pencil/paper-turn.wav": {
+      "category": "paper-pencil",
+      "file": "paper-turn.wav",
+      "original_relpath": "songpack/abstract/paper-turn.wav",
+      "sha1": "ba2a16a8e663883a437362ef130d50dfe5ca07f3",
+      "bytes": 270388,
+      "duration_s": 1.408,
+      "peak_dbfs": -4.3,
+      "flags": []
+    },
+    "paper-pencil/writing-loop-59s.mp3": {
+      "category": "paper-pencil",
+      "file": "writing-loop-59s.mp3",
+      "original_relpath": "songpack/calligraphy/writing-loop-59s.mp3",
+      "sha1": "068a7f9492b1ba8f53a2541845689e510018cf99",
+      "bytes": 564720,
+      "duration_s": 59.112,
+      "peak_dbfs": 0.0,
+      "flags": [
+        "over_15s"
+      ]
+    },
+    "paper-pencil/writing-session-5min.mp3": {
+      "category": "paper-pencil",
+      "file": "writing-session-5min.mp3",
+      "original_relpath": "songpack/calligraphy/writing-session-5min.mp3",
+      "sha1": "5f5dbbb70556d3c72835b8b362185cb21540c18a",
+      "bytes": 3116352,
+      "duration_s": 321.312,
+      "peak_dbfs": -0.0,
+      "flags": [
+        "over_15s"
+      ]
+    },
+    "riser/bell-reverse-01-low.wav": {
+      "category": "riser",
+      "file": "bell-reverse-01-low.wav",
+      "original_relpath": "songpack/abstract/bell-reverse-01-low.wav",
+      "sha1": "bdba054ca7f816eaea1a844c836753f05b5056b3",
+      "bytes": 1509428,
+      "duration_s": 7.861,
+      "peak_dbfs": 0.0,
+      "flags": []
+    },
+    "riser/bell-reverse-02-sharp.wav": {
+      "category": "riser",
+      "file": "bell-reverse-02-sharp.wav",
+      "original_relpath": "songpack/abstract/bell-reverse-02-sharp.wav",
+      "sha1": "8407083210896911282bf80ad767936bdaa9cf05",
+      "bytes": 1472564,
+      "duration_s": 7.669,
+      "peak_dbfs": -4.2,
+      "flags": []
+    },
+    "riser/bell-reverse-03-gleam.wav": {
+      "category": "riser",
+      "file": "bell-reverse-03-gleam.wav",
+      "original_relpath": "songpack/abstract/bell-reverse-03-gleam.wav",
+      "sha1": "139087bcd4fd1c3e508fc95dbf1d58df5feaa6f8",
+      "bytes": 1845300,
+      "duration_s": 9.611,
+      "peak_dbfs": -10.3,
+      "flags": []
+    },
+    "riser/reverse-gleam-high-frequency.wav": {
+      "category": "riser",
+      "file": "reverse-gleam-high-frequency.wav",
+      "original_relpath": "songpack/abstract/reverse-gleam-high-frequency.wav",
+      "sha1": "49db969852983cc3f943ac2fcac49bd521c6d774",
+      "bytes": 937012,
+      "duration_s": 4.88,
+      "peak_dbfs": 0.0,
+      "flags": [
+        "category_doubt"
+      ]
+    },
+    "riser/reverse-suck.wav": {
+      "category": "riser",
+      "file": "reverse-suck.wav",
+      "original_relpath": "songpack/abstract/reverse-suck.wav",
+      "sha1": "d2fcdba2f61d8aa087bb784098b9a2ee05ae624a",
+      "bytes": 488500,
+      "duration_s": 2.544,
+      "peak_dbfs": 0.0,
+      "flags": [
+        "category_doubt"
+      ]
+    },
+    "riser/rocky-build-up.wav": {
+      "category": "riser",
+      "file": "rocky-build-up.wav",
+      "original_relpath": "songpack/abstract/rocky-build-up.wav",
+      "sha1": "db71ea3bb8cd0e158c24819986be3b4be27af22d",
+      "bytes": 2355348,
+      "duration_s": 12.267,
+      "peak_dbfs": 0.0,
+      "flags": [
+        "category_doubt"
+      ]
+    },
+    "slide/paper-shifting.wav": {
+      "category": "slide",
+      "file": "paper-shifting.wav",
+      "original_relpath": "songpack/abstract/paper-shifting.wav",
+      "sha1": "403ee08c4009132f7b402d3f601db73ac2928af5",
+      "bytes": 245812,
+      "duration_s": 1.28,
+      "peak_dbfs": -8.9,
+      "flags": []
+    },
+    "slide/slide-01.wav": {
+      "category": "slide",
+      "file": "slide-01.wav",
+      "original_relpath": "songpack/slide/slide-01.wav",
+      "sha1": "6dd01cd20759f283841cec6962f6c7a54658b776",
+      "bytes": 1255590,
+      "duration_s": 0.8,
+      "peak_dbfs": -0.2,
+      "flags": []
+    },
+    "slide/slide-02.wav": {
+      "category": "slide",
+      "file": "slide-02.wav",
+      "original_relpath": "songpack/slide/slide-02.wav",
+      "sha1": "3433da723a14ee6096198d64a09812929604d385",
+      "bytes": 1638990,
+      "duration_s": 3.467,
+      "peak_dbfs": -0.2,
+      "flags": []
+    },
+    "slide/slide-03.wav": {
+      "category": "slide",
+      "file": "slide-03.wav",
+      "original_relpath": "songpack/slide/slide-03.wav",
+      "sha1": "12ba185fa4fa5bbccc0fed93a3f893bc61a0a41c",
+      "bytes": 1236188,
+      "duration_s": 0.665,
+      "peak_dbfs": -5.6,
+      "flags": []
+    },
+    "slide/slide-04.wav": {
+      "category": "slide",
+      "file": "slide-04.wav",
+      "original_relpath": "songpack/slide/slide-04.wav",
+      "sha1": "6761254e1e66301b4420e70d8c5ba0a8928c56c8",
+      "bytes": 1172598,
+      "duration_s": 0.228,
+      "peak_dbfs": -8.5,
+      "flags": []
+    },
+    "slide/slide-05.wav": {
+      "category": "slide",
+      "file": "slide-05.wav",
+      "original_relpath": "songpack/slide/slide-05.wav",
+      "sha1": "182ba986e04cb021058cdd5555e57694a3a9aaaa",
+      "bytes": 1157498,
+      "duration_s": 0.119,
+      "peak_dbfs": -8.5,
+      "flags": []
+    },
+    "slide/slide-06.wav": {
+      "category": "slide",
+      "file": "slide-06.wav",
+      "original_relpath": "songpack/slide/slide-06.wav",
+      "sha1": "b8352edc606f341df653098d328019a1eff60796",
+      "bytes": 1176896,
+      "duration_s": 0.254,
+      "peak_dbfs": -11.3,
+      "flags": []
+    },
+    "slide/slide-07.wav": {
+      "category": "slide",
+      "file": "slide-07.wav",
+      "original_relpath": "songpack/slide/slide-07.wav",
+      "sha1": "af19785746e9cea9084e21a703844b33c132bcf5",
+      "bytes": 1280528,
+      "duration_s": 0.973,
+      "peak_dbfs": -17.0,
+      "flags": []
+    },
+    "slide/slide-08.wav": {
+      "category": "slide",
+      "file": "slide-08.wav",
+      "original_relpath": "songpack/slide/slide-08.wav",
+      "sha1": "da23244a357a0a540b4b9761c858dc3554765575",
+      "bytes": 1234256,
+      "duration_s": 0.652,
+      "peak_dbfs": -25.3,
+      "flags": []
+    },
+    "slide/slide-09.wav": {
+      "category": "slide",
+      "file": "slide-09.wav",
+      "original_relpath": "songpack/slide/slide-09.wav",
+      "sha1": "ce92838aedd07a86e0e07c56f390e2ed6ff47f1d",
+      "bytes": 1466094,
+      "duration_s": 1.1,
+      "peak_dbfs": -13.8,
+      "flags": []
+    },
+    "slide/slide-10.wav": {
+      "category": "slide",
+      "file": "slide-10.wav",
+      "original_relpath": "songpack/slide/slide-10.wav",
+      "sha1": "52c74fc5a07b662bfea88f0913a2d34ab7a8fcb0",
+      "bytes": 1219524,
+      "duration_s": 0.554,
+      "peak_dbfs": -16.5,
+      "flags": []
+    },
+    "sparkle-magic/magic-zing.wav": {
+      "category": "sparkle-magic",
+      "file": "magic-zing.wav",
+      "original_relpath": "songpack/abstract/magic-zing.wav",
+      "sha1": "1444d6e15ef40c5b00c5eaa10d09c68218a34b89",
+      "bytes": 988596,
+      "duration_s": 5.149,
+      "peak_dbfs": 0.0,
+      "flags": []
+    },
+    "stinger/cinematic-01.wav": {
+      "category": "stinger",
+      "file": "cinematic-01.wav",
+      "original_relpath": "songpack/cinematic/cinematic-01.wav",
+      "sha1": "b81ae7ee61cdc3c808515f2b860d7054029ddc5a",
+      "bytes": 1382754,
+      "duration_s": 1.343,
+      "peak_dbfs": -0.1,
+      "flags": [
+        "category_doubt"
+      ]
+    },
+    "stinger/cinematic-02.wav": {
+      "category": "stinger",
+      "file": "cinematic-02.wav",
+      "original_relpath": "songpack/cinematic/cinematic-02.wav",
+      "sha1": "8a14cbce0ecf179a26969e2d499c11df73a223ce",
+      "bytes": 1382754,
+      "duration_s": 1.343,
+      "peak_dbfs": -0.1,
+      "flags": [
+        "category_doubt"
+      ]
+    },
+    "stinger/cinematic-03.wav": {
+      "category": "stinger",
+      "file": "cinematic-03.wav",
+      "original_relpath": "songpack/cinematic/cinematic-03.wav",
+      "sha1": "459413f921d4d6e8ab2955e904c746c10431b75c",
+      "bytes": 1619742,
+      "duration_s": 2.687,
+      "peak_dbfs": -0.1,
+      "flags": [
+        "category_doubt"
+      ]
+    },
+    "stinger/cinematic-04.wav": {
+      "category": "stinger",
+      "file": "cinematic-04.wav",
+      "original_relpath": "songpack/cinematic/cinematic-04.wav",
+      "sha1": "a48ca844b1faa97086b8b7064e29f1fb322c4ea7",
+      "bytes": 1619746,
+      "duration_s": 2.687,
+      "peak_dbfs": -0.1,
+      "flags": [
+        "category_doubt"
+      ]
+    },
+    "stinger/cinematic-05.wav": {
+      "category": "stinger",
+      "file": "cinematic-05.wav",
+      "original_relpath": "songpack/cinematic/cinematic-05.wav",
+      "sha1": "163f00927c976152f1d6033206052f510a3be6da",
+      "bytes": 1619742,
+      "duration_s": 2.687,
+      "peak_dbfs": -0.1,
+      "flags": [
+        "category_doubt"
+      ]
+    },
+    "stinger/cinematic-06.wav": {
+      "category": "stinger",
+      "file": "cinematic-06.wav",
+      "original_relpath": "songpack/cinematic/cinematic-06.wav",
+      "sha1": "80e53323db8c6c87f88a1d19a1e8e8a6a5f65404",
+      "bytes": 1619742,
+      "duration_s": 2.687,
+      "peak_dbfs": -0.1,
+      "flags": [
+        "category_doubt"
+      ]
+    },
+    "stinger/cinematic-07.wav": {
+      "category": "stinger",
+      "file": "cinematic-07.wav",
+      "original_relpath": "songpack/cinematic/cinematic-07.wav",
+      "sha1": "f8b71afd53ff52c82e4b05182058b1d5e1d499f9",
+      "bytes": 2094040,
+      "duration_s": 5.374,
+      "peak_dbfs": -0.1,
+      "flags": [
+        "category_doubt"
+      ]
+    },
+    "stinger/cinematic-08.wav": {
+      "category": "stinger",
+      "file": "cinematic-08.wav",
+      "original_relpath": "songpack/cinematic/cinematic-08.wav",
+      "sha1": "c3d6af0e416a70b22ebbeef9c782a0d256ae028c",
+      "bytes": 1975548,
+      "duration_s": 4.702,
+      "peak_dbfs": -0.1,
+      "flags": [
+        "category_doubt"
+      ]
+    },
+    "stinger/cinematic-09.wav": {
+      "category": "stinger",
+      "file": "cinematic-09.wav",
+      "original_relpath": "songpack/cinematic/cinematic-09.wav",
+      "sha1": "80e8722ef67851780474c9e1bedc9e47d1b857df",
+      "bytes": 1288284,
+      "duration_s": 0.806,
+      "peak_dbfs": -0.1,
+      "flags": [
+        "category_doubt"
+      ]
+    },
+    "stinger/cinematic-10.wav": {
+      "category": "stinger",
+      "file": "cinematic-10.wav",
+      "original_relpath": "songpack/cinematic/cinematic-10.wav",
+      "sha1": "d942d3449e30c9a361465476a500e3e60d78316b",
+      "bytes": 1620064,
+      "duration_s": 2.687,
+      "peak_dbfs": -0.1,
+      "flags": [
+        "category_doubt"
+      ]
+    },
+    "typing/backspace.wav": {
+      "category": "typing",
+      "file": "backspace.wav",
+      "original_relpath": "songpack/typewriter/backspace.wav",
+      "sha1": "f00f73507d2f3504a9a03c7382b96c1173ae91f3",
+      "bytes": 1330066,
+      "duration_s": 3.77,
+      "peak_dbfs": -10.5,
+      "flags": []
+    },
+    "typing/click-01.wav": {
+      "category": "typing",
+      "file": "click-01.wav",
+      "original_relpath": "songpack/typewriter/click-01.wav",
+      "sha1": "4ed7462a32e87c5968ba18fabe2671d0391a2217",
+      "bytes": 220674,
+      "duration_s": 0.625,
+      "peak_dbfs": -0.3,
+      "flags": []
+    },
+    "typing/click-02.wav": {
+      "category": "typing",
+      "file": "click-02.wav",
+      "original_relpath": "songpack/typewriter/click-02.wav",
+      "sha1": "c074dfa3f2145133c94cf9f23b4c75c1cd03fa0a",
+      "bytes": 239626,
+      "duration_s": 0.679,
+      "peak_dbfs": -0.3,
+      "flags": []
+    },
+    "typing/click-03.wav": {
+      "category": "typing",
+      "file": "click-03.wav",
+      "original_relpath": "songpack/typewriter/click-03.wav",
+      "sha1": "d880faaef12422068174f51b7578ad6e58edf26c",
+      "bytes": 391218,
+      "duration_s": 1.108,
+      "peak_dbfs": -0.3,
+      "flags": []
+    },
+    "typing/click-04.wav": {
+      "category": "typing",
+      "file": "click-04.wav",
+      "original_relpath": "songpack/typewriter/click-04.wav",
+      "sha1": "5dd961f0b82bffe6636fb85d764f906a8abcad5d",
+      "bytes": 480802,
+      "duration_s": 1.362,
+      "peak_dbfs": -0.3,
+      "flags": []
+    },
+    "typing/click-05.wav": {
+      "category": "typing",
+      "file": "click-05.wav",
+      "original_relpath": "songpack/typewriter/click-05.wav",
+      "sha1": "c87db6a206c5b02ccbbdffa8d699dc2fa2d03a48",
+      "bytes": 556594,
+      "duration_s": 1.577,
+      "peak_dbfs": -0.3,
+      "flags": []
+    },
+    "typing/click-bell-05.wav": {
+      "category": "typing",
+      "file": "click-bell-05.wav",
+      "original_relpath": "songpack/typewriter-antique/click-bell-05.wav",
+      "sha1": "03cb8caefa940890bc4b4af3f889b65e6ca33441",
+      "bytes": 846742,
+      "duration_s": 4.799,
+      "peak_dbfs": -0.3,
+      "flags": []
+    },
+    "typing/end-bell-clicks.wav": {
+      "category": "typing",
+      "file": "end-bell-clicks.wav",
+      "original_relpath": "songpack/typewriter/end-bell-clicks.wav",
+      "sha1": "3e9cc6e3e58c0d34546b2f32ef26e80521011776",
+      "bytes": 1533346,
+      "duration_s": 4.346,
+      "peak_dbfs": -0.3,
+      "flags": []
+    },
+    "typing/random-click.wav": {
+      "category": "typing",
+      "file": "random-click.wav",
+      "original_relpath": "songpack/typewriter/random-click.wav",
+      "sha1": "e8dbc331b42e5b82c9b8a447967ebcc77a93028b",
+      "bytes": 734026,
+      "duration_s": 2.08,
+      "peak_dbfs": -0.3,
+      "flags": []
+    },
+    "typing/random-long-sentence.wav": {
+      "category": "typing",
+      "file": "random-long-sentence.wav",
+      "original_relpath": "songpack/typewriter/random-long-sentence.wav",
+      "sha1": "6fe03fd32dea5687810832ac1adaf81fc82795f9",
+      "bytes": 3562634,
+      "duration_s": 10.098,
+      "peak_dbfs": -0.3,
+      "flags": []
+    },
+    "typing/random-short-sentence.wav": {
+      "category": "typing",
+      "file": "random-short-sentence.wav",
+      "original_relpath": "songpack/typewriter/random-short-sentence.wav",
+      "sha1": "bebaa8cd23708715314d94f6e222f40c2459f1fe",
+      "bytes": 1386914,
+      "duration_s": 3.931,
+      "peak_dbfs": -0.3,
+      "flags": []
+    },
+    "typing/return-handle.wav": {
+      "category": "typing",
+      "file": "return-handle.wav",
+      "original_relpath": "songpack/typewriter/return-handle.wav",
+      "sha1": "47a2ea3e99782c1d7a9d71671a9c732656423054",
+      "bytes": 306810,
+      "duration_s": 0.869,
+      "peak_dbfs": -9.2,
+      "flags": []
+    },
+    "typing/return.wav": {
+      "category": "typing",
+      "file": "return.wav",
+      "original_relpath": "songpack/typewriter/return.wav",
+      "sha1": "af5d5a89fced6e05f52d570d4d81f5e72692014a",
+      "bytes": 976922,
+      "duration_s": 2.769,
+      "peak_dbfs": -0.3,
+      "flags": []
+    },
+    "typing/shift.wav": {
+      "category": "typing",
+      "file": "shift.wav",
+      "original_relpath": "songpack/typewriter/shift.wav",
+      "sha1": "261f788a20cb74b18571215143f42899cb7f836b",
+      "bytes": 253410,
+      "duration_s": 0.718,
+      "peak_dbfs": -5.5,
+      "flags": []
+    },
+    "typing/spacebar.wav": {
+      "category": "typing",
+      "file": "spacebar.wav",
+      "original_relpath": "songpack/typewriter/spacebar.wav",
+      "sha1": "7272c1edabe04a905916a15ac7f1e9f5fa793870",
+      "bytes": 270634,
+      "duration_s": 0.767,
+      "peak_dbfs": -0.3,
+      "flags": []
+    },
+    "typing/type-01.mp3": {
+      "category": "typing",
+      "file": "type-01.mp3",
+      "original_relpath": "songpack/type/type-01.mp3",
+      "sha1": "b923b8e67a2d4269f9f07c22f4001484d48d903b",
+      "bytes": 1661020,
+      "duration_s": 12.96,
+      "peak_dbfs": -16.4,
+      "flags": []
+    },
+    "typing/type-02.mp3": {
+      "category": "typing",
+      "file": "type-02.mp3",
+      "original_relpath": "songpack/type/type-02.mp3",
+      "sha1": "bd3746eecc0df32163a85901b093492148395bc8",
+      "bytes": 3034396,
+      "duration_s": 78.84,
+      "peak_dbfs": -0.4,
+      "flags": [
+        "over_15s"
+      ]
+    },
+    "typing/type-03.mp3": {
+      "category": "typing",
+      "file": "type-03.mp3",
+      "original_relpath": "songpack/type/type-03.mp3",
+      "sha1": "d7f6582458ac9113544be06985ddf7054737d745",
+      "bytes": 1575964,
+      "duration_s": 18.101,
+      "peak_dbfs": -0.5,
+      "flags": [
+        "over_15s"
+      ]
+    },
+    "typing/type-04.mp3": {
+      "category": "typing",
+      "file": "type-04.mp3",
+      "original_relpath": "songpack/type/type-04.mp3",
+      "sha1": "3ba862d805df5c88e34eb71526b9fa1a4e70f765",
+      "bytes": 1250524,
+      "duration_s": 4.541,
+      "peak_dbfs": -12.0,
+      "flags": []
+    },
+    "typing/type-05.mp3": {
+      "category": "typing",
+      "file": "type-05.mp3",
+      "original_relpath": "songpack/type/type-05.mp3",
+      "sha1": "d0769b77d2306b91bf0ee2013fe81a8abe6a86f4",
+      "bytes": 1732060,
+      "duration_s": 24.605,
+      "peak_dbfs": -7.5,
+      "flags": [
+        "over_15s"
+      ]
+    },
+    "typing/type-06.mp3": {
+      "category": "typing",
+      "file": "type-06.mp3",
+      "original_relpath": "songpack/type/type-06.mp3",
+      "sha1": "1ea37ffb8863dccf30c7168ff95129fa707e69f8",
+      "bytes": 1991370,
+      "duration_s": 53.081,
+      "peak_dbfs": -3.7,
+      "flags": [
+        "over_15s"
+      ]
+    },
+    "typing/type-07.mp3": {
+      "category": "typing",
+      "file": "type-07.mp3",
+      "original_relpath": "songpack/type/type-07.mp3",
+      "sha1": "34e2969e72144a320c5483a76d850edfa3cd41c0",
+      "bytes": 2107524,
+      "duration_s": 30.187,
+      "peak_dbfs": -10.7,
+      "flags": [
+        "over_15s"
+      ]
+    },
+    "typing/type-08.mp3": {
+      "category": "typing",
+      "file": "type-08.mp3",
+      "original_relpath": "songpack/type/type-08.mp3",
+      "sha1": "63541c9ff230b506db922a406d6e25c7588c6122",
+      "bytes": 2511249,
+      "duration_s": 42.804,
+      "peak_dbfs": 0.0,
+      "flags": [
+        "over_15s"
+      ]
+    },
+    "typing/type-09.mp3": {
+      "category": "typing",
+      "file": "type-09.mp3",
+      "original_relpath": "songpack/type/type-09.mp3",
+      "sha1": "e230479b1d6676308efdde45b4ec23ac681b86ba",
+      "bytes": 1398700,
+      "duration_s": 38.064,
+      "peak_dbfs": -15.5,
+      "flags": [
+        "over_15s"
+      ]
+    },
+    "typing/type-10.mp3": {
+      "category": "typing",
+      "file": "type-10.mp3",
+      "original_relpath": "songpack/type/type-10.mp3",
+      "sha1": "abc4093b55893c631a3d59200ddabd0b4f4bce62",
+      "bytes": 1214749,
+      "duration_s": 1.731,
+      "peak_dbfs": -5.3,
+      "flags": []
+    },
+    "typing/type-with-return.wav": {
+      "category": "typing",
+      "file": "type-with-return.wav",
+      "original_relpath": "songpack/typewriter/type-with-return.wav",
+      "sha1": "a5462cff643cc6522e27d023946eac782e97a689",
+      "bytes": 2740922,
+      "duration_s": 7.769,
+      "peak_dbfs": -0.3,
+      "flags": []
+    },
+    "typing/typewriter-antique_click-01.wav": {
+      "category": "typing",
+      "file": "typewriter-antique_click-01.wav",
+      "original_relpath": "songpack/typewriter-antique/click-01.wav",
+      "sha1": "53a224adda3fcbd681b4f0f2bbc2f5dde208fa3d",
+      "bytes": 59242,
+      "duration_s": 0.335,
+      "peak_dbfs": -0.3,
+      "flags": []
+    },
+    "typing/typewriter-antique_click-02.wav": {
+      "category": "typing",
+      "file": "typewriter-antique_click-02.wav",
+      "original_relpath": "songpack/typewriter-antique/click-02.wav",
+      "sha1": "0db0d57461f1902ee84901d60e0b24f1e0d101c3",
+      "bytes": 156890,
+      "duration_s": 0.888,
+      "peak_dbfs": -0.3,
+      "flags": []
+    },
+    "typing/typewriter-antique_click-03.wav": {
+      "category": "typing",
+      "file": "typewriter-antique_click-03.wav",
+      "original_relpath": "songpack/typewriter-antique/click-03.wav",
+      "sha1": "83dbf00aeef7c57a3a41d8c01d65b7ec73abf193",
+      "bytes": 167914,
+      "duration_s": 0.951,
+      "peak_dbfs": -0.3,
+      "flags": []
+    },
+    "typing/typewriter-antique_click-04.wav": {
+      "category": "typing",
+      "file": "typewriter-antique_click-04.wav",
+      "original_relpath": "songpack/typewriter-antique/click-04.wav",
+      "sha1": "5fcf54e45b0e3e7338c6f1bc354adede9f04831c",
+      "bytes": 228554,
+      "duration_s": 1.295,
+      "peak_dbfs": -0.3,
+      "flags": []
+    },
+    "typing/typewriter-antique_type-with-return.wav": {
+      "category": "typing",
+      "file": "typewriter-antique_type-with-return.wav",
+      "original_relpath": "songpack/typewriter-antique/type-with-return.wav",
+      "sha1": "ea4ac86d733d7adbaba4c19bd6b7990a0408c464",
+      "bytes": 513626,
+      "duration_s": 2.911,
+      "peak_dbfs": -0.3,
+      "flags": []
+    },
+    "whoosh/slice.wav": {
+      "category": "whoosh",
+      "file": "slice.wav",
+      "original_relpath": "songpack/abstract/slice.wav",
+      "sha1": "c24d13a90e481e5f514feaeacec6c5161b22d95f",
+      "bytes": 178228,
+      "duration_s": 0.928,
+      "peak_dbfs": -6.0,
+      "flags": []
+    },
+    "whoosh/woosh-01.mp3": {
+      "category": "whoosh",
+      "file": "woosh-01.mp3",
+      "original_relpath": "songpack/woosh/woosh-01.mp3",
+      "sha1": "46d948c99219480fe2027f7ff18ac0628090b13d",
+      "bytes": 1157980,
+      "duration_s": 0.411,
+      "peak_dbfs": -12.6,
+      "flags": []
+    },
+    "whoosh/woosh-02.wav": {
+      "category": "whoosh",
+      "file": "woosh-02.wav",
+      "original_relpath": "songpack/woosh/woosh-02.wav",
+      "sha1": "b512e09a55c15169e6d94aa803d013b31b33e302",
+      "bytes": 1572954,
+      "duration_s": 1.5,
+      "peak_dbfs": -20.6,
+      "flags": []
+    },
+    "whoosh/woosh-03.wav": {
+      "category": "whoosh",
+      "file": "woosh-03.wav",
+      "original_relpath": "songpack/woosh/woosh-03.wav",
+      "sha1": "cc2cf2908b507464a08e0e1e780ec69a464b0f9a",
+      "bytes": 1572954,
+      "duration_s": 1.5,
+      "peak_dbfs": -17.1,
+      "flags": []
+    },
+    "whoosh/woosh-04.wav": {
+      "category": "whoosh",
+      "file": "woosh-04.wav",
+      "original_relpath": "songpack/woosh/woosh-04.wav",
+      "sha1": "048ee3bc6874e3d6fcc93c0dd826cbfc4334ca28",
+      "bytes": 1572954,
+      "duration_s": 1.5,
+      "peak_dbfs": -18.0,
+      "flags": []
+    },
+    "whoosh/woosh-05.mp3": {
+      "category": "whoosh",
+      "file": "woosh-05.mp3",
+      "original_relpath": "songpack/woosh/woosh-05.mp3",
+      "sha1": "ec0a0d1a41bee7062d1709739e375a390d174fa4",
+      "bytes": 1161820,
+      "duration_s": 0.507,
+      "peak_dbfs": -3.9,
+      "flags": []
+    },
+    "whoosh/woosh-07.mp3": {
+      "category": "whoosh",
+      "file": "woosh-07.mp3",
+      "original_relpath": "songpack/woosh/woosh-07.mp3",
+      "sha1": "1217fa258ef800b3cc02a81576ed73f127df0875",
+      "bytes": 1166620,
+      "duration_s": 0.627,
+      "peak_dbfs": -14.6,
+      "flags": []
+    },
+    "whoosh/woosh-08.mp3": {
+      "category": "whoosh",
+      "file": "woosh-08.mp3",
+      "original_relpath": "songpack/woosh/woosh-08.mp3",
+      "sha1": "637675167a08d677280b1d613601f033a6a2bd04",
+      "bytes": 1157980,
+      "duration_s": 0.411,
+      "peak_dbfs": 0.0,
+      "flags": []
+    },
+    "whoosh/woosh-09.mp3": {
+      "category": "whoosh",
+      "file": "woosh-09.mp3",
+      "original_relpath": "songpack/woosh/woosh-09.mp3",
+      "sha1": "f9d6097ae1dc5f35270c04a97fb615c3f728d51d",
+      "bytes": 1161820,
+      "duration_s": 0.507,
+      "peak_dbfs": -0.9,
+      "flags": []
+    },
+    "whoosh/woosh-10.wav": {
+      "category": "whoosh",
+      "file": "woosh-10.wav",
+      "original_relpath": "songpack/woosh/woosh-10.wav",
+      "sha1": "29c957b65a3eff2cc09d1b475eca515227958ac0",
+      "bytes": 1572954,
+      "duration_s": 1.5,
+      "peak_dbfs": -16.9,
+      "flags": []
+    },
+    "whoosh/woosh-11.wav": {
+      "category": "whoosh",
+      "file": "woosh-11.wav",
+      "original_relpath": "songpack/woosh/woosh-11.wav",
+      "sha1": "af3f46ea6227ca95473d40888cc577b24ca1b1ff",
+      "bytes": 1572954,
+      "duration_s": 1.5,
+      "peak_dbfs": -16.6,
+      "flags": []
+    }
+  }
+}

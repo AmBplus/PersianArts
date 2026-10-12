@@ -1,0 +1,75 @@
+# Payoff brief: sound + picture co-design, pencil-social 9:16 (v4 -> v5)
+
+Scope: `work/persian/src/film/social/` (scenes.tsx, motion.ts, layout.ts, SocialFilm.tsx), cue sheets `media/film-versions/pencil-social/v4-cues/cues-9x16.json` and `v4-dogo-jump-1267515/cues-resolved.json`, catalog `sound/library/sfx/CATALOG.md`. Nothing auditioned, nothing edited, no git.
+
+## 0. Timing facts from the code (read first)
+
+- Tempo 120 BPM, 30 fps: 1 beat = 15 frames = 0.5 s. Scene-local frame = video frame here (TEMPO = 1).
+- Cuts (motion.ts CUT_BEATS [0,4,8,14,20,27,34]) give scene lengths: Hook 0-59, Count 0-59, Pen 0-89, Slow 0-89, Daily 0-104, CTA 0-104 (film 510 frames, 17 s).
+- Wipe (SocialFilm.tsx, WIPE_LEN 5) covers the screen from cut-5 to cut, drawn on top of scenes. Anything visual after cut-5 is hidden.
+- The v4 cue sheet has no sound event that is tied to a visual payoff: ticks and hits are placed by hand, so 3 of the 4 owner cases are "anticipation with no hit" or "hit under the wipe".
+- Timing is ratio-independent (motion.ts), so ONE cue sheet serves 9:16, 4:5, 1:1 and 16:9. Only visual magnitudes need per-ratio scaling.
+
+## 1. Case table (the four owner cases)
+
+Offsets are relative to the visual hit frame H (1 frame = 33 ms). "Now" = what exists.
+
+| # | Scene / frames (local) | Beat | Viewer expects | Now (visual + cue) | Proposed VISUAL (component, function, magnitude) | Proposed SFX layers (offset vs H) | Candidates (catalog path, NOT auditioned) / fallback |
+|---|---|---|---|---|---|---|---|
+| 1 | Count, 0-59. Ring `prog(f,4,56)` fills at 60 = the cut; crown rect (scenes.tsx SceneCount, `rect x={cx-16} y={cy-r-46}`) static. Wipe starts 55. | 4-8 (tick at beat 5, 6, 7) | Time up = a visible hit, then a bell/alarm finish | Ring ends exactly under the wipe. No hit. Ticks at local 15, 30 (pen hops) and 45 (tick 3, no visual). Silence after the last tick, then the swoosh at the cut. | Ring: `prog(f,4,44)` so it is FULL at H=48, held to 60. Crown: wrap the rect in `<g transform={translate(0, shake(f,48,10,8))}>`; amp 10 px at 9:16 (scale to 0.9% of L.W on other ratios), with a 2-frame rotate tilt of +/-3 deg. Keep the wipe at 55 so the hit (48) and first 7 frames of shake show. Remove "tick 3" at 45. | H=48: bell-ding transient 0 ms; bell body 0 ms, -12 dB; ring-out tail 1.2 s (to ~84 ms past the next cut, fades under swoosh). Swoosh starts at 55 (cut-5), not 60. | Bell: `sound/library/sfx/freesound/ding/611113-bell-ding-1-wav.mp3` (2.56 s). Transient: `sound/library/sfx/freesound/tick-clock/349453-ticking-clock-60-sec-hit-mark.mp3`. Fallback bell: `freesound/ding/515643-ding2-wav.mp3`. |
+| 2 | Daily, 0-104. Row i draws at 8+7i (+3 to +14), check at at+14: rows 1-7 check at 22, 29, 36, 43, 50, 57, 64. Row 7 is already coral (`w.i === 6`) but same size. | 20-27 (checks 21.47 ... 24.27) | Repetition, then the 7th is the accent / final | Checks use `owner-pack/typing/click-0x.wav` at -10 dB. Nothing on day 7 beyond the colour. No ring. | Ring-pulse per check: circle at (r.x+rowH*0.35, w.y), radius rowH*0.3 -> rowH*0.9 via `outExpo(prog(f,T,14))`, opacity 0.5 -> 0, stroke 3 px, colour mint (rows 1-6). Day 7: TWO rings (second +4 frames), coral, max radius rowH*1.3, and check `scale(1.35*outBack)` instead of 1.0 (the "bigger, more final" tick). Keep scale <= rowH*0.5 so 1:1 rows (rowH ~100 px) stay inside the row. | Rows 1-6 (H = check frame): soft tap 0 ms (existing click-0x at -12 dB) + soft ring ding `freesound/ding/515643-ding2-wav.mp3` 0 ms at -18 dB. Day 7 (H=64): bell ding `611113-bell-ding-1` 0 ms at -8 dB; sparkle tail `freesound/sparkle-magic/462092-sparkling-star-04-wav.mp3` +100 ms, -14 dB. No click on day 7. | Soft ding: `freesound/ding/515643-ding2-wav.mp3` (0.39 s). Accent: `freesound/ding/611113-bell-ding-1-wav.mp3`. Fallback accent: `freesound/ding/562974-stressed-ding-ding-wav.mp3`. |
+| 3 | CTA, 0-104. Flourish 2-36, pill pop at 24 (stamp-thud already), sub text 36, bow down 74-83, bow up 89-98 (outBack). Film ends at local 104 (cut 34). Downlifter ends ~72. | 27-34 | Final chord or stinger on the knot/bow, tail, then a clean end | Last sound = downlifter ends at ~72. Nothing from 72 to 104 (1.1 s silence), then the film stops. No resolution. | Final HIT at H=98 (bow settled, pen straight, pill fixed). Add a flash: full-frame `Frame` opacity 0.0 -> 0.25 paper colour over 98-101 (outExpo), then fade the frame to bg over 120-134. Extend the film: CUT_BEATS last value 34 -> 36 (+1 s, 18 s total) so the tail can ring out; the CTA scene becomes 135 frames. | H=98: stinger 0 ms (-6 dB); success chime 0 ms (-12 dB); sparkle `freesound/sparkle-magic/462092...` +150 ms (-14 dB); tail ring-out to 134 (~1.2 s), fade 120-134. Remove the sub-text success chime at 36 (duplicate) or keep it as a 2nd layer only if the new knot is at 98. | Stinger: `freesound/stinger/441342-stinger-3-wav.mp3`, `freesound/stinger/271945-stingers-and-stabs-001-wav.mp3`. Chime: `freesound/success/511484-success-bell.mp3`. Fallback: `freesound/success/404358-success-wav.mp3` (already used). |
+| 4 | Hook 'زشته؟' block (scenes.tsx SceneHook, `stomp(f,BEAT)`), local 15-22, text in hookText slot. Owner writes 'زشت'; the on-screen word is 'زشته؟' (keep screen text). | 1 (0.5 s) | A stamp hitting paper; impact on contact | `stomp` = `scale(lerp(2.6,1,outExpo(prog(f,15,7))))`. No overshoot, no squash, no splat. The big scale at frame 15 is the START of the flight, so the cue (frame 15) lands before any visible contact. Shake 30 px at 15 (too big for a word block). | Keep C=15 (cue unchanged). Pre-hit (7-14): stamp lifted, `scale(lerp(1.9,1,inCubic(prog(f,7,8))))`, opacity `prog(f,7,2)`. Contact at 15: scaleY 0.9 squash decaying over 4 frames, scaleX 1.04; settle with outBack to 1.0 by 19. Shake `shake(f,15,10,8)` (10 px, not 30). Ink splat at 15-40: 7 ellipses on the text edge, radius from `L.type.hero*0.25` growing by `outExpo(prog(f,15,8))`, opacity fades 22-40. Splat must stay inside the hookText box on all ratios. | H=15: stamp-thud transient 0 ms (-6 dB); sub boom 0 ms (-10 dB, cut to 300 ms); ink wet splat +60 ms (-14 dB), no tail. Replace the current 'light-thud' (342533) because it is a generic thud; use the stamp family only here (the CTA pill keeps its pop). | Stamp: `sound/library/sfx/freesound/stamp-thud/470710-traditional-stamp-wav.mp3` (already in v4 cue 38). Sub boom: `sound/library/sfx/kenney/impact/lowFrequency_explosion_001.ogg` (1.0 s). Splat: `sound/library/sfx/owner-pack/impact/wet-splat-01.wav` (1.165 s). Fallback stamp: `freesound/stamp-thud/` other rows in CATALOG (ranked list). |
+
+## 2. Other anticipation moments found in the film
+
+| # | Scene / frames (local) | Beat | Expects | Now | Proposed VISUAL | Proposed SFX (offset vs H) | Candidates / fallback |
+|---|---|---|---|---|---|---|---|
+| 5 | Hook 'دست‌خطت' stomp, `stomp(f,3)` | 0.1 s | Same as #4 | Cue at f3 lands on the flight start (scale 2.6) | Same stamp-in as #4 at C=3 (scale 1.9->1, squash at 3), shake 8 px | Light thud at H=3 (0 ms), -8 dB | `freesound/impact/342535-medium-thud-1.mp3` (current, keep) |
+| 6 | Hook cross-out, `prog(f,40,8)` | 1.33 s | Strike-through = the joke lands | Cue at 40 has gain_db +11 (check: likely a bug, the scribble source is quiet) | No visual change | Scribble 0 ms, at -10 dB, not +11 dB | `freesound/paper-pencil/761655-pencil-scribble-18.mp3`; verify peak before mixing |
+| 7 | Pen morph, squash `inBack(prog(f,22,12))`, morph `outBack(prog(f,34,12))`, spark `prog(f,36,12)` | 8-14 (spark at 10.4) | Anticipation (22-34), then the morph hit | Cue spark at 36 (2 frames late) | Spark starts at 34: change `spark = prog(f,34,12)` | Sparkle at H=34 (0 ms), -15 dB | `freesound/sparkle-magic/545238-item-sparkle.mp3` |
+| 8 | Slow sweep, `inOutSine(prog(f,6,72))` ends at f78 | 14-20 | End of a long stroke needs a closing sound | Stroke ends at 78 with no sound event (sits silent to cut at 90) | Pen lift at 78: 6 px lift over 6 frames | Soft ping at H=78 (0 ms), -18 dB (optional) | `freesound/ding/23152-ding-wav.mp3` |
+| 9 | Every scene cut (wipe from cut-5) | cuts 4, 8, 14, 20, 27 | Whoosh arrives WITH the wipe | Swoosh cue at the cut (0 ms) | No change | Swoosh starts at cut-5 (-167 ms); its peak at cut | `freesound/swoosh-transition/234538-swoosh-1.mp3` (and the other 234541, 234549) |
+
+## 3. Five general rules for the skill
+
+1. Every build-up gets a payoff. A squash, riser, digit roll, ring fill, or pen hop must end in a hit with a sound on the hit frame, or in a deliberate decay with no pending state.
+2. Every ending gets a resolution. The last scene ends with a stinger or chime on the final knot and a ring-out tail of 1-1.5 s; the final frame must be in the picture, not after it.
+3. Sound lands on the visual contact frame. The visual may anticipate by 1-2 frames (squash, lift). Sound is never earlier than the visual contact and never later than 1 frame after it.
+4. Silence only as a deliberate pre-hit beat (<= 4 frames, ~130 ms) or after a ring-out tail. Silence longer than 0.5 s before a cut is a bug unless the picture holds a visible state.
+5. One accent per scene, bigger on the final occurrence. The 7th tick, the time-up, the stamp: the final one gets +30-50% visual scale and +4-8 dB sound weight over the others. Visual magnitudes are in units of `L.W`, `L.type.*`, or `rowH`, never fixed px.
+
+## 4. Payoff recipes (reusable)
+
+- stamp-in: pre-hit lift (scale 1.9->1.0 over 8 frames, opacity in 2), contact at H with squash (scaleY 0.9, 4 frames) and overshoot 1.04 (outBack), shake 8-10 px over 8 frames, ink splat at H. Sound: transient tap 0 ms, sub boom 0 ms, splat +60 ms.
+- ring-pulse: a ring at the tick expands rowH*0.3 -> rowH*0.9 with outExpo over 14 frames, opacity 0.5 -> 0. Sound: soft ding 0 ms, -18 dB, plus a tap on the tick. Accent version: two rings, +30% size, bell ding.
+- shake-ring (bell): a small crown/bell translate shake 10 px, 8 frames, at H; full ring at H. Sound: bell ding 0 ms, transient tick 0 ms, ring-out tail 1.2 s.
+- final-bow: bow settle at H (outBack), straight pen, stinger 0 ms + chime 0 ms, sparkle +150 ms, full-frame flash 0.25 over 3 frames, fade out over the tail; film duration +1 s.
+
+## 5. Implementation plan (GLM, milestone orders, each <= 20 min)
+
+Common acceptance for every visual change: render stills at the frames listed, for all four aspects (Social9x16, Social4x5, Social1x1, Social16x9), with the repo's Remotion entry `work/persian/src/film/social/entry.tsx` (exact command to be taken from the existing v4 build script `media/film-versions/pencil-social/v4-cues/_tools/build_v4.py`; not read in this brief). Also run `tsc` on the work/persian project if present. No git.
+
+- Order A1 (visuals, Count + Hook; files: scenes.tsx only, SceneCount and SceneHook): time-up at 48 (ring `prog(f,4,44)`, crown shake), remove visual-less tick 3, stamp-in at 15 and at 3 with splat. Acceptance: stills at Count f46, f48, f52; Hook f5, f14, f15, f18, f22 on all 4 ratios; no text overflow past hookText box. Progress file: work/persian/progress-A1.md.
+- Order A2 (visuals, Daily + CTA; scenes.tsx, SceneDaily and SceneCta): ring-pulse per check, day-7 accent (two rings, 1.35x check), CTA flash at 98, fade 120-134. Acceptance: stills Daily f22, f64, f66, f72 and CTA f96, f98, f100, f120, f134 on all 4 ratios. Requires CUT_BEATS last = 36 in motion.ts (part of A2 only, one line; the CTA scene becomes 135 frames).
+- Order A3 (visuals, Pen + Slow; ScenePen spark to 34, SceneSlow pen lift at 78): acceptance: stills at Pen f33, f34, f36 and Slow f77, f78, f84.
+- Order B (cue sheet v5; new file media/film-versions/pencil-social/v5-cues/cues-9x16.json, from v4 build_v4.py as base): event times from the frames above (not from v4 numbers). Add: bell at 48, stamp layers at 15 (and 3), ring pings at 22..64, day-7 accent at 64, stinger at 98 + tail to 134, swoosh start at cut-5, slow ping at 78. Remove tick 3 (beat 7) and the CTA 36 chime duplicate. Acceptance: script that checks every cue's t_s equals round(frame/30, 3) for the listed hit frames, and every `file` exists on disk (ls); zero cues with source_too_short.
+- Order C (mix; files: sound/ output only, no source edits): mix v5 cues into the silent render with the same offsets, gain per cue from v5, sub boom and bell tails; loudnorm to -14 LUFS integrated, true peak -1 dBTP. Acceptance: integrated loudness and true peak measured with ffmpeg loudnorm print; onset detection check that each H is within +/- 1 frame (33 ms) of the picture event; no clipping (peak < -1 dBFS before limiter). Report numbers only.
+
+Order of execution: A1 and A3 in parallel (different functions in scenes.tsx, merge carefully: A1 and A3 touch different components, one file, so run sequentially or on separate copies). Then A2. Then B. Then C.
+
+## 6. Risks
+
+- BPM override: `--props BPM` changes BEAT and every cue time (scene frames are computed through useSceneFrame). The v5 cue sheet is at 120 BPM only; regenerate it when BPM changes. Do not mix a cue sheet built at one BPM with a render at another.
+- Duration change: CUT_BEATS last 34 -> 36 changes DURATION_FRAMES and the film length (17 -> 18 s). Any existing mix or cue file built for 17 s must be rebuilt.
+- Ratio touchpoints (layout.ts): hookText is [0,0,1,0.5] at 9:16, [0,0,1,0.55] at 4:5, [0.46,0,0.54,1] at 1:1, [0.5,0,0.5,1] at 16:9. The stamp box is narrowest at 1:1 (about 486 px) and at 16:9 (960 px wide, 1080 tall). Splat radius must be in `L.type.hero` units.
+- countArt and the tall branch in SceneCount: at 1:1 `tall` is true (r = min(w*0.4, h*0.24)), at 9:16 the r is also tall, at 16:9 it is the side-by-side branch. The crown sits at `cy - r - 46`; the shake translate and the ring must be recomputed per branch, not hard-coded.
+- listRows / rowH (r.h / 7): 9:16 about 147 px, 4:5 about 125 px, 16:9 about 126 px, 1:1 about 100 px. The day-7 accent (1.35x check, radius rowH*0.3 => rowH*0.4) and the two-ring pulse (max rowH*1.3) must stay inside the row band on 1:1, or they will overlap row 6. Use rowH units, not px.
+- Safe area (layout.ts): 9:16 bottom 400 px, top 250 px, sides 90 px. Splat and bow flash must stay inside safe for the text; full-frame flash is allowed.
+- Owner text: owner writes 'زشت'; the screen says 'زشته؟'. Keep the screen word and ask the owner before changing it.
+- Audio is unverified: nothing in the catalog is auditioned; LUFS is not computed; gain values are copied from v4 (one of them, cross-out +11 dB, looks like a bug). Mixing must measure before it signs off.
+- Hard-coded file references in v4 cue 38 (stamp-thud 470710) and cue 40 (success 404358): confirm they exist on disk in Order B.
+
+## 7. Decision (for the lead)
+
+Proceed with A1 + A3 now (small, low-risk), then A2 with the duration change (needs owner OK because the film gets 1 s longer). Hold B and C until A1-A3 are rendered and the stills are reviewed. The biggest single gain is case 1 (time-up hit at 48 under no wipe) and case 3 (final stinger with a tail), because both are currently silent at the moment the owner expects a finish.

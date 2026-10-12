@@ -30,3 +30,7 @@ The lead Claude session is the brain: it decides, orders, judges results and tal
   (`.github/workflows/deploy-library.yml` on `library/**`), so be deliberate about changes under `library/`.
 - Push over SSH (`git@github.com:AmBplus/PersianArts.git`); HTTPS needs an interactive login on the owner's machine.
 - During long batches keep `pwsh -File work/persian/autosync.ps1` running (commit + push of this project's paths every 5 min).
+
+## Motion project
+
+New chats read `docs/motion/README.md` first; when asked to build a motion follow `docs/motion/PLAYBOOK-BUILD-MOTION.md`; record every confirmed finding in `docs/motion/DECISIONS.jsonl` and the `docs/motion/PLAYBOOK-*.md` files.
