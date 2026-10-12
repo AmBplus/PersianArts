@@ -28,7 +28,7 @@ Two things ruin a dish no matter how good the ingredients are, so they are non-n
 - **Look comes from the theme, never from the ingredient.** Ingredients read theme roles (`bg`, `ink`,
   `accent`, `display` font, `enter` ease…). Never hard-code a hex colour or font family in a scene.
 - **One film, one music track.** Cut only inside that track, on phrase/bar boundaries. Never splice two songs
-  (that is what made the Dana film sound patched). Pick music *before* the storyboard.
+  (spliced songs always sound patched). Pick music *before* the storyboard.
 - **Time is written in music.** Scenes and hits are placed at `bar N` / `bar N beat M` of the *edited* film
   timeline; the engine converts to frames. Films without music (`brief.music.source = "none"`) use seconds
   (`"12.5s"`) instead and skip stage 2 — all other rules still apply. Never write raw frame numbers for cuts.

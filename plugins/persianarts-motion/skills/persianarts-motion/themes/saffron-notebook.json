@@ -1,0 +1,97 @@
+{
+  "name": "saffron-notebook",
+  "description": "Warm, tactile and curious: a teacher's notebook on cream paper, ink-black type, one saffron accent and a deep teal for a second meaning. For educational explainers and friendly announcements. Saffron accent is 3.3:1 on bg: use it for large type and shapes only, never body text.",
+  "colors": {
+    "bg": "#F4EDE0",
+    "bgAlt": "#EAE0CE",
+    "surface": "#FFF9EF",
+    "ink": "#1E1A17",
+    "inkMuted": "#6B5E52",
+    "accent": "#C9681C",
+    "accent2": "#1F5E5B",
+    "line": "#D6C7AE",
+    "glow": "#F2B562"
+  },
+  "fonts": {
+    "display": {
+      "family": "Lalezar",
+      "weights": [
+        400
+      ],
+      "variable": false,
+      "lineHeight": 1.6,
+      "sizeBoost": 1.05
+    },
+    "body": {
+      "family": "Vazirmatn",
+      "weights": [
+        400,
+        500,
+        700
+      ],
+      "variable": true,
+      "lineHeight": 1.7
+    },
+    "numeric": {
+      "family": "Vazirmatn",
+      "weights": [
+        700,
+        900
+      ],
+      "variable": true,
+      "lineHeight": 1.4
+    }
+  },
+  "type": {
+    "hero": 160,
+    "title": 92,
+    "body": 42,
+    "caption": 28,
+    "scaleRatio": 1.333
+  },
+  "motion": {
+    "enter": {
+      "ease": [
+        0.16,
+        1,
+        0.3,
+        1
+      ],
+      "frames": 11
+    },
+    "exit": {
+      "ease": [
+        0.7,
+        0,
+        0.84,
+        0
+      ],
+      "frames": 5,
+      "travel": 0.7
+    },
+    "spring": {
+      "stiffness": 120,
+      "damping": 18,
+      "maxOvershoot": 0.02
+    },
+    "stagger": {
+      "frames": 3,
+      "curve": "ease-out"
+    },
+    "breath": [
+      1.0,
+      1.03
+    ]
+  },
+  "texture": {
+    "kind": "paper",
+    "reason": "a notebook is the physical metaphor of learning; subtle fibre only, no grain",
+    "amount": 0.35
+  },
+  "sfxFamily": [
+    "paper",
+    "pencil"
+  ],
+  "radius": 10,
+  "spacing": 24
+}

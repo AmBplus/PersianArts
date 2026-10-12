@@ -1,13 +1,12 @@
 # Music first
 
 The music is chosen and mapped **before** the storyboard. The picture is cut to the music, never the other way.
-Method adapted from video-shotcraft `music-beat-sync.md` (measured cuts ≤ 2.2 f on a 70 s film) plus the
-PersianArts Dana post-mortem.
+Method adapted from video-shotcraft `music-beat-sync.md` (measured cuts ≤ 2.2 f on a 70 s film).
 
-## The Dana lesson (why this file exists)
+## Why one track
 
-Dana v3.1 spliced five pieces of two different songs with 0.5 s crossfades and matched RMS. Different key, tempo,
-timbre and mix ⇒ every join was audible; the score sounded "patched". RMS matching is not musical matching.
+Splicing pieces of different songs with short crossfades and matched loudness always sounds patched: different
+key, tempo, timbre and mix make every join audible. Loudness (RMS) matching is not musical matching.
 
 **Rules that follow:**
 1. **One film, one track.** Edit only inside it.
