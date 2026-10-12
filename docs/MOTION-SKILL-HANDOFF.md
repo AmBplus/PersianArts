@@ -43,3 +43,9 @@ Open docs/MOTION-SKILL-PLAN.md §7 (quality ladder) and §8 (open decisions), th
 - نام دستور (command): /amb-persianArts (update the name in the plugin only when the owner asks; record it here now).
 - پاس صفر (مرجع): pending. The owner will send 3–5 motion-graphics references (links or files) that he judges good. Until then, do not start the scorecard calibration.
 - محل پوشه‌ها: inside the project repo. Anything meant to be in git (project files, films, scenes, sound sidecars) lives inside the repo and must be committable. Only items that must stay out of git (raw audio, renders, samples, licensed tracks) stay outside the repo, with a pointer in this file. The owner stressed this is important.
+
+## Owner requirement: vertical and social formats (2026-10-12)
+- نمونه‌های مالک در پوشه‌ی C:\Users\Amir\Desktop\motions_sample هستن (فقط مرجع؛ داخل git نیستن).
+- این نمونه‌ها مخصوص شبکه‌های اجتماعی، YouTube Shorts و استوری اینستاگرام طراحی شدن. طراحی باید این حالت را از اول در نظر بگیرد.
+- اندازه‌های مختلف: 9:16 (Shorts/Reels/Stories)، 1:1، 4:5، و 16:9. هر ingredient و theme باید برای چند نسبت تصویر کار کند؛ layout را نسبت‌به ابعاد ثابت ننویس.
+- نمونه‌ها برای بررسی خوب‌اند، ولی الگوی کور نیستند؛ قوانین کیفیت (anti-slideshow، typography) همچنان اجرا می‌شوند.
