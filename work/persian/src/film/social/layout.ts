@@ -72,7 +72,7 @@ export const LAYOUT: Record<Aspect, LayoutRow> = {
       countText: [0.4, 0, 0.6, 1], countArt: [0, 0.1, 0.4, 0.8],
       penText: [0.5, 0.15, 0.5, 0.7], penArt: [0, 0, 0.5, 1],
       slowText: [0, 0, 1, 0.42], slowArt: [0, 0.46, 1, 0.54],
-      listTitle: [0.55, 0.1, 0.45, 0.3], listRows: [0, 0, 0.55, 1],
+      listTitle: [0.57, 0.3, 0.43, 0.4], listRows: [0, 0, 0.55, 1],
       ctaText: [0.45, 0.1, 0.55, 0.8], ctaArt: [0, 0, 0.45, 1],
     },
   },
