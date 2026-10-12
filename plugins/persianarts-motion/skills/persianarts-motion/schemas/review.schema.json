@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "review round",
+  "type": "object",
+  "required": [
+    "reviewer",
+    "scores",
+    "findings",
+    "verdict"
+  ],
+  "properties": {
+    "reviewer": {
+      "enum": [
+        "self",
+        "independent"
+      ]
+    },
+    "round": {
+      "type": "integer"
+    },
+    "scores": {
+      "type": "object",
+      "required": [
+        "hierarchy",
+        "direction",
+        "distinctness_scenes",
+        "rhythm",
+        "music",
+        "persian",
+        "space",
+        "distinctness_topic"
+      ],
+      "additionalProperties": {
+        "type": "number",
+        "minimum": 1,
+        "maximum": 10
+      }
+    },
+    "slideshow_risk": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 5
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "severity",
+          "where",
+          "what"
+        ],
+        "properties": {
+          "severity": {
+            "enum": [
+              "critical",
+              "suggestion",
+              "nitpick"
+            ]
+          },
+          "where": {
+            "type": "string"
+          },
+          "what": {
+            "type": "string"
+          },
+          "fix": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "verdict": {
+      "enum": [
+        "approve",
+        "fix"
+      ]
+    }
+  }
+}

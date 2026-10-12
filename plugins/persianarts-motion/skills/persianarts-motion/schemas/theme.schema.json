@@ -1,0 +1,349 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "theme",
+  "type": "object",
+  "required": [
+    "name",
+    "colors",
+    "fonts",
+    "type",
+    "motion"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "colors": {
+      "type": "object",
+      "required": [
+        "bg",
+        "surface",
+        "ink",
+        "inkMuted",
+        "accent",
+        "line"
+      ],
+      "properties": {
+        "bg": {
+          "type": "string",
+          "pattern": "^#([0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+        },
+        "bgAlt": {
+          "type": "string",
+          "pattern": "^#([0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+        },
+        "surface": {
+          "type": "string",
+          "pattern": "^#([0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+        },
+        "ink": {
+          "type": "string",
+          "pattern": "^#([0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+        },
+        "inkMuted": {
+          "type": "string",
+          "pattern": "^#([0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+        },
+        "accent": {
+          "type": "string",
+          "pattern": "^#([0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+        },
+        "accent2": {
+          "type": "string",
+          "pattern": "^#([0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+        },
+        "line": {
+          "type": "string",
+          "pattern": "^#([0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+        },
+        "glow": {
+          "type": "string",
+          "pattern": "^#([0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+        }
+      },
+      "additionalProperties": false
+    },
+    "fonts": {
+      "type": "object",
+      "required": [
+        "display",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "display": {
+          "type": "object",
+          "required": [
+            "family"
+          ],
+          "properties": {
+            "family": {
+              "type": "string"
+            },
+            "weights": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "variable": {
+              "type": "boolean"
+            },
+            "lineHeight": {
+              "type": "number",
+              "minimum": 1.3
+            },
+            "sizeBoost": {
+              "type": "number",
+              "default": 1.0
+            }
+          }
+        },
+        "body": {
+          "type": "object",
+          "required": [
+            "family"
+          ],
+          "properties": {
+            "family": {
+              "type": "string"
+            },
+            "weights": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "variable": {
+              "type": "boolean"
+            },
+            "lineHeight": {
+              "type": "number",
+              "minimum": 1.3
+            },
+            "sizeBoost": {
+              "type": "number",
+              "default": 1.0
+            }
+          }
+        },
+        "numeric": {
+          "type": "object",
+          "required": [
+            "family"
+          ],
+          "properties": {
+            "family": {
+              "type": "string"
+            },
+            "weights": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "variable": {
+              "type": "boolean"
+            },
+            "lineHeight": {
+              "type": "number",
+              "minimum": 1.3
+            },
+            "sizeBoost": {
+              "type": "number",
+              "default": 1.0
+            }
+          }
+        },
+        "ornament": {
+          "type": "object",
+          "required": [
+            "family"
+          ],
+          "properties": {
+            "family": {
+              "type": "string"
+            },
+            "weights": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "variable": {
+              "type": "boolean"
+            },
+            "lineHeight": {
+              "type": "number",
+              "minimum": 1.3
+            },
+            "sizeBoost": {
+              "type": "number",
+              "default": 1.0
+            }
+          }
+        }
+      }
+    },
+    "type": {
+      "type": "object",
+      "required": [
+        "hero",
+        "title",
+        "body",
+        "caption"
+      ],
+      "properties": {
+        "hero": {
+          "type": "number"
+        },
+        "title": {
+          "type": "number"
+        },
+        "body": {
+          "type": "number"
+        },
+        "caption": {
+          "type": "number"
+        },
+        "scaleRatio": {
+          "type": "number"
+        }
+      }
+    },
+    "motion": {
+      "type": "object",
+      "required": [
+        "enter",
+        "exit",
+        "stagger"
+      ],
+      "properties": {
+        "enter": {
+          "type": "object",
+          "required": [
+            "ease",
+            "frames"
+          ],
+          "properties": {
+            "ease": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 4,
+              "maxItems": 4
+            },
+            "frames": {
+              "type": "integer"
+            }
+          }
+        },
+        "exit": {
+          "type": "object",
+          "required": [
+            "ease",
+            "frames"
+          ],
+          "properties": {
+            "ease": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 4,
+              "maxItems": 4
+            },
+            "frames": {
+              "type": "integer"
+            },
+            "travel": {
+              "type": "number",
+              "default": 0.7
+            }
+          }
+        },
+        "spring": {
+          "type": "object",
+          "properties": {
+            "stiffness": {
+              "type": "number"
+            },
+            "damping": {
+              "type": "number"
+            },
+            "maxOvershoot": {
+              "type": "number",
+              "maximum": 0.03
+            }
+          }
+        },
+        "stagger": {
+          "type": "object",
+          "required": [
+            "frames"
+          ],
+          "properties": {
+            "frames": {
+              "type": "number"
+            },
+            "curve": {
+              "enum": [
+                "linear",
+                "ease-out",
+                "ease-in-out"
+              ]
+            }
+          }
+        },
+        "breath": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "minItems": 2,
+          "maxItems": 2,
+          "description": "camera zoom range during holds, e.g. [1.0,1.04]"
+        }
+      },
+      "description": "frame counts are at 30 fps; the engine rescales for other fps"
+    },
+    "texture": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "enum": [
+            "none",
+            "paper",
+            "grain",
+            "print",
+            "glass"
+          ]
+        },
+        "reason": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "number"
+        }
+      }
+    },
+    "sfxFamily": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 2
+    },
+    "radius": {
+      "type": "number"
+    },
+    "spacing": {
+      "type": "number",
+      "description": "base spacing unit in px at 1080p"
+    }
+  }
+}

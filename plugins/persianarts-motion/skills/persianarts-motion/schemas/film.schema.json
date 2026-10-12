@@ -1,0 +1,241 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "film (score: the single source of truth for picture and sound)",
+  "type": "object",
+  "required": [
+    "fps",
+    "size",
+    "theme",
+    "scenes"
+  ],
+  "properties": {
+    "fps": {
+      "enum": [
+        24,
+        25,
+        30,
+        50,
+        60
+      ]
+    },
+    "size": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      },
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "theme": {
+      "type": "string",
+      "description": "path to theme.json"
+    },
+    "music": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "required": [
+        "track"
+      ],
+      "properties": {
+        "track": {
+          "type": "string",
+          "description": "path to the track's sidecar JSON"
+        },
+        "edits": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "from",
+              "to"
+            ],
+            "properties": {
+              "from": {
+                "type": "string",
+                "pattern": "^bar \\d+(\\.\\d+)?( beat \\d+(\\.\\d+)?)?$|^\\d+(\\.\\d+)?s$",
+                "description": "'bar N', 'bar N beat M' (1-based) or seconds like '12.5s' for films without music"
+              },
+              "to": {
+                "type": "string",
+                "pattern": "^bar \\d+(\\.\\d+)?( beat \\d+(\\.\\d+)?)?$|^\\d+(\\.\\d+)?s$",
+                "description": "'bar N', 'bar N beat M' (1-based) or seconds like '12.5s' for films without music"
+              },
+              "xfadeBeats": {
+                "type": "number",
+                "maximum": 1
+              }
+            }
+          },
+          "description": "segments of the ONE track, in order"
+        },
+        "gain_db": {
+          "type": "number"
+        }
+      }
+    },
+    "voiceover": {
+      "type": "object",
+      "properties": {
+        "file": {
+          "type": "string"
+        },
+        "at": {
+          "type": "string",
+          "pattern": "^bar \\d+(\\.\\d+)?( beat \\d+(\\.\\d+)?)?$|^\\d+(\\.\\d+)?s$",
+          "description": "'bar N', 'bar N beat M' (1-based) or seconds like '12.5s' for films without music"
+        },
+        "duck_db": {
+          "type": "number"
+        }
+      }
+    },
+    "scenes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "at",
+          "until",
+          "purpose",
+          "primarySubject",
+          "layers"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9_-]+$"
+          },
+          "at": {
+            "type": "string",
+            "pattern": "^bar \\d+(\\.\\d+)?( beat \\d+(\\.\\d+)?)?$|^\\d+(\\.\\d+)?s$",
+            "description": "'bar N', 'bar N beat M' (1-based) or seconds like '12.5s' for films without music"
+          },
+          "until": {
+            "type": "string",
+            "pattern": "^bar \\d+(\\.\\d+)?( beat \\d+(\\.\\d+)?)?$|^\\d+(\\.\\d+)?s$",
+            "description": "'bar N', 'bar N beat M' (1-based) or seconds like '12.5s' for films without music"
+          },
+          "purpose": {
+            "type": "string",
+            "minLength": 8
+          },
+          "primarySubject": {
+            "type": "string",
+            "minLength": 3
+          },
+          "layout": {
+            "type": "string",
+            "description": "composition label used by the distinctness check (centred, thirds-right, split, full-bleed, grid…)"
+          },
+          "energy": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 5
+          },
+          "layers": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 6,
+            "items": {
+              "type": "object",
+              "required": [
+                "use"
+              ],
+              "properties": {
+                "use": {
+                  "type": "string",
+                  "pattern": "^(project:)?(background|layout|text|element|camera|transition|accent)\\.[a-z0-9-]+$"
+                },
+                "slots": {
+                  "type": "object"
+                },
+                "knobs": {
+                  "type": "object"
+                },
+                "at": {
+                  "type": "string",
+                  "pattern": "^bar \\d+(\\.\\d+)?( beat \\d+(\\.\\d+)?)?$|^\\d+(\\.\\d+)?s$",
+                  "description": "'bar N', 'bar N beat M' (1-based) or seconds like '12.5s' for films without music"
+                },
+                "until": {
+                  "type": "string",
+                  "pattern": "^bar \\d+(\\.\\d+)?( beat \\d+(\\.\\d+)?)?$|^\\d+(\\.\\d+)?s$",
+                  "description": "'bar N', 'bar N beat M' (1-based) or seconds like '12.5s' for films without music"
+                },
+                "events": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string",
+                    "pattern": "^bar \\d+(\\.\\d+)?( beat \\d+(\\.\\d+)?)?$|^\\d+(\\.\\d+)?s$",
+                    "description": "'bar N', 'bar N beat M' (1-based) or seconds like '12.5s' for films without music"
+                  },
+                  "description": "pin a named ingredient event to a musical time, e.g. {land: 'bar 3 beat 1'}"
+                },
+                "sfx": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "description": "override or silence (null) the ingredient's event sounds"
+                }
+              }
+            }
+          },
+          "transition": {
+            "type": "object",
+            "required": [
+              "use"
+            ],
+            "properties": {
+              "use": {
+                "type": "string"
+              },
+              "knobs": {
+                "type": "object"
+              },
+              "meaning": {
+                "type": "string"
+              }
+            }
+          },
+          "notes": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "hits": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "at",
+          "sfx"
+        ],
+        "properties": {
+          "at": {
+            "type": "string",
+            "pattern": "^bar \\d+(\\.\\d+)?( beat \\d+(\\.\\d+)?)?$|^\\d+(\\.\\d+)?s$",
+            "description": "'bar N', 'bar N beat M' (1-based) or seconds like '12.5s' for films without music"
+          },
+          "sfx": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "gain_db": {
+            "type": "number"
+          }
+        }
+      }
+    }
+  }
+}

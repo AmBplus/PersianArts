@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ingredient meta (as exported by defineIngredient; also written to catalog/ingredients.json)",
+  "type": "object",
+  "required": [
+    "id",
+    "layer",
+    "purpose",
+    "energy",
+    "duration",
+    "slots",
+    "events",
+    "fa"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^(background|layout|text|element|camera|transition|accent)\\.[a-z0-9-]+$"
+    },
+    "layer": {
+      "enum": [
+        "background",
+        "layout",
+        "text",
+        "element",
+        "camera",
+        "transition",
+        "accent"
+      ]
+    },
+    "derivedFrom": {
+      "type": "string"
+    },
+    "purpose": {
+      "type": "string"
+    },
+    "goodFor": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "avoidFor": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "energy": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "mood": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "duration": {
+      "type": "object",
+      "required": [
+        "min",
+        "ideal",
+        "max"
+      ],
+      "properties": {
+        "min": {
+          "type": "integer"
+        },
+        "ideal": {
+          "type": "integer"
+        },
+        "max": {
+          "type": "integer"
+        }
+      },
+      "description": "frames at 30 fps"
+    },
+    "slots": {
+      "type": "object",
+      "description": "JSON Schema of the content slots (from zod)"
+    },
+    "knobs": {
+      "type": "object",
+      "description": "JSON Schema of the tuning knobs (from zod)"
+    },
+    "events": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "sfx": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "locked": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "fa": {
+      "type": "object",
+      "required": [
+        "perLetter"
+      ],
+      "properties": {
+        "perLetter": {
+          "type": "boolean"
+        },
+        "needsMaskSlack": {
+          "type": "boolean"
+        },
+        "minLineHeight": {
+          "type": "number"
+        }
+      }
+    },
+    "preview": {
+      "type": "string",
+      "description": "path to still/contact sheet"
+    }
+  }
+}

@@ -1,0 +1,152 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "brief",
+  "type": "object",
+  "required": [
+    "goal",
+    "kind",
+    "duration_s",
+    "aspect",
+    "music",
+    "mode"
+  ],
+  "properties": {
+    "goal": {
+      "type": "string",
+      "minLength": 5,
+      "description": "the one thing a viewer should know, feel or do after watching"
+    },
+    "audience": {
+      "type": "string"
+    },
+    "kind": {
+      "enum": [
+        "explainer",
+        "educational",
+        "product",
+        "launch",
+        "announcement",
+        "title",
+        "social",
+        "other"
+      ]
+    },
+    "duration_s": {
+      "type": "number",
+      "minimum": 3,
+      "maximum": 600
+    },
+    "aspect": {
+      "enum": [
+        "16:9",
+        "9:16",
+        "1:1",
+        "4:5"
+      ]
+    },
+    "fps": {
+      "enum": [
+        24,
+        25,
+        30,
+        50,
+        60
+      ],
+      "default": 30
+    },
+    "copy": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "verbatim lines supplied by the user"
+    },
+    "brand": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "logo": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "colors": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^#([0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+          }
+        },
+        "fonts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "music": {
+      "type": "object",
+      "required": [
+        "source"
+      ],
+      "properties": {
+        "source": {
+          "enum": [
+            "library",
+            "user",
+            "none"
+          ]
+        },
+        "track": {
+          "type": "string"
+        },
+        "mood": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "voiceover": {
+      "enum": [
+        "none",
+        "user",
+        "tts"
+      ],
+      "default": "none"
+    },
+    "mode": {
+      "enum": [
+        "co-create",
+        "autonomous"
+      ]
+    },
+    "must": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "must_not": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "assumptions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "platform": {
+      "type": "string",
+      "description": "where it will be published (instagram, aparat, youtube, telegram, internal screen…)"
+    }
+  }
+}

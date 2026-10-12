@@ -1,14 +1,34 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
-  "name": "alexgreensh-anidoodle",
+  "name": "persianarts",
   "owner": {
-    "name": "Alex Greenshpun",
-    "email": "alexgreensh@users.noreply.github.com"
+    "name": "AmBplus",
+    "url": "https://github.com/AmBplus"
   },
   "metadata": {
-    "description": "Hand-drawn art, written as code"
+    "description": "PersianArts: Persian motion graphics and hand-drawn art, written as code"
   },
   "plugins": [
+    {
+      "name": "persianarts-motion",
+      "source": "./plugins/persianarts-motion",
+      "description": "Persian (RTL) motion graphics cooked from themable motion ingredients, beat-mapped music, SFX and Persian fonts.",
+      "version": "0.1.0",
+      "author": {
+        "name": "AmBplus"
+      },
+      "homepage": "https://github.com/AmBplus/PersianArts",
+      "repository": "https://github.com/AmBplus/PersianArts",
+      "license": "Apache-2.0",
+      "keywords": [
+        "persian",
+        "rtl",
+        "motion-graphics",
+        "remotion",
+        "explainer"
+      ],
+      "category": "design"
+    },
     {
       "name": "anidoodle",
       "source": "./",
@@ -21,7 +41,15 @@
       "homepage": "https://github.com/alexgreensh/anidoodle",
       "repository": "https://github.com/alexgreensh/anidoodle",
       "license": "Apache-2.0",
-      "keywords": ["illustration", "animation", "film", "drawing", "art", "music", "explainer"],
+      "keywords": [
+        "illustration",
+        "animation",
+        "film",
+        "drawing",
+        "art",
+        "music",
+        "explainer"
+      ],
       "category": "design"
     }
   ]

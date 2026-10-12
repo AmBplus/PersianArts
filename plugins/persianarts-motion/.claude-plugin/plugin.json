@@ -1,0 +1,11 @@
+{
+  "name": "persianarts-motion",
+  "displayName": "PersianArts Motion",
+  "description": "Persian (RTL) motion graphics cooked from a library of themable motion ingredients, music with beat maps, SFX and Persian fonts — with Persian typography rules, anti-slideshow craft, music-first editing and independent review.",
+  "version": "0.1.0",
+  "author": { "name": "AmBplus" },
+  "homepage": "https://github.com/AmBplus/PersianArts",
+  "repository": "https://github.com/AmBplus/PersianArts",
+  "license": "Apache-2.0",
+  "keywords": ["persian", "farsi", "rtl", "motion-graphics", "remotion", "explainer", "typography", "music"]
+}

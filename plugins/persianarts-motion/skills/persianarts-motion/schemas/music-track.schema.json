@@ -1,0 +1,161 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "music track sidecar (written by pa music add)",
+  "type": "object",
+  "required": [
+    "file",
+    "duration_s",
+    "bpm",
+    "t0",
+    "beat_s",
+    "beats_per_bar",
+    "sections"
+  ],
+  "properties": {
+    "file": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "artist": {
+      "type": "string"
+    },
+    "source": {
+      "type": "string"
+    },
+    "license": {
+      "type": "string"
+    },
+    "duration_s": {
+      "type": "number"
+    },
+    "bpm": {
+      "type": "number"
+    },
+    "t0": {
+      "type": "number",
+      "description": "seconds of beat 0"
+    },
+    "beat_s": {
+      "type": "number"
+    },
+    "beats_per_bar": {
+      "type": "integer",
+      "default": 4
+    },
+    "grid_quality": {
+      "type": "object",
+      "properties": {
+        "match": {
+          "type": "number"
+        },
+        "mean_abs_ms": {
+          "type": "number"
+        },
+        "drift_ms": {
+          "type": "number"
+        },
+        "free_tempo": {
+          "type": "boolean"
+        }
+      }
+    },
+    "sections": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "kind",
+          "from_bar",
+          "to_bar"
+        ],
+        "properties": {
+          "kind": {
+            "enum": [
+              "intro",
+              "verse",
+              "build",
+              "drop",
+              "chorus",
+              "breakdown",
+              "bridge",
+              "outro",
+              "free"
+            ]
+          },
+          "from_bar": {
+            "type": "number"
+          },
+          "to_bar": {
+            "type": "number"
+          },
+          "label": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "energy": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      },
+      "description": "0..1 per bar"
+    },
+    "safe_cuts": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      },
+      "description": "bar numbers where an internal edit is musically safe"
+    },
+    "key": {
+      "type": "string"
+    },
+    "mode": {
+      "type": "string"
+    },
+    "dastgah": {
+      "type": "string"
+    },
+    "mood": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "instruments": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "vocals": {
+      "type": "boolean"
+    },
+    "impacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "t": {
+            "type": "number"
+          },
+          "s": {
+            "type": "number"
+          },
+          "k": {
+            "enum": [
+              "kick",
+              "snare",
+              "hihat",
+              "impact"
+            ]
+          }
+        }
+      },
+      "description": "detected drum/impact transients (not SFX): t seconds, s strength 0..1, k kind"
+    }
+  }
+}
