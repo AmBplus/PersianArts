@@ -1,0 +1,42 @@
+{
+  "id": "04-titles",
+  "type": "تیتراژ",
+  "duration_seconds": 15,
+  "audience": "بینندگان یک مستند هنری دربارهٔ هنرهای ایرانی (عنوان فرضی)",
+  "message": "تیتراژ آغازین مستند «نقش و نگار» با انرژی گرافیکی و تایپ جنبشی",
+  "on_screen_copy": [
+    "نقش و نگار",
+    "مستندی دربارهٔ هنرهای ایرانی",
+    "کارگردان: نام نمونه",
+    "موسیقی: نام نمونه"
+  ],
+  "reference_sample_ids": [
+    "04",
+    "13"
+  ],
+  "good_must_show": [
+    "تایپ به‌عنوان حرکت، بدون letter-spacing و بدون شکستن اتصال حروف",
+    "بلوک‌های رنگی تخت و علامت‌های گوشهٔ HUD",
+    "ورود تیتر روی ضرب موسیقی",
+    "یک قهرمان در هر فریم",
+    "اوج انرژی سپس مکثی روی عنوان نهایی"
+  ],
+  "aspect_ratios": {
+    "required": [
+      "9:16",
+      "1:1",
+      "4:5",
+      "16:9"
+    ],
+    "primary": "16:9"
+  },
+  "audio": {
+    "source": "recorded audio only (no synthetic voice or generated music)",
+    "music": "one music track for the whole film, cut on beat/bar (cuts within 3 frames of the beat)",
+    "sfx": "recorded SFX on events only",
+    "loudness": "within target range (about -14 LUFS)"
+  },
+  "rtl": true,
+  "language": "fa (Persian, RTL, Persian digits)",
+  "frozen": true
+}

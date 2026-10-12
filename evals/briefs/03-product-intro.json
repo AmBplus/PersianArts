@@ -1,0 +1,44 @@
+{
+  "id": "03-product-intro",
+  "type": "معرفی محصول",
+  "duration_seconds": 30,
+  "audience": "کاربران بالقوهٔ یک اپ یادداشت‌برداری (محصول فرضی «یادنگار»)",
+  "message": "یادنگار ایده‌هایت را در چند ثانیه ثبت و مرتب می‌کند",
+  "on_screen_copy": [
+    "یادنگار",
+    "ایده‌ات را سریع بنویس",
+    "خودکار دسته‌بندی می‌شود",
+    "همه‌جا همراهت است",
+    "یادنگار را امتحان کن"
+  ],
+  "reference_sample_ids": [
+    "07",
+    "09",
+    "16"
+  ],
+  "good_must_show": [
+    "قاب دستگاه یا UI با متن فارسی واقعی و آیینه‌ای (RTL) درست",
+    "کپشن‌های کوتاه و تند مثل نمونهٔ 07",
+    "تناوب روشن و تیره یا تغییر پالت در پرده‌ها",
+    "هر پرده یک مزیت؛ لوگو و نام محصول در پایان",
+    "چیدمان UI برای ۹:۱۶ بازچینی شود، نه فقط برش"
+  ],
+  "aspect_ratios": {
+    "required": [
+      "9:16",
+      "1:1",
+      "4:5",
+      "16:9"
+    ],
+    "primary": "16:9"
+  },
+  "audio": {
+    "source": "recorded audio only (no synthetic voice or generated music)",
+    "music": "one music track for the whole film, cut on beat/bar (cuts within 3 frames of the beat)",
+    "sfx": "recorded SFX on events only",
+    "loudness": "within target range (about -14 LUFS)"
+  },
+  "rtl": true,
+  "language": "fa (Persian, RTL, Persian digits)",
+  "frozen": true
+}

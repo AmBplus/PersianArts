@@ -1,0 +1,43 @@
+{
+  "id": "02-informational",
+  "type": "اطلاع‌رسانی",
+  "duration_seconds": 25,
+  "audience": "عموم مردم، مخاطب شبکه‌های اجتماعی و خبرنامه",
+  "message": "کارگاه رایگان خوشنویسی شنبه ۱۵ آذر در خانهٔ فرهنگ برگزار می‌شود",
+  "on_screen_copy": [
+    "کارگاه رایگان خوشنویسی",
+    "شنبه ۱۵ آذر",
+    "ساعت ۱۶ تا ۱۸",
+    "خانهٔ فرهنگ، تالار اول",
+    "ظرفیت ۴۰ نفر",
+    "همین امروز ثبت‌نام کنید"
+  ],
+  "reference_sample_ids": [
+    "01"
+  ],
+  "good_must_show": [
+    "تاریخ، ساعت و مکان در یک نگاه خوانا (سلسله‌مراتب)",
+    "بیت‌های شماره‌دار با تعویض پالت مثل نمونهٔ 01",
+    "ارقام فارسی و جداکنندهٔ درست ساعت",
+    "همهٔ اطلاعات کلیدی داخل منطقهٔ امن هر چهار نسبت",
+    "CTA آخر با فضای خالی کافی"
+  ],
+  "aspect_ratios": {
+    "required": [
+      "9:16",
+      "1:1",
+      "4:5",
+      "16:9"
+    ],
+    "primary": "4:5"
+  },
+  "audio": {
+    "source": "recorded audio only (no synthetic voice or generated music)",
+    "music": "one music track for the whole film, cut on beat/bar (cuts within 3 frames of the beat)",
+    "sfx": "recorded SFX on events only",
+    "loudness": "within target range (about -14 LUFS)"
+  },
+  "rtl": true,
+  "language": "fa (Persian, RTL, Persian digits)",
+  "frozen": true
+}

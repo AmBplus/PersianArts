@@ -1,0 +1,44 @@
+{
+  "id": "05-social",
+  "type": "شبکهٔ اجتماعی",
+  "duration_seconds": 20,
+  "audience": "کاربران ۱۸ تا ۳۰ سالهٔ ریلز و شورتس",
+  "message": "سه نکتهٔ کوتاه برای ماندگاری دست‌خط زیبا، با قلاب در سه ثانیهٔ اول",
+  "on_screen_copy": [
+    "دست‌خطت زشته؟",
+    "سه نکته، بیست ثانیه",
+    "۱. قلم مناسب بردار",
+    "۲. آرام بنویس",
+    "۳. هر روز تکرار کن",
+    "دنبال کن، نکتهٔ بعدی را ببین"
+  ],
+  "reference_sample_ids": [
+    "01",
+    "04"
+  ],
+  "good_must_show": [
+    "قلاب قوی در ۳ ثانیهٔ اول",
+    "طراحی اصیل عمودی، نه محتوای افقی داخل کادر ۹:۱۶ (ضدنمونهٔ 02)",
+    "متن و عنصر مهم داخل منطقهٔ امن رابط (بالا، پایین و کنار)",
+    "برش‌های سریع و منحنی انرژی بالا",
+    "نسخهٔ ۱:۱ و ۴:۵ و ۱۶:۹ بدون افت خوانایی"
+  ],
+  "aspect_ratios": {
+    "required": [
+      "9:16",
+      "1:1",
+      "4:5",
+      "16:9"
+    ],
+    "primary": "9:16"
+  },
+  "audio": {
+    "source": "recorded audio only (no synthetic voice or generated music)",
+    "music": "one music track for the whole film, cut on beat/bar (cuts within 3 frames of the beat)",
+    "sfx": "recorded SFX on events only",
+    "loudness": "within target range (about -14 LUFS)"
+  },
+  "rtl": true,
+  "language": "fa (Persian, RTL, Persian digits)",
+  "frozen": true
+}

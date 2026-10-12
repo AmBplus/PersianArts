@@ -1,0 +1,43 @@
+{
+  "id": "01-educational",
+  "type": "آموزشی",
+  "duration_seconds": 30,
+  "audience": "دانش‌آموزان و علاقه‌مندان مبتدی، بدون دانش قبلی",
+  "message": "با سه گام ساده، هر کسی می‌تواند یک خط خوش‌خوان بنویسد",
+  "on_screen_copy": [
+    "خط خوش در سه گام",
+    "گام ۱: قلم را درست بگیر",
+    "گام ۲: خط پایه را حفظ کن",
+    "گام ۳: هر روز ده دقیقه تمرین کن",
+    "امروز اولین خط را بنویس"
+  ],
+  "reference_sample_ids": [
+    "15",
+    "06"
+  ],
+  "good_must_show": [
+    "هر گام یک صحنهٔ متمایز با یک قهرمان بصری",
+    "شمارهٔ گام‌ها با ارقام فارسی و ترتیب RTL درست",
+    "ریتم یادگیری: مکث کوتاه پس از هر گام",
+    "CTA پایانی روشن",
+    "بدون اسلایدشو: تغییر چیدمان و حرکت هدفمند"
+  ],
+  "aspect_ratios": {
+    "required": [
+      "9:16",
+      "1:1",
+      "4:5",
+      "16:9"
+    ],
+    "primary": "16:9"
+  },
+  "audio": {
+    "source": "recorded audio only (no synthetic voice or generated music)",
+    "music": "one music track for the whole film, cut on beat/bar (cuts within 3 frames of the beat)",
+    "sfx": "recorded SFX on events only",
+    "loudness": "within target range (about -14 LUFS)"
+  },
+  "rtl": true,
+  "language": "fa (Persian, RTL, Persian digits)",
+  "frozen": true
+}
