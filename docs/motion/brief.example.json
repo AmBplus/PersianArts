@@ -1,0 +1,22 @@
+{
+  "label": "demo",
+  "language": "fa",
+  "duration_s": 30,
+  "short_cut_s": 12,
+  "ratios": ["9x16", "1x1", "4x5", "16x9"],
+  "master_ratio": "9x16",
+  "genre": "explainer",
+  "character": { "use": true, "kind": "plain object (pencil)" },
+  "logo": { "path": "media/briefs-local/demo/inbox/logo.svg", "status": "svg" },
+  "images": [
+    { "path": "media/briefs-local/demo/inbox/home.png", "display": "browser-mockup" },
+    { "path": "media/briefs-local/demo/inbox/app.png", "display": "phone-mockup" }
+  ],
+  "images_pending": false,
+  "ideas": { "wanted": true, "notes": "two concepts in the plan, first one chosen unless told otherwise" },
+  "copy": { "text": null, "status": "drafted-not-native-reviewed" },
+  "music": { "mood": "light tech pulse", "bpm_range": [100, 115], "track": null },
+  "deadline": null,
+  "source": { "mode": "asked", "rounds": 2, "client": "claude-code" },
+  "assumptions": ["duration 30 s (default)", "copy drafted by us, not reviewed by a native reader", "music mood from the explainer preset"]
+}

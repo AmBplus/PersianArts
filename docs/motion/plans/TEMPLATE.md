@@ -4,6 +4,7 @@ Date: YYYY-MM-DD. Status: planned | building | rendered | accepted. Retrospectiv
 
 ## Request
 What the owner asked for, in one or two lines. Ratios, length, tempo, audience.
+Source brief: media/briefs-local/<label>/brief.json (schema docs/motion/brief.schema.json, produced by the /persian-arts intake, see docs/motion/INTAKE.md)
 
 ## Inputs consulted
 Files actually opened while planning, one path per line, with the reason.

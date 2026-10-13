@@ -9,13 +9,12 @@ description: The ONLY skill to use in the PersianArts repo for any motion graphi
 Single entry point for every motion graphic / Persian-RTL video in this repo. State at the start: "persian-arts active; other motion skills not used".
 Do NOT use, imitate or auto-select as workflow: persian-motion-director, commercial-motion, motion-reel, animation-studio, video-shotcraft, anidoodle, codesign:launch-video, codesign:animate, any "director" skill, or the old plugins/persianarts-motion kitchen skill. If one was loaded, say so, stop, restart here. Files under skills/anidoodle may be reused as source code only.
 
-## 1. Intake (ask ONCE, only what is missing)
-- topic or client LABEL (never the real client name in any tracked file)
-- duration
-- ratios (default 9x16, 1x1, 4x5, 16x9)
-- music preference
-- the copy text (mark "not reviewed by a native reader" if drafted by us)
-Decide everything else with defaults. Never ask permission for routine steps.
+## 1. Intake (spec and Persian wording: docs/motion/INTAKE.md)
+- PARSE FIRST: take every answer already in the message (label, ratios, duration, genre, character, logo/images, ideas, copy, music, deadline). Never re-ask. A delegation phrase ("خودت تصمیم بگیر", "you decide") = zero questions.
+- Ask only what is missing, in the user's language, in ONE batch. Claude Code: one AskUserQuestion call with at most 4 of Q1 ratios (multi), Q2 genre, Q3 character, Q4 "what do you have" logo/images/ideas/copy (multi); a delegate option or "Other" = defaults. Codex: one markdown form (INTAKE.md section 4).
+- Batch 2 (at most one more call) ONLY if logo or images were ticked: how to show images (display catalogue) + one line "drop files in media/briefs-local/<label>/inbox/ or give paths". Raster logo: one yes/no to vectorize into layered SVG. Hard cap: 2 rounds; missing files = placeholders, never a blocker.
+- Fill the rest from the genre preset (INTAKE.md section 6); write media/briefs-local/<label>/brief.json (schema docs/motion/brief.schema.json) and print the assumptions block, then proceed without further questions.
+- LABEL only in tracked files (never the real client name). Drafted copy is marked "not reviewed by a native reader". Never ask permission for routine steps.
 
 ## 2. Read (before any plan)
 docs/motion/README.md; docs/motion/PLAYBOOK-BUILD-MOTION.md; last 30 lines of docs/motion/DECISIONS.jsonl; docs/PERSIAN-LOCALIZATION-LESSONS.md; docs/PERSIAN-RENDER-CONTRACT.md; docs/motion/FILM-GATES.md. Also PLAYBOOK-RENDER.md and PLAYBOOK-SOUND.md before those stages.
