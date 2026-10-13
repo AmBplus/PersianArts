@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """fetch_pixabay_track.py - save a few hand-picked Pixabay Music tracks, run by the owner on their own PC.
 
-    python fetch_pixabay_track.py --out D:\\P\\project\\persianArts\\media\\music-pixabay URL [URL ...]
+    python fetch_pixabay_track.py --out media/music-pixabay URL [URL ...]
 
 Opens a visible Chrome window (persistent profile). Verification/login pages are solved by the owner by hand;
 the script only waits. The audio is saved via the page's own Download control (Playwright download event).
@@ -17,7 +17,7 @@ from pathlib import Path
 from urllib.parse import urlparse
 
 MAX_URLS = 5
-DEFAULT_OUT = r"D:\P\project\persianArts\media\music-pixabay"
+DEFAULT_OUT = str(__import__("pathlib").Path(__import__("os").environ.get("PA_ROOT") or __import__("pathlib").Path(__file__).resolve().parents[2]) / "media" / "music-pixabay")  # repo-relative; PA_ROOT overrides
 LICENSE_NOTE = ("Pixabay Content License: see https://pixabay.com/service/license-summary/ "
                 "(owner to confirm before publishing)")
 
