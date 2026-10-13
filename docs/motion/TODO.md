@@ -3,7 +3,6 @@ After every completed task the lead orders `pa todo done <id>` plus a checkpoint
 
 ## Now
 - [ ] T001 Story build S06 (first) (studio, est 25 min) - docs/motion/stories
-- [ ] T005 Music pack: add viditor tracks to the kit (another worker in progress) (studio, est 20 min) - sound/library/kit
 - [ ] T015 Checkpoint policy: commit after every task (pa todo done + checkpoint) (lead)
 
 ## Next
@@ -23,4 +22,5 @@ After every completed task the lead orders `pa todo done <id>` plus a checkpoint
 - [ ] T012 Research-centre emblem asset: owner can send it (owner)
 
 ## Done today
+- [x] T005 Music pack: add viditor tracks to the kit (another worker in progress) (studio, est 20 min) - sound/library/kit
 - [x] T016 Portability: pa doctor/bootstrap/sync/vault/todo/meter (studio, est 25 min, actual 15) - docs/motion/PORTABILITY.md
