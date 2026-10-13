@@ -17,3 +17,10 @@ Co-Authored-By: Claude Haiku 5.5 <noreply@anthropic.com>
 2026-10-13T15:40:32+03:30 05155651adf22253b3f948c1b09c109a454daedf PUSH-OK via=ssh unpushed=1 files=20 msg=persian-arts skills v2.0 with identity lines, checklists and mirror
 2026-10-13T15:40:53+03:30 ddd6de690ff41b98532f0ed6f6b372e99ae5481e PUSH-OK via=ssh unpushed=1 files=13 msg=motion docs: studio, loop policy, ledger, gates, goal memory, recipes
 2026-10-13T15:41:19+03:30 9f1185fd693ec59479b6ae8413472a851776c89f PUSH-OK via=ssh unpushed=1 files=29 msg=tools: board, gates detectors, cues, status server
+2026-10-13T18:27:54+03:30 57fc84225866d471e9b6937dacfbb5f45a0b7049 PUSH-OK via=ssh unpushed=2 files=12 msg=docs(motion): merge persian-arts and production docs; scrub scan hits
+2026-10-13T19:09:17+03:30 1ead9b7e526888a82a554bf0d190e23d6e44bd75 PUSH-OK via=ssh unpushed=1 files=12 msg=feat(motion): html-film single-file lane, pencil film v1 and v2 (9:16)
+2026-10-13T19:10:22+03:30 79d2015066b145282e2493fa4df6ec22d845bd07 PUSH-OK via=ssh unpushed=1 files=1 msg=docs(motion): record html-film lane pilot result (proposed)
+2026-10-13T19:29:08+03:30 13fcbfef76efb4bdb6b5300e7a142d8353722d31 PUSH-OK via=ssh unpushed=1 files=327 msg=feat(sound): tracked sound kit (304 sfx, 7 music excerpts), restore script, guard allows kit audio
+2026-10-13T19:45:46+03:30 377bb88c666a3cdd8709d2b661a59e31d676878f PUSH-OK via=ssh unpushed=1 files=27 msg=feat(motion): generic sound builder, asset compressor with WebP and TV-safe video, html-film capture options, research briefs
+2026-10-13T20:25:51+03:30 7b66d3c65cac4bf77d5b025301336a5670323c32 PUSH-OK via=ssh unpushed=1 files=40 msg=feat(motion): time budget tooling (pa time), overrun post-mortem, skill 2.3, draft capture flag
+2026-10-13T21:29:07+03:30 626863dbba5e0bca273f61722a9d63a7613a77e3 PUSH-OK via=ssh unpushed=1 files=10 msg=feat(motion): single output folder with LATEST, pa deliver, delivery step in the skill

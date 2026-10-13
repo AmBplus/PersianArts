@@ -39,3 +39,8 @@ Run node work/persian/tools/gates/run-gates.mjs <silent.mp4> --src <film.html di
 
 ## Appends to goal memory
 CURRENT STATE "Open defects" block (id, scene, frame, status); DECISIONS (score and verdict); REJECTED items you saw repeated.
+
+
+## Lessons 2.5 (conference teaser)
+- Extract a strip every 3 frames around EVERY scene transition of the FINAL mp4 (`pa strip <mp4> <t0> <t1> --every 3`), in BOTH ratios, after the last render; never judge from the silent preview. Look at the sheet.
+- Run `pa audio-check` on the final mp4; list peers (logos equal height/weight/baseline), one world (finale same palette/background/type), contrast (>= 4.5:1 body, >= 3:1 large, no blue on blue) as manual checks with evidence.

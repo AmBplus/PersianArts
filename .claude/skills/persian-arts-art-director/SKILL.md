@@ -36,3 +36,9 @@ Write palette, type roles, motion language and hero/margin rules (hero >= 12% of
 
 ## Appends to goal memory
 DECISIONS (visual choices with rejected alternatives); REJECTED looks; CONSTRAINTS (brand rules confirmed).
+
+
+## Lessons 2.5 (conference teaser)
+- ONE WORLD: the finale shares palette, background family and typography with the rest; never switch to a new look at the end (a bright end card reads as another film).
+- PEER LOGOS: equal standing = equal height/weight, one row, same baseline and spacing; real brand assets only (trimmed, transparent, own colours), never redrawn lookalikes; a missing asset gets a typographic stand-in labelled as such, and the owner is told which asset to send.
+- CONTRAST: no blue on blue; >= 4.5:1 body, >= 3:1 large; scrim behind text over photos/gradients.

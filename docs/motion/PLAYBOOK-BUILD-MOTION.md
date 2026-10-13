@@ -109,3 +109,7 @@ Python reads/writes for Persian source, copy, director and props must explicitly
 ## Deliver (last step of every film)
 - `pwsh -File work/persian/tools/pa.ps1 deliver <film> <version>` puts the finals in `output/<film>/<version>/` (hardlinks) and refreshes `output/LATEST/` and `output/INDEX.md`. Preview with `--dry-run`; rebuild only with `deliver --rebuild`.
 - The studio must run it and tell the owner the path `output/LATEST/<film>-<ratio>.mp4`. Details: `output/README.md`.
+
+
+## Lessons 2.5 (conference teaser v1-v5; ledger L-056..L-066)
+After sound: `pa audio-check`; after the last render: `pa strip` around each transition in both ratios; finale = same world; peer logos equal; contrast >= 4.5:1; deliver with `pa deliver` (compressed by default). Diagnose first, then change. Next-version loop: owner feedback -> frozen scope -> one studio order -> deliver.

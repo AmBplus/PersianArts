@@ -37,3 +37,10 @@ Build is the single file film.html (fonts local, relative). Capture: node work/p
 CURRENT STATE "Files" block (paths, render versions, commands); DECISIONS for technical choices with the rejected alternative.
 
 Time budget (2.3): capture ONCE per version; png for FINAL, `--draft` (jpeg q97, about 1.6x faster) for previews only; lighten the page first (few DOM nodes, pre-blurred assets); checks on 50% stills; `pa time mark <label> capture` before and `sound|qc` after.
+
+
+## Lessons 2.5 (conference teaser)
+- TV order: convert the SILENT video to TV-safe first, mux the audio ONCE (converting the muxed file raised the true peak 1.1 dB); final trim = volume trim + `alimiter level=disabled`; verify the true peak after the last step.
+- Capture: PNG is Chrome's bottleneck; PNG for finals, JPEG q97 for finals only if the budget forces it and the report says so (conference v3-v5 used JPEG); `--draft` for previews; lighten before capture; one capture pair per version.
+- Delivery: `pa deliver` compresses by default (CRF 20-23, SSIM guard); `pa compress <paths>` for existing outputs; originals in media/film-versions are never touched (new file renamed over the hardlink).
+- Known pitfalls: settle role (build_sound), PA_DUCK env, tv-order, rules.json event types.

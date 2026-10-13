@@ -6,6 +6,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import { compressPaths } from './compress.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../..');
 const FV = path.join(ROOT, 'media/film-versions');
@@ -98,7 +99,8 @@ function rebuild(rows) {
   const best = new Map();
   for (const r of rows) {
     const key = r.film + '|' + r.ratio;
-    const score = (r.sound ? 1e15 : 0) + r.mtime;
+    const vn = +((/^v(\d+)/.exec(r.ver) || [])[1] || 0); // version number first (compress rewrites mtimes), mtime breaks ties
+    const score = (r.sound ? 1e18 : 0) + vn * 1e14 + r.mtime;
     if (!best.has(key) || score > best.get(key).score) best.set(key, { ...r, score });
   }
   for (const r of best.values()) {
@@ -164,4 +166,5 @@ for (const p of list) {
 const sheet = fs.readdirSync(vdir).find((n) => /^(sheet|contact).*\.jpg$/i.test(n));
 if (sheet) console.log(`  ${film}-${arg}-stills.jpg: ${DRY ? 'dry-run' : link(path.join(vdir, sheet), path.join(dst, `${film}-${arg}-stills.jpg`))}`);
 if (!DRY) fs.writeFileSync(path.join(dst, 'OUTPUT.md'), outputMd(film, arg, vj, list), 'utf8');
+if (!DRY && !args.includes('--no-compress')) await compressPaths([dst]); // default ON: SSIM-guarded CRF 20-23, TV-safe (see compress.mjs)
 process.stdout.write(rebuild(scan()));

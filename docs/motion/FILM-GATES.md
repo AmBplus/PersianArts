@@ -31,3 +31,15 @@ Any applicable required check recorded as `not-run`, `unknown`, stale, failed, o
 Film order acceptance line (copy into every film order): “Acceptance cites `docs/motion/FILM-GATES.md`, names the target stage, reports actual command output, and identifies every required not-run/unknown/to-build/stale/failed check as blocking. Structural PASS is draft-record integrity only.”
 
 Runner: `node work/persian/tools/gates/run-gates.mjs <video|stills-folder> --src <film src dir>` prints a PASS/FAIL table with frame numbers (exit 1 on FAIL). Detectors are leads for QC to verify in frames, not verdicts; see docs/motion/LESSONS-LEDGER.md for hit/miss history.
+
+html-film applicability (2.2, lane default): edge-touch, empty-band, dead-frames and number-lint apply to every html-film mp4. scene-transition and duplicate-template need an events.json / CUT_FRAMES export (a single html is one scene to the detector, scenes=1): without it list them as not applicable, never as pass. logo-colour applies only when the film has a real brand asset. Hero size, contrast and visual review are unchanged.
+
+
+### Gates added in skill 2.5 (conference teaser lessons)
+| Gate | Check | Evidence | Status |
+|---|---|---|---|
+| Audio continuity | `pa audio-check <final.mp4> --transitions ...` (RMS jump <= 3 dB at cuts, gap <= 0.5 s, tail < -50 dBFS, TP <= -1.0, -14..-15 LUFS) | exists: work/persian/tools/audio/audio_check.py | automated |
+| Transition strip | `pa strip <final.mp4> <t0> <t1> --every 3`, both ratios, after the last render | exists: work/persian/tools/audio/strip.py | tool + manual viewing |
+| Peer logos | equal height/weight, one row, same baseline/spacing, real assets | manual (QC with stills) | manual |
+| One world | finale shares palette, background family, typography | manual (QC with strip) | manual |
+| Compressed delivery | `pa deliver` / `pa compress` (SSIM guard, tv_check pass) | exists: work/persian/tools/deliver/compress.mjs | automated |

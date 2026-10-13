@@ -34,3 +34,9 @@ Cut times live in CUT_BEATS in film.html on the music BPM/T0 grid; adjust them t
 
 ## Appends to goal memory
 DECISIONS (cuts, trims, rejected alternatives); CURRENT STATE open defects of pacing; "locked at <date>" in NEXT when locked.
+
+
+## Lessons 2.5 (conference teaser)
+- Hub-to-finale continuity: a persistent element carries across, outgoing/incoming overlap 8-12 frames, no empty beat; the finale is the same world as the rest.
+- Check every transition on a strip of the FINAL mp4 (every 3 frames) in both ratios. Complaint "feels like another world": measure music AND picture first, then change.
+- Next-version loop: owner feedback -> frozen scope -> one studio order -> deliver.

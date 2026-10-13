@@ -26,6 +26,7 @@
      "t_s": {"type": "number", "description": "contact time in seconds"},
      "intensity": {"type": "number", "minimum": 0, "maximum": 1, "description": "0.5 = rule gain; +-3 dB across the range for hit/ring layers"},
      "role": {"enum": ["normal", "accent", "final"], "description": "role final = the settle event: a bar downbeat of the bed is aligned to it"},
+     "ends_film": {"type": "boolean", "description": "true = this event ends the film (same as role final): the bed fades from it; NEVER inferred from type settle"},
      "dur_s": {"type": "number", "description": "span for layers marked span (risers, strokes, ambient)"}
     }
    }

@@ -38,3 +38,9 @@ Inputs are events.json (export the EVENTS block from film.html) and cues-resolve
 
 ## Appends to goal memory
 DECISIONS (track choice, rejected tracks); CURRENT STATE lines for audio files; REJECTED sounds.
+
+
+## Lessons 2.5 (conference teaser)
+- Known tool pitfalls: only an event with `role: "final"` (or `ends_film: true`) ends the music bed; a type `settle` mid-film never does (build_sound fails if the bed is silent > 1.5 s). `PA_DUCK` env sets the bed duck factor (default 0.708). Every event type in events.json must exist in rules.json before the build.
+- After sound run `pa audio-check <final.mp4> --transitions ...`: RMS jump <= 3 dB at cuts, no gap > 0.5 s below -40 dB, tail < -50 dBFS, TP <= -1.0, -14..-15 LUFS. Re-measure the true peak after the LAST step.
+- "A part feels like another world" = measure music (audio-check) and picture before changing anything.

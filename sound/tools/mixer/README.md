@@ -23,3 +23,6 @@ Layer: `role` (anticipation/hit/ring/tail), `clip` (kit id) or `category`+`pick:
 Integrated -14.1 LUFS, true peak -2.1 dBTP (<= -1.0), last 0.25 s peak -inf (< -50), audible simultaneous 3, audio length within 1 frame of video,
 payoff cues within 0.3 ms of contact. Compare against an original with `compare_sound.py` (LUFS/TP/tail, cue deltas, envelope correlation, band energy).
 Example events: `examples/pencil-v2.events.json` (made by `examples/make_pencil_events.py`).
+
+## Settle role (L-a)
+Only an event with `role: "final"` (or `ends_film: true`) ends the film: the bed aligns to it and fades from it. A plain type `settle` mid-film does not. The build fails if the bed is silent (< -40 dB RMS) for more than 1.5 s before the film end. Regression: `python sound/tools/mixer/test_build_sound.py`.

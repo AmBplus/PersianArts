@@ -100,3 +100,9 @@ Runs only on the owner's word (owner gate): no sound work starts, and `pa sound`
 5. Read `<dir>/verify.json`: about -14 LUFS, true peak <= -1.0 dBTP, last 0.25 s < -50 dBFS, audible simultaneous <= 3, no clip used more than 3 times, audio length within one frame, payoff offsets 0 ms, downbeat on the settle, cut-to-beat errors listed; `events_without_rule` must be empty.
 6. Listen and review the cue table (`cues-resolved.json`); fix rules or events, rebuild. For a regression check against an older mix use `sound/tools/mixer/compare_sound.py` (LUFS/TP/tail, cue deltas, envelope correlation, band energy).
 7. Copy the result into `media/film-versions/<film>/<version>/` with VERSION.json; record any systematic finding in LESSONS-LEDGER/DECISIONS. Proof of method: html v2 rebuilt from events with the default rules: LUFS -14.1 vs -14.1, TP -2.1 vs -2.4, tail -inf both, payoff cues within 0.3 ms, 0.25-s-framed RMS envelope correlation 0.999 (not identical: beat-locked pen/pop cues moved to contact frames, one subtitle-bubble cue omitted, kit ogg instead of original mp3/wav).
+
+
+## Lessons 2.5 (conference teaser v1-v5)
+- build_sound: only `role: "final"` / `ends_film: true` ends the bed (schema events.schema.json); self-check fails on a silent bed > 1.5 s; regression: `python sound/tools/mixer/test_build_sound.py`.
+- Continuity gate: `pa audio-check <final.mp4> --transitions t1,t2,...` (RMS jump <= 3 dB at cuts, no gap > 0.5 s < -40 dB, tail < -50 dBFS, TP <= -1.0, -14..-15 LUFS).
+- TV order: silent video to TV-safe first, mux audio once; trim = volume + `alimiter level=disabled`; re-measure true peak after the last step.
