@@ -14,6 +14,7 @@ Two systems live in this folder. The persian-arts system came in with 24baaae; t
 | Gates, board, goals | persian-arts | `work/persian/tools/gates/`, `work/persian/status/serve.mjs`, [GOAL-MEMORY.md](GOAL-MEMORY.md), [FILM-GATES.md](FILM-GATES.md), [STATUS-PROTOCOL.md](STATUS-PROTOCOL.md) | quality gates, live status |
 | Process and lessons | persian-arts | [LESSONS-LEDGER.md](LESSONS-LEDGER.md) (lessons per film), [LOOP-POLICY.md](LOOP-POLICY.md), [METERING.md](METERING.md), [METRICS.md](METRICS.md) | retro lessons, loop and quota rules |
 | Render and sound recipes | ours | [PLAYBOOK-BUILD-MOTION.md](PLAYBOOK-BUILD-MOTION.md), [PLAYBOOK-RENDER.md](PLAYBOOK-RENDER.md), [PLAYBOOK-SOUND.md](PLAYBOOK-SOUND.md) | render and sound steps; build-motion is the fast path after `/persian-arts` |
+| Sound kit (tracked) | ours | `sound/library/kit/` (README), `sound/tools/restore_library.ps1` | base sfx and music excerpts for any film on a fresh clone; rebuild of the full library |
 | Decisions | ours | [DECISIONS.jsonl](DECISIONS.jsonl) (validated by `contracts/schemas/decision.schema.json`) | what we decided, with evidence |
 | Research | ours | [research/INDEX.md](research/INDEX.md) | decision briefs (question, options, evidence) |
 | Production timing and quality accounting | ours | [ledger/](ledger/README.md) (`ledger.jsonl`, per-film tables), [reports/](reports/README.md) (daily two-level reports) | how long films take, what each version cost |

@@ -1,5 +1,12 @@
 # PLAYBOOK-SOUND: sound library, music selection, cues, mix
 
+## Sound kit (tracked)
+- Where: `sound/library/kit/` (README there). Tracked in git, curated, at most 60 MB total and 2 MB per file (owner decision 2026-10-13, D-20261013-28). Currently about 17.6 MB.
+- Content: 304 sfx in `sfx/<category>/` (every clip used by the pencil cue sheets plus 8-15 candidates per taxonomy category) and 7 music excerpts (first 90 s) in `music/` with beat grid sidecars.
+- Ids: `fs-<freesound id>`, `kn-<kenney name>`, `op-<category>-<file>`, `pr-<premix>`, `tr-<music slug>`. `kit/catalog.json` lists them with path, duration, peak, source; `kit/manifest.json` maps original library paths to kit ids.
+- Rebuild the full untracked library: `pwsh -File sound/tools/restore_library.ps1 -Full [-Run]` (needs your own `work/persian/.freesound.env` / `.jamendo.env`; default mode only verifies the kit).
+- Budget and git: `work/persian/tools/checkpoint.ps1` commits kit audio up to 2 MB; the rest of `sound/library/**` audio stays ignored.
+
 ## 1. Library structure
 - `sound/library/README.md`: layout, sidecar fields, ingest rule for staged Pixabay tracks, fresh-clone notes.
 - `sound/library/sfx/TAXONOMY.md`: one category vocabulary for every source (ui, click, typing, slide, whoosh, swoosh-transition, pop, bubble, paper-pencil, stamp-thud, impact, riser, downlifter, stinger, ding-chime, success, ambience, misc).

@@ -122,3 +122,10 @@ media/_contact_sheets/
 .remotion/
 work/persian/src/workbench/public/conf-local/
 work/persian/src/film/conference/copy-map-conference.json
+
+# sound kit (tracked, curated, <= 2 MB per file): re-include audio under sound/library/kit/ (must stay after the sound/library/** rules above)
+!sound/library/kit/
+!sound/library/kit/**/
+!sound/library/kit/**/*.ogg
+!sound/library/kit/**/*.opus
+!sound/library/kit/**/*.mp3

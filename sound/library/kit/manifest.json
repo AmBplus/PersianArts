@@ -1,0 +1,2438 @@
+{
+ "schema": "persianarts.sound_kit_manifest/1",
+ "note": "maps original library ids/paths to kit ids and paths; cue sheets use original paths",
+ "entries": [
+  {
+   "id": "pr-hit-stamp-sub",
+   "original_id": "premix:hit-stamp-sub",
+   "original_path": "media/film-versions/pencil-social/v51-cues/assets/hit-stamp-sub.wav",
+   "kit_path": "sound/library/kit/sfx/impact/pr-hit-stamp-sub.ogg",
+   "conversion": "ogg-q5",
+   "orig_bytes": 230492
+  },
+  {
+   "id": "fs-136789",
+   "original_id": "freesound:alarm-timer/136789-fx017.mp3",
+   "original_path": "sound/library/sfx/freesound/alarm-timer/136789-fx017.mp3",
+   "kit_path": "sound/library/kit/sfx/alarm-timer/fs-136789.mp3",
+   "conversion": "copy",
+   "orig_bytes": 6889
+  },
+  {
+   "id": "fs-265769",
+   "original_id": "freesound:alarm-timer/265769-alarmclock.mp3",
+   "original_path": "sound/library/sfx/freesound/alarm-timer/265769-alarmclock.mp3",
+   "kit_path": "sound/library/kit/sfx/alarm-timer/fs-265769.mp3",
+   "conversion": "copy",
+   "orig_bytes": 35344
+  },
+  {
+   "id": "fs-347138",
+   "original_id": "freesound:alarm-timer/347138-watch-alarm.mp3",
+   "original_path": "sound/library/sfx/freesound/alarm-timer/347138-watch-alarm.mp3",
+   "kit_path": "sound/library/kit/sfx/alarm-timer/fs-347138.mp3",
+   "conversion": "copy",
+   "orig_bytes": 22080
+  },
+  {
+   "id": "fs-490326",
+   "original_id": "freesound:alarm-timer/490326-bell-egg-timer.mp3",
+   "original_path": "sound/library/sfx/freesound/alarm-timer/490326-bell-egg-timer.mp3",
+   "kit_path": "sound/library/kit/sfx/alarm-timer/fs-490326.mp3",
+   "conversion": "copy",
+   "orig_bytes": 41950
+  },
+  {
+   "id": "fs-566556",
+   "original_id": "freesound:alarm-timer/566556-dudit-emilie-2020-2021-alarm-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/alarm-timer/566556-dudit-emilie-2020-2021-alarm-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/alarm-timer/fs-566556.mp3",
+   "conversion": "copy",
+   "orig_bytes": 34908
+  },
+  {
+   "id": "fs-615949",
+   "original_id": "freesound:alarm-timer/615949-ding-effect-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/alarm-timer/615949-ding-effect-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/alarm-timer/fs-615949.mp3",
+   "conversion": "copy",
+   "orig_bytes": 37200
+  },
+  {
+   "id": "fs-632461",
+   "original_id": "freesound:alarm-timer/632461-kitchen-microwave-buttons-being-pressed.mp3",
+   "original_path": "sound/library/sfx/freesound/alarm-timer/632461-kitchen-microwave-buttons-being-pressed.mp3",
+   "kit_path": "sound/library/kit/sfx/alarm-timer/fs-632461.mp3",
+   "conversion": "copy",
+   "orig_bytes": 44671
+  },
+  {
+   "id": "fs-632462",
+   "original_id": "freesound:alarm-timer/632462-kitchen-microwave-buttons-being-pressed-3-buttons.mp3",
+   "original_path": "sound/library/sfx/freesound/alarm-timer/632462-kitchen-microwave-buttons-being-pressed-3-buttons.mp3",
+   "kit_path": "sound/library/kit/sfx/alarm-timer/fs-632462.mp3",
+   "conversion": "copy",
+   "orig_bytes": 35073
+  },
+  {
+   "id": "fs-632463",
+   "original_id": "freesound:alarm-timer/632463-kitchen-microwave-buttons-being-pressed-2-buttons.mp3",
+   "original_path": "sound/library/sfx/freesound/alarm-timer/632463-kitchen-microwave-buttons-being-pressed-2-buttons.mp3",
+   "kit_path": "sound/library/kit/sfx/alarm-timer/fs-632463.mp3",
+   "conversion": "copy",
+   "orig_bytes": 29174
+  },
+  {
+   "id": "fs-632464",
+   "original_id": "freesound:alarm-timer/632464-kitchen-microwave-buttons-being-pressed-1-button.mp3",
+   "original_path": "sound/library/sfx/freesound/alarm-timer/632464-kitchen-microwave-buttons-being-pressed-1-button.mp3",
+   "kit_path": "sound/library/kit/sfx/alarm-timer/fs-632464.mp3",
+   "conversion": "copy",
+   "orig_bytes": 17849
+  },
+  {
+   "id": "fs-670891",
+   "original_id": "freesound:alarm-timer/670891-buzzer-alert-lux-kitchen-timer-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/alarm-timer/670891-buzzer-alert-lux-kitchen-timer-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/alarm-timer/fs-670891.mp3",
+   "conversion": "copy",
+   "orig_bytes": 29320
+  },
+  {
+   "id": "fs-731825",
+   "original_id": "freesound:alarm-timer/731825-alarm-hit-sound.mp3",
+   "original_path": "sound/library/sfx/freesound/alarm-timer/731825-alarm-hit-sound.mp3",
+   "kit_path": "sound/library/kit/sfx/alarm-timer/fs-731825.mp3",
+   "conversion": "copy",
+   "orig_bytes": 43152
+  },
+  {
+   "id": "fs-209518",
+   "original_id": "freesound:ambience/209518-20131202-ripping-off-paper-towel-zoomh2nxy-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/ambience/209518-20131202-ripping-off-paper-towel-zoomh2nxy-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/ambience/fs-209518.mp3",
+   "conversion": "copy",
+   "orig_bytes": 25675
+  },
+  {
+   "id": "fs-209655",
+   "original_id": "freesound:ambience/209655-20131203-crushing-paper-zoomh2nxy-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/ambience/209655-20131203-crushing-paper-zoomh2nxy-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/ambience/fs-209655.mp3",
+   "conversion": "copy",
+   "orig_bytes": 39240
+  },
+  {
+   "id": "fs-508596",
+   "original_id": "freesound:ambience/508596-crumple-01-ogg.mp3",
+   "original_path": "sound/library/sfx/freesound/ambience/508596-crumple-01-ogg.mp3",
+   "kit_path": "sound/library/kit/sfx/ambience/fs-508596.mp3",
+   "conversion": "copy",
+   "orig_bytes": 16597
+  },
+  {
+   "id": "fs-508597",
+   "original_id": "freesound:ambience/508597-crumple-06-ogg.mp3",
+   "original_path": "sound/library/sfx/freesound/ambience/508597-crumple-06-ogg.mp3",
+   "kit_path": "sound/library/kit/sfx/ambience/fs-508597.mp3",
+   "conversion": "copy",
+   "orig_bytes": 13726
+  },
+  {
+   "id": "fs-277290",
+   "original_id": "freesound:boing/277290-boing2-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/boing/277290-boing2-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/boing-cartoon/fs-277290.mp3",
+   "conversion": "copy",
+   "orig_bytes": 38774
+  },
+  {
+   "id": "fs-472477",
+   "original_id": "freesound:boing/472477-battery-compartment-spring-02-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/boing/472477-battery-compartment-spring-02-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/boing-cartoon/fs-472477.mp3",
+   "conversion": "copy",
+   "orig_bytes": 54583
+  },
+  {
+   "id": "fs-472478",
+   "original_id": "freesound:boing/472478-battery-compartment-spring-01-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/boing/472478-battery-compartment-spring-01-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/boing-cartoon/fs-472478.mp3",
+   "conversion": "copy",
+   "orig_bytes": 31626
+  },
+  {
+   "id": "fs-514429",
+   "original_id": "freesound:boing/514429-sproing.mp3",
+   "original_path": "sound/library/sfx/freesound/boing/514429-sproing.mp3",
+   "kit_path": "sound/library/kit/sfx/boing-cartoon/fs-514429.mp3",
+   "conversion": "copy",
+   "orig_bytes": 56256
+  },
+  {
+   "id": "fs-540788",
+   "original_id": "freesound:boing/540788-boing-1.mp3",
+   "original_path": "sound/library/sfx/freesound/boing/540788-boing-1.mp3",
+   "kit_path": "sound/library/kit/sfx/boing-cartoon/fs-540788.mp3",
+   "conversion": "copy",
+   "orig_bytes": 22320
+  },
+  {
+   "id": "fs-540790",
+   "original_id": "freesound:boing/540790-boing-2.mp3",
+   "original_path": "sound/library/sfx/freesound/boing/540790-boing-2.mp3",
+   "kit_path": "sound/library/kit/sfx/boing-cartoon/fs-540790.mp3",
+   "conversion": "copy",
+   "orig_bytes": 28896
+  },
+  {
+   "id": "fs-571119",
+   "original_id": "freesound:boing/571119-boing-sfx-mp3.mp3",
+   "original_path": "sound/library/sfx/freesound/boing/571119-boing-sfx-mp3.mp3",
+   "kit_path": "sound/library/kit/sfx/boing-cartoon/fs-571119.mp3",
+   "conversion": "copy",
+   "orig_bytes": 5584
+  },
+  {
+   "id": "fs-614749",
+   "original_id": "freesound:boing/614749-boing-flac.mp3",
+   "original_path": "sound/library/sfx/freesound/boing/614749-boing-flac.mp3",
+   "kit_path": "sound/library/kit/sfx/boing-cartoon/fs-614749.mp3",
+   "conversion": "copy",
+   "orig_bytes": 7099
+  },
+  {
+   "id": "fs-695923",
+   "original_id": "freesound:boing/695923-pogoboye-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/boing/695923-pogoboye-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/boing-cartoon/fs-695923.mp3",
+   "conversion": "copy",
+   "orig_bytes": 11425
+  },
+  {
+   "id": "fs-731262",
+   "original_id": "freesound:boing/731262-cartoon-sound-single-boing.mp3",
+   "original_path": "sound/library/sfx/freesound/boing/731262-cartoon-sound-single-boing.mp3",
+   "kit_path": "sound/library/kit/sfx/boing-cartoon/fs-731262.mp3",
+   "conversion": "copy",
+   "orig_bytes": 28521
+  },
+  {
+   "id": "fs-795031",
+   "original_id": "freesound:boing/795031-boing.mp3",
+   "original_path": "sound/library/sfx/freesound/boing/795031-boing.mp3",
+   "kit_path": "sound/library/kit/sfx/boing-cartoon/fs-795031.mp3",
+   "conversion": "copy",
+   "orig_bytes": 18135
+  },
+  {
+   "id": "fs-825881",
+   "original_id": "freesound:boing/825881-boing-in-italian-punf.mp3",
+   "original_path": "sound/library/sfx/freesound/boing/825881-boing-in-italian-punf.mp3",
+   "kit_path": "sound/library/kit/sfx/boing-cartoon/fs-825881.mp3",
+   "conversion": "copy",
+   "orig_bytes": 28512
+  },
+  {
+   "id": "fs-339437",
+   "original_id": "freesound:boom-sub/339437-super-low-bass-hit-kick-drum-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/boom-sub/339437-super-low-bass-hit-kick-drum-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/boom-sub/fs-339437.mp3",
+   "conversion": "copy",
+   "orig_bytes": 5376
+  },
+  {
+   "id": "fs-59537",
+   "original_id": "freesound:boom-sub/59537-sub-bass-1-seconddddd-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/boom-sub/59537-sub-bass-1-seconddddd-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/boom-sub/fs-59537.mp3",
+   "conversion": "copy",
+   "orig_bytes": 4716
+  },
+  {
+   "id": "fs-59538",
+   "original_id": "freesound:boom-sub/59538-sub-bass-2-secondsssss-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/boom-sub/59538-sub-bass-2-secondsssss-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/boom-sub/fs-59538.mp3",
+   "conversion": "copy",
+   "orig_bytes": 7685
+  },
+  {
+   "id": "fs-59539",
+   "original_id": "freesound:boom-sub/59539-sub-bass-3-secondsssss-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/boom-sub/59539-sub-bass-3-secondsssss-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/boom-sub/fs-59539.mp3",
+   "conversion": "copy",
+   "orig_bytes": 11612
+  },
+  {
+   "id": "fs-59540",
+   "original_id": "freesound:boom-sub/59540-sub-bass-4-secondsssss-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/boom-sub/59540-sub-bass-4-secondsssss-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/boom-sub/fs-59540.mp3",
+   "conversion": "copy",
+   "orig_bytes": 25767
+  },
+  {
+   "id": "fs-59541",
+   "original_id": "freesound:boom-sub/59541-sub-bass-5-secondsssss-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/boom-sub/59541-sub-bass-5-secondsssss-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/boom-sub/fs-59541.mp3",
+   "conversion": "copy",
+   "orig_bytes": 17008
+  },
+  {
+   "id": "fs-648888",
+   "original_id": "freesound:boom-sub/648888-kick-003-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/boom-sub/648888-kick-003-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/boom-sub/fs-648888.mp3",
+   "conversion": "copy",
+   "orig_bytes": 22512
+  },
+  {
+   "id": "fs-748236",
+   "original_id": "freesound:boom-sub/748236-riser-hit-sfx-078.mp3",
+   "original_path": "sound/library/sfx/freesound/boom-sub/748236-riser-hit-sfx-078.mp3",
+   "kit_path": "sound/library/kit/sfx/boom-sub/fs-748236.mp3",
+   "conversion": "copy",
+   "orig_bytes": 50448
+  },
+  {
+   "id": "fs-81144",
+   "original_id": "freesound:boom-sub/81144-sub-oceano-a-sharp-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/boom-sub/81144-sub-oceano-a-sharp-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/boom-sub/fs-81144.mp3",
+   "conversion": "copy",
+   "orig_bytes": 53739
+  },
+  {
+   "id": "fs-81146",
+   "original_id": "freesound:boom-sub/81146-sub-oceano-b-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/boom-sub/81146-sub-oceano-b-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/boom-sub/fs-81146.mp3",
+   "conversion": "copy",
+   "orig_bytes": 36064
+  },
+  {
+   "id": "fs-81147",
+   "original_id": "freesound:boom-sub/81147-sub-oceano-c-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/boom-sub/81147-sub-oceano-c-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/boom-sub/fs-81147.mp3",
+   "conversion": "copy",
+   "orig_bytes": 44656
+  },
+  {
+   "id": "fs-81148",
+   "original_id": "freesound:boom-sub/81148-sub-oceano-d-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/boom-sub/81148-sub-oceano-d-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/boom-sub/fs-81148.mp3",
+   "conversion": "copy",
+   "orig_bytes": 36699
+  },
+  {
+   "id": "fs-188381",
+   "original_id": "freesound:bubble/188381-3-popping-pops.mp3",
+   "original_path": "sound/library/sfx/freesound/bubble/188381-3-popping-pops.mp3",
+   "kit_path": "sound/library/kit/sfx/bubble/fs-188381.mp3",
+   "conversion": "copy",
+   "orig_bytes": 81089
+  },
+  {
+   "id": "fs-253956",
+   "original_id": "freesound:bubble/253956-bubble-pop.mp3",
+   "original_path": "sound/library/sfx/freesound/bubble/253956-bubble-pop.mp3",
+   "kit_path": "sound/library/kit/sfx/bubble/fs-253956.mp3",
+   "conversion": "copy",
+   "orig_bytes": 8328
+  },
+  {
+   "id": "fs-254892",
+   "original_id": "freesound:bubble/254892-bubble-pop-out.mp3",
+   "original_path": "sound/library/sfx/freesound/bubble/254892-bubble-pop-out.mp3",
+   "kit_path": "sound/library/kit/sfx/bubble/fs-254892.mp3",
+   "conversion": "copy",
+   "orig_bytes": 6994
+  },
+  {
+   "id": "fs-411462",
+   "original_id": "freesound:bubble/411462-bubble-pop.mp3",
+   "original_path": "sound/library/sfx/freesound/bubble/411462-bubble-pop.mp3",
+   "kit_path": "sound/library/kit/sfx/bubble/fs-411462.mp3",
+   "conversion": "copy",
+   "orig_bytes": 16127
+  },
+  {
+   "id": "fs-431592",
+   "original_id": "freesound:bubble/431592-pop-aiff.mp3",
+   "original_path": "sound/library/sfx/freesound/bubble/431592-pop-aiff.mp3",
+   "kit_path": "sound/library/kit/sfx/bubble/fs-431592.mp3",
+   "conversion": "copy",
+   "orig_bytes": 8924
+  },
+  {
+   "id": "fs-669918",
+   "original_id": "freesound:bubble/669918-the-best-bubble-pop-sound-for-game-and-ui.mp3",
+   "original_path": "sound/library/sfx/freesound/bubble/669918-the-best-bubble-pop-sound-for-game-and-ui.mp3",
+   "kit_path": "sound/library/kit/sfx/bubble/fs-669918.mp3",
+   "conversion": "copy",
+   "orig_bytes": 9288
+  },
+  {
+   "id": "fs-683097",
+   "original_id": "freesound:bubble/683097-bubble-bursting.mp3",
+   "original_path": "sound/library/sfx/freesound/bubble/683097-bubble-bursting.mp3",
+   "kit_path": "sound/library/kit/sfx/bubble/fs-683097.mp3",
+   "conversion": "copy",
+   "orig_bytes": 21408
+  },
+  {
+   "id": "fs-683100",
+   "original_id": "freesound:bubble/683100-mutliple-bubbles-bursting.mp3",
+   "original_path": "sound/library/sfx/freesound/bubble/683100-mutliple-bubbles-bursting.mp3",
+   "kit_path": "sound/library/kit/sfx/bubble/fs-683100.mp3",
+   "conversion": "copy",
+   "orig_bytes": 24096
+  },
+  {
+   "id": "fs-683587",
+   "original_id": "freesound:bubble/683587-bubble-pop.mp3",
+   "original_path": "sound/library/sfx/freesound/bubble/683587-bubble-pop.mp3",
+   "kit_path": "sound/library/kit/sfx/bubble/fs-683587.mp3",
+   "conversion": "copy",
+   "orig_bytes": 9131
+  },
+  {
+   "id": "fs-711514",
+   "original_id": "freesound:bubble/711514-pop-bubble.mp3",
+   "original_path": "sound/library/sfx/freesound/bubble/711514-pop-bubble.mp3",
+   "kit_path": "sound/library/kit/sfx/bubble/fs-711514.mp3",
+   "conversion": "copy",
+   "orig_bytes": 8820
+  },
+  {
+   "id": "fs-762781",
+   "original_id": "freesound:bubble/762781-bubblepopping.mp3",
+   "original_path": "sound/library/sfx/freesound/bubble/762781-bubblepopping.mp3",
+   "kit_path": "sound/library/kit/sfx/bubble/fs-762781.mp3",
+   "conversion": "copy",
+   "orig_bytes": 10856
+  },
+  {
+   "id": "fs-421440",
+   "original_id": "freesound:click/421440-click-65-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/click/421440-click-65-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/click/fs-421440.mp3",
+   "conversion": "copy",
+   "orig_bytes": 12600
+  },
+  {
+   "id": "fs-421442",
+   "original_id": "freesound:click/421442-click-49-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/click/421442-click-49-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/click/fs-421442.mp3",
+   "conversion": "copy",
+   "orig_bytes": 8496
+  },
+  {
+   "id": "fs-421451",
+   "original_id": "freesound:click/421451-click-189-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/click/421451-click-189-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/click/fs-421451.mp3",
+   "conversion": "copy",
+   "orig_bytes": 8352
+  },
+  {
+   "id": "fs-421458",
+   "original_id": "freesound:click/421458-click-195-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/click/421458-click-195-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/click/fs-421458.mp3",
+   "conversion": "copy",
+   "orig_bytes": 14784
+  },
+  {
+   "id": "fs-421459",
+   "original_id": "freesound:click/421459-click-51-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/click/421459-click-51-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/click/fs-421459.mp3",
+   "conversion": "copy",
+   "orig_bytes": 10128
+  },
+  {
+   "id": "fs-421460",
+   "original_id": "freesound:click/421460-click-47-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/click/421460-click-47-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/click/fs-421460.mp3",
+   "conversion": "copy",
+   "orig_bytes": 18336
+  },
+  {
+   "id": "fs-421461",
+   "original_id": "freesound:click/421461-click-46-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/click/421461-click-46-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/click/fs-421461.mp3",
+   "conversion": "copy",
+   "orig_bytes": 13632
+  },
+  {
+   "id": "fs-421464",
+   "original_id": "freesound:click/421464-click-50-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/click/421464-click-50-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/click/fs-421464.mp3",
+   "conversion": "copy",
+   "orig_bytes": 19488
+  },
+  {
+   "id": "fs-421465",
+   "original_id": "freesound:click/421465-click-5-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/click/421465-click-5-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/click/fs-421465.mp3",
+   "conversion": "copy",
+   "orig_bytes": 10224
+  },
+  {
+   "id": "fs-421467",
+   "original_id": "freesound:click/421467-click-150-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/click/421467-click-150-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/click/fs-421467.mp3",
+   "conversion": "copy",
+   "orig_bytes": 4512
+  },
+  {
+   "id": "fs-13934",
+   "original_id": "freesound:ding/13934-6-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/ding/13934-6-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/ding-chime/fs-13934.mp3",
+   "conversion": "copy",
+   "orig_bytes": 10542
+  },
+  {
+   "id": "fs-13951",
+   "original_id": "freesound:ding/13951-23-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/ding/13951-23-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/ding-chime/fs-13951.mp3",
+   "conversion": "copy",
+   "orig_bytes": 18837
+  },
+  {
+   "id": "fs-23152",
+   "original_id": "freesound:ding/23152-ding-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/ding/23152-ding-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/ding-chime/fs-23152.mp3",
+   "conversion": "copy",
+   "orig_bytes": 25987
+  },
+  {
+   "id": "fs-333694",
+   "original_id": "freesound:ding/333694-thin-bell-ding-3.mp3",
+   "original_path": "sound/library/sfx/freesound/ding/333694-thin-bell-ding-3.mp3",
+   "kit_path": "sound/library/kit/sfx/ding-chime/fs-333694.mp3",
+   "conversion": "copy",
+   "orig_bytes": 43937
+  },
+  {
+   "id": "fs-376807",
+   "original_id": "freesound:ding/376807-ding-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/ding/376807-ding-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/ding-chime/fs-376807.mp3",
+   "conversion": "copy",
+   "orig_bytes": 26774
+  },
+  {
+   "id": "fs-499775",
+   "original_id": "freesound:ding/499775-ding-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/ding/499775-ding-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/ding-chime/fs-499775.mp3",
+   "conversion": "copy",
+   "orig_bytes": 36948
+  },
+  {
+   "id": "fs-611112",
+   "original_id": "freesound:ding/611112-bell-ding-2-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/ding/611112-bell-ding-2-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/ding-chime/fs-611112.mp3",
+   "conversion": "copy",
+   "orig_bytes": 82755
+  },
+  {
+   "id": "fs-611113",
+   "original_id": "freesound:ding/611113-bell-ding-1-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/ding/611113-bell-ding-1-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/ding-chime/fs-611113.mp3",
+   "conversion": "copy",
+   "orig_bytes": 60057
+  },
+  {
+   "id": "fs-66876",
+   "original_id": "freesound:ding/66876-glass-ding-mp3.mp3",
+   "original_path": "sound/library/sfx/freesound/ding/66876-glass-ding-mp3.mp3",
+   "kit_path": "sound/library/kit/sfx/ding-chime/fs-66876.mp3",
+   "conversion": "copy",
+   "orig_bytes": 8636
+  },
+  {
+   "id": "fs-759839",
+   "original_id": "freesound:ding/759839-singleding.mp3",
+   "original_path": "sound/library/sfx/freesound/ding/759839-singleding.mp3",
+   "kit_path": "sound/library/kit/sfx/ding-chime/fs-759839.mp3",
+   "conversion": "copy",
+   "orig_bytes": 15342
+  },
+  {
+   "id": "fs-88243",
+   "original_id": "freesound:ding/88243-ding-s-dong-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/ding/88243-ding-s-dong-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/ding-chime/fs-88243.mp3",
+   "conversion": "copy",
+   "orig_bytes": 8088
+  },
+  {
+   "id": "fs-123209",
+   "original_id": "freesound:downlifter/123209-klick-verbs-32-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/downlifter/123209-klick-verbs-32-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/downlifter/fs-123209.mp3",
+   "conversion": "copy",
+   "orig_bytes": 136334
+  },
+  {
+   "id": "fs-123210",
+   "original_id": "freesound:downlifter/123210-klick-verbs-33-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/downlifter/123210-klick-verbs-33-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/downlifter/fs-123210.mp3",
+   "conversion": "copy",
+   "orig_bytes": 135862
+  },
+  {
+   "id": "fs-123211",
+   "original_id": "freesound:downlifter/123211-klick-verbs-34-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/downlifter/123211-klick-verbs-34-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/downlifter/fs-123211.mp3",
+   "conversion": "copy",
+   "orig_bytes": 138947
+  },
+  {
+   "id": "fs-123212",
+   "original_id": "freesound:downlifter/123212-klick-verbs-35-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/downlifter/123212-klick-verbs-35-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/downlifter/fs-123212.mp3",
+   "conversion": "copy",
+   "orig_bytes": 136958
+  },
+  {
+   "id": "fs-123220",
+   "original_id": "freesound:downlifter/123220-klick-verbs-43-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/downlifter/123220-klick-verbs-43-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/downlifter/fs-123220.mp3",
+   "conversion": "copy",
+   "orig_bytes": 139520
+  },
+  {
+   "id": "fs-833648",
+   "original_id": "freesound:downlifter/833648-fx-downlifter-glitch-downlifter-1.mp3",
+   "original_path": "sound/library/sfx/freesound/downlifter/833648-fx-downlifter-glitch-downlifter-1.mp3",
+   "kit_path": "sound/library/kit/sfx/downlifter/fs-833648.mp3",
+   "conversion": "copy",
+   "orig_bytes": 84421
+  },
+  {
+   "id": "fs-833649",
+   "original_id": "freesound:downlifter/833649-fx-downlifter-glitch-downlifter-2.mp3",
+   "original_path": "sound/library/sfx/freesound/downlifter/833649-fx-downlifter-glitch-downlifter-2.mp3",
+   "kit_path": "sound/library/kit/sfx/downlifter/fs-833649.mp3",
+   "conversion": "copy",
+   "orig_bytes": 69401
+  },
+  {
+   "id": "fs-833650",
+   "original_id": "freesound:downlifter/833650-fx-downlifter-glitch-downlifter-3.mp3",
+   "original_path": "sound/library/sfx/freesound/downlifter/833650-fx-downlifter-glitch-downlifter-3.mp3",
+   "kit_path": "sound/library/kit/sfx/downlifter/fs-833650.mp3",
+   "conversion": "copy",
+   "orig_bytes": 83642
+  },
+  {
+   "id": "fs-833652",
+   "original_id": "freesound:downlifter/833652-fx-downlifter-glitch-downlifter-5.mp3",
+   "original_path": "sound/library/sfx/freesound/downlifter/833652-fx-downlifter-glitch-downlifter-5.mp3",
+   "kit_path": "sound/library/kit/sfx/downlifter/fs-833652.mp3",
+   "conversion": "copy",
+   "orig_bytes": 134094
+  },
+  {
+   "id": "fs-833653",
+   "original_id": "freesound:downlifter/833653-fx-downlifter-glitch-downlifter-6.mp3",
+   "original_path": "sound/library/sfx/freesound/downlifter/833653-fx-downlifter-glitch-downlifter-6.mp3",
+   "kit_path": "sound/library/kit/sfx/downlifter/fs-833653.mp3",
+   "conversion": "copy",
+   "orig_bytes": 98875
+  },
+  {
+   "id": "fs-833654",
+   "original_id": "freesound:downlifter/833654-fx-downlifter-glitch-downlifter-7.mp3",
+   "original_path": "sound/library/sfx/freesound/downlifter/833654-fx-downlifter-glitch-downlifter-7.mp3",
+   "kit_path": "sound/library/kit/sfx/downlifter/fs-833654.mp3",
+   "conversion": "copy",
+   "orig_bytes": 86588
+  },
+  {
+   "id": "fs-833656",
+   "original_id": "freesound:downlifter/833656-fx-downlifter-glitch-downlifter-9.mp3",
+   "original_path": "sound/library/sfx/freesound/downlifter/833656-fx-downlifter-glitch-downlifter-9.mp3",
+   "kit_path": "sound/library/kit/sfx/downlifter/fs-833656.mp3",
+   "conversion": "copy",
+   "orig_bytes": 112463
+  },
+  {
+   "id": "fs-135831",
+   "original_id": "freesound:fail/135831-end-game-fail.mp3",
+   "original_path": "sound/library/sfx/freesound/fail/135831-end-game-fail.mp3",
+   "kit_path": "sound/library/kit/sfx/fail/fs-135831.mp3",
+   "conversion": "copy",
+   "orig_bytes": 68680
+  },
+  {
+   "id": "fs-335906",
+   "original_id": "freesound:fail/335906-fail-mp3.mp3",
+   "original_path": "sound/library/sfx/freesound/fail/335906-fail-mp3.mp3",
+   "kit_path": "sound/library/kit/sfx/fail/fs-335906.mp3",
+   "conversion": "copy",
+   "orig_bytes": 61968
+  },
+  {
+   "id": "fs-370209",
+   "original_id": "freesound:fail/370209-fail-down.mp3",
+   "original_path": "sound/library/sfx/freesound/fail/370209-fail-down.mp3",
+   "kit_path": "sound/library/kit/sfx/fail/fs-370209.mp3",
+   "conversion": "copy",
+   "orig_bytes": 52810
+  },
+  {
+   "id": "fs-386210",
+   "original_id": "freesound:fail/386210-spoken-drink-fail.mp3",
+   "original_path": "sound/library/sfx/freesound/fail/386210-spoken-drink-fail.mp3",
+   "kit_path": "sound/library/kit/sfx/fail/fs-386210.mp3",
+   "conversion": "copy",
+   "orig_bytes": 56880
+  },
+  {
+   "id": "fs-519637",
+   "original_id": "freesound:fail/519637-gear-shif-fail-scratch-2-m4a.mp3",
+   "original_path": "sound/library/sfx/freesound/fail/519637-gear-shif-fail-scratch-2-m4a.mp3",
+   "kit_path": "sound/library/kit/sfx/fail/fs-519637.mp3",
+   "conversion": "copy",
+   "orig_bytes": 40752
+  },
+  {
+   "id": "fs-519638",
+   "original_id": "freesound:fail/519638-gear-shif-fail-scratch-1-m4a.mp3",
+   "original_path": "sound/library/sfx/freesound/fail/519638-gear-shif-fail-scratch-1-m4a.mp3",
+   "kit_path": "sound/library/kit/sfx/fail/fs-519638.mp3",
+   "conversion": "copy",
+   "orig_bytes": 33360
+  },
+  {
+   "id": "fs-54047",
+   "original_id": "freesound:fail/54047-buzzer-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/fail/54047-buzzer-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/fail/fs-54047.mp3",
+   "conversion": "copy",
+   "orig_bytes": 44043
+  },
+  {
+   "id": "fs-552000",
+   "original_id": "freesound:fail/552000-baitran.mp3",
+   "original_path": "sound/library/sfx/freesound/fail/552000-baitran.mp3",
+   "kit_path": "sound/library/kit/sfx/fail/fs-552000.mp3",
+   "conversion": "copy",
+   "orig_bytes": 33711
+  },
+  {
+   "id": "fs-717121",
+   "original_id": "freesound:fail/717121-wrong-answer-01.mp3",
+   "original_path": "sound/library/sfx/freesound/fail/717121-wrong-answer-01.mp3",
+   "kit_path": "sound/library/kit/sfx/fail/fs-717121.mp3",
+   "conversion": "copy",
+   "orig_bytes": 41951
+  },
+  {
+   "id": "fs-825292",
+   "original_id": "freesound:fail/825292-fail-jingle-party-horn.mp3",
+   "original_path": "sound/library/sfx/freesound/fail/825292-fail-jingle-party-horn.mp3",
+   "kit_path": "sound/library/kit/sfx/fail/fs-825292.mp3",
+   "conversion": "copy",
+   "orig_bytes": 69921
+  },
+  {
+   "id": "fs-834512",
+   "original_id": "freesound:fail/834512-fail-sound-wa-wa-wah.mp3",
+   "original_path": "sound/library/sfx/freesound/fail/834512-fail-sound-wa-wa-wah.mp3",
+   "kit_path": "sound/library/kit/sfx/fail/fs-834512.mp3",
+   "conversion": "copy",
+   "orig_bytes": 49675
+  },
+  {
+   "id": "fs-835112",
+   "original_id": "freesound:fail/835112-fail-sound-wa-wa-wah-with-staccato.mp3",
+   "original_path": "sound/library/sfx/freesound/fail/835112-fail-sound-wa-wa-wah-with-staccato.mp3",
+   "kit_path": "sound/library/kit/sfx/fail/fs-835112.mp3",
+   "conversion": "copy",
+   "orig_bytes": 49258
+  },
+  {
+   "id": "fs-246478",
+   "original_id": "freesound:glitch/246478-media-game-fx-short-generic-menu.mp3",
+   "original_path": "sound/library/sfx/freesound/glitch/246478-media-game-fx-short-generic-menu.mp3",
+   "kit_path": "sound/library/kit/sfx/glitch/fs-246478.mp3",
+   "conversion": "copy",
+   "orig_bytes": 8736
+  },
+  {
+   "id": "fs-657811",
+   "original_id": "freesound:glitch/657811-tech-glitch-13-short-event.mp3",
+   "original_path": "sound/library/sfx/freesound/glitch/657811-tech-glitch-13-short-event.mp3",
+   "kit_path": "sound/library/kit/sfx/glitch/fs-657811.mp3",
+   "conversion": "copy",
+   "orig_bytes": 14660
+  },
+  {
+   "id": "fs-834161",
+   "original_id": "freesound:glitch/834161-dsgnrythm-glitch-one-shot-stutter-pitched-hard-digital-rhyth.mp3",
+   "original_path": "sound/library/sfx/freesound/glitch/834161-dsgnrythm-glitch-one-shot-stutter-pitched-hard-digital-rhyth.mp3",
+   "kit_path": "sound/library/kit/sfx/glitch/fs-834161.mp3",
+   "conversion": "copy",
+   "orig_bytes": 16704
+  },
+  {
+   "id": "fs-858792",
+   "original_id": "freesound:glitch/858792-digital-white-noise-shard.mp3",
+   "original_path": "sound/library/sfx/freesound/glitch/858792-digital-white-noise-shard.mp3",
+   "kit_path": "sound/library/kit/sfx/glitch/fs-858792.mp3",
+   "conversion": "copy",
+   "orig_bytes": 2772
+  },
+  {
+   "id": "fs-864183",
+   "original_id": "freesound:glitch/864183-sfx-damage-glitch-1.mp3",
+   "original_path": "sound/library/sfx/freesound/glitch/864183-sfx-damage-glitch-1.mp3",
+   "kit_path": "sound/library/kit/sfx/glitch/fs-864183.mp3",
+   "conversion": "copy",
+   "orig_bytes": 25872
+  },
+  {
+   "id": "fs-864184",
+   "original_id": "freesound:glitch/864184-sfx-damage-glitch-2.mp3",
+   "original_path": "sound/library/sfx/freesound/glitch/864184-sfx-damage-glitch-2.mp3",
+   "kit_path": "sound/library/kit/sfx/glitch/fs-864184.mp3",
+   "conversion": "copy",
+   "orig_bytes": 16224
+  },
+  {
+   "id": "fs-342533",
+   "original_id": "freesound:impact/342533-light-thud-1.mp3",
+   "original_path": "sound/library/sfx/freesound/impact/342533-light-thud-1.mp3",
+   "kit_path": "sound/library/kit/sfx/impact/fs-342533.mp3",
+   "conversion": "copy",
+   "orig_bytes": 22032
+  },
+  {
+   "id": "fs-342535",
+   "original_id": "freesound:impact/342535-medium-thud-1.mp3",
+   "original_path": "sound/library/sfx/freesound/impact/342535-medium-thud-1.mp3",
+   "kit_path": "sound/library/kit/sfx/impact/fs-342535.mp3",
+   "conversion": "copy",
+   "orig_bytes": 19056
+  },
+  {
+   "id": "fs-342536",
+   "original_id": "freesound:impact/342536-plastic-thud-4.mp3",
+   "original_path": "sound/library/sfx/freesound/impact/342536-plastic-thud-4.mp3",
+   "kit_path": "sound/library/kit/sfx/impact/fs-342536.mp3",
+   "conversion": "copy",
+   "orig_bytes": 22560
+  },
+  {
+   "id": "fs-342537",
+   "original_id": "freesound:impact/342537-plastic-thud-3.mp3",
+   "original_path": "sound/library/sfx/freesound/impact/342537-plastic-thud-3.mp3",
+   "kit_path": "sound/library/kit/sfx/impact/fs-342537.mp3",
+   "conversion": "copy",
+   "orig_bytes": 21888
+  },
+  {
+   "id": "fs-342538",
+   "original_id": "freesound:impact/342538-plastic-thud-2.mp3",
+   "original_path": "sound/library/sfx/freesound/impact/342538-plastic-thud-2.mp3",
+   "kit_path": "sound/library/kit/sfx/impact/fs-342538.mp3",
+   "conversion": "copy",
+   "orig_bytes": 20928
+  },
+  {
+   "id": "fs-273869",
+   "original_id": "freesound:misc/273869-water-drop-2-aif.mp3",
+   "original_path": "sound/library/sfx/freesound/misc/273869-water-drop-2-aif.mp3",
+   "kit_path": "sound/library/kit/sfx/misc/fs-273869.mp3",
+   "conversion": "copy",
+   "orig_bytes": 35170
+  },
+  {
+   "id": "fs-425209",
+   "original_id": "freesound:misc/425209-water-drop-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/misc/425209-water-drop-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/misc/fs-425209.mp3",
+   "conversion": "copy",
+   "orig_bytes": 14404
+  },
+  {
+   "id": "fs-676453",
+   "original_id": "freesound:misc/676453-flapping-1.mp3",
+   "original_path": "sound/library/sfx/freesound/misc/676453-flapping-1.mp3",
+   "kit_path": "sound/library/kit/sfx/misc/fs-676453.mp3",
+   "conversion": "copy",
+   "orig_bytes": 22896
+  },
+  {
+   "id": "fs-676454",
+   "original_id": "freesound:misc/676454-flapping-2.mp3",
+   "original_path": "sound/library/sfx/freesound/misc/676454-flapping-2.mp3",
+   "kit_path": "sound/library/kit/sfx/misc/fs-676454.mp3",
+   "conversion": "copy",
+   "orig_bytes": 14976
+  },
+  {
+   "id": "fs-676455",
+   "original_id": "freesound:misc/676455-flapping-3.mp3",
+   "original_path": "sound/library/sfx/freesound/misc/676455-flapping-3.mp3",
+   "kit_path": "sound/library/kit/sfx/misc/fs-676455.mp3",
+   "conversion": "copy",
+   "orig_bytes": 32208
+  },
+  {
+   "id": "fs-676456",
+   "original_id": "freesound:misc/676456-flapping-4.mp3",
+   "original_path": "sound/library/sfx/freesound/misc/676456-flapping-4.mp3",
+   "kit_path": "sound/library/kit/sfx/misc/fs-676456.mp3",
+   "conversion": "copy",
+   "orig_bytes": 25584
+  },
+  {
+   "id": "fs-173080",
+   "original_id": "freesound:paper-pencil/173080-cursive-writing-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/paper-pencil/173080-cursive-writing-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/paper-pencil/fs-173080.mp3",
+   "conversion": "copy",
+   "orig_bytes": 48156
+  },
+  {
+   "id": "fs-335507",
+   "original_id": "freesound:paper-pencil/335507-writing-long-sketch-03.mp3",
+   "original_path": "sound/library/sfx/freesound/paper-pencil/335507-writing-long-sketch-03.mp3",
+   "kit_path": "sound/library/kit/sfx/paper-pencil/fs-335507.mp3",
+   "conversion": "copy",
+   "orig_bytes": 60192
+  },
+  {
+   "id": "fs-335508",
+   "original_id": "freesound:paper-pencil/335508-writing-long-sketch-02.mp3",
+   "original_path": "sound/library/sfx/freesound/paper-pencil/335508-writing-long-sketch-02.mp3",
+   "kit_path": "sound/library/kit/sfx/paper-pencil/fs-335508.mp3",
+   "conversion": "copy",
+   "orig_bytes": 53616
+  },
+  {
+   "id": "fs-335509",
+   "original_id": "freesound:paper-pencil/335509-writing-long-sketch-01.mp3",
+   "original_path": "sound/library/sfx/freesound/paper-pencil/335509-writing-long-sketch-01.mp3",
+   "kit_path": "sound/library/kit/sfx/paper-pencil/fs-335509.mp3",
+   "conversion": "copy",
+   "orig_bytes": 98304
+  },
+  {
+   "id": "fs-335511",
+   "original_id": "freesound:paper-pencil/335511-writing-short-2-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/paper-pencil/335511-writing-short-2-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/paper-pencil/fs-335511.mp3",
+   "conversion": "copy",
+   "orig_bytes": 19440
+  },
+  {
+   "id": "fs-335512",
+   "original_id": "freesound:paper-pencil/335512-writing-long-sketch-06.mp3",
+   "original_path": "sound/library/sfx/freesound/paper-pencil/335512-writing-long-sketch-06.mp3",
+   "kit_path": "sound/library/kit/sfx/paper-pencil/fs-335512.mp3",
+   "conversion": "copy",
+   "orig_bytes": 36192
+  },
+  {
+   "id": "fs-335513",
+   "original_id": "freesound:paper-pencil/335513-writing-long-sketch-05.mp3",
+   "original_path": "sound/library/sfx/freesound/paper-pencil/335513-writing-long-sketch-05.mp3",
+   "kit_path": "sound/library/kit/sfx/paper-pencil/fs-335513.mp3",
+   "conversion": "copy",
+   "orig_bytes": 92976
+  },
+  {
+   "id": "fs-335514",
+   "original_id": "freesound:paper-pencil/335514-writing-short-5.mp3",
+   "original_path": "sound/library/sfx/freesound/paper-pencil/335514-writing-short-5.mp3",
+   "kit_path": "sound/library/kit/sfx/paper-pencil/fs-335514.mp3",
+   "conversion": "copy",
+   "orig_bytes": 34824
+  },
+  {
+   "id": "fs-335515",
+   "original_id": "freesound:paper-pencil/335515-writing-short-4.mp3",
+   "original_path": "sound/library/sfx/freesound/paper-pencil/335515-writing-short-4.mp3",
+   "kit_path": "sound/library/kit/sfx/paper-pencil/fs-335515.mp3",
+   "conversion": "copy",
+   "orig_bytes": 22896
+  },
+  {
+   "id": "fs-761655",
+   "original_id": "freesound:paper-pencil/761655-pencil-scribble-18.mp3",
+   "original_path": "sound/library/sfx/freesound/paper-pencil/761655-pencil-scribble-18.mp3",
+   "kit_path": "sound/library/kit/sfx/paper-pencil/fs-761655.mp3",
+   "conversion": "copy",
+   "orig_bytes": 9216
+  },
+  {
+   "id": "fs-809915",
+   "original_id": "freesound:paper-pencil/809915-pencil-aggressive-inwards.mp3",
+   "original_path": "sound/library/sfx/freesound/paper-pencil/809915-pencil-aggressive-inwards.mp3",
+   "kit_path": "sound/library/kit/sfx/paper-pencil/fs-809915.mp3",
+   "conversion": "copy",
+   "orig_bytes": 87345
+  },
+  {
+   "id": "fs-244654",
+   "original_id": "freesound:pop/244654-pop-2.mp3",
+   "original_path": "sound/library/sfx/freesound/pop/244654-pop-2.mp3",
+   "kit_path": "sound/library/kit/sfx/pop/fs-244654.mp3",
+   "conversion": "copy",
+   "orig_bytes": 6158
+  },
+  {
+   "id": "fs-244656",
+   "original_id": "freesound:pop/244656-pop-6.mp3",
+   "original_path": "sound/library/sfx/freesound/pop/244656-pop-6.mp3",
+   "kit_path": "sound/library/kit/sfx/pop/fs-244656.mp3",
+   "conversion": "copy",
+   "orig_bytes": 6733
+  },
+  {
+   "id": "fs-244657",
+   "original_id": "freesound:pop/244657-pop-5.mp3",
+   "original_path": "sound/library/sfx/freesound/pop/244657-pop-5.mp3",
+   "kit_path": "sound/library/kit/sfx/pop/fs-244657.mp3",
+   "conversion": "copy",
+   "orig_bytes": 5011
+  },
+  {
+   "id": "fs-245645",
+   "original_id": "freesound:pop/245645-cartoon-pop-clean.mp3",
+   "original_path": "sound/library/sfx/freesound/pop/245645-cartoon-pop-clean.mp3",
+   "kit_path": "sound/library/kit/sfx/pop/fs-245645.mp3",
+   "conversion": "copy",
+   "orig_bytes": 6528
+  },
+  {
+   "id": "fs-399342",
+   "original_id": "freesound:pop/399342-plastic-bubble-wrap-multiple-pops-06-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/pop/399342-plastic-bubble-wrap-multiple-pops-06-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/pop/fs-399342.mp3",
+   "conversion": "copy",
+   "orig_bytes": 27792
+  },
+  {
+   "id": "fs-509496",
+   "original_id": "freesound:pop/509496-lid-flip-pop-2-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/pop/509496-lid-flip-pop-2-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/pop/fs-509496.mp3",
+   "conversion": "copy",
+   "orig_bytes": 27711
+  },
+  {
+   "id": "fs-509500",
+   "original_id": "freesound:pop/509500-lid-flip-pop-6-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/pop/509500-lid-flip-pop-6-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/pop/fs-509500.mp3",
+   "conversion": "copy",
+   "orig_bytes": 19726
+  },
+  {
+   "id": "fs-509501",
+   "original_id": "freesound:pop/509501-lid-flip-pop-5-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/pop/509501-lid-flip-pop-5-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/pop/fs-509501.mp3",
+   "conversion": "copy",
+   "orig_bytes": 27973
+  },
+  {
+   "id": "fs-509502",
+   "original_id": "freesound:pop/509502-lid-flip-pop-4-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/pop/509502-lid-flip-pop-4-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/pop/fs-509502.mp3",
+   "conversion": "copy",
+   "orig_bytes": 26145
+  },
+  {
+   "id": "fs-517097",
+   "original_id": "freesound:pop/517097-trarp-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/pop/517097-trarp-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/pop/fs-517097.mp3",
+   "conversion": "copy",
+   "orig_bytes": 21814
+  },
+  {
+   "id": "fs-541351",
+   "original_id": "freesound:pop/541351-click-pop-02-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/pop/541351-click-pop-02-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/pop/fs-541351.mp3",
+   "conversion": "copy",
+   "orig_bytes": 5114
+  },
+  {
+   "id": "fs-503803",
+   "original_id": "freesound:riser/503803-reverse-fx-13-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/riser/503803-reverse-fx-13-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/riser/fs-503803.mp3",
+   "conversion": "copy",
+   "orig_bytes": 26509
+  },
+  {
+   "id": "fs-685255",
+   "original_id": "freesound:riser/685255-riser-sound-effect-long-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/riser/685255-riser-sound-effect-long-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/riser/fs-685255.mp3",
+   "conversion": "copy",
+   "orig_bytes": 87398
+  },
+  {
+   "id": "fs-807374",
+   "original_id": "freesound:riser/807374-china-2-20-inches-zildjian-oriental-trash-long.mp3",
+   "original_path": "sound/library/sfx/freesound/riser/807374-china-2-20-inches-zildjian-oriental-trash-long.mp3",
+   "kit_path": "sound/library/kit/sfx/riser/fs-807374.mp3",
+   "conversion": "copy",
+   "orig_bytes": 24839
+  },
+  {
+   "id": "fs-807377",
+   "original_id": "freesound:riser/807377-spock-18-inches-zildjian-soundlab-medium-thin-prototype-19-i.mp3",
+   "original_path": "sound/library/sfx/freesound/riser/807377-spock-18-inches-zildjian-soundlab-medium-thin-prototype-19-i.mp3",
+   "kit_path": "sound/library/kit/sfx/riser/fs-807377.mp3",
+   "conversion": "copy",
+   "orig_bytes": 14508
+  },
+  {
+   "id": "fs-807995",
+   "original_id": "freesound:riser/807995-crash-zildjian-16-inches-bassized-semibrief-2.mp3",
+   "original_path": "sound/library/sfx/freesound/riser/807995-crash-zildjian-16-inches-bassized-semibrief-2.mp3",
+   "kit_path": "sound/library/kit/sfx/riser/fs-807995.mp3",
+   "conversion": "copy",
+   "orig_bytes": 19359
+  },
+  {
+   "id": "fs-811715",
+   "original_id": "freesound:riser/811715-riser.mp3",
+   "original_path": "sound/library/sfx/freesound/riser/811715-riser.mp3",
+   "kit_path": "sound/library/kit/sfx/riser/fs-811715.mp3",
+   "conversion": "copy",
+   "orig_bytes": 38089
+  },
+  {
+   "id": "fs-451407",
+   "original_id": "freesound:slide/451407-foley-knife-cut-slide-through-paper-simple-nice-india-flac.mp3",
+   "original_path": "sound/library/sfx/freesound/slide/451407-foley-knife-cut-slide-through-paper-simple-nice-india-flac.mp3",
+   "kit_path": "sound/library/kit/sfx/slide/fs-451407.mp3",
+   "conversion": "copy",
+   "orig_bytes": 56736
+  },
+  {
+   "id": "fs-464302",
+   "original_id": "freesound:slide/464302-paperslide-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/slide/464302-paperslide-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/slide/fs-464302.mp3",
+   "conversion": "copy",
+   "orig_bytes": 39449
+  },
+  {
+   "id": "fs-552512",
+   "original_id": "freesound:slide/552512-small-hard-slide-up-01-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/slide/552512-small-hard-slide-up-01-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/slide/fs-552512.mp3",
+   "conversion": "copy",
+   "orig_bytes": 31776
+  },
+  {
+   "id": "fs-552513",
+   "original_id": "freesound:slide/552513-small-hard-slide-up-02-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/slide/552513-small-hard-slide-up-02-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/slide/fs-552513.mp3",
+   "conversion": "copy",
+   "orig_bytes": 29520
+  },
+  {
+   "id": "fs-552515",
+   "original_id": "freesound:slide/552515-small-hard-slide-up-04-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/slide/552515-small-hard-slide-up-04-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/slide/fs-552515.mp3",
+   "conversion": "copy",
+   "orig_bytes": 30144
+  },
+  {
+   "id": "fs-376745",
+   "original_id": "freesound:sparkle-magic/376745-fantasy-ui-button-3-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/sparkle-magic/376745-fantasy-ui-button-3-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/sparkle-magic/fs-376745.mp3",
+   "conversion": "copy",
+   "orig_bytes": 34047
+  },
+  {
+   "id": "fs-376747",
+   "original_id": "freesound:sparkle-magic/376747-fantasy-ui-button-1-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/sparkle-magic/376747-fantasy-ui-button-1-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/sparkle-magic/fs-376747.mp3",
+   "conversion": "copy",
+   "orig_bytes": 35172
+  },
+  {
+   "id": "fs-422516",
+   "original_id": "freesound:sparkle-magic/422516-menu-fx-03-ascending-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/sparkle-magic/422516-menu-fx-03-ascending-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/sparkle-magic/fs-422516.mp3",
+   "conversion": "copy",
+   "orig_bytes": 8349
+  },
+  {
+   "id": "fs-462092",
+   "original_id": "freesound:sparkle-magic/462092-sparkling-star-04-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/sparkle-magic/462092-sparkling-star-04-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/sparkle-magic/fs-462092.mp3",
+   "conversion": "copy",
+   "orig_bytes": 96367
+  },
+  {
+   "id": "fs-462093",
+   "original_id": "freesound:sparkle-magic/462093-sparkling-star-03-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/sparkle-magic/462093-sparkling-star-03-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/sparkle-magic/fs-462093.mp3",
+   "conversion": "copy",
+   "orig_bytes": 84940
+  },
+  {
+   "id": "fs-462094",
+   "original_id": "freesound:sparkle-magic/462094-sparkling-star-02-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/sparkle-magic/462094-sparkling-star-02-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/sparkle-magic/fs-462094.mp3",
+   "conversion": "copy",
+   "orig_bytes": 73203
+  },
+  {
+   "id": "fs-462095",
+   "original_id": "freesound:sparkle-magic/462095-sparkling-star-01-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/sparkle-magic/462095-sparkling-star-01-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/sparkle-magic/fs-462095.mp3",
+   "conversion": "copy",
+   "orig_bytes": 67100
+  },
+  {
+   "id": "fs-545238",
+   "original_id": "freesound:sparkle-magic/545238-item-sparkle.mp3",
+   "original_path": "sound/library/sfx/freesound/sparkle-magic/545238-item-sparkle.mp3",
+   "kit_path": "sound/library/kit/sfx/sparkle-magic/fs-545238.mp3",
+   "conversion": "copy",
+   "orig_bytes": 11832
+  },
+  {
+   "id": "fs-710735",
+   "original_id": "freesound:sparkle-magic/710735-wink-dink.mp3",
+   "original_path": "sound/library/sfx/freesound/sparkle-magic/710735-wink-dink.mp3",
+   "kit_path": "sound/library/kit/sfx/sparkle-magic/fs-710735.mp3",
+   "conversion": "copy",
+   "orig_bytes": 37732
+  },
+  {
+   "id": "fs-856641",
+   "original_id": "freesound:sparkle-magic/856641-cartoon-magic-transition.mp3",
+   "original_path": "sound/library/sfx/freesound/sparkle-magic/856641-cartoon-magic-transition.mp3",
+   "kit_path": "sound/library/kit/sfx/sparkle-magic/fs-856641.mp3",
+   "conversion": "copy",
+   "orig_bytes": 59904
+  },
+  {
+   "id": "fs-256748",
+   "original_id": "freesound:stamp-thud/256748-piecz-08-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/stamp-thud/256748-piecz-08-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/stamp-thud/fs-256748.mp3",
+   "conversion": "copy",
+   "orig_bytes": 32832
+  },
+  {
+   "id": "fs-256751",
+   "original_id": "freesound:stamp-thud/256751-piecz-05-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/stamp-thud/256751-piecz-05-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/stamp-thud/fs-256751.mp3",
+   "conversion": "copy",
+   "orig_bytes": 26112
+  },
+  {
+   "id": "fs-256754",
+   "original_id": "freesound:stamp-thud/256754-piecz-12-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/stamp-thud/256754-piecz-12-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/stamp-thud/fs-256754.mp3",
+   "conversion": "copy",
+   "orig_bytes": 33792
+  },
+  {
+   "id": "fs-256757",
+   "original_id": "freesound:stamp-thud/256757-piecz-17-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/stamp-thud/256757-piecz-17-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/stamp-thud/fs-256757.mp3",
+   "conversion": "copy",
+   "orig_bytes": 21504
+  },
+  {
+   "id": "fs-256758",
+   "original_id": "freesound:stamp-thud/256758-piecz-13-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/stamp-thud/256758-piecz-13-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/stamp-thud/fs-256758.mp3",
+   "conversion": "copy",
+   "orig_bytes": 31488
+  },
+  {
+   "id": "fs-256759",
+   "original_id": "freesound:stamp-thud/256759-piecz-18-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/stamp-thud/256759-piecz-18-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/stamp-thud/fs-256759.mp3",
+   "conversion": "copy",
+   "orig_bytes": 20832
+  },
+  {
+   "id": "fs-256760",
+   "original_id": "freesound:stamp-thud/256760-piecz-15-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/stamp-thud/256760-piecz-15-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/stamp-thud/fs-256760.mp3",
+   "conversion": "copy",
+   "orig_bytes": 34272
+  },
+  {
+   "id": "fs-362622",
+   "original_id": "freesound:stamp-thud/362622-stamp.mp3",
+   "original_path": "sound/library/sfx/freesound/stamp-thud/362622-stamp.mp3",
+   "kit_path": "sound/library/kit/sfx/stamp-thud/fs-362622.mp3",
+   "conversion": "copy",
+   "orig_bytes": 19776
+  },
+  {
+   "id": "fs-362624",
+   "original_id": "freesound:stamp-thud/362624-stamp.mp3",
+   "original_path": "sound/library/sfx/freesound/stamp-thud/362624-stamp.mp3",
+   "kit_path": "sound/library/kit/sfx/stamp-thud/fs-362624.mp3",
+   "conversion": "copy",
+   "orig_bytes": 17088
+  },
+  {
+   "id": "fs-470710",
+   "original_id": "freesound:stamp-thud/470710-traditional-stamp-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/stamp-thud/470710-traditional-stamp-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/stamp-thud/fs-470710.mp3",
+   "conversion": "copy",
+   "orig_bytes": 38454
+  },
+  {
+   "id": "fs-530429",
+   "original_id": "freesound:stamp-thud/530429-ticket-canceler-machine-stamp-beat.mp3",
+   "original_path": "sound/library/sfx/freesound/stamp-thud/530429-ticket-canceler-machine-stamp-beat.mp3",
+   "kit_path": "sound/library/kit/sfx/stamp-thud/fs-530429.mp3",
+   "conversion": "copy",
+   "orig_bytes": 31519
+  },
+  {
+   "id": "fs-683031",
+   "original_id": "freesound:stamp-thud/683031-thump-mp3.mp3",
+   "original_path": "sound/library/sfx/freesound/stamp-thud/683031-thump-mp3.mp3",
+   "kit_path": "sound/library/kit/sfx/stamp-thud/fs-683031.mp3",
+   "conversion": "copy",
+   "orig_bytes": 19200
+  },
+  {
+   "id": "fs-441342",
+   "original_id": "freesound:stinger/441342-stinger-3-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/stinger/441342-stinger-3-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/stinger/fs-441342.mp3",
+   "conversion": "copy",
+   "orig_bytes": 49360
+  },
+  {
+   "id": "fs-444640",
+   "original_id": "freesound:stinger/444640-swoosh-27-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/stinger/444640-swoosh-27-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/stinger/fs-444640.mp3",
+   "conversion": "copy",
+   "orig_bytes": 23456
+  },
+  {
+   "id": "fs-444642",
+   "original_id": "freesound:stinger/444642-swoosh-25-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/stinger/444642-swoosh-25-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/stinger/fs-444642.mp3",
+   "conversion": "copy",
+   "orig_bytes": 36003
+  },
+  {
+   "id": "fs-587261",
+   "original_id": "freesound:stinger/587261-chew-4.mp3",
+   "original_path": "sound/library/sfx/freesound/stinger/587261-chew-4.mp3",
+   "kit_path": "sound/library/kit/sfx/stinger/fs-587261.mp3",
+   "conversion": "copy",
+   "orig_bytes": 40915
+  },
+  {
+   "id": "fs-587263",
+   "original_id": "freesound:stinger/587263-chew-2.mp3",
+   "original_path": "sound/library/sfx/freesound/stinger/587263-chew-2.mp3",
+   "kit_path": "sound/library/kit/sfx/stinger/fs-587263.mp3",
+   "conversion": "copy",
+   "orig_bytes": 37969
+  },
+  {
+   "id": "fs-587264",
+   "original_id": "freesound:stinger/587264-chew-1.mp3",
+   "original_path": "sound/library/sfx/freesound/stinger/587264-chew-1.mp3",
+   "kit_path": "sound/library/kit/sfx/stinger/fs-587264.mp3",
+   "conversion": "copy",
+   "orig_bytes": 36636
+  },
+  {
+   "id": "fs-587265",
+   "original_id": "freesound:stinger/587265-gore-hit-5.mp3",
+   "original_path": "sound/library/sfx/freesound/stinger/587265-gore-hit-5.mp3",
+   "kit_path": "sound/library/kit/sfx/stinger/fs-587265.mp3",
+   "conversion": "copy",
+   "orig_bytes": 30840
+  },
+  {
+   "id": "fs-242501",
+   "original_id": "freesound:success/242501-powerup-success-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/success/242501-powerup-success-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/success/fs-242501.mp3",
+   "conversion": "copy",
+   "orig_bytes": 23585
+  },
+  {
+   "id": "fs-404358",
+   "original_id": "freesound:success/404358-success-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/success/404358-success-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/success/fs-404358.mp3",
+   "conversion": "copy",
+   "orig_bytes": 73623
+  },
+  {
+   "id": "fs-428156",
+   "original_id": "freesound:success/428156-yay-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/success/428156-yay-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/success/fs-428156.mp3",
+   "conversion": "copy",
+   "orig_bytes": 31102
+  },
+  {
+   "id": "fs-428320",
+   "original_id": "freesound:success/428320-low-beep.mp3",
+   "original_path": "sound/library/sfx/freesound/success/428320-low-beep.mp3",
+   "kit_path": "sound/library/kit/sfx/success/fs-428320.mp3",
+   "conversion": "copy",
+   "orig_bytes": 9708
+  },
+  {
+   "id": "fs-607208",
+   "original_id": "freesound:success/607208-fweeng-reverb.mp3",
+   "original_path": "sound/library/sfx/freesound/success/607208-fweeng-reverb.mp3",
+   "kit_path": "sound/library/kit/sfx/success/fs-607208.mp3",
+   "conversion": "copy",
+   "orig_bytes": 36048
+  },
+  {
+   "id": "fs-607209",
+   "original_id": "freesound:success/607209-fweeng.mp3",
+   "original_path": "sound/library/sfx/freesound/success/607209-fweeng.mp3",
+   "kit_path": "sound/library/kit/sfx/success/fs-607209.mp3",
+   "conversion": "copy",
+   "orig_bytes": 15024
+  },
+  {
+   "id": "fs-644945",
+   "original_id": "freesound:success/644945-quiz-gameshow-correct-ding-01-mp3.mp3",
+   "original_path": "sound/library/sfx/freesound/success/644945-quiz-gameshow-correct-ding-01-mp3.mp3",
+   "kit_path": "sound/library/kit/sfx/success/fs-644945.mp3",
+   "conversion": "copy",
+   "orig_bytes": 29746
+  },
+  {
+   "id": "fs-644951",
+   "original_id": "freesound:success/644951-quiz-gameshow-correct-ping-04-mp3.mp3",
+   "original_path": "sound/library/sfx/freesound/success/644951-quiz-gameshow-correct-ping-04-mp3.mp3",
+   "kit_path": "sound/library/kit/sfx/success/fs-644951.mp3",
+   "conversion": "copy",
+   "orig_bytes": 31054
+  },
+  {
+   "id": "fs-644957",
+   "original_id": "freesound:success/644957-quiz-gameshow-correct-ping-06-mp3.mp3",
+   "original_path": "sound/library/sfx/freesound/success/644957-quiz-gameshow-correct-ping-06-mp3.mp3",
+   "kit_path": "sound/library/kit/sfx/success/fs-644957.mp3",
+   "conversion": "copy",
+   "orig_bytes": 34341
+  },
+  {
+   "id": "fs-644958",
+   "original_id": "freesound:success/644958-quiz-gameshow-correct-ping-13-mp3.mp3",
+   "original_path": "sound/library/sfx/freesound/success/644958-quiz-gameshow-correct-ping-13-mp3.mp3",
+   "kit_path": "sound/library/kit/sfx/success/fs-644958.mp3",
+   "conversion": "copy",
+   "orig_bytes": 25990
+  },
+  {
+   "id": "fs-730381",
+   "original_id": "freesound:success/730381-checkmark-scratch.mp3",
+   "original_path": "sound/library/sfx/freesound/success/730381-checkmark-scratch.mp3",
+   "kit_path": "sound/library/kit/sfx/success/fs-730381.mp3",
+   "conversion": "copy",
+   "orig_bytes": 12960
+  },
+  {
+   "id": "fs-842513",
+   "original_id": "freesound:success/842513-triple-ping-notification-sound-mobile-optimized.mp3",
+   "original_path": "sound/library/sfx/freesound/success/842513-triple-ping-notification-sound-mobile-optimized.mp3",
+   "kit_path": "sound/library/kit/sfx/success/fs-842513.mp3",
+   "conversion": "copy",
+   "orig_bytes": 23688
+  },
+  {
+   "id": "fs-234538",
+   "original_id": "freesound:swoosh-transition/234538-swoosh-1.mp3",
+   "original_path": "sound/library/sfx/freesound/swoosh-transition/234538-swoosh-1.mp3",
+   "kit_path": "sound/library/kit/sfx/swoosh-transition/fs-234538.mp3",
+   "conversion": "copy",
+   "orig_bytes": 86926
+  },
+  {
+   "id": "fs-234541",
+   "original_id": "freesound:swoosh-transition/234541-swoosh-2.mp3",
+   "original_path": "sound/library/sfx/freesound/swoosh-transition/234541-swoosh-2.mp3",
+   "kit_path": "sound/library/kit/sfx/swoosh-transition/fs-234541.mp3",
+   "conversion": "copy",
+   "orig_bytes": 93396
+  },
+  {
+   "id": "fs-234549",
+   "original_id": "freesound:swoosh-transition/234549-swoosh-3.mp3",
+   "original_path": "sound/library/sfx/freesound/swoosh-transition/234549-swoosh-3.mp3",
+   "kit_path": "sound/library/kit/sfx/swoosh-transition/fs-234549.mp3",
+   "conversion": "copy",
+   "orig_bytes": 96396
+  },
+  {
+   "id": "fs-402260",
+   "original_id": "freesound:swoosh-transition/402260-live-swoosh-30-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/swoosh-transition/402260-live-swoosh-30-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/swoosh-transition/fs-402260.mp3",
+   "conversion": "copy",
+   "orig_bytes": 7928
+  },
+  {
+   "id": "fs-402261",
+   "original_id": "freesound:swoosh-transition/402261-live-swoosh-29-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/swoosh-transition/402261-live-swoosh-29-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/swoosh-transition/fs-402261.mp3",
+   "conversion": "copy",
+   "orig_bytes": 11267
+  },
+  {
+   "id": "fs-402262",
+   "original_id": "freesound:swoosh-transition/402262-live-swoosh-28-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/swoosh-transition/402262-live-swoosh-28-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/swoosh-transition/fs-402262.mp3",
+   "conversion": "copy",
+   "orig_bytes": 8658
+  },
+  {
+   "id": "fs-402263",
+   "original_id": "freesound:swoosh-transition/402263-live-swoosh-27-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/swoosh-transition/402263-live-swoosh-27-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/swoosh-transition/fs-402263.mp3",
+   "conversion": "copy",
+   "orig_bytes": 11317
+  },
+  {
+   "id": "fs-402264",
+   "original_id": "freesound:swoosh-transition/402264-live-swoosh-26-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/swoosh-transition/402264-live-swoosh-26-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/swoosh-transition/fs-402264.mp3",
+   "conversion": "copy",
+   "orig_bytes": 8973
+  },
+  {
+   "id": "fs-402265",
+   "original_id": "freesound:swoosh-transition/402265-live-swoosh-25-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/swoosh-transition/402265-live-swoosh-25-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/swoosh-transition/fs-402265.mp3",
+   "conversion": "copy",
+   "orig_bytes": 8033
+  },
+  {
+   "id": "fs-402267",
+   "original_id": "freesound:swoosh-transition/402267-live-swoosh-23-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/swoosh-transition/402267-live-swoosh-23-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/swoosh-transition/fs-402267.mp3",
+   "conversion": "copy",
+   "orig_bytes": 10227
+  },
+  {
+   "id": "fs-632763",
+   "original_id": "freesound:swoosh-transition/632763-transition-swoosh.mp3",
+   "original_path": "sound/library/sfx/freesound/swoosh-transition/632763-transition-swoosh.mp3",
+   "kit_path": "sound/library/kit/sfx/swoosh-transition/fs-632763.mp3",
+   "conversion": "copy",
+   "orig_bytes": 12926
+  },
+  {
+   "id": "fs-786514",
+   "original_id": "freesound:swoosh-transition/786514-swoosh-v2.mp3",
+   "original_path": "sound/library/sfx/freesound/swoosh-transition/786514-swoosh-v2.mp3",
+   "kit_path": "sound/library/kit/sfx/swoosh-transition/fs-786514.mp3",
+   "conversion": "copy",
+   "orig_bytes": 3830
+  },
+  {
+   "id": "fs-142593",
+   "original_id": "freesound:tick-clock/142593-ticking-aif.mp3",
+   "original_path": "sound/library/sfx/freesound/tick-clock/142593-ticking-aif.mp3",
+   "kit_path": "sound/library/kit/sfx/tick-clock/fs-142593.mp3",
+   "conversion": "copy",
+   "orig_bytes": 36478
+  },
+  {
+   "id": "fs-349453",
+   "original_id": "freesound:tick-clock/349453-ticking-clock-60-sec-hit-mark.mp3",
+   "original_path": "sound/library/sfx/freesound/tick-clock/349453-ticking-clock-60-sec-hit-mark.mp3",
+   "kit_path": "sound/library/kit/sfx/tick-clock/fs-349453.mp3",
+   "conversion": "copy",
+   "orig_bytes": 24842
+  },
+  {
+   "id": "fs-361780",
+   "original_id": "freesound:tick-clock/361780-wall-clock-snippet-04.mp3",
+   "original_path": "sound/library/sfx/freesound/tick-clock/361780-wall-clock-snippet-04.mp3",
+   "kit_path": "sound/library/kit/sfx/tick-clock/fs-361780.mp3",
+   "conversion": "copy",
+   "orig_bytes": 8736
+  },
+  {
+   "id": "fs-361781",
+   "original_id": "freesound:tick-clock/361781-wall-clock-snippet-03.mp3",
+   "original_path": "sound/library/sfx/freesound/tick-clock/361781-wall-clock-snippet-03.mp3",
+   "kit_path": "sound/library/kit/sfx/tick-clock/fs-361781.mp3",
+   "conversion": "copy",
+   "orig_bytes": 7152
+  },
+  {
+   "id": "fs-361782",
+   "original_id": "freesound:tick-clock/361782-wall-clock-snippet-02.mp3",
+   "original_path": "sound/library/sfx/freesound/tick-clock/361782-wall-clock-snippet-02.mp3",
+   "kit_path": "sound/library/kit/sfx/tick-clock/fs-361782.mp3",
+   "conversion": "copy",
+   "orig_bytes": 7968
+  },
+  {
+   "id": "fs-361783",
+   "original_id": "freesound:tick-clock/361783-wall-clock-snippet-01.mp3",
+   "original_path": "sound/library/sfx/freesound/tick-clock/361783-wall-clock-snippet-01.mp3",
+   "kit_path": "sound/library/kit/sfx/tick-clock/fs-361783.mp3",
+   "conversion": "copy",
+   "orig_bytes": 7056
+  },
+  {
+   "id": "fs-418896",
+   "original_id": "freesound:tick-clock/418896-clock-tick-tock-wav.mp3",
+   "original_path": "sound/library/sfx/freesound/tick-clock/418896-clock-tick-tock-wav.mp3",
+   "kit_path": "sound/library/kit/sfx/tick-clock/fs-418896.mp3",
+   "conversion": "copy",
+   "orig_bytes": 14953
+  },
+  {
+   "id": "fs-511967",
+   "original_id": "freesound:tick-clock/511967-clock-ticks-loopable.mp3",
+   "original_path": "sound/library/sfx/freesound/tick-clock/511967-clock-ticks-loopable.mp3",
+   "kit_path": "sound/library/kit/sfx/tick-clock/fs-511967.mp3",
+   "conversion": "copy",
+   "orig_bytes": 93604
+  },
+  {
+   "id": "fs-538797",
+   "original_id": "freesound:tick-clock/538797-clock-close-mic.mp3",
+   "original_path": "sound/library/sfx/freesound/tick-clock/538797-clock-close-mic.mp3",
+   "kit_path": "sound/library/kit/sfx/tick-clock/fs-538797.mp3",
+   "conversion": "copy",
+   "orig_bytes": 70752
+  },
+  {
+   "id": "fs-60007",
+   "original_id": "freesound:whoosh/60007-swipe-whoosh.mp3",
+   "original_path": "sound/library/sfx/freesound/whoosh/60007-swipe-whoosh.mp3",
+   "kit_path": "sound/library/kit/sfx/whoosh/fs-60007.mp3",
+   "conversion": "copy",
+   "orig_bytes": 12211
+  },
+  {
+   "id": "fs-60011",
+   "original_id": "freesound:whoosh/60011-whoosh-24.mp3",
+   "original_path": "sound/library/sfx/freesound/whoosh/60011-whoosh-24.mp3",
+   "kit_path": "sound/library/kit/sfx/whoosh/fs-60011.mp3",
+   "conversion": "copy",
+   "orig_bytes": 18211
+  },
+  {
+   "id": "fs-60019",
+   "original_id": "freesound:whoosh/60019-quadruple-whoosh.mp3",
+   "original_path": "sound/library/sfx/freesound/whoosh/60019-quadruple-whoosh.mp3",
+   "kit_path": "sound/library/kit/sfx/whoosh/fs-60019.mp3",
+   "conversion": "copy",
+   "orig_bytes": 34646
+  },
+  {
+   "id": "fs-60021",
+   "original_id": "freesound:whoosh/60021-triple-whoosh-potential-z-for-zorro-sound.mp3",
+   "original_path": "sound/library/sfx/freesound/whoosh/60021-triple-whoosh-potential-z-for-zorro-sound.mp3",
+   "kit_path": "sound/library/kit/sfx/whoosh/fs-60021.mp3",
+   "conversion": "copy",
+   "orig_bytes": 22594
+  },
+  {
+   "id": "fs-60025",
+   "original_id": "freesound:whoosh/60025-double-whoosh-2.mp3",
+   "original_path": "sound/library/sfx/freesound/whoosh/60025-double-whoosh-2.mp3",
+   "kit_path": "sound/library/kit/sfx/whoosh/fs-60025.mp3",
+   "conversion": "copy",
+   "orig_bytes": 23716
+  },
+  {
+   "id": "fs-60030",
+   "original_id": "freesound:whoosh/60030-swosh-whoosh-air-cut.mp3",
+   "original_path": "sound/library/sfx/freesound/whoosh/60030-swosh-whoosh-air-cut.mp3",
+   "kit_path": "sound/library/kit/sfx/whoosh/fs-60030.mp3",
+   "conversion": "copy",
+   "orig_bytes": 12316
+  },
+  {
+   "id": "kn-forceField_000",
+   "original_id": "kenney:ambience/forceField_000.ogg",
+   "original_path": "sound/library/sfx/kenney/ambience/forceField_000.ogg",
+   "kit_path": "sound/library/kit/sfx/ambience/kn-forceField_000.ogg",
+   "conversion": "copy",
+   "orig_bytes": 25672
+  },
+  {
+   "id": "kn-forceField_002",
+   "original_id": "kenney:ambience/forceField_002.ogg",
+   "original_path": "sound/library/sfx/kenney/ambience/forceField_002.ogg",
+   "kit_path": "sound/library/kit/sfx/ambience/kn-forceField_002.ogg",
+   "conversion": "copy",
+   "orig_bytes": 27647
+  },
+  {
+   "id": "kn-forceField_003",
+   "original_id": "kenney:ambience/forceField_003.ogg",
+   "original_path": "sound/library/sfx/kenney/ambience/forceField_003.ogg",
+   "kit_path": "sound/library/kit/sfx/ambience/kn-forceField_003.ogg",
+   "conversion": "copy",
+   "orig_bytes": 23938
+  },
+  {
+   "id": "kn-forceField_004",
+   "original_id": "kenney:ambience/forceField_004.ogg",
+   "original_path": "sound/library/sfx/kenney/ambience/forceField_004.ogg",
+   "kit_path": "sound/library/kit/sfx/ambience/kn-forceField_004.ogg",
+   "conversion": "copy",
+   "orig_bytes": 26885
+  },
+  {
+   "id": "kn-metalClick",
+   "original_id": "kenney:click/metalClick.ogg",
+   "original_path": "sound/library/sfx/kenney/click/metalClick.ogg",
+   "kit_path": "sound/library/kit/sfx/click/kn-metalClick.ogg",
+   "conversion": "copy",
+   "orig_bytes": 13615
+  },
+  {
+   "id": "kn-impactMetal_light_000",
+   "original_id": "kenney:impact/impactMetal_light_000.ogg",
+   "original_path": "sound/library/sfx/kenney/impact/impactMetal_light_000.ogg",
+   "kit_path": "sound/library/kit/sfx/impact/kn-impactMetal_light_000.ogg",
+   "conversion": "copy",
+   "orig_bytes": 7651
+  },
+  {
+   "id": "kn-impactMining_003",
+   "original_id": "kenney:impact/impactMining_003.ogg",
+   "original_path": "sound/library/sfx/kenney/impact/impactMining_003.ogg",
+   "kit_path": "sound/library/kit/sfx/impact/kn-impactMining_003.ogg",
+   "conversion": "copy",
+   "orig_bytes": 12160
+  },
+  {
+   "id": "kn-lowFrequency_explosion_001",
+   "original_id": "kenney:impact/lowFrequency_explosion_001.ogg",
+   "original_path": "sound/library/sfx/kenney/impact/lowFrequency_explosion_001.ogg",
+   "kit_path": "sound/library/kit/sfx/impact/kn-lowFrequency_explosion_001.ogg",
+   "conversion": "copy",
+   "orig_bytes": 9408
+  },
+  {
+   "id": "kn-chips-handle-5",
+   "original_id": "kenney:misc/chips-handle-5.ogg",
+   "original_path": "sound/library/sfx/kenney/misc/chips-handle-5.ogg",
+   "kit_path": "sound/library/kit/sfx/misc/kn-chips-handle-5.ogg",
+   "conversion": "copy",
+   "orig_bytes": 11273
+  },
+  {
+   "id": "kn-creak2",
+   "original_id": "kenney:misc/creak2.ogg",
+   "original_path": "sound/library/sfx/kenney/misc/creak2.ogg",
+   "kit_path": "sound/library/kit/sfx/misc/kn-creak2.ogg",
+   "conversion": "copy",
+   "orig_bytes": 19012
+  },
+  {
+   "id": "kn-doorOpen_1",
+   "original_id": "kenney:misc/doorOpen_1.ogg",
+   "original_path": "sound/library/sfx/kenney/misc/doorOpen_1.ogg",
+   "kit_path": "sound/library/kit/sfx/misc/kn-doorOpen_1.ogg",
+   "conversion": "copy",
+   "orig_bytes": 22848
+  },
+  {
+   "id": "kn-handleCoins",
+   "original_id": "kenney:misc/handleCoins.ogg",
+   "original_path": "sound/library/sfx/kenney/misc/handleCoins.ogg",
+   "kit_path": "sound/library/kit/sfx/misc/kn-handleCoins.ogg",
+   "conversion": "copy",
+   "orig_bytes": 25394
+  },
+  {
+   "id": "kn-metalPot2",
+   "original_id": "kenney:misc/metalPot2.ogg",
+   "original_path": "sound/library/sfx/kenney/misc/metalPot2.ogg",
+   "kit_path": "sound/library/kit/sfx/misc/kn-metalPot2.ogg",
+   "conversion": "copy",
+   "orig_bytes": 22471
+  },
+  {
+   "id": "kn-metalPot3",
+   "original_id": "kenney:misc/metalPot3.ogg",
+   "original_path": "sound/library/sfx/kenney/misc/metalPot3.ogg",
+   "kit_path": "sound/library/kit/sfx/misc/kn-metalPot3.ogg",
+   "conversion": "copy",
+   "orig_bytes": 23142
+  },
+  {
+   "id": "kn-drop_004",
+   "original_id": "kenney:pop/drop_004.ogg",
+   "original_path": "sound/library/sfx/kenney/pop/drop_004.ogg",
+   "kit_path": "sound/library/kit/sfx/pop/kn-drop_004.ogg",
+   "conversion": "copy",
+   "orig_bytes": 7230
+  },
+  {
+   "id": "kn-highUp",
+   "original_id": "kenney:riser/highUp.ogg",
+   "original_path": "sound/library/sfx/kenney/riser/highUp.ogg",
+   "kit_path": "sound/library/kit/sfx/riser/kn-highUp.ogg",
+   "conversion": "copy",
+   "orig_bytes": 6135
+  },
+  {
+   "id": "kn-phaserUp1",
+   "original_id": "kenney:riser/phaserUp1.ogg",
+   "original_path": "sound/library/sfx/kenney/riser/phaserUp1.ogg",
+   "kit_path": "sound/library/kit/sfx/riser/kn-phaserUp1.ogg",
+   "conversion": "copy",
+   "orig_bytes": 7390
+  },
+  {
+   "id": "kn-phaserUp2",
+   "original_id": "kenney:riser/phaserUp2.ogg",
+   "original_path": "sound/library/sfx/kenney/riser/phaserUp2.ogg",
+   "kit_path": "sound/library/kit/sfx/riser/kn-phaserUp2.ogg",
+   "conversion": "copy",
+   "orig_bytes": 6895
+  },
+  {
+   "id": "kn-phaserUp3",
+   "original_id": "kenney:riser/phaserUp3.ogg",
+   "original_path": "sound/library/sfx/kenney/riser/phaserUp3.ogg",
+   "kit_path": "sound/library/kit/sfx/riser/kn-phaserUp3.ogg",
+   "conversion": "copy",
+   "orig_bytes": 7222
+  },
+  {
+   "id": "kn-jingles_HIT11",
+   "original_id": "kenney:stinger/jingles_HIT11.ogg",
+   "original_path": "sound/library/sfx/kenney/stinger/jingles_HIT11.ogg",
+   "kit_path": "sound/library/kit/sfx/stinger/kn-jingles_HIT11.ogg",
+   "conversion": "copy",
+   "orig_bytes": 17932
+  },
+  {
+   "id": "kn-jingles_PIZZI01",
+   "original_id": "kenney:stinger/jingles_PIZZI01.ogg",
+   "original_path": "sound/library/sfx/kenney/stinger/jingles_PIZZI01.ogg",
+   "kit_path": "sound/library/kit/sfx/stinger/kn-jingles_PIZZI01.ogg",
+   "conversion": "copy",
+   "orig_bytes": 16579
+  },
+  {
+   "id": "kn-jingles_PIZZI02",
+   "original_id": "kenney:stinger/jingles_PIZZI02.ogg",
+   "original_path": "sound/library/sfx/kenney/stinger/jingles_PIZZI02.ogg",
+   "kit_path": "sound/library/kit/sfx/stinger/kn-jingles_PIZZI02.ogg",
+   "conversion": "copy",
+   "orig_bytes": 16360
+  },
+  {
+   "id": "kn-jingles_PIZZI12",
+   "original_id": "kenney:stinger/jingles_PIZZI12.ogg",
+   "original_path": "sound/library/sfx/kenney/stinger/jingles_PIZZI12.ogg",
+   "kit_path": "sound/library/kit/sfx/stinger/kn-jingles_PIZZI12.ogg",
+   "conversion": "copy",
+   "orig_bytes": 15969
+  },
+  {
+   "id": "kn-zap1",
+   "original_id": "kenney:stinger/zap1.ogg",
+   "original_path": "sound/library/sfx/kenney/stinger/zap1.ogg",
+   "kit_path": "sound/library/kit/sfx/stinger/kn-zap1.ogg",
+   "conversion": "copy",
+   "orig_bytes": 8126
+  },
+  {
+   "id": "kn-error_003",
+   "original_id": "kenney:ui/error_003.ogg",
+   "original_path": "sound/library/sfx/kenney/ui/error_003.ogg",
+   "kit_path": "sound/library/kit/sfx/ui/kn-error_003.ogg",
+   "conversion": "copy",
+   "orig_bytes": 12256
+  },
+  {
+   "id": "kn-maximize_005",
+   "original_id": "kenney:ui/maximize_005.ogg",
+   "original_path": "sound/library/sfx/kenney/ui/maximize_005.ogg",
+   "kit_path": "sound/library/kit/sfx/ui/kn-maximize_005.ogg",
+   "conversion": "copy",
+   "orig_bytes": 20900
+  },
+  {
+   "id": "kn-scroll_001",
+   "original_id": "kenney:ui/scroll_001.ogg",
+   "original_path": "sound/library/sfx/kenney/ui/scroll_001.ogg",
+   "kit_path": "sound/library/kit/sfx/ui/kn-scroll_001.ogg",
+   "conversion": "copy",
+   "orig_bytes": 21633
+  },
+  {
+   "id": "kn-scroll_002",
+   "original_id": "kenney:ui/scroll_002.ogg",
+   "original_path": "sound/library/sfx/kenney/ui/scroll_002.ogg",
+   "kit_path": "sound/library/kit/sfx/ui/kn-scroll_002.ogg",
+   "conversion": "copy",
+   "orig_bytes": 24628
+  },
+  {
+   "id": "kn-scroll_003",
+   "original_id": "kenney:ui/scroll_003.ogg",
+   "original_path": "sound/library/sfx/kenney/ui/scroll_003.ogg",
+   "kit_path": "sound/library/kit/sfx/ui/kn-scroll_003.ogg",
+   "conversion": "copy",
+   "orig_bytes": 29488
+  },
+  {
+   "id": "kn-scroll_004",
+   "original_id": "kenney:ui/scroll_004.ogg",
+   "original_path": "sound/library/sfx/kenney/ui/scroll_004.ogg",
+   "kit_path": "sound/library/kit/sfx/ui/kn-scroll_004.ogg",
+   "conversion": "copy",
+   "orig_bytes": 20348
+  },
+  {
+   "id": "kn-scroll_005",
+   "original_id": "kenney:ui/scroll_005.ogg",
+   "original_path": "sound/library/sfx/kenney/ui/scroll_005.ogg",
+   "kit_path": "sound/library/kit/sfx/ui/kn-scroll_005.ogg",
+   "conversion": "copy",
+   "orig_bytes": 20448
+  },
+  {
+   "id": "kn-switch_001",
+   "original_id": "kenney:ui/switch_001.ogg",
+   "original_path": "sound/library/sfx/kenney/ui/switch_001.ogg",
+   "kit_path": "sound/library/kit/sfx/ui/kn-switch_001.ogg",
+   "conversion": "copy",
+   "orig_bytes": 6753
+  },
+  {
+   "id": "kn-switch_002",
+   "original_id": "kenney:ui/switch_002.ogg",
+   "original_path": "sound/library/sfx/kenney/ui/switch_002.ogg",
+   "kit_path": "sound/library/kit/sfx/ui/kn-switch_002.ogg",
+   "conversion": "copy",
+   "orig_bytes": 7097
+  },
+  {
+   "id": "kn-switch_005",
+   "original_id": "kenney:ui/switch_005.ogg",
+   "original_path": "sound/library/sfx/kenney/ui/switch_005.ogg",
+   "kit_path": "sound/library/kit/sfx/ui/kn-switch_005.ogg",
+   "conversion": "copy",
+   "orig_bytes": 7814
+  },
+  {
+   "id": "kn-switch_006",
+   "original_id": "kenney:ui/switch_006.ogg",
+   "original_path": "sound/library/sfx/kenney/ui/switch_006.ogg",
+   "kit_path": "sound/library/kit/sfx/ui/kn-switch_006.ogg",
+   "conversion": "copy",
+   "orig_bytes": 7873
+  },
+  {
+   "id": "kn-switch_007",
+   "original_id": "kenney:ui/switch_007.ogg",
+   "original_path": "sound/library/sfx/kenney/ui/switch_007.ogg",
+   "kit_path": "sound/library/kit/sfx/ui/kn-switch_007.ogg",
+   "conversion": "copy",
+   "orig_bytes": 7921
+  },
+  {
+   "id": "kn-laser8",
+   "original_id": "kenney:whoosh/laser8.ogg",
+   "original_path": "sound/library/sfx/kenney/whoosh/laser8.ogg",
+   "kit_path": "sound/library/kit/sfx/whoosh/kn-laser8.ogg",
+   "conversion": "copy",
+   "orig_bytes": 9383
+  },
+  {
+   "id": "kn-laser9",
+   "original_id": "kenney:whoosh/laser9.ogg",
+   "original_path": "sound/library/sfx/kenney/whoosh/laser9.ogg",
+   "kit_path": "sound/library/kit/sfx/whoosh/kn-laser9.ogg",
+   "conversion": "copy",
+   "orig_bytes": 9331
+  },
+  {
+   "id": "op-ambience-dark-scary-drone",
+   "original_id": "owner-pack:ambience/dark-scary-drone.wav",
+   "original_path": "sound/library/sfx/owner-pack/ambience/dark-scary-drone.wav",
+   "kit_path": "sound/library/kit/sfx/ambience/op-ambience-dark-scary-drone.ogg",
+   "conversion": "ogg-q5",
+   "orig_bytes": 827700
+  },
+  {
+   "id": "op-ambience-freeze-icy-crackling",
+   "original_id": "owner-pack:ambience/freeze-icy-crackling.wav",
+   "original_path": "sound/library/sfx/owner-pack/ambience/freeze-icy-crackling.wav",
+   "kit_path": "sound/library/kit/sfx/ambience/op-ambience-freeze-icy-crackling.ogg",
+   "conversion": "ogg-q5",
+   "orig_bytes": 667308
+  },
+  {
+   "id": "op-ambience-freeze-strong-wind",
+   "original_id": "owner-pack:ambience/freeze-strong-wind.wav",
+   "original_path": "sound/library/sfx/owner-pack/ambience/freeze-strong-wind.wav",
+   "kit_path": "sound/library/kit/sfx/ambience/op-ambience-freeze-strong-wind.ogg",
+   "conversion": "ogg-q5",
+   "orig_bytes": 603360
+  },
+  {
+   "id": "op-ambience-tv-noise-fast",
+   "original_id": "owner-pack:ambience/tv-noise-fast.wav",
+   "original_path": "sound/library/sfx/owner-pack/ambience/tv-noise-fast.wav",
+   "kit_path": "sound/library/kit/sfx/ambience/op-ambience-tv-noise-fast.ogg",
+   "conversion": "ogg-q5",
+   "orig_bytes": 41652
+  },
+  {
+   "id": "op-camera-shutter-camera-01",
+   "original_id": "owner-pack:camera-shutter/camera-01.mp3",
+   "original_path": "sound/library/sfx/owner-pack/camera-shutter/camera-01.mp3",
+   "kit_path": "sound/library/kit/sfx/camera-shutter/op-camera-shutter-camera-01.ogg",
+   "conversion": "ogg-q5",
+   "orig_bytes": 1188700
+  },
+  {
+   "id": "op-camera-shutter-camera-02",
+   "original_id": "owner-pack:camera-shutter/camera-02.wav",
+   "original_path": "sound/library/sfx/owner-pack/camera-shutter/camera-02.wav",
+   "kit_path": "sound/library/kit/sfx/camera-shutter/op-camera-shutter-camera-02.ogg",
+   "conversion": "ogg-q5",
+   "orig_bytes": 1217362
+  },
+  {
+   "id": "op-camera-shutter-camera-03",
+   "original_id": "owner-pack:camera-shutter/camera-03.mp3",
+   "original_path": "sound/library/sfx/owner-pack/camera-shutter/camera-03.mp3",
+   "kit_path": "sound/library/kit/sfx/camera-shutter/op-camera-shutter-camera-03.ogg",
+   "conversion": "ogg-q5",
+   "orig_bytes": 1169500
+  },
+  {
+   "id": "op-camera-shutter-camera-04",
+   "original_id": "owner-pack:camera-shutter/camera-04.wav",
+   "original_path": "sound/library/sfx/owner-pack/camera-shutter/camera-04.wav",
+   "kit_path": "sound/library/kit/sfx/camera-shutter/op-camera-shutter-camera-04.ogg",
+   "conversion": "ogg-q5",
+   "orig_bytes": 1351814
+  },
+  {
+   "id": "op-camera-shutter-camera-05",
+   "original_id": "owner-pack:camera-shutter/camera-05.wav",
+   "original_path": "sound/library/sfx/owner-pack/camera-shutter/camera-05.wav",
+   "kit_path": "sound/library/kit/sfx/camera-shutter/op-camera-shutter-camera-05.ogg",
+   "conversion": "ogg-q5",
+   "orig_bytes": 1188166
+  },
+  {
+   "id": "op-camera-shutter-camera-06",
+   "original_id": "owner-pack:camera-shutter/camera-06.wav",
+   "original_path": "sound/library/sfx/owner-pack/camera-shutter/camera-06.wav",
+   "kit_path": "sound/library/kit/sfx/camera-shutter/op-camera-shutter-camera-06.ogg",
+   "conversion": "ogg-q5",
+   "orig_bytes": 1159972
+  },
+  {
+   "id": "op-camera-shutter-camera-07",
+   "original_id": "owner-pack:camera-shutter/camera-07.wav",
+   "original_path": "sound/library/sfx/owner-pack/camera-shutter/camera-07.wav",
+   "kit_path": "sound/library/kit/sfx/camera-shutter/op-camera-shutter-camera-07.ogg",
+   "conversion": "ogg-q5",
+   "orig_bytes": 1169474
+  },
+  {
+   "id": "op-camera-shutter-camera-08",
+   "original_id": "owner-pack:camera-shutter/camera-08.wav",
+   "original_path": "sound/library/sfx/owner-pack/camera-shutter/camera-08.wav",
+   "kit_path": "sound/library/kit/sfx/camera-shutter/op-camera-shutter-camera-08.ogg",
+   "conversion": "ogg-q5",
+   "orig_bytes": 1260534
+  },
+  {
+   "id": "op-camera-shutter-camera-09",
+   "original_id": "owner-pack:camera-shutter/camera-09.mp3",
+   "original_path": "sound/library/sfx/owner-pack/camera-shutter/camera-09.mp3",
+   "kit_path": "sound/library/kit/sfx/camera-shutter/op-camera-shutter-camera-09.ogg",
+   "conversion": "ogg-q5",
+   "orig_bytes": 1169500
+  },
+  {
+   "id": "op-camera-shutter-camera-10",
+   "original_id": "owner-pack:camera-shutter/camera-10.wav",
+   "original_path": "sound/library/sfx/owner-pack/camera-shutter/camera-10.wav",
+   "kit_path": "sound/library/kit/sfx/camera-shutter/op-camera-shutter-camera-10.ogg",
+   "conversion": "ogg-q5",
+   "orig_bytes": 1344738
+  },
+  {
+   "id": "op-camera-shutter-camera-11",
+   "original_id": "owner-pack:camera-shutter/camera-11.wav",
+   "original_path": "sound/library/sfx/owner-pack/camera-shutter/camera-11.wav",
+   "kit_path": "sound/library/kit/sfx/camera-shutter/op-camera-shutter-camera-11.ogg",
+   "conversion": "ogg-q5",
+   "orig_bytes": 1379614
+  },
+  {
+   "id": "op-click-switch",
+   "original_id": "owner-pack:click/switch.wav",
+   "original_path": "sound/library/sfx/owner-pack/click/switch.wav",
+   "kit_path": "sound/library/kit/sfx/click/op-click-switch.ogg",
+   "conversion": "ogg-q5",
+   "orig_bytes": 149014
+  },
+  {
+   "id": "op-ding-chime-end-bell-solo",
+   "original_id": "owner-pack:ding-chime/end-bell-solo.wav",
+   "original_path": "sound/library/sfx/owner-pack/ding-chime/end-bell-solo.wav",
+   "kit_path": "sound/library/kit/sfx/ding-chime/op-ding-chime-end-bell-solo.ogg",
+   "conversion": "ogg-q5",
+   "orig_bytes": 1209482
+  },
+  {
+   "id": "op-ding-chime-single-note-01",
+   "original_id": "owner-pack:ding-chime/single-note-01.wav",
+   "original_path": "sound/library/sfx/owner-pack/ding-chime/single-note-01.wav",
+   "kit_path": "sound/library/kit/sfx/ding-chime/op-ding-chime-single-note-01.ogg",
+   "conversion": "ogg-q5",
+   "orig_bytes": 1243006
+  },
+  {
+   "id": "op-ding-chime-single-note-02",
+   "original_id": "owner-pack:ding-chime/single-note-02.wav",
+   "original_path": "sound/library/sfx/owner-pack/ding-chime/single-note-02.wav",
+   "kit_path": "sound/library/kit/sfx/ding-chime/op-ding-chime-single-note-02.ogg",
+   "conversion": "ogg-q5",
+   "orig_bytes": 1258662
+  },
+  {
+   "id": "op-ding-chime-single-note-03",
+   "original_id": "owner-pack:ding-chime/single-note-03.wav",
+   "original_path": "sound/library/sfx/owner-pack/ding-chime/single-note-03.wav",
+   "kit_path": "sound/library/kit/sfx/ding-chime/op-ding-chime-single-note-03.ogg",
+   "conversion": "ogg-q5",
+   "orig_bytes": 1299440
+  },
+  {
+   "id": "op-ding-chime-single-note-04",
+   "original_id": "owner-pack:ding-chime/single-note-04.wav",
+   "original_path": "sound/library/sfx/owner-pack/ding-chime/single-note-04.wav",
+   "kit_path": "sound/library/kit/sfx/ding-chime/op-ding-chime-single-note-04.ogg",
+   "conversion": "ogg-q5",
+   "orig_bytes": 1273850
+  },
+  {
+   "id": "op-ding-chime-single-note-05",
+   "original_id": "owner-pack:ding-chime/single-note-05.wav",
+   "original_path": "sound/library/sfx/owner-pack/ding-chime/single-note-05.wav",
+   "kit_path": "sound/library/kit/sfx/ding-chime/op-ding-chime-single-note-05.ogg",
+   "conversion": "ogg-q5",
+   "orig_bytes": 1238564
+  },
+  {
+   "id": "op-impact-glass-break-02-high",
+   "original_id": "owner-pack:impact/glass-break-02-high.wav",
+   "original_path": "sound/library/sfx/owner-pack/impact/glass-break-02-high.wav",
+   "kit_path": "sound/library/kit/sfx/impact/op-impact-glass-break-02-high.ogg",
+   "conversion": "ogg-q5",
+   "orig_bytes": 186376
+  },
+  {
+   "id": "op-impact-glass-break-05-short-dull",
+   "original_id": "owner-pack:impact/glass-break-05-short-dull.wav",
+   "original_path": "sound/library/sfx/owner-pack/impact/glass-break-05-short-dull.wav",
+   "kit_path": "sound/library/kit/sfx/impact/op-impact-glass-break-05-short-dull.ogg",
+   "conversion": "ogg-q5",
+   "orig_bytes": 183732
+  },
+  {
+   "id": "op-impact-wet-splat-01",
+   "original_id": "owner-pack:impact/wet-splat-01.wav",
+   "original_path": "sound/library/sfx/owner-pack/impact/wet-splat-01.wav",
+   "kit_path": "sound/library/kit/sfx/impact/op-impact-wet-splat-01.ogg",
+   "conversion": "ogg-q5",
+   "orig_bytes": 223796
+  },
+  {
+   "id": "op-impact-window-crack-02",
+   "original_id": "owner-pack:impact/window-crack-02.wav",
+   "original_path": "sound/library/sfx/owner-pack/impact/window-crack-02.wav",
+   "kit_path": "sound/library/kit/sfx/impact/op-impact-window-crack-02.ogg",
+   "conversion": "ogg-q5",
+   "orig_bytes": 199220
+  },
+  {
+   "id": "op-paper-pencil-nib-bite-1s",
+   "original_id": "owner-pack:paper-pencil/nib-bite-1s.mp3",
+   "original_path": "sound/library/sfx/owner-pack/paper-pencil/nib-bite-1s.mp3",
+   "kit_path": "sound/library/kit/sfx/paper-pencil/op-paper-pencil-nib-bite-1s.mp3",
+   "conversion": "copy",
+   "orig_bytes": 10001
+  },
+  {
+   "id": "op-riser-reverse-gleam-high-frequency",
+   "original_id": "owner-pack:riser/reverse-gleam-high-frequency.wav",
+   "original_path": "sound/library/sfx/owner-pack/riser/reverse-gleam-high-frequency.wav",
+   "kit_path": "sound/library/kit/sfx/riser/op-riser-reverse-gleam-high-frequency.ogg",
+   "conversion": "ogg-q5",
+   "orig_bytes": 937012
+  },
+  {
+   "id": "op-riser-reverse-suck",
+   "original_id": "owner-pack:riser/reverse-suck.wav",
+   "original_path": "sound/library/sfx/owner-pack/riser/reverse-suck.wav",
+   "kit_path": "sound/library/kit/sfx/riser/op-riser-reverse-suck.ogg",
+   "conversion": "ogg-q5",
+   "orig_bytes": 488500
+  },
+  {
+   "id": "op-slide-paper-shifting",
+   "original_id": "owner-pack:slide/paper-shifting.wav",
+   "original_path": "sound/library/sfx/owner-pack/slide/paper-shifting.wav",
+   "kit_path": "sound/library/kit/sfx/slide/op-slide-paper-shifting.ogg",
+   "conversion": "ogg-q5",
+   "orig_bytes": 245812
+  },
+  {
+   "id": "op-slide-slide-01",
+   "original_id": "owner-pack:slide/slide-01.wav",
+   "original_path": "sound/library/sfx/owner-pack/slide/slide-01.wav",
+   "kit_path": "sound/library/kit/sfx/slide/op-slide-slide-01.ogg",
+   "conversion": "ogg-q5",
+   "orig_bytes": 1255590
+  },
+  {
+   "id": "op-slide-slide-02",
+   "original_id": "owner-pack:slide/slide-02.wav",
+   "original_path": "sound/library/sfx/owner-pack/slide/slide-02.wav",
+   "kit_path": "sound/library/kit/sfx/slide/op-slide-slide-02.ogg",
+   "conversion": "ogg-q5",
+   "orig_bytes": 1638990
+  },
+  {
+   "id": "op-slide-slide-03",
+   "original_id": "owner-pack:slide/slide-03.wav",
+   "original_path": "sound/library/sfx/owner-pack/slide/slide-03.wav",
+   "kit_path": "sound/library/kit/sfx/slide/op-slide-slide-03.ogg",
+   "conversion": "ogg-q5",
+   "orig_bytes": 1236188
+  },
+  {
+   "id": "op-slide-slide-04",
+   "original_id": "owner-pack:slide/slide-04.wav",
+   "original_path": "sound/library/sfx/owner-pack/slide/slide-04.wav",
+   "kit_path": "sound/library/kit/sfx/slide/op-slide-slide-04.ogg",
+   "conversion": "ogg-q5",
+   "orig_bytes": 1172598
+  },
+  {
+   "id": "op-slide-slide-06",
+   "original_id": "owner-pack:slide/slide-06.wav",
+   "original_path": "sound/library/sfx/owner-pack/slide/slide-06.wav",
+   "kit_path": "sound/library/kit/sfx/slide/op-slide-slide-06.ogg",
+   "conversion": "ogg-q5",
+   "orig_bytes": 1176896
+  },
+  {
+   "id": "op-typing-click-01",
+   "original_id": "owner-pack:typing/click-01.wav",
+   "original_path": "sound/library/sfx/owner-pack/typing/click-01.wav",
+   "kit_path": "sound/library/kit/sfx/typing/op-typing-click-01.ogg",
+   "conversion": "ogg-q5",
+   "orig_bytes": 220674
+  },
+  {
+   "id": "op-typing-click-02",
+   "original_id": "owner-pack:typing/click-02.wav",
+   "original_path": "sound/library/sfx/owner-pack/typing/click-02.wav",
+   "kit_path": "sound/library/kit/sfx/typing/op-typing-click-02.ogg",
+   "conversion": "ogg-q5",
+   "orig_bytes": 239626
+  },
+  {
+   "id": "op-typing-click-03",
+   "original_id": "owner-pack:typing/click-03.wav",
+   "original_path": "sound/library/sfx/owner-pack/typing/click-03.wav",
+   "kit_path": "sound/library/kit/sfx/typing/op-typing-click-03.ogg",
+   "conversion": "ogg-q5",
+   "orig_bytes": 391218
+  },
+  {
+   "id": "op-typing-click-04",
+   "original_id": "owner-pack:typing/click-04.wav",
+   "original_path": "sound/library/sfx/owner-pack/typing/click-04.wav",
+   "kit_path": "sound/library/kit/sfx/typing/op-typing-click-04.ogg",
+   "conversion": "ogg-q5",
+   "orig_bytes": 480802
+  },
+  {
+   "id": "op-typing-click-05",
+   "original_id": "owner-pack:typing/click-05.wav",
+   "original_path": "sound/library/sfx/owner-pack/typing/click-05.wav",
+   "kit_path": "sound/library/kit/sfx/typing/op-typing-click-05.ogg",
+   "conversion": "ogg-q5",
+   "orig_bytes": 556594
+  },
+  {
+   "id": "op-typing-return-handle",
+   "original_id": "owner-pack:typing/return-handle.wav",
+   "original_path": "sound/library/sfx/owner-pack/typing/return-handle.wav",
+   "kit_path": "sound/library/kit/sfx/typing/op-typing-return-handle.ogg",
+   "conversion": "ogg-q5",
+   "orig_bytes": 306810
+  },
+  {
+   "id": "op-typing-shift",
+   "original_id": "owner-pack:typing/shift.wav",
+   "original_path": "sound/library/sfx/owner-pack/typing/shift.wav",
+   "kit_path": "sound/library/kit/sfx/typing/op-typing-shift.ogg",
+   "conversion": "ogg-q5",
+   "orig_bytes": 253410
+  },
+  {
+   "id": "op-typing-spacebar",
+   "original_id": "owner-pack:typing/spacebar.wav",
+   "original_path": "sound/library/sfx/owner-pack/typing/spacebar.wav",
+   "kit_path": "sound/library/kit/sfx/typing/op-typing-spacebar.ogg",
+   "conversion": "ogg-q5",
+   "orig_bytes": 270634
+  },
+  {
+   "id": "op-typing-typewriter-antique_click-01",
+   "original_id": "owner-pack:typing/typewriter-antique_click-01.wav",
+   "original_path": "sound/library/sfx/owner-pack/typing/typewriter-antique_click-01.wav",
+   "kit_path": "sound/library/kit/sfx/typing/op-typing-typewriter-antique_click-01.ogg",
+   "conversion": "ogg-q5",
+   "orig_bytes": 59242
+  },
+  {
+   "id": "op-typing-typewriter-antique_click-02",
+   "original_id": "owner-pack:typing/typewriter-antique_click-02.wav",
+   "original_path": "sound/library/sfx/owner-pack/typing/typewriter-antique_click-02.wav",
+   "kit_path": "sound/library/kit/sfx/typing/op-typing-typewriter-antique_click-02.ogg",
+   "conversion": "ogg-q5",
+   "orig_bytes": 156890
+  },
+  {
+   "id": "op-typing-typewriter-antique_click-03",
+   "original_id": "owner-pack:typing/typewriter-antique_click-03.wav",
+   "original_path": "sound/library/sfx/owner-pack/typing/typewriter-antique_click-03.wav",
+   "kit_path": "sound/library/kit/sfx/typing/op-typing-typewriter-antique_click-03.ogg",
+   "conversion": "ogg-q5",
+   "orig_bytes": 167914
+  },
+  {
+   "id": "op-typing-typewriter-antique_click-04",
+   "original_id": "owner-pack:typing/typewriter-antique_click-04.wav",
+   "original_path": "sound/library/sfx/owner-pack/typing/typewriter-antique_click-04.wav",
+   "kit_path": "sound/library/kit/sfx/typing/op-typing-typewriter-antique_click-04.ogg",
+   "conversion": "ogg-q5",
+   "orig_bytes": 228554
+  },
+  {
+   "id": "op-whoosh-slice",
+   "original_id": "owner-pack:whoosh/slice.wav",
+   "original_path": "sound/library/sfx/owner-pack/whoosh/slice.wav",
+   "kit_path": "sound/library/kit/sfx/whoosh/op-whoosh-slice.ogg",
+   "conversion": "ogg-q5",
+   "orig_bytes": 178228
+  },
+  {
+   "id": "op-whoosh-woosh-05",
+   "original_id": "owner-pack:whoosh/woosh-05.mp3",
+   "original_path": "sound/library/sfx/owner-pack/whoosh/woosh-05.mp3",
+   "kit_path": "sound/library/kit/sfx/whoosh/op-whoosh-woosh-05.ogg",
+   "conversion": "ogg-q5",
+   "orig_bytes": 1161820
+  },
+  {
+   "id": "op-whoosh-woosh-08",
+   "original_id": "owner-pack:whoosh/woosh-08.mp3",
+   "original_path": "sound/library/sfx/owner-pack/whoosh/woosh-08.mp3",
+   "kit_path": "sound/library/kit/sfx/whoosh/op-whoosh-woosh-08.ogg",
+   "conversion": "ogg-q5",
+   "orig_bytes": 1157980
+  },
+  {
+   "id": "op-whoosh-woosh-09",
+   "original_id": "owner-pack:whoosh/woosh-09.mp3",
+   "original_path": "sound/library/sfx/owner-pack/whoosh/woosh-09.mp3",
+   "kit_path": "sound/library/kit/sfx/whoosh/op-whoosh-woosh-09.ogg",
+   "conversion": "ogg-q5",
+   "orig_bytes": 1161820
+  }
+ ]
+}

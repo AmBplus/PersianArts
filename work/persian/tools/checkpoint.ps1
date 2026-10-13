@@ -168,11 +168,18 @@ $binExt = @('.mp3', '.wav', '.ogg', '.flac', '.m4a', '.mp4', '.mov', '.webm', '.
 $fontExt = @('.ttf', '.otf', '.woff', '.woff2')   # fonts stay committable, but any font over 2 MB aborts
 $fontMax = 2MB
 $soundTextExt = @('.md', '.json', '.jsonl', '.txt', '.csv', '.mjs', '.js', '.ts', '.ps1', '.yml', '.yaml')
+$kitAudioExt = @('.ogg', '.opus', '.mp3')   # tracked sound kit: audio under sound/library/kit/ up to 2 MB each
+$kitMax = 2MB
 $files = New-Object System.Collections.Generic.List[string]
 $skippedBinary = 0
 foreach ($f in $raw) {
   if ($f -match '^media/') { Write-Host "ABORT: media path in candidates: $f"; exit 1 }
   $ext = [IO.Path]::GetExtension($f).ToLowerInvariant()
+  if ($f.StartsWith('sound/library/kit/') -and ($kitAudioExt -contains $ext)) {
+    $fullK = Join-Path $repo $f
+    if ((Test-Path -LiteralPath $fullK) -and ((Get-Item -LiteralPath $fullK).Length -gt $kitMax)) { Write-Host "ABORT: kit audio over 2 MB: $f"; exit 1 }
+    $files.Add($f); continue
+  }
   if ($f.StartsWith('sound/') -and ($soundTextExt -notcontains $ext)) { $skippedBinary++; continue }   # sound/: text only
   if ($fontExt -contains $ext) {
     $fullF = Join-Path $repo $f
@@ -228,7 +235,11 @@ $staged = @(& git diff --cached --name-only)
 foreach ($s in $staged) {
   $ext = [IO.Path]::GetExtension($s).ToLowerInvariant()
   $bad = $s -match '^media/'
-  if (-not $bad -and ($binExt -contains $ext)) {
+  $kitOk = $s.StartsWith('sound/library/kit/') -and ($kitAudioExt -contains $ext)
+  if (-not $bad -and $kitOk) {
+    $fullK = Join-Path $repo $s
+    if ((Test-Path -LiteralPath $fullK) -and ((Get-Item -LiteralPath $fullK).Length -gt $kitMax)) { $bad = $true }
+  } elseif (-not $bad -and ($binExt -contains $ext)) {
     $full = Join-Path $repo $s
     if ((Test-Path -LiteralPath $full) -and ((Get-Item -LiteralPath $full).Length -gt 1MB)) { $bad = $true }
   }
