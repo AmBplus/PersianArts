@@ -18,6 +18,7 @@ Window = first lead event 04:47:26Z to the METRICS-REVIEW request 06:34:19Z.
 | Render speed | render wall ÷ frames, and ÷ film seconds | first-video, S2 reports, render logs | 9:16 1080×1920: 92 ms/frame = 2.75 s per film second (12 s in 33 s; 24 s in 62 s). Four ratios in parallel: 46 ms/frame effective, 66.6 s for 12 s. Stills about 0.75 s each |
 | Rework ratio | worker-min spent redoing ÷ worker-min | transcripts | 20.5 / 77.7 = **26%** (fix round 8.9, render-fix 4.7, P3 blocked 3.0, S1 EPERM retry about 2, S2 re-render 1.5, board-fix 0.4) |
 | Overhead ratio | 1 − (build + render + audio wall) ÷ wall | metrics.json | 1 − 24.2/106.9 = **77%** |
+| Reuse ratio | share of scene elements per category: reused / adapted / idea-derived / new (sum = 100%) | plan log reuse map (`docs/motion/plans/<slug>.md`, Reuse map table) | not yet measured. Import-line ratio (1.6% uni/long, 0.6% uni/short in plan-audit-report.md) understates real reuse and is secondary (D-20261013-16) |
 | Plan-vs-build | worker-min on plans/docs/reviews ÷ worker-min on film build | transcripts | 20.2 / 29.0 = **0.70**. On the critical path, 27 min of brief + review + fix round ran before S1 could start |
 | Orders per deliverable | orders ÷ watchable deliverables | lead transcript | 30 orders (29 run + 1 denied) for 1 deliverable; 8 were on its critical path |
 
