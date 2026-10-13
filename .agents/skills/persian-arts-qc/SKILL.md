@@ -47,3 +47,6 @@ CURRENT STATE "Open defects" block (id, scene, frame, status); DECISIONS (score 
 ## Lessons 2.5 (conference teaser)
 - Extract a strip every 3 frames around EVERY scene transition of the FINAL mp4 (`pa strip <mp4> <t0> <t1> --every 3`), in BOTH ratios, after the last render; never judge from the silent preview. Look at the sheet.
 - Run `pa audio-check` on the final mp4; list peers (logos equal height/weight/baseline), one world (finale same palette/background/type), contrast (>= 4.5:1 body, >= 3:1 large, no blue on blue) as manual checks with evidence.
+
+## Pacing defaults 2.6 (measured on 38 references, docs/motion/knowledge/PACING-PROFILES.md)
+- Run `pa pacing <final.mp4> --profile ...` (advisory, never blocks) and list its findings: cut rate vs profile, no cut in first 3 s, cuts off the music grid, flat/quiet-outro energy arc, scenes below the readability floor.

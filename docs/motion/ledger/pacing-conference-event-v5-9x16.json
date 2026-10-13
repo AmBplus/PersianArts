@@ -1,0 +1,173 @@
+{
+ "metrics": {
+  "duration_s": 28.47,
+  "fps": 30.0,
+  "w": 1080,
+  "h": 1920,
+  "ratio": "9x16",
+  "has_audio": true,
+  "cuts": [
+   3.79,
+   4.83,
+   5.83,
+   6.88,
+   9.88,
+   16.0,
+   18.0,
+   19.12,
+   21.88,
+   22.62
+  ],
+  "n_scenes": 11,
+  "shot_mean_s": 2.59,
+  "shot_median_s": 2.0,
+  "cuts_per_10s": 3.51,
+  "energy_thirds": [
+   2.74,
+   3.81,
+   1.58
+  ],
+  "energy_ratio": [
+   1.01,
+   1.41,
+   0.58
+  ],
+  "scenes": [
+   {
+    "start": 0.0,
+    "end": 3.79,
+    "len": 3.79,
+    "elements": 8,
+    "build_s": 3.67,
+    "hold_s": 0.12
+   },
+   {
+    "start": 3.79,
+    "end": 4.83,
+    "len": 1.04,
+    "elements": 3,
+    "build_s": 0.96,
+    "hold_s": 0.08
+   },
+   {
+    "start": 4.83,
+    "end": 5.83,
+    "len": 1.0,
+    "elements": 3,
+    "build_s": 0.92,
+    "hold_s": 0.08
+   },
+   {
+    "start": 5.83,
+    "end": 6.88,
+    "len": 1.04,
+    "elements": 3,
+    "build_s": 0.92,
+    "hold_s": 0.12
+   },
+   {
+    "start": 6.88,
+    "end": 9.88,
+    "len": 3.0,
+    "elements": 3,
+    "build_s": 2.71,
+    "hold_s": 0.29
+   },
+   {
+    "start": 9.88,
+    "end": 16.0,
+    "len": 6.12,
+    "elements": 6,
+    "build_s": 4.04,
+    "hold_s": 2.08
+   },
+   {
+    "start": 16.0,
+    "end": 18.0,
+    "len": 2.0,
+    "elements": 3,
+    "build_s": 1.92,
+    "hold_s": 0.08
+   },
+   {
+    "start": 18.0,
+    "end": 19.12,
+    "len": 1.12,
+    "elements": 0,
+    "build_s": 0.0,
+    "hold_s": 1.12
+   },
+   {
+    "start": 19.12,
+    "end": 21.88,
+    "len": 2.75,
+    "elements": 3,
+    "build_s": 2.62,
+    "hold_s": 0.12
+   },
+   {
+    "start": 21.88,
+    "end": 22.62,
+    "len": 0.75,
+    "elements": 2,
+    "build_s": 0.38,
+    "hold_s": 0.38
+   },
+   {
+    "start": 22.62,
+    "end": 28.47,
+    "len": 5.84,
+    "elements": 2,
+    "build_s": 0.46,
+    "hold_s": 5.39
+   }
+  ],
+  "elements_per_scene": 3.27,
+  "build_s_median": 0.96,
+  "hold_s_median": 0.12
+ },
+ "audio": {
+  "tempo_bpm": 117.5,
+  "beat_s": 0.5108,
+  "cuts_on_beat": 0.1,
+  "cuts_on_bar": 0.0,
+  "lufs": -15.5,
+  "rms_arc_db": [
+   -18.2,
+   -19.3,
+   -16.7
+  ]
+ },
+ "findings": [
+  [
+   "median shot length (s)",
+   2.0,
+   "too fast"
+  ],
+  [
+   "cuts per 10 s",
+   3.51,
+   "too fast"
+  ],
+  [
+   "elements per scene",
+   3.27,
+   "sparse"
+  ],
+  [
+   "build time median (s)",
+   0.96,
+   "build too quick"
+  ],
+  [
+   "hold time median (s)",
+   0.12,
+   "hold too short"
+  ],
+  [
+   "cuts on beat",
+   0.1,
+   "not beat-locked"
+  ]
+ ]
+}

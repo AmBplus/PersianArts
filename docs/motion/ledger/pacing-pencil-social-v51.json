@@ -1,0 +1,154 @@
+{
+ "metrics": {
+  "duration_s": 19.67,
+  "fps": 30.0,
+  "w": 1080,
+  "h": 1920,
+  "ratio": "9x16",
+  "has_audio": true,
+  "cuts": [
+   0.58,
+   2.2,
+   4.17,
+   7.42,
+   10.67,
+   14.58,
+   15.62,
+   18.29,
+   19.33
+  ],
+  "n_scenes": 10,
+  "shot_mean_s": 1.97,
+  "shot_median_s": 1.79,
+  "cuts_per_10s": 4.58,
+  "energy_thirds": [
+   3.8,
+   3.19,
+   3.1
+  ],
+  "energy_ratio": [
+   1.13,
+   0.95,
+   0.92
+  ],
+  "scenes": [
+   {
+    "start": 0.0,
+    "end": 0.58,
+    "len": 0.58,
+    "elements": 1,
+    "build_s": 0.42,
+    "hold_s": 0.17
+   },
+   {
+    "start": 0.58,
+    "end": 2.2,
+    "len": 1.62,
+    "elements": 1,
+    "build_s": 0.17,
+    "hold_s": 1.45
+   },
+   {
+    "start": 2.2,
+    "end": 4.17,
+    "len": 1.97,
+    "elements": 3,
+    "build_s": 1.55,
+    "hold_s": 0.42
+   },
+   {
+    "start": 4.17,
+    "end": 7.42,
+    "len": 3.25,
+    "elements": 8,
+    "build_s": 3.08,
+    "hold_s": 0.17
+   },
+   {
+    "start": 7.42,
+    "end": 10.67,
+    "len": 3.25,
+    "elements": 3,
+    "build_s": 1.17,
+    "hold_s": 2.08
+   },
+   {
+    "start": 10.67,
+    "end": 14.58,
+    "len": 3.92,
+    "elements": 1,
+    "build_s": 0.25,
+    "hold_s": 3.67
+   },
+   {
+    "start": 14.58,
+    "end": 15.62,
+    "len": 1.04,
+    "elements": 2,
+    "build_s": 0.75,
+    "hold_s": 0.29
+   },
+   {
+    "start": 15.62,
+    "end": 18.29,
+    "len": 2.67,
+    "elements": 3,
+    "build_s": 2.46,
+    "hold_s": 0.21
+   },
+   {
+    "start": 18.29,
+    "end": 19.33,
+    "len": 1.04,
+    "elements": 1,
+    "build_s": 0.96,
+    "hold_s": 0.08
+   },
+   {
+    "start": 19.33,
+    "end": 19.67,
+    "len": 0.34,
+    "elements": 1,
+    "build_s": 0.17,
+    "hold_s": 0.17
+   }
+  ],
+  "elements_per_scene": 2.4,
+  "build_s_median": 0.85,
+  "hold_s_median": 0.25
+ },
+ "audio": {
+  "tempo_bpm": 112.3,
+  "beat_s": 0.5341,
+  "cuts_on_beat": 0.222,
+  "cuts_on_bar": 0.111,
+  "lufs": -14.1,
+  "rms_arc_db": [
+   -16.0,
+   -17.8,
+   -16.9
+  ]
+ },
+ "findings": [
+  [
+   "cuts per 10 s",
+   4.58,
+   "too fast"
+  ],
+  [
+   "elements per scene",
+   2.4,
+   "sparse"
+  ],
+  [
+   "tempo (bpm, from mix)",
+   112.3,
+   "slow music"
+  ],
+  [
+   "cuts on beat",
+   0.222,
+   "not beat-locked"
+  ]
+ ]
+}

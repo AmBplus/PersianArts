@@ -137,3 +137,6 @@ _orig/
 # finished outputs: one folder (see output/README.md; only README.md is tracked)
 output/**
 !output/README.md
+
+# viditor reference media (derived data lives in docs/motion/knowledge)
+work/viditor-reference/assets/**

@@ -41,3 +41,6 @@ DECISIONS (track choice, rejected tracks); CURRENT STATE lines for audio files; 
 - Known tool pitfalls: only an event with `role: "final"` (or `ends_film: true`) ends the music bed; a type `settle` mid-film never does (build_sound fails if the bed is silent > 1.5 s). `PA_DUCK` env sets the bed duck factor (default 0.708). Every event type in events.json must exist in rules.json before the build.
 - After sound run `pa audio-check <final.mp4> --transitions ...`: RMS jump <= 3 dB at cuts, no gap > 0.5 s below -40 dB, tail < -50 dBFS, TP <= -1.0, -14..-15 LUFS. Re-measure the true peak after the LAST step.
 - "A part feels like another world" = measure music (audio-check) and picture before changing anything.
+
+## Pacing defaults 2.6 (measured on 38 references, docs/motion/knowledge/PACING-PROFILES.md)
+- Pick the track with `pa music-pick --mood ... --bpm 100-124 --duration <s>` (mood tags, BPM fit, grid verdict, arc fit) and cut on its bar grid: measured, only the html v2 build reached 62% cuts on beat; the other films sit at chance (10-22%); good references 33-67%. Target >= 60% of cuts within 60 ms of a beat and the structural cuts on bar downbeats. References master at about -11 LUFS; ours stays -14..-15 on purpose.

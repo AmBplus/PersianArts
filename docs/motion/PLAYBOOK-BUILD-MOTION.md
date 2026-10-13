@@ -113,3 +113,6 @@ Python reads/writes for Persian source, copy, director and props must explicitly
 
 ## Lessons 2.5 (conference teaser v1-v5; ledger L-056..L-066)
 After sound: `pa audio-check`; after the last render: `pa strip` around each transition in both ratios; finale = same world; peer logos equal; contrast >= 4.5:1; deliver with `pa deliver` (compressed by default). Diagnose first, then change. Next-version loop: owner feedback -> frozen scope -> one studio order -> deliver.
+
+## Arcs (2.6): an optional menu, not a template
+`docs/motion/recipes/arcs.json` holds 6 DIVERSE story shapes drawn from the references (reveal-ladder, problem-turn, one-object-journey, count-stack, type-statement, before-after-pairs). INSPIRATION ONLY: every film defines its own story (logline, protagonist/object, emotional arc, payoffs) from its goal; using a shape is optional, justified in the film.html header, never copied. `pwsh -File work/persian/tools/pa.ps1 arc` lists the menu; `pa arc <shape> --bpm 118 --duration 24` prints a bar/beat/seconds scene table (cuts on bar downbeats). Pacing numbers: docs/motion/knowledge/PACING-PROFILES.md. After the render run `pa pacing <final.mp4> --profile story|teaser|typography|ad` (advisory). Music: `pa music-pick`.

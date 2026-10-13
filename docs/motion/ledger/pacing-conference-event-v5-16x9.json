@@ -1,0 +1,149 @@
+{
+ "metrics": {
+  "duration_s": 28.47,
+  "fps": 30.0,
+  "w": 1920,
+  "h": 1080,
+  "ratio": "16x9",
+  "has_audio": true,
+  "cuts": [
+   3.79,
+   5.83,
+   6.88,
+   9.88,
+   16.0,
+   18.08,
+   18.83,
+   21.83,
+   22.62
+  ],
+  "n_scenes": 10,
+  "shot_mean_s": 2.84,
+  "shot_median_s": 2.54,
+  "cuts_per_10s": 3.16,
+  "energy_thirds": [
+   3.17,
+   3.76,
+   0.93
+  ],
+  "energy_ratio": [
+   1.21,
+   1.43,
+   0.35
+  ],
+  "scenes": [
+   {
+    "start": 0.0,
+    "end": 3.79,
+    "len": 3.79,
+    "elements": 11,
+    "build_s": 3.71,
+    "hold_s": 0.08
+   },
+   {
+    "start": 3.79,
+    "end": 5.83,
+    "len": 2.04,
+    "elements": 5,
+    "build_s": 1.79,
+    "hold_s": 0.25
+   },
+   {
+    "start": 5.83,
+    "end": 6.88,
+    "len": 1.04,
+    "elements": 3,
+    "build_s": 0.92,
+    "hold_s": 0.12
+   },
+   {
+    "start": 6.88,
+    "end": 9.88,
+    "len": 3.0,
+    "elements": 2,
+    "build_s": 2.71,
+    "hold_s": 0.29
+   },
+   {
+    "start": 9.88,
+    "end": 16.0,
+    "len": 6.12,
+    "elements": 6,
+    "build_s": 4.04,
+    "hold_s": 2.08
+   },
+   {
+    "start": 16.0,
+    "end": 18.08,
+    "len": 2.08,
+    "elements": 4,
+    "build_s": 1.92,
+    "hold_s": 0.17
+   },
+   {
+    "start": 18.08,
+    "end": 18.83,
+    "len": 0.75,
+    "elements": 0,
+    "build_s": 0.0,
+    "hold_s": 0.75
+   },
+   {
+    "start": 18.83,
+    "end": 21.83,
+    "len": 3.0,
+    "elements": 3,
+    "build_s": 2.92,
+    "hold_s": 0.08
+   },
+   {
+    "start": 21.83,
+    "end": 22.62,
+    "len": 0.79,
+    "elements": 2,
+    "build_s": 0.58,
+    "hold_s": 0.21
+   },
+   {
+    "start": 22.62,
+    "end": 28.47,
+    "len": 5.84,
+    "elements": 2,
+    "build_s": 0.46,
+    "hold_s": 5.39
+   }
+  ],
+  "elements_per_scene": 3.8,
+  "build_s_median": 1.85,
+  "hold_s_median": 0.23
+ },
+ "audio": {
+  "tempo_bpm": 117.5,
+  "beat_s": 0.5108,
+  "cuts_on_beat": 0.111,
+  "cuts_on_bar": 0.0,
+  "lufs": -15.5,
+  "rms_arc_db": [
+   -18.2,
+   -19.3,
+   -16.7
+  ]
+ },
+ "findings": [
+  [
+   "median shot length (s)",
+   2.54,
+   "too fast"
+  ],
+  [
+   "cuts per 10 s",
+   3.16,
+   "too fast"
+  ],
+  [
+   "cuts on beat",
+   0.111,
+   "not beat-locked"
+  ]
+ ]
+}

@@ -39,3 +39,7 @@ Write the final copy (writer pass, then copy-editor result) into the COPY sectio
 DECISIONS (wording choices with the rejected phrasing); CONSTRAINTS (claims confirmed verified or forbidden); REJECTED phrasings.
 
 Time budget (2.3): the writer pass is part of the same single studio pass as the director hat (copy goes straight into the COPY header block); no separate writer round.
+
+## Pacing defaults 2.6 (measured on 38 references, docs/motion/knowledge/PACING-PROFILES.md)
+- STORY FIRST, not template first: before writing lines, answer what changes from the first to the last second and what the viewer expects and gets (anticipation -> payoff). Lines serve that arc.
+- Reading time: Persian on-screen text needs hold >= 0.6 s + 0.045 s per character after it has fully built; 9:16 builds take 0.6-3 s (median 1.5 s). Count characters per scene in the plan.

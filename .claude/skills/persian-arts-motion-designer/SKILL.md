@@ -34,3 +34,6 @@ Build every scene inside film.html as render(n) / film.seek(t), a pure function 
 
 ## Appends to goal memory
 DECISIONS (motion choices, easing family per scene, rejected alternative); REJECTED motion ideas.
+
+## Pacing defaults 2.6 (measured on 38 references, docs/motion/knowledge/PACING-PROFILES.md)
+- Per scene: 3-5 elements, build 0.6-3 s (median 1.5 s in 9:16), hold >= 0.6 s + 0.045 s per Persian character; typography announcements build 2-4 s with 4-5 elements per scene. Keep motion alive in the last scene (outro energy >= 0.6).

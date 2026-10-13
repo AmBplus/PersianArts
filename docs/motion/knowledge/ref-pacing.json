@@ -1,0 +1,6190 @@
+[
+ {
+  "id": 5570,
+  "tier": "A",
+  "category": "تیزر تبلیغاتی",
+  "styleType": "typography-motion",
+  "tags_music": {
+   "file": "assets/audio/5570.m4a",
+   "durationSec": 42.1,
+   "energy": "medium",
+   "moodHint": "dynamic",
+   "meanRmsDb": -18.9,
+   "silencePct": 2
+  },
+  "duration_s": 42.12,
+  "fps": 24.0,
+  "w": 480,
+  "h": 270,
+  "ratio": "16x9",
+  "has_audio": false,
+  "cuts": [
+   3.17,
+   9.0,
+   14.83,
+   20.62,
+   26.62,
+   32.46,
+   38.33
+  ],
+  "n_scenes": 8,
+  "shot_mean_s": 5.27,
+  "shot_median_s": 5.83,
+  "cuts_per_10s": 1.66,
+  "energy_thirds": [
+   2.15,
+   2.18,
+   2.26
+  ],
+  "energy_ratio": [
+   0.98,
+   0.99,
+   1.03
+  ],
+  "scenes": [
+   {
+    "start": 0.0,
+    "end": 3.17,
+    "len": 3.17,
+    "elements": 3,
+    "build_s": 3.08,
+    "hold_s": 0.08
+   },
+   {
+    "start": 3.17,
+    "end": 9.0,
+    "len": 5.83,
+    "elements": 3,
+    "build_s": 3.79,
+    "hold_s": 2.04
+   },
+   {
+    "start": 9.0,
+    "end": 14.83,
+    "len": 5.83,
+    "elements": 4,
+    "build_s": 4.17,
+    "hold_s": 1.67
+   },
+   {
+    "start": 14.83,
+    "end": 20.62,
+    "len": 5.79,
+    "elements": 6,
+    "build_s": 4.0,
+    "hold_s": 1.79
+   },
+   {
+    "start": 20.62,
+    "end": 26.62,
+    "len": 6.0,
+    "elements": 7,
+    "build_s": 5.92,
+    "hold_s": 0.08
+   },
+   {
+    "start": 26.62,
+    "end": 32.46,
+    "len": 5.83,
+    "elements": 4,
+    "build_s": 3.79,
+    "hold_s": 2.04
+   },
+   {
+    "start": 32.46,
+    "end": 38.33,
+    "len": 5.88,
+    "elements": 4,
+    "build_s": 3.46,
+    "hold_s": 2.42
+   },
+   {
+    "start": 38.33,
+    "end": 42.12,
+    "len": 3.79,
+    "elements": 3,
+    "build_s": 2.96,
+    "hold_s": 0.83
+   }
+  ],
+  "elements_per_scene": 4.25,
+  "build_s_median": 3.79,
+  "hold_s_median": 1.73,
+  "audio": {
+   "tempo_bpm": 107.7,
+   "beat_s": 0.5573,
+   "cuts_on_beat": 0.143,
+   "cuts_on_bar": 0.143,
+   "lufs": -12.4,
+   "rms_arc_db": [
+    -17.1,
+    -16.1,
+    -16.5
+   ]
+  }
+ },
+ {
+  "id": 5598,
+  "tier": "A",
+  "category": "استوری اینستاگرام",
+  "styleType": "story-reels",
+  "tags_music": {
+   "file": "assets/audio/5598.m4a",
+   "durationSec": 35.5,
+   "energy": "high",
+   "moodHint": "upbeat",
+   "meanRmsDb": -17.5,
+   "silencePct": 0
+  },
+  "duration_s": 35.58,
+  "fps": 24.0,
+  "w": 480,
+  "h": 854,
+  "ratio": "9x16",
+  "has_audio": false,
+  "cuts": [
+   5.83,
+   9.25,
+   14.38,
+   15.88,
+   16.75,
+   17.38,
+   20.42,
+   22.96,
+   29.5,
+   31.67,
+   34.5,
+   35.25
+  ],
+  "n_scenes": 13,
+  "shot_mean_s": 2.74,
+  "shot_median_s": 2.54,
+  "cuts_per_10s": 3.37,
+  "energy_thirds": [
+   5.58,
+   5.88,
+   5.59
+  ],
+  "energy_ratio": [
+   0.98,
+   1.03,
+   0.98
+  ],
+  "scenes": [
+   {
+    "start": 0.0,
+    "end": 5.83,
+    "len": 5.83,
+    "elements": 8,
+    "build_s": 3.08,
+    "hold_s": 2.75
+   },
+   {
+    "start": 5.83,
+    "end": 9.25,
+    "len": 3.42,
+    "elements": 2,
+    "build_s": 0.46,
+    "hold_s": 2.96
+   },
+   {
+    "start": 9.25,
+    "end": 14.38,
+    "len": 5.12,
+    "elements": 2,
+    "build_s": 0.54,
+    "hold_s": 4.58
+   },
+   {
+    "start": 14.38,
+    "end": 15.88,
+    "len": 1.5,
+    "elements": 4,
+    "build_s": 1.12,
+    "hold_s": 0.38
+   },
+   {
+    "start": 15.88,
+    "end": 16.75,
+    "len": 0.88,
+    "elements": 2,
+    "build_s": 0.46,
+    "hold_s": 0.42
+   },
+   {
+    "start": 16.75,
+    "end": 17.38,
+    "len": 0.62,
+    "elements": 2,
+    "build_s": 0.54,
+    "hold_s": 0.08
+   },
+   {
+    "start": 17.38,
+    "end": 20.42,
+    "len": 3.04,
+    "elements": 1,
+    "build_s": 0.29,
+    "hold_s": 2.75
+   },
+   {
+    "start": 20.42,
+    "end": 22.96,
+    "len": 2.54,
+    "elements": 2,
+    "build_s": 0.54,
+    "hold_s": 2.0
+   },
+   {
+    "start": 22.96,
+    "end": 29.5,
+    "len": 6.54,
+    "elements": 8,
+    "build_s": 6.25,
+    "hold_s": 0.29
+   },
+   {
+    "start": 29.5,
+    "end": 31.67,
+    "len": 2.17,
+    "elements": 1,
+    "build_s": 1.96,
+    "hold_s": 0.21
+   },
+   {
+    "start": 31.67,
+    "end": 34.5,
+    "len": 2.83,
+    "elements": 4,
+    "build_s": 0.92,
+    "hold_s": 1.92
+   },
+   {
+    "start": 34.5,
+    "end": 35.25,
+    "len": 0.75,
+    "elements": 3,
+    "build_s": 0.67,
+    "hold_s": 0.08
+   },
+   {
+    "start": 35.25,
+    "end": 35.58,
+    "len": 0.33,
+    "elements": 1,
+    "build_s": 0.17,
+    "hold_s": 0.16
+   }
+  ],
+  "elements_per_scene": 3.08,
+  "build_s_median": 0.54,
+  "hold_s_median": 0.42,
+  "audio": {
+   "tempo_bpm": 123.0,
+   "beat_s": 0.4876,
+   "cuts_on_beat": 0.25,
+   "cuts_on_bar": 0.083,
+   "lufs": -13.7,
+   "rms_arc_db": [
+    -14.5,
+    -14.4,
+    -15.7
+   ]
+  }
+ },
+ {
+  "id": 5607,
+  "tier": "A",
+  "category": "استوری اینستاگرام",
+  "styleType": "story-reels",
+  "tags_music": {
+   "file": "assets/audio/5607.m4a",
+   "durationSec": 29.8,
+   "energy": "high",
+   "moodHint": "upbeat",
+   "meanRmsDb": -16,
+   "silencePct": 2
+  },
+  "duration_s": 29.88,
+  "fps": 24.0,
+  "w": 480,
+  "h": 854,
+  "ratio": "9x16",
+  "has_audio": false,
+  "cuts": [
+   4.79,
+   9.17,
+   10.0,
+   14.71,
+   19.92,
+   24.92
+  ],
+  "n_scenes": 7,
+  "shot_mean_s": 4.27,
+  "shot_median_s": 4.79,
+  "cuts_per_10s": 2.01,
+  "energy_thirds": [
+   2.45,
+   1.65,
+   1.49
+  ],
+  "energy_ratio": [
+   1.31,
+   0.89,
+   0.8
+  ],
+  "scenes": [
+   {
+    "start": 0.0,
+    "end": 4.79,
+    "len": 4.79,
+    "elements": 2,
+    "build_s": 3.75,
+    "hold_s": 1.04
+   },
+   {
+    "start": 4.79,
+    "end": 9.17,
+    "len": 4.37,
+    "elements": 7,
+    "build_s": 4.29,
+    "hold_s": 0.08
+   },
+   {
+    "start": 9.17,
+    "end": 10.0,
+    "len": 0.83,
+    "elements": 2,
+    "build_s": 0.58,
+    "hold_s": 0.25
+   },
+   {
+    "start": 10.0,
+    "end": 14.71,
+    "len": 4.71,
+    "elements": 2,
+    "build_s": 1.08,
+    "hold_s": 3.62
+   },
+   {
+    "start": 14.71,
+    "end": 19.92,
+    "len": 5.21,
+    "elements": 4,
+    "build_s": 4.37,
+    "hold_s": 0.83
+   },
+   {
+    "start": 19.92,
+    "end": 24.92,
+    "len": 5.0,
+    "elements": 2,
+    "build_s": 1.17,
+    "hold_s": 3.83
+   },
+   {
+    "start": 24.92,
+    "end": 29.88,
+    "len": 4.96,
+    "elements": 2,
+    "build_s": 3.5,
+    "hold_s": 1.46
+   }
+  ],
+  "elements_per_scene": 3.0,
+  "build_s_median": 3.5,
+  "hold_s_median": 1.04,
+  "audio": {
+   "tempo_bpm": 129.2,
+   "beat_s": 0.4644,
+   "cuts_on_beat": 0.5,
+   "cuts_on_bar": 0.333,
+   "lufs": -10.3,
+   "rms_arc_db": [
+    -13.1,
+    -11.7,
+    -12.6
+   ]
+  }
+ },
+ {
+  "id": 5632,
+  "tier": "A",
+  "category": "استوری اینستاگرام",
+  "styleType": "story-reels",
+  "tags_music": {
+   "file": "assets/audio/5632.m4a",
+   "durationSec": 23.9,
+   "energy": "high",
+   "moodHint": "upbeat",
+   "meanRmsDb": -17.9,
+   "silencePct": 0
+  },
+  "duration_s": 23.92,
+  "fps": 24.0,
+  "w": 480,
+  "h": 854,
+  "ratio": "9x16",
+  "has_audio": false,
+  "cuts": [
+   1.38,
+   2.04,
+   3.67,
+   8.83,
+   9.62,
+   10.5,
+   11.83,
+   13.29,
+   13.92,
+   15.83,
+   16.67,
+   18.33,
+   18.96,
+   20.96,
+   21.58,
+   23.5
+  ],
+  "n_scenes": 17,
+  "shot_mean_s": 1.41,
+  "shot_median_s": 1.33,
+  "cuts_per_10s": 6.69,
+  "energy_thirds": [
+   3.54,
+   3.13,
+   1.71
+  ],
+  "energy_ratio": [
+   1.27,
+   1.12,
+   0.61
+  ],
+  "scenes": [
+   {
+    "start": 0.0,
+    "end": 1.38,
+    "len": 1.38,
+    "elements": 4,
+    "build_s": 1.17,
+    "hold_s": 0.21
+   },
+   {
+    "start": 1.38,
+    "end": 2.04,
+    "len": 0.67,
+    "elements": 1,
+    "build_s": 0.46,
+    "hold_s": 0.21
+   },
+   {
+    "start": 2.04,
+    "end": 3.67,
+    "len": 1.62,
+    "elements": 1,
+    "build_s": 1.54,
+    "hold_s": 0.08
+   },
+   {
+    "start": 3.67,
+    "end": 8.83,
+    "len": 5.17,
+    "elements": 10,
+    "build_s": 4.92,
+    "hold_s": 0.25
+   },
+   {
+    "start": 8.83,
+    "end": 9.62,
+    "len": 0.79,
+    "elements": 1,
+    "build_s": 0.71,
+    "hold_s": 0.08
+   },
+   {
+    "start": 9.62,
+    "end": 10.5,
+    "len": 0.88,
+    "elements": 2,
+    "build_s": 0.54,
+    "hold_s": 0.33
+   },
+   {
+    "start": 10.5,
+    "end": 11.83,
+    "len": 1.33,
+    "elements": 4,
+    "build_s": 1.21,
+    "hold_s": 0.12
+   },
+   {
+    "start": 11.83,
+    "end": 13.29,
+    "len": 1.46,
+    "elements": 1,
+    "build_s": 0.17,
+    "hold_s": 1.29
+   },
+   {
+    "start": 13.29,
+    "end": 13.92,
+    "len": 0.62,
+    "elements": 1,
+    "build_s": 0.21,
+    "hold_s": 0.42
+   },
+   {
+    "start": 13.92,
+    "end": 15.83,
+    "len": 1.92,
+    "elements": 5,
+    "build_s": 1.83,
+    "hold_s": 0.08
+   },
+   {
+    "start": 15.83,
+    "end": 16.67,
+    "len": 0.83,
+    "elements": 2,
+    "build_s": 0.58,
+    "hold_s": 0.25
+   },
+   {
+    "start": 16.67,
+    "end": 18.33,
+    "len": 1.67,
+    "elements": 2,
+    "build_s": 0.92,
+    "hold_s": 0.75
+   },
+   {
+    "start": 18.33,
+    "end": 18.96,
+    "len": 0.62,
+    "elements": 0,
+    "build_s": 0.0,
+    "hold_s": 0.62
+   },
+   {
+    "start": 18.96,
+    "end": 20.96,
+    "len": 2.0,
+    "elements": 1,
+    "build_s": 0.25,
+    "hold_s": 1.75
+   },
+   {
+    "start": 20.96,
+    "end": 21.58,
+    "len": 0.62,
+    "elements": 1,
+    "build_s": 0.25,
+    "hold_s": 0.38
+   },
+   {
+    "start": 21.58,
+    "end": 23.5,
+    "len": 1.92,
+    "elements": 1,
+    "build_s": 1.67,
+    "hold_s": 0.25
+   },
+   {
+    "start": 23.5,
+    "end": 23.92,
+    "len": 0.42,
+    "elements": 1,
+    "build_s": 0.12,
+    "hold_s": 0.3
+   }
+  ],
+  "elements_per_scene": 2.24,
+  "build_s_median": 0.58,
+  "hold_s_median": 0.25,
+  "audio": {
+   "tempo_bpm": 117.5,
+   "beat_s": 0.5108,
+   "cuts_on_beat": 0.375,
+   "cuts_on_bar": 0.062,
+   "lufs": -13.3,
+   "rms_arc_db": [
+    -16.2,
+    -15.5,
+    -16.4
+   ]
+  }
+ },
+ {
+  "id": 5636,
+  "tier": "B",
+  "category": "تیزر تبلیغاتی",
+  "styleType": "promo-teaser",
+  "tags_music": {
+   "file": "assets/audio/5636.m4a",
+   "durationSec": 34,
+   "energy": "high",
+   "moodHint": "upbeat",
+   "meanRmsDb": -17.6,
+   "silencePct": 0
+  },
+  "duration_s": 34.04,
+  "fps": 24.0,
+  "w": 480,
+  "h": 270,
+  "ratio": "16x9",
+  "has_audio": false,
+  "cuts": [
+   3.88,
+   7.67,
+   15.0,
+   16.62,
+   23.25,
+   26.38,
+   30.04
+  ],
+  "n_scenes": 8,
+  "shot_mean_s": 4.25,
+  "shot_median_s": 3.83,
+  "cuts_per_10s": 2.06,
+  "energy_thirds": [
+   2.03,
+   1.55,
+   1.15
+  ],
+  "energy_ratio": [
+   1.29,
+   0.99,
+   0.73
+  ],
+  "scenes": [
+   {
+    "start": 0.0,
+    "end": 3.88,
+    "len": 3.88,
+    "elements": 0,
+    "build_s": 0.0,
+    "hold_s": 3.88
+   },
+   {
+    "start": 3.88,
+    "end": 7.67,
+    "len": 3.79,
+    "elements": 13,
+    "build_s": 3.71,
+    "hold_s": 0.08
+   },
+   {
+    "start": 7.67,
+    "end": 15.0,
+    "len": 7.33,
+    "elements": 5,
+    "build_s": 7.08,
+    "hold_s": 0.25
+   },
+   {
+    "start": 15.0,
+    "end": 16.62,
+    "len": 1.62,
+    "elements": 3,
+    "build_s": 1.25,
+    "hold_s": 0.38
+   },
+   {
+    "start": 16.62,
+    "end": 23.25,
+    "len": 6.62,
+    "elements": 6,
+    "build_s": 4.46,
+    "hold_s": 2.17
+   },
+   {
+    "start": 23.25,
+    "end": 26.38,
+    "len": 3.12,
+    "elements": 0,
+    "build_s": 0.0,
+    "hold_s": 3.12
+   },
+   {
+    "start": 26.38,
+    "end": 30.04,
+    "len": 3.67,
+    "elements": 4,
+    "build_s": 3.54,
+    "hold_s": 0.12
+   },
+   {
+    "start": 30.04,
+    "end": 34.04,
+    "len": 4.0,
+    "elements": 0,
+    "build_s": 0.0,
+    "hold_s": 4.0
+   }
+  ],
+  "elements_per_scene": 3.88,
+  "build_s_median": 2.4,
+  "hold_s_median": 1.27,
+  "audio": {
+   "tempo_bpm": 123.0,
+   "beat_s": 0.4876,
+   "cuts_on_beat": 0.286,
+   "cuts_on_bar": 0.0,
+   "lufs": -11.7,
+   "rms_arc_db": [
+    -17.0,
+    -12.8,
+    -12.2
+   ]
+  }
+ },
+ {
+  "id": 5654,
+  "tier": "A",
+  "category": "استوری اینستاگرام",
+  "styleType": "story-reels",
+  "tags_music": {
+   "file": "assets/audio/5654.m4a",
+   "durationSec": 21,
+   "energy": "high",
+   "moodHint": "energetic",
+   "meanRmsDb": -11.8,
+   "silencePct": 0
+  },
+  "duration_s": 21.04,
+  "fps": 24.0,
+  "w": 480,
+  "h": 854,
+  "ratio": "9x16",
+  "has_audio": false,
+  "cuts": [
+   0.88,
+   1.96,
+   5.83,
+   8.67,
+   9.71,
+   10.92,
+   12.62,
+   13.25,
+   14.58,
+   19.83
+  ],
+  "n_scenes": 11,
+  "shot_mean_s": 1.91,
+  "shot_median_s": 1.21,
+  "cuts_per_10s": 4.75,
+  "energy_thirds": [
+   6.54,
+   9.42,
+   3.64
+  ],
+  "energy_ratio": [
+   1.0,
+   1.44,
+   0.56
+  ],
+  "scenes": [
+   {
+    "start": 0.0,
+    "end": 0.88,
+    "len": 0.88,
+    "elements": 1,
+    "build_s": 0.58,
+    "hold_s": 0.29
+   },
+   {
+    "start": 0.88,
+    "end": 1.96,
+    "len": 1.08,
+    "elements": 2,
+    "build_s": 0.38,
+    "hold_s": 0.71
+   },
+   {
+    "start": 1.96,
+    "end": 5.83,
+    "len": 3.88,
+    "elements": 2,
+    "build_s": 0.79,
+    "hold_s": 3.08
+   },
+   {
+    "start": 5.83,
+    "end": 8.67,
+    "len": 2.83,
+    "elements": 9,
+    "build_s": 2.75,
+    "hold_s": 0.08
+   },
+   {
+    "start": 8.67,
+    "end": 9.71,
+    "len": 1.04,
+    "elements": 3,
+    "build_s": 0.92,
+    "hold_s": 0.12
+   },
+   {
+    "start": 9.71,
+    "end": 10.92,
+    "len": 1.21,
+    "elements": 3,
+    "build_s": 0.71,
+    "hold_s": 0.5
+   },
+   {
+    "start": 10.92,
+    "end": 12.62,
+    "len": 1.71,
+    "elements": 1,
+    "build_s": 0.17,
+    "hold_s": 1.54
+   },
+   {
+    "start": 12.62,
+    "end": 13.25,
+    "len": 0.62,
+    "elements": 2,
+    "build_s": 0.54,
+    "hold_s": 0.08
+   },
+   {
+    "start": 13.25,
+    "end": 14.58,
+    "len": 1.33,
+    "elements": 3,
+    "build_s": 1.0,
+    "hold_s": 0.33
+   },
+   {
+    "start": 14.58,
+    "end": 19.83,
+    "len": 5.25,
+    "elements": 1,
+    "build_s": 1.67,
+    "hold_s": 3.58
+   },
+   {
+    "start": 19.83,
+    "end": 21.04,
+    "len": 1.21,
+    "elements": 2,
+    "build_s": 0.42,
+    "hold_s": 0.79
+   }
+  ],
+  "elements_per_scene": 2.64,
+  "build_s_median": 0.71,
+  "hold_s_median": 0.5,
+  "audio": {
+   "tempo_bpm": 117.5,
+   "beat_s": 0.5108,
+   "cuts_on_beat": 0.3,
+   "cuts_on_bar": 0.2,
+   "lufs": -6.2,
+   "rms_arc_db": [
+    -9.4,
+    -8.4,
+    -9.1
+   ]
+  }
+ },
+ {
+  "id": 5717,
+  "tier": "A",
+  "category": "استوری اینستاگرام",
+  "styleType": "story-reels",
+  "tags_music": {
+   "file": "assets/audio/5717.m4a",
+   "durationSec": 88,
+   "energy": "high",
+   "moodHint": "upbeat",
+   "meanRmsDb": -17.2,
+   "silencePct": 0
+  },
+  "duration_s": 88.08,
+  "fps": 24.0,
+  "w": 480,
+  "h": 854,
+  "ratio": "9x16",
+  "has_audio": false,
+  "cuts": [
+   2.12,
+   4.92,
+   10.83,
+   16.88,
+   22.83,
+   28.75,
+   29.38,
+   35.33,
+   40.83,
+   46.83,
+   52.83,
+   58.83,
+   64.83,
+   70.83,
+   76.83,
+   82.79,
+   85.96
+  ],
+  "n_scenes": 18,
+  "shot_mean_s": 4.89,
+  "shot_median_s": 5.96,
+  "cuts_per_10s": 1.93,
+  "energy_thirds": [
+   1.33,
+   1.36,
+   1.34
+  ],
+  "energy_ratio": [
+   0.99,
+   1.01,
+   1.0
+  ],
+  "scenes": [
+   {
+    "start": 0.0,
+    "end": 2.12,
+    "len": 2.12,
+    "elements": 4,
+    "build_s": 2.04,
+    "hold_s": 0.08
+   },
+   {
+    "start": 2.12,
+    "end": 4.92,
+    "len": 2.79,
+    "elements": 4,
+    "build_s": 2.71,
+    "hold_s": 0.08
+   },
+   {
+    "start": 4.92,
+    "end": 10.83,
+    "len": 5.92,
+    "elements": 7,
+    "build_s": 5.83,
+    "hold_s": 0.08
+   },
+   {
+    "start": 10.83,
+    "end": 16.88,
+    "len": 6.04,
+    "elements": 8,
+    "build_s": 5.75,
+    "hold_s": 0.29
+   },
+   {
+    "start": 16.88,
+    "end": 22.83,
+    "len": 5.96,
+    "elements": 9,
+    "build_s": 5.71,
+    "hold_s": 0.25
+   },
+   {
+    "start": 22.83,
+    "end": 28.75,
+    "len": 5.92,
+    "elements": 7,
+    "build_s": 5.75,
+    "hold_s": 0.17
+   },
+   {
+    "start": 28.75,
+    "end": 29.38,
+    "len": 0.62,
+    "elements": 2,
+    "build_s": 0.5,
+    "hold_s": 0.12
+   },
+   {
+    "start": 29.38,
+    "end": 35.33,
+    "len": 5.96,
+    "elements": 8,
+    "build_s": 5.79,
+    "hold_s": 0.17
+   },
+   {
+    "start": 35.33,
+    "end": 40.83,
+    "len": 5.5,
+    "elements": 8,
+    "build_s": 5.25,
+    "hold_s": 0.25
+   },
+   {
+    "start": 40.83,
+    "end": 46.83,
+    "len": 6.0,
+    "elements": 8,
+    "build_s": 5.75,
+    "hold_s": 0.25
+   },
+   {
+    "start": 46.83,
+    "end": 52.83,
+    "len": 6.0,
+    "elements": 8,
+    "build_s": 5.75,
+    "hold_s": 0.25
+   },
+   {
+    "start": 52.83,
+    "end": 58.83,
+    "len": 6.0,
+    "elements": 9,
+    "build_s": 5.75,
+    "hold_s": 0.25
+   },
+   {
+    "start": 58.83,
+    "end": 64.83,
+    "len": 6.0,
+    "elements": 7,
+    "build_s": 5.75,
+    "hold_s": 0.25
+   },
+   {
+    "start": 64.83,
+    "end": 70.83,
+    "len": 6.0,
+    "elements": 7,
+    "build_s": 5.75,
+    "hold_s": 0.25
+   },
+   {
+    "start": 70.83,
+    "end": 76.83,
+    "len": 6.0,
+    "elements": 9,
+    "build_s": 5.75,
+    "hold_s": 0.25
+   },
+   {
+    "start": 76.83,
+    "end": 82.79,
+    "len": 5.96,
+    "elements": 9,
+    "build_s": 5.75,
+    "hold_s": 0.21
+   },
+   {
+    "start": 82.79,
+    "end": 85.96,
+    "len": 3.17,
+    "elements": 5,
+    "build_s": 2.96,
+    "hold_s": 0.21
+   },
+   {
+    "start": 85.96,
+    "end": 88.08,
+    "len": 2.12,
+    "elements": 4,
+    "build_s": 2.04,
+    "hold_s": 0.08
+   }
+  ],
+  "elements_per_scene": 6.83,
+  "build_s_median": 5.75,
+  "hold_s_median": 0.23,
+  "audio": {
+   "tempo_bpm": 112.3,
+   "beat_s": 0.5341,
+   "cuts_on_beat": 0.059,
+   "cuts_on_bar": 0.0,
+   "lufs": -14.3,
+   "rms_arc_db": [
+    -16.3,
+    -16.3,
+    -16.8
+   ]
+  }
+ },
+ {
+  "id": 5720,
+  "tier": "A",
+  "category": "تیزر تبلیغاتی",
+  "styleType": "promo-teaser",
+  "tags_music": {
+   "file": "assets/audio/5720.m4a",
+   "durationSec": 60.1,
+   "energy": "high",
+   "moodHint": "energetic",
+   "meanRmsDb": -12.6,
+   "silencePct": 2
+  },
+  "duration_s": 60.12,
+  "fps": 24.0,
+  "w": 480,
+  "h": 270,
+  "ratio": "16x9",
+  "has_audio": false,
+  "cuts": [
+   9.62,
+   10.33,
+   19.83,
+   29.83,
+   39.83,
+   49.88,
+   59.62
+  ],
+  "n_scenes": 8,
+  "shot_mean_s": 7.51,
+  "shot_median_s": 9.68,
+  "cuts_per_10s": 1.16,
+  "energy_thirds": [
+   1.08,
+   1.12,
+   1.11
+  ],
+  "energy_ratio": [
+   0.98,
+   1.02,
+   1.01
+  ],
+  "scenes": [
+   {
+    "start": 0.0,
+    "end": 9.62,
+    "len": 9.62,
+    "elements": 13,
+    "build_s": 9.46,
+    "hold_s": 0.17
+   },
+   {
+    "start": 9.62,
+    "end": 10.33,
+    "len": 0.71,
+    "elements": 1,
+    "build_s": 0.17,
+    "hold_s": 0.54
+   },
+   {
+    "start": 10.33,
+    "end": 19.83,
+    "len": 9.5,
+    "elements": 2,
+    "build_s": 9.33,
+    "hold_s": 0.17
+   },
+   {
+    "start": 19.83,
+    "end": 29.83,
+    "len": 10.0,
+    "elements": 14,
+    "build_s": 9.79,
+    "hold_s": 0.21
+   },
+   {
+    "start": 29.83,
+    "end": 39.83,
+    "len": 10.0,
+    "elements": 5,
+    "build_s": 9.83,
+    "hold_s": 0.17
+   },
+   {
+    "start": 39.83,
+    "end": 49.88,
+    "len": 10.04,
+    "elements": 15,
+    "build_s": 9.83,
+    "hold_s": 0.21
+   },
+   {
+    "start": 49.88,
+    "end": 59.62,
+    "len": 9.75,
+    "elements": 6,
+    "build_s": 9.5,
+    "hold_s": 0.25
+   },
+   {
+    "start": 59.62,
+    "end": 60.12,
+    "len": 0.49,
+    "elements": 1,
+    "build_s": 0.25,
+    "hold_s": 0.24
+   }
+  ],
+  "elements_per_scene": 7.12,
+  "build_s_median": 9.48,
+  "hold_s_median": 0.21,
+  "audio": {
+   "tempo_bpm": 123.0,
+   "beat_s": 0.4876,
+   "cuts_on_beat": 0.143,
+   "cuts_on_bar": 0.0,
+   "lufs": -10.5,
+   "rms_arc_db": [
+    -11.1,
+    -11.0,
+    -12.0
+   ]
+  }
+ },
+ {
+  "id": 5726,
+  "tier": "B",
+  "category": "استوری اینستاگرام",
+  "styleType": "story-reels",
+  "tags_music": {
+   "file": "assets/audio/5726.m4a",
+   "durationSec": 22.2,
+   "energy": "high",
+   "moodHint": "upbeat",
+   "meanRmsDb": -16.9,
+   "silencePct": 0
+  },
+  "duration_s": 22.25,
+  "fps": 24.0,
+  "w": 480,
+  "h": 854,
+  "ratio": "9x16",
+  "has_audio": false,
+  "cuts": [
+   2.0,
+   2.75,
+   3.42,
+   4.08,
+   5.54,
+   9.88,
+   12.38,
+   13.25,
+   14.29,
+   15.54
+  ],
+  "n_scenes": 11,
+  "shot_mean_s": 2.02,
+  "shot_median_s": 1.25,
+  "cuts_per_10s": 4.49,
+  "energy_thirds": [
+   13.09,
+   12.51,
+   8.05
+  ],
+  "energy_ratio": [
+   1.17,
+   1.12,
+   0.72
+  ],
+  "scenes": [
+   {
+    "start": 0.0,
+    "end": 2.0,
+    "len": 2.0,
+    "elements": 3,
+    "build_s": 1.75,
+    "hold_s": 0.25
+   },
+   {
+    "start": 2.0,
+    "end": 2.75,
+    "len": 0.75,
+    "elements": 2,
+    "build_s": 0.42,
+    "hold_s": 0.33
+   },
+   {
+    "start": 2.75,
+    "end": 3.42,
+    "len": 0.67,
+    "elements": 2,
+    "build_s": 0.5,
+    "hold_s": 0.17
+   },
+   {
+    "start": 3.42,
+    "end": 4.08,
+    "len": 0.67,
+    "elements": 1,
+    "build_s": 0.17,
+    "hold_s": 0.5
+   },
+   {
+    "start": 4.08,
+    "end": 5.54,
+    "len": 1.46,
+    "elements": 2,
+    "build_s": 0.5,
+    "hold_s": 0.96
+   },
+   {
+    "start": 5.54,
+    "end": 9.88,
+    "len": 4.33,
+    "elements": 5,
+    "build_s": 4.21,
+    "hold_s": 0.12
+   },
+   {
+    "start": 9.88,
+    "end": 12.38,
+    "len": 2.5,
+    "elements": 3,
+    "build_s": 0.71,
+    "hold_s": 1.79
+   },
+   {
+    "start": 12.38,
+    "end": 13.25,
+    "len": 0.88,
+    "elements": 1,
+    "build_s": 0.21,
+    "hold_s": 0.67
+   },
+   {
+    "start": 13.25,
+    "end": 14.29,
+    "len": 1.04,
+    "elements": 1,
+    "build_s": 0.17,
+    "hold_s": 0.88
+   },
+   {
+    "start": 14.29,
+    "end": 15.54,
+    "len": 1.25,
+    "elements": 2,
+    "build_s": 0.96,
+    "hold_s": 0.29
+   },
+   {
+    "start": 15.54,
+    "end": 22.25,
+    "len": 6.71,
+    "elements": 5,
+    "build_s": 6.42,
+    "hold_s": 0.29
+   }
+  ],
+  "elements_per_scene": 2.45,
+  "build_s_median": 0.5,
+  "hold_s_median": 0.33,
+  "audio": {
+   "tempo_bpm": 112.3,
+   "beat_s": 0.5341,
+   "cuts_on_beat": 0.3,
+   "cuts_on_bar": 0.1,
+   "lufs": -9.6,
+   "rms_arc_db": [
+    -16.7,
+    -12.8,
+    -13.3
+   ]
+  }
+ },
+ {
+  "id": 5729,
+  "tier": "A",
+  "category": "تیزر تبلیغاتی",
+  "styleType": "promo-teaser",
+  "tags_music": {
+   "file": "assets/audio/5729.m4a",
+   "durationSec": 30,
+   "energy": "high",
+   "moodHint": "upbeat",
+   "meanRmsDb": -17.7,
+   "silencePct": 0
+  },
+  "duration_s": 30.08,
+  "fps": 24.0,
+  "w": 480,
+  "h": 270,
+  "ratio": "16x9",
+  "has_audio": false,
+  "cuts": [
+   4.88,
+   9.79,
+   14.92,
+   20.04,
+   21.04,
+   25.33
+  ],
+  "n_scenes": 7,
+  "shot_mean_s": 4.3,
+  "shot_median_s": 4.88,
+  "cuts_per_10s": 1.99,
+  "energy_thirds": [
+   9.07,
+   8.04,
+   8.59
+  ],
+  "energy_ratio": [
+   1.06,
+   0.94,
+   1.0
+  ],
+  "scenes": [
+   {
+    "start": 0.0,
+    "end": 4.88,
+    "len": 4.88,
+    "elements": 1,
+    "build_s": 4.79,
+    "hold_s": 0.08
+   },
+   {
+    "start": 4.88,
+    "end": 9.79,
+    "len": 4.92,
+    "elements": 14,
+    "build_s": 4.83,
+    "hold_s": 0.08
+   },
+   {
+    "start": 9.79,
+    "end": 14.92,
+    "len": 5.12,
+    "elements": 3,
+    "build_s": 1.38,
+    "hold_s": 3.75
+   },
+   {
+    "start": 14.92,
+    "end": 20.04,
+    "len": 5.13,
+    "elements": 2,
+    "build_s": 0.54,
+    "hold_s": 4.58
+   },
+   {
+    "start": 20.04,
+    "end": 21.04,
+    "len": 1.0,
+    "elements": 2,
+    "build_s": 0.54,
+    "hold_s": 0.46
+   },
+   {
+    "start": 21.04,
+    "end": 25.33,
+    "len": 4.29,
+    "elements": 1,
+    "build_s": 1.12,
+    "hold_s": 3.17
+   },
+   {
+    "start": 25.33,
+    "end": 30.08,
+    "len": 4.75,
+    "elements": 3,
+    "build_s": 0.83,
+    "hold_s": 3.91
+   }
+  ],
+  "elements_per_scene": 3.71,
+  "build_s_median": 1.12,
+  "hold_s_median": 3.17,
+  "audio": {
+   "tempo_bpm": 136.0,
+   "beat_s": 0.4412,
+   "cuts_on_beat": 0.167,
+   "cuts_on_bar": 0.0,
+   "lufs": -11.2,
+   "rms_arc_db": [
+    -13.7,
+    -13.2,
+    -17.6
+   ]
+  }
+ },
+ {
+  "id": 5741,
+  "tier": "A",
+  "category": "تیزر تبلیغاتی",
+  "styleType": "logo-reveal",
+  "tags_music": {
+   "file": "assets/audio/5741.m4a",
+   "durationSec": 23.2,
+   "energy": "medium",
+   "moodHint": "dynamic",
+   "meanRmsDb": -20.6,
+   "silencePct": 6
+  },
+  "duration_s": 23.25,
+  "fps": 24.0,
+  "w": 480,
+  "h": 270,
+  "ratio": "16x9",
+  "has_audio": false,
+  "cuts": [
+   3.08,
+   6.12,
+   7.0,
+   9.17,
+   12.21,
+   15.25
+  ],
+  "n_scenes": 7,
+  "shot_mean_s": 3.32,
+  "shot_median_s": 3.04,
+  "cuts_per_10s": 2.58,
+  "energy_thirds": [
+   2.01,
+   3.73,
+   0.68
+  ],
+  "energy_ratio": [
+   0.94,
+   1.74,
+   0.32
+  ],
+  "scenes": [
+   {
+    "start": 0.0,
+    "end": 3.08,
+    "len": 3.08,
+    "elements": 0,
+    "build_s": 0.0,
+    "hold_s": 3.08
+   },
+   {
+    "start": 3.08,
+    "end": 6.12,
+    "len": 3.04,
+    "elements": 1,
+    "build_s": 2.67,
+    "hold_s": 0.38
+   },
+   {
+    "start": 6.12,
+    "end": 7.0,
+    "len": 0.88,
+    "elements": 3,
+    "build_s": 0.79,
+    "hold_s": 0.08
+   },
+   {
+    "start": 7.0,
+    "end": 9.17,
+    "len": 2.17,
+    "elements": 5,
+    "build_s": 2.08,
+    "hold_s": 0.08
+   },
+   {
+    "start": 9.17,
+    "end": 12.21,
+    "len": 3.04,
+    "elements": 8,
+    "build_s": 2.58,
+    "hold_s": 0.46
+   },
+   {
+    "start": 12.21,
+    "end": 15.25,
+    "len": 3.04,
+    "elements": 3,
+    "build_s": 2.54,
+    "hold_s": 0.5
+   },
+   {
+    "start": 15.25,
+    "end": 23.25,
+    "len": 8.0,
+    "elements": 3,
+    "build_s": 4.0,
+    "hold_s": 4.0
+   }
+  ],
+  "elements_per_scene": 3.29,
+  "build_s_median": 2.54,
+  "hold_s_median": 0.46,
+  "audio": {
+   "tempo_bpm": 117.5,
+   "beat_s": 0.5108,
+   "cuts_on_beat": 0.667,
+   "cuts_on_bar": 0.333,
+   "lufs": -12.2,
+   "rms_arc_db": [
+    -15.3,
+    -13.9,
+    -16.0
+   ]
+  }
+ },
+ {
+  "id": 5761,
+  "tier": "A",
+  "category": "تیزر تبلیغاتی",
+  "styleType": "promo-teaser",
+  "tags_music": {
+   "file": "assets/audio/5761.m4a",
+   "durationSec": 33.8,
+   "energy": "high",
+   "moodHint": "energetic",
+   "meanRmsDb": -14.8,
+   "silencePct": 20
+  },
+  "duration_s": 33.83,
+  "fps": 24.0,
+  "w": 480,
+  "h": 270,
+  "ratio": "16x9",
+  "has_audio": false,
+  "cuts": [
+   2.08,
+   3.88,
+   5.96,
+   15.88,
+   18.54,
+   20.79
+  ],
+  "n_scenes": 7,
+  "shot_mean_s": 4.83,
+  "shot_median_s": 2.25,
+  "cuts_per_10s": 1.77,
+  "energy_thirds": [
+   3.94,
+   3.34,
+   0.73
+  ],
+  "energy_ratio": [
+   1.48,
+   1.26,
+   0.27
+  ],
+  "scenes": [
+   {
+    "start": 0.0,
+    "end": 2.08,
+    "len": 2.08,
+    "elements": 2,
+    "build_s": 1.83,
+    "hold_s": 0.25
+   },
+   {
+    "start": 2.08,
+    "end": 3.88,
+    "len": 1.79,
+    "elements": 2,
+    "build_s": 1.5,
+    "hold_s": 0.29
+   },
+   {
+    "start": 3.88,
+    "end": 5.96,
+    "len": 2.08,
+    "elements": 6,
+    "build_s": 1.83,
+    "hold_s": 0.25
+   },
+   {
+    "start": 5.96,
+    "end": 15.88,
+    "len": 9.92,
+    "elements": 14,
+    "build_s": 9.54,
+    "hold_s": 0.38
+   },
+   {
+    "start": 15.88,
+    "end": 18.54,
+    "len": 2.67,
+    "elements": 4,
+    "build_s": 2.54,
+    "hold_s": 0.12
+   },
+   {
+    "start": 18.54,
+    "end": 20.79,
+    "len": 2.25,
+    "elements": 4,
+    "build_s": 2.12,
+    "hold_s": 0.12
+   },
+   {
+    "start": 20.79,
+    "end": 33.83,
+    "len": 13.04,
+    "elements": 8,
+    "build_s": 4.92,
+    "hold_s": 8.12
+   }
+  ],
+  "elements_per_scene": 5.71,
+  "build_s_median": 2.12,
+  "hold_s_median": 0.25,
+  "audio": {
+   "tempo_bpm": 103.4,
+   "beat_s": 0.5805,
+   "cuts_on_beat": 0.0,
+   "cuts_on_bar": 0.0,
+   "lufs": -9.8,
+   "rms_arc_db": [
+    -12.0,
+    -10.9,
+    -16.2
+   ]
+  }
+ },
+ {
+  "id": 5775,
+  "tier": "A",
+  "category": "تیزر تبلیغاتی",
+  "styleType": "promo-teaser",
+  "tags_music": {
+   "file": "assets/audio/5775.m4a",
+   "durationSec": 30,
+   "energy": "high",
+   "moodHint": "energetic",
+   "meanRmsDb": -13.8,
+   "silencePct": 3
+  },
+  "duration_s": 30.08,
+  "fps": 24.0,
+  "w": 480,
+  "h": 270,
+  "ratio": "16x9",
+  "has_audio": false,
+  "cuts": [
+   3.38,
+   7.33,
+   11.33,
+   15.33
+  ],
+  "n_scenes": 5,
+  "shot_mean_s": 6.02,
+  "shot_median_s": 4.0,
+  "cuts_per_10s": 1.33,
+  "energy_thirds": [
+   0.91,
+   1.07,
+   0.96
+  ],
+  "energy_ratio": [
+   0.93,
+   1.09,
+   0.98
+  ],
+  "scenes": [
+   {
+    "start": 0.0,
+    "end": 3.38,
+    "len": 3.38,
+    "elements": 4,
+    "build_s": 3.25,
+    "hold_s": 0.12
+   },
+   {
+    "start": 3.38,
+    "end": 7.33,
+    "len": 3.96,
+    "elements": 4,
+    "build_s": 3.88,
+    "hold_s": 0.08
+   },
+   {
+    "start": 7.33,
+    "end": 11.33,
+    "len": 4.0,
+    "elements": 5,
+    "build_s": 3.92,
+    "hold_s": 0.08
+   },
+   {
+    "start": 11.33,
+    "end": 15.33,
+    "len": 4.0,
+    "elements": 5,
+    "build_s": 3.83,
+    "hold_s": 0.17
+   },
+   {
+    "start": 15.33,
+    "end": 30.08,
+    "len": 14.75,
+    "elements": 22,
+    "build_s": 14.58,
+    "hold_s": 0.16
+   }
+  ],
+  "elements_per_scene": 8.0,
+  "build_s_median": 3.88,
+  "hold_s_median": 0.12,
+  "audio": {
+   "tempo_bpm": 112.3,
+   "beat_s": 0.5341,
+   "cuts_on_beat": 0.25,
+   "cuts_on_bar": 0.0,
+   "lufs": -12.4,
+   "rms_arc_db": [
+    -12.2,
+    -11.7,
+    -13.1
+   ]
+  }
+ },
+ {
+  "id": 5804,
+  "tier": "A",
+  "category": "استوری اینستاگرام",
+  "styleType": "story-reels",
+  "tags_music": {
+   "file": "assets/audio/5804.m4a",
+   "durationSec": 21.9,
+   "energy": "high",
+   "moodHint": "energetic",
+   "meanRmsDb": -14.8,
+   "silencePct": 0
+  },
+  "duration_s": 21.92,
+  "fps": 24.0,
+  "w": 480,
+  "h": 854,
+  "ratio": "9x16",
+  "has_audio": false,
+  "cuts": [
+   4.21,
+   6.0,
+   8.21,
+   8.92,
+   10.29,
+   11.88
+  ],
+  "n_scenes": 7,
+  "shot_mean_s": 3.13,
+  "shot_median_s": 1.79,
+  "cuts_per_10s": 2.74,
+  "energy_thirds": [
+   4.57,
+   11.92,
+   2.39
+  ],
+  "energy_ratio": [
+   0.73,
+   1.91,
+   0.38
+  ],
+  "scenes": [
+   {
+    "start": 0.0,
+    "end": 4.21,
+    "len": 4.21,
+    "elements": 4,
+    "build_s": 3.92,
+    "hold_s": 0.29
+   },
+   {
+    "start": 4.21,
+    "end": 6.0,
+    "len": 1.79,
+    "elements": 5,
+    "build_s": 1.62,
+    "hold_s": 0.17
+   },
+   {
+    "start": 6.0,
+    "end": 8.21,
+    "len": 2.21,
+    "elements": 4,
+    "build_s": 1.58,
+    "hold_s": 0.63
+   },
+   {
+    "start": 8.21,
+    "end": 8.92,
+    "len": 0.71,
+    "elements": 2,
+    "build_s": 0.58,
+    "hold_s": 0.12
+   },
+   {
+    "start": 8.92,
+    "end": 10.29,
+    "len": 1.38,
+    "elements": 4,
+    "build_s": 1.17,
+    "hold_s": 0.21
+   },
+   {
+    "start": 10.29,
+    "end": 11.88,
+    "len": 1.58,
+    "elements": 3,
+    "build_s": 0.79,
+    "hold_s": 0.79
+   },
+   {
+    "start": 11.88,
+    "end": 21.92,
+    "len": 10.05,
+    "elements": 7,
+    "build_s": 7.88,
+    "hold_s": 2.17
+   }
+  ],
+  "elements_per_scene": 4.14,
+  "build_s_median": 1.58,
+  "hold_s_median": 0.29,
+  "audio": {
+   "tempo_bpm": 123.0,
+   "beat_s": 0.4876,
+   "cuts_on_beat": 0.5,
+   "cuts_on_bar": 0.167,
+   "lufs": -11.3,
+   "rms_arc_db": [
+    -13.6,
+    -12.9,
+    -13.4
+   ]
+  }
+ },
+ {
+  "id": 5829,
+  "tier": "A",
+  "category": "تیزر تبلیغاتی",
+  "styleType": "promo-teaser",
+  "tags_music": {
+   "file": "assets/audio/5829.m4a",
+   "durationSec": 41.6,
+   "energy": "high",
+   "moodHint": "upbeat",
+   "meanRmsDb": -17.6,
+   "silencePct": 2
+  },
+  "duration_s": 41.62,
+  "fps": 24.0,
+  "w": 480,
+  "h": 270,
+  "ratio": "16x9",
+  "has_audio": false,
+  "cuts": [
+   5.42,
+   11.42,
+   17.25,
+   23.17,
+   25.75,
+   28.67,
+   34.58,
+   39.21
+  ],
+  "n_scenes": 9,
+  "shot_mean_s": 4.63,
+  "shot_median_s": 5.42,
+  "cuts_per_10s": 1.92,
+  "energy_thirds": [
+   0.87,
+   0.75,
+   0.69
+  ],
+  "energy_ratio": [
+   1.13,
+   0.98,
+   0.89
+  ],
+  "scenes": [
+   {
+    "start": 0.0,
+    "end": 5.42,
+    "len": 5.42,
+    "elements": 0,
+    "build_s": 0.0,
+    "hold_s": 5.42
+   },
+   {
+    "start": 5.42,
+    "end": 11.42,
+    "len": 6.0,
+    "elements": 1,
+    "build_s": 0.25,
+    "hold_s": 5.75
+   },
+   {
+    "start": 11.42,
+    "end": 17.25,
+    "len": 5.83,
+    "elements": 1,
+    "build_s": 0.25,
+    "hold_s": 5.58
+   },
+   {
+    "start": 17.25,
+    "end": 23.17,
+    "len": 5.92,
+    "elements": 4,
+    "build_s": 4.33,
+    "hold_s": 1.58
+   },
+   {
+    "start": 23.17,
+    "end": 25.75,
+    "len": 2.58,
+    "elements": 6,
+    "build_s": 2.42,
+    "hold_s": 0.17
+   },
+   {
+    "start": 25.75,
+    "end": 28.67,
+    "len": 2.92,
+    "elements": 7,
+    "build_s": 2.33,
+    "hold_s": 0.58
+   },
+   {
+    "start": 28.67,
+    "end": 34.58,
+    "len": 5.92,
+    "elements": 1,
+    "build_s": 0.25,
+    "hold_s": 5.67
+   },
+   {
+    "start": 34.58,
+    "end": 39.21,
+    "len": 4.63,
+    "elements": 3,
+    "build_s": 4.5,
+    "hold_s": 0.12
+   },
+   {
+    "start": 39.21,
+    "end": 41.62,
+    "len": 2.41,
+    "elements": 2,
+    "build_s": 0.46,
+    "hold_s": 1.95
+   }
+  ],
+  "elements_per_scene": 2.78,
+  "build_s_median": 0.46,
+  "hold_s_median": 1.95,
+  "audio": {
+   "tempo_bpm": 129.2,
+   "beat_s": 0.4644,
+   "cuts_on_beat": 0.25,
+   "cuts_on_bar": 0.0,
+   "lufs": -12.8,
+   "rms_arc_db": [
+    -18.9,
+    -15.1,
+    -13.2
+   ]
+  }
+ },
+ {
+  "id": 5839,
+  "tier": "A",
+  "category": "استوری اینستاگرام",
+  "styleType": "story-reels",
+  "tags_music": {
+   "file": "assets/audio/5839.m4a",
+   "durationSec": 29,
+   "energy": "high",
+   "moodHint": "energetic",
+   "meanRmsDb": -13.8,
+   "silencePct": 0
+  },
+  "duration_s": 29.04,
+  "fps": 24.0,
+  "w": 480,
+  "h": 854,
+  "ratio": "9x16",
+  "has_audio": false,
+  "cuts": [
+   1.42,
+   4.04,
+   4.83,
+   7.08,
+   8.29,
+   11.62,
+   14.29,
+   17.88,
+   24.75
+  ],
+  "n_scenes": 10,
+  "shot_mean_s": 2.9,
+  "shot_median_s": 2.65,
+  "cuts_per_10s": 3.1,
+  "energy_thirds": [
+   7.3,
+   5.02,
+   2.98
+  ],
+  "energy_ratio": [
+   1.44,
+   0.99,
+   0.59
+  ],
+  "scenes": [
+   {
+    "start": 0.0,
+    "end": 1.42,
+    "len": 1.42,
+    "elements": 1,
+    "build_s": 1.08,
+    "hold_s": 0.33
+   },
+   {
+    "start": 1.42,
+    "end": 4.04,
+    "len": 2.62,
+    "elements": 3,
+    "build_s": 0.83,
+    "hold_s": 1.79
+   },
+   {
+    "start": 4.04,
+    "end": 4.83,
+    "len": 0.79,
+    "elements": 2,
+    "build_s": 0.71,
+    "hold_s": 0.08
+   },
+   {
+    "start": 4.83,
+    "end": 7.08,
+    "len": 2.25,
+    "elements": 6,
+    "build_s": 1.96,
+    "hold_s": 0.29
+   },
+   {
+    "start": 7.08,
+    "end": 8.29,
+    "len": 1.21,
+    "elements": 2,
+    "build_s": 0.67,
+    "hold_s": 0.54
+   },
+   {
+    "start": 8.29,
+    "end": 11.62,
+    "len": 3.33,
+    "elements": 5,
+    "build_s": 1.38,
+    "hold_s": 1.96
+   },
+   {
+    "start": 11.62,
+    "end": 14.29,
+    "len": 2.67,
+    "elements": 6,
+    "build_s": 1.62,
+    "hold_s": 1.04
+   },
+   {
+    "start": 14.29,
+    "end": 17.88,
+    "len": 3.58,
+    "elements": 1,
+    "build_s": 2.79,
+    "hold_s": 0.79
+   },
+   {
+    "start": 17.88,
+    "end": 24.75,
+    "len": 6.88,
+    "elements": 5,
+    "build_s": 3.21,
+    "hold_s": 3.67
+   },
+   {
+    "start": 24.75,
+    "end": 29.04,
+    "len": 4.29,
+    "elements": 5,
+    "build_s": 3.83,
+    "hold_s": 0.46
+   }
+  ],
+  "elements_per_scene": 3.6,
+  "build_s_median": 1.5,
+  "hold_s_median": 0.67,
+  "audio": {
+   "tempo_bpm": 136.0,
+   "beat_s": 0.4412,
+   "cuts_on_beat": 0.111,
+   "cuts_on_bar": 0.0,
+   "lufs": -8.1,
+   "rms_arc_db": [
+    -10.4,
+    -10.8,
+    -11.5
+   ]
+  }
+ },
+ {
+  "id": 5881,
+  "tier": "A",
+  "category": "تیزر تبلیغاتی",
+  "styleType": "promo-teaser",
+  "tags_music": {
+   "file": "assets/audio/5881.m4a",
+   "durationSec": 43.1,
+   "energy": "medium",
+   "moodHint": "dynamic",
+   "meanRmsDb": -19.4,
+   "silencePct": 0
+  },
+  "duration_s": 43.12,
+  "fps": 24.0,
+  "w": 480,
+  "h": 270,
+  "ratio": "16x9",
+  "has_audio": false,
+  "cuts": [
+   0.46,
+   2.88,
+   7.83,
+   8.75,
+   10.83,
+   11.75,
+   15.83,
+   16.83,
+   19.42,
+   23.58,
+   25.17,
+   27.33,
+   31.83,
+   34.29
+  ],
+  "n_scenes": 15,
+  "shot_mean_s": 2.88,
+  "shot_median_s": 2.42,
+  "cuts_per_10s": 3.25,
+  "energy_thirds": [
+   2.64,
+   2.55,
+   1.16
+  ],
+  "energy_ratio": [
+   1.25,
+   1.21,
+   0.55
+  ],
+  "scenes": [
+   {
+    "start": 0.0,
+    "end": 0.46,
+    "len": 0.46,
+    "elements": 1,
+    "build_s": 0.33,
+    "hold_s": 0.12
+   },
+   {
+    "start": 0.46,
+    "end": 2.88,
+    "len": 2.42,
+    "elements": 8,
+    "build_s": 2.12,
+    "hold_s": 0.29
+   },
+   {
+    "start": 2.88,
+    "end": 7.83,
+    "len": 4.96,
+    "elements": 5,
+    "build_s": 1.29,
+    "hold_s": 3.67
+   },
+   {
+    "start": 7.83,
+    "end": 8.75,
+    "len": 0.92,
+    "elements": 3,
+    "build_s": 0.83,
+    "hold_s": 0.08
+   },
+   {
+    "start": 8.75,
+    "end": 10.83,
+    "len": 2.08,
+    "elements": 5,
+    "build_s": 1.79,
+    "hold_s": 0.29
+   },
+   {
+    "start": 10.83,
+    "end": 11.75,
+    "len": 0.92,
+    "elements": 3,
+    "build_s": 0.83,
+    "hold_s": 0.08
+   },
+   {
+    "start": 11.75,
+    "end": 15.83,
+    "len": 4.08,
+    "elements": 1,
+    "build_s": 0.29,
+    "hold_s": 3.79
+   },
+   {
+    "start": 15.83,
+    "end": 16.83,
+    "len": 1.0,
+    "elements": 3,
+    "build_s": 0.79,
+    "hold_s": 0.21
+   },
+   {
+    "start": 16.83,
+    "end": 19.42,
+    "len": 2.58,
+    "elements": 8,
+    "build_s": 2.5,
+    "hold_s": 0.08
+   },
+   {
+    "start": 19.42,
+    "end": 23.58,
+    "len": 4.17,
+    "elements": 2,
+    "build_s": 3.04,
+    "hold_s": 1.12
+   },
+   {
+    "start": 23.58,
+    "end": 25.17,
+    "len": 1.58,
+    "elements": 6,
+    "build_s": 1.5,
+    "hold_s": 0.08
+   },
+   {
+    "start": 25.17,
+    "end": 27.33,
+    "len": 2.17,
+    "elements": 7,
+    "build_s": 1.88,
+    "hold_s": 0.29
+   },
+   {
+    "start": 27.33,
+    "end": 31.83,
+    "len": 4.5,
+    "elements": 2,
+    "build_s": 0.42,
+    "hold_s": 4.08
+   },
+   {
+    "start": 31.83,
+    "end": 34.29,
+    "len": 2.46,
+    "elements": 8,
+    "build_s": 2.25,
+    "hold_s": 0.21
+   },
+   {
+    "start": 34.29,
+    "end": 43.12,
+    "len": 8.83,
+    "elements": 4,
+    "build_s": 1.33,
+    "hold_s": 7.49
+   }
+  ],
+  "elements_per_scene": 4.4,
+  "build_s_median": 1.33,
+  "hold_s_median": 0.29,
+  "audio": {
+   "tempo_bpm": 117.5,
+   "beat_s": 0.5108,
+   "cuts_on_beat": 0.357,
+   "cuts_on_bar": 0.143,
+   "lufs": -12.6,
+   "rms_arc_db": [
+    -17.0,
+    -14.8,
+    -15.3
+   ]
+  }
+ },
+ {
+  "id": 5890,
+  "tier": "A",
+  "category": "تیزر تبلیغاتی",
+  "styleType": "promo-teaser",
+  "tags_music": {
+   "file": "assets/audio/5890.m4a",
+   "durationSec": 53.1,
+   "energy": "medium",
+   "moodHint": "dynamic",
+   "meanRmsDb": -20.3,
+   "silencePct": 5
+  },
+  "duration_s": 53.12,
+  "fps": 24.0,
+  "w": 480,
+  "h": 270,
+  "ratio": "16x9",
+  "has_audio": false,
+  "cuts": [
+   5.92,
+   11.12,
+   16.04,
+   21.08,
+   25.75,
+   31.04,
+   35.88,
+   40.96,
+   45.75
+  ],
+  "n_scenes": 10,
+  "shot_mean_s": 5.31,
+  "shot_median_s": 5.06,
+  "cuts_per_10s": 1.69,
+  "energy_thirds": [
+   2.74,
+   2.34,
+   2.1
+  ],
+  "energy_ratio": [
+   1.15,
+   0.98,
+   0.88
+  ],
+  "scenes": [
+   {
+    "start": 0.0,
+    "end": 5.92,
+    "len": 5.92,
+    "elements": 1,
+    "build_s": 5.75,
+    "hold_s": 0.17
+   },
+   {
+    "start": 5.92,
+    "end": 11.12,
+    "len": 5.21,
+    "elements": 4,
+    "build_s": 4.96,
+    "hold_s": 0.25
+   },
+   {
+    "start": 11.12,
+    "end": 16.04,
+    "len": 4.92,
+    "elements": 2,
+    "build_s": 4.62,
+    "hold_s": 0.29
+   },
+   {
+    "start": 16.04,
+    "end": 21.08,
+    "len": 5.04,
+    "elements": 3,
+    "build_s": 4.79,
+    "hold_s": 0.25
+   },
+   {
+    "start": 21.08,
+    "end": 25.75,
+    "len": 4.67,
+    "elements": 2,
+    "build_s": 4.58,
+    "hold_s": 0.08
+   },
+   {
+    "start": 25.75,
+    "end": 31.04,
+    "len": 5.29,
+    "elements": 3,
+    "build_s": 5.12,
+    "hold_s": 0.17
+   },
+   {
+    "start": 31.04,
+    "end": 35.88,
+    "len": 4.83,
+    "elements": 2,
+    "build_s": 4.71,
+    "hold_s": 0.12
+   },
+   {
+    "start": 35.88,
+    "end": 40.96,
+    "len": 5.08,
+    "elements": 3,
+    "build_s": 4.96,
+    "hold_s": 0.12
+   },
+   {
+    "start": 40.96,
+    "end": 45.75,
+    "len": 4.79,
+    "elements": 1,
+    "build_s": 0.12,
+    "hold_s": 4.67
+   },
+   {
+    "start": 45.75,
+    "end": 53.12,
+    "len": 7.37,
+    "elements": 2,
+    "build_s": 0.42,
+    "hold_s": 6.95
+   }
+  ],
+  "elements_per_scene": 2.3,
+  "build_s_median": 4.75,
+  "hold_s_median": 0.21,
+  "audio": {
+   "tempo_bpm": 99.4,
+   "beat_s": 0.6037,
+   "cuts_on_beat": 0.333,
+   "cuts_on_bar": 0.0,
+   "lufs": -11.1,
+   "rms_arc_db": [
+    -17.6,
+    -15.1,
+    -16.1
+   ]
+  }
+ },
+ {
+  "id": 5925,
+  "tier": "A",
+  "category": "استوری اینستاگرام",
+  "styleType": "story-reels",
+  "tags_music": {
+   "file": "assets/audio/5925.m4a",
+   "durationSec": 26.8,
+   "energy": "medium",
+   "moodHint": "dynamic",
+   "meanRmsDb": -20.9,
+   "silencePct": 2
+  },
+  "duration_s": 26.79,
+  "fps": 24.0,
+  "w": 480,
+  "h": 854,
+  "ratio": "9x16",
+  "has_audio": false,
+  "cuts": [
+   6.79,
+   7.46,
+   13.42,
+   14.08,
+   22.21,
+   22.92,
+   26.29
+  ],
+  "n_scenes": 8,
+  "shot_mean_s": 3.35,
+  "shot_median_s": 2.04,
+  "cuts_per_10s": 2.61,
+  "energy_thirds": [
+   3.09,
+   2.75,
+   3.64
+  ],
+  "energy_ratio": [
+   0.98,
+   0.87,
+   1.15
+  ],
+  "scenes": [
+   {
+    "start": 0.0,
+    "end": 6.79,
+    "len": 6.79,
+    "elements": 5,
+    "build_s": 6.67,
+    "hold_s": 0.12
+   },
+   {
+    "start": 6.79,
+    "end": 7.46,
+    "len": 0.67,
+    "elements": 2,
+    "build_s": 0.54,
+    "hold_s": 0.12
+   },
+   {
+    "start": 7.46,
+    "end": 13.42,
+    "len": 5.96,
+    "elements": 4,
+    "build_s": 4.29,
+    "hold_s": 1.67
+   },
+   {
+    "start": 13.42,
+    "end": 14.08,
+    "len": 0.67,
+    "elements": 2,
+    "build_s": 0.58,
+    "hold_s": 0.08
+   },
+   {
+    "start": 14.08,
+    "end": 22.21,
+    "len": 8.12,
+    "elements": 16,
+    "build_s": 6.5,
+    "hold_s": 1.62
+   },
+   {
+    "start": 22.21,
+    "end": 22.92,
+    "len": 0.71,
+    "elements": 2,
+    "build_s": 0.58,
+    "hold_s": 0.12
+   },
+   {
+    "start": 22.92,
+    "end": 26.29,
+    "len": 3.38,
+    "elements": 0,
+    "build_s": 0.0,
+    "hold_s": 3.38
+   },
+   {
+    "start": 26.29,
+    "end": 26.79,
+    "len": 0.5,
+    "elements": 1,
+    "build_s": 0.12,
+    "hold_s": 0.37
+   }
+  ],
+  "elements_per_scene": 4.0,
+  "build_s_median": 0.58,
+  "hold_s_median": 0.24,
+  "audio": {
+   "tempo_bpm": 112.3,
+   "beat_s": 0.5341,
+   "cuts_on_beat": 0.286,
+   "cuts_on_bar": 0.0,
+   "lufs": -14.3,
+   "rms_arc_db": [
+    -18.1,
+    -17.9,
+    -18.9
+   ]
+  }
+ },
+ {
+  "id": 5945,
+  "tier": "B",
+  "category": "تیزر تبلیغاتی",
+  "styleType": "promo-teaser",
+  "tags_music": {
+   "file": "assets/audio/5945.m4a",
+   "durationSec": 140.1,
+   "energy": "medium",
+   "moodHint": "dynamic",
+   "meanRmsDb": -18.3,
+   "silencePct": 0
+  },
+  "duration_s": 140.1,
+  "fps": 20.0,
+  "w": 400,
+  "h": 226,
+  "ratio": "16x9",
+  "has_audio": false,
+  "cuts": [
+   4.79,
+   10.29,
+   14.25,
+   14.88,
+   19.29,
+   20.04,
+   23.75,
+   24.71,
+   29.21,
+   34.67,
+   39.17,
+   40.04,
+   44.25,
+   45.0,
+   48.9,
+   49.83,
+   54.08,
+   55.0,
+   59.29,
+   59.92,
+   64.58,
+   65.29,
+   69.08,
+   69.96,
+   73.83,
+   79.29,
+   84.04,
+   84.96,
+   89.5,
+   90.33,
+   94.04,
+   94.83,
+   98.54,
+   104.29,
+   104.96,
+   108.96,
+   113.96,
+   114.96,
+   119.0,
+   119.79,
+   123.46,
+   130.42
+  ],
+  "n_scenes": 43,
+  "shot_mean_s": 3.26,
+  "shot_median_s": 3.88,
+  "cuts_per_10s": 3.0,
+  "energy_thirds": [
+   5.25,
+   4.82,
+   5.41
+  ],
+  "energy_ratio": [
+   1.02,
+   0.93,
+   1.05
+  ],
+  "scenes": [
+   {
+    "start": 0.0,
+    "end": 4.79,
+    "len": 4.79,
+    "elements": 6,
+    "build_s": 4.71,
+    "hold_s": 0.08
+   },
+   {
+    "start": 4.79,
+    "end": 10.29,
+    "len": 5.5,
+    "elements": 7,
+    "build_s": 5.21,
+    "hold_s": 0.29
+   },
+   {
+    "start": 10.29,
+    "end": 14.25,
+    "len": 3.96,
+    "elements": 4,
+    "build_s": 3.79,
+    "hold_s": 0.17
+   },
+   {
+    "start": 14.25,
+    "end": 14.88,
+    "len": 0.62,
+    "elements": 2,
+    "build_s": 0.46,
+    "hold_s": 0.17
+   },
+   {
+    "start": 14.88,
+    "end": 19.29,
+    "len": 4.42,
+    "elements": 5,
+    "build_s": 4.12,
+    "hold_s": 0.29
+   },
+   {
+    "start": 19.29,
+    "end": 20.04,
+    "len": 0.75,
+    "elements": 2,
+    "build_s": 0.42,
+    "hold_s": 0.33
+   },
+   {
+    "start": 20.04,
+    "end": 23.75,
+    "len": 3.71,
+    "elements": 3,
+    "build_s": 0.75,
+    "hold_s": 2.96
+   },
+   {
+    "start": 23.75,
+    "end": 24.71,
+    "len": 0.96,
+    "elements": 3,
+    "build_s": 0.83,
+    "hold_s": 0.12
+   },
+   {
+    "start": 24.71,
+    "end": 29.21,
+    "len": 4.5,
+    "elements": 5,
+    "build_s": 4.29,
+    "hold_s": 0.21
+   },
+   {
+    "start": 29.21,
+    "end": 34.67,
+    "len": 5.46,
+    "elements": 7,
+    "build_s": 5.29,
+    "hold_s": 0.17
+   },
+   {
+    "start": 34.67,
+    "end": 39.17,
+    "len": 4.5,
+    "elements": 6,
+    "build_s": 4.33,
+    "hold_s": 0.17
+   },
+   {
+    "start": 39.17,
+    "end": 40.04,
+    "len": 0.88,
+    "elements": 3,
+    "build_s": 0.75,
+    "hold_s": 0.12
+   },
+   {
+    "start": 40.04,
+    "end": 44.25,
+    "len": 4.21,
+    "elements": 3,
+    "build_s": 3.96,
+    "hold_s": 0.25
+   },
+   {
+    "start": 44.25,
+    "end": 45.0,
+    "len": 0.75,
+    "elements": 2,
+    "build_s": 0.46,
+    "hold_s": 0.29
+   },
+   {
+    "start": 45.0,
+    "end": 48.9,
+    "len": 3.9,
+    "elements": 3,
+    "build_s": 0.79,
+    "hold_s": 3.11
+   },
+   {
+    "start": 48.9,
+    "end": 49.83,
+    "len": 0.93,
+    "elements": 3,
+    "build_s": 0.81,
+    "hold_s": 0.12
+   },
+   {
+    "start": 49.83,
+    "end": 54.08,
+    "len": 4.25,
+    "elements": 4,
+    "build_s": 4.17,
+    "hold_s": 0.08
+   },
+   {
+    "start": 54.08,
+    "end": 55.0,
+    "len": 0.92,
+    "elements": 3,
+    "build_s": 0.83,
+    "hold_s": 0.08
+   },
+   {
+    "start": 55.0,
+    "end": 59.29,
+    "len": 4.29,
+    "elements": 3,
+    "build_s": 4.0,
+    "hold_s": 0.29
+   },
+   {
+    "start": 59.29,
+    "end": 59.92,
+    "len": 0.62,
+    "elements": 2,
+    "build_s": 0.42,
+    "hold_s": 0.21
+   },
+   {
+    "start": 59.92,
+    "end": 64.58,
+    "len": 4.67,
+    "elements": 6,
+    "build_s": 4.58,
+    "hold_s": 0.08
+   },
+   {
+    "start": 64.58,
+    "end": 65.29,
+    "len": 0.71,
+    "elements": 2,
+    "build_s": 0.5,
+    "hold_s": 0.21
+   },
+   {
+    "start": 65.29,
+    "end": 69.08,
+    "len": 3.79,
+    "elements": 3,
+    "build_s": 3.62,
+    "hold_s": 0.17
+   },
+   {
+    "start": 69.08,
+    "end": 69.96,
+    "len": 0.88,
+    "elements": 3,
+    "build_s": 0.71,
+    "hold_s": 0.17
+   },
+   {
+    "start": 69.96,
+    "end": 73.83,
+    "len": 3.88,
+    "elements": 5,
+    "build_s": 2.54,
+    "hold_s": 1.33
+   },
+   {
+    "start": 73.83,
+    "end": 79.29,
+    "len": 5.46,
+    "elements": 7,
+    "build_s": 5.25,
+    "hold_s": 0.21
+   },
+   {
+    "start": 79.29,
+    "end": 84.04,
+    "len": 4.75,
+    "elements": 5,
+    "build_s": 4.54,
+    "hold_s": 0.21
+   },
+   {
+    "start": 84.04,
+    "end": 84.96,
+    "len": 0.92,
+    "elements": 2,
+    "build_s": 0.54,
+    "hold_s": 0.38
+   },
+   {
+    "start": 84.96,
+    "end": 89.5,
+    "len": 4.54,
+    "elements": 5,
+    "build_s": 4.46,
+    "hold_s": 0.08
+   },
+   {
+    "start": 89.5,
+    "end": 90.33,
+    "len": 0.83,
+    "elements": 2,
+    "build_s": 0.5,
+    "hold_s": 0.33
+   },
+   {
+    "start": 90.33,
+    "end": 94.04,
+    "len": 3.71,
+    "elements": 2,
+    "build_s": 3.5,
+    "hold_s": 0.21
+   },
+   {
+    "start": 94.04,
+    "end": 94.83,
+    "len": 0.79,
+    "elements": 2,
+    "build_s": 0.46,
+    "hold_s": 0.33
+   },
+   {
+    "start": 94.83,
+    "end": 98.54,
+    "len": 3.71,
+    "elements": 3,
+    "build_s": 0.75,
+    "hold_s": 2.96
+   },
+   {
+    "start": 98.54,
+    "end": 104.29,
+    "len": 5.75,
+    "elements": 8,
+    "build_s": 5.54,
+    "hold_s": 0.21
+   },
+   {
+    "start": 104.29,
+    "end": 104.96,
+    "len": 0.67,
+    "elements": 2,
+    "build_s": 0.42,
+    "hold_s": 0.25
+   },
+   {
+    "start": 104.96,
+    "end": 108.96,
+    "len": 4.0,
+    "elements": 3,
+    "build_s": 3.83,
+    "hold_s": 0.17
+   },
+   {
+    "start": 108.96,
+    "end": 113.96,
+    "len": 5.0,
+    "elements": 10,
+    "build_s": 4.83,
+    "hold_s": 0.17
+   },
+   {
+    "start": 113.96,
+    "end": 114.96,
+    "len": 1.0,
+    "elements": 3,
+    "build_s": 0.75,
+    "hold_s": 0.25
+   },
+   {
+    "start": 114.96,
+    "end": 119.0,
+    "len": 4.04,
+    "elements": 3,
+    "build_s": 3.83,
+    "hold_s": 0.21
+   },
+   {
+    "start": 119.0,
+    "end": 119.79,
+    "len": 0.79,
+    "elements": 2,
+    "build_s": 0.5,
+    "hold_s": 0.29
+   },
+   {
+    "start": 119.79,
+    "end": 123.46,
+    "len": 3.67,
+    "elements": 4,
+    "build_s": 2.21,
+    "hold_s": 1.46
+   },
+   {
+    "start": 123.46,
+    "end": 130.42,
+    "len": 6.96,
+    "elements": 5,
+    "build_s": 1.46,
+    "hold_s": 5.5
+   },
+   {
+    "start": 130.42,
+    "end": 140.1,
+    "len": 9.68,
+    "elements": 4,
+    "build_s": 1.08,
+    "hold_s": 8.6
+   }
+  ],
+  "elements_per_scene": 3.88,
+  "build_s_median": 2.21,
+  "hold_s_median": 0.21,
+  "audio": {
+   "tempo_bpm": 89.1,
+   "beat_s": 0.6734,
+   "cuts_on_beat": 0.119,
+   "cuts_on_bar": 0.0,
+   "lufs": -15.6,
+   "rms_arc_db": [
+    -16.1,
+    -17.0,
+    -17.3
+   ]
+  }
+ },
+ {
+  "id": 5961,
+  "tier": "A",
+  "category": "تیزر تبلیغاتی",
+  "styleType": "promo-teaser",
+  "tags_music": {
+   "file": "assets/audio/5961.m4a",
+   "durationSec": 42,
+   "energy": "high",
+   "moodHint": "energetic",
+   "meanRmsDb": -11.7,
+   "silencePct": 2
+  },
+  "duration_s": 42.08,
+  "fps": 24.0,
+  "w": 480,
+  "h": 270,
+  "ratio": "16x9",
+  "has_audio": false,
+  "cuts": [
+   5.92,
+   11.96,
+   17.71,
+   23.46,
+   29.0,
+   34.96
+  ],
+  "n_scenes": 7,
+  "shot_mean_s": 6.01,
+  "shot_median_s": 5.92,
+  "cuts_per_10s": 1.43,
+  "energy_thirds": [
+   0.63,
+   1.62,
+   1.78
+  ],
+  "energy_ratio": [
+   0.47,
+   1.2,
+   1.32
+  ],
+  "scenes": [
+   {
+    "start": 0.0,
+    "end": 5.92,
+    "len": 5.92,
+    "elements": 0,
+    "build_s": 0.0,
+    "hold_s": 5.92
+   },
+   {
+    "start": 5.92,
+    "end": 11.96,
+    "len": 6.04,
+    "elements": 0,
+    "build_s": 0.0,
+    "hold_s": 6.04
+   },
+   {
+    "start": 11.96,
+    "end": 17.71,
+    "len": 5.75,
+    "elements": 0,
+    "build_s": 0.0,
+    "hold_s": 5.75
+   },
+   {
+    "start": 17.71,
+    "end": 23.46,
+    "len": 5.75,
+    "elements": 8,
+    "build_s": 4.04,
+    "hold_s": 1.71
+   },
+   {
+    "start": 23.46,
+    "end": 29.0,
+    "len": 5.54,
+    "elements": 0,
+    "build_s": 0.0,
+    "hold_s": 5.54
+   },
+   {
+    "start": 29.0,
+    "end": 34.96,
+    "len": 5.96,
+    "elements": 13,
+    "build_s": 5.25,
+    "hold_s": 0.71
+   },
+   {
+    "start": 34.96,
+    "end": 42.08,
+    "len": 7.12,
+    "elements": 7,
+    "build_s": 4.79,
+    "hold_s": 2.33
+   }
+  ],
+  "elements_per_scene": 4.0,
+  "build_s_median": 0.0,
+  "hold_s_median": 5.54,
+  "audio": {
+   "tempo_bpm": 123.0,
+   "beat_s": 0.4876,
+   "cuts_on_beat": 0.667,
+   "cuts_on_bar": 0.0,
+   "lufs": -9.4,
+   "rms_arc_db": [
+    -10.2,
+    -9.8,
+    -10.6
+   ]
+  }
+ },
+ {
+  "id": 5965,
+  "tier": "A",
+  "category": "تیزر تبلیغاتی",
+  "styleType": "typography-motion",
+  "tags_music": {
+   "file": "assets/audio/5965.m4a",
+   "durationSec": 34,
+   "energy": "high",
+   "moodHint": "energetic",
+   "meanRmsDb": -9.7,
+   "silencePct": 0
+  },
+  "duration_s": 34.08,
+  "fps": 24.0,
+  "w": 480,
+  "h": 270,
+  "ratio": "16x9",
+  "has_audio": false,
+  "cuts": [
+   4.21,
+   6.08,
+   11.29,
+   14.54,
+   19.46,
+   21.46,
+   28.21,
+   30.54
+  ],
+  "n_scenes": 9,
+  "shot_mean_s": 3.79,
+  "shot_median_s": 3.54,
+  "cuts_per_10s": 2.35,
+  "energy_thirds": [
+   1.58,
+   2.23,
+   1.24
+  ],
+  "energy_ratio": [
+   0.94,
+   1.32,
+   0.74
+  ],
+  "scenes": [
+   {
+    "start": 0.0,
+    "end": 4.21,
+    "len": 4.21,
+    "elements": 4,
+    "build_s": 4.08,
+    "hold_s": 0.12
+   },
+   {
+    "start": 4.21,
+    "end": 6.08,
+    "len": 1.88,
+    "elements": 1,
+    "build_s": 1.79,
+    "hold_s": 0.08
+   },
+   {
+    "start": 6.08,
+    "end": 11.29,
+    "len": 5.21,
+    "elements": 7,
+    "build_s": 4.33,
+    "hold_s": 0.88
+   },
+   {
+    "start": 11.29,
+    "end": 14.54,
+    "len": 3.25,
+    "elements": 5,
+    "build_s": 2.79,
+    "hold_s": 0.46
+   },
+   {
+    "start": 14.54,
+    "end": 19.46,
+    "len": 4.92,
+    "elements": 6,
+    "build_s": 4.71,
+    "hold_s": 0.21
+   },
+   {
+    "start": 19.46,
+    "end": 21.46,
+    "len": 2.0,
+    "elements": 6,
+    "build_s": 1.38,
+    "hold_s": 0.62
+   },
+   {
+    "start": 21.46,
+    "end": 28.21,
+    "len": 6.75,
+    "elements": 8,
+    "build_s": 6.54,
+    "hold_s": 0.21
+   },
+   {
+    "start": 28.21,
+    "end": 30.54,
+    "len": 2.33,
+    "elements": 1,
+    "build_s": 2.04,
+    "hold_s": 0.29
+   },
+   {
+    "start": 30.54,
+    "end": 34.08,
+    "len": 3.54,
+    "elements": 4,
+    "build_s": 1.21,
+    "hold_s": 2.33
+   }
+  ],
+  "elements_per_scene": 4.67,
+  "build_s_median": 2.79,
+  "hold_s_median": 0.29,
+  "audio": {
+   "tempo_bpm": 123.0,
+   "beat_s": 0.4876,
+   "cuts_on_beat": 0.375,
+   "cuts_on_bar": 0.0,
+   "lufs": -7.0,
+   "rms_arc_db": [
+    -8.7,
+    -8.3,
+    -8.9
+   ]
+  }
+ },
+ {
+  "id": 6807,
+  "tier": "A",
+  "category": "استوری اینستاگرام",
+  "styleType": "story-reels",
+  "tags_music": {
+   "file": "assets/audio/6807.m4a",
+   "durationSec": 23.1,
+   "energy": "high",
+   "moodHint": "energetic",
+   "meanRmsDb": -13.6,
+   "silencePct": 0
+  },
+  "duration_s": 23.12,
+  "fps": 24.0,
+  "w": 480,
+  "h": 854,
+  "ratio": "9x16",
+  "has_audio": false,
+  "cuts": [
+   3.0,
+   3.75,
+   7.38,
+   8.25,
+   9.08,
+   16.83,
+   17.58,
+   22.67
+  ],
+  "n_scenes": 9,
+  "shot_mean_s": 2.57,
+  "shot_median_s": 0.88,
+  "cuts_per_10s": 3.46,
+  "energy_thirds": [
+   10.73,
+   4.71,
+   3.47
+  ],
+  "energy_ratio": [
+   1.7,
+   0.75,
+   0.55
+  ],
+  "scenes": [
+   {
+    "start": 0.0,
+    "end": 3.0,
+    "len": 3.0,
+    "elements": 4,
+    "build_s": 1.08,
+    "hold_s": 1.92
+   },
+   {
+    "start": 3.0,
+    "end": 3.75,
+    "len": 0.75,
+    "elements": 3,
+    "build_s": 0.67,
+    "hold_s": 0.08
+   },
+   {
+    "start": 3.75,
+    "end": 7.38,
+    "len": 3.62,
+    "elements": 11,
+    "build_s": 3.33,
+    "hold_s": 0.29
+   },
+   {
+    "start": 7.38,
+    "end": 8.25,
+    "len": 0.88,
+    "elements": 2,
+    "build_s": 0.54,
+    "hold_s": 0.33
+   },
+   {
+    "start": 8.25,
+    "end": 9.08,
+    "len": 0.83,
+    "elements": 1,
+    "build_s": 0.17,
+    "hold_s": 0.67
+   },
+   {
+    "start": 9.08,
+    "end": 16.83,
+    "len": 7.75,
+    "elements": 7,
+    "build_s": 2.5,
+    "hold_s": 5.25
+   },
+   {
+    "start": 16.83,
+    "end": 17.58,
+    "len": 0.75,
+    "elements": 3,
+    "build_s": 0.67,
+    "hold_s": 0.08
+   },
+   {
+    "start": 17.58,
+    "end": 22.67,
+    "len": 5.08,
+    "elements": 0,
+    "build_s": 0.0,
+    "hold_s": 5.08
+   },
+   {
+    "start": 22.67,
+    "end": 23.12,
+    "len": 0.45,
+    "elements": 0,
+    "build_s": 0.0,
+    "hold_s": 0.45
+   }
+  ],
+  "elements_per_scene": 3.44,
+  "build_s_median": 0.67,
+  "hold_s_median": 0.45,
+  "audio": {
+   "tempo_bpm": 152.0,
+   "beat_s": 0.3947,
+   "cuts_on_beat": 0.375,
+   "cuts_on_bar": 0.125,
+   "lufs": -8.6,
+   "rms_arc_db": [
+    -12.3,
+    -10.5,
+    -10.4
+   ]
+  }
+ },
+ {
+  "id": 6828,
+  "tier": "A",
+  "category": "اسلایدشو",
+  "styleType": "slideshow",
+  "tags_music": {
+   "file": "assets/audio/6828.m4a",
+   "durationSec": 75.1,
+   "energy": "high",
+   "moodHint": "upbeat",
+   "meanRmsDb": -15.6,
+   "silencePct": 3
+  },
+  "duration_s": 75.08,
+  "fps": 24.0,
+  "w": 480,
+  "h": 270,
+  "ratio": "16x9",
+  "has_audio": false,
+  "cuts": [
+   11.62,
+   12.25,
+   13.0,
+   13.67,
+   17.67,
+   18.79,
+   19.46,
+   23.54,
+   24.38,
+   25.0,
+   25.71,
+   29.75,
+   30.83,
+   31.54,
+   35.79,
+   37.08,
+   37.79,
+   41.88,
+   42.96,
+   43.62,
+   47.88,
+   48.92,
+   49.58,
+   50.25,
+   53.92,
+   54.96,
+   55.62,
+   56.29,
+   59.79,
+   60.46,
+   61.17,
+   61.88,
+   65.79,
+   66.83,
+   67.5,
+   71.71
+  ],
+  "n_scenes": 37,
+  "shot_mean_s": 2.03,
+  "shot_median_s": 1.04,
+  "cuts_per_10s": 4.79,
+  "energy_thirds": [
+   3.69,
+   7.79,
+   5.85
+  ],
+  "energy_ratio": [
+   0.64,
+   1.35,
+   1.01
+  ],
+  "scenes": [
+   {
+    "start": 0.0,
+    "end": 11.62,
+    "len": 11.62,
+    "elements": 18,
+    "build_s": 11.5,
+    "hold_s": 0.12
+   },
+   {
+    "start": 11.62,
+    "end": 12.25,
+    "len": 0.62,
+    "elements": 2,
+    "build_s": 0.5,
+    "hold_s": 0.12
+   },
+   {
+    "start": 12.25,
+    "end": 13.0,
+    "len": 0.75,
+    "elements": 2,
+    "build_s": 0.54,
+    "hold_s": 0.21
+   },
+   {
+    "start": 13.0,
+    "end": 13.67,
+    "len": 0.67,
+    "elements": 2,
+    "build_s": 0.42,
+    "hold_s": 0.25
+   },
+   {
+    "start": 13.67,
+    "end": 17.67,
+    "len": 4.0,
+    "elements": 6,
+    "build_s": 3.88,
+    "hold_s": 0.12
+   },
+   {
+    "start": 17.67,
+    "end": 18.79,
+    "len": 1.12,
+    "elements": 3,
+    "build_s": 0.71,
+    "hold_s": 0.42
+   },
+   {
+    "start": 18.79,
+    "end": 19.46,
+    "len": 0.67,
+    "elements": 2,
+    "build_s": 0.58,
+    "hold_s": 0.08
+   },
+   {
+    "start": 19.46,
+    "end": 23.54,
+    "len": 4.08,
+    "elements": 4,
+    "build_s": 1.71,
+    "hold_s": 2.38
+   },
+   {
+    "start": 23.54,
+    "end": 24.38,
+    "len": 0.83,
+    "elements": 3,
+    "build_s": 0.71,
+    "hold_s": 0.12
+   },
+   {
+    "start": 24.38,
+    "end": 25.0,
+    "len": 0.62,
+    "elements": 2,
+    "build_s": 0.42,
+    "hold_s": 0.21
+   },
+   {
+    "start": 25.0,
+    "end": 25.71,
+    "len": 0.71,
+    "elements": 2,
+    "build_s": 0.5,
+    "hold_s": 0.21
+   },
+   {
+    "start": 25.71,
+    "end": 29.75,
+    "len": 4.04,
+    "elements": 7,
+    "build_s": 3.92,
+    "hold_s": 0.12
+   },
+   {
+    "start": 29.75,
+    "end": 30.83,
+    "len": 1.08,
+    "elements": 4,
+    "build_s": 1.0,
+    "hold_s": 0.08
+   },
+   {
+    "start": 30.83,
+    "end": 31.54,
+    "len": 0.71,
+    "elements": 2,
+    "build_s": 0.58,
+    "hold_s": 0.13
+   },
+   {
+    "start": 31.54,
+    "end": 35.79,
+    "len": 4.25,
+    "elements": 6,
+    "build_s": 4.04,
+    "hold_s": 0.21
+   },
+   {
+    "start": 35.79,
+    "end": 37.08,
+    "len": 1.29,
+    "elements": 4,
+    "build_s": 1.08,
+    "hold_s": 0.21
+   },
+   {
+    "start": 37.08,
+    "end": 37.79,
+    "len": 0.71,
+    "elements": 2,
+    "build_s": 0.42,
+    "hold_s": 0.29
+   },
+   {
+    "start": 37.79,
+    "end": 41.88,
+    "len": 4.08,
+    "elements": 7,
+    "build_s": 3.92,
+    "hold_s": 0.17
+   },
+   {
+    "start": 41.88,
+    "end": 42.96,
+    "len": 1.08,
+    "elements": 4,
+    "build_s": 0.92,
+    "hold_s": 0.17
+   },
+   {
+    "start": 42.96,
+    "end": 43.62,
+    "len": 0.67,
+    "elements": 2,
+    "build_s": 0.5,
+    "hold_s": 0.17
+   },
+   {
+    "start": 43.62,
+    "end": 47.88,
+    "len": 4.25,
+    "elements": 5,
+    "build_s": 4.08,
+    "hold_s": 0.17
+   },
+   {
+    "start": 47.88,
+    "end": 48.92,
+    "len": 1.04,
+    "elements": 4,
+    "build_s": 0.96,
+    "hold_s": 0.08
+   },
+   {
+    "start": 48.92,
+    "end": 49.58,
+    "len": 0.67,
+    "elements": 2,
+    "build_s": 0.58,
+    "hold_s": 0.08
+   },
+   {
+    "start": 49.58,
+    "end": 50.25,
+    "len": 0.67,
+    "elements": 1,
+    "build_s": 0.25,
+    "hold_s": 0.42
+   },
+   {
+    "start": 50.25,
+    "end": 53.92,
+    "len": 3.67,
+    "elements": 5,
+    "build_s": 3.5,
+    "hold_s": 0.17
+   },
+   {
+    "start": 53.92,
+    "end": 54.96,
+    "len": 1.04,
+    "elements": 3,
+    "build_s": 0.71,
+    "hold_s": 0.33
+   },
+   {
+    "start": 54.96,
+    "end": 55.62,
+    "len": 0.67,
+    "elements": 2,
+    "build_s": 0.42,
+    "hold_s": 0.25
+   },
+   {
+    "start": 55.62,
+    "end": 56.29,
+    "len": 0.67,
+    "elements": 2,
+    "build_s": 0.46,
+    "hold_s": 0.21
+   },
+   {
+    "start": 56.29,
+    "end": 59.79,
+    "len": 3.5,
+    "elements": 5,
+    "build_s": 3.42,
+    "hold_s": 0.08
+   },
+   {
+    "start": 59.79,
+    "end": 60.46,
+    "len": 0.67,
+    "elements": 2,
+    "build_s": 0.42,
+    "hold_s": 0.25
+   },
+   {
+    "start": 60.46,
+    "end": 61.17,
+    "len": 0.71,
+    "elements": 2,
+    "build_s": 0.5,
+    "hold_s": 0.21
+   },
+   {
+    "start": 61.17,
+    "end": 61.88,
+    "len": 0.71,
+    "elements": 2,
+    "build_s": 0.54,
+    "hold_s": 0.17
+   },
+   {
+    "start": 61.88,
+    "end": 65.79,
+    "len": 3.92,
+    "elements": 7,
+    "build_s": 3.71,
+    "hold_s": 0.21
+   },
+   {
+    "start": 65.79,
+    "end": 66.83,
+    "len": 1.04,
+    "elements": 3,
+    "build_s": 0.79,
+    "hold_s": 0.25
+   },
+   {
+    "start": 66.83,
+    "end": 67.5,
+    "len": 0.67,
+    "elements": 2,
+    "build_s": 0.54,
+    "hold_s": 0.12
+   },
+   {
+    "start": 67.5,
+    "end": 71.71,
+    "len": 4.21,
+    "elements": 4,
+    "build_s": 1.71,
+    "hold_s": 2.5
+   },
+   {
+    "start": 71.71,
+    "end": 75.08,
+    "len": 3.37,
+    "elements": 3,
+    "build_s": 1.0,
+    "hold_s": 2.37
+   }
+  ],
+  "elements_per_scene": 3.73,
+  "build_s_median": 0.71,
+  "hold_s_median": 0.21,
+  "audio": {
+   "tempo_bpm": 123.0,
+   "beat_s": 0.4876,
+   "cuts_on_beat": 0.194,
+   "cuts_on_bar": 0.0,
+   "lufs": -8.3,
+   "rms_arc_db": [
+    -14.7,
+    -11.2,
+    -11.9
+   ]
+  }
+ },
+ {
+  "id": 6873,
+  "tier": "A",
+  "category": "تیزر تبلیغاتی",
+  "styleType": "typography-motion",
+  "tags_music": {
+   "file": "assets/audio/6873.m4a",
+   "durationSec": 31.7,
+   "energy": "high",
+   "moodHint": "upbeat",
+   "meanRmsDb": -15.9,
+   "silencePct": 6
+  },
+  "duration_s": 31.67,
+  "fps": 24.0,
+  "w": 480,
+  "h": 270,
+  "ratio": "16x9",
+  "has_audio": false,
+  "cuts": [
+   4.38,
+   17.46,
+   21.83,
+   26.17
+  ],
+  "n_scenes": 5,
+  "shot_mean_s": 6.33,
+  "shot_median_s": 4.38,
+  "cuts_per_10s": 1.26,
+  "energy_thirds": [
+   2.17,
+   1.84,
+   1.95
+  ],
+  "energy_ratio": [
+   1.09,
+   0.93,
+   0.98
+  ],
+  "scenes": [
+   {
+    "start": 0.0,
+    "end": 4.38,
+    "len": 4.38,
+    "elements": 3,
+    "build_s": 0.96,
+    "hold_s": 3.42
+   },
+   {
+    "start": 4.38,
+    "end": 17.46,
+    "len": 13.08,
+    "elements": 10,
+    "build_s": 9.71,
+    "hold_s": 3.37
+   },
+   {
+    "start": 17.46,
+    "end": 21.83,
+    "len": 4.38,
+    "elements": 3,
+    "build_s": 0.67,
+    "hold_s": 3.71
+   },
+   {
+    "start": 21.83,
+    "end": 26.17,
+    "len": 4.33,
+    "elements": 3,
+    "build_s": 1.04,
+    "hold_s": 3.29
+   },
+   {
+    "start": 26.17,
+    "end": 31.67,
+    "len": 5.5,
+    "elements": 8,
+    "build_s": 5.25,
+    "hold_s": 0.25
+   }
+  ],
+  "elements_per_scene": 5.4,
+  "build_s_median": 1.04,
+  "hold_s_median": 3.37,
+  "audio": {
+   "tempo_bpm": 143.6,
+   "beat_s": 0.418,
+   "cuts_on_beat": 0.0,
+   "cuts_on_bar": 0.0,
+   "lufs": -8.8,
+   "rms_arc_db": [
+    -12.2,
+    -12.4,
+    -14.6
+   ]
+  }
+ },
+ {
+  "id": 6896,
+  "tier": "A",
+  "category": "تیزر تبلیغاتی",
+  "styleType": "promo-teaser",
+  "tags_music": {
+   "file": "assets/audio/6896.m4a",
+   "durationSec": 69.9,
+   "energy": "high",
+   "moodHint": "upbeat",
+   "meanRmsDb": -17.2,
+   "silencePct": 6
+  },
+  "duration_s": 69.96,
+  "fps": 24.0,
+  "w": 480,
+  "h": 270,
+  "ratio": "16x9",
+  "has_audio": false,
+  "cuts": [
+   13.92,
+   17.33,
+   18.21,
+   19.79,
+   24.54,
+   25.29,
+   28.83,
+   30.46,
+   35.25,
+   35.92,
+   38.88,
+   41.12,
+   46.04,
+   46.71,
+   49.42,
+   51.88,
+   56.12,
+   59.08,
+   62.04,
+   64.42,
+   68.21
+  ],
+  "n_scenes": 22,
+  "shot_mean_s": 3.18,
+  "shot_median_s": 2.83,
+  "cuts_per_10s": 3.0,
+  "energy_thirds": [
+   1.62,
+   3.71,
+   2.62
+  ],
+  "energy_ratio": [
+   0.61,
+   1.4,
+   0.99
+  ],
+  "scenes": [
+   {
+    "start": 0.0,
+    "end": 13.92,
+    "len": 13.92,
+    "elements": 7,
+    "build_s": 13.75,
+    "hold_s": 0.17
+   },
+   {
+    "start": 13.92,
+    "end": 17.33,
+    "len": 3.42,
+    "elements": 4,
+    "build_s": 1.0,
+    "hold_s": 2.42
+   },
+   {
+    "start": 17.33,
+    "end": 18.21,
+    "len": 0.88,
+    "elements": 2,
+    "build_s": 0.58,
+    "hold_s": 0.29
+   },
+   {
+    "start": 18.21,
+    "end": 19.79,
+    "len": 1.58,
+    "elements": 4,
+    "build_s": 1.38,
+    "hold_s": 0.21
+   },
+   {
+    "start": 19.79,
+    "end": 24.54,
+    "len": 4.75,
+    "elements": 3,
+    "build_s": 4.67,
+    "hold_s": 0.08
+   },
+   {
+    "start": 24.54,
+    "end": 25.29,
+    "len": 0.75,
+    "elements": 2,
+    "build_s": 0.46,
+    "hold_s": 0.29
+   },
+   {
+    "start": 25.29,
+    "end": 28.83,
+    "len": 3.54,
+    "elements": 4,
+    "build_s": 3.29,
+    "hold_s": 0.25
+   },
+   {
+    "start": 28.83,
+    "end": 30.46,
+    "len": 1.62,
+    "elements": 4,
+    "build_s": 1.5,
+    "hold_s": 0.12
+   },
+   {
+    "start": 30.46,
+    "end": 35.25,
+    "len": 4.79,
+    "elements": 10,
+    "build_s": 4.54,
+    "hold_s": 0.25
+   },
+   {
+    "start": 35.25,
+    "end": 35.92,
+    "len": 0.67,
+    "elements": 2,
+    "build_s": 0.42,
+    "hold_s": 0.25
+   },
+   {
+    "start": 35.92,
+    "end": 38.88,
+    "len": 2.96,
+    "elements": 2,
+    "build_s": 0.42,
+    "hold_s": 2.54
+   },
+   {
+    "start": 38.88,
+    "end": 41.12,
+    "len": 2.25,
+    "elements": 5,
+    "build_s": 1.96,
+    "hold_s": 0.29
+   },
+   {
+    "start": 41.12,
+    "end": 46.04,
+    "len": 4.92,
+    "elements": 5,
+    "build_s": 4.79,
+    "hold_s": 0.12
+   },
+   {
+    "start": 46.04,
+    "end": 46.71,
+    "len": 0.67,
+    "elements": 2,
+    "build_s": 0.38,
+    "hold_s": 0.29
+   },
+   {
+    "start": 46.71,
+    "end": 49.42,
+    "len": 2.71,
+    "elements": 2,
+    "build_s": 0.38,
+    "hold_s": 2.33
+   },
+   {
+    "start": 49.42,
+    "end": 51.88,
+    "len": 2.46,
+    "elements": 6,
+    "build_s": 2.33,
+    "hold_s": 0.12
+   },
+   {
+    "start": 51.88,
+    "end": 56.12,
+    "len": 4.25,
+    "elements": 5,
+    "build_s": 4.12,
+    "hold_s": 0.12
+   },
+   {
+    "start": 56.12,
+    "end": 59.08,
+    "len": 2.96,
+    "elements": 7,
+    "build_s": 2.71,
+    "hold_s": 0.25
+   },
+   {
+    "start": 59.08,
+    "end": 62.04,
+    "len": 2.96,
+    "elements": 4,
+    "build_s": 2.88,
+    "hold_s": 0.08
+   },
+   {
+    "start": 62.04,
+    "end": 64.42,
+    "len": 2.38,
+    "elements": 2,
+    "build_s": 0.46,
+    "hold_s": 1.92
+   },
+   {
+    "start": 64.42,
+    "end": 68.21,
+    "len": 3.79,
+    "elements": 2,
+    "build_s": 3.5,
+    "hold_s": 0.29
+   },
+   {
+    "start": 68.21,
+    "end": 69.96,
+    "len": 1.75,
+    "elements": 1,
+    "build_s": 0.25,
+    "hold_s": 1.5
+   }
+  ],
+  "elements_per_scene": 3.86,
+  "build_s_median": 1.73,
+  "hold_s_median": 0.25,
+  "audio": {
+   "tempo_bpm": 112.3,
+   "beat_s": 0.5341,
+   "cuts_on_beat": 0.143,
+   "cuts_on_bar": 0.048,
+   "lufs": -13.0,
+   "rms_arc_db": [
+    -15.4,
+    -12.2,
+    -15.9
+   ]
+  }
+ },
+ {
+  "id": 6942,
+  "tier": "A",
+  "category": "تیزر تبلیغاتی",
+  "styleType": "promo-teaser",
+  "tags_music": {
+   "file": "assets/audio/6942.m4a",
+   "durationSec": 50,
+   "energy": "high",
+   "moodHint": "upbeat",
+   "meanRmsDb": -16.5,
+   "silencePct": 0
+  },
+  "duration_s": 50.08,
+  "fps": 24.0,
+  "w": 480,
+  "h": 270,
+  "ratio": "16x9",
+  "has_audio": false,
+  "cuts": [
+   6.5,
+   12.58,
+   18.5,
+   24.5,
+   30.46,
+   36.42,
+   42.42
+  ],
+  "n_scenes": 8,
+  "shot_mean_s": 6.26,
+  "shot_median_s": 6.0,
+  "cuts_per_10s": 1.4,
+  "energy_thirds": [
+   3.17,
+   2.98,
+   2.71
+  ],
+  "energy_ratio": [
+   1.07,
+   1.01,
+   0.92
+  ],
+  "scenes": [
+   {
+    "start": 0.0,
+    "end": 6.5,
+    "len": 6.5,
+    "elements": 5,
+    "build_s": 6.25,
+    "hold_s": 0.25
+   },
+   {
+    "start": 6.5,
+    "end": 12.58,
+    "len": 6.08,
+    "elements": 9,
+    "build_s": 6.0,
+    "hold_s": 0.08
+   },
+   {
+    "start": 12.58,
+    "end": 18.5,
+    "len": 5.92,
+    "elements": 8,
+    "build_s": 5.67,
+    "hold_s": 0.25
+   },
+   {
+    "start": 18.5,
+    "end": 24.5,
+    "len": 6.0,
+    "elements": 7,
+    "build_s": 5.75,
+    "hold_s": 0.25
+   },
+   {
+    "start": 24.5,
+    "end": 30.46,
+    "len": 5.96,
+    "elements": 7,
+    "build_s": 5.75,
+    "hold_s": 0.21
+   },
+   {
+    "start": 30.46,
+    "end": 36.42,
+    "len": 5.96,
+    "elements": 7,
+    "build_s": 5.79,
+    "hold_s": 0.17
+   },
+   {
+    "start": 36.42,
+    "end": 42.42,
+    "len": 6.0,
+    "elements": 8,
+    "build_s": 5.83,
+    "hold_s": 0.17
+   },
+   {
+    "start": 42.42,
+    "end": 50.08,
+    "len": 7.66,
+    "elements": 4,
+    "build_s": 1.33,
+    "hold_s": 6.33
+   }
+  ],
+  "elements_per_scene": 6.88,
+  "build_s_median": 5.77,
+  "hold_s_median": 0.23,
+  "audio": {
+   "tempo_bpm": 99.4,
+   "beat_s": 0.6037,
+   "cuts_on_beat": 0.0,
+   "cuts_on_bar": 0.0,
+   "lufs": -9.6,
+   "rms_arc_db": [
+    -12.1,
+    -12.5,
+    -15.6
+   ]
+  }
+ },
+ {
+  "id": 6992,
+  "tier": "A",
+  "category": "تیزر تبلیغاتی",
+  "styleType": "promo-teaser",
+  "tags_music": {
+   "file": "assets/audio/6992.m4a",
+   "durationSec": 78.1,
+   "energy": "high",
+   "moodHint": "energetic",
+   "meanRmsDb": -13,
+   "silencePct": 0
+  },
+  "duration_s": 78.08,
+  "fps": 24.0,
+  "w": 480,
+  "h": 270,
+  "ratio": "16x9",
+  "has_audio": false,
+  "cuts": [
+   8.04,
+   8.83,
+   14.83,
+   16.83,
+   22.83,
+   24.04,
+   24.83,
+   30.83,
+   32.79,
+   38.83,
+   40.08,
+   40.83,
+   46.88,
+   48.79,
+   54.83,
+   55.96,
+   56.88,
+   62.83,
+   64.79,
+   70.54
+  ],
+  "n_scenes": 21,
+  "shot_mean_s": 3.72,
+  "shot_median_s": 2.0,
+  "cuts_per_10s": 2.56,
+  "energy_thirds": [
+   0.85,
+   1.0,
+   0.64
+  ],
+  "energy_ratio": [
+   1.03,
+   1.2,
+   0.77
+  ],
+  "scenes": [
+   {
+    "start": 0.0,
+    "end": 8.04,
+    "len": 8.04,
+    "elements": 5,
+    "build_s": 6.75,
+    "hold_s": 1.29
+   },
+   {
+    "start": 8.04,
+    "end": 8.83,
+    "len": 0.79,
+    "elements": 2,
+    "build_s": 0.71,
+    "hold_s": 0.08
+   },
+   {
+    "start": 8.83,
+    "end": 14.83,
+    "len": 6.0,
+    "elements": 8,
+    "build_s": 5.92,
+    "hold_s": 0.08
+   },
+   {
+    "start": 14.83,
+    "end": 16.83,
+    "len": 2.0,
+    "elements": 3,
+    "build_s": 1.75,
+    "hold_s": 0.25
+   },
+   {
+    "start": 16.83,
+    "end": 22.83,
+    "len": 6.0,
+    "elements": 8,
+    "build_s": 5.83,
+    "hold_s": 0.17
+   },
+   {
+    "start": 22.83,
+    "end": 24.04,
+    "len": 1.21,
+    "elements": 1,
+    "build_s": 0.12,
+    "hold_s": 1.08
+   },
+   {
+    "start": 24.04,
+    "end": 24.83,
+    "len": 0.79,
+    "elements": 2,
+    "build_s": 0.71,
+    "hold_s": 0.08
+   },
+   {
+    "start": 24.83,
+    "end": 30.83,
+    "len": 6.0,
+    "elements": 9,
+    "build_s": 5.92,
+    "hold_s": 0.08
+   },
+   {
+    "start": 30.83,
+    "end": 32.79,
+    "len": 1.96,
+    "elements": 3,
+    "build_s": 1.75,
+    "hold_s": 0.21
+   },
+   {
+    "start": 32.79,
+    "end": 38.83,
+    "len": 6.04,
+    "elements": 9,
+    "build_s": 5.96,
+    "hold_s": 0.08
+   },
+   {
+    "start": 38.83,
+    "end": 40.08,
+    "len": 1.25,
+    "elements": 1,
+    "build_s": 0.25,
+    "hold_s": 1.0
+   },
+   {
+    "start": 40.08,
+    "end": 40.83,
+    "len": 0.75,
+    "elements": 1,
+    "build_s": 0.67,
+    "hold_s": 0.08
+   },
+   {
+    "start": 40.83,
+    "end": 46.88,
+    "len": 6.04,
+    "elements": 6,
+    "build_s": 5.92,
+    "hold_s": 0.12
+   },
+   {
+    "start": 46.88,
+    "end": 48.79,
+    "len": 1.92,
+    "elements": 3,
+    "build_s": 1.83,
+    "hold_s": 0.08
+   },
+   {
+    "start": 48.79,
+    "end": 54.83,
+    "len": 6.04,
+    "elements": 8,
+    "build_s": 5.88,
+    "hold_s": 0.17
+   },
+   {
+    "start": 54.83,
+    "end": 55.96,
+    "len": 1.12,
+    "elements": 1,
+    "build_s": 0.12,
+    "hold_s": 1.0
+   },
+   {
+    "start": 55.96,
+    "end": 56.88,
+    "len": 0.92,
+    "elements": 1,
+    "build_s": 0.62,
+    "hold_s": 0.29
+   },
+   {
+    "start": 56.88,
+    "end": 62.83,
+    "len": 5.96,
+    "elements": 7,
+    "build_s": 5.88,
+    "hold_s": 0.08
+   },
+   {
+    "start": 62.83,
+    "end": 64.79,
+    "len": 1.96,
+    "elements": 2,
+    "build_s": 1.75,
+    "hold_s": 0.21
+   },
+   {
+    "start": 64.79,
+    "end": 70.54,
+    "len": 5.75,
+    "elements": 6,
+    "build_s": 5.67,
+    "hold_s": 0.08
+   },
+   {
+    "start": 70.54,
+    "end": 78.08,
+    "len": 7.54,
+    "elements": 10,
+    "build_s": 6.58,
+    "hold_s": 0.95
+   }
+  ],
+  "elements_per_scene": 4.57,
+  "build_s_median": 1.83,
+  "hold_s_median": 0.17,
+  "audio": {
+   "tempo_bpm": 117.5,
+   "beat_s": 0.5108,
+   "cuts_on_beat": 0.2,
+   "cuts_on_bar": 0.15,
+   "lufs": -9.3,
+   "rms_arc_db": [
+    -12.2,
+    -12.1,
+    -12.3
+   ]
+  }
+ },
+ {
+  "id": 6998,
+  "tier": "B",
+  "category": "استوری اینستاگرام",
+  "styleType": "story-reels",
+  "tags_music": {
+   "file": "assets/audio/6998.m4a",
+   "durationSec": 24.5,
+   "energy": "high",
+   "moodHint": "energetic",
+   "meanRmsDb": -13.4,
+   "silencePct": 3
+  },
+  "duration_s": 24.58,
+  "fps": 24.0,
+  "w": 480,
+  "h": 854,
+  "ratio": "9x16",
+  "has_audio": false,
+  "cuts": [
+   0.79,
+   5.0,
+   9.25,
+   13.67,
+   17.58,
+   18.5
+  ],
+  "n_scenes": 7,
+  "shot_mean_s": 3.51,
+  "shot_median_s": 4.21,
+  "cuts_per_10s": 2.44,
+  "energy_thirds": [
+   3.58,
+   4.23,
+   3.74
+  ],
+  "energy_ratio": [
+   0.93,
+   1.1,
+   0.97
+  ],
+  "scenes": [
+   {
+    "start": 0.0,
+    "end": 0.79,
+    "len": 0.79,
+    "elements": 1,
+    "build_s": 0.58,
+    "hold_s": 0.21
+   },
+   {
+    "start": 0.79,
+    "end": 5.0,
+    "len": 4.21,
+    "elements": 7,
+    "build_s": 4.12,
+    "hold_s": 0.08
+   },
+   {
+    "start": 5.0,
+    "end": 9.25,
+    "len": 4.25,
+    "elements": 5,
+    "build_s": 4.0,
+    "hold_s": 0.25
+   },
+   {
+    "start": 9.25,
+    "end": 13.67,
+    "len": 4.42,
+    "elements": 7,
+    "build_s": 4.33,
+    "hold_s": 0.08
+   },
+   {
+    "start": 13.67,
+    "end": 17.58,
+    "len": 3.92,
+    "elements": 6,
+    "build_s": 1.75,
+    "hold_s": 2.17
+   },
+   {
+    "start": 17.58,
+    "end": 18.5,
+    "len": 0.92,
+    "elements": 3,
+    "build_s": 0.79,
+    "hold_s": 0.12
+   },
+   {
+    "start": 18.5,
+    "end": 24.58,
+    "len": 6.08,
+    "elements": 5,
+    "build_s": 4.25,
+    "hold_s": 1.83
+   }
+  ],
+  "elements_per_scene": 4.86,
+  "build_s_median": 4.0,
+  "hold_s_median": 0.21,
+  "audio": {
+   "tempo_bpm": 136.0,
+   "beat_s": 0.4412,
+   "cuts_on_beat": 0.5,
+   "cuts_on_bar": 0.167,
+   "lufs": -10.4,
+   "rms_arc_db": [
+    -12.3,
+    -11.9,
+    -12.8
+   ]
+  }
+ },
+ {
+  "id": 7000,
+  "tier": "A",
+  "category": "تیزر تبلیغاتی",
+  "styleType": "typography-motion",
+  "tags_music": {
+   "file": "assets/audio/7000.m4a",
+   "durationSec": 43.1,
+   "energy": "high",
+   "moodHint": "energetic",
+   "meanRmsDb": -15,
+   "silencePct": 0
+  },
+  "duration_s": 43.04,
+  "fps": 24.0,
+  "w": 480,
+  "h": 270,
+  "ratio": "16x9",
+  "has_audio": false,
+  "cuts": [
+   5.83,
+   7.29,
+   10.17,
+   10.92,
+   17.38,
+   19.25,
+   20.33,
+   22.12,
+   26.08,
+   29.92,
+   34.62,
+   37.0,
+   38.12
+  ],
+  "n_scenes": 14,
+  "shot_mean_s": 3.07,
+  "shot_median_s": 2.62,
+  "cuts_per_10s": 3.02,
+  "energy_thirds": [
+   3.45,
+   2.03,
+   1.7
+  ],
+  "energy_ratio": [
+   1.44,
+   0.85,
+   0.71
+  ],
+  "scenes": [
+   {
+    "start": 0.0,
+    "end": 5.83,
+    "len": 5.83,
+    "elements": 5,
+    "build_s": 5.75,
+    "hold_s": 0.08
+   },
+   {
+    "start": 5.83,
+    "end": 7.29,
+    "len": 1.46,
+    "elements": 1,
+    "build_s": 0.17,
+    "hold_s": 1.29
+   },
+   {
+    "start": 7.29,
+    "end": 10.17,
+    "len": 2.87,
+    "elements": 3,
+    "build_s": 2.79,
+    "hold_s": 0.08
+   },
+   {
+    "start": 10.17,
+    "end": 10.92,
+    "len": 0.75,
+    "elements": 2,
+    "build_s": 0.67,
+    "hold_s": 0.08
+   },
+   {
+    "start": 10.92,
+    "end": 17.38,
+    "len": 6.46,
+    "elements": 7,
+    "build_s": 6.38,
+    "hold_s": 0.08
+   },
+   {
+    "start": 17.38,
+    "end": 19.25,
+    "len": 1.88,
+    "elements": 1,
+    "build_s": 0.25,
+    "hold_s": 1.62
+   },
+   {
+    "start": 19.25,
+    "end": 20.33,
+    "len": 1.08,
+    "elements": 2,
+    "build_s": 0.83,
+    "hold_s": 0.25
+   },
+   {
+    "start": 20.33,
+    "end": 22.12,
+    "len": 1.79,
+    "elements": 1,
+    "build_s": 1.71,
+    "hold_s": 0.08
+   },
+   {
+    "start": 22.12,
+    "end": 26.08,
+    "len": 3.96,
+    "elements": 10,
+    "build_s": 3.88,
+    "hold_s": 0.08
+   },
+   {
+    "start": 26.08,
+    "end": 29.92,
+    "len": 3.83,
+    "elements": 4,
+    "build_s": 3.42,
+    "hold_s": 0.42
+   },
+   {
+    "start": 29.92,
+    "end": 34.62,
+    "len": 4.71,
+    "elements": 11,
+    "build_s": 4.62,
+    "hold_s": 0.08
+   },
+   {
+    "start": 34.62,
+    "end": 37.0,
+    "len": 2.38,
+    "elements": 2,
+    "build_s": 2.08,
+    "hold_s": 0.29
+   },
+   {
+    "start": 37.0,
+    "end": 38.12,
+    "len": 1.12,
+    "elements": 2,
+    "build_s": 1.04,
+    "hold_s": 0.08
+   },
+   {
+    "start": 38.12,
+    "end": 43.04,
+    "len": 4.91,
+    "elements": 2,
+    "build_s": 0.58,
+    "hold_s": 4.33
+   }
+  ],
+  "elements_per_scene": 3.79,
+  "build_s_median": 1.9,
+  "hold_s_median": 0.08,
+  "audio": {
+   "tempo_bpm": 112.3,
+   "beat_s": 0.5341,
+   "cuts_on_beat": 0.077,
+   "cuts_on_bar": 0.0,
+   "lufs": -10.0,
+   "rms_arc_db": [
+    -14.1,
+    -11.8,
+    -11.7
+   ]
+  }
+ },
+ {
+  "id": 7018,
+  "tier": "A",
+  "category": "تیزر تبلیغاتی",
+  "styleType": "promo-teaser",
+  "tags_music": {
+   "file": "assets/audio/7018.m4a",
+   "durationSec": 76.3,
+   "energy": "medium",
+   "moodHint": "dynamic",
+   "meanRmsDb": -18.1,
+   "silencePct": 2
+  },
+  "duration_s": 76.29,
+  "fps": 24.0,
+  "w": 480,
+  "h": 270,
+  "ratio": "16x9",
+  "has_audio": false,
+  "cuts": [
+   3.96,
+   6.71,
+   9.96,
+   13.08,
+   14.42,
+   15.08,
+   19.38,
+   25.96,
+   41.54,
+   42.21,
+   43.08,
+   47.75,
+   51.21,
+   56.38,
+   60.58,
+   65.79
+  ],
+  "n_scenes": 17,
+  "shot_mean_s": 4.49,
+  "shot_median_s": 3.96,
+  "cuts_per_10s": 2.1,
+  "energy_thirds": [
+   3.31,
+   4.84,
+   3.88
+  ],
+  "energy_ratio": [
+   0.82,
+   1.21,
+   0.97
+  ],
+  "scenes": [
+   {
+    "start": 0.0,
+    "end": 3.96,
+    "len": 3.96,
+    "elements": 5,
+    "build_s": 3.17,
+    "hold_s": 0.79
+   },
+   {
+    "start": 3.96,
+    "end": 6.71,
+    "len": 2.75,
+    "elements": 1,
+    "build_s": 0.17,
+    "hold_s": 2.58
+   },
+   {
+    "start": 6.71,
+    "end": 9.96,
+    "len": 3.25,
+    "elements": 1,
+    "build_s": 0.92,
+    "hold_s": 2.33
+   },
+   {
+    "start": 9.96,
+    "end": 13.08,
+    "len": 3.12,
+    "elements": 0,
+    "build_s": 0.0,
+    "hold_s": 3.12
+   },
+   {
+    "start": 13.08,
+    "end": 14.42,
+    "len": 1.33,
+    "elements": 0,
+    "build_s": 0.0,
+    "hold_s": 1.33
+   },
+   {
+    "start": 14.42,
+    "end": 15.08,
+    "len": 0.67,
+    "elements": 2,
+    "build_s": 0.38,
+    "hold_s": 0.29
+   },
+   {
+    "start": 15.08,
+    "end": 19.38,
+    "len": 4.29,
+    "elements": 3,
+    "build_s": 1.08,
+    "hold_s": 3.21
+   },
+   {
+    "start": 19.38,
+    "end": 25.96,
+    "len": 6.58,
+    "elements": 5,
+    "build_s": 6.5,
+    "hold_s": 0.08
+   },
+   {
+    "start": 25.96,
+    "end": 41.54,
+    "len": 15.58,
+    "elements": 12,
+    "build_s": 10.21,
+    "hold_s": 5.38
+   },
+   {
+    "start": 41.54,
+    "end": 42.21,
+    "len": 0.67,
+    "elements": 2,
+    "build_s": 0.46,
+    "hold_s": 0.21
+   },
+   {
+    "start": 42.21,
+    "end": 43.08,
+    "len": 0.88,
+    "elements": 2,
+    "build_s": 0.62,
+    "hold_s": 0.25
+   },
+   {
+    "start": 43.08,
+    "end": 47.75,
+    "len": 4.67,
+    "elements": 0,
+    "build_s": 0.0,
+    "hold_s": 4.67
+   },
+   {
+    "start": 47.75,
+    "end": 51.21,
+    "len": 3.46,
+    "elements": 8,
+    "build_s": 3.25,
+    "hold_s": 0.21
+   },
+   {
+    "start": 51.21,
+    "end": 56.38,
+    "len": 5.17,
+    "elements": 3,
+    "build_s": 1.96,
+    "hold_s": 3.21
+   },
+   {
+    "start": 56.38,
+    "end": 60.58,
+    "len": 4.21,
+    "elements": 6,
+    "build_s": 4.12,
+    "hold_s": 0.08
+   },
+   {
+    "start": 60.58,
+    "end": 65.79,
+    "len": 5.21,
+    "elements": 6,
+    "build_s": 4.83,
+    "hold_s": 0.38
+   },
+   {
+    "start": 65.79,
+    "end": 76.29,
+    "len": 10.5,
+    "elements": 2,
+    "build_s": 5.21,
+    "hold_s": 5.29
+   }
+  ],
+  "elements_per_scene": 3.41,
+  "build_s_median": 1.08,
+  "hold_s_median": 1.33,
+  "audio": {
+   "tempo_bpm": 143.6,
+   "beat_s": 0.418,
+   "cuts_on_beat": 0.25,
+   "cuts_on_bar": 0.125,
+   "lufs": -13.6,
+   "rms_arc_db": [
+    -17.7,
+    -14.9,
+    -15.8
+   ]
+  }
+ },
+ {
+  "id": 7038,
+  "tier": "B",
+  "category": "اسلایدشو",
+  "styleType": "slideshow",
+  "tags_music": {
+   "file": "assets/audio/7038.m4a",
+   "durationSec": 73,
+   "energy": "high",
+   "moodHint": "upbeat",
+   "meanRmsDb": -15.8,
+   "silencePct": 0
+  },
+  "duration_s": 73.08,
+  "fps": 24.0,
+  "w": 480,
+  "h": 270,
+  "ratio": "16x9",
+  "has_audio": false,
+  "cuts": [
+   14.58,
+   17.67,
+   20.5,
+   22.62,
+   25.79,
+   27.54,
+   29.67,
+   32.67,
+   34.71,
+   37.88,
+   39.62,
+   41.79,
+   44.67,
+   46.75,
+   49.96,
+   51.67,
+   53.88,
+   56.75,
+   58.83,
+   62.04,
+   64.54,
+   65.71
+  ],
+  "n_scenes": 23,
+  "shot_mean_s": 3.18,
+  "shot_median_s": 2.5,
+  "cuts_per_10s": 3.01,
+  "energy_thirds": [
+   2.84,
+   4.99,
+   3.7
+  ],
+  "energy_ratio": [
+   0.74,
+   1.3,
+   0.96
+  ],
+  "scenes": [
+   {
+    "start": 0.0,
+    "end": 14.58,
+    "len": 14.58,
+    "elements": 3,
+    "build_s": 12.25,
+    "hold_s": 2.33
+   },
+   {
+    "start": 14.58,
+    "end": 17.67,
+    "len": 3.08,
+    "elements": 4,
+    "build_s": 1.08,
+    "hold_s": 2.0
+   },
+   {
+    "start": 17.67,
+    "end": 20.5,
+    "len": 2.83,
+    "elements": 3,
+    "build_s": 0.92,
+    "hold_s": 1.92
+   },
+   {
+    "start": 20.5,
+    "end": 22.62,
+    "len": 2.12,
+    "elements": 2,
+    "build_s": 0.58,
+    "hold_s": 1.54
+   },
+   {
+    "start": 22.62,
+    "end": 25.79,
+    "len": 3.17,
+    "elements": 4,
+    "build_s": 1.12,
+    "hold_s": 2.04
+   },
+   {
+    "start": 25.79,
+    "end": 27.54,
+    "len": 1.75,
+    "elements": 3,
+    "build_s": 0.79,
+    "hold_s": 0.96
+   },
+   {
+    "start": 27.54,
+    "end": 29.67,
+    "len": 2.12,
+    "elements": 2,
+    "build_s": 0.54,
+    "hold_s": 1.58
+   },
+   {
+    "start": 29.67,
+    "end": 32.67,
+    "len": 3.0,
+    "elements": 3,
+    "build_s": 0.75,
+    "hold_s": 2.25
+   },
+   {
+    "start": 32.67,
+    "end": 34.71,
+    "len": 2.04,
+    "elements": 3,
+    "build_s": 0.75,
+    "hold_s": 1.29
+   },
+   {
+    "start": 34.71,
+    "end": 37.88,
+    "len": 3.17,
+    "elements": 4,
+    "build_s": 1.21,
+    "hold_s": 1.96
+   },
+   {
+    "start": 37.88,
+    "end": 39.62,
+    "len": 1.75,
+    "elements": 3,
+    "build_s": 0.88,
+    "hold_s": 0.88
+   },
+   {
+    "start": 39.62,
+    "end": 41.79,
+    "len": 2.17,
+    "elements": 2,
+    "build_s": 0.62,
+    "hold_s": 1.54
+   },
+   {
+    "start": 41.79,
+    "end": 44.67,
+    "len": 2.88,
+    "elements": 3,
+    "build_s": 0.79,
+    "hold_s": 2.08
+   },
+   {
+    "start": 44.67,
+    "end": 46.75,
+    "len": 2.08,
+    "elements": 2,
+    "build_s": 0.58,
+    "hold_s": 1.5
+   },
+   {
+    "start": 46.75,
+    "end": 49.96,
+    "len": 3.21,
+    "elements": 4,
+    "build_s": 1.0,
+    "hold_s": 2.21
+   },
+   {
+    "start": 49.96,
+    "end": 51.67,
+    "len": 1.71,
+    "elements": 5,
+    "build_s": 1.46,
+    "hold_s": 0.25
+   },
+   {
+    "start": 51.67,
+    "end": 53.88,
+    "len": 2.21,
+    "elements": 3,
+    "build_s": 0.92,
+    "hold_s": 1.29
+   },
+   {
+    "start": 53.88,
+    "end": 56.75,
+    "len": 2.88,
+    "elements": 3,
+    "build_s": 0.88,
+    "hold_s": 2.0
+   },
+   {
+    "start": 56.75,
+    "end": 58.83,
+    "len": 2.08,
+    "elements": 3,
+    "build_s": 0.83,
+    "hold_s": 1.25
+   },
+   {
+    "start": 58.83,
+    "end": 62.04,
+    "len": 3.21,
+    "elements": 3,
+    "build_s": 0.92,
+    "hold_s": 2.29
+   },
+   {
+    "start": 62.04,
+    "end": 64.54,
+    "len": 2.5,
+    "elements": 3,
+    "build_s": 2.38,
+    "hold_s": 0.12
+   },
+   {
+    "start": 64.54,
+    "end": 65.71,
+    "len": 1.17,
+    "elements": 4,
+    "build_s": 1.04,
+    "hold_s": 0.12
+   },
+   {
+    "start": 65.71,
+    "end": 73.08,
+    "len": 7.37,
+    "elements": 4,
+    "build_s": 1.04,
+    "hold_s": 6.33
+   }
+  ],
+  "elements_per_scene": 3.17,
+  "build_s_median": 0.92,
+  "hold_s_median": 1.58,
+  "audio": {
+   "tempo_bpm": 99.4,
+   "beat_s": 0.6037,
+   "cuts_on_beat": 0.273,
+   "cuts_on_bar": 0.045,
+   "lufs": -12.2,
+   "rms_arc_db": [
+    -15.0,
+    -14.6,
+    -15.7
+   ]
+  }
+ },
+ {
+  "id": 7072,
+  "tier": "B",
+  "category": "تیزر تبلیغاتی",
+  "styleType": "story-reels",
+  "tags_music": {
+   "file": "assets/audio/7072.m4a",
+   "durationSec": 47.7,
+   "energy": "high",
+   "moodHint": "upbeat",
+   "meanRmsDb": -16.6,
+   "silencePct": 0
+  },
+  "duration_s": 47.71,
+  "fps": 24.0,
+  "w": 480,
+  "h": 270,
+  "ratio": "16x9",
+  "has_audio": false,
+  "cuts": [
+   0.5,
+   4.88,
+   9.71,
+   14.46,
+   15.12,
+   19.38,
+   20.04,
+   24.29,
+   24.96,
+   29.33,
+   30.0,
+   34.42,
+   35.29,
+   39.67,
+   40.54
+  ],
+  "n_scenes": 16,
+  "shot_mean_s": 2.98,
+  "shot_median_s": 4.25,
+  "cuts_per_10s": 3.14,
+  "energy_thirds": [
+   3.63,
+   3.88,
+   2.52
+  ],
+  "energy_ratio": [
+   1.08,
+   1.16,
+   0.75
+  ],
+  "scenes": [
+   {
+    "start": 0.0,
+    "end": 0.5,
+    "len": 0.5,
+    "elements": 1,
+    "build_s": 0.42,
+    "hold_s": 0.08
+   },
+   {
+    "start": 0.5,
+    "end": 4.88,
+    "len": 4.38,
+    "elements": 5,
+    "build_s": 4.29,
+    "hold_s": 0.08
+   },
+   {
+    "start": 4.88,
+    "end": 9.71,
+    "len": 4.83,
+    "elements": 5,
+    "build_s": 4.75,
+    "hold_s": 0.08
+   },
+   {
+    "start": 9.71,
+    "end": 14.46,
+    "len": 4.75,
+    "elements": 6,
+    "build_s": 3.12,
+    "hold_s": 1.62
+   },
+   {
+    "start": 14.46,
+    "end": 15.12,
+    "len": 0.67,
+    "elements": 2,
+    "build_s": 0.54,
+    "hold_s": 0.12
+   },
+   {
+    "start": 15.12,
+    "end": 19.38,
+    "len": 4.25,
+    "elements": 6,
+    "build_s": 2.88,
+    "hold_s": 1.38
+   },
+   {
+    "start": 19.38,
+    "end": 20.04,
+    "len": 0.67,
+    "elements": 2,
+    "build_s": 0.46,
+    "hold_s": 0.21
+   },
+   {
+    "start": 20.04,
+    "end": 24.29,
+    "len": 4.25,
+    "elements": 6,
+    "build_s": 2.62,
+    "hold_s": 1.62
+   },
+   {
+    "start": 24.29,
+    "end": 24.96,
+    "len": 0.67,
+    "elements": 2,
+    "build_s": 0.42,
+    "hold_s": 0.25
+   },
+   {
+    "start": 24.96,
+    "end": 29.33,
+    "len": 4.38,
+    "elements": 7,
+    "build_s": 4.29,
+    "hold_s": 0.08
+   },
+   {
+    "start": 29.33,
+    "end": 30.0,
+    "len": 0.67,
+    "elements": 2,
+    "build_s": 0.58,
+    "hold_s": 0.08
+   },
+   {
+    "start": 30.0,
+    "end": 34.42,
+    "len": 4.42,
+    "elements": 6,
+    "build_s": 4.25,
+    "hold_s": 0.17
+   },
+   {
+    "start": 34.42,
+    "end": 35.29,
+    "len": 0.88,
+    "elements": 3,
+    "build_s": 0.79,
+    "hold_s": 0.08
+   },
+   {
+    "start": 35.29,
+    "end": 39.67,
+    "len": 4.38,
+    "elements": 4,
+    "build_s": 4.29,
+    "hold_s": 0.08
+   },
+   {
+    "start": 39.67,
+    "end": 40.54,
+    "len": 0.88,
+    "elements": 3,
+    "build_s": 0.79,
+    "hold_s": 0.08
+   },
+   {
+    "start": 40.54,
+    "end": 47.71,
+    "len": 7.17,
+    "elements": 8,
+    "build_s": 6.29,
+    "hold_s": 0.88
+   }
+  ],
+  "elements_per_scene": 4.25,
+  "build_s_median": 2.75,
+  "hold_s_median": 0.1,
+  "audio": {
+   "tempo_bpm": 136.0,
+   "beat_s": 0.4412,
+   "cuts_on_beat": 0.2,
+   "cuts_on_bar": 0.067,
+   "lufs": -12.9,
+   "rms_arc_db": [
+    -15.2,
+    -15.4,
+    -15.0
+   ]
+  }
+ },
+ {
+  "id": 7093,
+  "tier": "A",
+  "category": "تیزر تبلیغاتی",
+  "styleType": "promo-teaser",
+  "tags_music": {
+   "file": "assets/audio/7093.m4a",
+   "durationSec": 30.3,
+   "energy": "high",
+   "moodHint": "energetic",
+   "meanRmsDb": -14.6,
+   "silencePct": 13
+  },
+  "duration_s": 30.33,
+  "fps": 24.0,
+  "w": 480,
+  "h": 270,
+  "ratio": "16x9",
+  "has_audio": false,
+  "cuts": [
+   3.42,
+   4.33,
+   7.5,
+   11.42,
+   15.67,
+   20.29,
+   21.29,
+   24.79,
+   26.58
+  ],
+  "n_scenes": 10,
+  "shot_mean_s": 3.03,
+  "shot_median_s": 3.46,
+  "cuts_per_10s": 2.97,
+  "energy_thirds": [
+   2.94,
+   3.3,
+   4.02
+  ],
+  "energy_ratio": [
+   0.86,
+   0.96,
+   1.17
+  ],
+  "scenes": [
+   {
+    "start": 0.0,
+    "end": 3.42,
+    "len": 3.42,
+    "elements": 3,
+    "build_s": 3.25,
+    "hold_s": 0.17
+   },
+   {
+    "start": 3.42,
+    "end": 4.33,
+    "len": 0.92,
+    "elements": 3,
+    "build_s": 0.83,
+    "hold_s": 0.08
+   },
+   {
+    "start": 4.33,
+    "end": 7.5,
+    "len": 3.17,
+    "elements": 6,
+    "build_s": 3.08,
+    "hold_s": 0.08
+   },
+   {
+    "start": 7.5,
+    "end": 11.42,
+    "len": 3.92,
+    "elements": 5,
+    "build_s": 1.42,
+    "hold_s": 2.5
+   },
+   {
+    "start": 11.42,
+    "end": 15.67,
+    "len": 4.25,
+    "elements": 5,
+    "build_s": 1.46,
+    "hold_s": 2.79
+   },
+   {
+    "start": 15.67,
+    "end": 20.29,
+    "len": 4.63,
+    "elements": 4,
+    "build_s": 4.42,
+    "hold_s": 0.21
+   },
+   {
+    "start": 20.29,
+    "end": 21.29,
+    "len": 1.0,
+    "elements": 3,
+    "build_s": 0.79,
+    "hold_s": 0.21
+   },
+   {
+    "start": 21.29,
+    "end": 24.79,
+    "len": 3.5,
+    "elements": 3,
+    "build_s": 3.42,
+    "hold_s": 0.08
+   },
+   {
+    "start": 24.79,
+    "end": 26.58,
+    "len": 1.79,
+    "elements": 5,
+    "build_s": 1.62,
+    "hold_s": 0.17
+   },
+   {
+    "start": 26.58,
+    "end": 30.33,
+    "len": 3.75,
+    "elements": 4,
+    "build_s": 1.17,
+    "hold_s": 2.58
+   }
+  ],
+  "elements_per_scene": 4.1,
+  "build_s_median": 1.54,
+  "hold_s_median": 0.19,
+  "audio": {
+   "tempo_bpm": 95.7,
+   "beat_s": 0.6269,
+   "cuts_on_beat": 0.222,
+   "cuts_on_bar": 0.111,
+   "lufs": -8.5,
+   "rms_arc_db": [
+    -12.7,
+    -11.3,
+    -13.0
+   ]
+  }
+ },
+ {
+  "id": 7097,
+  "tier": "A",
+  "category": "استوری اینستاگرام",
+  "styleType": "story-reels",
+  "tags_music": {
+   "file": "assets/audio/7097.m4a",
+   "durationSec": 24.2,
+   "energy": "high",
+   "moodHint": "upbeat",
+   "meanRmsDb": -17.4,
+   "silencePct": 0
+  },
+  "duration_s": 24.25,
+  "fps": 24.0,
+  "w": 480,
+  "h": 854,
+  "ratio": "9x16",
+  "has_audio": false,
+  "cuts": [
+   4.21,
+   6.54,
+   19.17,
+   21.21
+  ],
+  "n_scenes": 5,
+  "shot_mean_s": 4.85,
+  "shot_median_s": 3.04,
+  "cuts_per_10s": 1.65,
+  "energy_thirds": [
+   6.32,
+   6.59,
+   6.22
+  ],
+  "energy_ratio": [
+   0.99,
+   1.03,
+   0.98
+  ],
+  "scenes": [
+   {
+    "start": 0.0,
+    "end": 4.21,
+    "len": 4.21,
+    "elements": 6,
+    "build_s": 4.08,
+    "hold_s": 0.12
+   },
+   {
+    "start": 4.21,
+    "end": 6.54,
+    "len": 2.33,
+    "elements": 3,
+    "build_s": 2.21,
+    "hold_s": 0.12
+   },
+   {
+    "start": 6.54,
+    "end": 19.17,
+    "len": 12.62,
+    "elements": 18,
+    "build_s": 12.38,
+    "hold_s": 0.25
+   },
+   {
+    "start": 19.17,
+    "end": 21.21,
+    "len": 2.04,
+    "elements": 4,
+    "build_s": 1.08,
+    "hold_s": 0.96
+   },
+   {
+    "start": 21.21,
+    "end": 24.25,
+    "len": 3.04,
+    "elements": 2,
+    "build_s": 2.04,
+    "hold_s": 1.0
+   }
+  ],
+  "elements_per_scene": 6.6,
+  "build_s_median": 2.21,
+  "hold_s_median": 0.25,
+  "audio": {
+   "tempo_bpm": 136.0,
+   "beat_s": 0.4412,
+   "cuts_on_beat": 0.5,
+   "cuts_on_bar": 0.0,
+   "lufs": -12.5,
+   "rms_arc_db": [
+    -17.5,
+    -14.3,
+    -9.8
+   ]
+  }
+ },
+ {
+  "id": 7116,
+  "tier": "B",
+  "category": "استوری اینستاگرام",
+  "styleType": "story-reels",
+  "tags_music": {
+   "file": "assets/audio/7116.m4a",
+   "durationSec": 110,
+   "energy": "medium",
+   "moodHint": "dynamic",
+   "meanRmsDb": -18.3,
+   "silencePct": 0
+  },
+  "duration_s": 110.1,
+  "fps": 20.0,
+  "w": 400,
+  "h": 712,
+  "ratio": "9x16",
+  "has_audio": false,
+  "cuts": [
+   2.29,
+   6.54,
+   12.29,
+   25.21,
+   30.71,
+   36.71,
+   37.5,
+   42.58,
+   55.75,
+   56.38,
+   61.96,
+   68.25,
+   73.5,
+   74.42,
+   79.58,
+   80.58,
+   86.25,
+   92.58
+  ],
+  "n_scenes": 19,
+  "shot_mean_s": 5.79,
+  "shot_median_s": 5.5,
+  "cuts_per_10s": 1.63,
+  "energy_thirds": [
+   7.08,
+   7.8,
+   5.89
+  ],
+  "energy_ratio": [
+   1.02,
+   1.13,
+   0.85
+  ],
+  "scenes": [
+   {
+    "start": 0.0,
+    "end": 2.29,
+    "len": 2.29,
+    "elements": 3,
+    "build_s": 2.0,
+    "hold_s": 0.29
+   },
+   {
+    "start": 2.29,
+    "end": 6.54,
+    "len": 4.25,
+    "elements": 9,
+    "build_s": 4.0,
+    "hold_s": 0.25
+   },
+   {
+    "start": 6.54,
+    "end": 12.29,
+    "len": 5.75,
+    "elements": 7,
+    "build_s": 5.67,
+    "hold_s": 0.08
+   },
+   {
+    "start": 12.29,
+    "end": 25.21,
+    "len": 12.92,
+    "elements": 22,
+    "build_s": 12.79,
+    "hold_s": 0.12
+   },
+   {
+    "start": 25.21,
+    "end": 30.71,
+    "len": 5.5,
+    "elements": 8,
+    "build_s": 5.21,
+    "hold_s": 0.29
+   },
+   {
+    "start": 30.71,
+    "end": 36.71,
+    "len": 6.0,
+    "elements": 9,
+    "build_s": 5.71,
+    "hold_s": 0.29
+   },
+   {
+    "start": 36.71,
+    "end": 37.5,
+    "len": 0.79,
+    "elements": 3,
+    "build_s": 0.71,
+    "hold_s": 0.08
+   },
+   {
+    "start": 37.5,
+    "end": 42.58,
+    "len": 5.08,
+    "elements": 6,
+    "build_s": 5.0,
+    "hold_s": 0.08
+   },
+   {
+    "start": 42.58,
+    "end": 55.75,
+    "len": 13.17,
+    "elements": 22,
+    "build_s": 13.08,
+    "hold_s": 0.08
+   },
+   {
+    "start": 55.75,
+    "end": 56.38,
+    "len": 0.62,
+    "elements": 2,
+    "build_s": 0.46,
+    "hold_s": 0.17
+   },
+   {
+    "start": 56.38,
+    "end": 61.96,
+    "len": 5.58,
+    "elements": 8,
+    "build_s": 5.42,
+    "hold_s": 0.17
+   },
+   {
+    "start": 61.96,
+    "end": 68.25,
+    "len": 6.29,
+    "elements": 9,
+    "build_s": 6.21,
+    "hold_s": 0.08
+   },
+   {
+    "start": 68.25,
+    "end": 73.5,
+    "len": 5.25,
+    "elements": 6,
+    "build_s": 5.17,
+    "hold_s": 0.08
+   },
+   {
+    "start": 73.5,
+    "end": 74.42,
+    "len": 0.92,
+    "elements": 3,
+    "build_s": 0.79,
+    "hold_s": 0.12
+   },
+   {
+    "start": 74.42,
+    "end": 79.58,
+    "len": 5.17,
+    "elements": 6,
+    "build_s": 5.0,
+    "hold_s": 0.17
+   },
+   {
+    "start": 79.58,
+    "end": 80.58,
+    "len": 1.0,
+    "elements": 3,
+    "build_s": 0.71,
+    "hold_s": 0.29
+   },
+   {
+    "start": 80.58,
+    "end": 86.25,
+    "len": 5.67,
+    "elements": 9,
+    "build_s": 5.5,
+    "hold_s": 0.17
+   },
+   {
+    "start": 86.25,
+    "end": 92.58,
+    "len": 6.33,
+    "elements": 12,
+    "build_s": 6.17,
+    "hold_s": 0.17
+   },
+   {
+    "start": 92.58,
+    "end": 110.1,
+    "len": 17.52,
+    "elements": 16,
+    "build_s": 12.62,
+    "hold_s": 4.89
+   }
+  ],
+  "elements_per_scene": 8.58,
+  "build_s_median": 5.21,
+  "hold_s_median": 0.17,
+  "audio": {
+   "tempo_bpm": 80.7,
+   "beat_s": 0.743,
+   "cuts_on_beat": 0.444,
+   "cuts_on_bar": 0.111,
+   "lufs": -14.6,
+   "rms_arc_db": [
+    -16.0,
+    -18.2,
+    -16.2
+   ]
+  }
+ },
+ {
+  "id": 7125,
+  "tier": "A",
+  "category": "تیزر تبلیغاتی",
+  "styleType": "typography-motion",
+  "tags_music": {
+   "file": "assets/audio/7125.m4a",
+   "durationSec": 40,
+   "energy": "high",
+   "moodHint": "energetic",
+   "meanRmsDb": -14.3,
+   "silencePct": 23
+  },
+  "duration_s": 40.08,
+  "fps": 24.0,
+  "w": 480,
+  "h": 270,
+  "ratio": "16x9",
+  "has_audio": false,
+  "cuts": [
+   0.79,
+   7.21,
+   14.21,
+   21.29,
+   28.17,
+   34.62
+  ],
+  "n_scenes": 7,
+  "shot_mean_s": 5.73,
+  "shot_median_s": 6.46,
+  "cuts_per_10s": 1.5,
+  "energy_thirds": [
+   2.89,
+   2.27,
+   1.51
+  ],
+  "energy_ratio": [
+   1.3,
+   1.02,
+   0.68
+  ],
+  "scenes": [
+   {
+    "start": 0.0,
+    "end": 0.79,
+    "len": 0.79,
+    "elements": 3,
+    "build_s": 0.71,
+    "hold_s": 0.08
+   },
+   {
+    "start": 0.79,
+    "end": 7.21,
+    "len": 6.42,
+    "elements": 5,
+    "build_s": 6.33,
+    "hold_s": 0.08
+   },
+   {
+    "start": 7.21,
+    "end": 14.21,
+    "len": 7.0,
+    "elements": 8,
+    "build_s": 6.88,
+    "hold_s": 0.12
+   },
+   {
+    "start": 14.21,
+    "end": 21.29,
+    "len": 7.08,
+    "elements": 7,
+    "build_s": 6.96,
+    "hold_s": 0.12
+   },
+   {
+    "start": 21.29,
+    "end": 28.17,
+    "len": 6.88,
+    "elements": 7,
+    "build_s": 6.62,
+    "hold_s": 0.25
+   },
+   {
+    "start": 28.17,
+    "end": 34.62,
+    "len": 6.46,
+    "elements": 8,
+    "build_s": 6.37,
+    "hold_s": 0.08
+   },
+   {
+    "start": 34.62,
+    "end": 40.08,
+    "len": 5.45,
+    "elements": 2,
+    "build_s": 0.46,
+    "hold_s": 5.0
+   }
+  ],
+  "elements_per_scene": 5.71,
+  "build_s_median": 6.37,
+  "hold_s_median": 0.12,
+  "audio": {
+   "tempo_bpm": 136.0,
+   "beat_s": 0.4412,
+   "cuts_on_beat": 0.5,
+   "cuts_on_bar": 0.0,
+   "lufs": -10.7,
+   "rms_arc_db": [
+    -13.1,
+    -11.8,
+    -18.1
+   ]
+  }
+ },
+ {
+  "id": 7143,
+  "tier": "B",
+  "category": "اسلایدشو",
+  "styleType": "slideshow",
+  "tags_music": {
+   "file": "assets/audio/7143.m4a",
+   "durationSec": 87.4,
+   "energy": "high",
+   "moodHint": "upbeat",
+   "meanRmsDb": -17.9,
+   "silencePct": 0
+  },
+  "duration_s": 87.46,
+  "fps": 24.0,
+  "w": 480,
+  "h": 270,
+  "ratio": "16x9",
+  "has_audio": false,
+  "cuts": [
+   0.92,
+   76.92
+  ],
+  "n_scenes": 3,
+  "shot_mean_s": 29.15,
+  "shot_median_s": 10.54,
+  "cuts_per_10s": 0.23,
+  "energy_thirds": [
+   6.81,
+   7.22,
+   6.08
+  ],
+  "energy_ratio": [
+   1.02,
+   1.08,
+   0.91
+  ],
+  "scenes": [
+   {
+    "start": 0.0,
+    "end": 0.92,
+    "len": 0.92,
+    "elements": 2,
+    "build_s": 0.83,
+    "hold_s": 0.08
+   },
+   {
+    "start": 0.92,
+    "end": 76.92,
+    "len": 76.0,
+    "elements": 89,
+    "build_s": 75.92,
+    "hold_s": 0.08
+   },
+   {
+    "start": 76.92,
+    "end": 87.46,
+    "len": 10.54,
+    "elements": 2,
+    "build_s": 0.5,
+    "hold_s": 10.04
+   }
+  ],
+  "elements_per_scene": 31.0,
+  "build_s_median": 0.83,
+  "hold_s_median": 0.08,
+  "audio": {
+   "tempo_bpm": 107.7,
+   "beat_s": 0.5573,
+   "cuts_on_beat": 0.0,
+   "cuts_on_bar": 0.0,
+   "lufs": -10.4,
+   "rms_arc_db": [
+    -15.6,
+    -16.1,
+    -15.1
+   ]
+  }
+ }
+]

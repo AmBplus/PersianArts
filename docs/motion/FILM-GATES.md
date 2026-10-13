@@ -43,3 +43,8 @@ html-film applicability (2.2, lane default): edge-touch, empty-band, dead-frames
 | Peer logos | equal height/weight, one row, same baseline/spacing, real assets | manual (QC with stills) | manual |
 | One world | finale shares palette, background family, typography | manual (QC with strip) | manual |
 | Compressed delivery | `pa deliver` / `pa compress` (SSIM guard, tv_check pass) | exists: work/persian/tools/deliver/compress.mjs | automated |
+
+### Pacing (advisory, 2.6)
+| Gate | Check | Evidence | Status |
+|---|---|---|---|
+| Pacing (advisory) | `pa pacing <final.mp4> --profile ...`: shot length, cuts/10 s, build/hold, cuts on beat/bar, energy arc vs the p25..p75 of 38 references; scores inform, never block | exists: work/persian/tools/pacing/pacing.py | advisory |
