@@ -46,3 +46,70 @@ work/persian/src/workbench/demosrc
 # local-only reference renders of upstream code (never published)
 library/media/reference/
 library/data/entry-media.reference.json
+
+# audio library (sound/library, media/sfx, media/music-pixabay): binaries are git-ignored; sidecars (*.json), indexes and docs stay trackable
+sound/library/**/*.mp3
+sound/library/**/*.ogg
+sound/library/**/*.wav
+sound/library/**/*.flac
+sound/library/**/*.m4a
+sound/library/**/*.zip
+media/sfx/**/*.mp3
+media/sfx/**/*.ogg
+media/sfx/**/*.wav
+media/sfx/**/*.flac
+media/sfx/**/*.m4a
+media/sfx/**/*.zip
+media/music-pixabay/**/*.mp3
+media/music-pixabay/**/*.ogg
+media/music-pixabay/**/*.wav
+media/music-pixabay/**/*.flac
+media/music-pixabay/**/*.m4a
+media/music-pixabay/**/*.zip
+
+# Jamendo API client_id (local only)
+work/persian/.jamendo.env
+
+# Freesound API credentials (local only)
+work/persian/.freesound.env
+
+# Python venv for sound analysis (sound/tools/music_map.py)
+sound/.venv/
+
+# staged audio/archive binaries and local film renders (sidecars *.json, *.md, *.txt stay trackable)
+media/music-staging/**/*.mp3
+media/music-staging/**/*.ogg
+media/music-staging/**/*.wav
+media/music-staging/**/*.flac
+media/music-staging/**/*.m4a
+media/music-staging/**/*.zip
+media/film-v2-local/**/*.mp3
+media/film-v2-local/**/*.ogg
+media/film-v2-local/**/*.wav
+media/film-v2-local/**/*.flac
+media/film-v2-local/**/*.m4a
+media/film-v2-local/**/*.zip
+media/film-v2-local/**/*.mp4
+
+# film versions: every new render/mix goes to media/film-versions/<film>/<version>/ (see media/film-versions/README.md)
+# Whole version folders are ignored (mp4/jpg/wav/json/txt alike) so test versions never enter git; only the README is tracked.
+# Promoting a version to git is a manual, later decision (git add -f or a rule change).
+media/film-versions/**
+!media/film-versions/README.md
+media/film-v2-local/**/*.mov
+media/film-v2-local/**/*.webm
+media/film-v2-local/**/*.jpg
+media/film-v2-local/**/*.png
+
+media/briefs-local/**
+work/persian/src/workbench/public/uni-local/
+
+# client/institution confidential terms (local only)
+contracts/confidential-terms.local.txt
+
+# local tool state and generated artifacts (added by architecture/scan worker)
+.mimosa/
+.playwright-mcp/
+work/persian/_bench/bundle/
+media/_contact_sheets/
+.remotion/

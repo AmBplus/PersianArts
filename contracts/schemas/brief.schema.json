@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "contracts/schemas/brief.schema.json",
+  "title": "brief (JSON form of a film brief; the human text lives in brief.md next to it)",
+  "type": "object",
+  "required": ["slug", "title", "intent", "language", "ratios", "duration_s"],
+  "additionalProperties": false,
+  "properties": {
+    "slug": {"type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"},
+    "title": {"type": "string", "minLength": 1},
+    "intent": {"type": "string", "minLength": 1},
+    "audience": {"type": "string"},
+    "language": {"enum": ["fa", "en", "mixed"]},
+    "ratios": {"type": "array", "minItems": 1, "items": {"enum": ["9x16", "4x5", "1x1", "16x9"]}},
+    "duration_s": {"type": "number", "minimum": 1},
+    "tone": {"type": "string"},
+    "must_have": {"type": "array", "items": {"type": "string"}},
+    "must_not": {"type": "array", "items": {"type": "string"}},
+    "confidential": {"type": "boolean"},
+    "owner_approved": {"type": "boolean"}
+  }
+}

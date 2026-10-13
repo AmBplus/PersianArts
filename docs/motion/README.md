@@ -40,3 +40,7 @@ A Persian motion-graphics engine: Remotion (React, Chrome renders) scenes with P
 4. Run `qh orders` to see what workers are doing.
 5. Confirm repo state with `git status` (worker or lead, read-only).
 6. Then take the user's task. Build with `PLAYBOOK-BUILD-MOTION.md`.
+
+- Architecture (folder tree, dependency rules, commands, RACI): [ARCHITECTURE.md](ARCHITECTURE.md); decision record: [adr/0001-architecture-option-c.md](adr/0001-architecture-option-c.md)
+
+- Daily reports (summary and detail per day, index): [reports/README.md](reports/README.md)

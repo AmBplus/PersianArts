@@ -1,0 +1,25 @@
+{
+  "slug": "pencil-social",
+  "title": "Pencil social cut",
+  "status": "active",
+  "ratios": ["9x16", "4x5", "1x1", "16x9"],
+  "fps": 30,
+  "duration_s": 19.712,
+  "bpm": 124,
+  "t0_s": 0.24283,
+  "track": null,
+  "scenes": [
+    {"id": "social-scenes", "file": "work/persian/src/film/social/scenes.tsx"}
+  ],
+  "copy_tokens_source": null,
+  "assets": {
+    "theme": "work/persian/src/film/social/theme.ts",
+    "fonts": ["work/persian/src/film/social/fonts.tsx"],
+    "images": [],
+    "sounds": [],
+    "licences": []
+  },
+  "cues": "media/film-versions/pencil-social/v51-cues/cues-9x16-v51.json",
+  "versions": "media/film-versions/pencil-social/",
+  "notes": "Written from work/persian/src/film/social (FPS 30, LAYOUT sizes, render command -Bpm 124 -T0 0.24283) and the v51 verify.json (duration 19.712 s). Recheck duration against DURATION_FRAMES; sounds and licences are filled in by the M5 order."
+}

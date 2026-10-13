@@ -20,6 +20,10 @@ Evidence: `work/persian/render-speed-brief.md` (sections 2 to 5) and raw data `w
 
 Output-format notes: `--pixel-format=yuv420p` does not force tv range (`render_all.md`). Remotion's output is not bit-identical across runs; treat SSIM at or above 0.9997 as noise.
 
+| Silent cache for audio-only change (ledger batch 2026-10-13) | render-report cache hit 0.5 s and 0.82 s total vs cold miss 36.6 s and 38.2 s (`media/film-versions/pencil-social/_render-all-test`, `_bench-5`, `quality-check/cold1`, `cold2`) | default (automatic) |
+| Bundle once, four ratios in parallel (ledger batch 2026-10-13) | `_bench-4` four ratios concurrency 2: 30.8 s total incl. bundle 2.3 s; sequential brief 58.6 s | `-Concurrency 2` |
+| Single render at concurrency 9 (ledger batch 2026-10-13) | brief: 19.7 s mean baseline (conc 4) to 15.2 s at conc 9 | `--concurrency 9` |
+
 ## 2. Measured useless or rejected items
 
 | Item | Result | Evidence |
@@ -35,6 +39,10 @@ Output-format notes: `--pixel-format=yuv420p` does not force tv range (`render_a
 | Chrome for Testing (instead of headless shell) | about 3x slower in a maintainer's report (7.1 vs 21.5 min at concurrency 3). Not measured on this machine. | `browser-alternatives-brief.md` section 1; issue remotion-dev/remotion#4955 |
 | 20 to 40 parallel renders | counter-productive; Chrome page renderers are the bottleneck. Not measured here. | `render-scale-research-brief.md` section 4 |
 | Other engines (Revideo, Motion Canvas, Skottie, resvg, Doory, OpenMontage, lunasvg) | none can shape Persian as the browser does; Doory has no render path | `browser-alternatives-brief.md`, `doory-brief.md`, `openmontage-brief.md`, `render-scale-research-brief.md` section 5 |
+
+| WebP assets (ledger batch 2026-10-13) | not useful for current films (no raster in use); lossy SSIM 0.948-0.985 fails; lossless 0.70-0.76 of PNG size at SSIM 1.0, only if rasters appear | `media/film-versions/_bench/exp1/webp` |
+| JPEG frame format (ledger batch 2026-10-13) | about 20 percent faster but q95 SSIM 0.99917 vs threshold 0.999576 (fails); keep PNG | `media/film-versions/_bench/exp2` |
+| WebP frame format (ledger batch 2026-10-13) | not a Remotion 4.0.484 frame format (jpeg, png, none); keep PNG | Remotion 4.0.484 options |
 
 ## 3. Timings table (measured, Social9x16 unless stated)
 
@@ -81,3 +89,8 @@ Use these as planning numbers: one 18 s film at 9:16 is about 15 to 20 s; four r
 1. Throughput curve: 8 films, one shared browser, page cap in {4, 6, 8, 10, 12}; record films per minute, peak RAM, timeouts and duplicate frames.
 2. Speed and quality knobs: jpeg 80 vs 90 vs png, scale 1.0 vs 0.5, measured SSIM against a png reference at scale 1.0.
 3. Audio-only reuse: render silent once, then `ffmpeg -c:v copy` for audio changes; check duration and sync.
+
+## 6b. Open items added 2026-10-13 (ledger batch)
+- First-frame warm-up: measure first-frame cost against warm render; no data yet.
+- Scene-cost audit: per-scene render cost; no data yet.
+- Shared browser plus page-cap queue: see item 1 above; no data yet.

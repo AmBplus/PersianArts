@@ -1,0 +1,65 @@
+{
+  "film": "pencil-social",
+  "version": "v51-lnplus-597024",
+  "date": "2026-10-13",
+  "source_commit": "unknown",
+  "bpm": 110,
+  "t0_s": 0.02722,
+  "track": {
+    "slug": "lnplusmusic-background-background-music-597024",
+    "path": "media/music-staging/owner/lnplusmusic-background-background-music-597024.mp3",
+    "t0_s": 0.02722
+  },
+  "cues_file": "media/film-versions/pencil-social/v51-cues/cues-9x16-v51.json",
+  "ratios": ["9x16"],
+  "outputs": [
+    {
+      "file": "silent.mp4",
+      "kind": "silent",
+      "ratio": "9x16",
+      "width": 1080,
+      "height": 1920,
+      "pix_fmt": "yuv420p",
+      "color_range": "tv",
+      "fps": 30,
+      "duration_s": 19.667,
+      "nb_frames": 590,
+      "size_bytes": 3453291,
+      "sha256": "cf368f0888426810d4f05f6430fda2fffde0ca21e1da0320ae735d36a22d0e46"
+    },
+    {
+      "file": "social-9x16-v51-lnplus-597024.mp4",
+      "kind": "mixed",
+      "ratio": "9x16",
+      "width": 1080,
+      "height": 1920,
+      "pix_fmt": "yuv420p",
+      "color_range": "tv",
+      "fps": 30,
+      "duration_s": 19.667,
+      "size_bytes": 3946229,
+      "sha256": "e6a4eb1202fed615dfb5db04de89edfcb8979279c652886ebf4e0b5841da0c3b"
+    }
+  ],
+  "verify": {
+    "integrated_lufs": -14.1,
+    "true_peak_dbtp": -2.4,
+    "film_dur_s": 19.712,
+    "file_dur_s": 19.667,
+    "cues_total": 48,
+    "file": "verify.json"
+  },
+  "status": "test",
+  "promoted": false,
+  "owner_score": null,
+  "notes": "Personal test only. v5.1 fix round. Bed -18 LUFS, ducking -3 dB 150 ms, final -14 LUFS TP -1.5, exp tails. CTA: copy B advanced 0.239 s so downbeat = settle; crossfade 80 ms at 15.467 s. silent.mp4 was copied from v5 (not re-rendered); source_commit unknown because the original VERSION.json did not record it.",
+  "render_report": null,
+  "render_txt": "render.txt",
+  "legacy_fields": {
+    "BPM": 110.0,
+    "T0_S": 0.02722,
+    "track_t0_s": 0.02722,
+    "silent_render": "silent.mp4 (copied from v5, not re-rendered)",
+    "original_file": "social-9x16-v51-lnplus-597024.mp4"
+  }
+}

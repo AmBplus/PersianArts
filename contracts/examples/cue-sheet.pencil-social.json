@@ -1,0 +1,19 @@
+{
+  "film": "pencil-social",
+  "version": "v51-lnplus-597024",
+  "bpm": 110,
+  "t0_s": 0.02722,
+  "cues": [
+    {
+      "id": "pencil-social.c01",
+      "role": "hit",
+      "beat": 0,
+      "file": "sound/library/sfx/freesound/paper-pencil/809915-pencil-aggressive-inwards.mp3",
+      "gain_db": -10.3,
+      "trim_s": 0,
+      "fade_in_s": 0,
+      "fade_out_s": 0.06,
+      "event": "HOOK scribble draws in, ends at stamp contact"
+    }
+  ]
+}

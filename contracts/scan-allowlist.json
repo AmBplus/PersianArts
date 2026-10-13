@@ -1,0 +1,52 @@
+{
+  "_comment": "Reviewed scan exceptions. Path + optional line + classes + reason. A path ending in '/' covers the whole folder. Never put a confidential term in this file.",
+  "entries": [
+    {
+      "path": "media/dana/",
+      "classes": ["confidential"],
+      "reason": "legacy client folder, tracked before this scan existed; owner decision pending (keep, untrack or move). Not modified by the scan worker."
+    },
+    {
+      "path": "skills/anidoodle/engine/tools/scaffold.mjs",
+      "line": 151,
+      "classes": ["confidential"],
+      "reason": "third-party plugin (anidoodle) code comment about shading technique; generic words collide with a term after compaction (false positive). File not edited."
+    },
+    {
+      "path": "plugins/anidoodle/skills/anidoodle/engine/tools/scaffold.mjs",
+      "line": 151,
+      "classes": ["confidential"],
+      "reason": "same third-party comment as the skills copy (false positive). File not edited."
+    },
+    {
+      "path": "skills/anidoodle/engine/src/canvas-core/character/render/pencil.ts",
+      "line": 2,
+      "classes": ["confidential"],
+      "reason": "third-party plugin (anidoodle) comment about pencil passes; generic words collide with a term after compaction (false positive). File not edited."
+    },
+    {
+      "path": "plugins/anidoodle/skills/anidoodle/engine/src/canvas-core/character/render/pencil.ts",
+      "line": 2,
+      "classes": ["confidential"],
+      "reason": "same third-party comment as the skills copy (false positive). File not edited."
+    },
+    {
+      "path": "work/persian/tools/cues/make_cues_v51.py",
+      "line": 10,
+      "classes": ["secrets"],
+      "reason": "long repository-relative media path value, not a credential (false positive for env-long-value)."
+    },
+    {
+      "path": "work/persian/tools/cues/make_cues_v51.py",
+      "line": 11,
+      "classes": ["secrets"],
+      "reason": "long repository-relative media path value, not a credential (false positive for env-long-value)."
+    },
+    {
+      "path": "work/persian/tools/cues/make_cues_v51.py",
+      "line": 12,
+      "classes": ["secrets"],
+      "reason": "long repository-relative sound library path value, not a credential (false positive for env-long-value)."
+    }
+  ]
+}

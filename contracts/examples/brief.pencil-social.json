@@ -1,0 +1,14 @@
+{
+  "slug": "pencil-social",
+  "title": "Pencil social cut",
+  "intent": "Short social film in which a drawn pencil leads the picture and the music beat sets the cuts. Intent inferred from the film code; the owner confirms.",
+  "audience": "general social viewers",
+  "language": "fa",
+  "ratios": ["9x16", "4x5", "1x1", "16x9"],
+  "duration_s": 19.7,
+  "tone": "playful, hand-drawn",
+  "must_have": ["on-screen Persian text stays literal (no per-character split)"],
+  "must_not": ["no client or institution names in tracked files"],
+  "confidential": false,
+  "owner_approved": false
+}
