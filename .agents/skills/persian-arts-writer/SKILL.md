@@ -1,0 +1,32 @@
+---
+name: persian-arts-writer
+description: INTERNAL craft skill of the persian-arts orchestrator (motion-copy writer for 5-120 s films). Invoked only by the persian-arts TODO step "writer"; never auto-trigger for general requests.
+---
+
+<!-- GENERATED from .claude/skills/persian-arts-writer/SKILL.md by scripts/sync-persian-arts-skill.mjs. Do not edit; run the script. -->
+Invocation in Codex: $persian-arts-writer  (Claude Code: /persian-arts-writer or the Skill tool)
+
+# persian-arts-writer (internal)
+
+## When called
+TODO step `writer`, after the director package is locked. Also when QC or the owner rejects wording.
+
+## Reads (goal memory first)
+`goal-memory.md` (GOAL, THROUGH-LINE, CONSTRAINTS, OWNER FEEDBACK, REJECTED), `director-package.json` (scenes, `goal_trace`), verified source facts in the brief (`mustSay`, `mustNotSay`), `docs/PERSIAN-LOCALIZATION-LESSONS.md` (idiomatic copy).
+
+## Decides
+The exact on-screen microcopy per scene and the CTA text; which claim each line carries; what is cut to fit the reading budget.
+
+## Delivers
+A copy map (`copy-map.json` or the project's copy tokens file): token id -> Persian text, scene, claim source, char count, reading seconds. Marked "not reviewed by a native reader" unless the owner approved it.
+
+## CRITICAL rules (motion graphics)
+1. Microcopy, not prose: the viewer reads while things move. Reading budget: chars / 9 + 1 seconds on screen; if the scene is shorter, cut words, never speed.
+2. Natural idiomatic Persian written in Persian, never translated word by word from English or Chinese demo text.
+3. Claims only from verified source; no invented numbers, rankings, dates or promises. A claim without a source is removed.
+4. Every line has a goal trace (claim or desiredAction); the last scene holds the CTA and address exactly as given.
+5. One idea per scene: at most one hero number or phrase plus one caption; numbers stay figures.
+6. The client's real name never enters tracked files; use the label.
+
+## Appends to goal memory
+DECISIONS (wording choices with the rejected phrasing); CONSTRAINTS (claims confirmed verified or forbidden); REJECTED phrasings.

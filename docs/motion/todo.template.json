@@ -1,0 +1,307 @@
+{
+  "$comment": "TODO template for a 30 s film. Copy to media/briefs-local/<label>/todo.json, replace <label>, set time boxes by film length (STUDIO.md section 4). class M = mechanical (haiku, 5-line context header, returns numbers); class S = semantic (sonnet persistent cast member, reads and appends goal memory). Protocol: docs/motion/GOAL-MEMORY.md. Craft skills: .claude/skills/<craft>/SKILL.md. DEFAULT mode single-agent: one persistent STUDIO agent (Sonnet, SendMessage) wears every craft hat by reading the craft skills in sequence; QC is always a separate fresh Sonnet; Haiku does class M and returns numbers; an Opus ADVISOR is on call (docs/motion/ADVISOR.md, advisor field per step). Mode cast (Director/Builder/QC as separate agents) only for large films. Cache order is stable-first: craft skills, then goal memory, then this TODO, all append-only.",
+  "label": "<label>",
+  "mode": "single-agent",
+  "modes": [
+    "single-agent",
+    "cast"
+  ],
+  "memory": "media/briefs-local/<label>/memory/goal-memory.md",
+  "agents": {
+    "studio": "sonnet, named persistent, continued with SendMessage; wears all craft hats",
+    "qc": "sonnet, independent, fresh per review",
+    "haiku": "mechanical jobs, returns numbers only",
+    "advisor": "opus, on call only, max 3 consults per film, see docs/motion/ADVISOR.md"
+  },
+  "cast_mode_agents": {
+    "Director": "sonnet",
+    "Builder": "sonnet",
+    "QC": "sonnet (fresh, independent)",
+    "Scribe": "haiku"
+  },
+  "steps": [
+    {
+      "id": "intake",
+      "craft": null,
+      "class": "S",
+      "executor": "lead (orchestrator)",
+      "inputs": [
+        "user message",
+        "docs/motion/INTAKE.md"
+      ],
+      "outputs": [
+        "media/briefs-local/<label>/brief.json"
+      ],
+      "gate": "brief validates against brief.schema.json; goal filled",
+      "timebox_min": 3,
+      "advisor": "none"
+    },
+    {
+      "id": "memory-init",
+      "craft": null,
+      "class": "M",
+      "executor": "haiku (Scribe)",
+      "inputs": [
+        "brief.json",
+        "docs/motion/goal-memory.template.md"
+      ],
+      "outputs": [
+        "media/briefs-local/<label>/memory/goal-memory.md"
+      ],
+      "gate": "all 8 sections present; GOAL and CONSTRAINTS filled from the brief",
+      "timebox_min": 2,
+      "advisor": "none"
+    },
+    {
+      "id": "director",
+      "craft": "persian-arts-director",
+      "class": "S",
+      "executor": "studio (single-agent)",
+      "inputs": [
+        "goal-memory.md",
+        "brief.json",
+        "recipes/catalog.json"
+      ],
+      "outputs": [
+        "director-package.json",
+        "plan in docs/motion/plans/"
+      ],
+      "gate": "G1: schema valid; every scene has goal_trace and a non-cut transition_logic",
+      "timebox_min": 6,
+      "cast_executor": "sonnet (Director)",
+      "cast_role": "Director",
+      "advisor": "optional (concept lock: only if torn between two strong directions)"
+    },
+    {
+      "id": "writer",
+      "craft": "persian-arts-writer",
+      "class": "S",
+      "executor": "studio (single-agent)",
+      "inputs": [
+        "goal-memory.md",
+        "director-package.json"
+      ],
+      "outputs": [
+        "copy-map.json"
+      ],
+      "gate": "every token has a source claim and reading seconds within scene length",
+      "timebox_min": 4,
+      "cast_executor": "sonnet (Director)",
+      "cast_role": "Director",
+      "advisor": "none"
+    },
+    {
+      "id": "copy-editor",
+      "craft": "persian-arts-copy-editor",
+      "class": "S",
+      "executor": "studio (single-agent)",
+      "inputs": [
+        "goal-memory.md",
+        "copy-map.json"
+      ],
+      "outputs": [
+        "copy-map.json (edited)",
+        "copy change list"
+      ],
+      "gate": "LTR runs isolated, no Arabic ي/ك, ZWNJ checked, terminology consistent",
+      "timebox_min": 3,
+      "cast_executor": "sonnet (Director)",
+      "cast_role": "Director",
+      "advisor": "none"
+    },
+    {
+      "id": "art-director",
+      "craft": "persian-arts-art-director",
+      "class": "S",
+      "executor": "studio (single-agent)",
+      "inputs": [
+        "goal-memory.md",
+        "director-package.json",
+        "copy-map.json",
+        "recipes/catalog.json"
+      ],
+      "outputs": [
+        "styleframes/ (3-4 per ratio)",
+        "art table"
+      ],
+      "gate": "G2: scenes visibly different; hero and empty-zone numbers within FILM-GATES",
+      "timebox_min": 6,
+      "cast_executor": "sonnet (Director)",
+      "cast_role": "Director",
+      "advisor": "none"
+    },
+    {
+      "id": "animatic",
+      "craft": "persian-arts-motion-editor",
+      "class": "S",
+      "executor": "studio (single-agent)",
+      "inputs": [
+        "goal-memory.md",
+        "director-package.json",
+        "styleframes/"
+      ],
+      "outputs": [
+        "animatic review verdict",
+        "duration change notes"
+      ],
+      "gate": "G3: silent viewer can retell; every cut has a visual cause; no dead frames",
+      "timebox_min": 5,
+      "cast_executor": "sonnet (Director)",
+      "cast_role": "Director",
+      "advisor": "none"
+    },
+    {
+      "id": "g3-check",
+      "craft": null,
+      "class": "M",
+      "executor": "haiku",
+      "inputs": [
+        "director-package.json",
+        "docs/motion/FILM-GATES.md"
+      ],
+      "outputs": [
+        "gate numbers in report"
+      ],
+      "gate": "node work/persian/tools/film-process-gates.mjs structural passes; unknown/not-run listed as blocking",
+      "timebox_min": 2,
+      "advisor": "none"
+    },
+    {
+      "id": "build",
+      "craft": "persian-arts-technical",
+      "class": "S",
+      "executor": "studio (single-agent)",
+      "inputs": [
+        "goal-memory.md",
+        "locked package",
+        "copy-map.json",
+        "art table"
+      ],
+      "outputs": [
+        "scene code",
+        "events.json",
+        "reuse map in plan"
+      ],
+      "gate": "reuse map filled; one easing module; events.json generated from package",
+      "timebox_min": 15,
+      "cast_executor": "sonnet (Builder); GLM/Sol per CLAUDE.md routing",
+      "cast_role": "Builder",
+      "advisor": "none"
+    },
+    {
+      "id": "motion-fixes",
+      "craft": "persian-arts-motion-designer",
+      "class": "S",
+      "executor": "studio (single-agent)",
+      "inputs": [
+        "goal-memory.md",
+        "first render stills",
+        "package events"
+      ],
+      "outputs": [
+        "motion spec",
+        "param/code fixes"
+      ],
+      "gate": "main action, easing, event frames per scene; no dead frames at cuts",
+      "timebox_min": 6,
+      "cast_executor": "sonnet (Builder)",
+      "cast_role": "Builder",
+      "advisor": "optional (after two failed fix rounds on the same defect)"
+    },
+    {
+      "id": "render",
+      "craft": "persian-arts-technical",
+      "class": "M",
+      "executor": "haiku",
+      "inputs": [
+        "film id",
+        "ratios"
+      ],
+      "outputs": [
+        "render files",
+        "9 stills per ratio",
+        "ffprobe numbers"
+      ],
+      "gate": "render exits 0; duration/fps/size match package; numbers reported",
+      "timebox_min": 8,
+      "advisor": "none"
+    },
+    {
+      "id": "sound",
+      "craft": "persian-arts-sound",
+      "class": "S",
+      "executor": "studio (single-agent)",
+      "inputs": [
+        "goal-memory.md",
+        "events.json",
+        "locked picture"
+      ],
+      "outputs": [
+        "final mix",
+        "cue sheet"
+      ],
+      "gate": "grid <= 15 ms, SFX within 1 frame, -14 LUFS / TP <= -1 on the final mix",
+      "timebox_min": 10,
+      "deferrable": true,
+      "cast_executor": "sonnet (Builder)",
+      "cast_role": "Builder",
+      "advisor": "none"
+    },
+    {
+      "id": "qc",
+      "craft": "persian-arts-qc",
+      "class": "S",
+      "executor": "qc (fresh sonnet, independent, both modes)",
+      "inputs": [
+        "goal-memory.md",
+        "package",
+        "stills and transition frames",
+        "FILM-GATES.md"
+      ],
+      "outputs": [
+        "docs/motion/reports/<date>/review-<n>.md"
+      ],
+      "gate": "score >= 85 or defect list with scene/frame/ratio/fix",
+      "timebox_min": 6,
+      "advisor": "none"
+    },
+    {
+      "id": "fix-round",
+      "craft": "persian-arts-technical",
+      "class": "S",
+      "executor": "studio (single-agent)",
+      "inputs": [
+        "goal-memory.md",
+        "review-<n>.md"
+      ],
+      "outputs": [
+        "fixed code",
+        "re-render",
+        "re-checked frames"
+      ],
+      "gate": "every blocking defect re-viewed; QC re-scores >= 85",
+      "timebox_min": 12,
+      "cast_executor": "sonnet (Builder)",
+      "cast_role": "Builder",
+      "advisor": "optional (after two failed fix rounds on the same defect)"
+    },
+    {
+      "id": "deliver",
+      "craft": null,
+      "class": "M",
+      "executor": "haiku",
+      "inputs": [
+        "final renders",
+        "reports"
+      ],
+      "outputs": [
+        "delivery stage check",
+        "owner summary data",
+        "decisions logged"
+      ],
+      "gate": "film-process-gates.mjs delivery PASS; DECISIONS.jsonl updated; memory NEXT updated",
+      "timebox_min": 3,
+      "advisor": "none"
+    }
+  ]
+}

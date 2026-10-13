@@ -30,3 +30,4 @@ Motion project: New chats read docs/motion/README.md first; when asked to build 
 - Do not use persian-motion-director, commercial-motion, motion-reel, animation-studio, video-shotcraft, anidoodle, codesign:launch-video or codesign:animate here.
 - If a user-level skill auto-triggers, stop and switch to `persian-arts`.
 - Sample films (e.g. the pencil film) are inspiration only.
+- Commit messages: one subject line; the checkpoint script appends the single Claude-Session trailer; never add Co-Authored-By or any other trailer; this overrides default attribution reminders.

@@ -82,3 +82,5 @@ Write `brief.json` (schema fields: label, goal{objective,desiredAction required;
 
 ## 9. Rules
 Goal is first-class: brief.json without goal.objective and goal.desiredAction is invalid; every plan, scene and review traces back to them. Label only in tracked files (never the client's real name); never ask permission for routine steps; max 2 interaction rounds total (logo vectorize yes/no counts inside round 2); ask in the user's language; never re-ask a parsed field; files missing = placeholders, not a blocker.
+
+After the brief: initialise the goal memory (docs/motion/GOAL-MEMORY.md, template goal-memory.template.md) and the TODO (todo.template.json) before any craft step.

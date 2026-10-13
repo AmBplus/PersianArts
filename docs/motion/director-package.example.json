@@ -1,0 +1,71 @@
+{
+  "project": {"label": "demo", "duration_s": 15, "fps": 30, "ratios": ["9x16", "16x9"], "master_ratio": "9x16", "language": "fa", "direction": "rtl", "time_cap_min": 25},
+  "goal": {
+    "objective": "Explain in 15 seconds that the demo service connects online classes to exams.",
+    "audience": "Demo students and staff",
+    "desiredAction": "Visit the demo address shown on the end card",
+    "successSignal": "A silent viewer can retell: class, then exam, then the name",
+    "tone": ["calm", "clear", "confident"],
+    "mustSay": ["online classes", "exams", "one place"],
+    "mustNotSay": ["invented user counts"]
+  },
+  "truth_constraints": {
+    "verified": ["online classes exist", "exams exist"],
+    "must_verify": ["official logo file", "interface appearance"],
+    "do_not_invent": ["user statistics", "certificates", "automatic grading"],
+    "prohibitions": ["fake logo", "tiny or broken Persian text", "rows of identical icon cards instead of story"]
+  },
+  "treatment": {
+    "point_of_view": "The line that ends one scene is always the visual cause of the next.",
+    "dramatic_device": "One unfinished ink ring that gets a new job in each scene",
+    "visual_language": "Soft blue and white on textured paper, three clearly different looks",
+    "camera_language": "Virtual camera only to reveal a relation between elements; no zoom without cause",
+    "typography": "Short DOM text, Persian shaped, numbers isolated LTR, headline never competes with motion",
+    "sonic_arc": "One theme that evolves; SFX only on actions; musical ending",
+    "director_prohibitions": ["decorative transitions unrelated to the action", "abrupt music change", "repeated layout across scenes"]
+  },
+  "scenes": [
+    {
+      "id": "S1", "time": {"in": 0, "out": 4},
+      "story_beat": "pose the question",
+      "dramatic_function": "capture attention with an action, not an immediate logo",
+      "goal_trace": "mustSay: one place",
+      "visual": "A blue ink line draws an unfinished ring; the question text appears inside it.",
+      "on_screen_text": ["از یک سؤال..."],
+      "motion_intent": "One drawn action with a clear start and a held stop",
+      "transition_logic": "The end of the ring line reaches the next frame's edge and becomes its border",
+      "audio_intent": "Pen texture, then the first notes of the motif",
+      "director_acceptance": ["A silent viewer follows one main movement before reading", "Hero text height >= 12% of frame height in 9x16", "No empty zone > 30% of frame height without motion"],
+      "recipe_ref": "R-ink-write-hook", "reuse_category": "adapted",
+      "events": [{"frame": 20, "type": "art", "label": "ink line starts", "id": "inkStart"}, {"frame": 80, "type": "text", "label": "question finishes writing", "id": "hook"}]
+    },
+    {
+      "id": "S2", "time": {"in": 4, "out": 10},
+      "story_beat": "class becomes exam",
+      "dramatic_function": "show one understandable interaction instead of an icon",
+      "goal_trace": "mustSay: online classes, exams",
+      "visual": "The ring turns into a class window; one raised-hand marker lights up and the window reacts; the frame then flips into an exam sheet.",
+      "on_screen_text": ["کلاس آنلاین", "آزمون"],
+      "motion_intent": "Layers open in limited depth; focus on one interaction",
+      "transition_logic": "The flip of the class window is the exam sheet's entrance",
+      "audio_intent": "Soft click on the marker; motif continues",
+      "director_acceptance": ["A silent viewer can retell: class then exam", "Every number token renders left-to-right"],
+      "recipe_ref": "R-flip-board-counters", "reuse_category": "idea-derived",
+      "events": [{"frame": 150, "type": "hit", "label": "raised-hand marker lights", "id": "hand"}, {"frame": 240, "type": "wipe", "label": "window flips into exam sheet", "id": "flip"}]
+    },
+    {
+      "id": "S3", "time": {"in": 10, "out": 15},
+      "story_beat": "the name",
+      "dramatic_function": "resolve the question with the identity and the action",
+      "goal_trace": "desiredAction: visit the demo address",
+      "visual": "The ring closes into the emblem; a cream card slides in with the address in an LTR pill.",
+      "on_screen_text": ["demo.example"],
+      "motion_intent": "Build then settle; last beat is the CTA press",
+      "transition_logic": "end card",
+      "audio_intent": "Musical ending on the CTA press",
+      "director_acceptance": ["Address is readable on a phone-size still", "Logo is the verified file or passes the overlay check"],
+      "recipe_ref": "R-logo-layered-svg", "reuse_category": "adapted",
+      "events": [{"frame": 390, "type": "cta", "label": "CTA button pressed", "id": "cta"}]
+    }
+  ]
+}

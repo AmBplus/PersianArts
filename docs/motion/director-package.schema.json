@@ -1,0 +1,120 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "docs/motion/director-package.schema.json",
+  "title": "persian-arts director package",
+  "description": "Written by the Director actor before any build. Single source of truth for scenes, acceptance and events. Spec: docs/motion/STUDIO.md. Lives at media/briefs-local/<label>/director-package.json (git-ignored).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["project", "goal", "truth_constraints", "treatment", "scenes"],
+  "definitions": {
+    "nonEmpty": {"type": "string", "minLength": 3},
+    "ratio": {"type": "string", "enum": ["9x16", "1x1", "4x5", "16x9"]},
+    "strList": {"type": "array", "items": {"type": "string", "minLength": 2}}
+  },
+  "properties": {
+    "project": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["label", "duration_s", "fps", "ratios", "language", "direction"],
+      "properties": {
+        "label": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]{1,40}$", "description": "Never the client's real name."},
+        "duration_s": {"type": "number", "minimum": 5, "maximum": 180},
+        "fps": {"type": "integer", "enum": [24, 25, 30, 60]},
+        "ratios": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/definitions/ratio"}},
+        "master_ratio": {"$ref": "#/definitions/ratio"},
+        "language": {"type": "string", "enum": ["fa", "en", "ar"]},
+        "direction": {"type": "string", "enum": ["rtl", "ltr"]},
+        "time_cap_min": {"type": "number", "minimum": 5, "description": "Production time cap, see STUDIO.md budget template."}
+      }
+    },
+    "goal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["objective", "desiredAction"],
+      "description": "Same structure as brief.schema.json goal. Copy it, do not reinterpret.",
+      "properties": {
+        "objective": {"type": "string", "minLength": 3},
+        "audience": {"type": "string", "minLength": 3},
+        "desiredAction": {"type": "string", "minLength": 3},
+        "successSignal": {"type": "string", "minLength": 3},
+        "tone": {"type": "array", "minItems": 1, "maxItems": 3, "items": {"type": "string"}},
+        "mustSay": {"type": "array", "maxItems": 5, "items": {"type": "string"}},
+        "mustNotSay": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "truth_constraints": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["verified", "must_verify", "do_not_invent", "prohibitions"],
+      "properties": {
+        "verified": {"$ref": "#/definitions/strList"},
+        "must_verify": {"$ref": "#/definitions/strList"},
+        "do_not_invent": {"$ref": "#/definitions/strList"},
+        "prohibitions": {"$ref": "#/definitions/strList"}
+      }
+    },
+    "treatment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["point_of_view", "dramatic_device", "visual_language", "camera_language", "typography", "sonic_arc", "director_prohibitions"],
+      "properties": {
+        "point_of_view": {"$ref": "#/definitions/nonEmpty"},
+        "dramatic_device": {"$ref": "#/definitions/nonEmpty"},
+        "visual_language": {"$ref": "#/definitions/nonEmpty"},
+        "camera_language": {"$ref": "#/definitions/nonEmpty"},
+        "typography": {"$ref": "#/definitions/nonEmpty"},
+        "sonic_arc": {"$ref": "#/definitions/nonEmpty"},
+        "director_prohibitions": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 3}}
+      }
+    },
+    "scenes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "time", "story_beat", "dramatic_function", "goal_trace", "visual", "on_screen_text", "motion_intent", "transition_logic", "audio_intent", "director_acceptance", "recipe_ref", "reuse_category", "events"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^S[0-9]{1,2}$"},
+          "time": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["in", "out"],
+            "properties": {"in": {"type": "number", "minimum": 0}, "out": {"type": "number", "exclusiveMinimum": 0}}
+          },
+          "story_beat": {"$ref": "#/definitions/nonEmpty"},
+          "dramatic_function": {"$ref": "#/definitions/nonEmpty"},
+          "goal_trace": {"$ref": "#/definitions/nonEmpty", "description": "Which mustSay claim or the desiredAction this scene serves. No trace = cut the scene."},
+          "visual": {"$ref": "#/definitions/nonEmpty"},
+          "on_screen_text": {"type": "array", "items": {"type": "string"}},
+          "motion_intent": {"$ref": "#/definitions/nonEmpty"},
+          "transition_logic": {"$ref": "#/definitions/nonEmpty", "description": "The VISUAL CAUSE of the cut into the next scene (what in this scene's last motion carries into the next). 'cut' alone is invalid; the last scene writes 'end card'."},
+          "audio_intent": {"$ref": "#/definitions/nonEmpty"},
+          "director_acceptance": {
+            "type": "array",
+            "minItems": 1,
+            "items": {"type": "string", "minLength": 8},
+            "description": "Testable statements a reviewer can answer yes/no from stills or a silent viewing (e.g. 'a silent viewer can retell the claim', 'hero digits >= 12% of frame height')."
+          },
+          "recipe_ref": {"type": "string", "pattern": "^(R-[a-z0-9-]+|new:.{5,})$", "description": "id from docs/motion/recipes/catalog.json, or new:<reason>."},
+          "reuse_category": {"type": "string", "enum": ["reused", "adapted", "idea-derived", "new"]},
+          "events": {
+            "type": "array",
+            "description": "Single source for the events.json / sound contract. Frames are absolute film frames.",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["frame", "type", "label"],
+              "properties": {
+                "frame": {"type": "integer", "minimum": 0},
+                "type": {"type": "string", "enum": ["art", "text", "wipe", "hit", "number", "cta", "other"]},
+                "label": {"type": "string", "minLength": 3},
+                "id": {"type": "string", "pattern": "^[A-Za-z][A-Za-z0-9]*$"}
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

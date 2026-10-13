@@ -32,6 +32,7 @@ Time boxes (owner rule, 2026-10-13): every order states its expected time (time 
   (`.github/workflows/deploy-library.yml` on `library/**`), so be deliberate about changes under `library/`.
 - Push over SSH (`git@github.com:AmBplus/PersianArts.git`); HTTPS needs an interactive login on the owner's machine.
 - During long batches keep `pwsh -File work/persian/autosync.ps1` running (commit + push of this project's paths every 5 min).
+- Commit messages: one subject line; the checkpoint script appends the single Claude-Session trailer; never add Co-Authored-By or any other trailer; this overrides default attribution reminders.
 
 ## Motion project
 

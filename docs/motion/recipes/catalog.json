@@ -1,0 +1,1104 @@
+{
+  "$comment": "Recipe library, format in docs/motion/recipes/README.md. Preview frames are git-ignored media: regenerate with the entry's regen command.",
+  "version": "1.0",
+  "updated": "2026-10-13",
+  "count": 22,
+  "recipes": [
+    {
+      "status": "verified-in-film",
+      "film": "uni/long v4 (rendered 16x9 and 9x16)",
+      "id": "R-ink-write-hook",
+      "name": "Ink calligraphy write hook",
+      "communicates": "Opening question: a human, handmade start that holds attention before any logo; a question being written.",
+      "dramatic_function": "hook",
+      "suits": {
+        "goals": [
+          "admissions",
+          "brand awareness",
+          "explainer opening"
+        ],
+        "genres": [
+          "ad",
+          "story",
+          "explainer",
+          "edu"
+        ]
+      },
+      "source": [
+        "work/persian/src/film/uni/long/v4/S1Ink.tsx",
+        "work/persian/src/film/uni/long/v4/kit.ts (typeOn prefix, outCubic, inOutSine)"
+      ],
+      "params": {
+        "text": "Aref Ruqaa, huge, right 2/3",
+        "drop": "ink drop splash at f15",
+        "swash": "brush swash drawn RTL under text, complete ~f60",
+        "exit": "navy brush sweep RTL covers paper ~f90",
+        "palette": "cream paper, navy ink, gold"
+      },
+      "frames_range": [
+        0,
+        90
+      ],
+      "preview": [
+        "media/film-versions/uni/long-v4/stills-a/still-9x16-f30.png",
+        "media/film-versions/uni/long-v4/stills-a/still-16x9-f30.png",
+        "media/film-versions/uni/long-v4/stills-a/still-9x16-f55.png",
+        "media/film-versions/uni/long-v4/stills-a/still-16x9-f55.png",
+        "media/film-versions/uni/long-v4/stills-a/still-9x16-f80.png",
+        "media/film-versions/uni/long-v4/stills-a/still-16x9-f80.png"
+      ],
+      "regen": "pwsh -File work/persian/render_all.ps1 -Film uni/long -Mode stills -Ratios 9x16,16x9 -Bpm 120 -T0 0 -Frames <comma list> -OutDir media/film-versions/uni/long-v4/stills-a",
+      "pitfalls": [
+        "Type on with a shaped prefix (never per-character spans): Persian joins break otherwise",
+        "Dead navy frames 90-94 at the exit: start the next scene's first reveal on its own first frame",
+        "16:9: text block floats; check hero size >= 12% of frame height in 9x16"
+      ],
+      "gates": {
+        "passed": [
+          "Persian shaping",
+          "variety"
+        ],
+        "failed_or_open": [
+          "review-v4: dead frames at S1->S2 (defect 5)"
+        ],
+        "evidence": "docs/motion/reports/2026-10-13/review-v4.md"
+      },
+      "ratios": {
+        "9x16": true,
+        "1x1": "untested",
+        "4x5": "untested",
+        "16x9": true
+      },
+      "idea_source": "work/persian/src/demos/typography/brand-ink-open"
+    },
+    {
+      "status": "verified-in-film",
+      "film": "uni/long v4 (rendered 16x9 and 9x16)",
+      "id": "R-field-tree-growth",
+      "name": "Growing tree of nodes with outlined hero number",
+      "communicates": "Breadth and growth: many options (fields, programs) branching from one root; a hero number drawn as outline.",
+      "dramatic_function": "breadth / choice",
+      "suits": {
+        "goals": [
+          "admissions",
+          "product range",
+          "ecosystem explainer"
+        ],
+        "genres": [
+          "ad",
+          "explainer"
+        ]
+      },
+      "source": [
+        "work/persian/src/film/uni/long/v4/S2Tree.tsx"
+      ],
+      "params": {
+        "nodes": 120,
+        "growth": "dash-draw from bottom-right",
+        "camera": "slow push + roll",
+        "heroNumber": "outlined Vazirmatn 900 stroke, top-left",
+        "tag": "leader-line tag pinned to a node",
+        "exit": "camera dives into one gold node (scale-through) + gold iris in LongFilmV4"
+      },
+      "frames_range": [
+        90,
+        195
+      ],
+      "preview": [
+        "media/film-versions/uni/long-v4/stills-a/still-9x16-f110.png",
+        "media/film-versions/uni/long-v4/stills-a/still-16x9-f110.png",
+        "media/film-versions/uni/long-v4/stills-a/still-9x16-f150.png",
+        "media/film-versions/uni/long-v4/stills-a/still-16x9-f150.png",
+        "media/film-versions/uni/long-v4/stills-a/still-9x16-f175.png",
+        "media/film-versions/uni/long-v4/stills-a/still-16x9-f175.png"
+      ],
+      "regen": "pwsh -File work/persian/render_all.ps1 -Film uni/long -Mode stills -Ratios 9x16,16x9 -Bpm 120 -T0 0 -Frames <comma list> -OutDir media/film-versions/uni/long-v4/stills-a",
+      "pitfalls": [
+        "Outlined hero number must be LTR isolated (Ltr/Bidi from kit.ts)",
+        "Incoming first reveal must start on first frame (dead-frame defect)"
+      ],
+      "gates": {
+        "passed": [
+          "numbers LTR verified in frames (120)"
+        ],
+        "failed_or_open": [
+          "review-v4 defect 5 (dead frames at entry)"
+        ],
+        "evidence": "docs/motion/reports/2026-10-13/review-v4.md"
+      },
+      "ratios": {
+        "9x16": true,
+        "1x1": "untested",
+        "4x5": "untested",
+        "16x9": true
+      },
+      "idea_source": "work/persian/src/demos/data/ring-diagram-annotation-reveal + work/persian/src/demos/transition/circle-match-iris"
+    },
+    {
+      "status": "verified-in-film",
+      "film": "uni/long v4 (rendered 16x9 and 9x16)",
+      "id": "R-iwan-push-through",
+      "name": "Persian iwan push-through (nested arches dolly)",
+      "communicates": "Scale, heritage, safety: the viewer travels through architecture, claims sit on planes inside it.",
+      "dramatic_function": "scale / authority",
+      "suits": {
+        "goals": [
+          "admissions",
+          "heritage brand",
+          "institution"
+        ],
+        "genres": [
+          "ad",
+          "story"
+        ]
+      },
+      "source": [
+        "work/persian/src/film/uni/long/v4/S3Iwan.tsx (camZ, IWAN_EXIT=316)",
+        "work/persian/src/film/uni/long/v4/kit.ts (archD, starPts)"
+      ],
+      "params": {
+        "camera": "continuous exponential dolly, perspective scale 1/z",
+        "planes": "numbers on planes inside arches",
+        "exit": "last arch opening grows to fill frame; next scene shows through it (shape mask) 316-330",
+        "palette": "turquoise/lapis tiles + terracotta + gold"
+      },
+      "frames_range": [
+        195,
+        330
+      ],
+      "preview": [
+        "media/film-versions/uni/long-v4/stills-a/still-9x16-f215.png",
+        "media/film-versions/uni/long-v4/stills-a/still-16x9-f215.png",
+        "media/film-versions/uni/long-v4/stills-a/still-9x16-f250.png",
+        "media/film-versions/uni/long-v4/stills-a/still-16x9-f250.png",
+        "media/film-versions/uni/long-v4/stills-a/still-9x16-f295.png",
+        "media/film-versions/uni/long-v4/stills-a/still-16x9-f295.png"
+      ],
+      "regen": "pwsh -File work/persian/render_all.ps1 -Film uni/long -Mode stills -Ratios 9x16,16x9 -Bpm 120 -T0 0 -Frames <comma list> -OutDir media/film-versions/uni/long-v4/stills-a",
+      "pitfalls": [
+        "Draw each hero number ONCE inside the window; a navy overlay copy plus a ghost copy produced doubled text (review-v4 defect 1)",
+        "Ghost decoration opacity <= 0.08",
+        "Numbers use LTR isolation: 148 000 grouping verified"
+      ],
+      "gates": {
+        "passed": [
+          "variety",
+          "numbers LTR (148 000)"
+        ],
+        "failed_or_open": [
+          "review-v4 defect 1 doubled text (severity highest), fix status to be verified in next render"
+        ],
+        "evidence": "docs/motion/reports/2026-10-13/review-v4.md"
+      },
+      "ratios": {
+        "9x16": true,
+        "1x1": "untested",
+        "4x5": "untested",
+        "16x9": true
+      },
+      "idea_source": "work/persian/src/demos/camera/depth-layer-moves"
+    },
+    {
+      "status": "verified-in-film",
+      "film": "uni/long v4 (rendered 16x9 and 9x16)",
+      "id": "R-flip-board-counters",
+      "name": "Split-flap number wall with odometer counters",
+      "communicates": "Hard numbers and standing (research, rank): mechanical, fast, trustworthy.",
+      "dramatic_function": "proof / numbers",
+      "suits": {
+        "goals": [
+          "credibility",
+          "stats announcement",
+          "results"
+        ],
+        "genres": [
+          "ad",
+          "explainer",
+          "event"
+        ]
+      },
+      "source": [
+        "work/persian/src/film/uni/long/v4/S4Wall.tsx",
+        "work/persian/src/film/uni/long/v4/kit.ts (stepped, rng)"
+      ],
+      "params": {
+        "board": "charcoal split-flap cells, word-level flaps never per-letter",
+        "counter": "Lalezar odometer strips, digits lock left to right",
+        "ticker": "chips along bottom",
+        "seal": "rank seal stamps",
+        "entry": "punch-in cut at f405",
+        "detail": "one flap sticks and flips late"
+      },
+      "frames_range": [
+        330,
+        480
+      ],
+      "preview": [
+        "media/film-versions/uni/long-v4/stills-a/still-9x16-f350.png",
+        "media/film-versions/uni/long-v4/stills-a/still-16x9-f350.png",
+        "media/film-versions/uni/long-v4/stills-a/still-9x16-f410.png",
+        "media/film-versions/uni/long-v4/stills-a/still-16x9-f410.png",
+        "media/film-versions/uni/long-v4/stills-a/still-9x16-f460.png",
+        "media/film-versions/uni/long-v4/stills-a/still-16x9-f460.png"
+      ],
+      "regen": "pwsh -File work/persian/render_all.ps1 -Film uni/long -Mode stills -Ratios 9x16,16x9 -Bpm 120 -T0 0 -Frames <comma list> -OutDir media/film-versions/uni/long-v4/stills-a",
+      "pitfalls": [
+        "9:16 left lower ~45% empty (review-v4 defect 3): in portrait stack the number lower, scale hero ~1.3, move seal and caption into lower half",
+        "Words flip as units, never per character (Persian joins)",
+        "Counter digits isolated LTR"
+      ],
+      "gates": {
+        "passed": [
+          "numbers LTR (150)"
+        ],
+        "failed_or_open": [
+          "review-v4 defect 3 empty zone in 9x16",
+          "FILM-GATES empty-zone check is to build"
+        ],
+        "evidence": "docs/motion/reports/2026-10-13/review-v4.md"
+      },
+      "ratios": {
+        "9x16": "failed-review (empty zone)",
+        "1x1": "untested",
+        "4x5": "untested",
+        "16x9": true
+      },
+      "idea_source": "work/persian/src/demos/data/odometer-digit-roll + work/persian/src/demos/typography/split-flap-title"
+    },
+    {
+      "status": "verified-in-film",
+      "film": "uni/long v4 (rendered 16x9 and 9x16)",
+      "id": "R-constellation-form",
+      "name": "Night constellation forming a symbol",
+      "communicates": "People/quality emerging from many: scattered stars lock into a meaningful shape (cap, tree, emblem) with light-weight type.",
+      "dramatic_function": "quality / people",
+      "suits": {
+        "goals": [
+          "teachers/team trust",
+          "community",
+          "talent"
+        ],
+        "genres": [
+          "ad",
+          "story"
+        ]
+      },
+      "source": [
+        "work/persian/src/film/uni/long/v4/S5Stars.tsx",
+        "work/persian/src/film/uni/long/v4/kit.ts (starPts, rng)"
+      ],
+      "params": {
+        "field": "400 drifting stars",
+        "hero": "25 bright stars fly in and lock into a cap shape, then lines draw",
+        "type": "Vazirmatn 200 blur-to-focus",
+        "detail": "shooting star at top-2% line",
+        "exit": "tile dissolve (mosaic) into next scene"
+      },
+      "frames_range": [
+        480,
+        630
+      ],
+      "preview": [
+        "media/film-versions/uni/long-v4/stills-a/still-9x16-f500.png",
+        "media/film-versions/uni/long-v4/stills-a/still-16x9-f500.png",
+        "media/film-versions/uni/long-v4/stills-a/still-9x16-f575.png",
+        "media/film-versions/uni/long-v4/stills-a/still-16x9-f575.png",
+        "media/film-versions/uni/long-v4/stills-a/still-9x16-f615.png",
+        "media/film-versions/uni/long-v4/stills-a/still-16x9-f615.png"
+      ],
+      "regen": "pwsh -File work/persian/render_all.ps1 -Film uni/long -Mode stills -Ratios 9x16,16x9 -Bpm 120 -T0 0 -Frames <comma list> -OutDir media/film-versions/uni/long-v4/stills-a",
+      "pitfalls": [
+        "Fade ALL scene text out before the tile dissolve starts (~f600) or Persian captions overlap the next scene in 9:16 (review-v4 defect 2)",
+        "Blank purple 480-485 after the grey flash: first reveal on first frame"
+      ],
+      "gates": {
+        "passed": [
+          "numbers LTR (400, 25)"
+        ],
+        "failed_or_open": [
+          "review-v4 defect 2 caption overlap at transition",
+          "defect 5 blank frames"
+        ],
+        "evidence": "docs/motion/reports/2026-10-13/review-v4.md"
+      },
+      "ratios": {
+        "9x16": "failed-review (transition overlap)",
+        "1x1": "untested",
+        "4x5": "untested",
+        "16x9": true
+      },
+      "idea_source": "work/persian/src/demos/data/avatar-grid-radial-build-colorize"
+    },
+    {
+      "status": "verified-in-film",
+      "film": "uni/long v4 (rendered 16x9 and 9x16)",
+      "id": "R-parallax-journey",
+      "name": "Parallax skyline journey with travelling point",
+      "communicates": "A path toward a place: a point travels through layered landscape to a destination (location, goal, hub).",
+      "dramatic_function": "journey / place",
+      "suits": {
+        "goals": [
+          "location/campus",
+          "customer journey",
+          "roadmap"
+        ],
+        "genres": [
+          "ad",
+          "story",
+          "explainer"
+        ]
+      },
+      "source": [
+        "work/persian/src/film/uni/long/v4/S6Journey.tsx"
+      ],
+      "params": {
+        "sky": "dawn peach to blue, sun rising in the east",
+        "layers": "far mountains, skyline of domes/minarets/iwan, near road",
+        "point": "gold point travelling RTL with dashed trail",
+        "text": "Lalezar headline drops into sky; second line on a road sign swinging up",
+        "exit": "whip pan (blur slide)"
+      },
+      "frames_range": [
+        630,
+        750
+      ],
+      "preview": [
+        "media/film-versions/uni/long-v4/stills-a/still-9x16-f645.png",
+        "media/film-versions/uni/long-v4/stills-a/still-16x9-f645.png",
+        "media/film-versions/uni/long-v4/stills-a/still-9x16-f700.png",
+        "media/film-versions/uni/long-v4/stills-a/still-16x9-f700.png",
+        "media/film-versions/uni/long-v4/stills-a/still-9x16-f735.png",
+        "media/film-versions/uni/long-v4/stills-a/still-16x9-f735.png"
+      ],
+      "regen": "pwsh -File work/persian/render_all.ps1 -Film uni/long -Mode stills -Ratios 9x16,16x9 -Bpm 120 -T0 0 -Frames <comma list> -OutDir media/film-versions/uni/long-v4/stills-a",
+      "pitfalls": [
+        "9:16: bottom ~40% flat road (review-v4 defect 4): scale skyline and sign up, move headline lower, add foreground layers",
+        "Empty skyline frames 631-634"
+      ],
+      "gates": {
+        "passed": [
+          "variety"
+        ],
+        "failed_or_open": [
+          "review-v4 defect 4 empty zone in 9x16",
+          "defect 5"
+        ],
+        "evidence": "docs/motion/reports/2026-10-13/review-v4.md"
+      },
+      "ratios": {
+        "9x16": "failed-review (empty zone)",
+        "1x1": "untested",
+        "4x5": "untested",
+        "16x9": true
+      },
+      "idea_source": "work/persian/src/demos/data/timeline-travel"
+    },
+    {
+      "status": "verified-in-film",
+      "film": "uni/long v4 (rendered 16x9 and 9x16)",
+      "id": "R-emblem-cta-card",
+      "name": "Emblem build + CTA card with pressed button",
+      "communicates": "Resolution and action: identity builds, details settle, address in an LTR pill, last beat the CTA press, the opening brush returns as an underline (bookend).",
+      "dramatic_function": "resolution / CTA",
+      "suits": {
+        "goals": [
+          "any film with a desiredAction"
+        ],
+        "genres": [
+          "ad",
+          "event",
+          "edu",
+          "explainer"
+        ]
+      },
+      "source": [
+        "work/persian/src/film/uni/long/v4/S7Final.tsx",
+        "work/persian/src/film/uni/Logo.tsx (Emblem)",
+        "work/persian/src/film/uni/long/v4/kit.ts (Ltr, Bidi)"
+      ],
+      "params": {
+        "layout": "split: deep-blue emblem block + cream card",
+        "lines": "card lines enter by right-to-left clip",
+        "address": "white LTR card (Latin run isolated)",
+        "cta": "button PRESSED on last beat",
+        "bookend": "S1 ink brush underlines the CTA"
+      },
+      "frames_range": [
+        750,
+        900
+      ],
+      "preview": [
+        "media/film-versions/uni/long-v4/stills-a/still-9x16-f790.png",
+        "media/film-versions/uni/long-v4/stills-a/still-16x9-f790.png",
+        "media/film-versions/uni/long-v4/stills-a/still-9x16-f860.png",
+        "media/film-versions/uni/long-v4/stills-a/still-16x9-f860.png",
+        "media/film-versions/uni/long-v4/stills-a/still-9x16-f899.png",
+        "media/film-versions/uni/long-v4/stills-a/still-16x9-f899.png"
+      ],
+      "regen": "pwsh -File work/persian/render_all.ps1 -Film uni/long -Mode stills -Ratios 9x16,16x9 -Bpm 120 -T0 0 -Frames <comma list> -OutDir media/film-versions/uni/long-v4/stills-a",
+      "pitfalls": [
+        "URL and numbers must be LTR-isolated inside the RTL card",
+        "Logo only from the verified file or an overlay-checked layered SVG (see R-logo-layered-svg)"
+      ],
+      "gates": {
+        "passed": [
+          "CTA scene clear (review-v4)",
+          "numbers LTR (1405-1406)",
+          "azmoon.org LTR pill"
+        ],
+        "failed_or_open": [],
+        "evidence": "docs/motion/reports/2026-10-13/review-v4.md"
+      },
+      "ratios": {
+        "9x16": true,
+        "1x1": "untested",
+        "4x5": "untested",
+        "16x9": true
+      }
+    },
+    {
+      "status": "verified-in-film",
+      "film": "uni/long v4 (rendered 16x9 and 9x16)",
+      "id": "R-kit-easing",
+      "name": "Shared easing and stepped motion helpers",
+      "communicates": "Consistent feel: one easing module for every scene (no copy-pasted curves).",
+      "dramatic_function": "craft utility",
+      "suits": {
+        "goals": [
+          "all"
+        ],
+        "genres": [
+          "all"
+        ]
+      },
+      "source": [
+        "work/persian/src/film/uni/long/v4/kit.ts (outExpo, inOutCubic, inExpo, stepped; re-exports clamp, prog, lerp, outCubic, inCubic, inOutSine, outBack from film/short/timing)"
+      ],
+      "params": {
+        "stepped": "stepped(t, n) = mechanical split-flap/odometer steps"
+      },
+      "preview": [],
+      "regen": "n/a (code only)",
+      "pitfalls": [
+        "Do not duplicate curves in scenes; import from kit.ts"
+      ],
+      "gates": {
+        "passed": [
+          "used by 7 scenes"
+        ],
+        "failed_or_open": [],
+        "evidence": "work/persian/src/film/uni/long/v4/kit.ts"
+      },
+      "ratios": {
+        "9x16": true,
+        "1x1": true,
+        "4x5": true,
+        "16x9": true
+      }
+    },
+    {
+      "status": "verified-in-film",
+      "film": "uni/long v4 (rendered 16x9 and 9x16)",
+      "id": "R-kit-word-mask-fit",
+      "name": "Word-level reveal, text fitting and dims",
+      "communicates": "Persian-safe text animation: words (never letters) are the unit; text auto-fits its slot.",
+      "dramatic_function": "craft utility",
+      "suits": {
+        "goals": [
+          "all Persian text"
+        ],
+        "genres": [
+          "all"
+        ]
+      },
+      "source": [
+        "work/persian/src/film/uni/long/v4/kit.ts (widthOf, fit, dims, Dims.u unit scale, split3)"
+      ],
+      "params": {
+        "widthOf": "canvas measureText per 1px font size, cached",
+        "fit": "fit(text,size,maxW,weight,family)",
+        "dims": "u = min(W,H)/1080 scale unit; wide flag"
+      },
+      "preview": [],
+      "regen": "n/a (code only)",
+      "pitfalls": [
+        "Per-character spans or letter-spacing break Persian joins (docs/PERSIAN-LOCALIZATION-LESSONS.md)",
+        "Measure with the loaded face; a silent font fallback gives a wrong width"
+      ],
+      "gates": {
+        "passed": [
+          "used in v4"
+        ],
+        "failed_or_open": [
+          "font-role check is per-film inspection (FILM-GATES)"
+        ],
+        "evidence": "docs/PERSIAN-LOCALIZATION-LESSONS.md"
+      },
+      "ratios": {
+        "9x16": true,
+        "1x1": true,
+        "4x5": true,
+        "16x9": true
+      }
+    },
+    {
+      "status": "verified-in-film",
+      "film": "uni/long v4 (rendered 16x9 and 9x16)",
+      "id": "R-kit-ltr-number-run",
+      "name": "LTR isolation of numbers and Latin runs in RTL text",
+      "communicates": "Numbers and URLs read left to right with correct grouping inside Persian lines.",
+      "dramatic_function": "craft utility (correctness)",
+      "suits": {
+        "goals": [
+          "any text with numbers, prices, URLs"
+        ],
+        "genres": [
+          "all"
+        ]
+      },
+      "source": [
+        "work/persian/src/film/uni/long/v4/kit.ts (Bidi, Ltr, faNum, toNum, PD)"
+      ],
+      "params": {
+        "Bidi": "splits text by regex RUN and wraps digit/Latin runs in <span dir=ltr unicode-bidi:isolate data-ltr=1>",
+        "faNum": "Persian digits with space grouping"
+      },
+      "preview": [
+        "media/film-versions/uni/long-v4/stills-a/still-9x16-f250.png",
+        "media/film-versions/uni/long-v4/stills-a/still-16x9-f250.png",
+        "media/film-versions/uni/long-v4/stills-a/still-9x16-f410.png",
+        "media/film-versions/uni/long-v4/stills-a/still-16x9-f410.png",
+        "media/film-versions/uni/long-v4/stills-a/still-9x16-f860.png",
+        "media/film-versions/uni/long-v4/stills-a/still-16x9-f860.png"
+      ],
+      "regen": "pwsh -File work/persian/render_all.ps1 -Film uni/long -Mode stills -Ratios 9x16,16x9 -Bpm 120 -T0 0 -Frames <comma list> -OutDir media/film-versions/uni/long-v4/stills-a",
+      "pitfalls": [
+        "Never rely on the browser's bidi default for 148 000 style groups",
+        "data-ltr attribute lets the Digits LTR gate scan rendered text (gate itself is to build)"
+      ],
+      "gates": {
+        "passed": [
+          "manual frame check in review-v4: all numbers LTR"
+        ],
+        "failed_or_open": [
+          "automatic Digits LTR scan: to build (FILM-GATES)"
+        ],
+        "evidence": "docs/motion/reports/2026-10-13/review-v4.md"
+      },
+      "ratios": {
+        "9x16": true,
+        "1x1": true,
+        "4x5": true,
+        "16x9": true
+      }
+    },
+    {
+      "status": "verified-in-film",
+      "film": "uni/long v4 (rendered 16x9 and 9x16)",
+      "id": "R-logo-layered-svg",
+      "name": "Logo vectorizing: raster logo to layered SVG (and animated emblem)",
+      "communicates": "The client's identity, built with motion (wings open, shield forms, pen element lands) without recolouring or inventing.",
+      "dramatic_function": "identity",
+      "suits": {
+        "goals": [
+          "any film with a logo"
+        ],
+        "genres": [
+          "all"
+        ]
+      },
+      "source": [
+        "work/persian/src/film/uni/Logo.tsx (Emblem: loads layers at render time)",
+        "work/persian/src/workbench/public/uni-local/emblem-layers.svg and layers.json (git-ignored, confidential)",
+        "docs/motion/reports/2026-10-13/logo-report.md"
+      ],
+      "params": {
+        "groups": "ids left-wing, right-wing, shield, pen-element (Logo.tsx requires these); nested sub-layers wing-left, inner-left, wing-right, inner-right, arch, line, dot",
+        "viewBox": "0 0 1000 1000, spine at x=500, emblem space x221-779 / y70-930",
+        "layers_json": "per layer bbox_vb, centre_vb, transform_origin_vb, draw_order, motion",
+        "colours": "sampled from the source, never recoloured"
+      },
+      "preview": [
+        "work/persian/src/workbench/public/uni-local/_logo-check/view.html (git-ignored; open in Browser pane)"
+      ],
+      "regen": "node generator was a scratchpad gen.mjs (not tracked): redraw by hand from the source image, see procedure below",
+      "procedure": [
+        "1. Ask for SVG/vector. If the user sends SVG: use as is (inspect for layers; split groups by hand if animation needs them).",
+        "2. Else raster: redraw by hand as layered SVG, one top-level group per animation part, colours sampled from the source pixels, symmetric parts mirrored from one half.",
+        "3. Write layers.json (bbox, centre, transform origin, draw order) so motion code needs no geometry guesses.",
+        "4. ACCEPTANCE (overlay difference, target below): rasterize the SVG at the source size, scale/pad to the source aspect, then ffmpeg -i source.png -i render.png -filter_complex \"[0][1]blend=all_mode=difference,format=gray,signalstats\" -f null - and read YAVG (mean difference, 0-255). Target to be set after the first calibration run: start with YAVG <= 12 on the logo area (about 5%); record the real number in the film's reuse ledger. Flag the logo as 'approximate' in the report if above target.",
+        "5. Visual side-by-side at 100% and 400% is still required (reviewer look): the numeric score alone does not catch missing small features.",
+        "6. Confidentiality: the layered files stay under the git-ignored uni-local/ folder; tracked code holds no path data."
+      ],
+      "script_to_build": "work/persian/tools/logo-diff.mjs: rasterize SVG with headless Chrome via the Browser/puppeteer already used by Remotion (or Remotion's still renderer) to PNG, then run the ffmpeg blend=difference + signalstats command above, print mean difference and write a diff PNG. Not built in this change set (needs a calibrated threshold first).",
+      "pitfalls": [
+        "Source low-res (189x267): scallops and pointed tips get simplified; document what differs",
+        "No rasterizer was available in the first run: acceptance was visual only; the numeric check is still unproven",
+        "Do not publish the layered logo of a client in tracked files"
+      ],
+      "gates": {
+        "passed": [
+          "visual match recorded in logo-report.md"
+        ],
+        "failed_or_open": [
+          "numeric overlay score: to build, no number recorded yet"
+        ],
+        "evidence": "docs/motion/reports/2026-10-13/logo-report.md"
+      },
+      "ratios": {
+        "9x16": true,
+        "1x1": "untested",
+        "4x5": "untested",
+        "16x9": true
+      }
+    },
+    {
+      "status": "candidate",
+      "id": "R-circle-match-iris",
+      "name": "Circle-match iris cut",
+      "communicates": "A circular element in scene A becomes the opening of scene B: a visual cause for the cut.",
+      "dramatic_function": "transition",
+      "suits": {
+        "goals": [
+          "any multi-scene film"
+        ],
+        "genres": [
+          "all"
+        ]
+      },
+      "source": [
+        "work/persian/src/demos/transition/circle-match-iris"
+      ],
+      "params": {
+        "see": "source folder README/meta"
+      },
+      "preview": [],
+      "regen": "render the demo composition: see work/persian/src/demos/README.md",
+      "pitfalls": [
+        "Idea only: must be re-implemented with Persian-safe text (docs/PERSIAN-LOCALIZATION-LESSONS.md) and checked at 9:16"
+      ],
+      "gates": {
+        "passed": [],
+        "failed_or_open": [
+          "not used in a rendered Persian film yet"
+        ],
+        "evidence": "work/persian/src/demos/transition/circle-match-iris"
+      },
+      "ratios": {
+        "9x16": "untested",
+        "1x1": "untested",
+        "4x5": "untested",
+        "16x9": "untested"
+      }
+    },
+    {
+      "status": "candidate",
+      "id": "R-line-carry-transition",
+      "name": "Line carry transition",
+      "communicates": "A drawn line leaves scene A and becomes the border or path of scene B (the dana-sample idea: the line is the cause of the cut).",
+      "dramatic_function": "transition",
+      "suits": {
+        "goals": [
+          "any multi-scene film"
+        ],
+        "genres": [
+          "all"
+        ]
+      },
+      "source": [
+        "work/persian/src/demos/transition/line-carry-transition"
+      ],
+      "params": {
+        "see": "source folder README/meta"
+      },
+      "preview": [],
+      "regen": "render the demo composition: see work/persian/src/demos/README.md",
+      "pitfalls": [
+        "Idea only: must be re-implemented with Persian-safe text (docs/PERSIAN-LOCALIZATION-LESSONS.md) and checked at 9:16"
+      ],
+      "gates": {
+        "passed": [],
+        "failed_or_open": [
+          "not used in a rendered Persian film yet"
+        ],
+        "evidence": "work/persian/src/demos/transition/line-carry-transition"
+      },
+      "ratios": {
+        "9x16": "untested",
+        "1x1": "untested",
+        "4x5": "untested",
+        "16x9": "untested"
+      }
+    },
+    {
+      "status": "candidate",
+      "id": "R-transition-hidden-cut",
+      "name": "Hidden cut inside motion",
+      "communicates": "Cut hidden inside a fast movement so scenes flow without a visible edit.",
+      "dramatic_function": "transition",
+      "suits": {
+        "goals": [
+          "any multi-scene film"
+        ],
+        "genres": [
+          "all"
+        ]
+      },
+      "source": [
+        "work/persian/src/demos/transition/transition-hidden-cut"
+      ],
+      "params": {
+        "see": "source folder README/meta"
+      },
+      "preview": [],
+      "regen": "render the demo composition: see work/persian/src/demos/README.md",
+      "pitfalls": [
+        "Idea only: must be re-implemented with Persian-safe text (docs/PERSIAN-LOCALIZATION-LESSONS.md) and checked at 9:16"
+      ],
+      "gates": {
+        "passed": [],
+        "failed_or_open": [
+          "not used in a rendered Persian film yet"
+        ],
+        "evidence": "work/persian/src/demos/transition/transition-hidden-cut"
+      },
+      "ratios": {
+        "9x16": "untested",
+        "1x1": "untested",
+        "4x5": "untested",
+        "16x9": "untested"
+      }
+    },
+    {
+      "status": "candidate",
+      "id": "R-stroke-segment-build",
+      "name": "Stroke segment build opener",
+      "communicates": "A shape assembled stroke by stroke: construction as the story.",
+      "dramatic_function": "hook",
+      "suits": {
+        "goals": [
+          "brand/identity opener",
+          "explainer"
+        ],
+        "genres": [
+          "ad",
+          "explainer"
+        ]
+      },
+      "source": [
+        "work/persian/src/demos/opening/stroke-segment-build"
+      ],
+      "params": {
+        "see": "source folder README/meta"
+      },
+      "preview": [],
+      "regen": "render the demo composition: see work/persian/src/demos/README.md",
+      "pitfalls": [
+        "Idea only: must be re-implemented with Persian-safe text (docs/PERSIAN-LOCALIZATION-LESSONS.md) and checked at 9:16"
+      ],
+      "gates": {
+        "passed": [],
+        "failed_or_open": [
+          "not used in a rendered Persian film yet"
+        ],
+        "evidence": "work/persian/src/demos/opening/stroke-segment-build"
+      },
+      "ratios": {
+        "9x16": "untested",
+        "1x1": "untested",
+        "4x5": "untested",
+        "16x9": "untested"
+      }
+    },
+    {
+      "status": "candidate",
+      "id": "R-text-as-mask",
+      "name": "Text as video/shape mask",
+      "communicates": "Giant type that reveals imagery or motion through its letterforms (Persian: use a whole-word mask, not per letter).",
+      "dramatic_function": "hook",
+      "suits": {
+        "goals": [
+          "title opener"
+        ],
+        "genres": [
+          "ad",
+          "event"
+        ]
+      },
+      "source": [
+        "work/persian/src/demos/opening/text-as-mask"
+      ],
+      "params": {
+        "see": "source folder README/meta"
+      },
+      "preview": [],
+      "regen": "render the demo composition: see work/persian/src/demos/README.md",
+      "pitfalls": [
+        "Whole-word mask only; masks across letter joins break shaping"
+      ],
+      "gates": {
+        "passed": [],
+        "failed_or_open": [
+          "not used in a rendered Persian film yet"
+        ],
+        "evidence": "work/persian/src/demos/opening/text-as-mask"
+      },
+      "ratios": {
+        "9x16": "untested",
+        "1x1": "untested",
+        "4x5": "untested",
+        "16x9": "untested"
+      }
+    },
+    {
+      "status": "candidate",
+      "id": "R-ui-to-brand-morph",
+      "name": "UI morphs into brand mark",
+      "communicates": "The product UI collapses into the logo: product to identity in one motion.",
+      "dramatic_function": "resolution",
+      "suits": {
+        "goals": [
+          "product promo",
+          "SaaS explainer"
+        ],
+        "genres": [
+          "ad",
+          "explainer"
+        ]
+      },
+      "source": [
+        "work/persian/src/demos/outro/ui-to-brand-morph"
+      ],
+      "params": {
+        "see": "source folder README/meta"
+      },
+      "preview": [],
+      "regen": "render the demo composition: see work/persian/src/demos/README.md",
+      "pitfalls": [
+        "Idea only: must be re-implemented with Persian-safe text (docs/PERSIAN-LOCALIZATION-LESSONS.md) and checked at 9:16"
+      ],
+      "gates": {
+        "passed": [],
+        "failed_or_open": [
+          "not used in a rendered Persian film yet"
+        ],
+        "evidence": "work/persian/src/demos/outro/ui-to-brand-morph"
+      },
+      "ratios": {
+        "9x16": "untested",
+        "1x1": "untested",
+        "4x5": "untested",
+        "16x9": "untested"
+      }
+    },
+    {
+      "status": "candidate",
+      "id": "R-counter-confetti",
+      "name": "Counter with celebratory burst",
+      "communicates": "A number reaches a milestone and celebrates.",
+      "dramatic_function": "proof",
+      "suits": {
+        "goals": [
+          "milestone",
+          "results"
+        ],
+        "genres": [
+          "event",
+          "social"
+        ]
+      },
+      "source": [
+        "work/persian/src/demos/data/counter-confetti"
+      ],
+      "params": {
+        "see": "source folder README/meta"
+      },
+      "preview": [],
+      "regen": "render the demo composition: see work/persian/src/demos/README.md",
+      "pitfalls": [
+        "Idea only: must be re-implemented with Persian-safe text (docs/PERSIAN-LOCALIZATION-LESSONS.md) and checked at 9:16"
+      ],
+      "gates": {
+        "passed": [],
+        "failed_or_open": [
+          "not used in a rendered Persian film yet"
+        ],
+        "evidence": "work/persian/src/demos/data/counter-confetti"
+      },
+      "ratios": {
+        "9x16": "untested",
+        "1x1": "untested",
+        "4x5": "untested",
+        "16x9": "untested"
+      }
+    },
+    {
+      "status": "candidate",
+      "id": "R-svg-shape-morph",
+      "name": "SVG shape morph",
+      "communicates": "One shape becomes another to show transformation (problem to solution).",
+      "dramatic_function": "transformation",
+      "suits": {
+        "goals": [
+          "explainer",
+          "before/after"
+        ],
+        "genres": [
+          "explainer",
+          "edu"
+        ]
+      },
+      "source": [
+        "work/persian/src/demos/ui-entrance/svg-shape-morph"
+      ],
+      "params": {
+        "see": "source folder README/meta"
+      },
+      "preview": [],
+      "regen": "render the demo composition: see work/persian/src/demos/README.md",
+      "pitfalls": [
+        "Idea only: must be re-implemented with Persian-safe text (docs/PERSIAN-LOCALIZATION-LESSONS.md) and checked at 9:16"
+      ],
+      "gates": {
+        "passed": [],
+        "failed_or_open": [
+          "not used in a rendered Persian film yet"
+        ],
+        "evidence": "work/persian/src/demos/ui-entrance/svg-shape-morph"
+      },
+      "ratios": {
+        "9x16": "untested",
+        "1x1": "untested",
+        "4x5": "untested",
+        "16x9": "untested"
+      }
+    },
+    {
+      "status": "candidate",
+      "id": "R-draw-svg-trace",
+      "name": "Draw-on SVG trace",
+      "communicates": "Line art drawn on, tracing a path or outline: the dramatic device of a continuous line.",
+      "dramatic_function": "device",
+      "suits": {
+        "goals": [
+          "explainer",
+          "heritage"
+        ],
+        "genres": [
+          "explainer",
+          "story",
+          "edu"
+        ]
+      },
+      "source": [
+        "work/persian/src/demos/ui-entrance/draw-svg-trace"
+      ],
+      "params": {
+        "see": "source folder README/meta"
+      },
+      "preview": [],
+      "regen": "render the demo composition: see work/persian/src/demos/README.md",
+      "pitfalls": [
+        "Idea only: must be re-implemented with Persian-safe text (docs/PERSIAN-LOCALIZATION-LESSONS.md) and checked at 9:16"
+      ],
+      "gates": {
+        "passed": [],
+        "failed_or_open": [
+          "not used in a rendered Persian film yet"
+        ],
+        "evidence": "work/persian/src/demos/ui-entrance/draw-svg-trace"
+      },
+      "ratios": {
+        "9x16": "untested",
+        "1x1": "untested",
+        "4x5": "untested",
+        "16x9": "untested"
+      }
+    },
+    {
+      "status": "candidate",
+      "id": "R-doodle-engine",
+      "name": "Hand-drawn doodle animation engine",
+      "communicates": "Hand-drawn character/doodle style from the anidoodle skill (engine, styles, example).",
+      "dramatic_function": "style",
+      "suits": {
+        "goals": [
+          "social",
+          "edu",
+          "story"
+        ],
+        "genres": [
+          "social",
+          "edu",
+          "story"
+        ]
+      },
+      "source": [
+        "skills/anidoodle (SKILL.md, engine/, styles/house, example/)"
+      ],
+      "params": {
+        "see": "source folder README/meta"
+      },
+      "preview": [],
+      "regen": "render the demo composition: see work/persian/src/demos/README.md",
+      "pitfalls": [
+        "Third-party-style skill content: use as a code and style source only; the persian-arts skill stays the only workflow"
+      ],
+      "gates": {
+        "passed": [],
+        "failed_or_open": [
+          "not used in a rendered Persian film yet"
+        ],
+        "evidence": "skills/anidoodle (SKILL.md, engine/, styles/house, example/)"
+      },
+      "ratios": {
+        "9x16": "untested",
+        "1x1": "untested",
+        "4x5": "untested",
+        "16x9": "untested"
+      }
+    },
+    {
+      "status": "candidate",
+      "id": "R-library-explainer-templates",
+      "name": "Library explainer/mg/onetake entries",
+      "communicates": "Ready entry structures for explainer, motion-graphic, one-take, shotcraft and talkcraft pieces.",
+      "dramatic_function": "structure",
+      "suits": {
+        "goals": [
+          "explainer",
+          "social"
+        ],
+        "genres": [
+          "explainer",
+          "social",
+          "story"
+        ]
+      },
+      "source": [
+        "library/entries (explainer, mg, onetake, shotcraft, talkcraft) and plugins/persianarts-motion/skills/persianarts-motion/SKILL.md"
+      ],
+      "params": {
+        "see": "source folder README/meta"
+      },
+      "preview": [],
+      "regen": "render the demo composition: see work/persian/src/demos/README.md",
+      "pitfalls": [
+        "Idea only: must be re-implemented with Persian-safe text (docs/PERSIAN-LOCALIZATION-LESSONS.md) and checked at 9:16"
+      ],
+      "gates": {
+        "passed": [],
+        "failed_or_open": [
+          "not used in a rendered Persian film yet"
+        ],
+        "evidence": "library/entries (explainer, mg, onetake, shotcraft, talkcraft) and plugins/persianarts-motion/skills/persianarts-motion/SKILL.md"
+      },
+      "ratios": {
+        "9x16": "untested",
+        "1x1": "untested",
+        "4x5": "untested",
+        "16x9": "untested"
+      }
+    }
+  ]
+}

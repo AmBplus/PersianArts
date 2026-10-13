@@ -129,6 +129,12 @@ if ($PushOnly) {
 }
 
 if (-not $DryRun -and [string]::IsNullOrWhiteSpace($Message)) { Write-Host 'REFUSE: -Message is required'; exit 1 }
+# Message guard (owner rule): one subject line; the script appends the single Claude-Session trailer itself.
+if (-not [string]::IsNullOrWhiteSpace($Message)) {
+  if ($Message -match '(?i)co-authored-by') { Write-Host 'ABORT: -Message contains Co-Authored-By (forbidden). The script appends only the Claude-Session trailer. Nothing committed.'; exit 1 }
+  if ($Message -match 'Claude-Session:') { Write-Host 'ABORT: -Message already contains a Claude-Session trailer (the script appends it). Nothing committed.'; exit 1 }
+  if ($Message -match '[\r\n]') { Write-Host 'ABORT: -Message must be ONE line (subject only). Nothing committed.'; exit 1 }
+}
 
 # 1. Confidentiality and secrets scan (whole repo). Any non-zero exit aborts.
 & node contracts/scan.mjs
