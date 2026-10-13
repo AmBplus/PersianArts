@@ -105,3 +105,13 @@ Owner rule, 2026-10-13. Motivation: the uni teaser took about 6 h after two GLM 
 - Commit trailer rule: every commit ends with exactly one `Claude-Session: ...` trailer and has no `Co-Authored-By` line. `checkpoint.ps1` (incoming commit guard) refuses a `-Message` containing `Co-Authored-By` or a second `Claude-Session:`, and appends the trailer itself. Commit ad89a30 contains a stray `Co-Authored-By` line; history is not rewritten. Owner confirmation of this rule is in the waiting list in [RESUME.md](RESUME.md).
 - B3 note: the planned `pa` CLI is NOT built as a separate `work/persian/tools/pa/` tree. The command layer is `work/persian/tools/pa.ps1` (incoming; subcommands today: setup, setup-private, check, status). The missing commands (new-film, render, mix, preview, version, verify, scan, research-log, order) are backlog items in the "pa: decision" paragraph of [ARCHITECTURE.md](ARCHITECTURE.md). B3's remaining scope is: canonical `VERSION.json` from render, and those commands added to `pa.ps1`.
 - `docs/motion/manual-orders.jsonl` (footer rule above) does not exist yet; it is created by the first order run after the owner resumes.
+
+## Cycle prompt (2026-10-14)
+
+Status 2026-10-14: autopilot runs again through the durable cron job `d021db32` (every 25 minutes, expires 2026-10-21). The section above that says "PAUSED" is history. To re-create the job in a new chat, use this prompt as the job text:
+
+```
+Autopilot cycle for D:\P\project\persianArts. Read docs/motion/README.md, then docs/motion/RESUME.md (CURRENT STATE) and docs/motion/TODO.md. Follow docs/motion/PLAYBOOK-BUILD-MOTION.md and docs/motion/AUTOPILOT.md (Loop and Quota protocol). Brain and hands: the lead only decides and orders; workers do research, edits, renders, checks and git. Work the "Next actions, in order" list in RESUME.md, one milestone per cycle, time-boxed to 20 minutes per order (10 for small tasks); state the expected time in each order and report overruns in one line. Haiku is never used for craft. Scope freeze: no side tasks during a film. Owner-only items under "Waiting for owner" are parked, never asked. Stop at 90% weekly quota, after a checkpoint, and schedule one wake-up at the reset. Checkpoint: work/persian/tools/checkpoint.ps1 -DryRun first, then the real run with -Message; exit 0 is required. Record each confirmed finding in docs/motion/DECISIONS.jsonl and the PLAYBOOK files. At the end of the cycle update RESUME.md CURRENT STATE and TODO.md through a worker. No human is present: do not ask questions.
+```
+
+To continue in a new chat, the owner says: ادامه از RESUME.md

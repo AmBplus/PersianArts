@@ -2,12 +2,12 @@
 After every completed task the lead orders `pa todo done <id>` plus a checkpoint commit.
 
 ## Now
+- [ ] T021 Image transformation FX phase 1 (GL-transition shaders runner + catalog + pa fx find) (studio, est 20 min) - TOP ITEM
 - [ ] T015 Checkpoint policy: commit after every task (pa todo done + checkpoint) (lead)
 
 ## Next
 - [ ] T013 Carry-over: 4 simultaneous-cue defect in old finals (rebuild with build_sound) (studio, est 20 min)
 - [ ] T014 Cleanup duplicate decision ids D-20261013-01/-16 in DECISIONS.jsonl (lead, est 10 min)
-- [ ] T021 Image transformation FX phase 1 (GL-transition shaders runner + catalog + pa fx find) (studio, est 20 min)
 
 ## Waiting for owner
 - [ ] T006 git gc --prune of 860 MB local unreachable objects (owner approval pending) (owner, est 5 min)

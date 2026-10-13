@@ -36,3 +36,10 @@ Co-Authored-By: Claude Haiku 5.5 <noreply@anthropic.com>
 2026-10-13T23:33:02+03:30 4c2c9cda82ded35aaa4b4b8e2b5b2415182ddbd4 PUSH-OK via=ssh unpushed=1 files=4 msg=feat(motion): owner tools and board data
 2026-10-13T23:34:08+03:30 1d14dc78fc8227456dec907b757fa4296f66fc62 PUSH-OK via=ssh unpushed=1 files=1 msg=chore(motion): ignore bench and acceptance scratch dirs
 2026-10-13T23:46:47+03:30 9f06ed8419a74d55dfa3004d1b2ee01857c42906 PUSH-OK via=ssh unpushed=1 files=15 msg=feat(story-lab): S06 clock that never reaches zero (own film), pa-motion lib, deliver, learnings L-075..L-077
+2026-10-13T23:48:22+03:30 d1685657ed9ce99a8ad25bceb1291fd56c90e767 PUSH-OK via=ssh unpushed=1 files=4 msg=docs(motion): RESUME refresh for cross-machine continuation, TODO tool defects
+2026-10-14T00:01:27+03:30 752a88151321ee6f695dda7c3d58a3fdcdd6035d PUSH-OK via=ssh unpushed=1 files=1 msg=skill 2.8: loop-check and loop mode, pacing calibration, meter parser fix, no-logo gate, metrics rule 14
+2026-10-14T00:07:19+03:30 c131ac04615f6161156afd3a5b12e7f19d2107dc PUSH-OK via=ssh unpushed=1 files=10 msg=skill 2.9: self-installing persian-arts (install scripts, install-skill, assets-check, fonts manifest, step 0 env)
+2026-10-14T00:08:13+03:30 8df16cb93ebeddff6f140b5e5fb407dfa72ce6a9 PUSH-OK via=ssh unpushed=1 files=45 msg=skill 2.8+2.9: complete batch (loop-check, loop mode, pacing calibration, meter fix, installers, assets-check, fonts manifest)
+2026-10-14T00:16:08+03:30 b23d1a21c583ec0017183e510625060930e32c2e PUSH-OK via=ssh unpushed=1 files=5 msg=skill 2.9 fix: restore rules 13-15 in SKILL.md, pacing handles clips without cuts, ledger L-085/L-086
+2026-10-14T00:52:04+03:30 e29a3dc93f2a74f983fa6e10d60daa979e1e7854 PUSH-OK via=ssh unpushed=1 files=22 msg=S03 key-maze film v1: camera/path/maze libs, skill 2.10, learnings, ledger L-087..L-091, deliver
+2026-10-14T01:09:32+03:30 08427c019cf59c9ae8b19b70053c9455c71fd40a PUSH-OK via=ssh unpushed=1 files=27 msg=S07 kite-wind film v1: pa music-drop, pa-chain lib, scenery/one-take/events/env tool fixes, skill 2.11, learnings, ledger L-092..L-097, deliver
