@@ -6,6 +6,7 @@
 //   node capture.mjs --frames 0-59         -> frame range (inclusive)
 //   node capture.mjs --still 0.5,3.9       -> PNG stills at those seconds (into --stills dir)
 //   node capture.mjs --out <path.mp4>      -> output file
+//   node capture.mjs --draft               -> DRAFT/preview capture: jpeg q97 (faster); FINAL captures stay png
 import {spawn, spawnSync} from "node:child_process";
 import {mkdtempSync, writeFileSync, mkdirSync, existsSync, readdirSync} from "node:fs";
 import {tmpdir} from "node:os";
@@ -108,9 +109,16 @@ const duration = await evaluate("window.film.duration");
 const totalFrames = Math.round(duration * FPS);
 mark(`film ready, duration ${duration.toFixed(3)} s, ${totalFrames} frames`);
 
+const TM = {seek: 0, shot: 0};
+// Capture format (measured, docs/motion/PLAYBOOK-RENDER.md): default png = FINAL; --draft (or CAP_FORMAT=jpeg) = jpeg q97 for previews; CAP_QUALITY overrides q.
+const USE_JPEG = args.includes("--draft") || process.env.CAP_FORMAT === "jpeg";
+const SHOT_FORMAT = USE_JPEG ? {format: "jpeg", quality: Number(process.env.CAP_QUALITY || 97)} : {format: "png"};
 const shot = async (n) => {
+  const t0 = Date.now();
   await evaluate(`window.film.seek(${n / FPS})`);
-  const r = await send("Page.captureScreenshot", {format: "png", captureBeyondViewport: false, clip: {x: 0, y: 0, width: W, height: H, scale: 1}});
+  const t1 = Date.now();
+  const r = await send("Page.captureScreenshot", {...SHOT_FORMAT, captureBeyondViewport: false, clip: {x: 0, y: 0, width: W, height: H, scale: 1}});
+  TM.seek += t1 - t0; TM.shot += Date.now() - t1;
   return Buffer.from(r.data, "base64");
 };
 
@@ -135,7 +143,7 @@ if (framesArg) [a, b] = framesArg.split("-").map(Number);
 mkdirSync(dirname(OUT), {recursive: true});
 const ff = spawn("ffmpeg", [
   "-y", "-hide_banner", "-loglevel", "error",
-  "-f", "image2pipe", "-c:v", "png", "-framerate", String(FPS), "-i", "-",
+  "-f", "image2pipe", "-c:v", (USE_JPEG ? "mjpeg" : "png"), "-framerate", String(FPS), "-i", "-",
   "-c:v", "libx264", "-preset", "medium", "-crf", "16", "-pix_fmt", "yuv420p", "-r", String(FPS),
   "-movflags", "+faststart", OUT,
 ], {stdio: ["pipe", "inherit", "inherit"]});
@@ -153,6 +161,7 @@ ws.close();
 chrome.kill();
 const count = b - a + 1;
 mark(`capture+encode: ${count} frames in ${wall.toFixed(2)} s = ${(count / wall).toFixed(1)} fps (ffmpeg exit ${encodeCode})`);
+mark(`timing: seek ${(TM.seek / count).toFixed(0)} ms/frame, screenshot ${(TM.shot / count).toFixed(0)} ms/frame`);
 mark(`output ${OUT}`);
 // TV check of the produced mp4 (report only unless --tv-fix)
 if (existsSync(OUT) && !stillArg && !args.includes("--no-optimize")) {

@@ -6,7 +6,7 @@ PersianArts portability helper.
   pwsh -File work/persian/tools/pa.ps1 check
 #>
 param(
-  [Parameter(Position = 0)][ValidateSet('setup', 'setup-private', 'check', 'status', 'render', 'sound', 'assets')][string]$Command = 'check',
+  [Parameter(Position = 0)][ValidateSet('setup', 'setup-private', 'check', 'status', 'render', 'sound', 'assets', 'time')][string]$Command = 'check',
   [Parameter(Position = 1)][string]$Sub,      # status: set | add-item | blocker | show
   [Parameter(Position = 2)][string]$Id,       # status: item id (set/add-item) or add|clear (blocker)
   [Parameter(Position = 3)][string]$Arg3,     # status blocker add: text
@@ -28,6 +28,9 @@ param(
   [string]$Track,                             # sound: kit music id, e.g. tr-lnplus-597024
   [string]$Stills,                            # render: optional comma list of seconds for stills only
   [Parameter(ValueFromRemainingArguments = $true)][string[]]$More,
+  [double]$BudgetMinutes = 20,               # time start: film budget (target 10, cap 20)
+  [string]$Phase,                             # time mark: phase (alt to Arg3)
+  [string]$Actor = 'studio',
   [switch]$Quick
 )
 $ErrorActionPreference = 'Stop'
@@ -301,7 +304,16 @@ function Invoke-Assets {
   exit $LASTEXITCODE
 }
 
+function Invoke-Time {
+  $a = @((Join-Path $PSScriptRoot 'timing/time.mjs'), $Sub, $Id)
+  if ($Sub -eq 'start') { $a += @('--budget', $BudgetMinutes) }
+  if ($Sub -eq 'mark') { $a += $(if ($Phase) { $Phase } else { $Arg3 }); $a += @('--actor', $Actor) }
+  if ($Note) { $a += @('--note', $Note) }
+  node @a; exit $LASTEXITCODE
+}
+
 switch ($Command) {
+  'time' { Invoke-Time }
   'assets' { Invoke-Assets }
   'sound' { Invoke-Sound }
   'render' { Invoke-Render }

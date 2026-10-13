@@ -37,5 +37,8 @@ Score 0-100 (recorded; 85 = SHIP without notes) and the defect list ordered by s
 6. Run `node work/persian/tools/gates/run-gates.mjs <video> --src <film src>` per ratio first and paste the PASS/FAIL table; detector hits are leads to verify in frames, not verdicts.
 7. NEVER request or loop for another version; output SHIP or SHIP WITH NOTES. A film has at most 3 versions unless the user asked for a next one.
 
+## In the html-film lane (default since 2.2)
+Run node work/persian/tools/gates/run-gates.mjs <silent.mp4> --src <film.html dir>. A single html (scenes=1) does not apply scene-transition and duplicate-template without events.json/CUT_FRAMES, and logo-colour only when the film has a brand asset; list those as not applicable, not as pass. edge-touch, empty-band, dead-frames and number-lint always apply. Pilot checklist: pen face states, variable-width ribbons, vertical centring / empty band, 6-8 frame colour wipe at cuts, hero >= 12%, margins >= 6%, CTA idle loop, logo colours from real assets only.
+
 ## Appends to goal memory
 CURRENT STATE "Open defects" block (id, scene, frame, status); DECISIONS (score and verdict); REJECTED items you saw repeated.

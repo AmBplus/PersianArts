@@ -1,0 +1,10 @@
+{"t_iso": "2026-10-13T15:49:00Z", "t_epoch": 1791906540, "phase": "start", "note": "reconstructed from file mtimes; budget 20", "actor": "lead", "budget_minutes": 20}
+{"t_iso": "2026-10-13T15:49:00Z", "t_epoch": 1791906540, "phase": "build", "note": "v1 assets and film built", "actor": "studio-sonnet"}
+{"t_iso": "2026-10-13T15:54:00Z", "t_epoch": 1791906840, "phase": "capture", "note": "v1 stills 19:24, mp4s 19:28-19:29", "actor": "studio-sonnet"}
+{"t_iso": "2026-10-13T16:00:00Z", "t_epoch": 1791907200, "phase": "deliver", "note": "v1 VERSION.json 19:30", "actor": "studio-sonnet"}
+{"t_iso": "2026-10-13T16:25:00Z", "t_epoch": 1791908700, "phase": "fix", "note": "v2 fix round by Haiku (partial result)", "actor": "studio-haiku"}
+{"t_iso": "2026-10-13T16:33:00Z", "t_epoch": 1791909180, "phase": "fix", "note": "v2 finish by Sonnet", "actor": "studio-sonnet"}
+{"t_iso": "2026-10-13T16:43:00Z", "t_epoch": 1791909780, "phase": "capture", "note": "v2 stills and mp4s", "actor": "studio-sonnet"}
+{"t_iso": "2026-10-13T16:48:00Z", "t_epoch": 1791910080, "phase": "sound", "note": "sound and mux", "actor": "studio-sonnet"}
+{"t_iso": "2026-10-13T16:49:00Z", "t_epoch": 1791910140, "phase": "deliver", "note": "v2 VERSION.json", "actor": "studio-sonnet"}
+{"t_iso": "2026-10-13T16:51:00Z", "t_epoch": 1791910260, "phase": "end", "note": "final tv-safe mp4s 20:21", "actor": "lead"}

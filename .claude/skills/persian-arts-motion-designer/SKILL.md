@@ -29,5 +29,8 @@ Motion spec per scene (action, easing id from the single easing module, event fr
 
 7. Scene text leaves before the transition that follows starts (no captions over a cut); numbers and the separators U+2009 / U+202F stay inside an LTR isolate while they animate.
 
+## In the html-film lane (default since 2.2)
+Build every scene inside film.html as render(n) / film.seek(t), a pure function of t with no wall-clock or CSS animation, using the helper block of work/persian/htmlfilm/pencil/film.html (ease, shake, stomp, stampIn, draw-on). Keep EVENTS in the file; payoffs are exported to events.json by the export script. Fix round edits the same file (film.v2.html or a marked FIX LOG).
+
 ## Appends to goal memory
 DECISIONS (motion choices, easing family per scene, rejected alternative); REJECTED motion ideas.

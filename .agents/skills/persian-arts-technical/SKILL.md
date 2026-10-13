@@ -33,5 +33,10 @@ Scene code under the film folder, `events.json` generated from the package event
 7. After ANY resize/move re-check edge-touch AND width+height rules together; run `run-gates.mjs` on every ratio before saying a render is done. Digits and U+2009/U+202F separators go through the Ltr isolate helper.
 8. Commit via checkpoint.ps1 with a ONE-line message and NO Co-Authored-By (the script refuses it).
 
+## In the html-film lane (default since 2.2)
+Build is the single file film.html (fonts local, relative). Capture: node work/persian/htmlfilm/capture.mjs --html <film.html> --out <silent.mp4> (full), --still t1,t2,... --stills-dir <dir> for the 9 stills, --frames a-b for ranges; about 41 s for 590 frames at 1080x1920 (14.6 fps). Probe the mp4 (size, fps, frames) and write VERSION.json. Remotion is used only for heavy effects not yet proven in html-film.
+
 ## Appends to goal memory
 CURRENT STATE "Files" block (paths, render versions, commands); DECISIONS for technical choices with the rejected alternative.
+
+Time budget (2.3): capture ONCE per version; png for FINAL, `--draft` (jpeg q97, about 1.6x faster) for previews only; lighten the page first (few DOM nodes, pre-blurred assets); checks on 50% stills; `pa time mark <label> capture` before and `sound|qc` after.

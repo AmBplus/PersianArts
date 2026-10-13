@@ -102,3 +102,15 @@ Tool: work/persian/tools/assets (optimize_assets.py, tv_check.py, README.md; `pa
 photos use lossy WebP only when SSIM >= 0.985. This does not contradict the finding above: lossy WebP stays forbidden for FRAME capture;
 this section covers ASSETS only. TV profile: mp4 faststart, H.264 High 4.1, yuv420p, tv range, bt709 tags, constant fps, GOP <= 2 s, AAC-LC 48k stereo
 (silent films get a silent track). Measured: the pencil film mp4s (GOP 4-8 s, level 4.0/5.0, untagged) were NOT TV-compliant and need a re-encode.
+
+## html-film capture format: png (FINAL) vs jpeg (DRAFT) - measured 2026-10-13
+Test: `work/persian/htmlfilm/pencil/film.v2.html`, frames 0-239, 1080x1920, same machine, `--no-optimize`; script `work/persian/tools/timing/bench.sh`. SSIM is the mp4 (x264 crf 16) of each variant vs the png mp4, per frame via ffmpeg `ssim`.
+
+| format | fps | wall (240 f) | screenshot ms/frame | mp4 size | SSIM mean | SSIM worst frame |
+|---|---|---|---|---|---|---|
+| png | 11.5 | 20.9 s | 84 | 757 KB | 1 (reference) | - |
+| jpeg q97 | 18.2 | 13.2 s | 53 | 871 KB | 0.999514 | 0.998962 |
+| jpeg q95 | 17.5 | 13.7 s | 55 | 979 KB | 0.999284 | 0.998613 |
+
+Crops (400x300 on frame 120, jpeg q97 / q95 vs png): top text region 0.99680 / 0.99404, middle 0.99794 / 0.99700, lower 0.99880 / 0.99784.
+Decision: both jpeg variants stay below the quality bar (threshold 0.999576, our earlier Remotion finding), q97 is closest but still under and costs more bytes; text/edge crops show the loss. So **png is the default for FINAL captures; `--draft` (or `CAP_FORMAT=jpeg`, `CAP_QUALITY` to override q) = jpeg q97 for DRAFT/preview captures only** (about 1.6x faster here). The earlier 13 fps jpeg figure on the conference film was dominated by its DOM weight; the cure for slow capture is lighter pages (fewer DOM nodes, pre-blurred assets), not a lossy format, for finals.

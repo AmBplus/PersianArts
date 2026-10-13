@@ -32,5 +32,10 @@ A copy map (`copy-map.json` or the project's copy tokens file): token id -> Pers
 
 7. Keep a token -> source-claim table in the copy map so QC can verify every number against it.
 
+## In the html-film lane (default since 2.2)
+Write the final copy (writer pass, then copy-editor result) into the COPY section of the film.html header comment, one line per on-screen string with its scene. Strings in the file must equal the comment; the QC copy-map is read from it.
+
 ## Appends to goal memory
 DECISIONS (wording choices with the rejected phrasing); CONSTRAINTS (claims confirmed verified or forbidden); REJECTED phrasings.
+
+Time budget (2.3): the writer pass is part of the same single studio pass as the director hat (copy goes straight into the COPY header block); no separate writer round.

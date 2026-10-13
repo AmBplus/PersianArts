@@ -32,5 +32,10 @@ The ONE dramatic device and the one-sentence idea (THROUGH-LINE); scene list, du
 8. Version cap: a film has at most THREE versions (first build, one fix round, one final); never plan a 4th unless the user asked in this chat (docs/motion/LOOP-POLICY.md).
 9. Check the plan with run-gates.mjs duplicate-template on the styleframes: two scenes with the same layout are rejected.
 
+## In the html-film lane (default since 2.2)
+Write the logline, treatment and beat table into the top comment block of film.html (GOAL, logline, director's treatment, scene table with seconds, EVENTS contract with the intended sound cue per payoff). Scenes are one-file functions of t; no separate director-package unless the owner asks. Pilot lesson: plan a colour wipe at every scene cut and a payoff with a visible state change per scene.
+
 ## Appends to goal memory
 THROUGH-LINE (owner of that section); DECISIONS lines with the rejected alternative and why; REJECTED ideas; CONSTRAINTS added by the package.
+
+Time budget (2.3): director and writer hats are ONE pass inside the single studio order (treatment written once into the film.html header); read film-context.md first; no separate director round.

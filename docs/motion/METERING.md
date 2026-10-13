@@ -40,3 +40,6 @@ Measured: worker time only. Wall-clock waiting between orders was NOT measured.
 3. Put expected minutes on every order.
 4. No review loops before the first watchable render.
 5. Late = reported automatically: the board panel "متر زمان" shows on time / late / running per item.
+
+## Film clock (2.3)
+`pwsh -File work/persian/tools/pa.ps1 time start|mark|status|end|postmortem <label>`: system-clock marks per film (media/briefs-local/<label>/timing.jsonl, git-ignored), alarms at half budget and full budget, tracked summary line in docs/motion/ledger/manual-orders.jsonl, post-mortem in docs/motion/ledger/postmortem-<label>-<date>.md. Tool: work/persian/tools/timing/.

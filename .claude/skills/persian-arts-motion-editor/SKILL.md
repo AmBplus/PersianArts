@@ -29,5 +29,8 @@ An edit verdict (lock / revise) with a list: scene, frame range, problem, exact 
 
 7. Run run-gates.mjs dead-frames (scene starts from events.json) before lock; any near-uniform run of 3+ frames at a scene start is fixed by overlap.
 
+## In the html-film lane (default since 2.2)
+Cut times live in CUT_BEATS in film.html on the music BPM/T0 grid; adjust them there, not in a new project. Check the cut stills at EVENTS and the 6-8 frame wipe at each cut.
+
 ## Appends to goal memory
 DECISIONS (cuts, trims, rejected alternatives); CURRENT STATE open defects of pacing; "locked at <date>" in NEXT when locked.

@@ -34,5 +34,8 @@ Per scene: composition, type scale and fonts, palette inside the brand, hero ele
 7. After ANY resize or move re-check the edge rule AND the width and height rules together (run-gates.mjs: edge-touch, hero-size, empty-band); a fix that passes one and breaks another is not done.
 8. Logo check on the finale frame: run-gates.mjs logo-colour (own colours, no white or cream plate).
 
+## In the html-film lane (default since 2.2)
+Write palette, type roles, motion language and hero/margin rules (hero >= 12% of frame height, margins >= 6%, vertical centring so no band over 30% is empty) into the ART DIRECTION section of the film.html header. Pilot lessons: give characters real states (pen face frown/smile, tilt, tremble), use variable-width jagged strokes for 'messy' and calm loops for 'good', a 6-8 frame colour wipe at scene cuts, a CTA idle loop, and logo colours only from real brand assets (no brand asset, no logo-colour gate).
+
 ## Appends to goal memory
 DECISIONS (visual choices with rejected alternatives); REJECTED looks; CONSTRAINTS (brand rules confirmed).

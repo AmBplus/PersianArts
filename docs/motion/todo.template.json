@@ -1,6 +1,18 @@
 {
-  "$comment": "TODO template for a 30 s film. Copy to media/briefs-local/<label>/todo.json, replace <label>, set time boxes by film length (STUDIO.md section 4). class M = mechanical (haiku, 5-line context header, returns numbers); class S = semantic (sonnet persistent cast member, reads and appends goal memory). Protocol: docs/motion/GOAL-MEMORY.md. Craft skills: .claude/skills/<craft>/SKILL.md. DEFAULT mode single-agent: one persistent STUDIO agent (Sonnet, SendMessage) wears every craft hat by reading the craft skills in sequence; QC is always a separate fresh Sonnet; Haiku does class M and returns numbers; an Opus ADVISOR is on call (docs/motion/ADVISOR.md, advisor field per step). Mode cast (Director/Builder/QC as separate agents) only for large films. Cache order is stable-first: craft skills, then goal memory, then this TODO, all append-only.",
+  "$comment": "TODO template for a 30 s film. Copy to media/briefs-local/<label>/todo.json, replace <label>, set time boxes by film length (STUDIO.md section 4). class M = mechanical (haiku, 5-line context header, returns numbers); class S = semantic (sonnet persistent cast member, reads and appends goal memory). Protocol: docs/motion/GOAL-MEMORY.md. Craft skills: .claude/skills/<craft>/SKILL.md. DEFAULT mode single-agent: one persistent STUDIO agent (Sonnet, SendMessage) wears every craft hat by reading the craft skills in sequence; QC is always a separate fresh Sonnet; Haiku does class M and returns numbers; an Opus ADVISOR is on call (docs/motion/ADVISOR.md, advisor field per step). Mode cast (Director/Builder/QC as separate agents) only for large films. Cache order is stable-first: craft skills, then goal memory, then this TODO, all append-only. LANE (2.2): `lane` is 'html-film' (default: single file film.html, steps with lane html-film) or 'remotion' (heavy effects only, steps with lane remotion); a runner executes only the steps of its lane. TIME (2.3): `budget_minutes` 20 (target 10) per FILM from the owner's message; `marks` are written to timing.jsonl by `pa time mark`; each html-film step has a `time_mark` phase; the film is ONE studio order (treatment+build+capture+sound) by ONE persistent studio worker; scope freeze after start.",
   "label": "<label>",
+  "budget_minutes": 20,
+  "target_minutes": 10,
+  "marks": [],
+  "timing": {
+    "file": "media/briefs-local/<label>/timing.jsonl",
+    "start": "pwsh -File work/persian/tools/pa.ps1 time start <label> -BudgetMinutes 20",
+    "mark": "pa time mark <label> <phase> (intake|treatment|build|capture|sound|qc|fix|deliver|wait-lead|wait-owner|scope-change)",
+    "status": "pa time status <label> (half budget: decide ship-or-narrow; over budget: OVERRUN, report to the owner)",
+    "end": "pa time end <label>; then pa time postmortem <label> if over budget",
+    "rules": "one budget per film; scope freeze; ONE persistent studio worker (SendMessage); Haiku never for craft; no parallel side tasks"
+  },
+  "context_pack": "media/briefs-local/<label>/film-context.md (<= 60 lines; written by the intake worker; the studio reads it first)",
   "mode": "single-agent",
   "modes": [
     "single-agent",
@@ -24,6 +36,196 @@
       "id": "intake",
       "craft": null,
       "class": "S",
+      "executor": "studio (single-agent)",
+      "inputs": [
+        "user message",
+        "docs/motion/INTAKE.md"
+      ],
+      "outputs": [
+        "media/briefs-local/<label>/brief.json",
+        "media/briefs-local/<label>/film-context.md"
+      ],
+      "gate": "brief validates; goal filled",
+      "timebox_min": 3,
+      "advisor": "none",
+      "lane": "html-film",
+      "time_mark": "intake"
+    },
+    {
+      "id": "memory-init",
+      "craft": null,
+      "class": "S",
+      "executor": "studio (single-agent)",
+      "inputs": [
+        "brief.json"
+      ],
+      "outputs": [
+        "memory/goal-memory.md"
+      ],
+      "gate": "goal memory has GOAL and THROUGH-LINE",
+      "timebox_min": 2,
+      "advisor": "none",
+      "lane": "html-film",
+      "time_mark": "intake"
+    },
+    {
+      "id": "treatment",
+      "craft": "persian-arts-director",
+      "class": "S",
+      "executor": "studio (single-agent)",
+      "inputs": [
+        "goal-memory.md",
+        "docs/motion/PLAYBOOK-BUILD-MOTION.md"
+      ],
+      "outputs": [
+        "film.html header comment: GOAL, logline, treatment, COPY, ART DIRECTION, scene table, EVENTS, music, FIX LOG"
+      ],
+      "gate": "header complete; every scene traces to the goal",
+      "timebox_min": 4,
+      "advisor": "none",
+      "note": "one studio pass wearing director, writer, copy-editor and art-director hats (read those four SKILL.md, section 'In the html-film lane')",
+      "lane": "html-film",
+      "time_mark": "treatment"
+    },
+    {
+      "id": "build",
+      "craft": "persian-arts-motion-designer",
+      "class": "S",
+      "executor": "studio (single-agent)",
+      "inputs": [
+        "film.html header",
+        "work/persian/htmlfilm/pencil/film.html (helpers)"
+      ],
+      "outputs": [
+        "work/persian/htmlfilm/<label>/film.html"
+      ],
+      "gate": "film.seek(t) pure function of t; EVENTS present",
+      "timebox_min": 6,
+      "advisor": "none",
+      "lane": "html-film",
+      "time_mark": "build"
+    },
+    {
+      "id": "capture",
+      "craft": "persian-arts-technical",
+      "class": "M",
+      "executor": "studio (single-agent)",
+      "inputs": [
+        "film.html"
+      ],
+      "outputs": [
+        "silent-9x16.mp4",
+        "_stills (9 at EVENTS, looked at)",
+        "events.json"
+      ],
+      "gate": "mp4 duration/fps/size match; stills viewed; capture.mjs exit 0",
+      "timebox_min": 3,
+      "advisor": "none",
+      "note": "stills at EVENTS replace animatic and g3-check",
+      "lane": "html-film",
+      "time_mark": "capture"
+    },
+    {
+      "id": "sound",
+      "craft": "persian-arts-sound",
+      "class": "S",
+      "executor": "studio (single-agent)",
+      "inputs": [
+        "goal-memory.md",
+        "events.json",
+        "silent-9x16.mp4"
+      ],
+      "outputs": [
+        "final mix",
+        "cues-resolved.json"
+      ],
+      "gate": "offsets <= 5 ms, -14 LUFS, TP <= -1 dBTP",
+      "timebox_min": 5,
+      "advisor": "none",
+      "note": "deferred: owner's explicit word only",
+      "lane": "html-film",
+      "time_mark": "sound"
+    },
+    {
+      "id": "qc",
+      "craft": "persian-arts-qc",
+      "class": "S",
+      "executor": "studio (single-agent)",
+      "inputs": [
+        "goal-memory.md",
+        "film.html",
+        "mp4",
+        "stills"
+      ],
+      "outputs": [
+        "docs/motion/reports/<date>/review-<n>.md"
+      ],
+      "gate": "run-gates with --src film.html; not-applicable gates listed",
+      "timebox_min": 4,
+      "advisor": "none",
+      "note": "fresh independent Sonnet",
+      "lane": "html-film",
+      "time_mark": "qc"
+    },
+    {
+      "id": "fix-round",
+      "craft": "persian-arts-motion-designer",
+      "class": "S",
+      "executor": "studio (single-agent)",
+      "inputs": [
+        "review-<n>.md"
+      ],
+      "outputs": [
+        "film.v2.html or marked FIX LOG in the same file"
+      ],
+      "gate": "gate failures re-run; one round only",
+      "timebox_min": 6,
+      "advisor": "none",
+      "lane": "html-film",
+      "time_mark": "fix"
+    },
+    {
+      "id": "deliver",
+      "craft": null,
+      "class": "S",
+      "executor": "studio (single-agent)",
+      "inputs": [
+        "final mp4",
+        "VERSION.json"
+      ],
+      "outputs": [
+        "VERSION.json",
+        "owner summary"
+      ],
+      "gate": "VERSION.json complete; short Persian summary",
+      "timebox_min": 2,
+      "advisor": "none",
+      "lane": "html-film",
+      "time_mark": "deliver"
+    },
+    {
+      "id": "retro",
+      "craft": null,
+      "class": "S",
+      "executor": "studio (single-agent)",
+      "inputs": [
+        "review",
+        "ledger"
+      ],
+      "outputs": [
+        "ledger lines",
+        "SKILLS-CHANGELOG entry if skill changed"
+      ],
+      "gate": "defects classified; systematic ones fixed at source",
+      "timebox_min": 3,
+      "advisor": "none",
+      "lane": "html-film",
+      "time_mark": "deliver"
+    },
+    {
+      "id": "intake",
+      "craft": null,
+      "class": "S",
       "executor": "lead (orchestrator)",
       "inputs": [
         "user message",
@@ -34,7 +236,8 @@
       ],
       "gate": "brief validates against brief.schema.json; goal filled",
       "timebox_min": 3,
-      "advisor": "none"
+      "advisor": "none",
+      "lane": "remotion"
     },
     {
       "id": "memory-init",
@@ -50,7 +253,8 @@
       ],
       "gate": "all 8 sections present; GOAL and CONSTRAINTS filled from the brief",
       "timebox_min": 2,
-      "advisor": "none"
+      "advisor": "none",
+      "lane": "remotion"
     },
     {
       "id": "director",
@@ -70,7 +274,8 @@
       "timebox_min": 6,
       "cast_executor": "sonnet (Director)",
       "cast_role": "Director",
-      "advisor": "optional (concept lock: only if torn between two strong directions)"
+      "advisor": "optional (concept lock: only if torn between two strong directions)",
+      "lane": "remotion"
     },
     {
       "id": "writer",
@@ -88,7 +293,8 @@
       "timebox_min": 4,
       "cast_executor": "sonnet (Director)",
       "cast_role": "Director",
-      "advisor": "none"
+      "advisor": "none",
+      "lane": "remotion"
     },
     {
       "id": "copy-editor",
@@ -107,7 +313,8 @@
       "timebox_min": 3,
       "cast_executor": "sonnet (Director)",
       "cast_role": "Director",
-      "advisor": "none"
+      "advisor": "none",
+      "lane": "remotion"
     },
     {
       "id": "art-director",
@@ -128,7 +335,8 @@
       "timebox_min": 6,
       "cast_executor": "sonnet (Director)",
       "cast_role": "Director",
-      "advisor": "none"
+      "advisor": "none",
+      "lane": "remotion"
     },
     {
       "id": "animatic",
@@ -148,7 +356,8 @@
       "timebox_min": 5,
       "cast_executor": "sonnet (Director)",
       "cast_role": "Director",
-      "advisor": "none"
+      "advisor": "none",
+      "lane": "remotion"
     },
     {
       "id": "g3-check",
@@ -164,7 +373,8 @@
       ],
       "gate": "node work/persian/tools/film-process-gates.mjs structural passes; unknown/not-run listed as blocking",
       "timebox_min": 2,
-      "advisor": "none"
+      "advisor": "none",
+      "lane": "remotion"
     },
     {
       "id": "build",
@@ -186,7 +396,8 @@
       "timebox_min": 15,
       "cast_executor": "sonnet (Builder); GLM/Sol per CLAUDE.md routing",
       "cast_role": "Builder",
-      "advisor": "none"
+      "advisor": "none",
+      "lane": "remotion"
     },
     {
       "id": "motion-fixes",
@@ -206,7 +417,8 @@
       "timebox_min": 6,
       "cast_executor": "sonnet (Builder)",
       "cast_role": "Builder",
-      "advisor": "optional (after two failed fix rounds on the same defect)"
+      "advisor": "optional (after two failed fix rounds on the same defect)",
+      "lane": "remotion"
     },
     {
       "id": "render",
@@ -224,7 +436,8 @@
       ],
       "gate": "render exits 0; duration/fps/size match package; numbers reported",
       "timebox_min": 8,
-      "advisor": "none"
+      "advisor": "none",
+      "lane": "remotion"
     },
     {
       "id": "sound",
@@ -247,7 +460,8 @@
       "note": "owner must say so; music/sound is never started on inference (e.g. 'the design looks better') Default deferred; only the owner explicit word flips it.",
       "cast_executor": "sonnet (Builder)",
       "cast_role": "Builder",
-      "advisor": "none"
+      "advisor": "none",
+      "lane": "remotion"
     },
     {
       "id": "qc",
@@ -265,7 +479,8 @@
       ],
       "gate": "score >= 85 or defect list with scene/frame/ratio/fix",
       "timebox_min": 6,
-      "advisor": "none"
+      "advisor": "none",
+      "lane": "remotion"
     },
     {
       "id": "fix-round",
@@ -285,7 +500,8 @@
       "timebox_min": 12,
       "cast_executor": "sonnet (Builder)",
       "cast_role": "Builder",
-      "advisor": "optional (after two failed fix rounds on the same defect)"
+      "advisor": "optional (after two failed fix rounds on the same defect)",
+      "lane": "remotion"
     },
     {
       "id": "deliver",
@@ -303,7 +519,8 @@
       ],
       "gate": "film-process-gates.mjs delivery PASS; DECISIONS.jsonl updated; memory NEXT updated",
       "timebox_min": 3,
-      "advisor": "none"
+      "advisor": "none",
+      "lane": "remotion"
     },
     {
       "id": "retro",
@@ -323,7 +540,8 @@
       ],
       "gate": "every systematic defect has a ledger line, a source-layer fix and a detector or checklist item; detectors re-run",
       "timebox_min": 8,
-      "advisor": "optional"
+      "advisor": "optional",
+      "lane": "remotion"
     }
   ],
   "version_cap": 3,
@@ -333,5 +551,10 @@
     "user_requested_version": false,
     "rule": "Refuse a 4th version unless user_requested_version=true (set only when the user asked in chat). Improvement mode improves the skill, not the film."
   },
-  "skill_version": "2.0"
+  "skill_version": "2.2",
+  "lane": "html-film",
+  "lanes": [
+    "html-film",
+    "remotion"
+  ]
 }

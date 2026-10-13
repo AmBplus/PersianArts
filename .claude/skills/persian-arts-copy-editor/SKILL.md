@@ -29,5 +29,8 @@ The edited copy map plus a change list (token, before, after, reason) and a term
 
 7. Every digit run and the thousands separators U+2009 and U+202F live only inside an LTR isolate (dir=ltr, unicode-bidi isolate or U+2066); verify with run-gates.mjs number-lint (file:line).
 
+## In the html-film lane (default since 2.2)
+Edit the strings inside the film.html header COPY section and the SCENES strings in the same pass; log each change in the file's FIX LOG line. Check joins, ZWNJ, Persian digits and LTR isolates directly in the stills at EVENTS (no letter-spacing, no per-character splits).
+
 ## Appends to goal memory
 DECISIONS (terminology and normalization rules fixed for this goal); REJECTED (wordings cut and why).

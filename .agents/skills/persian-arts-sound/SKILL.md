@@ -33,5 +33,8 @@ Mixed audio and muxed film, the cue sheet from `events.json`, and the measured n
 
 6. Sound is deferred by default (todo `sound.deferred: true`); only the owner's explicit word in chat flips it. "The design looks better" is not a go-ahead.
 
+## In the html-film lane (default since 2.2)
+Inputs are events.json (export the EVENTS block from film.html) and cues-resolved.json; contact times (not event starts) place each SFX, expected offset <= 5 ms against the HTML contact times; music bed on the BPM/T0 grid with the v51 recipe (bed -18 LUFS, duck -3 dB / 150 ms, final -14 LUFS, TP <= -1 dBTP); reference mixer: media/film-versions/pencil-html/v2/_tools/build_html_v2.py. Still starts only on the owner's word.
+
 ## Appends to goal memory
 DECISIONS (track choice, rejected tracks); CURRENT STATE lines for audio files; REJECTED sounds.
