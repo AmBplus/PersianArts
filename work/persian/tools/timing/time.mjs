@@ -4,7 +4,7 @@ import {existsSync, mkdirSync, appendFileSync, readFileSync} from "node:fs";
 import {join, dirname, resolve} from "node:path";
 import {fileURLToPath} from "node:url";
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..", "..", "..");
-export const PHASES = ["intake", "treatment", "build", "capture", "sound", "qc", "fix", "deliver", "wait-lead", "wait-owner", "scope-change"];
+export const PHASES = ["env", "intake", "treatment", "build", "capture", "sound", "qc", "fix", "deliver", "wait-lead", "wait-owner", "scope-change"];
 const [cmd, film, ...rest] = process.argv.slice(2);
 const opt = (k, d) => { const i = rest.indexOf(k); return i >= 0 ? rest[i + 1] : d; };
 export const tfile = (f, over) => over || join(ROOT, "media/briefs-local", f, "timing.jsonl");

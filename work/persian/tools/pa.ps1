@@ -6,7 +6,7 @@ PersianArts portability helper.
   pwsh -File work/persian/tools/pa.ps1 check
 #>
 param(
-  [Parameter(Position = 0)][ValidateSet('setup', 'setup-private', 'check', 'status', 'render', 'sound', 'assets', 'time', 'deliver', 'compress', 'audio-check', 'strip', 'pacing', 'arc', 'music-pick', 'loop-check', 'assets-check', 'install-skill', 'doctor', 'bootstrap', 'sync', 'vault', 'todo', 'meter', 'metrics')][string]$Command = 'check',
+  [Parameter(Position = 0)][ValidateSet('setup', 'setup-private', 'check', 'status', 'render', 'sound', 'assets', 'time', 'deliver', 'compress', 'audio-check', 'strip', 'pacing', 'arc', 'music-pick', 'music-drop', 'loop-check', 'assets-check', 'install-skill', 'doctor', 'bootstrap', 'sync', 'vault', 'todo', 'meter', 'metrics')][string]$Command = 'check',
   [Parameter(Position = 1)][string]$Sub,      # status: set | add-item | blocker | show
   [Parameter(Position = 2)][string]$Id,       # status: item id (set/add-item) or add|clear (blocker)
   [Parameter(Position = 3)][string]$Arg3,     # status blocker add: text
@@ -329,6 +329,7 @@ switch ($Command) {
   'arc' { & (Join-Path $Root 'sound\.venv\Scripts\python.exe') (Join-Path $PSScriptRoot 'pacing/arc.py') @(@($Sub, $Id, $Arg3) + @($More) + @($Fwd) | Where-Object { $_ }); exit $LASTEXITCODE }
   'music-pick' { & (Join-Path $Root 'sound\.venv\Scripts\python.exe') (Join-Path $PSScriptRoot 'pacing/music_pick.py') @(@($Sub, $Id, $Arg3) + @($More) + @($Fwd) | Where-Object { $_ }); exit $LASTEXITCODE }
   'compress' { & node (Join-Path $PSScriptRoot 'deliver/compress.mjs') @(@($Sub, $Id, $Arg3) + @($More) + @($Fwd) | Where-Object { $_ }); exit $LASTEXITCODE }
+  'music-drop' { & (Join-Path $Root 'sound\.venv\Scripts\python.exe') (Join-Path $PSScriptRoot 'audio/music_drop.py') @(@($Sub, $Id, $Arg3) + @($More) | Where-Object { $_ }); exit $LASTEXITCODE }
   'audio-check' { & python (Join-Path $PSScriptRoot 'audio/audio_check.py') @(@($Sub, $Id, $Arg3) + @($More) + @($Fwd) | Where-Object { $_ }); exit $LASTEXITCODE }
   'strip' { & python (Join-Path $PSScriptRoot 'audio/strip.py') @(@($Sub, $Id, $Arg3) + @($More) + @($Fwd) | Where-Object { $_ }); exit $LASTEXITCODE }
   'deliver' {

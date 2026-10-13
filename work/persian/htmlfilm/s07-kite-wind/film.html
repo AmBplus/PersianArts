@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>S07 kite and wind</title>
+<!--
+==========================================================================
+S07 kite-wind (own film, fictional, no client). 9:16, 118 BPM, 10 bars = 40 beats = 20.34 s = 610 frames. Music: kit tr-miromax-promo-513944.
+==========================================================================
+LOGLINE   A paper kite waits limp on a quiet hill; when the wind comes and the music drops, it dances, and at the peak the string lets go and it stays free.
+PROTAGONIST  the kite (persistent actor, one group): limp on the ground (sleepy eyes) -> twitch -> lifts -> hangs taut, string humming -> DROP: wide eyes, dances
+          with a tail of 8 bows (follow-through chain, 0.11 s lag per bow) -> string snaps -> free (closed happy eyes).
+          Wind = ONE scalar w(beat); wind phase = its integral (clouds, streaks, grass sway never jump).
+MUSIC-LED  the kit track tr-miromax-promo-513944 has an 8-bar intro and a section jump at bar 8 (pa music-drop: grid 16.4298 s, strongest hit 16.4223 s).
+          The bed starts 3 bars into the track (--t0 -6.1017) so the drop lands on FILM bar 5 = beat 20 = 10.1695 s = frame 305 (+-3 ms).
+COPY      "گاهی باید رها شد."
+ART       sky gradient by altitude (#cfeaff low -> #4aa3f0 high), hills #7fc4a8/#5bb078/#3f9a5c, kite #ff6b4a/#ffb02e, tail bows yellow/cyan/pink/green, copy white with a navy block shadow. Vazirmatn.
+SCENES (118 BPM, beat 0.5085 s, bar 2.034 s)
+  1 WAIT     beats  0-8   (0.00-4.07 s)   hill, kite limp, wind 0.05, clouds crawl
+  2 AWAKEN   beats  8-16  (4.07-8.14 s)   riser 8-10, gust at 10 (5.08 s): twitch then lift; wind rises, string gets tight, kite climbs to the middle
+  3 HOLD     beats 16-20  (8.14-10.17 s)  ANTICIPATION: wind drops to 0.1, kite hangs, string taut and humming, reverse riser 16-20
+  4 DROP     beat  20     (10.17 s)       hit on the downbeat: wind 1.0, camera punch + shake, kite shoots up, camera follows
+  5 DANCE    beats 20-36  (10.17-18.3 s)  tail swirls, figure-eight on the beat from beat 28 (accent at 30 = 15.25 s)
+  6 FREE     beats 36-40  (18.3-20.34 s)  string snaps (36), kite floats, copy stamps at 37.5
+EVENTS (beats) riser 8-10 | gust 10 | reverse riser 16-20 | DROP 20 | snare accent 30 | tension riser 35 | snap 36 | pad out 36 | pop 38
+==========================================================================
+-->
+<style>
+@font-face{font-family:"PAHead";src:url("fonts/Vazirmatn-Variable.woff2") format("woff2");font-weight:100 900;font-display:block}
+html,body{margin:0;height:100%;background:#000;overflow:hidden}
+#stage{position:absolute;left:0;top:0;width:1080px;height:1920px;overflow:hidden;transform-origin:0 0;direction:rtl;background:#7ec3ff}
+#fx{position:absolute;left:0;top:0}
+.t{position:absolute;display:flex;align-items:center;justify-content:center;text-align:center;font-family:"PAHead";letter-spacing:0;line-height:1.3;white-space:nowrap}
+</style>
+<script src="../lib/pa-motion.js"></script><script src="../lib/pa-camera.js"></script><script src="../lib/pa-chain.js"></script>
+</head>
+<body>
+<div id="stage"><svg id="fx" width="1080" height="1920" viewBox="0 0 1080 1920"></svg><div id="c1" class="t"></div></div>
+<script>
+"use strict";
+const {clamp, lerp, prog, ease, beats, rng} = PA;
+const params = new URLSearchParams(location.search), W = 1080, H = 1920, FPS = 30, DURATION = 610, DUR = DURATION / FPS, BPM = 118, T0 = 0, BS = beats(BPM).bs;
+const DROP = 20;                                              // beat of the drop (music-drop: track bar 8, bed starts 3 bars in)
+const EVENTS = [["riser", 8], ["gust", 10], ["reverse riser", 16], ["DROP", DROP], ["snare accent", 30], ["tension riser", 35], ["snap", 36], ["pad out", 36], ["copy pop", 38]]
+  .map(([name, b]) => ({name, beat: b, t_s: +(b * BS).toFixed(4), frame: Math.round(b * BS * FPS)}));
+// ---- wind: one scalar, its integral is the wind phase
+const windK = PA.keys([[0, .04], [8, .05], [9.6, .05], [10, .55], [12, .42], [15, .7], [17, .3], [18, .12], [19.6, .1], [20, 1], [21, .9], [30, .85], [35, .8], [36, .35], [40, .25]], t => t);
+const wind = t => windK(t / BS);
+const phase = PA.integrate(wind, 1 / 30, 25);
+const tens = PA.keys([[0, 0], [9.5, 0], [12, .5], [16, .8], [18, 1], [20, 1], [21, .85], [36, .85]], t => t);
+// ---- kite path (world px, y down): ground, lift, hold, drop, dance, float; keys in beats
+const KP = PA.keys([[0, 300], [9.6, 300], [10, 312], [12, 380], [15, 470], [17, 500], [20, 500], [21.5, 640], [23, 300], [25, 720], [27, 380], [29, 700], [31, 360], [33, 640], [36, 520], [40, 600]], ease.inOutSine);
+const KQ = PA.keys([[0, 1585], [9.6, 1585], [10, 1540], [12, 1330], [15, 1080], [17, 1020], [20, 1020], [21.5, 640], [23, 330], [25, 90], [27, -250], [29, -480], [31, -700], [33, -780], [36, -820], [40, -900]], ease.inOutSine);
+const KR = PA.keys([[0, 72], [9.6, 72], [10, 60], [12, 24], [15, -8], [17, 4], [20, 4], [21.5, -22], [23, 26], [25, -18], [27, 22], [29, -14], [31, 18], [36, 6], [40, 0]], ease.inOutSine);
+const KAmp = PA.keys([[0, 0], [26, 0], [30, 120], [36, 90], [37, 20], [40, 12]], ease.inOutSine);
+function kiteAt(t) {
+  const b = t / BS, w = wind(t), ph = phase(t), amp = KAmp(b), om = Math.PI / 2;      // figure-eight: period 4 beats
+  const hum = b >= 16 && b < 20 ? Math.sin(b * 52) * (b - 16) * 0.9 : 0;                // string humming before the drop
+  const x = KP(b) + amp * Math.sin(om * b) + Math.sin(ph * 5) * 22 * w + hum;
+  const y = KQ(b) + amp * 0.5 * Math.sin(2 * om * b) + Math.cos(ph * 4) * 16 * w;
+  const rot = KR(b) + Math.sin(ph * 6) * 7 * w + (b >= 28 && b < 36 ? Math.cos(om * b) * 14 : 0);
+  return {x, y, rot, w, b};
+}
+const rotP = (px, py, a) => { const r = a * Math.PI / 180; return [px * Math.cos(r) - py * Math.sin(r), px * Math.sin(r) + py * Math.cos(r)]; };
+const bottomAt = t => { const k = kiteAt(t), [dx, dy] = rotP(0, 130, k.rot); return {x: k.x + dx, y: k.y + dy}; };
+const tailAt = PA.chain(bottomAt, 8, 0.11, (k, t) => { const w = wind(t), ph = phase(t); return {x: Math.sin(ph * 5 + k * 0.9) * 16 * w * (k + 1) / 4, y: (k + 1) * (26 - 10 * w)}; });
+// ---- camera
+const camFollow = t => { const b = t / BS, k = kiteAt(Math.max(0, t - 0.5)), e = ease.inOutSine(prog(b, 20, 3.5)); return {x: lerp(540, 540 + (k.x - 540) * 0.3, e), y: lerp(960, Math.min(960, k.y + 330), e)}; };
+const cam = PA.camera({zoom: [[0, 1], [20, 1], [20.4, 1.1], [23, 1.0], [40, 1.0]].map(([b, z]) => [b * BS, z]), follow: camFollow, W, H, ease: ease.outCubic});
+// ---- static world pieces (seeded)
+const R = rng(77);
+const clouds = []; for (let i = 0; i < 16; i++) clouds.push({x: R() * 1900 - 400, y: -1900 + R() * 3300, s: 0.7 + R() * 1.1, d: 0.25 + R() * 0.75});
+[[120, 380, 1.0, .6], [700, 820, 1.2, .5], [420, 1180, .8, .7], [880, 120, .9, .5], [200, 1500, .7, .4]].forEach(([x, y, sc, d]) => clouds.push({x, y, s: sc, d}));   // guaranteed clouds in the opening view
+const streaks = []; for (let i = 0; i < 38; i++) streaks.push({x: R() * 1500, y: -2000 + R() * 3900, l: 0.6 + R() * 0.9, d: 0.6 + R() * 0.8});
+const tufts = []; for (let i = 0; i < 34; i++) tufts.push({x: -40 + i * 34 + R() * 20, y: 1625 + R() * 70, h: 26 + R() * 24});
+const bow = (x, y, ang, col) => `<g transform="translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${ang.toFixed(1)})"><path d="M0 0L-15 -9V9ZM0 0L15 -9V9Z" fill="${col}" stroke="#ffffff" stroke-width="2" stroke-linejoin="round"/></g>`;
+function eyes(mood, w) {
+  if (mood === 3) return [-19, 19].map(x => `<path d="M${x - 9} 2Q${x} -10 ${x + 9} 2" fill="none" stroke="#3a1a08" stroke-width="5" stroke-linecap="round"/>`).join("") + `<path d="M-14 24Q0 40 14 24" fill="none" stroke="#3a1a08" stroke-width="5" stroke-linecap="round"/>`;
+  if (mood === 0) return [-19, 19].map(x => `<path d="M${x - 9} -2Q${x} 6 ${x + 9} -2" fill="none" stroke="#3a1a08" stroke-width="5" stroke-linecap="round"/>`).join("") + `<path d="M-8 28H8" stroke="#3a1a08" stroke-width="4" stroke-linecap="round"/>`;
+  const r = mood === 2 ? 13 : 10;
+  return [-19, 19].map(x => `<circle cx="${x}" cy="-2" r="${r}" fill="#fff" stroke="#3a1a08" stroke-width="3"/><circle cx="${x + 2}" cy="-1" r="${r * 0.48}" fill="#3a1a08"/>`).join("") + `<path d="M-14 22Q0 ${mood === 2 ? 42 : 34} 14 22" fill="none" stroke="#3a1a08" stroke-width="5" stroke-linecap="round"/>`;
+}
+const A = [320, 1590];                                       // string anchor (stake)
+function render(n) {
+  n = Math.max(0, Math.min(DURATION - 1, Math.round(n)));
+  const T = n / FPS, b = T / BS, w = wind(T), ph = phase(T), C = cam(T), K = kiteAt(T);
+  const sk = b >= DROP && b < DROP + 1.4 ? Math.exp(-(b - DROP) * 3.2) * 16 : 0, shx = sk * Math.sin((b - DROP) * 70), shy = sk * Math.cos((b - DROP) * 53);
+  let g = `<defs><linearGradient id="sky" gradientUnits="userSpaceOnUse" x1="0" y1="-2200" x2="0" y2="1700"><stop offset="0" stop-color="#3f8fe6"/><stop offset=".55" stop-color="#6fb8ff"/><stop offset="1" stop-color="#d6efff"/></linearGradient></defs>`;
+  g += `<rect x="-600" y="-3000" width="2300" height="5600" fill="url(#sky)"/>`;
+  // clouds (phase-driven drift, wrap)
+  clouds.forEach(c => { const x = ((c.x + ph * 90 * c.d) % 1900) - 400; g += `<g transform="translate(${x.toFixed(0)} ${c.y.toFixed(0)}) scale(${c.s.toFixed(2)})" opacity="${(0.55 + 0.35 * c.d).toFixed(2)}"><ellipse cx="0" cy="0" rx="120" ry="40" fill="#fff"/><ellipse cx="-50" cy="-26" rx="60" ry="38" fill="#fff"/><ellipse cx="38" cy="-34" rx="72" ry="44" fill="#fff"/></g>`; });
+  // wind streaks (visible when the wind blows)
+  if (w > 0.3) streaks.forEach(s => { const x = ((s.x + ph * 260 * s.d) % 1700) - 300, len = 70 + 220 * w * s.l; g += `<line x1="${x.toFixed(0)}" y1="${s.y.toFixed(0)}" x2="${(x - len).toFixed(0)}" y2="${s.y.toFixed(0)}" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity="${(0.55 * clamp((w - 0.3) / 0.5)).toFixed(2)}"/>`; });
+  // hills
+  g += `<path d="M-600 1560Q150 1380 600 1520T1700 1500V2600H-600Z" fill="#7fc4a8"/><path d="M-600 1620Q200 1470 700 1590T1700 1580V2600H-600Z" fill="#5bb078"/><path d="M-600 1690Q300 1590 800 1670T1700 1660V2600H-600Z" fill="#3f9a5c"/>`;
+  tufts.forEach((t, i) => { const sw = Math.sin(ph * 3 + i * 0.7) * (6 + 30 * w) + Math.sin(T * 1.3 + i) * 3; g += `<path d="M${t.x.toFixed(0)} ${t.y.toFixed(0)}q${(sw * 0.5).toFixed(1)} ${(-t.h * 0.6).toFixed(0)} ${sw.toFixed(1)} ${(-t.h).toFixed(0)}M${(t.x + 6).toFixed(0)} ${t.y.toFixed(0)}q${(sw * 0.4).toFixed(1)} ${(-t.h * 0.5).toFixed(0)} ${(sw * 0.8 + 8).toFixed(1)} ${(-t.h * 0.8).toFixed(0)}" stroke="#2f7d49" stroke-width="5" fill="none" stroke-linecap="round"/>`; });
+  g += `<rect x="${A[0] - 7}" y="${A[1] - 8}" width="14" height="46" rx="4" fill="#7a4a22"/><circle cx="${A[0]}" cy="${A[1] - 4}" r="9" fill="none" stroke="#c9922c" stroke-width="4"/>`;
+  // string (attached until the snap at beat 36)
+  const B = bottomAt(T), tn = tens(b), sag = (1 - tn) * 200 + w * 30;
+  if (b < 36) { const cx = (A[0] + B.x) / 2 + Math.sin(ph * 3) * 18 * w, cy = (A[1] + B.y) / 2 + sag; g += `<path d="M${A[0]} ${A[1] - 4}Q${cx.toFixed(1)} ${cy.toFixed(1)} ${B.x.toFixed(1)} ${B.y.toFixed(1)}" fill="none" stroke="#fff" stroke-width="3.5" opacity=".9"/>`; }
+  else { const k = prog(b, 36, 1.4), o = 1 - prog(b, 36.5, 2.2);
+    const ex = lerp(B.x, A[0] + 150, ease.outCubic(k)), ey = lerp(B.y, A[1] - 90, ease.outCubic(k));
+    g += `<path d="M${A[0]} ${A[1] - 4}Q${((A[0] + ex) / 2).toFixed(1)} ${(((A[1] + ey) / 2) + 70 * k).toFixed(1)} ${ex.toFixed(1)} ${ey.toFixed(1)}" fill="none" stroke="#fff" stroke-width="3.5" opacity="${o.toFixed(2)}"/>`;
+    let pts = ""; for (let j = 0; j <= 8; j++) { const dd = j * 32, wv = Math.sin(b * 9 - j * 0.9) * (14 + 3 * j) * (1 - k * 0.6); pts += `${(B.x - dd * 0.35 + wv).toFixed(1)},${(B.y + dd).toFixed(1)} `; }
+    g += `<polyline points="${pts}" fill="none" stroke="#fff" stroke-width="3.5" opacity="${o.toFixed(2)}"/>`; }
+  // tail: ribbon + bows (follow-through chain)
+  const tp = tailAt(T), cols = ["#ffd23f", "#3dc4e4", "#ff6b9d", "#7ee081"];
+  g += `<polyline points="${B.x.toFixed(1)},${B.y.toFixed(1)} ${tp.map(p => p.x.toFixed(1) + "," + p.y.toFixed(1)).join(" ")}" fill="none" stroke="#fff" stroke-width="3.5" stroke-linejoin="round" opacity=".9"/>`;
+  tp.forEach((p, k) => { const q = k === 0 ? B : tp[k - 1]; g += bow(p.x, p.y, Math.atan2(p.y - q.y, p.x - q.x) * 180 / Math.PI + 90, cols[k % 4]); });
+  // kite
+  const mood = b >= 36.6 ? 3 : b >= DROP ? 2 : b < 9.8 ? 0 : 1;
+  const flut = 1 + 0.05 * w * Math.sin(ph * 9);
+  g += `<g transform="translate(${K.x.toFixed(1)} ${K.y.toFixed(1)}) rotate(${K.rot.toFixed(1)}) scale(${flut.toFixed(3)} 1)"><ellipse cx="6" cy="14" rx="86" ry="140" fill="rgba(0,0,0,.08)" transform="translate(10 10)"/>
+    <path d="M0 -100L70 0L0 130Z" fill="#ffb02e"/><path d="M0 -100L-70 0L0 130Z" fill="#ff6b4a"/><path d="M0 -100L70 0L0 130L-70 0Z" fill="none" stroke="#8a3a1a" stroke-width="5" stroke-linejoin="round"/>
+    <path d="M0 -100V130M-70 0H70" stroke="#7a4a22" stroke-width="5" opacity=".75"/><g transform="translate(0 8)">${eyes(mood, w)}</g></g>`;
+  // dim before the drop (anticipation), flash at the drop
+  const dim = b >= 16 && b < DROP ? 0.16 * prog(b, 16, 3.5) : 0, fl = b >= DROP && b < DROP + 0.5 ? 0.55 * (1 - (b - DROP) / 0.5) : 0;
+  const world = `<g transform="translate(${shx.toFixed(1)} ${shy.toFixed(1)})"><g transform="${C.transform}">${g}</g></g>`;
+  document.getElementById("fx").innerHTML = world + (dim > 0 ? `<rect width="1080" height="1920" fill="#0a1a3a" opacity="${dim.toFixed(3)}"/>` : "") + (fl > 0 ? `<rect width="1080" height="1920" fill="#fff" opacity="${fl.toFixed(3)}"/>` : "");
+  const c1 = document.getElementById("c1"), s1 = ease.outBack(prog(b, 37.5, 0.6));
+  c1.style.cssText = `left:0;top:1230px;width:1080px;height:400px;font-size:132px;font-weight:900;color:#fff;opacity:${prog(b, 37.5, 0.3).toFixed(3)};transform:scale(${(1.15 - 0.15 * s1).toFixed(3)}) rotate(${((1 - s1) * 3).toFixed(2)}deg);text-shadow:0 6px 0 #1d4f91,0 10px 24px rgba(10,30,80,.55)`;
+  c1.innerHTML = b >= 37.5 ? "گاهی باید<br>رها شد." : "";
+  window.film.frame = n;
+}
+window.film = {events: EVENTS, cuts: [0, 10, 20, 36].map(b => Math.round(b * BS * FPS)), duration: DUR, fps: FPS, bpm: BPM, t0: T0, frame: 0, ready: false, ratio: "9x16", seek(t) { render(Math.round(t * FPS)); return this.frame; }};
+const stage = document.getElementById("stage");
+function fit() { const sc = params.get("capture") === "1" ? 1 : Math.min(innerWidth / W, innerHeight / H); stage.style.transform = `scale(${sc})`; }
+addEventListener("resize", fit); fit();
+Promise.all([document.fonts.load("900 40px PAHead")]).then(() => document.fonts.ready).then(() => { render(0); window.film.ready = true; });
+let playing = false, t0p = 0;
+function tick(ts) { if (!playing) return; render(((ts - t0p) * FPS / 1000) % DURATION); requestAnimationFrame(tick); }
+addEventListener("click", () => { playing = !playing; if (playing) { t0p = performance.now(); requestAnimationFrame(tick); } });
+</script>
+</body>
+</html>

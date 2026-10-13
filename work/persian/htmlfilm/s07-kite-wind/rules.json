@@ -1,0 +1,794 @@
+{
+ "schema": "persianarts.sound_rules/1",
+ "note": "Learned from the pencil film cue sheets (v51 / html v2). Layer roles: anticipation (before contact), hit (offset 0), ring (+60..+150 ms), tail. clip = kit id (or category + pick seeded). gain_db fixed OR target_db (peak target) with optional cap_db. dur_s fixed or span=true (uses event dur_s). cycle = successive events of one type use successive entries. variants = chosen by event.variant. alias = reuse another type.",
+ "auto": {
+  "transition_lead_frames": 5
+ },
+ "duck_categories": [
+  "impact",
+  "stamp-thud",
+  "stinger",
+  "ding",
+  "ding-chime",
+  "success"
+ ],
+ "types": {
+  "stamp": {
+   "layers": [
+    {
+     "role": "hit",
+     "clip": "pr-hit-stamp-sub",
+     "offset_ms": 0,
+     "dur_s": 0.6,
+     "gain_db": 0,
+     "fade_ms": 60,
+     "duck": true
+    },
+    {
+     "role": "ring",
+     "clip": "op-impact-wet-splat-01",
+     "offset_ms": 60,
+     "dur_s": 0.9,
+     "target_db": -14,
+     "fade_ms": 300,
+     "duck": true
+    }
+   ],
+   "variants": {
+    "light": {
+     "layers": [
+      {
+       "role": "hit",
+       "clip": "fs-342535",
+       "offset_ms": 0,
+       "dur_s": 0.3,
+       "gain_db": -8,
+       "fade_ms": 60,
+       "duck": true
+      }
+     ]
+    },
+    "pill": {
+     "layers": [
+      {
+       "role": "hit",
+       "clip": "fs-470710",
+       "offset_ms": 0,
+       "dur_s": 0.4,
+       "gain_db": -6,
+       "fade_ms": 30,
+       "duck": true
+      },
+      {
+       "role": "ring",
+       "clip": "fs-462092",
+       "offset_ms": 218,
+       "dur_s": 0.6,
+       "gain_db": -12,
+       "fade_ms": 60
+      }
+     ]
+    }
+   }
+  },
+  "hit": {
+   "layers": [
+    {
+     "role": "hit",
+     "clip": "pr-hit-stamp-sub",
+     "offset_ms": 0,
+     "dur_s": 0.6,
+     "gain_db": 0,
+     "fade_ms": 60,
+     "duck": true
+    },
+    {
+     "role": "ring",
+     "clip": "fs-611112",
+     "offset_ms": 100,
+     "dur_s": 0.5,
+     "target_db": -14,
+     "fade_ms": 300
+    }
+   ],
+   "variants": {
+    "drop": {
+     "layers": [
+      {
+       "role": "hit",
+       "clip": "pr-hit-stamp-sub",
+       "offset_ms": 0,
+       "dur_s": 0.6,
+       "target_db": -4,
+       "fade_ms": 60,
+       "duck": true
+      },
+      {
+       "role": "hit",
+       "clip": "fs-59538",
+       "offset_ms": 0,
+       "dur_s": 0.8,
+       "target_db": -6,
+       "fade_ms": 250,
+       "duck": true
+      },
+      {
+       "role": "ring",
+       "clip": "fs-462092",
+       "offset_ms": 120,
+       "dur_s": 1.6,
+       "target_db": -16,
+       "fade_ms": 600
+      }
+     ]
+    },
+    "snare": {
+     "layers": [
+      {
+       "role": "hit",
+       "clip": "fs-342533",
+       "offset_ms": 0,
+       "dur_s": 0.35,
+       "target_db": -8,
+       "fade_ms": 50,
+       "duck": true
+      },
+      {
+       "role": "ring",
+       "clip": "fs-421451",
+       "offset_ms": 60,
+       "dur_s": 0.3,
+       "gain_db": -14,
+       "fade_ms": 60
+      }
+     ]
+    },
+    "snap": {
+     "layers": [
+      {
+       "role": "hit",
+       "clip": "fs-421467",
+       "offset_ms": 0,
+       "dur_s": 0.19,
+       "target_db": -6,
+       "fade_ms": 10
+      },
+      {
+       "role": "ring",
+       "clip": "fs-422516",
+       "offset_ms": 50,
+       "dur_s": 0.29,
+       "gain_db": -12,
+       "fade_ms": 40
+      }
+     ]
+    }
+   }
+  },
+  "thud": {
+   "layers": [
+    {
+     "role": "hit",
+     "clip": "fs-342535",
+     "offset_ms": 0,
+     "dur_s": 0.3,
+     "gain_db": -8,
+     "fade_ms": 60,
+     "duck": true
+    }
+   ]
+  },
+  "ring": {
+   "layers": [
+    {
+     "role": "ring",
+     "clip": "fs-611112",
+     "offset_ms": 0,
+     "dur_s": 0.52,
+     "target_db": -12,
+     "cap_db": 6,
+     "fade_ms": 400,
+     "duck": true
+    }
+   ],
+   "variants": {
+    "timeup": {
+     "layers": [
+      {
+       "role": "anticipation",
+       "clip": "fs-811715",
+       "offset_ms": -667,
+       "dur_s": 0.6667,
+       "gain_db": -12,
+       "fade_ms": 20
+      },
+      {
+       "role": "ring",
+       "clip": "fs-611112",
+       "offset_ms": 0,
+       "dur_s": 0.52,
+       "target_db": -12,
+       "cap_db": 6,
+       "fade_ms": 400,
+       "duck": true
+      },
+      {
+       "role": "hit",
+       "clip": "fs-349453",
+       "offset_ms": 0,
+       "dur_s": 0.3,
+       "target_db": -10,
+       "fade_ms": 40
+      },
+      {
+       "role": "hit",
+       "clip": "kn-impactMetal_light_000",
+       "offset_ms": 0,
+       "dur_s": 0.3,
+       "target_db": -14,
+       "fade_ms": 30,
+       "duck": true
+      }
+     ]
+    },
+    "accent": {
+     "layers": [
+      {
+       "role": "ring",
+       "clip": "op-ding-chime-end-bell-solo",
+       "offset_ms": 0,
+       "dur_s": 1.2,
+       "target_db": -12,
+       "fade_ms": 400,
+       "duck": true
+      },
+      {
+       "role": "ring",
+       "clip": "fs-462095",
+       "offset_ms": 100,
+       "dur_s": 1.0,
+       "target_db": -14,
+       "fade_ms": 300
+      }
+     ]
+    },
+    "soft": {
+     "layers": [
+      {
+       "role": "ring",
+       "clip": "fs-23152",
+       "offset_ms": 0,
+       "dur_s": 0.5,
+       "target_db": -18,
+       "fade_ms": 60,
+       "duck": true
+      }
+     ]
+    },
+    "tail": {
+     "layers": [
+      {
+       "role": "tail",
+       "clip": "fs-499775",
+       "offset_ms": 0,
+       "dur_s": 0.8,
+       "target_db": -16,
+       "fade_ms": 300,
+       "duck": true
+      }
+     ]
+    }
+   }
+  },
+  "bell": {
+   "alias": "ring"
+  },
+  "tick": {
+   "cycle": [
+    {
+     "layers": [
+      {
+       "role": "anticipation",
+       "clip": "fs-335514",
+       "offset_ms": -400,
+       "dur_s": 0.2,
+       "gain_db": -6,
+       "fade_ms": 60
+      },
+      {
+       "role": "ring",
+       "clip": "op-ding-chime-single-note-01",
+       "offset_ms": 0,
+       "dur_s": 0.6,
+       "target_db": -22,
+       "fade_ms": 250,
+       "duck": true
+      }
+     ]
+    },
+    {
+     "layers": [
+      {
+       "role": "anticipation",
+       "clip": "fs-335515",
+       "offset_ms": -400,
+       "dur_s": 0.2,
+       "gain_db": -6,
+       "fade_ms": 60
+      },
+      {
+       "role": "ring",
+       "clip": "op-ding-chime-single-note-02",
+       "offset_ms": 0,
+       "dur_s": 0.6,
+       "target_db": -22,
+       "fade_ms": 250,
+       "duck": true
+      }
+     ]
+    },
+    {
+     "layers": [
+      {
+       "role": "anticipation",
+       "clip": "fs-335511",
+       "offset_ms": -400,
+       "dur_s": 0.2,
+       "gain_db": -6,
+       "fade_ms": 60
+      },
+      {
+       "role": "ring",
+       "clip": "fs-333694",
+       "offset_ms": 0,
+       "dur_s": 0.6,
+       "target_db": -22,
+       "fade_ms": 250,
+       "duck": true
+      }
+     ]
+    },
+    {
+     "layers": [
+      {
+       "role": "anticipation",
+       "clip": "fs-335512",
+       "offset_ms": -400,
+       "dur_s": 0.2,
+       "gain_db": -6.5,
+       "fade_ms": 60
+      },
+      {
+       "role": "ring",
+       "clip": "op-ding-chime-single-note-03",
+       "offset_ms": 0,
+       "dur_s": 0.6,
+       "target_db": -22,
+       "fade_ms": 250,
+       "duck": true
+      }
+     ]
+    },
+    {
+     "layers": [
+      {
+       "role": "anticipation",
+       "clip": "fs-335507",
+       "offset_ms": -400,
+       "dur_s": 0.2,
+       "gain_db": -7,
+       "fade_ms": 60
+      },
+      {
+       "role": "ring",
+       "clip": "op-ding-chime-single-note-04",
+       "offset_ms": 0,
+       "dur_s": 0.6,
+       "target_db": -22,
+       "fade_ms": 250,
+       "duck": true
+      }
+     ]
+    },
+    {
+     "layers": [
+      {
+       "role": "anticipation",
+       "clip": "fs-335513",
+       "offset_ms": -400,
+       "dur_s": 0.2,
+       "gain_db": -7.5,
+       "fade_ms": 60
+      },
+      {
+       "role": "ring",
+       "clip": "op-ding-chime-single-note-05",
+       "offset_ms": 0,
+       "dur_s": 0.6,
+       "target_db": -22,
+       "fade_ms": 250,
+       "duck": true
+      }
+     ]
+    }
+   ]
+  },
+  "count-tick": {
+   "cycle": [
+    {
+     "layers": [
+      {
+       "role": "hit",
+       "clip": "fs-361781",
+       "offset_ms": 0,
+       "dur_s": 0.216,
+       "gain_db": -8,
+       "fade_ms": 10
+      }
+     ]
+    },
+    {
+     "layers": [
+      {
+       "role": "hit",
+       "clip": "fs-361782",
+       "offset_ms": 0,
+       "dur_s": 0.264,
+       "gain_db": -8,
+       "fade_ms": 10
+      }
+     ]
+    },
+    {
+     "layers": [
+      {
+       "role": "hit",
+       "clip": "fs-361783",
+       "offset_ms": 0,
+       "dur_s": 0.216,
+       "gain_db": -9,
+       "fade_ms": 10
+      }
+     ]
+    }
+   ]
+  },
+  "pop": {
+   "cycle": [
+    {
+     "layers": [
+      {
+       "role": "hit",
+       "clip": "fs-245645",
+       "offset_ms": 0,
+       "dur_s": 0.216,
+       "gain_db": -13.6,
+       "fade_ms": 10
+      }
+     ]
+    },
+    {
+     "layers": [
+      {
+       "role": "hit",
+       "clip": "fs-411462",
+       "offset_ms": 0,
+       "dur_s": 0.3,
+       "gain_db": -12,
+       "fade_ms": 10
+      }
+     ]
+    }
+   ]
+  },
+  "transition": {
+   "cycle": [
+    {
+     "layers": [
+      {
+       "role": "anticipation",
+       "clip": "fs-234538",
+       "offset_ms": 0,
+       "dur_s": 0.9,
+       "gain_db": -10,
+       "fade_ms": 150
+      }
+     ]
+    },
+    {
+     "layers": [
+      {
+       "role": "anticipation",
+       "clip": "op-slide-slide-02",
+       "offset_ms": 0,
+       "dur_s": 0.9,
+       "gain_db": -10,
+       "fade_ms": 150
+      }
+     ]
+    },
+    {
+     "layers": [
+      {
+       "role": "anticipation",
+       "clip": "fs-234541",
+       "offset_ms": 0,
+       "dur_s": 0.9,
+       "gain_db": -10,
+       "fade_ms": 150
+      }
+     ]
+    },
+    {
+     "layers": [
+      {
+       "role": "anticipation",
+       "clip": "op-whoosh-woosh-08",
+       "offset_ms": 0,
+       "dur_s": 0.4,
+       "gain_db": -8,
+       "fade_ms": 30
+      }
+     ]
+    },
+    {
+     "layers": [
+      {
+       "role": "anticipation",
+       "clip": "fs-234549",
+       "offset_ms": 0,
+       "dur_s": 0.9,
+       "gain_db": -10,
+       "fade_ms": 150
+      }
+     ]
+    }
+   ]
+  },
+  "whoosh": {
+   "alias": "transition"
+  },
+  "settle": {
+   "layers": [
+    {
+     "role": "hit",
+     "clip": "fs-441342",
+     "offset_ms": 0,
+     "dur_s": 1.0,
+     "target_db": -6,
+     "fade_ms": 500,
+     "duck": true
+    },
+    {
+     "role": "ring",
+     "clip": "fs-462092",
+     "offset_ms": 150,
+     "dur_s": 0.8,
+     "target_db": -14,
+     "fade_ms": 300
+    }
+   ]
+  },
+  "riser": {
+   "layers": [
+    {
+     "role": "anticipation",
+     "clip": "fs-811715",
+     "offset_ms": 0,
+     "span": true,
+     "gain_db": -8,
+     "fade_ms": 80
+    }
+   ],
+   "variants": {
+    "reverse": {
+     "layers": [
+      {
+       "role": "anticipation",
+       "clip": "op-riser-reverse-suck",
+       "offset_ms": 0,
+       "span": true,
+       "gain_db": -9,
+       "fade_ms": 60
+      }
+     ]
+    },
+    "tension": {
+     "layers": [
+      {
+       "role": "anticipation",
+       "clip": "fs-807374",
+       "offset_ms": 0,
+       "span": true,
+       "gain_db": -10,
+       "fade_ms": 40
+      }
+     ]
+    }
+   }
+  },
+  "reveal": {
+   "layers": [
+    {
+     "role": "hit",
+     "clip": "fs-545238",
+     "offset_ms": 0,
+     "dur_s": 0.3,
+     "gain_db": -15,
+     "fade_ms": 5
+    }
+   ]
+  },
+  "slide": {
+   "layers": [
+    {
+     "role": "hit",
+     "clip": "fs-464302",
+     "offset_ms": 0,
+     "dur_s": 0.5,
+     "gain_db": -12,
+     "fade_ms": 60
+    }
+   ]
+  },
+  "typing": {
+   "layers": [
+    {
+     "role": "anticipation",
+     "clip": "fs-335514",
+     "offset_ms": 0,
+     "span": true,
+     "gain_db": -6,
+     "fade_ms": 60
+    }
+   ],
+   "variants": {
+    "scribble": {
+     "layers": [
+      {
+       "role": "anticipation",
+       "clip": "fs-809915",
+       "offset_ms": 0,
+       "span": true,
+       "gain_db": -10.3,
+       "fade_ms": 60
+      }
+     ]
+    },
+    "strike": {
+     "layers": [
+      {
+       "role": "hit",
+       "clip": "fs-761655",
+       "offset_ms": 0,
+       "dur_s": 0.4,
+       "target_db": -12,
+       "cap_db": 6,
+       "fade_ms": 30
+      }
+     ]
+    },
+    "marker": {
+     "layers": [
+      {
+       "role": "anticipation",
+       "clip": "fs-809915",
+       "offset_ms": 0,
+       "span": true,
+       "gain_db": -6,
+       "fade_ms": 30
+      }
+     ]
+    },
+    "fine": {
+     "layers": [
+      {
+       "role": "anticipation",
+       "clip": "fs-335513",
+       "offset_ms": 0,
+       "span": true,
+       "gain_db": 1,
+       "fade_ms": 80
+      }
+     ]
+    },
+    "calm": {
+     "layers": [
+      {
+       "role": "anticipation",
+       "clip": "fs-335509",
+       "offset_ms": 0,
+       "span": true,
+       "gain_db": -5.8,
+       "fade_ms": 150
+      }
+     ]
+    },
+    "flourish": {
+     "layers": [
+      {
+       "role": "anticipation",
+       "clip": "fs-173080",
+       "offset_ms": 0,
+       "span": true,
+       "gain_db": -6,
+       "fade_ms": 80
+      }
+     ]
+    }
+   }
+  },
+  "success": {
+   "layers": [
+    {
+     "role": "hit",
+     "clip": "fs-441342",
+     "offset_ms": 0,
+     "dur_s": 1.0,
+     "target_db": -8,
+     "fade_ms": 400,
+     "duck": true
+    }
+   ]
+  },
+  "fail": {
+   "layers": [
+    {
+     "role": "hit",
+     "category": "impact",
+     "pick": "seeded",
+     "offset_ms": 0,
+     "dur_s": 0.4,
+     "target_db": -10,
+     "fade_ms": 60,
+     "duck": true
+    }
+   ]
+  },
+  "glitch": {
+   "layers": [
+    {
+     "role": "hit",
+     "category": "glitch",
+     "pick": "seeded",
+     "offset_ms": 0,
+     "dur_s": 0.3,
+     "target_db": -14,
+     "fade_ms": 20
+    }
+   ]
+  },
+  "ambient": {
+   "layers": [
+    {
+     "role": "tail",
+     "clip": "fs-462094",
+     "offset_ms": 0,
+     "span": true,
+     "gain_db": -22,
+     "fade_ms": 500
+    }
+   ]
+  },
+  "gust": {
+   "layers": [
+    {
+     "role": "hit",
+     "clip": "op-whoosh-woosh-09",
+     "offset_ms": 0,
+     "dur_s": 0.5,
+     "gain_db": -8,
+     "fade_ms": 80
+    },
+    {
+     "role": "tail",
+     "clip": "fs-209655",
+     "offset_ms": 100,
+     "dur_s": 1.4,
+     "gain_db": -22,
+     "fade_ms": 400
+    }
+   ]
+  }
+ }
+}

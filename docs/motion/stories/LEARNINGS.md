@@ -63,14 +63,15 @@ Fill one block after each story build. Rule: every gap becomes a fix at the sour
 - new lesson id (L-###): L-075 (no loop-seam gate), L-076 (build_sound.py has no loop mode), L-077 (logo-colour false positive without logo)
 
 ## S07 بادبادک و باد
-- minutes used (pa time) / budget 18:
-- run-gates result:
-- pa audio-check (payoff offsets ms, LUFS, clipping):
-- pa pacing ranges:
-- transition strip viewed (jumps?):
-- what the skill/tool lacked (expected: no follow-through/chain helper; no beat-grid lookup from a music excerpt; no pa tool to find the drop time in a kit track):
-- fix made at the source (file):
-- new lesson id (L-###):
+- minutes used (pa time) / budget 25: about 13.5 of 25 at the end of the tool fixes (treatment 2.4, build 3.3, capture 4.9, sound 6.8, qc 8.9, deliver 10.1, fix 11.6); film delivered at 10.1 min
+- run-gates result: edge-touch FAIL on full-bleed sky/hills (now N/A with the new --scenery switch / VERSION.json scenery:true), empty-band FAIL 62 frames in the first capture (clear sky, fixed by guaranteed clouds in the opening view, then PASS worst 16%), dead-frames PASS, number-lint PASS, logo-colour skipped
+- pa audio-check (payoff offsets ms, LUFS, clipping): PASS 20.3 s, -14.4 LUFS, TP -1.8, tail -78.8 dBFS, max simultaneous 3; cue offsets 0.0 ms; --events: 9 of 9 events on the beat grid within 5 ms; warns RMS +6.9 dB at 9-10 s (build then drop) and -3.2 dB after
+- pa pacing ranges: --cuts events.json --track tr-miromax-promo-513944: tempo 118 ok; visual speed after/before the drop = 3.92x (mean frame diff 0.99 -> 3.89, acceptance > 1.5); detector put the drop at 9.96 s (0.2 s early: dim + flash ramp); cuts on beat/bar are not meaningful for this film (new --one-take mode)
+- DROP: pa music-drop tr-miromax-promo-513944 = bar 8, grid 16.4298 s, strongest hit 16.4223 s (-7.5 ms). Bed starts 3 bars in (--t0 -6.1017) so the drop lands on film beat 20 = 10.1695 s = frame 305 (-2.8 ms); cue vs contact offset table 0.0 ms. The kit drop itself is soft (bed RMS +2.6 dB at the drop): the audible weight comes from the added kick + sub boom
+- transition strip viewed (jumps?): yes, every 3 frames at the gust (5.0 s), the drop (9.9-10.4 s: dim, flash, kite shoots up, camera follows), the snap (17.5-18.2 s) and the ending; no jumps, kite continuous
+- what the skill/tool lacked (expected: no follow-through/chain helper, no beat-grid lookup from a music excerpt, no tool to find the drop): all confirmed. Built: lib/pa-chain.js (chain + integrate), pa music-drop. Also: edge-touch scenery switch, pacing one-take mode, pa time phase env, audio-check --events (all four open items from S03 fixed with tests in work/persian/tools/test_s07_fixes.py)
+- fix made at the source (file): work/persian/htmlfilm/lib/pa-chain.js (+ selftest), work/persian/tools/audio/music_drop.py (+ pa music-drop), gates/run-gates.mjs (--scenery), pacing/pacing.py (--one-take), audio/audio_check.py (--events), timing/time.mjs (env), test_s07_fixes.py, skill 2.11
+- new lesson id (L-###): L-092 (clear sky fails empty-band), L-093 (no drop finder: fixed), L-094 (edge-touch scenery switch: fixed), L-095 (pacing one-take: fixed), L-096 (time env + audio-check --events: fixed), L-097 (kit drops are soft: open)
 
 ## S08 جشن فانوس‌های عددی
 - minutes used (pa time) / budget 18:

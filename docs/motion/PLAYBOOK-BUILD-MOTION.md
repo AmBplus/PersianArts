@@ -119,3 +119,6 @@ After sound: `pa audio-check`; after the last render: `pa strip` around each tra
 
 ## Lessons 2.10 (S03 key-maze; ledger L-087..L-091)
 Helpers: `work/persian/htmlfilm/lib/` (pa-motion.js, pa-camera.js camera/path/hop/actor, pa-maze.js, `node lib/pa-selftest.mjs`). Camera moves are not cuts: `cut_frames [0]` in events.json. Derive events from the picture keyframes (offsets 0.0 ms). A flat end flood needs light rays or texture (empty-band). One-take camera films: pacing and edge-touch alarms are expected (scenery, no cuts), note them in metrics.
+
+## Lessons 2.11 (S07 kite-wind; ledger L-092..L-097)
+Music-led: `pa music-drop <kit id>`, then `build_sound.py --t0 -N*bar_s` so the drop lands on film bar N; verify.json offset table must show the drop cue at 0.0 ms and the picture frame within 5 ms. Anticipation 4 beats (wind drops, dim, string hum, reverse riser), follow-through tail by PA.chain. Scenery films: `--scenery`; one-take films: `pacing --one-take`; `audio-check --events events.json` checks cues on the beat grid.

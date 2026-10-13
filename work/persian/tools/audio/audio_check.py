@@ -40,7 +40,7 @@ def ebu(path):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawTextHelpFormatter)
-    ap.add_argument("mp4"); ap.add_argument("--transitions", default=""); ap.add_argument("--json", action="store_true"); ap.add_argument("--loop", action="store_true", help="loop film: skip the tail rule and the fade-in step warning (use pa loop-check for the seam)")
+    ap.add_argument("mp4"); ap.add_argument("--transitions", default=""); ap.add_argument("--json", action="store_true"); ap.add_argument("--events", default="", help="events.json: check every cue time against the film beat grid (bpm, t0_s) within 5 ms and against the film length"); ap.add_argument("--loop", action="store_true", help="loop film: skip the tail rule and the fade-in step warning (use pa loop-check for the seam)")
     a = ap.parse_args()
     x = decode(a.mp4); dur = len(x) / SR
     tr = [float(t) for t in a.transitions.split(",") if t.strip()]
@@ -76,6 +76,17 @@ def main():
         elif I < -15.0 or I > -14.0: warns.append("loudness %.1f LUFS outside -15..-14" % I)
     res = {"file": str(a.mp4), "dur": round(dur, 2), "lufs": I, "true_peak": TP, "tail_peak_dbfs": round(tail, 1), "max_gap_s": round(best, 1),
            "transitions": rows, "fails": fails, "warns": warns[:12], "pass": not fails}
+    if a.events:
+        ev = json.loads(open(a.events, encoding="utf-8").read()); bpm, t0 = ev.get("bpm"), ev.get("t0_s", 0.0) or 0.0; bs = 60.0 / bpm if bpm else None; bad = []; evs = ev.get("events", [])
+        for e in evs:
+            t = e["t_s"] if "t_s" in e else e["frame"] / ev.get("fps", 30)
+            if t > dur + 0.001: fails.append("event beyond the film: %s at %.3f s" % (e.get("name"), t))
+            if bs:
+                err = ((t - t0 + bs / 2) % bs - bs / 2) * 1000
+                if abs(err) > 5.0: bad.append((e.get("name"), round(err, 1)))
+        res["events_check"] = {"events": len(evs), "off_grid_over_5ms": bad}
+        if bs and bad: warns.append("events off the beat grid by more than 5 ms: %d of %d (%s)" % (len(bad), len(evs), "; ".join("%s %+.1f ms" % b for b in bad[:6])))
+        elif bs: warns.insert(0, "events on the beat grid: %d of %d within 5 ms" % (len(evs), len(evs)))
     if a.json: print(json.dumps(res, indent=1))
     else:
         print("%s: %s  (%.1f s, %s LUFS, TP %s, tail %.1f dBFS, max gap %.1f s)" % (a.mp4, "PASS" if not fails else "FAIL", dur, I, TP, tail, best))

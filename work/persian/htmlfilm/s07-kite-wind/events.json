@@ -1,0 +1,77 @@
+{
+ "schema": "persianarts.events/1",
+ "film": "s07-kite-wind",
+ "fps": 30,
+ "bpm": 118,
+ "t0_s": -6.1017,
+ "cut_frames": [
+  0
+ ],
+ "duration_frames": 610,
+ "events": [
+  {
+   "name": "wind riser",
+   "type": "riser",
+   "t_s": 4.0678,
+   "dur_s": 1.017,
+   "role": "normal"
+  },
+  {
+   "name": "gust",
+   "type": "gust",
+   "t_s": 5.0847,
+   "role": "accent"
+  },
+  {
+   "name": "reverse cymbal riser",
+   "type": "riser",
+   "t_s": 8.1356,
+   "dur_s": 2.034,
+   "variant": "reverse",
+   "role": "normal"
+  },
+  {
+   "name": "DROP kick+sub boom",
+   "type": "hit",
+   "t_s": 10.1695,
+   "variant": "drop",
+   "role": "accent",
+   "intensity": 1.0
+  },
+  {
+   "name": "tail figure-eight snare",
+   "type": "hit",
+   "t_s": 15.2542,
+   "variant": "snare",
+   "role": "accent"
+  },
+  {
+   "name": "tension riser",
+   "type": "riser",
+   "t_s": 17.7966,
+   "dur_s": 0.508,
+   "variant": "tension",
+   "role": "normal"
+  },
+  {
+   "name": "string snap",
+   "type": "hit",
+   "t_s": 18.3051,
+   "variant": "snap",
+   "role": "accent"
+  },
+  {
+   "name": "pad out",
+   "type": "ambient",
+   "t_s": 18.3051,
+   "dur_s": 2.034,
+   "role": "normal"
+  },
+  {
+   "name": "copy pop",
+   "type": "pop",
+   "t_s": 19.322,
+   "role": "normal"
+  }
+ ]
+}

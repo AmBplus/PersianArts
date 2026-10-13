@@ -5,7 +5,6 @@ After every completed task the lead orders `pa todo done <id>` plus a checkpoint
 - [ ] T015 Checkpoint policy: commit after every task (pa todo done + checkpoint) (lead)
 
 ## Next
-- [ ] T003 Story build S07 (studio, est 25 min) - docs/motion/stories
 - [ ] T013 Carry-over: 4 simultaneous-cue defect in old finals (rebuild with build_sound) (studio, est 20 min)
 - [ ] T014 Cleanup duplicate decision ids D-20261013-01/-16 in DECISIONS.jsonl (lead, est 10 min)
 - [ ] T021 Image transformation FX phase 1 (GL-transition shaders runner + catalog + pa fx find) (studio, est 20 min)
@@ -22,6 +21,7 @@ After every completed task the lead orders `pa todo done <id>` plus a checkpoint
 ## Done today
 - [x] T001 Story build S06 (first) (studio, est 25 min) - docs/motion/stories
 - [x] T002 Story build S03 (studio, est 25 min) - docs/motion/stories
+- [x] T003 Story build S07 (studio, est 25 min) - docs/motion/stories
 - [x] T004 Pacing calibration: conference v5 known cuts 4.07/10.17/16.27/22.37 s vs detected (lead, est 20 min, actual 3) - docs/motion/ledger/pacing-conference-event-v5-16x9.md
 - [x] T005 Music pack: add viditor tracks to the kit (another worker in progress) (studio, est 20 min) - sound/library/kit
 - [x] T016 Portability: pa doctor/bootstrap/sync/vault/todo/meter (studio, est 25 min, actual 15) - docs/motion/PORTABILITY.md

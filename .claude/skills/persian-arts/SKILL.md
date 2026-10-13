@@ -1,7 +1,7 @@
 ---
 name: persian-arts
 description: The ONLY skill to use in the PersianArts repo for any motion graphic, promo, teaser, reel, social cut or Persian/RTL animated video request, or when the user types /persian-arts. Thin TODO-driven orchestrator: intake, goal memory, then one internal craft skill per step (director, writer, copy-editor, art-director, motion-editor, technical, motion-designer, sound, qc). Do not use any other motion, video or Persian skill here.
-skill_version: 2.10
+skill_version: 2.11
 ---
 
 # persian-arts (orchestrator)
@@ -65,6 +65,7 @@ Board: `pwsh -File work/persian/tools/pa.ps1 status add-item <ID> -Goal <goal> -
 Classify defects -> add ledger lines (docs/motion/LESSONS-LEDGER.jsonl) -> fix at the source skill/recipe/gate -> bump `skill_version` and add a SKILLS-CHANGELOG.md entry -> run the detectors -> flip verified ledger rows to `verified-in-next-run`.
 
 ## CHANGELOG (full: docs/motion/SKILLS-CHANGELOG.md)
+- 2.11 (2026-10-14): S07 lessons: music-led films use `pa music-drop <kit id>` (drop bar + grid time; start the bed N bars in with build_sound `--t0 -N*bar_s` so the picture hit lands on the drop; record grid vs strongest-hit offsets and the RMS jump: kit drops are soft, add kick+sub); follow-through = lib/pa-chain.js (lagging chain, integrate wind to a phase); a clear sky needs clouds in every opening view (empty-band); new switches: run-gates `--scenery` (or VERSION.json scenery:true), pacing `--one-take`, audio-check `--events`, pa time phase env; tests work/persian/tools/test_s07_fixes.py; ledger L-092..L-097.
 - 2.10 (2026-10-14): S03 lessons: html-film libs for camera/path/maze/squash (work/persian/htmlfilm/lib: pa-camera.js, pa-maze.js, pa-selftest.mjs); camera moves are NOT cuts (events.json cut_frames [0], else build_sound adds whoosh); a flat ending flood needs texture (light rays) or empty-band fails; events derived from the same keyframes as the picture give 0.0 ms offsets; write film files with the Write tool, not bash heredocs; ledger L-087..L-091.
 - 2.9 (2026-10-14): rule 15 SELF-INSTALLING AND PORTABLE (step 0 env, install.ps1/install.sh, pa install-skill, pa assets-check, ASSETS-IN-GIT.md, capture.mjs finds the browser on any OS, fonts manifest); ledger L-082..L-084.
 - 2.8 (2026-10-14): rule 14 METRICS every version; `pa loop-check`, build_sound `--loop`, audio-check `--loop`, run-gates `--no-logo`, `pa pacing --cuts/--track` (calibrated), meter parser fixed + `pa meter check`; ledger L-078..L-081.

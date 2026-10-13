@@ -8,11 +8,11 @@ Date: 2026-10-14. Start on any machine: [START.md](../../START.md).
 - Cross-machine start (any new chat, any machine): read [START.md](../../START.md) at the repo root. Clone over SSH (`git@github.com:AmBplus/PersianArts.git`), then `pwsh -File work/persian/tools/pa.ps1 bootstrap`, then `pwsh -File work/persian/tools/pa.ps1 sync`, then open `output/LATEST` (or `deliver/` for finals of our own films). Client material: set `PA_VAULT_PASS`, then `pa vault unpack` (see [PORTABILITY.md](PORTABILITY.md)). `pa` = `pwsh -File work/persian/tools/pa.ps1` (not on PATH).
 - What exists:
   - html-film default lane: `work/persian/htmlfilm/` (film.html, events.json, rules.json per film; `lib/pa-motion.js`).
-  - Skill 2.10 (S03 lessons) with rules 9-15 (`.claude/skills`, `.agents/skills`).
+  - Skill 2.11 (S07 lessons) with rules 9-15 (`.claude/skills`, `.agents/skills`).
   - Kit sound and mixer (`sound/tools`, `build_sound.py`).
   - Compression (`pa compress`) and `deliver/LATEST` (S06 final: `deliver/s06-clock-never-zero-9x16.mp4`).
   - Pacing tool (`pa pacing`, `work/persian/tools/pacing/`).
-  - Story lab S01-S10: S06 built (v1, 10.7 min) and S03 built (v1, 14.3 min; libs pa-camera.js, pa-maze.js). S07 is next; S05 and S02 later.
+  - Story lab S01-S10: S06 built (v1, 10.7 min) and S03 built (v1, 14.3 min; libs pa-camera.js, pa-maze.js) and S07 built (v1, film 10.1 min, with tool fixes 13.5 min; lib pa-chain.js, `pa music-drop`). S05 and S02 later.
   - Tools: `pa todo` (list|next|add|done), `pa meter` (task|seed), `pa metrics`, `pa doctor`, `pa vault` (pack|unpack|list).
 - Owner standing rules (apply to every order and every reply):
   - Git-first and portable: everything needed to continue must be committed (except media, output and binaries; see below).
@@ -29,8 +29,8 @@ Date: 2026-10-14. Start on any machine: [START.md](../../START.md).
   - Do not commit media/**, output/** or other binaries except the owner-listed deliver/ finals.
 - TODO top 10 (`pa todo list`, open items, 2026-10-14):
   1. T015 (now) Checkpoint policy: commit after every task.
-  2. T003 Story build S07.
-  3. T021 Image transformation FX phase 1 (GL-transition shaders runner + catalog + pa fx find).
+  2. T021 Image transformation FX phase 1 (GL-transition shaders runner + catalog + pa fx find).
+  3. Story build S05 (T-id: see `pa todo list`).
   4. T004 Pacing calibration: conference v5 known cuts 4.07/10.17/16.27/22.37 s vs detected.
   5. T013 Carry-over: 4 simultaneous-cue defect in old finals (rebuild with build_sound).
   6. T014 Cleanup duplicate decision ids D-20261013-01/-16 in DECISIONS.jsonl.
@@ -39,7 +39,7 @@ Date: 2026-10-14. Start on any machine: [START.md](../../START.md).
   9. T019 Logo-colour gate: add a switch for logo-less films.
   10. T020 Fix pa meter -Kind/-Worker flag parse bug and malformed tasks.jsonl line.
 - Next 3 actions, in order:
-  1. Story S07, then image-FX phase 1 (T021), then S05 (S02 later).
+  1. Image-FX phase 1 (T021), then story S05, then the carry-over T013 (4 simultaneous cues in old finals); S02 later.
   2. Fix the tools above: pacing calibration (T004), meter flags (T020), loop-seam gate and loop mode (T017, T018), logo gate switch (T019).
   3. Vault: set `PA_VAULT_PASS`, then `pa vault pack` for the client folders (T010).
 - Known defects (not yet fixed):

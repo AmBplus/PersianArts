@@ -42,3 +42,6 @@ Time budget: persian-arts rule 10 (target 10, cap 20 min per film, scope freeze,
 
 ## 2.10 (2026-10-14)
 S03 story build (key and maze): new generic html-film libs (camera/zoom track with follow lag, path-follow with tangent, persistent actor poses, squash and stretch hop, seeded maze + solver + dead-end branch, node self-test). Rules of thumb recorded in the skill: camera moves are not cuts for the mixer; flat end floods need light rays; derive sound events from the picture keyframes. Ledger L-087..L-091.
+
+## 2.11 (2026-10-14)
+S07 story build (kite and wind): `pa music-drop`, lib/pa-chain.js (follow-through chain + integrate), gates --scenery, pacing --one-take, audio-check --events, pa time phase env (all with tests in work/persian/tools/test_s07_fixes.py). Lessons: music-led drop placement via --t0 -N*bar_s, soft kit drops need added kick+sub, clear sky needs clouds for empty-band. Ledger L-092..L-097.

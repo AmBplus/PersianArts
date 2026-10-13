@@ -56,3 +56,5 @@ html-film applicability (2.2, lane default): edge-touch, empty-band, dead-frames
 | Logo-colour switch | `run-gates.mjs --no-logo` (or VERSION.json `logo:false`, passed by `pa deliver --gates`) skips logo-colour for films without a brand asset | exists: work/persian/tools/gates/run-gates.mjs | switch |
 
 Note 2.10: edge-touch and pacing cuts-on-beat give false alarms on one-take camera films with full-bleed scenery (S03); record as scenery in VERSION.json metrics. A flat flood ending fails empty-band: add rays/texture.
+
+Note 2.11: `run-gates --scenery` (or VERSION.json scenery:true) marks edge-touch N/A for full-bleed scenery films; a clear sky needs clouds in every opening view (empty-band).

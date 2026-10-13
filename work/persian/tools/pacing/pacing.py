@@ -31,6 +31,7 @@ def html_chars(html):
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawTextHelpFormatter)
     ap.add_argument("film"); ap.add_argument("--html"); ap.add_argument("--chars"); ap.add_argument("--profile"); ap.add_argument("--ratio"); ap.add_argument("--md"); ap.add_argument("--label"); ap.add_argument("--cuts", help="real cut times: comma list of seconds or an events.json (cut_frames/fps); preferred over detection"); ap.add_argument("--track", help="kit music id: beat/bar grid from its .music.json (period) + film offset t0_s from --events/--cuts json (default 0)"); ap.add_argument("--events", help="events.json with bpm/t0_s/cut_frames")
+    ap.add_argument("--one-take", action="store_true", help="one continuous camera/shot (no real cuts): skip the cut-based rows (shot length, cuts per 10 s, build/hold, cuts on beat/bar)")
     a = ap.parse_args()
     mp4 = a.film if a.film.lower().endswith(".mp4") else None
     if not mp4: sys.exit("pacing needs an mp4 for the numbers (html is optional via --html)")
@@ -68,16 +69,18 @@ def main():
     P_("%-28s %-9s %-16s %s" % ("metric", "ours", "ref p25..p75", "verdict"))
     findings = []
     def row(name, v, rng, lo="too fast", hi="too slow", fmt="%.2f"):
+        if a.one_take and name in ("median shot length (s)", "cuts per 10 s", "elements per scene", "build time median (s)", "hold time median (s)"): return
         vd = verdict(v, rng, lo, hi)
         P_("%-28s %-9s %-16s %s" % (name, fmt % v if v is not None else "-", "%s..%s" % (rng["p25"], rng["p75"]) if rng and rng.get("p25") is not None else "-", vd))
         if vd not in ("ok", "n/a"): findings.append((name, v, rng, vd))
     row("median shot length (s)", m["shot_median_s"], ref["shot_median_s"])
     row("cuts per 10 s", m["cuts_per_10s"], ref["cuts_per_10s"], "too slow", "too fast")
     first3 = sum(1 for c in m["cuts"] if c < 3.0)
-    P_("%-28s %-9d %-16s %s" % ("cuts in first 3 s", first3, ">= 1 typical", "ok" if first3 >= 1 else "no early cut/hook change"))
+    if not a.one_take: P_("%-28s %-9d %-16s %s" % ("cuts in first 3 s", first3, ">= 1 typical", "ok" if first3 >= 1 else "no early cut/hook change"))
     row("elements per scene", m["elements_per_scene"], ref["elements_per_scene"], "sparse", "busy")
     row("build time median (s)", m["build_s_median"], ref["build_s"], "build too quick", "build too slow")
     row("hold time median (s)", m["hold_s_median"], ref["hold_s"], "hold too short", "hold long")
+    if a.one_take: P_("one-take mode: cut-based rows (shot length, cuts per 10 s, build/hold, cuts on beat/bar) are not applicable")
     er = m["energy_ratio"]; rer = ref["energy_ratio_intro_mid_outro"]
     P_("%-28s %-9s %-16s %s" % ("energy intro/mid/outro", "/".join("%.2f" % x for x in er), "/".join("%.2f" % x for x in rer),
        "flat (no arc)" if max(er) - min(er) < 0.15 else "ok (arc present)" if er[2] <= er[1] + 0.05 else "outro hotter than middle"))
@@ -85,15 +88,15 @@ def main():
         row("tempo (bpm, from mix)", au["tempo_bpm"], ref["tempo_bpm"], "slow music", "fast music")
         if au["cuts_on_beat"] is None: au["cuts_on_beat"] = au["cuts_on_bar"] = 0.0; P_("note: no cuts in this clip, beat/bar alignment shown as 0%")
         chance_beat = min(1.0, 2 * P.TOL / au["beat_s"]); chance_bar = chance_beat / 4
-        P_("%-28s %-9s %-16s %s" % ("cuts on beat (60 ms)", "%.0f%%" % (100 * au["cuts_on_beat"]), "chance %.0f%%, ref %.0f%%" % (100 * chance_beat, 100 * ref["cuts_on_beat"]["median"]),
+        if not a.one_take: P_("%-28s %-9s %-16s %s" % ("cuts on beat (60 ms)", "%.0f%%" % (100 * au["cuts_on_beat"]), "chance %.0f%%, ref %.0f%%" % (100 * chance_beat, 100 * ref["cuts_on_beat"]["median"]),
            "locked" if au["cuts_on_beat"] >= 0.6 else "near chance: cuts not beat-locked"))
-        P_("%-28s %-9s %-16s %s" % ("cuts on bar downbeat", "%.0f%%" % (100 * au["cuts_on_bar"]), "chance %.0f%%" % (100 * chance_bar), "locked" if au["cuts_on_bar"] >= 0.5 else "near/below chance: cuts not bar-locked"))
+        if not a.one_take: P_("%-28s %-9s %-16s %s" % ("cuts on bar downbeat", "%.0f%%" % (100 * au["cuts_on_bar"]), "chance %.0f%%" % (100 * chance_bar), "locked" if au["cuts_on_bar"] >= 0.5 else "near/below chance: cuts not bar-locked"))
         P_("%-28s %-9s %-16s" % ("loudness LUFS / RMS arc dB", "%s" % au["lufs"], "/".join(str(x) for x in au["rms_arc_db"])))
-        if m["cuts"] and au["cuts_on_beat"] < 0.4: findings.append(("cuts on beat", au["cuts_on_beat"], None, "not beat-locked"))
+        if not a.one_take and m["cuts"] and au["cuts_on_beat"] < 0.4: findings.append(("cuts on beat", au["cuts_on_beat"], None, "not beat-locked"))
     else:
         P_("audio: none (silent film) - beat/bar/loudness not measured")
-    P_("scenes (start-end, len, elements, build, hold%s):" % (", chars, hold floor" if chars else ""))
-    for i, s in enumerate(m["scenes"]):
+    if not a.one_take: P_("scenes (start-end, len, elements, build, hold%s):" % (", chars, hold floor" if chars else ""))
+    for i, s in enumerate([] if a.one_take else m["scenes"]):
         extra = ""
         if chars and i < len(chars) and chars[i]:
             floor = 0.6 + 0.045 * chars[i]

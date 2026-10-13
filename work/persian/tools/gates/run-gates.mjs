@@ -22,6 +22,9 @@ const opt = (k, d) => { const i = argv.indexOf('--' + k); return i >= 0 ? argv[i
 if (!target) { console.error('usage: run-gates.mjs <video|stills-folder> [--events f] [--src dir] [--only a,b] [--step N] [--json out]'); process.exit(2); }
 // --no-logo (or a VERSION.json / meta.json next to the video with "logo": false, or no_brand_asset) skips the logo-colour gate
 let noLogo = argv.includes('--no-logo');
+// --scenery (or VERSION.json / meta.json "scenery": true): the film's world is full-bleed scenery (sky, hills, maze walls): edge-touch is not applicable
+let scenery = argv.includes('--scenery');
+if (!scenery) { try { for (const dir of [path.dirname(target), path.dirname(path.dirname(target))]) for (const n of ['VERSION.json', 'meta.json']) { const f = path.join(dir, n); if (fs.existsSync(f) && JSON.parse(fs.readFileSync(f, 'utf8')).scenery === true) scenery = true; } } catch (e) { /* ignore */ } }
 if (!noLogo) { try { for (const dir of [path.dirname(target), path.dirname(path.dirname(target))]) for (const n of ['VERSION.json', 'meta.json']) { const f = path.join(dir, n); if (fs.existsSync(f)) { const j = JSON.parse(fs.readFileSync(f, 'utf8')); if (j.logo === false || j.no_brand_asset === true || j.brand_asset === false) noLogo = true; } } } catch { /* ignore */ } }
 const only = opt('only', 'edge,empty,dead,dup,num,logo,hero').split(',').filter((x) => !(noLogo && x === 'logo'));
 if (noLogo) console.log('logo-colour gate skipped (no brand asset)');
@@ -66,7 +69,8 @@ const fmtFrames = (a) => { // collapse a sorted frame list into ranges
 };
 const sorted = [...frames.keys()].sort((a, b) => a - b);
 
-if (only.includes('edge')) {
+if (only.includes('edge') && scenery) rows.push(['edge-touch', 'N/A', 'scenery film (full-bleed world): not run (--scenery / VERSION.json scenery:true)']);
+else if (only.includes('edge')) {
   const bad = [];
   for (const n of sorted) { const hits = edge.checkFrame(frames.get(n), { k, marginPx: EDGE_PX }); if (hits.length) bad.push({ n, hits }); }
   detail.edge = bad;
