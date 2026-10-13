@@ -1,6 +1,6 @@
 import json, collections
 from pathlib import Path
-O = Path(r"D:\P\project\persianArts\media\music-staging\owner")
+O = Path(__import__("os").environ.get("PA_ROOT") or Path(__file__).resolve().parents[3]) / "media" / "music-staging" / "owner"
 rows = json.loads((O.parent / "owner-summary.tmp.json").read_text(encoding="utf-8"))
 src = {p.name[:-len(".source.json")]: json.loads(p.read_text(encoding="utf-8")) for p in O.glob("*.source.json")}
 sha = collections.defaultdict(list)

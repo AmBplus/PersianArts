@@ -1,6 +1,6 @@
 import json
 from pathlib import Path
-O = Path(r"D:\P\project\persianArts\media\music-staging\owner")
+O = Path(__import__("os").environ.get("PA_ROOT") or Path(__file__).resolve().parents[3]) / "media" / "music-staging" / "owner"
 D = json.loads((O.parent / "owner-descriptors.tmp.json").read_text(encoding="utf-8"))
 rows = []
 for sc in sorted(O.glob("*.music.json")):

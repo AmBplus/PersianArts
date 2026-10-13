@@ -1692,6 +1692,44 @@
           "actualMinutes": null
         }
       ]
+    },
+    {
+      "id": "pencil film as single-file html-film, mp4 in <20 min",
+      "title": "pencil html-film 9:16",
+      "percent": 100,
+      "items": [
+        {
+          "id": "PENCIL-HTML-1",
+          "title": "pencil html-film 9:16",
+          "state": "done",
+          "percent": 100,
+          "expectedMinutes": 20,
+          "updatedAt": "2026-10-13T15:38:06.6231323Z",
+          "note": "",
+          "startedAt": "2026-10-13T15:21:03.4519414Z",
+          "finishedAt": "2026-10-13T15:38:06.6231323Z",
+          "actualMinutes": 17.1
+        }
+      ]
+    },
+    {
+      "id": "invitation teaser film for the conference-event (AI, infosec, cyber); audience attendees; CTA date and venue",
+      "title": "conference-event teaser",
+      "percent": 100,
+      "items": [
+        {
+          "id": "CONF-EVENT-1",
+          "title": "conference-event teaser",
+          "state": "done",
+          "percent": 100,
+          "expectedMinutes": 20,
+          "updatedAt": "2026-10-13T16:00:28.4800391Z",
+          "note": "",
+          "startedAt": "2026-10-13T15:52:17.1642738Z",
+          "finishedAt": "2026-10-13T16:00:28.4800391Z",
+          "actualMinutes": 8.2
+        }
+      ]
     }
   ],
   "blockers": [

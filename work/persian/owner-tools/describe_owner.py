@@ -4,7 +4,7 @@ from pathlib import Path
 import numpy as np
 import librosa
 
-OWNER = Path(r"D:\P\project\persianArts\media\music-staging\owner")
+OWNER = Path(__import__("os").environ.get("PA_ROOT") or Path(__file__).resolve().parents[3]) / "media" / "music-staging" / "owner"
 out = {}
 for p in sorted(OWNER.iterdir()):
     if p.suffix.lower() not in (".mp3", ".wav"):
