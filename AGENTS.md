@@ -12,10 +12,12 @@ fixes that worked. When you hit a new problem, add it there (symptom → cause �
 
 Also binding:
 
-- [`docs/PERSIAN-RENDER-CONTRACT.md`](docs/PERSIAN-RENDER-CONTRACT.md): only literal on-screen text is replaced; motion keeps
-  fidelity; nothing is public until verified with source-fidelity evidence.
 - Shotcraft localization workspace: `work/persian/` (kit `work/persian/src/demos/_fa/index.tsx`, per-card harness
   `work/persian/render-card.mjs`, card facts `work/persian/card-info.mjs`). Edit only your own card directory.
+
+Owner decision (2026-10-13): the source-fidelity / license-gate requirement
+(`docs/PERSIAN-RENDER-CONTRACT.md`) is **removed**. Nothing in this repo enforces
+fidelity evidence or license vetting anymore; do not re-impose it in orders or reviews.
 
 To **resume the shotcraft → Persian project**, start with [`docs/PERSIAN-SHOTCRAFT-HANDOFF.md`](docs/PERSIAN-SHOTCRAFT-HANDOFF.md)
 (method, tools, how to continue) and `work/persian/PROGRESS.md` (where we are).

@@ -13,6 +13,7 @@ const FV = path.join(ROOT, 'media/film-versions');
 const OUT = path.join(ROOT, 'output');
 const args = process.argv.slice(2);
 const DRY = args.includes('--dry-run');
+if (args.includes('--track') || args[0] === 'track') { const r = (await import('node:child_process')).spawnSync('node', [path.join(path.dirname(fileURLToPath(import.meta.url)), '../portable/pa-portable.mjs'), 'track'], { stdio: 'inherit' }); process.exit(r.status ?? 0); }
 const pos = args.filter((a) => !a.startsWith('--'));
 const die = (m) => { console.error('deliver: ' + m); process.exit(1); };
 const dirs = (d) => (fs.existsSync(d) ? fs.readdirSync(d, { withFileTypes: true }).filter((e) => e.isDirectory()).map((e) => e.name) : []);

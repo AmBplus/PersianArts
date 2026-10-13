@@ -106,3 +106,6 @@ Runs only on the owner's word (owner gate): no sound work starts, and `pa sound`
 - build_sound: only `role: "final"` / `ends_film: true` ends the bed (schema events.schema.json); self-check fails on a silent bed > 1.5 s; regression: `python sound/tools/mixer/test_build_sound.py`.
 - Continuity gate: `pa audio-check <final.mp4> --transitions t1,t2,...` (RMS jump <= 3 dB at cuts, no gap > 0.5 s < -40 dB, tail < -50 dBFS, TP <= -1.0, -14..-15 LUFS).
 - TV order: silent video to TV-safe first, mux audio once; trim = volume + `alimiter level=disabled`; re-measure true peak after the last step.
+
+
+Viditor music pack (2026-10-13): audit of the 24 tracks in work/viditor-reference/music-standalone.json (see docs/motion/knowledge/MUSIC-AUDIT.md). Only 7 have local audio and only 7038 passed the beat grid, so it is the single addition (tr-vd-7038-upbeat-slide, 100 BPM, upbeat). The variety matrix is printed by work/persian/tools/audio/kit_matrix.py; the 70-90 BPM and calm/emotional/ambient cells remain empty.

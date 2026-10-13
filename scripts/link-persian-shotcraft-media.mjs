@@ -12,7 +12,12 @@ import {resolve, join} from "node:path";
 
 const force = process.argv.includes("--force");
 const MAX = 2 * 1024 * 1024;
-const outRoot = resolve("work/persian/out");
+const outRoot = resolve(process.env.OUT_ROOT || "work/persian/out");
+const dryRun = !!process.env.DRY_RUN; // DRY_RUN=1: write nothing into library/; outputs go to DRY_ROOT (default work/persian/dryrun), entry-media.json is skipped
+const dryRoot = resolve(process.env.DRY_ROOT || "work/persian/dryrun");
+const onlyCards = (process.env.CARDS || "").split(",").map((s) => s.trim()).filter(Boolean);
+const onlyStatus = (process.env.ONLY_STATUS || "").split(",").map((s) => s.trim()).filter(Boolean);
+const keep = new Set((process.env.KEEP || "").split(",").map((s) => s.trim()).filter(Boolean));
 const map = JSON.parse(await readFile(resolve("work/upstream/style-comp-map.json"), "utf8"));
 const lib = JSON.parse(await readFile(resolve("work/upstream/src/gallery/api/library.json"), "utf8"));
 const progress = JSON.parse(await readFile(resolve("work/persian/progress.json"), "utf8"));
@@ -29,23 +34,30 @@ const duration = (p) => {
 };
 
 const items = {};
-const report = {cards: 0, variants: 0, encoded: 0, oversized: [], failed: []};
+const report = {cards: 0, variants: 0, encoded: 0, skipped: [], oversized: [], failed: []};
 for (const card of (await readdir(outRoot)).sort()) {
+  if (onlyCards.length && !onlyCards.includes(card)) continue;
+  if (onlyStatus.length && !keep.has(card) && !onlyStatus.includes(statusOf[card] || "localized")) {
+    report.skipped.push(card);
+    continue;
+  }
   const files = (await readdir(join(outRoot, card)).catch(() => [])).filter((f) => f.endsWith(".fa.mp4")).sort();
   if (!files.length) continue;
   const variants = [];
   for (const f of files) {
     const stem = f.replace(/\.fa\.mp4$/, "");
+    // prefer the sound variant <Stem>.fa.sound.mp4 over the silent <Stem>.fa.mp4
+    const source = (await exists(join(outRoot, card, `${stem}.fa.sound.mp4`))) ? `${stem}.fa.sound.mp4` : f;
     const comp = `demo-${stem}`;
     const key = styleOfComp[`${card}|${comp}`] || stem; // extra comps not in library.html keep their stem as key
-    const dir = resolve("library/media/shotcraft", card, "fa", key);
+    const dir = resolve(dryRun ? dryRoot : "library", "media/shotcraft", card, "fa", key);
     const rel = `media/shotcraft/${card}/fa/${key}`;
     await mkdir(dir, {recursive: true});
     const video = join(dir, "preview.mp4");
     if (force || !(await exists(video))) {
       let ok = false;
       for (const crf of [22, 26, 30]) {
-        const r = ff(["-i", join(outRoot, card, f), "-map", "0:v:0", "-map", "0:a:0?", "-c:v", "libx264", "-preset", "slow", "-crf", String(crf), "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "128k", "-movflags", "+faststart", "-map_metadata", "-1", video]);
+        const r = ff(["-i", join(outRoot, card, source), "-map", "0:v:0", "-map", "0:a:0?", "-c:v", "libx264", "-preset", "slow", "-crf", String(crf), "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "96k", "-movflags", "+faststart", "-map_metadata", "-1", video]);
         if (r.status !== 0) { report.failed.push(`${card}/${stem}: ${r.stderr.slice(0, 160)}`); break; }
         if ((await stat(video)).size <= MAX) { ok = true; if (crf !== 22) report.oversized.push(`${card}/${stem}@crf${crf}`); break; }
       }
@@ -73,5 +85,5 @@ for (const card of (await readdir(outRoot)).sort()) {
   };
   report.cards++; report.variants += variants.length;
 }
-await writeFile(resolve("library/data/entry-media.json"), JSON.stringify({schema: "persianarts/entry-media/v3", generatedAt: new Date().toISOString(), items}, null, 1));
+if (!dryRun) await writeFile(resolve("library/data/entry-media.json"), JSON.stringify({schema: "persianarts/entry-media/v3", generatedAt: new Date().toISOString(), items}, null, 1));
 console.log(JSON.stringify(report, null, 1));

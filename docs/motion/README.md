@@ -42,7 +42,7 @@ A Persian motion-graphics engine: Remotion (React, Chrome renders) scenes with P
 - Anti-slideshow is a hard rule. Storytelling is a rule, but a character is optional (a plain object such as a pencil is enough).
 - The client's name and institution words never appear in any tracked file. Use the label `uni-admissions`.
 - Git: work is on `main`. Commits and pushes are made by a worker, on explicit order, with a path whitelist.
-- Full source: `C:\Users\Amir\Videos\HANDOFF-FULL.md` (section 2, Persian), `CLAUDE.md`, `AGENTS.md`.
+- Full source: the owner HANDOFF-FULL.md (kept outside git) (section 2, Persian), `CLAUDE.md`, `AGENTS.md`.
 
 ## Brain and hands workflow
 1. The lead session decides, orders and judges. It never edits files, runs builds, greps repos, or runs git.

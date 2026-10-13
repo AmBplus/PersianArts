@@ -1,0 +1,13 @@
+{
+ "client_films": [
+  "conference-event"
+ ],
+ "own_films": [
+  "pencil-html",
+  "pencil-social",
+  "story-lab"
+ ],
+ "final_max_mb_each": 12,
+ "final_max_mb_total": 60,
+ "note": "client finals go to the vault only; own compressed finals may be tracked under deliver/ (pa deliver --track)"
+}

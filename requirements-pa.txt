@@ -1,0 +1,7 @@
+# pip install -r requirements-pa.txt (pa bootstrap does this in sound/.venv and work/persian/tools/assets/.venv)
+librosa==1.0.0
+scipy==1.18.1
+numpy==2.5.3
+soundfile==0.14.0
+Pillow>=10
+fonttools>=4.50

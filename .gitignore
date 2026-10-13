@@ -140,3 +140,13 @@ output/**
 
 # viditor reference media (derived data lives in docs/motion/knowledge)
 work/viditor-reference/assets/**
+
+# vault: encrypted client archives only; own compressed finals under deliver/
+!vault/
+vault/*
+!vault/*.tar.enc
+!deliver/
+!deliver/*.mp4
+!.env.example
+!work/persian/.freesound.env.example
+!work/persian/.jamendo.env.example

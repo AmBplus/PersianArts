@@ -1,0 +1,7 @@
+- start 19:14:52
+- read done 19:15:02
+- npm installed 19:15:34
+- built 19:16:52
+- captured 19:17:59
+- preact fixed, ssim done 19:18:50
+- brief written 19:20:11

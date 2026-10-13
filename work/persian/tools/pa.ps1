@@ -6,7 +6,7 @@ PersianArts portability helper.
   pwsh -File work/persian/tools/pa.ps1 check
 #>
 param(
-  [Parameter(Position = 0)][ValidateSet('setup', 'setup-private', 'check', 'status', 'render', 'sound', 'assets', 'time', 'deliver', 'compress', 'audio-check', 'strip', 'pacing', 'arc', 'music-pick')][string]$Command = 'check',
+  [Parameter(Position = 0)][ValidateSet('setup', 'setup-private', 'check', 'status', 'render', 'sound', 'assets', 'time', 'deliver', 'compress', 'audio-check', 'strip', 'pacing', 'arc', 'music-pick', 'doctor', 'bootstrap', 'sync', 'vault', 'todo', 'meter', 'metrics')][string]$Command = 'check',
   [Parameter(Position = 1)][string]$Sub,      # status: set | add-item | blocker | show
   [Parameter(Position = 2)][string]$Id,       # status: item id (set/add-item) or add|clear (blocker)
   [Parameter(Position = 3)][string]$Arg3,     # status blocker add: text
@@ -321,6 +321,7 @@ switch ($Command) {
   'setup' { Invoke-Setup }
   'setup-private' { Invoke-SetupPrivate }
   'check' { Invoke-Check }
+  { $_ -in 'doctor','bootstrap','sync','vault','todo','meter','metrics' } { & node (Join-Path $PSScriptRoot 'portable/pa-portable.mjs') $Command @(@($Sub, $Id, $Arg3) + @($More) | Where-Object { $_ }); exit $LASTEXITCODE }
   'pacing' { & (Join-Path $Root 'sound\.venv\Scripts\python.exe') (Join-Path $PSScriptRoot 'pacing/pacing.py') @(@($Sub, $Id, $Arg3) + @($More) | Where-Object { $_ }); exit $LASTEXITCODE }
   'arc' { & (Join-Path $Root 'sound\.venv\Scripts\python.exe') (Join-Path $PSScriptRoot 'pacing/arc.py') @(@($Sub, $Id, $Arg3) + @($More) | Where-Object { $_ }); exit $LASTEXITCODE }
   'music-pick' { & (Join-Path $Root 'sound\.venv\Scripts\python.exe') (Join-Path $PSScriptRoot 'pacing/music_pick.py') @(@($Sub, $Id, $Arg3) + @($More) | Where-Object { $_ }); exit $LASTEXITCODE }

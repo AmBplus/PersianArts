@@ -8,9 +8,10 @@ from pathlib import Path
 R = Path(__file__).resolve().parents[4]
 MOOD = {"confident": ["corporate", "steady", "upbeat", "promo", "clean", "driving", "tech-house", "house", "groove", "bright"],
         "tech": ["tech-house", "driving", "house", "groove", "clean", "underscore", "promo"],
-        "playful": ["happy", "marimba", "bright", "upbeat", "house", "groove"],
-        "dramatic": ["epic", "cinematic", "driving", "promo"],
-        "calm": ["light", "background", "underscore", "clean", "steady", "cinematic"]}
+        "playful": ["happy", "marimba", "bright", "upbeat", "house", "groove", "playful", "quirky"],
+        "dramatic": ["epic", "cinematic", "driving", "promo", "dramatic", "mysterious"],
+        "emotional": ["emotional", "warm", "calm", "elegant", "nostalgic"],
+        "calm": ["light", "background", "underscore", "clean", "steady", "cinematic", "calm", "elegant", "warm"]}
 REF_ARC = [1.0, 1.05, 0.85]  # intro/mid/outro energy ratio of good references (docs/motion/knowledge/PACING-PROFILES.md)
 
 def main():

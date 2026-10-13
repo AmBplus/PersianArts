@@ -24,3 +24,5 @@ Co-Authored-By: Claude Haiku 5.5 <noreply@anthropic.com>
 2026-10-13T19:45:46+03:30 377bb88c666a3cdd8709d2b661a59e31d676878f PUSH-OK via=ssh unpushed=1 files=27 msg=feat(motion): generic sound builder, asset compressor with WebP and TV-safe video, html-film capture options, research briefs
 2026-10-13T20:25:51+03:30 7b66d3c65cac4bf77d5b025301336a5670323c32 PUSH-OK via=ssh unpushed=1 files=40 msg=feat(motion): time budget tooling (pa time), overrun post-mortem, skill 2.3, draft capture flag
 2026-10-13T21:29:07+03:30 626863dbba5e0bca273f61722a9d63a7613a77e3 PUSH-OK via=ssh unpushed=1 files=10 msg=feat(motion): single output folder with LATEST, pa deliver, delivery step in the skill
+2026-10-13T23:09:51+03:30 bfabcae5a0a42cdb52ca571a6940e971196fa1b7 PUSH-OK via=ssh unpushed=1 files=27 msg=feat(motion): output compression, audio-check and strip tools, settle-role fix, skill 2.5 lessons
+2026-10-13T23:18:02+03:30 e868f1ffd7dbdfecb149ee61beabef89bf8ad2a0 PUSH-OK via=ssh unpushed=1 files=37 msg=feat(motion): pacing analysis from reference set, pa pacing/arc/music-pick, story-first rule, skill 2.6

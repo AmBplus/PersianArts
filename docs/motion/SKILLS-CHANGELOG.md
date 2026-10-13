@@ -1,5 +1,16 @@
 # SKILLS-CHANGELOG
 
+## 2.7 (2026-10-14): git-first and portable
+- Rule 13 and checklist item; START.md; docs/motion/PORTABILITY.md (audit); tools in work/persian/tools/portable (doctor, bootstrap, sync, vault, todo, meter, metrics); requirements-pa.txt; .env.example files; deliver --track; todo.jsonl/TODO.md; ledger/tasks.jsonl (273 seeded lines).
+- Fixed absolute paths in 4 live scripts; qh documented as external optional (not vendored).
+- Ledger L-072..L-074; decision D-20261014-01.
+
+## 2.6 (2026-10-13): measured pacing from 38 references
+- Data: docs/motion/knowledge/ref-pacing.json, ref-pacing-summary.json, PACING-PROFILES.md (analyze_refs.py).
+- Tools: `pa pacing` (advisory), `pa music-pick`, `pa arc` (optional menu docs/motion/recipes/arcs.json, inspiration only).
+- Rules: STORY FIRST in 3b, director, writer; pacing defaults in director/writer/motion-designer/sound/qc; post-render checklist reads `pa pacing`; FILM-GATES row.
+- Real test: docs/motion/ledger/pacing-*.md (4 films, top-5 findings); ledger L-067..L-071; decisions D-20261013-36/37.
+
 ## 2.2 (2026-10-13): html-film lane is the default
 - Orchestrator: CRITICAL rule 9 and section 3b; TODO steps for the lane: intake -> memory-init -> treatment -> build -> capture -> sound -> qc -> fix-round -> deliver -> retro; time box 20 min per film.
 - Nine craft skills: paragraph 'In the html-film lane' (header-comment planning, build/capture, sound contact times, QC applicability and pilot lessons).
