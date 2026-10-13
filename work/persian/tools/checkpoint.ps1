@@ -168,6 +168,7 @@ $binExt = @('.mp3', '.wav', '.ogg', '.flac', '.m4a', '.mp4', '.mov', '.webm', '.
 $fontExt = @('.ttf', '.otf', '.woff', '.woff2')   # fonts stay committable, but any font over 2 MB aborts
 $fontMax = 2MB
 $soundTextExt = @('.md', '.json', '.jsonl', '.txt', '.csv', '.mjs', '.js', '.ts', '.ps1', '.yml', '.yaml')
+$toolTextExt = @('.py', '.mjs', '.js', '.ps1', '.sh', '.json', '.md', '.txt', '.yml', '.toml', '.cfg', '.html', '.css', '.svg')   # text sources under sound/tools/
 $kitAudioExt = @('.ogg', '.opus', '.mp3')   # tracked sound kit: audio under sound/library/kit/ up to 2 MB each
 $kitMax = 2MB
 $deliverMp4Max = 12MB   # own compressed finals under deliver/*.mp4 (media/ stays blocked)
@@ -181,7 +182,9 @@ foreach ($f in $raw) {
     if ((Test-Path -LiteralPath $fullK) -and ((Get-Item -LiteralPath $fullK).Length -gt $kitMax)) { Write-Host "ABORT: kit audio over 2 MB: $f"; exit 1 }
     $files.Add($f); continue
   }
-  if ($f.StartsWith('sound/') -and ($soundTextExt -notcontains $ext)) { $skippedBinary++; continue }   # sound/: text only
+  # sound/tools/ also accepts the general text-source list (.py, .sh, .html, ...); binaries stay blocked.
+  $textOk = ($soundTextExt -contains $ext) -or ($f.StartsWith('sound/tools/') -and ($toolTextExt -contains $ext))
+  if ($f.StartsWith('sound/') -and -not $textOk) { $skippedBinary++; continue }   # sound/: text only
   if ($fontExt -contains $ext) {
     $fullF = Join-Path $repo $f
     if ((Test-Path -LiteralPath $fullF) -and ((Get-Item -LiteralPath $fullF).Length -gt $fontMax)) {
