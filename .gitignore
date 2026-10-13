@@ -150,3 +150,8 @@ vault/*
 !.env.example
 !work/persian/.freesound.env.example
 !work/persian/.jamendo.env.example
+
+# generated bench and acceptance scratch (not source)
+work/persian/_bench/
+work/persian/sound-task/tmp-accept/
+work/persian/sound-task/samples/
