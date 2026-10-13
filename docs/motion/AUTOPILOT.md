@@ -41,7 +41,7 @@ Every order ends with: no human is present, do not ask questions, and the footer
 
 ## Waiting for owner (recommended default, then move on)
 - rubric-v2 weights: rec accept 1.5 weights, cap 6.
-- Remote URL: `origin` is `https://github.com/AmBplus/persiandoodle.git`; rec switch to SSH `git@github.com:AmBplus/PersianArts.git`.
+- Remote URL: `origin` is `git@github.com:AmBplus/PersianArts.git` (SSH, set by owner 2026-10-13; the old persiandoodle HTTPS URL is retired).
 - `media/dana/` (tracked, with many deletions in the working tree): rec keep tracked, move later.
 - Listening feedback on pencil v51.
 - Public wording and claims for the uni-admissions teaser.

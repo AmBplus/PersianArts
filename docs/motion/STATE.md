@@ -44,7 +44,7 @@ Snapshot for a cold start. Paths are relative to the repo root `D:\P\project\per
 
 ## 3. Open owner decisions
 1. rubric-v2: confirm weight 1.5 for criteria 5 to 7 and the slideshow cap of 6, or reject.
-2. Repo remote: `origin` points to `https://github.com/AmBplus/persiandoodle.git`; AGENTS.md says `git@github.com:AmBplus/PersianArts.git` (SSH). Owner to decide. Do not change the remote without the owner.
+2. Repo remote: `origin` = `git@github.com:AmBplus/PersianArts.git` (SSH, set by owner 2026-10-13). Push works over SSH with BatchMode and no prompt.
 3. `media/dana/` shows deletions and a modified mp4 in git status (fonts, music). Owner to decide whether these deletions are intended.
 4. Sound listening feedback on v5.1 (both tracks) and on the SFX picks.
 5. Track conflict: `dogo-jump-1267515` is FAIL in its sidecar and in BPM-REPORT (match 91.3%), yet it was used in v3 to v5.1. `feeblom-electrhythm` is also FAIL. The earlier brief listed both as PASS; the sidecars do not. Owner to confirm.
