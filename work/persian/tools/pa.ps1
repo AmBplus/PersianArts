@@ -10,7 +10,7 @@ param(
   [Parameter(Position = 1)][string]$Sub,      # status: set | add-item | blocker | show
   [Parameter(Position = 2)][string]$Id,       # status: item id (set/add-item) or add|clear (blocker)
   [Parameter(Position = 3)][string]$Arg3,     # status blocker add: text
-  [ValidateSet('queued', 'running', 'blocked', 'done', 'stalled')][string]$State,
+  [string]$State,                             # queued|running|blocked|done|stalled (validated in Invoke-StatusInner)
   [int]$Percent = -1,                         # LEGACY: the board ignores it; use -StepsDone/-StepsTotal
   [int]$StepsDone = -1,
   [int]$StepsTotal = -1,
@@ -127,6 +127,13 @@ function Save-Board($b) {
 function Invoke-StatusInner {
   $now = [DateTime]::UtcNow.ToString('o')
   $stamp = if ($UpdatedAt) { $UpdatedAt } else { $now }
+  $validStates = 'queued', 'running', 'blocked', 'done', 'stalled'
+  if ($Sub -eq 'set' -and -not $State -and $Arg3) { $script:State = $Arg3 }   # positional: status set <id> <state>
+  if ($State) {
+    $lc = $State.ToLower()
+    if ($lc -notin $validStates) { Write-Host "FAIL invalid state '$State'. valid: $($validStates -join ', ')"; exit 1 }
+    $script:State = $lc
+  }
   switch ($Sub) {
     'set' {
       if (-not $Id) { throw 'usage: status set <itemId> [-State s] [-Percent n] [-Note t]' }

@@ -1,0 +1,3 @@
+- plan: write tools/pa.ps1 (setup, setup-private, check); test non-download branches
+- pa.ps1 written
+- tested, report written

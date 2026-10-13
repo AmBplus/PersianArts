@@ -1,0 +1,5 @@
+- step1 grep staticFile fonts in film/ and theme.ts: 2 fonts (Vazirmatn-Variable.ttf, Estedad-Variable.ttf)
+- step2 copied both TTFs from media/dana/src/live/public/fonts to assets/fonts (526388 bytes)
+- step3 wrote assets/fonts/OFL-NOTICES.md (Estedad verified OFL-1.1 in name table; Vazirmatn OFL-1.1 upstream, partly unverified)
+- step4 wrote assets/README.md
+- step5 acceptance: both staticFile targets exist in assets/fonts; total < 3 MB

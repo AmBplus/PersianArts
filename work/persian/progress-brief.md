@@ -1,0 +1,4 @@
+- 09:03 plan: read context, write direction doc, write engine prompt, verify numbers
+- 09:06 context read (README, playbook, decisions, lessons, uni motion/theme/layout/scenes header, social film, prompt-design-brief); concept picked: dot-to-wings
+- 09:08 wrote direction doc + engine prompt; verified ZWNJ, no Arabic yeh/kaf, no client words in tracked doc, prompt git-ignored
+- 09:08 DONE; report handed back
