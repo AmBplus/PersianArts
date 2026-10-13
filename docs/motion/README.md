@@ -3,6 +3,7 @@
 Status date: 2026-10-13. Read this file first in any new chat.
 
 ## MAP: who owns what (merged 2026-10-13)
+- Asset compression and TV-safe video: `work/persian/tools/assets/README.md` (`pa assets optimize|tv-check|report`); rule in PLAYBOOK-RENDER.md.
 
 Two systems live in this folder. The persian-arts system came in with 24baaae; the production system is ours. Both are kept.
 
@@ -22,6 +23,7 @@ Two systems live in this folder. The persian-arts system came in with 24baaae; t
 | Autopilot and architecture | ours | [AUTOPILOT.md](AUTOPILOT.md), [ARCHITECTURE.md](ARCHITECTURE.md), [adr/](adr/0001-architecture-option-c.md), [RESUME.md](RESUME.md) | unattended-work protocol, folder plan, current state |
 | Render and mix scripts | ours | `work/persian/render_all.ps1`, `work/persian/mix_film.ps1`, `work/persian/mix_sfx.ps1`, `work/persian/tools/cues/` | the actual render, mix and cue work |
 | Checkpoint and commits | shared | `work/persian/tools/checkpoint.ps1` (whitelist commit and push, commit guard) | the only commit path; see the trailer rule in [AUTOPILOT.md](AUTOPILOT.md) |
+| Sound builder | production | `sound/tools/mixer/` (`build_sound.py`, `rules.default.json`, README), `pa sound` | events -> layered cues -> bed -> master from the tracked kit (the pencil method); owner's word first; PLAYBOOK-SOUND section 'How to make the sound' |
 
 Routing: "build a film" goes to `/persian-arts`, then PLAYBOOK-BUILD-MOTION for the render and sound recipes. "What did we decide or research" goes to DECISIONS.jsonl and research/. "Time or quality accounting" goes to ledger/ and reports/. LESSONS-LEDGER is not the production ledger: see the note in [ledger/README.md](ledger/README.md).
 

@@ -1,0 +1,34 @@
+{
+ "$schema": "http://json-schema.org/draft-07/schema#",
+ "$id": "persianarts.events/1",
+ "title": "Film events for the sound builder (sound/tools/mixer/build_sound.py)",
+ "type": "object",
+ "required": ["fps", "events"],
+ "properties": {
+  "schema": {"const": "persianarts.events/1"},
+  "film": {"type": "string"},
+  "fps": {"type": "number"},
+  "bpm": {"type": "number", "description": "film tempo; override of the kit music map"},
+  "t0_s": {"type": "number", "description": "film time of a beat on the cut grid"},
+  "cut_frames": {"type": "array", "items": {"type": "integer"}, "description": "scene cut frames; interior ones get a transition whoosh at cut-5 frames and are checked against the beat grid"},
+  "duration_frames": {"type": "integer"},
+  "events": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "required": ["name", "type"],
+    "anyOf": [{"required": ["frame"]}, {"required": ["t_s"]}],
+    "properties": {
+     "name": {"type": "string"},
+     "type": {"enum": ["stamp", "hit", "thud", "ring", "tick", "bell", "count-tick", "whoosh", "transition", "settle", "riser", "reveal", "ambient", "pop", "slide", "typing", "success", "fail", "glitch"]},
+     "variant": {"type": "string", "description": "selects rules.types[type].variants[variant]"},
+     "frame": {"type": "integer", "description": "contact frame (preferred)"},
+     "t_s": {"type": "number", "description": "contact time in seconds"},
+     "intensity": {"type": "number", "minimum": 0, "maximum": 1, "description": "0.5 = rule gain; +-3 dB across the range for hit/ring layers"},
+     "role": {"enum": ["normal", "accent", "final"], "description": "role final = the settle event: a bar downbeat of the bed is aligned to it"},
+     "dur_s": {"type": "number", "description": "span for layers marked span (risers, strokes, ambient)"}
+    }
+   }
+  }
+ }
+}

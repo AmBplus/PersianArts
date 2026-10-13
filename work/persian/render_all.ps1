@@ -18,7 +18,8 @@ param(
   # bt709: Remotion's own single encode to limited (tv) range with bt709 tags (zscale path); costs SSIM, see render_all.md.
   [ValidateSet('native', 'bt709')][string]$Output = 'native',
   [switch]$NoCache,
-  [switch]$Preflight
+  [switch]$Preflight,
+  [switch]$TvCheck   # after rendering: check every output mp4 for TV playability (report only)
 )
 
 $ErrorActionPreference = 'Stop'
@@ -324,3 +325,8 @@ $report | ConvertTo-Json -Depth 10 | Set-Content -LiteralPath $reportPath -Encod
 Write-Host "total wall=$($report.totalWallSeconds)s report=$reportPath"
 foreach ($e in $renders) { Write-Host ("  {0,-8} {1,-8} cache={2,-5} wall={3,7}s  {4}" -f $e.ratio, $e.frames, $e.cacheHit, $e.wall, $e.output) }
 if ($failures.Count) { [Console]::Error.WriteLine("FAILED: " + ($failures -join '; ')); exit 1 }
+if ($TvCheck) {
+  $py = @((Join-Path $PSScriptRoot 'toolsssets\.venv\Scripts\python.exe'), (Join-Path $PSScriptRoot '..\..\sound\.venv\Scripts\python.exe')) | Where-Object { Test-Path $_ } | Select-Object -First 1
+  $mp4 = @($renders | ForEach-Object { $_.output } | Where-Object { $_ -and (Test-Path $_) })
+  if ($py -and $mp4.Count) { & $py -I (Join-Path $PSScriptRoot 'toolsssets	v_check.py') @mp4 }
+}

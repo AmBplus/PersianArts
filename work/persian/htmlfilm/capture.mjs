@@ -6,8 +6,8 @@
 //   node capture.mjs --frames 0-59         -> frame range (inclusive)
 //   node capture.mjs --still 0.5,3.9       -> PNG stills at those seconds (into --stills dir)
 //   node capture.mjs --out <path.mp4>      -> output file
-import {spawn} from "node:child_process";
-import {mkdtempSync, writeFileSync, mkdirSync} from "node:fs";
+import {spawn, spawnSync} from "node:child_process";
+import {mkdtempSync, writeFileSync, mkdirSync, existsSync, readdirSync} from "node:fs";
 import {tmpdir} from "node:os";
 import {join, dirname, resolve} from "node:path";
 import {fileURLToPath, pathToFileURL} from "node:url";
@@ -17,7 +17,9 @@ const ROOT = resolve(HERE, "..", "..", "..");
 const CHROME = join(ROOT, "work/persian/.remotion/chrome-headless-shell/win64/chrome-headless-shell-win64/chrome-headless-shell.exe");
 const HTML_IDX = process.argv.indexOf("--html");
 const FILM = HTML_IDX >= 0 ? resolve(process.argv[HTML_IDX + 1]) : join(HERE, "pencil/film.html");
-const FPS = 30, W = 1080, H = 1920, PORT = 9333;
+const RATIO = (() => { const i = process.argv.indexOf("--ratio"); return i >= 0 ? process.argv[i + 1] : "9x16"; })();
+const [RW, RH] = RATIO === "16x9" ? [1920, 1080] : [1080, 1920];
+const FPS = 30, W = RW, H = RH, PORT = Number((() => { const i = process.argv.indexOf("--port"); return i >= 0 ? process.argv[i + 1] : "9333"; })());
 
 const args = process.argv.slice(2);
 const arg = (k, d) => {
@@ -29,6 +31,20 @@ const STILLS = resolve(ROOT, arg("--stills-dir", "media/film-versions/pencil-htm
 const stillArg = arg("--still", null);
 const framesArg = arg("--frames", null);
 
+// Asset compressor hook (work/persian/tools/assets): WebP for raster assets before Chrome opens the film.
+// --no-optimize skips; --rewrite-refs rewrites refs also in tracked folders; --tv-fix repairs the mp4 for TVs (default: report only).
+if (!args.includes("--no-optimize") && !stillArg) {
+  const dir = dirname(FILM), A = join(ROOT, "work/persian/tools/assets");
+  const py = [join(A, ".venv/Scripts/python.exe")].find(existsSync) || "python";
+  const has = (d) => readdirSync(d, {withFileTypes: true}).some((e) => e.isDirectory() ? !/^(_orig|node_modules|\.git)$/.test(e.name) && has(join(d, e.name)) : /\.(png|jpe?g|gif|ttf|otf|svg)$/i.test(e.name));
+  if (py && has(dir)) {
+    const ignored = spawnSync("git", ["-C", ROOT, "check-ignore", "-q", dir]).status === 0;
+    const flags = [dir, "--svg", "--fonts"].concat(ignored || args.includes("--rewrite-refs") ? ["--rewrite-refs"] : []);
+    const r = spawnSync(py, ["-P", join(A, "optimize_assets.py"), ...flags, "--no-tv"], {encoding: "utf8"});
+    console.log("[assets] " + (ignored ? "ignored folder: converting + rewriting refs" : "tracked folder: convert + map only") + " " + (r.stdout || r.stderr || "").trim());
+  }
+}
+
 const t0 = Date.now();
 const mark = (label) => console.log(`[${((Date.now() - t0) / 1000).toFixed(2)}s] ${label}`);
 
@@ -36,7 +52,7 @@ const mark = (label) => console.log(`[${((Date.now() - t0) / 1000).toFixed(2)}s]
 const profile = mkdtempSync(join(tmpdir(), "pencil-html-chrome-"));
 const chrome = spawn(CHROME, [
   "--headless", `--remote-debugging-port=${PORT}`, `--user-data-dir=${profile}`,
-  "--window-size=1080,1920", "--disable-gpu", "--no-first-run", "--no-default-browser-check",
+  `--window-size=${W},${H}`, "--disable-gpu", "--no-first-run", "--no-default-browser-check",
   "--allow-file-access-from-files", "--hide-scrollbars", "about:blank",
 ], {stdio: "ignore"});
 
@@ -83,7 +99,7 @@ const evaluate = async (expression) => (await send("Runtime.evaluate", {expressi
 
 await send("Page.enable");
 await send("Emulation.setDeviceMetricsOverride", {width: W, height: H, deviceScaleFactor: 1, mobile: false});
-await send("Page.navigate", {url: pathToFileURL(FILM).href + "?capture=1&ratio=9x16"});
+await send("Page.navigate", {url: pathToFileURL(FILM).href + "?capture=1&ratio=" + RATIO});
 for (let i = 0; i < 200; i++) {
   if (await evaluate("window.film && window.film.ready === true")) break;
   await new Promise((r) => setTimeout(r, 50));
@@ -138,3 +154,16 @@ chrome.kill();
 const count = b - a + 1;
 mark(`capture+encode: ${count} frames in ${wall.toFixed(2)} s = ${(count / wall).toFixed(1)} fps (ffmpeg exit ${encodeCode})`);
 mark(`output ${OUT}`);
+// TV check of the produced mp4 (report only unless --tv-fix)
+if (existsSync(OUT) && !stillArg && !args.includes("--no-optimize")) {
+  const A = join(ROOT, "work/persian/tools/assets");
+  const py = [join(A, ".venv/Scripts/python.exe")].find(existsSync) || "python";
+  if (py) {
+    const t = spawnSync(py, ["-P", join(A, "tv_check.py"), OUT], {encoding: "utf8", cwd: A});
+    console.log("[tv-check] " + (t.stdout || t.stderr || "").trim());
+    if (t.status !== 0 && args.includes("--tv-fix")) {
+      const f = spawnSync(py, ["-P", join(A, "optimize_assets.py"), OUT, "--no-images", "--delete-originals"], {encoding: "utf8", cwd: A});
+      console.log("[tv-fix] " + (f.stdout || f.stderr || "").trim());
+    }
+  }
+}

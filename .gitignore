@@ -129,3 +129,7 @@ work/persian/src/film/conference/copy-map-conference.json
 !sound/library/kit/**/*.ogg
 !sound/library/kit/**/*.opus
 !sound/library/kit/**/*.mp3
+
+# asset compressor originals
+_orig/
+**/assets.lock.json

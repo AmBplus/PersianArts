@@ -1,0 +1,187 @@
+{
+ "schema": "persianarts.events/1",
+ "film": "pencil-html-v2",
+ "fps": 30,
+ "bpm": 110,
+ "t0_s": 0.02722,
+ "cut_frames": [
+  0,
+  66,
+  132,
+  230,
+  328,
+  443,
+  590
+ ],
+ "duration_frames": 590,
+ "events": [
+  {
+   "name": "hook scribble starts",
+   "type": "typing",
+   "frame": 0,
+   "variant": "scribble",
+   "dur_s": 0.5667
+  },
+  {
+   "name": "hook stomp dast-khat contact",
+   "type": "stamp",
+   "frame": 4,
+   "variant": "light"
+  },
+  {
+   "name": "hook stomp zashte contact (ink block)",
+   "type": "stamp",
+   "frame": 17
+  },
+  {
+   "name": "hook cross-out contact",
+   "type": "typing",
+   "frame": 44,
+   "variant": "strike"
+  },
+  {
+   "name": "count digit roll tick",
+   "type": "count-tick",
+   "t_s": 2.2454
+  },
+  {
+   "name": "count word pop",
+   "type": "pop",
+   "frame": 80
+  },
+  {
+   "name": "count tick 1",
+   "type": "count-tick",
+   "frame": 83
+  },
+  {
+   "name": "count tick 2",
+   "type": "count-tick",
+   "frame": 99
+  },
+  {
+   "name": "count time-up ring full + crown shake",
+   "type": "ring",
+   "frame": 119,
+   "variant": "timeup",
+   "role": "accent"
+  },
+  {
+   "name": "pen title badge pop",
+   "type": "pop",
+   "frame": 136
+  },
+  {
+   "name": "pen blunt marker stroke",
+   "type": "typing",
+   "t_s": 4.609,
+   "variant": "marker",
+   "dur_s": 0.5091
+  },
+  {
+   "name": "pen morph hit blunt to nib",
+   "type": "reveal",
+   "frame": 170
+  },
+  {
+   "name": "pen fine-nib stroke",
+   "type": "typing",
+   "t_s": 6.209,
+   "variant": "fine",
+   "dur_s": 1.2364
+  },
+  {
+   "name": "slow title paper slide",
+   "type": "slide",
+   "t_s": 7.7363
+  },
+  {
+   "name": "slow calm long stroke",
+   "type": "typing",
+   "t_s": 7.8818,
+   "variant": "calm",
+   "dur_s": 2.6182
+  },
+  {
+   "name": "slow stroke end",
+   "type": "ring",
+   "frame": 316,
+   "variant": "soft"
+  },
+  {
+   "name": "daily row 1 tick",
+   "type": "tick",
+   "frame": 352
+  },
+  {
+   "name": "daily row 2 tick",
+   "type": "tick",
+   "frame": 360
+  },
+  {
+   "name": "daily row 3 tick",
+   "type": "tick",
+   "frame": 368
+  },
+  {
+   "name": "daily row 4 tick",
+   "type": "tick",
+   "frame": 375
+  },
+  {
+   "name": "daily row 5 tick",
+   "type": "tick",
+   "frame": 383
+  },
+  {
+   "name": "daily row 6 tick",
+   "type": "tick",
+   "frame": 391
+  },
+  {
+   "name": "daily day 7 check + double ring (bigger tick)",
+   "type": "ring",
+   "frame": 398,
+   "variant": "accent",
+   "role": "accent"
+  },
+  {
+   "name": "cta riser into the pill pop",
+   "type": "riser",
+   "t_s": 14.5363,
+   "dur_s": 1.0909
+  },
+  {
+   "name": "cta loop flourish stroke",
+   "type": "typing",
+   "t_s": 14.8272,
+   "variant": "flourish",
+   "dur_s": 1.2364
+  },
+  {
+   "name": "cta pill pop",
+   "type": "stamp",
+   "frame": 470,
+   "variant": "pill"
+  },
+  {
+   "name": "cta downlifter falls away",
+   "type": "riser",
+   "t_s": 16.0636,
+   "variant": "down",
+   "dur_s": 1.3091
+  },
+  {
+   "name": "cta bow settle (final hit)",
+   "type": "settle",
+   "frame": 550,
+   "role": "final"
+  },
+  {
+   "name": "cta ring-out 2",
+   "type": "ring",
+   "frame": 554,
+   "variant": "tail"
+  }
+ ]
+}

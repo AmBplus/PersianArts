@@ -94,3 +94,11 @@ Use these as planning numbers: one 18 s film at 9:16 is about 15 to 20 s; four r
 - First-frame warm-up: measure first-frame cost against warm render; no data yet.
 - Scene-cost audit: per-scene render cost; no data yet.
 - Shared browser plus page-cap queue: see item 1 above; no data yet.
+
+## Asset compression and TV-safe video
+
+Owner rule 2026-10-13: all raster assets (logos, photos, textures, posters) are WebP; videos are TV-safe; the optimizer runs before assets are used.
+Tool: work/persian/tools/assets (optimize_assets.py, tv_check.py, README.md; `pa assets optimize|tv-check|report`). Graphics stay lossless WebP,
+photos use lossy WebP only when SSIM >= 0.985. This does not contradict the finding above: lossy WebP stays forbidden for FRAME capture;
+this section covers ASSETS only. TV profile: mp4 faststart, H.264 High 4.1, yuv420p, tv range, bt709 tags, constant fps, GOP <= 2 s, AAC-LC 48k stereo
+(silent films get a silent track). Measured: the pencil film mp4s (GOP 4-8 s, level 4.0/5.0, untagged) were NOT TV-compliant and need a re-encode.

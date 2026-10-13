@@ -88,3 +88,15 @@ Cue times: t = T0 + beat * 60 / BPM (for example BPM 120 gives 0.5 s per beat). 
 - Unverified: the original binaries presumably still exist on the machine where they were made.
 - Consequence: the v51 mix cannot be reproduced on a fresh machine until a transfer path is chosen (options: a `PA_PRIVATE_DIR` audio subfolder, a shared folder, or small allowlisted audio under `work/persian/assets/audio` with a size cap).
 - Status: OPEN, decision pending owner/lead. Record: `docs/motion/reports/2026-10-13/audio-gap-record.md`; DECISIONS `D-20261013-12`.
+
+## How to make the sound (the pencil method) with the builder
+
+Runs only on the owner's word (owner gate): no sound work starts, and `pa sound` is not run, until the owner says so in chat for this film.
+
+1. Get the silent render and its events: contact frames of every visual hit, the cut frames, bpm and t0 of the cut grid (`contracts/schemas/events.schema.json`; example `sound/tools/mixer/examples/pencil-v2.events.json`). Mark the final settle `role:"final"`.
+2. Type every event (`stamp hit thud ring tick bell count-tick whoosh transition settle riser reveal ambient pop slide typing success fail glitch`); use `variant` for special cases and `dur_s` for strokes and risers. Payoff rule: every build-up gets a hit on the contact frame.
+3. Pick the bed: a kit music id (`sound/library/kit/music/*.music.json`, e.g. `tr-lnplus-597024`). Rules: `sound/tools/mixer/rules.default.json` (copy and edit for a new film; never edit the kit).
+4. Build: `pwsh -File work/persian/tools/pa.ps1 sound -Film <silent.mp4> -Events <events.json> -Track <id> -OutDir <dir>` (or `sound/.venv/Scripts/python.exe -I sound/tools/mixer/build_sound.py ...`, add `--bpm/--t0` when the film grid differs from the track map).
+5. Read `<dir>/verify.json`: about -14 LUFS, true peak <= -1.0 dBTP, last 0.25 s < -50 dBFS, audible simultaneous <= 3, no clip used more than 3 times, audio length within one frame, payoff offsets 0 ms, downbeat on the settle, cut-to-beat errors listed; `events_without_rule` must be empty.
+6. Listen and review the cue table (`cues-resolved.json`); fix rules or events, rebuild. For a regression check against an older mix use `sound/tools/mixer/compare_sound.py` (LUFS/TP/tail, cue deltas, envelope correlation, band energy).
+7. Copy the result into `media/film-versions/<film>/<version>/` with VERSION.json; record any systematic finding in LESSONS-LEDGER/DECISIONS. Proof of method: html v2 rebuilt from events with the default rules: LUFS -14.1 vs -14.1, TP -2.1 vs -2.4, tail -inf both, payoff cues within 0.3 ms, 0.25-s-framed RMS envelope correlation 0.999 (not identical: beat-locked pen/pop cues moved to contact frames, one subtitle-bubble cue omitted, kit ogg instead of original mp3/wav).

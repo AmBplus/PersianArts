@@ -6,7 +6,7 @@ PersianArts portability helper.
   pwsh -File work/persian/tools/pa.ps1 check
 #>
 param(
-  [Parameter(Position = 0)][ValidateSet('setup', 'setup-private', 'check', 'status')][string]$Command = 'check',
+  [Parameter(Position = 0)][ValidateSet('setup', 'setup-private', 'check', 'status', 'render', 'sound', 'assets')][string]$Command = 'check',
   [Parameter(Position = 1)][string]$Sub,      # status: set | add-item | blocker | show
   [Parameter(Position = 2)][string]$Id,       # status: item id (set/add-item) or add|clear (blocker)
   [Parameter(Position = 3)][string]$Arg3,     # status blocker add: text
@@ -21,6 +21,13 @@ param(
   [int]$ExpectedMinutes = -1,
   [string]$Owner = 'lead',
   [string]$UpdatedAt,                         # test hook: force an old updatedAt to see stalled detection
+  [string]$Lane = 'html',                     # render: html (htmlfilm capture.mjs)
+  [string]$Film,                              # render: path to film.html
+  [string]$OutDir,                            # render: output folder (silent-9x16.mp4 + _stills)
+  [string]$Events,                            # sound: events.json (schema contracts/schemas/events.schema.json)
+  [string]$Track,                             # sound: kit music id, e.g. tr-lnplus-597024
+  [string]$Stills,                            # render: optional comma list of seconds for stills only
+  [Parameter(ValueFromRemainingArguments = $true)][string[]]$More,
   [switch]$Quick
 )
 $ErrorActionPreference = 'Stop'
@@ -255,7 +262,49 @@ function Invoke-Status {
   } finally { if ($got) { $mx.ReleaseMutex() }; $mx.Dispose() }
 }
 
+function Invoke-Render {
+  # pa render -Lane html -Film <film.html> -OutDir <dir> [-Stills 0.1,0.5,...]
+  if ($Lane -ne 'html') { Write-Host "FAIL render: only -Lane html is wired (remotion: work/persian/render_all.ps1)"; exit 1 }
+  if (-not $Film -or -not $OutDir) { Write-Host 'usage: pa render -Lane html -Film <film.html> -OutDir <dir> [-Stills t1,t2]'; exit 1 }
+  $cap = Join-Path $Persian 'htmlfilm\capture.mjs'
+  New-Item -ItemType Directory -Force -Path $OutDir | Out-Null
+  $a = @($cap, '--html', (Resolve-Path $Film).Path, '--out', (Join-Path $OutDir 'silent-9x16.mp4'), '--stills-dir', (Join-Path $OutDir '_stills'))
+  if ($Stills) { $a += @('--still', $Stills) }
+  & node @a
+  exit $LASTEXITCODE
+}
+
+function Invoke-Sound {
+  # pa sound -Film silent.mp4 -Events events.json -Track tr-lnplus-597024 -OutDir dir [-Sub "--bpm 110 --t0 0.027"]
+  Write-Host 'REMINDER: sound runs ONLY on the owner''s word (PLAYBOOK-SOUND owner gate). Personal use; nothing is public.' -ForegroundColor Yellow
+  if (-not ($Film -and $Events -and $Track -and $OutDir)) { throw 'usage: pa sound -Film <silent.mp4> -Events <events.json> -Track <kit music id> -OutDir <dir> [-Sub "<extra build_sound args>"]' }
+  $py = Join-Path $Root 'sound\.venv\Scripts\python.exe'
+  $args2 = @('-I', (Join-Path $Root 'sound\tools\mixer\build_sound.py'), '--film', $Film, '--events', $Events, '--track', $Track, '--out-dir', $OutDir)
+  if ($Sub) { $args2 += ($Sub -split '\s+') }
+  & $py @args2
+  if ($LASTEXITCODE -ne 0) { throw "build_sound failed ($LASTEXITCODE)" }
+  Write-Host "done: $OutDir (cues-resolved.json, verify.json, social-<ratio>-final.mp4). Listen before any claim."
+}
+
+function Invoke-Assets {
+  # pa assets optimize|tv-check|report <paths...> [--dry-run --rewrite-refs --audio --svg --fonts ...]
+  $py = @((Join-Path $PSScriptRoot 'assets\.venv\Scripts\python.exe')) | Where-Object { Test-Path $_ } | Select-Object -First 1
+  if (-not $py) { $py = 'python' }  # system python needs: pillow numpy fonttools brotli (optional resvg-py)
+  $paths = @($Id, $Arg3) + @($More) | Where-Object { $_ }
+  $t = Join-Path $PSScriptRoot 'assets'
+  switch ($Sub) {
+    'optimize' { & $py -P (Join-Path $t 'optimize_assets.py') @paths }
+    'tv-check' { & $py -P (Join-Path $t 'tv_check.py') @paths }
+    'report'   { & $py -P (Join-Path $t 'optimize_assets.py') @paths --dry-run --report (Join-Path $Root 'mediailm-versions\_benchssets-report.json') }
+    default    { Write-Host 'usage: pa assets <optimize|tv-check|report> <paths...>'; exit 1 }
+  }
+  exit $LASTEXITCODE
+}
+
 switch ($Command) {
+  'assets' { Invoke-Assets }
+  'sound' { Invoke-Sound }
+  'render' { Invoke-Render }
   'status' { Invoke-Status }
   'setup' { Invoke-Setup }
   'setup-private' { Invoke-SetupPrivate }

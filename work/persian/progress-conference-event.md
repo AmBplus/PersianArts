@@ -1,0 +1,4 @@
+- 19:27 intake done (doc read, assets copied)
+- 19:30 assets cut (transparent logos, photo crops); capture.mjs got --ratio/--port (generic)
+- 19:36 writing film.html
+- 19:55 stills ok, full capture
