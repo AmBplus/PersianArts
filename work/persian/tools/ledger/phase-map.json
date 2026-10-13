@@ -1,0 +1,21 @@
+{
+  "_doc": "First matching rule wins. match: title (regex on order title) or kind (task_kind exact). Output: phase (one of the 10 taxonomy phases or 'not-film'), film, version. Unmatched jobs get phase 'unmapped' and are listed in the report.",
+  "phases": ["decision", "concept", "scene-build", "asset-prep", "render", "music-pick", "sfx-cues", "mix", "verify", "owner-review"],
+  "rules": [
+    {"match": "title", "regex": "^payoff-A", "phase": "scene-build", "film": "pencil-social", "version": "v5-payoff"},
+    {"match": "title", "regex": "^uni-teaser-P", "phase": "scene-build", "film": "uni-admissions", "version": "teaser"},
+    {"match": "title", "regex": "^imagegen", "phase": "asset-prep", "film": "shared-tooling", "version": "-"},
+    {"match": "title", "regex": "^render", "phase": "render", "film": "shared-tooling", "version": "-"},
+    {"match": "title", "regex": "^pixabay-queue", "phase": "music-pick", "film": "shared-tooling", "version": "-"},
+    {"match": "title", "regex": "^s1-analysis", "phase": "sfx-cues", "film": "shared-sound-tool", "version": "-"},
+    {"match": "title", "regex": "^s2-synth", "phase": "sfx-cues", "film": "shared-sound-tool", "version": "-"},
+    {"match": "title", "regex": "^s3-mix-cli", "phase": "mix", "film": "shared-sound-tool", "version": "-"},
+    {"match": "title", "regex": "^o3-link-script", "phase": "mix", "film": "shared-sound-tool", "version": "-"},
+    {"match": "title", "regex": "^s4-verify-batch", "phase": "verify", "film": "shared-sound-tool", "version": "-"},
+    {"match": "title", "regex": "^o1-doctrine", "phase": "concept", "film": "shared-sound-tool", "version": "-"},
+    {"match": "title", "regex": "^(o2-qh-order|p1-process-doc)", "phase": "decision", "film": "shared-sound-tool", "version": "-"},
+    {"match": "title", "regex": "^(excalidraw-mcp-brief|codex-queue-check)", "phase": "concept", "film": "shared-tooling", "version": "-"},
+    {"match": "title", "regex": "^(eval |persian-author|persian-fix|fix |author |sound tool|persian sound)", "phase": "not-film", "film": "shotcraft-other", "version": "-"},
+    {"match": "kind", "value": "css-persian-fix", "phase": "not-film", "film": "shotcraft-other", "version": "-"}
+  ]
+}

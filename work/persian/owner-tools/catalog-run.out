@@ -1,0 +1,26 @@
+{"total": 1282, "per_source": {"kenney": 611, "freesound": 461, "anidoodle": 8, "owner-pack": 202}, "usable_total": 1008}
+ambience {'freesound': 25, 'kenney': 33, 'owner-pack': 20} usable 53
+boing-cartoon {'freesound': 25} usable 19
+bubble {'freesound': 20} usable 12
+camera-shutter {'owner-pack': 11} usable 11
+click {'freesound': 25, 'kenney': 13, 'owner-pack': 1} usable 24
+ding-chime {'freesound': 25, 'kenney': 45, 'owner-pack': 13} usable 72
+downlifter {'freesound': 20} usable 19
+fail {'freesound': 20} usable 18
+glitch {'freesound': 20, 'owner-pack': 1} usable 19
+impact {'freesound': 25, 'kenney': 96, 'owner-pack': 36} usable 133
+misc {'kenney': 116, 'owner-pack': 28} usable 107
+paper-pencil {'anidoodle': 6, 'freesound': 36, 'kenney': 31, 'owner-pack': 22} usable 75
+pop {'anidoodle': 2, 'freesound': 25, 'kenney': 9} usable 24
+riser {'freesound': 25, 'kenney': 8, 'owner-pack': 6} usable 37
+slide {'freesound': 20, 'owner-pack': 11} usable 11
+sparkle-magic {'freesound': 20, 'owner-pack': 1} usable 14
+stamp-thud {'freesound': 20} usable 15
+stinger {'freesound': 25, 'kenney': 103, 'owner-pack': 10} usable 138
+success {'freesound': 20} usable 17
+swoosh-transition {'freesound': 20} usable 20
+tick-clock {'freesound': 20} usable 13
+typing {'owner-pack': 31} usable 22
+ui {'kenney': 118} usable 82
+whoosh {'freesound': 25, 'kenney': 39, 'owner-pack': 11} usable 53
+EXIT 0

@@ -1,0 +1,16 @@
+2026-10-12T21:17:24Z run start: per_category=45 categories=['paper-pencil'] minutes=10.0
+2026-10-12T21:17:24Z [paper-pencil] have=25 need=20
+2026-10-12T21:17:27Z [paper-pencil] saved paper-pencil/828779-ballpoint-pen-switch.mp3 (128832 bytes)
+2026-10-12T21:17:29Z [paper-pencil] saved paper-pencil/692903-pen-writing.mp3 (112810 bytes)
+2026-10-12T21:17:30Z [paper-pencil] saved paper-pencil/173080-cursive-writing-wav.mp3 (48156 bytes)
+2026-10-12T21:17:31Z [paper-pencil] saved paper-pencil/717791-pen-drop.mp3 (26616 bytes)
+2026-10-12T21:17:32Z [paper-pencil] saved paper-pencil/173081-pen-signature-wav.mp3 (42105 bytes)
+2026-10-12T21:17:33Z [paper-pencil] saved paper-pencil/498945-12-signature-wav.mp3 (57216 bytes)
+2026-10-12T21:17:37Z [paper-pencil] saved paper-pencil/321136-felt-tip-pen-drawing-arrow-01-wav.mp3 (29520 bytes)
+2026-10-12T21:17:38Z [paper-pencil] saved paper-pencil/321134-felt-tip-pen-drawing-arrow-03-wav.mp3 (37056 bytes)
+2026-10-12T21:17:39Z [paper-pencil] saved paper-pencil/321133-felt-tip-pen-drawing-arrow-04-wav.mp3 (23088 bytes)
+2026-10-12T21:17:40Z [paper-pencil] saved paper-pencil/321135-felt-tip-pen-drawing-arrow-02-wav.mp3 (32784 bytes)
+2026-10-12T21:17:41Z [paper-pencil] saved paper-pencil/321138-felt-tip-pen-drawing-spiral-01-wav.mp3 (31368 bytes)
+2026-10-12T21:17:41Z [paper-pencil] done: 36 files (target 45)
+2026-10-12T21:17:41Z SUMMARY counts={"ambience": 25, "boing": 25, "bubble": 20, "click": 25, "ding": 25, "fail": 3, "glitch": 5, "impact": 25, "paper-pencil": 36, "pop": 25, "riser": 25, "slide": 3, "sparkle-magic": 5, "stamp-thud": 1, "stinger": 25, "success": 2, "swoosh-transition": 20, "tick-clock": 13, "whoosh": 25} total=333 bytes=15604940
+2026-10-12T21:17:41Z SUMMARY rejects={"duration": 11} rate_limit_events=0

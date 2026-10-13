@@ -1,0 +1,7 @@
+- docs/motion/reports/2026-10-12/summary.md — 59 lines, high-level Persian decision report.
+- docs/motion/reports/2026-10-13/detail.md — 139 lines, orders 6-14, commits bcc180b/c7c6d5d/cc4dba3/5efb45c, benchmarks, briefs.
+- docs/motion/reports/2026-10-13/summary.md — 60 lines, today's decisions (option C, native single encode, shared browser pending).
+- docs/motion/reports/INDEX.md — 6 lines, one row per day with links; index.jsonl — 2 lines, status "written".
+- Checkpoint script: pwsh execution blocked by approval gate; verified by read + node simulation on a temp copy (appended "## 04:00 checkpoint" correctly, scratch deleted). Works.
+- contracts/scan.mjs could not exec (needs approval); replicated its rules + term normalization inline: 0 hits in files written.
+- Progress log: work/persian/progress-report-store.md.

@@ -1,0 +1,7 @@
+- Plan: read brief+code; implement stamp-in (Hook f3, f15) with splat+shake, Count ring fill at 48 + crown shake 8f, spark start 34; render 32 stills (4 ratios x 8 frames); tsc; report.
+- Done: read payoff-brief.md fully + scenes.tsx / motion.ts / layout.ts / SocialFilm.tsx (scene offsets verified: Count starts at abs frame 60).
+- Done: scenes.tsx SceneHook - stampIn helper (pre-hit lift 1.9->1 over 8f inCubic, opacity in 2f, contact squash scaleY 0.9 + 1.04 overshoot settling by H+4) at H=3 and H=15 (BEAT); shake amps now hero-scaled (0.035/0.043 x L.type.hero); ink splat 7 ellipses, radius hero*0.16 / hero*0.25, overlay svg above text so dots show over the ink block.
+- Done: scenes.tsx SceneCount - ring prog(f,4,44) full at 48 (held to 60); crown rect wrapped in g with shake(f,48, min(W,H)*0.0093, 8) + 2f +/-3deg tilt; fixed degenerate full-circle arc (ring>=1 now draws <circle>, was invisible exactly at the new hit frame).
+- Done: scenes.tsx ScenePen - spark prog(f,34,12) (was 36). motion.ts - added inCubic. No tick-3 code existed at f45 (cue-sheet only; removal belongs to Order B) - verified by grep.
+- Done: rendered 32 stills (Social9x16/1x1/4x5/16x9 x frames 14,16,18,22,106,108,110,114) into media/film-versions/pencil-social/_stills-payoff/A1/; all non-empty, Persian text correct, no overflow, splat inside hookText box on all 4 ratios.
+- Done: tsc --noEmit -p . in workbench = clean; direct tsc (strict) on all film/social files = clean.

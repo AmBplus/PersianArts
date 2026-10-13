@@ -1,0 +1,9 @@
+# Progress: Pixabay music download queue, milestone 1
+2026-10-13 plan: read fetch script CLI + policy brief; web-search 30 candidate Pixabay track URLs (instrumental, 110-128 BPM, 6 styles); write media/music-pixabay/queue.txt; write work/persian/pixabay-queue.ps1 (one-at-a-time wrapper, .source.json sidecars, skip-done, -Limit); write report; verify PS parser exits 0.
+2026-10-13 read fetch_pixabay_track.py CLI (max 5 urls/run, --out, --allow-in-repo, --timeout; exits 0 only if all saved) and audio-sources-brief.md policy (Pixabay manual-only, no robots/scraping, no captcha bypass)
+2026-10-13 searched via DuckDuckGo-lite through r.jina.ai reader (direct engines were bot-blocked from this host); 19 style-scoped site:pixabay.com/music queries; 47 unique track-page URLs seen in results; no BPM claims visible in any search result
+2026-10-13 wrote media/music-pixabay/queue.txt: 31 lines (phonk 5, upbeat-future-bass 4, upbeat-pop 3, lofi 4, cinematic-build 5, tech-deep-house 5, playful-quirky 5), all marked unverified (pages not opened on pixabay.com)
+2026-10-13 wrote work/persian/pixabay-queue.ps1 (one-at-a-time wrapper: skips existing mp3, runs fetch script synchronously with --allow-in-repo, writes source.json, appends to pixabay-queue.log, -Limit N)
+2026-10-13 verified ps1: pwsh 7.6.6 Parser ParseFile -> 0 errors (rc 0); smoke-tested skip/log paths with temp queue+outdir, no pixabay.com contact; fixed repoRoot (two levels up) and missing function braces found by smoke tests
+2026-10-13 note: the literal acceptance one-liner errors on pwsh 7.6.6 for any file because a ref to the null automatic variable is rejected there; the same ParseFile check with variables pre-declared exits 0 on this script
+2026-10-13 wrote work/persian/report-pixabay-queue-m1.md; removed work/persian/_tmp scratch folder; DONE

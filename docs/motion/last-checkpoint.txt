@@ -1,0 +1,6 @@
+2026-10-13T03:43:25+03:30 5efb45c9062fab151dff961e6f3417f0269632a6 PUSH-FAILED(exit 128) files=4 msg=chore(motion): autopilot backlog and checkpoint script
+2026-10-13T03:46:07+03:30 5efb45c9062fab151dff961e6f3417f0269632a6 PUSH-OK via=ssh unpushed=unknown mode=push-only
+2026-10-13T03:48:10+03:30 5f5ffc6edbc98b23cfcfb437c070eb3b25a1786f PUSH-OK via=origin unpushed=1 files=1 msg=fix(motion): checkpoint pushes over the SSH URL with retry
+2026-10-13T03:53:01+03:30 dadb5705ae7fad579aa7529373a3a18f7015f2c0 PUSH-OK via=ssh unpushed=1 mode=push-only
+2026-10-13T03:55:22+03:30 a81823f19efb91f8ad301c37aff430f7111737cc PUSH-OK via=ssh unpushed=1 files=1 msg=chore(motion): origin is PersianArts over SSH; checkpoint pushes over SSH
+2026-10-13T03:55:44+03:30 bf3bd8cda50fff2ffe74fd886769f36af5fb6dc4 PUSH-OK via=ssh unpushed=1 files=3 msg=chore(motion): origin is PersianArts over SSH; checkpoint pushes over SSH

@@ -1,0 +1,6 @@
+- Hold condition found: lib/queue.mjs:71 skips worker's queued order if any jobs row status='running' AND ts_start > nowS()-6*3600 (wall-clock now, seconds).
+- Reading jobs table, README/SPEC for official cleanup command, qh orders/quota.
+- Key finding: order 9 is NO LONGER queued — job 259 (imagegen-test-arch) ran 22:28:23-22:29:41Z, status ok, exit 0. The 6h hold (queue.mjs:71) expired 2026-10-11 21:26Z; delay was FIFO behind glm orders 6/7/8.
+- Stale running jobs: 162, 193 (codex-a, >25h old, no pid column), 260 (glm, pid 52632 dead, order 10 STALLED).
+- No official cleanup cmd; qh stop only touches queue.status. SQL prepared but NOT executed.
+- qh quota OK: codex-a 3%/39%, codex-b 0%/54%. codex.exe 23996/24496 = desktop app, not qh jobs.

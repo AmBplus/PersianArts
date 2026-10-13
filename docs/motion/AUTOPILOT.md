@@ -1,6 +1,11 @@
 # AUTOPILOT: unattended work protocol (motion / Persian)
 
 Status: 2026-10-13. Owner pre-approved unattended work. No human is present: never ask questions; park owner-only decisions.
+
+**AUTOPILOT PAUSED by owner 2026-10-13 ~08:20.** GLM (zcode) sidelined: it timed out on P2 (1500 s) and P3 (1202 s);
+do not use GLM for scene work. Use Haiku for quick actions and Sol (codex-a gpt-6.1-sol via `qh order` / `qh run`)
+for implementation until the owner says otherwise. Running orders at pause: none (order 15 stopped). Details and next
+actions: [RESUME.md](RESUME.md). The loop and backlog below stay valid, but no new orders start until the owner resumes.
 Resume first: [RESUME.md](RESUME.md). Project state: [STATE.md](STATE.md). Start page: [README.md](README.md).
 
 ## Purpose
