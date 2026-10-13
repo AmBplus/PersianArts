@@ -170,6 +170,7 @@ $fontMax = 2MB
 $soundTextExt = @('.md', '.json', '.jsonl', '.txt', '.csv', '.mjs', '.js', '.ts', '.ps1', '.yml', '.yaml')
 $kitAudioExt = @('.ogg', '.opus', '.mp3')   # tracked sound kit: audio under sound/library/kit/ up to 2 MB each
 $kitMax = 2MB
+$deliverMp4Max = 12MB   # own compressed finals under deliver/*.mp4 (media/ stays blocked)
 $files = New-Object System.Collections.Generic.List[string]
 $skippedBinary = 0
 foreach ($f in $raw) {
@@ -193,8 +194,9 @@ foreach ($f in $raw) {
     $explicit = @($Paths | Where-Object { $f.StartsWith(($_ -replace '\\', '/').TrimEnd('/') + '/') -or $f -eq $_ }).Count -gt 0
     if (-not $explicit) { $skippedBinary++; continue }
     $full = Join-Path $repo $f
-    if ((Test-Path -LiteralPath $full) -and ((Get-Item -LiteralPath $full).Length -gt 1MB)) {
-      Write-Host "ABORT: explicit binary over 1 MB: $f"; exit 1
+    $cap = if ($f.StartsWith('deliver/') -and $ext -eq '.mp4') { $deliverMp4Max } else { 1MB }
+    if ((Test-Path -LiteralPath $full) -and ((Get-Item -LiteralPath $full).Length -gt $cap)) {
+      Write-Host "ABORT: explicit binary over $($cap / 1MB) MB: $f"; exit 1
     }
   }
   $files.Add($f)
@@ -241,7 +243,8 @@ foreach ($s in $staged) {
     if ((Test-Path -LiteralPath $fullK) -and ((Get-Item -LiteralPath $fullK).Length -gt $kitMax)) { $bad = $true }
   } elseif (-not $bad -and ($binExt -contains $ext)) {
     $full = Join-Path $repo $s
-    if ((Test-Path -LiteralPath $full) -and ((Get-Item -LiteralPath $full).Length -gt 1MB)) { $bad = $true }
+    $cap = if ($s.StartsWith('deliver/') -and $ext -eq '.mp4') { $deliverMp4Max } else { 1MB }
+    if ((Test-Path -LiteralPath $full) -and ((Get-Item -LiteralPath $full).Length -gt $cap)) { $bad = $true }
   }
   if (-not $bad -and ($fontExt -contains $ext)) {
     $fullF = Join-Path $repo $s
