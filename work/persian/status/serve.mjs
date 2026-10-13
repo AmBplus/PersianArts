@@ -9,6 +9,8 @@ const port = Number(process.argv[2] || process.env.PORT || 4747);
 const files = {
   '/': ['board.html', 'text/html; charset=utf-8'],
   '/board.html': ['board.html', 'text/html; charset=utf-8'],
+  '/metering-history.json': ['metering-history.json', 'application/json; charset=utf-8'],
+  '/metrics.json': ['metrics.json', 'application/json; charset=utf-8'],
   '/board.json': ['board.json', 'application/json; charset=utf-8'],
   '/fonts/Vazirmatn-Variable.ttf': ['fonts/Vazirmatn-Variable.ttf', 'font/ttf'],
 };

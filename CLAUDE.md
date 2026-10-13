@@ -23,3 +23,10 @@ Standing orders to workers (kept from the old rules):
   lessons into it.
 - After each completed batch of work: commit and push to `main` (the owner's decision; see AGENTS.md). Run `work/persian/autosync.ps1` during batches.
 Motion project: New chats read docs/motion/README.md first; when asked to build a motion follow docs/motion/PLAYBOOK-BUILD-MOTION.md; record every confirmed finding in docs/motion/DECISIONS.jsonl and the docs/motion/PLAYBOOK-*.md files.
+
+## Skill policy
+
+- Motion, promo, teaser, reel or Persian RTL video work: the ONLY entry point is the project skill `persian-arts` (`/persian-arts`). Full rules in AGENTS.md.
+- Do not use persian-motion-director, commercial-motion, motion-reel, animation-studio, video-shotcraft, anidoodle, codesign:launch-video or codesign:animate here.
+- If a user-level skill auto-triggers, stop and switch to `persian-arts`.
+- Sample films (e.g. the pencil film) are inspiration only.

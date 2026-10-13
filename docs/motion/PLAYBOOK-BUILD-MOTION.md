@@ -1,24 +1,24 @@
 # PLAYBOOK-BUILD-MOTION: from idea or brief to a finished 9:16 film with sound
 
 Target: one film, 9:16 first, with 1:1, 4:5 and 16:9 derived. Time figures come from the measurements in `PLAYBOOK-RENDER.md`.
-Every order to a worker contains: goal, input paths, output paths, acceptance command, forbidden actions, and "no human is present, do not ask questions".
+Every order cites `docs/motion/FILM-GATES.md` and names its target stage. Structural PASS validates a draft record only; it is not preflight, delivery, creative, or publication approval. Required not-run, unknown, stale, failed, or to-build checks block the claimed stage. See `PLAYBOOK-PROCESS-MEASUREMENT.md` and `plans/MEASURED-TEMPLATE.md` for evidence records. Nothing is public until required evidence is reviewed and the owner accepts it.
 
 ## Steps
 
 | # | Step | Owner | Command or artefact | Time (measured or estimated) |
 |---|---|---|---|---|
-| 1 | Intake: write the raw brief and the owner's wording to `media/briefs-local/<slug>/source.md` (client material stays git-ignored). Tracked files use the label only. | Lead decides, worker writes | `media/briefs-local/<slug>/` | 5 min |
-| 2 | Refine the brief into the prompt template (fields: role, goal, audience, deliverables, beats, copy tokens, palette, fonts, safe zones, sound plan). | Haiku (one page) or GLM | Template in `research/prompt-design-brief.md` section 3; refiner recipe in section 5 | 10 min |
-| 3 | Concept choice with the matrix (brand fit, assets, engine gaps, slideshow risk, rubric risk). Default: pencil story unless a hi-res photo arrives. | Lead decides from a worker brief | One-page decision brief | 10 min |
-| 4 | Scene build: one scene group per GLM milestone order, time-boxed to 20 minutes, one file group each. | GLM flash via `qh order` (Sol only for hard cases) | `work/persian/src/film/<film>/scenes.tsx`, `motion.ts` | 20 min per milestone |
-| 5 | Stills check: four ratios, payoff frames. Acceptance: `npx remotion still <bundle> <Comp> <out.png> --frame=N` for each listed frame, plus a `tsc` check. | Worker (GLM order) | `media/film-versions/<film>/_stills-<tag>/` | 4 s per still |
+| 1 | Intake: write the raw brief and owner's wording to `media/briefs-local/<slug>/source.md` (client material stays git-ignored). Tracked files use the label only. Create a production record from `docs/motion/plans/TEMPLATE.md`; list consulted files, constraints, risks, and source files. | Lead decides, worker writes | `media/briefs-local/<slug>/`; `docs/motion/plans/<date>-<slug>.md` | 5 min |
+| 2 | Refine the brief into the prompt template (role, goal, audience, deliverables, beats, copy tokens, palette, font roles, safe zones, sound plan). Preserve approved story/character intent and dynamic motion. Plan Persian reading, bidi number runs, and actual loaded font faces/weights for their roles. | Follow current applicable routing in `DECISIONS.jsonl` | Template in `research/prompt-design-brief.md` section 3; refiner recipe in section 5 | 10 min |
+| 3 | Choose a concept with the matrix (brand fit, assets, engine gaps, slideshow risk, rubric risk). Start from the framework, decisions, demos/effect catalogs, library and shared utilities; assess each on its merits. A prior film is a sample only, never the default concept or structure. Record idea, code, and process reuse opportunities and observed reuse separately. | Lead decides from worker brief | Decision brief and plan reuse map; supersession in `DECISIONS.jsonl` | 10 min |
+| 4 | Define story beats, scene purpose, motion and event/hit contract before implementation. Use the latest applicable worker-routing decision in `DECISIONS.jsonl`; do not assume a model or worker from this playbook. Preserve the plan's character/story intent and dynamic motion. | Current routing decision | Scene files and `motion.ts` under the film directory | 20 min per milestone (timebox per order) |
+| 5 | Stills check: review meaningful payoff/story frames across required ratios. Attach actual frame evidence; a command or declaration alone does not establish visual quality. | Worker plus independent reviewer | Stills/contact sheet and `frameChecks` in production record | 4 s per still (estimate) |
 | 6 | Beat test of the music: `python sound/tools/music_map.py <track.mp3> --out <track>.music.json`. Only PASS tracks go on. | Worker (Haiku for one track) | sidecar in `sound/library/bgm/` | 2 min per track |
-| 7 | Cue sheet: from frames (not old numbers). Start from `work/persian/tools/cues/make_cues_v5.py` and `build_v5.py` (v51 scripts in the same folder). Output `cues-9x16.json` in the version folder. | GLM order | `media/film-versions/<film>/<version>-cues/cues-9x16.json` | 20 min |
+| 7 | Cue sheet: generate from current film frames and event/hit contract, not old frame numbers. | Follow current applicable routing in `DECISIONS.jsonl` | `cues-9x16.json` in version folder | 20 min per milestone (estimate) |
 | 8 | Silent render, four ratios: `pwsh -File work/persian/render_all.ps1 -Film social -Bpm <bpm> -T0 <t0> -OutDir media/film-versions/<film>/<version>` (use `-Film uni` for the teaser). Preview first: `-Mode preview -Frames 150-210`. | Worker (Haiku runs and reports numbers) | `silent-<ratio>.mp4`, `render-report.json` | 30 s for four ratios |
-| 9 | Mix: music bed with `work/persian/mix_film.ps1`, SFX with `work/persian/mix_sfx.ps1`. Targets: bed -18 LUFS, duck -3 dB over 150 ms, final -14 LUFS, true peak at or below -1 dBTP, music ends on a downbeat. Measure with loudnorm. | Worker (GLM or Haiku) | `social-9x16-<version>.mp4` | 1 to 2 min |
+| 9 | Mix: music bed with `work/persian/mix_film.ps1`, SFX with `work/persian/mix_sfx.ps1`. Targets: bed -18 LUFS, duck -3 dB over 150 ms, final -14 LUFS, true peak at or below -1 dBTP, music ends on a downbeat. Record actual analyzer output; script presence alone is not a measured result. | Follow current applicable routing in `DECISIONS.jsonl` | Mix, analyzer evidence, version record | 1 to 2 min (estimate) |
 | 10 | Owner listening checklist (below). Owner scores each ratio. Scores go to `calibration/owner-feedback.md`. | Owner (no worker) | Score line in `VERSION.json` `owner_score` | owner time |
 | 11 | Independent review: a Sonnet reviewer scores the output with `evals/rubric-v2.md` (approve at 85 and above). | Sonnet reviewer | review verdict (short) | 10 min |
-| 12 | Version folder and `VERSION.json` (see template below). Commit only by a worker, on explicit order, with a path whitelist. | Worker | `media/film-versions/<film>/<version>/VERSION.json` | 5 min |
+| 12 | Run applicable record stage and all required checks; keep failures and unrun items explicit. Complete `VERSION.json`. A delivery PASS still does not publish: owner acceptance is required. Commit only by a worker, on explicit order, with path whitelist. | Worker; owner accepts | Production record, gate output, `VERSION.json` | 5 min (estimate) |
 
 ## Owner listening checklist (step 10)
 1. Watch the 9:16 film once with sound. Note the first beat that feels late or early.
@@ -26,11 +26,12 @@ Every order to a worker contains: goal, input paths, output paths, acceptance co
 3. Each payoff: does a hit have a sound on the hit frame? Does the final chord have a tail?
 4. Check 1:1 and 16:9 stills for safe-area text.
 5. Score each rubric-v2 criterion from 1 to 10 in one line.
+6. Review Persian reading, RTL copy, LTR number runs, and actual loaded font face/weight for each intended role.
 
 ## VERSION.json template
 ```json
 {
-  "film": "pencil-social",
+  "film": "<film-slug>",
   "version": "<version>",
   "date": "YYYY-MM-DD",
   "BPM": 120,
@@ -40,7 +41,8 @@ Every order to a worker contains: goal, input paths, output paths, acceptance co
   "cues_file": "<path>",
   "ratios": ["9:16", "1:1", "4:5", "16:9"],
   "silent_render": "silent-9x16.mp4",
-  "file": "social-9x16-<version>.mp4",
+  "file": "<film-slug>-9x16-<version>.mp4",
+  "production_record": "<production-directory>/process.json",
   "notes": "Personal test only. <what changed>",
   "owner_score": null
 }
@@ -49,23 +51,23 @@ Every order to a worker contains: goal, input paths, output paths, acceptance co
 ## Time expectations
 - Silent render of an 18 s film: 15 to 20 s per ratio; four ratios in parallel about 30 s.
 - Preview: about 6 s. Still: about 4 s. Mix: about 1 s per analysis pass.
-- Scene build: one GLM milestone of 20 minutes; a full film is usually three to five milestones.
+- Scene build: use the current worker-routing decision; milestone timeboxes are explicit. Historical figures are estimates, not routing policy.
 - Owner listening: at least one session per version.
 
 ## Order templates
 
-### GLM via qh order (implementation)
+### Worker order
 ```
 GOAL: <one deliverable>
 INPUTS: <exact paths>
 OUTPUTS: <exact paths>
-ACCEPTANCE: <exact command, for example: cd work/persian/src/workbench && npx tsc --noEmit -p . ; then the still commands listed below>
-FORBIDDEN: edit any file not in OUTPUTS; run git; touch media/**, sound binaries, work/persian/.*.env; put any client name or institution word in a file; add secrets.
-REPORT: <path>.md, max 25 lines: files changed, acceptance numbers, what is unverified.
-TIME BOX: 20 minutes. Write a plan file first and a progress file after each step.
+ACCEPTANCE: <exact command and FILM-GATES target stage; name each required check and evidence path>
+FORBIDDEN: edit any file not in OUTPUTS; run git unless explicitly ordered; touch media/**, sound binaries, work/persian/.*.env; put any client name or institution word in a file; add secrets.
+REPORT: <path>.md, max 25 lines: files changed, measured results, what is unverified.
+TIME BOX: <minutes>; report progress to the live status board and update the requested progress file.
 No human is present, do not ask questions.
 ```
-Submit with `qh order` (check `qh order --help` for the current flags, for example effort medium and a tight timeout).
+Use the current `DECISIONS.jsonl` worker-routing decision and order mechanism. Do not infer that an old sample, route, or script is the current default.
 
 ### Haiku via the Agent tool (quick work, model haiku)
 ```
@@ -85,6 +87,11 @@ No human is present, do not ask questions.
 Run through a worker with the account's `CODEX_HOME` (see `PLAYBOOK-SOUND.md` section 8). Test one image first.
 
 ## Known gaps
-- The uni teaser has not reached step 8 (P1 and later not started).
+- The uni teaser has not reached a verified delivery; consult current `STATE.md` before relying on this historical snapshot.
+- Music beat threshold and SFX event comparison need executable gates; script presence does not mean a threshold is wired or the final mix is checked.
+- Review, Persian reading, bidi, font-role, and preserved-positive-trait evidence needs human/source-backed review. Structural validation does not establish those facts.
 - Track selection depends on the owner's decision about the FAIL tracks (see `STATE.md` section 3).
 - Remote URL and `media/dana` deletions are owner decisions, not part of this process.
+
+## Confirmed Persian file-encoding safeguard (2026-10-13)
+Python reads/writes for Persian source, copy, director and props must explicitly use UTF-8. After copy edits, parse director and runtime props with UTF-8 and compare authoritative scene text. Keep a versioned snapshot before edits; a renderer pass alone does not prove copy integrity.

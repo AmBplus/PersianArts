@@ -1,0 +1,198 @@
+[
+ {
+  "id": "brief",
+  "title": "status brief",
+  "goal": "status",
+  "workerMinutes": 0.5,
+  "note": "measured worker time; wall-clock not measured"
+ },
+ {
+  "id": "P3",
+  "title": "P3 attempt (blocked by missing files)",
+  "goal": "blocked/fix",
+  "workerMinutes": 3.0,
+  "note": "measured worker time; wall-clock not measured"
+ },
+ {
+  "id": "assets",
+  "title": "asset path search",
+  "goal": "portability",
+  "workerMinutes": 1.4,
+  "note": "measured worker time; wall-clock not measured"
+ },
+ {
+  "id": "audit",
+  "title": "portability audit",
+  "goal": "portability",
+  "workerMinutes": 1.3,
+  "note": "measured worker time; wall-clock not measured"
+ },
+ {
+  "id": "pbrief",
+  "title": "portability brief",
+  "goal": "portability",
+  "workerMinutes": 1.6,
+  "note": "measured worker time; wall-clock not measured"
+ },
+ {
+  "id": "M1",
+  "title": "M1 fonts",
+  "goal": "portability",
+  "workerMinutes": 0.5,
+  "note": "measured worker time; wall-clock not measured"
+ },
+ {
+  "id": "M2",
+  "title": "M2 pa.ps1",
+  "goal": "portability",
+  "workerMinutes": 1.4,
+  "note": "measured worker time; wall-clock not measured"
+ },
+ {
+  "id": "M6",
+  "title": "M6 checkpoint font guard",
+  "goal": "portability",
+  "workerMinutes": 0.5,
+  "note": "measured worker time; wall-clock not measured"
+ },
+ {
+  "id": "M3",
+  "title": "M3 render_all auto-setup",
+  "goal": "portability",
+  "workerMinutes": 0.5,
+  "note": "measured worker time; wall-clock not measured"
+ },
+ {
+  "id": "M5",
+  "title": "M5 remove D: paths",
+  "goal": "portability",
+  "workerMinutes": 0.9,
+  "note": "measured worker time; wall-clock not measured"
+ },
+ {
+  "id": "M7",
+  "title": "M7 docs",
+  "goal": "portability",
+  "workerMinutes": 0.6,
+  "note": "measured worker time; wall-clock not measured"
+ },
+ {
+  "id": "logo",
+  "title": "logo SVG",
+  "goal": "creative/review",
+  "workerMinutes": 1.9,
+  "note": "measured worker time; wall-clock not measured"
+ },
+ {
+  "id": "creative",
+  "title": "creative direction",
+  "goal": "creative/review",
+  "workerMinutes": 5.6,
+  "note": "measured worker time; wall-clock not measured"
+ },
+ {
+  "id": "audiogap",
+  "title": "audio-gap record",
+  "goal": "creative/review",
+  "workerMinutes": 0.4,
+  "note": "measured worker time; wall-clock not measured"
+ },
+ {
+  "id": "board",
+  "title": "status board",
+  "goal": "dashboard/records",
+  "workerMinutes": 3.7,
+  "note": "measured worker time; wall-clock not measured"
+ },
+ {
+  "id": "standing",
+  "title": "standing-orders record",
+  "goal": "dashboard/records",
+  "workerMinutes": 0.8,
+  "note": "measured worker time; wall-clock not measured"
+ },
+ {
+  "id": "unblock",
+  "title": "unblock (npm ci, placeholders, smoke)",
+  "goal": "portability",
+  "workerMinutes": 4.2,
+  "note": "measured worker time; wall-clock not measured"
+ },
+ {
+  "id": "boardfix",
+  "title": "board-fix",
+  "goal": "dashboard/records",
+  "workerMinutes": 0.4,
+  "note": "measured worker time; wall-clock not measured"
+ },
+ {
+  "id": "review",
+  "title": "creative review",
+  "goal": "creative/review",
+  "workerMinutes": 1.5,
+  "note": "measured worker time; wall-clock not measured"
+ },
+ {
+  "id": "renderfix",
+  "title": "render-fix",
+  "goal": "blocked/fix",
+  "workerMinutes": 4.7,
+  "note": "measured worker time; wall-clock not measured"
+ },
+ {
+  "id": "resilience",
+  "title": "resilience record",
+  "goal": "dashboard/records",
+  "workerMinutes": 0.3,
+  "note": "measured worker time; wall-clock not measured"
+ },
+ {
+  "id": "boardout",
+  "title": "board outputs",
+  "goal": "dashboard/records",
+  "workerMinutes": 3.6,
+  "note": "measured worker time; wall-clock not measured"
+ },
+ {
+  "id": "first",
+  "title": "first video",
+  "goal": "real build",
+  "workerMinutes": 3.0,
+  "note": "measured worker time; wall-clock not measured"
+ },
+ {
+  "id": "fixround",
+  "title": "fix round",
+  "goal": "creative/review",
+  "workerMinutes": 8.9,
+  "note": "measured worker time; wall-clock not measured"
+ },
+ {
+  "id": "S1",
+  "title": "S1 short build",
+  "goal": "real build",
+  "workerMinutes": 10.2,
+  "note": "measured worker time; wall-clock not measured"
+ },
+ {
+  "id": "S2",
+  "title": "S2 four ratios",
+  "goal": "real build",
+  "workerMinutes": 6.5,
+  "note": "measured worker time; wall-clock not measured"
+ },
+ {
+  "id": "S3",
+  "title": "S3 sound",
+  "goal": "real build",
+  "workerMinutes": 7.5,
+  "note": "measured worker time; wall-clock not measured"
+ },
+ {
+  "id": "gitcp",
+  "title": "git checkpoint",
+  "goal": "dashboard/records",
+  "workerMinutes": 1.3,
+  "note": "measured worker time; wall-clock not measured"
+ }
+]

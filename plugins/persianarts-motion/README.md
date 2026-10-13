@@ -1,3 +1,5 @@
+Superseded by the project skill persian-arts (.claude/skills/persian-arts). Do not use this plugin skill for new work.
+
 # PersianArts Motion (Claude Code plugin)
 
 Persian motion graphics, cooked from a pantry of themable motion ingredients.

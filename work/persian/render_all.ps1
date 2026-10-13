@@ -4,7 +4,7 @@ Fast, quality-neutral render pipeline for the Persian films (Remotion 4). See re
   pwsh -File work/persian/render_all.ps1 -Film social -Bpm 124 -T0 0.24283 -OutDir media/film-versions/pencil-social/<version>
 #>
 param(
-  [ValidateSet('social', 'uni', 'uni/short')][string]$Film,
+  [ValidateSet('social', 'uni', 'uni/short', 'uni/long')][string]$Film,
   [string]$Ratios = '9x16,1x1,4x5,16x9',
   [double]$Bpm,
   [double]$T0,
@@ -85,7 +85,7 @@ New-Item -ItemType Directory -Force -Path $OutFull, $CacheRoot, $SilentRoot | Ou
 $known = @('9x16', '1x1', '4x5', '16x9')
 $ratioList = $Ratios.Split(',') | ForEach-Object { $_.Trim() }
 foreach ($r in $ratioList) { if ($r -notin $known) { throw "Unknown ratio '$r' (use $($known -join ','))" } }
-$prefix = if ($Film -eq 'social') { 'Social' } elseif ($Film -eq 'uni/short') { 'UniShort' } else { 'Uni' }
+$prefix = if ($Film -eq 'social') { 'Social' } elseif ($Film -eq 'uni/short') { 'UniShort' } elseif ($Film -eq 'uni/long') { 'UniLong' } else { 'Uni' }
 # Verify the ids exist in the entry file (composition ids are derived from it).
 $entryText = Get-Content -Raw (Join-Path $Persian "src\film\$Film\entry.tsx")
 foreach ($r in $ratioList) { if ($entryText -notmatch [regex]::Escape("`"$prefix$r`"")) { throw "Composition $prefix$r not in entry.tsx" } }

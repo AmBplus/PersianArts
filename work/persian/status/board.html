@@ -26,6 +26,7 @@ h1{font-size:20px;margin:4px 0}
 .bar.s-stalled>i{background:var(--stl)}.bar.s-queued>i,.bar.s-blocked>i{background:var(--que)}.bar.s-done>i{background:var(--ok)}
 #age{font-size:13px;color:var(--mut)}#age.bad{color:var(--stl);font-weight:700}
 .cap{font-size:12px;color:var(--mut);font-weight:400}.legend{font-size:13px;color:var(--mut);margin:4px 0 8px}.outs{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}.out{border:1px solid var(--line);border-radius:8px;padding:4px;max-width:200px;font-size:12px;overflow-wrap:anywhere}.out img{display:block;max-width:190px;max-height:120px;border-radius:4px;cursor:zoom-in}.out video{display:block;max-width:300px;max-height:180px}.out audio{display:block;width:240px}.out a{color:var(--run)}.out small{display:block;color:var(--mut)}.out.wide{max-width:320px}#lb{position:fixed;inset:0;background:#000d;display:none;align-items:center;justify-content:center;z-index:9;cursor:zoom-out}#lb img{max-width:95vw;max-height:95vh}.row2{grid-column:1/-1}
+#meter table{width:100%;border-collapse:collapse;font-size:13px;margin:8px 0}#meter th,#meter td{padding:4px 6px;border-top:1px solid var(--line);text-align:start;font-variant-numeric:tabular-nums}.v-on{color:var(--ok);font-weight:700}.v-late{color:var(--stl);font-weight:700}.v-run{color:var(--run);font-weight:700}.mrow{display:grid;grid-template-columns:120px 1fr 70px;gap:8px;align-items:center;font-size:13px;margin:3px 0}.mrow .bar>i{background:var(--run)}.msum{display:flex;gap:16px;flex-wrap:wrap;margin:6px 0}.msum div{background:var(--bar);border-radius:8px;padding:4px 10px}.arow{display:grid;grid-template-columns:minmax(150px,230px) 1fr 140px;gap:8px;align-items:center;font-size:13px;margin:3px 0}.arow .bar>i{background:var(--run)}.arow.wait .bar>i{background:var(--blk)}.arow.wait{font-weight:700}@media(max-width:560px){.arow{grid-template-columns:1fr 90px}.arow .bar{grid-column:1/-1;grid-row:2}}
 ul{margin:6px 0;padding-inline-start:20px}
 @media(max-width:560px){.row{grid-template-columns:1fr auto}.row .b{grid-column:1/-1}.row .p{display:none}}
 </style>
@@ -39,6 +40,8 @@ ul{margin:6px 0;padding-inline-start:20px}
 <div id="retry" hidden style="background:#fef3c7;color:#78350f;border:1px solid #f59e0b;border-radius:10px;padding:8px 12px;margin:8px 0"><b></b> <details><summary>جزئیات خطا</summary><code dir="ltr" style="display:block;white-space:pre-wrap"></code></details></div>
 <div id="render"></div>
 <div id="goals"></div>
+<div class="card" id="meter"><div class="head"><b>متر زمان</b><span class="cap">فقط زمان کارگر اندازه‌گیری شده؛ انتظار بین فرمان‌ها (ساعت دیواری) اندازه‌گیری نشده است.</span></div><div id="msum"></div><div id="mchart"></div><div style="overflow-x:auto"><table id="mtab"></table></div><details><summary><b>تاریخچه (زمان کارگر، پس‌نگاشت)</b></summary><div style="overflow-x:auto"><table id="mhist"></table></div></details></div>
+<div class="card" id="actv"><div class="head"><b>تفکیک زمان بر اساس فعالیت</b><span class="cap" id="actcap">…</span></div><div id="actsum"></div><div id="actchart"></div><details><summary><b>فاصله‌های انتظار (یک دقیقه یا بیشتر)</b></summary><ul id="actwait"></ul></details></div>
 <div class="card"><b>موانع</b><ul id="blockers"></ul></div>
 </main>
 <script>
@@ -84,9 +87,36 @@ function render(b){
 }
 async function recent(){try{const r=await (await fetch('recent.json?'+Date.now(),{cache:'no-store'})).json();const now=Date.now();const el=document.getElementById('recent');const sig=JSON.stringify(r.map(x=>x.path+x.mtime));if(el.dataset.sig!==sig){el.dataset.sig=sig;el.innerHTML=r.map(x=>outHtml({path:x.path,kind:x.kind},now,x.mtime)).join('')||'—'}document.getElementById('recentcap').textContent=fa(r.length)+' فایل جدید (png، mp4، wav، mp3، md)'}catch(e){}}
 recent();setInterval(recent,5000);
+
+const f1=n=>fa((Math.round(n*10)/10).toString().replace('.','٫'));
+function meter(b){
+  const now=Date.now(),rows=[];
+  b.goals.forEach(g=>g.items.forEach(it=>{
+    const st=Date.parse(it.startedAt);if(!st)return;
+    const fin=Date.parse(it.finishedAt)||((it.state==='done'||it.state==='blocked')?Date.parse(it.updatedAt):0);
+    const run=!fin;const act=((fin||now)-st)/60000;const exp=it.expectedMinutes||0;
+    const diff=act-exp;const v=run?'run':(diff>0?'late':'on');
+    rows.push({g:g.title,id:it.id,t:it.title,exp,act,diff,v});}));
+  const tot=rows.reduce((s,r)=>s+r.act,0),late=rows.filter(r=>r.v==='late').reduce((s,r)=>s+r.diff,0);
+  document.getElementById('msum').innerHTML='<div class="msum"><div title="بازه‌های هم‌پوشان و آیتم‌های بسته‌نشده جمع شده‌اند؛ ساعت دیواری واقعی در پنل تفکیک زمان است">جمع بازه‌های آیتم‌ها (هم‌پوشان، ساعت دیواری نیست): <b>'+f1(tot)+'</b></div><div>مجموع دقیقه‌های دیرکرد: <b class="v-late">'+f1(late)+'</b></div><div>آیتم‌ها: <b>'+fa(rows.length)+'</b></div></div>';
+  const bg={};rows.forEach(r=>bg[r.g]=(bg[r.g]||0)+r.act);const mx=Math.max(1,...Object.values(bg));
+  document.getElementById('mchart').innerHTML=Object.entries(bg).map(([k,v])=>'<div class="mrow"><span>'+esc(k)+'</span><div class="bar"><i style="width:'+(v/mx*100)+'%"></i></div><span>'+f1(v)+' دقیقه</span></div>').join('');
+  const V={on:'به‌موقع',late:'دیرکرد',run:'در حال انجام'};
+  document.getElementById('mtab').innerHTML='<tr><th>شناسه</th><th>عنوان</th><th>انتظار</th><th>واقعی</th><th>تفاوت</th><th>نتیجه</th></tr>'+rows.map(r=>'<tr><td>'+esc(r.id)+'</td><td>'+esc(r.t)+'</td><td>'+f1(r.exp)+'</td><td>'+f1(r.act)+'</td><td>'+(r.v==='run'?'—':(r.diff>0?'+':'')+f1(r.diff))+'</td><td class="v-'+r.v+'">'+V[r.v]+(r.v==='run'?' ('+f1(r.act)+' دقیقه گذشته)':'')+'</td></tr>').join('');
+}
+let histDone=false;
+async function hist(){if(histDone)return;try{const h=await (await fetch('metering-history.json?'+Date.now(),{cache:'no-store'})).json();histDone=true;const s=h.reduce((a,x)=>a+x.workerMinutes,0);
+ document.getElementById('mhist').innerHTML='<tr><th>شناسه</th><th>عنوان</th><th>گروه</th><th>دقیقه کارگر</th></tr>'+h.map(x=>'<tr><td>'+esc(x.id)+'</td><td>'+esc(x.title)+'</td><td>'+esc(x.goal)+'</td><td>'+f1(x.workerMinutes)+'</td></tr>').join('')+'<tr><th colspan="3">جمع (زمان کارگر)</th><th>'+f1(s)+'</th></tr>'}catch(e){}}
+hist();
+async function acts(){try{const m=await (await fetch('metrics.json?'+Date.now(),{cache:'no-store'})).json();const mx=Math.max(1,...m.activities.map(a=>a.minutes));const hm=s=>new Date(s).toISOString().slice(11,16);
+ document.getElementById('actcap').textContent='ساعت دیواری '+hm(m.windowStart)+' تا '+hm(m.windowEnd)+' UTC؛ ثانیه‌های هم‌زمان بین کارگرها تقسیم شده';
+ document.getElementById('actsum').innerHTML='<div class="msum"><div>ساعت دیواری: <b>'+f1(m.wallMinutes)+'</b> دقیقه</div><div>زمان کارگرها: <b>'+f1(m.workerMinutes)+'</b> دقیقه</div><div>سفارش‌ها: <b>'+fa(m.orders)+'</b></div></div>';
+ document.getElementById('actchart').innerHTML=m.activities.map(a=>'<div class="arow'+(a.id==='waiting'?' wait':'')+'"><span>'+esc(a.label)+'</span><div class="bar"><i style="width:'+(a.minutes/mx*100)+'%"></i></div><span>'+f1(a.minutes)+' دقیقه · '+f1(a.percent)+'٪</span></div>').join('');
+ document.getElementById('actwait').innerHTML=(m.waits||[]).map(w=>'<li>'+hm(w.from)+' تا '+hm(w.to)+' UTC: <b>'+f1(w.minutes)+'</b> دقیقه</li>').join('')||'<li>—</li>'}catch(e){document.getElementById('actcap').textContent='metrics.json در دسترس نیست'}}
+acts();setInterval(acts,30000);
 let last=null;
 function note(msg,detail){const n=document.getElementById('retry');if(!msg){n.hidden=true;return}n.hidden=false;n.querySelector('b').textContent=msg;n.querySelector('code').textContent=detail||''}
-async function tick(){try{const r=await fetch('board.json?'+Date.now(),{cache:'no-store'});const t=await r.text();if(!r.ok)throw new Error('HTTP '+r.status+' '+t.slice(0,200));last=JSON.parse(t.replace(/^﻿/,''));note('');render(last)}catch(e){note('در حال تلاش مجدد…',String(e&&e.message||e));if(last)render(last)}}
+async function tick(){try{const r=await fetch('board.json?'+Date.now(),{cache:'no-store'});const t=await r.text();if(!r.ok)throw new Error('HTTP '+r.status+' '+t.slice(0,200));last=JSON.parse(t.replace(/^﻿/,''));note('');render(last);meter(last)}catch(e){note('در حال تلاش مجدد…',String(e&&e.message||e));if(last)render(last)}}
 tick();setInterval(tick,2000);
 </script>
 </body></html>

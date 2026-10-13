@@ -124,7 +124,7 @@ function Save-Board($b) {
   [IO.File]::WriteAllText($tmp, ($b | ConvertTo-Json -Depth 20), [Text.UTF8Encoding]::new($false))
   Move-Item -LiteralPath $tmp -Destination $p -Force
 }
-function Invoke-Status {
+function Invoke-StatusInner {
   $now = [DateTime]::UtcNow.ToString('o')
   $stamp = if ($UpdatedAt) { $UpdatedAt } else { $now }
   switch ($Sub) {
@@ -134,7 +134,11 @@ function Invoke-Status {
       $it = $b.goals.items | Where-Object { $_.id -eq $Id } | Select-Object -First 1
       if (-not $it) { throw "unknown item '$Id' (use status show)" }
       if ($State) {
-        if ($State -eq 'running' -and $it.state -ne 'running') { $it.startedAt = $now }
+        if ($State -eq 'running' -and $it.state -ne 'running') { $it | Add-Member -NotePropertyName startedAt -NotePropertyValue $now -Force; $it | Add-Member -NotePropertyName finishedAt -NotePropertyValue $null -Force; $it | Add-Member -NotePropertyName actualMinutes -NotePropertyValue $null -Force }
+        if ($State -in 'done', 'blocked' -and $it.state -notin 'done', 'blocked') {
+          $it | Add-Member -NotePropertyName finishedAt -NotePropertyValue $now -Force
+          if ($it.startedAt) { $it | Add-Member -NotePropertyName actualMinutes -NotePropertyValue ([math]::Round(([DateTime]::Parse($now).ToUniversalTime() - [DateTime]::Parse($it.startedAt).ToUniversalTime()).TotalMinutes, 1)) -Force }
+        }
         $it.state = $State
         if ($State -eq 'done' -and $Percent -lt 0) { $it.percent = 100 }
       }
@@ -148,7 +152,11 @@ function Invoke-Status {
       if ($ExpectedMinutes -ge 0) { $it.expectedMinutes = $ExpectedMinutes }
       $it.updatedAt = $stamp
       Save-Board $b
-      Write-Host "ok $Id state=$($it.state) percent=$($it.percent)"
+      $chk = (Read-Board).goals.items | Where-Object { $_.id -eq $Id } | Select-Object -First 1
+      $cs = if ($chk.steps) { "$($chk.steps.done)/$($chk.steps.total)" } else { '0/0' }
+      if (-not $chk -or ($State -and $chk.state -ne $State)) { Write-Host "FAIL status set $Id : requested state=$State persisted state=$($chk.state)"; exit 1 }
+      if ($StepsDone -ge 0 -and [int]$chk.steps.done -ne $StepsDone) { Write-Host "FAIL status set $Id : steps not persisted"; exit 1 }
+      Write-Host "ok id=$Id state=$($chk.state) steps=$cs"
     }
     'add-item' {
       if (-not $Id -or -not $Goal) { throw 'usage: status add-item <itemId> -Goal <goalId> [-Title t] [-State s] [-Percent n] [-ExpectedMinutes m] [-Note t]' }
@@ -157,7 +165,7 @@ function Invoke-Status {
       if (-not $g) { $b.goals = @($b.goals) + [pscustomobject]@{ id = $Goal; title = $(if ($Title) { $Title } else { $Goal }); percent = 0; items = @() }; $g = $b.goals | Where-Object { $_.id -eq $Goal } }
       $st = if ($State) { $State } else { 'queued' }
       $new = [pscustomobject]@{ id = $Id; title = $(if ($Title) { $Title } else { $Id }); state = $st; percent = $(if ($Percent -ge 0) { $Percent } else { 0 })
-        startedAt = $(if ($st -eq 'running') { $now } else { $null }); expectedMinutes = $(if ($ExpectedMinutes -ge 0) { $ExpectedMinutes } else { 20 }); updatedAt = $stamp; note = [string]$Note }
+        startedAt = $(if ($st -eq 'running') { $now } else { $null }); finishedAt = $null; actualMinutes = $null; expectedMinutes = $(if ($ExpectedMinutes -ge 0) { $ExpectedMinutes } else { 20 }); updatedAt = $stamp; note = [string]$Note }
       $g.items = @($g.items) + $new
       Save-Board $b
       Write-Host "added $Id to goal $Goal"
@@ -226,6 +234,18 @@ function Invoke-Status {
     }
     default { throw 'usage: pa.ps1 status set|add-item|output|remove|rename|blocker|show ...' }
   }
+}
+
+function Invoke-Status {
+  $mutating = $Sub -in 'set', 'add-item', 'output', 'blocker', 'remove', 'rename'
+  if (-not $mutating) { Invoke-StatusInner; return }
+  $mx = [Threading.Mutex]::new($false, 'Global\PersianArtsBoardLock')
+  $got = $false
+  try {
+    try { $got = $mx.WaitOne(60000) } catch [Threading.AbandonedMutexException] { $got = $true }
+    if (-not $got) { Write-Host 'FAIL: could not get board lock within 60s'; exit 1 }
+    Invoke-StatusInner
+  } finally { if ($got) { $mx.ReleaseMutex() }; $mx.Dispose() }
 }
 
 switch ($Command) {
