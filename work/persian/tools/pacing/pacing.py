@@ -83,12 +83,13 @@ def main():
        "flat (no arc)" if max(er) - min(er) < 0.15 else "ok (arc present)" if er[2] <= er[1] + 0.05 else "outro hotter than middle"))
     if au:
         row("tempo (bpm, from mix)", au["tempo_bpm"], ref["tempo_bpm"], "slow music", "fast music")
+        if au["cuts_on_beat"] is None: au["cuts_on_beat"] = au["cuts_on_bar"] = 0.0; P_("note: no cuts in this clip, beat/bar alignment shown as 0%")
         chance_beat = min(1.0, 2 * P.TOL / au["beat_s"]); chance_bar = chance_beat / 4
         P_("%-28s %-9s %-16s %s" % ("cuts on beat (60 ms)", "%.0f%%" % (100 * au["cuts_on_beat"]), "chance %.0f%%, ref %.0f%%" % (100 * chance_beat, 100 * ref["cuts_on_beat"]["median"]),
            "locked" if au["cuts_on_beat"] >= 0.6 else "near chance: cuts not beat-locked"))
         P_("%-28s %-9s %-16s %s" % ("cuts on bar downbeat", "%.0f%%" % (100 * au["cuts_on_bar"]), "chance %.0f%%" % (100 * chance_bar), "locked" if au["cuts_on_bar"] >= 0.5 else "near/below chance: cuts not bar-locked"))
         P_("%-28s %-9s %-16s" % ("loudness LUFS / RMS arc dB", "%s" % au["lufs"], "/".join(str(x) for x in au["rms_arc_db"])))
-        if au["cuts_on_beat"] < 0.4: findings.append(("cuts on beat", au["cuts_on_beat"], None, "not beat-locked"))
+        if m["cuts"] and au["cuts_on_beat"] < 0.4: findings.append(("cuts on beat", au["cuts_on_beat"], None, "not beat-locked"))
     else:
         P_("audio: none (silent film) - beat/bar/loudness not measured")
     P_("scenes (start-end, len, elements, build, hold%s):" % (", chars, hold floor" if chars else ""))
