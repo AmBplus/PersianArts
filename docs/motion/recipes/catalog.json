@@ -51,7 +51,9 @@
       "pitfalls": [
         "Type on with a shaped prefix (never per-character spans): Persian joins break otherwise",
         "Dead navy frames 90-94 at the exit: start the next scene's first reveal on its own first frame",
-        "16:9: text block floats; check hero size >= 12% of frame height in 9x16"
+        "16:9: text block floats; check hero size >= 12% of frame height in 9x16",
+        "L-033/L-032: reveal by word or prefix, never clipped letters; headline 45-55% of width in 16:9",
+        "L-009: first reveal on the first frame of the scene (dead-frames gate); scene text out before the next transition starts (L-010)"
       ],
       "gates": {
         "passed": [
@@ -115,7 +117,8 @@
       "regen": "pwsh -File work/persian/render_all.ps1 -Film uni/long -Mode stills -Ratios 9x16,16x9 -Bpm 120 -T0 0 -Frames <comma list> -OutDir media/film-versions/uni/long-v4/stills-a",
       "pitfalls": [
         "Outlined hero number must be LTR isolated (Ltr/Bidi from kit.ts)",
-        "Incoming first reveal must start on first frame (dead-frame defect)"
+        "Incoming first reveal must start on first frame (dead-frame defect)",
+        "L-009: first reveal on the first frame of the scene (dead-frames gate); scene text out before the next transition starts (L-010)"
       ],
       "gates": {
         "passed": [
@@ -178,7 +181,9 @@
       "pitfalls": [
         "Draw each hero number ONCE inside the window; a navy overlay copy plus a ghost copy produced doubled text (review-v4 defect 1)",
         "Ghost decoration opacity <= 0.08",
-        "Numbers use LTR isolation: 148 000 grouping verified"
+        "Numbers use LTR isolation: 148 000 grouping verified",
+        "L-008/L-011/L-005: one copy of the hero (no ghost > 0.08), cap width to 0.78 W in portrait and re-check height >= 12% together; edge-touch gate",
+        "L-009: first reveal on the first frame of the scene (dead-frames gate); scene text out before the next transition starts (L-010)"
       ],
       "gates": {
         "passed": [
@@ -245,7 +250,9 @@
       "pitfalls": [
         "9:16 left lower ~45% empty (review-v4 defect 3): in portrait stack the number lower, scale hero ~1.3, move seal and caption into lower half",
         "Words flip as units, never per character (Persian joins)",
-        "Counter digits isolated LTR"
+        "Counter digits isolated LTR",
+        "L-012: digit roll must not show cropped glyph halves; blur/fade digits, at most ~12 fragment frames, mask inside the plate",
+        "L-009: first reveal on the first frame of the scene (dead-frames gate); scene text out before the next transition starts (L-010)"
       ],
       "gates": {
         "passed": [
@@ -309,7 +316,8 @@
       "regen": "pwsh -File work/persian/render_all.ps1 -Film uni/long -Mode stills -Ratios 9x16,16x9 -Bpm 120 -T0 0 -Frames <comma list> -OutDir media/film-versions/uni/long-v4/stills-a",
       "pitfalls": [
         "Fade ALL scene text out before the tile dissolve starts (~f600) or Persian captions overlap the next scene in 9:16 (review-v4 defect 2)",
-        "Blank purple 480-485 after the grey flash: first reveal on first frame"
+        "Blank purple 480-485 after the grey flash: first reveal on first frame",
+        "L-009: first reveal on the first frame of the scene (dead-frames gate); scene text out before the next transition starts (L-010)"
       ],
       "gates": {
         "passed": [
@@ -373,7 +381,9 @@
       "regen": "pwsh -File work/persian/render_all.ps1 -Film uni/long -Mode stills -Ratios 9x16,16x9 -Bpm 120 -T0 0 -Frames <comma list> -OutDir media/film-versions/uni/long-v4/stills-a",
       "pitfalls": [
         "9:16: bottom ~40% flat road (review-v4 defect 4): scale skyline and sign up, move headline lower, add foreground layers",
-        "Empty skyline frames 631-634"
+        "Empty skyline frames 631-634",
+        "L-007/L-016: portrait needs its own composition (no flat bottom 40%); no ritual or ornamental landmarks for institutional films",
+        "L-009: first reveal on the first frame of the scene (dead-frames gate); scene text out before the next transition starts (L-010)"
       ],
       "gates": {
         "passed": [
@@ -438,7 +448,8 @@
       "regen": "pwsh -File work/persian/render_all.ps1 -Film uni/long -Mode stills -Ratios 9x16,16x9 -Bpm 120 -T0 0 -Frames <comma list> -OutDir media/film-versions/uni/long-v4/stills-a",
       "pitfalls": [
         "URL and numbers must be LTR-isolated inside the RTL card",
-        "Logo only from the verified file or an overlay-checked layered SVG (see R-logo-layered-svg)"
+        "Logo only from the verified file or an overlay-checked layered SVG (see R-logo-layered-svg)",
+        "L-009: first reveal on the first frame of the scene (dead-frames gate); scene text out before the next transition starts (L-010)"
       ],
       "gates": {
         "passed": [
@@ -480,7 +491,8 @@
       "preview": [],
       "regen": "n/a (code only)",
       "pitfalls": [
-        "Do not duplicate curves in scenes; import from kit.ts"
+        "Do not duplicate curves in scenes; import from kit.ts",
+        "L-009: first reveal on the first frame of the scene (dead-frames gate); scene text out before the next transition starts (L-010)"
       ],
       "gates": {
         "passed": [
@@ -523,7 +535,8 @@
       "regen": "n/a (code only)",
       "pitfalls": [
         "Per-character spans or letter-spacing break Persian joins (docs/PERSIAN-LOCALIZATION-LESSONS.md)",
-        "Measure with the loaded face; a silent font fallback gives a wrong width"
+        "Measure with the loaded face; a silent font fallback gives a wrong width",
+        "L-009: first reveal on the first frame of the scene (dead-frames gate); scene text out before the next transition starts (L-010)"
       ],
       "gates": {
         "passed": [
@@ -574,7 +587,8 @@
       "regen": "pwsh -File work/persian/render_all.ps1 -Film uni/long -Mode stills -Ratios 9x16,16x9 -Bpm 120 -T0 0 -Frames <comma list> -OutDir media/film-versions/uni/long-v4/stills-a",
       "pitfalls": [
         "Never rely on the browser's bidi default for 148 000 style groups",
-        "data-ltr attribute lets the Digits LTR gate scan rendered text (gate itself is to build)"
+        "data-ltr attribute lets the Digits LTR gate scan rendered text (gate itself is to build)",
+        "L-009: first reveal on the first frame of the scene (dead-frames gate); scene text out before the next transition starts (L-010)"
       ],
       "gates": {
         "passed": [
@@ -634,7 +648,9 @@
       "pitfalls": [
         "Source low-res (189x267): scallops and pointed tips get simplified; document what differs",
         "No rasterizer was available in the first run: acceptance was visual only; the numeric check is still unproven",
-        "Do not publish the layered logo of a client in tracked files"
+        "Do not publish the layered logo of a client in tracked files",
+        "L-013/L-014/L-015: keep brand colours, transparent, no white plate or invert filter; add hairline ring + glow on low-contrast parts; run logo-colour gate on the finale",
+        "L-009: first reveal on the first frame of the scene (dead-frames gate); scene text out before the next transition starts (L-010)"
       ],
       "gates": {
         "passed": [
@@ -675,7 +691,8 @@
       "preview": [],
       "regen": "render the demo composition: see work/persian/src/demos/README.md",
       "pitfalls": [
-        "Idea only: must be re-implemented with Persian-safe text (docs/PERSIAN-LOCALIZATION-LESSONS.md) and checked at 9:16"
+        "Idea only: must be re-implemented with Persian-safe text (docs/PERSIAN-LOCALIZATION-LESSONS.md) and checked at 9:16",
+        "L-009: first reveal on the first frame of the scene (dead-frames gate); scene text out before the next transition starts (L-010)"
       ],
       "gates": {
         "passed": [],
@@ -714,7 +731,8 @@
       "preview": [],
       "regen": "render the demo composition: see work/persian/src/demos/README.md",
       "pitfalls": [
-        "Idea only: must be re-implemented with Persian-safe text (docs/PERSIAN-LOCALIZATION-LESSONS.md) and checked at 9:16"
+        "Idea only: must be re-implemented with Persian-safe text (docs/PERSIAN-LOCALIZATION-LESSONS.md) and checked at 9:16",
+        "L-009: first reveal on the first frame of the scene (dead-frames gate); scene text out before the next transition starts (L-010)"
       ],
       "gates": {
         "passed": [],
@@ -753,7 +771,8 @@
       "preview": [],
       "regen": "render the demo composition: see work/persian/src/demos/README.md",
       "pitfalls": [
-        "Idea only: must be re-implemented with Persian-safe text (docs/PERSIAN-LOCALIZATION-LESSONS.md) and checked at 9:16"
+        "Idea only: must be re-implemented with Persian-safe text (docs/PERSIAN-LOCALIZATION-LESSONS.md) and checked at 9:16",
+        "L-009: first reveal on the first frame of the scene (dead-frames gate); scene text out before the next transition starts (L-010)"
       ],
       "gates": {
         "passed": [],
@@ -794,7 +813,8 @@
       "preview": [],
       "regen": "render the demo composition: see work/persian/src/demos/README.md",
       "pitfalls": [
-        "Idea only: must be re-implemented with Persian-safe text (docs/PERSIAN-LOCALIZATION-LESSONS.md) and checked at 9:16"
+        "Idea only: must be re-implemented with Persian-safe text (docs/PERSIAN-LOCALIZATION-LESSONS.md) and checked at 9:16",
+        "L-009: first reveal on the first frame of the scene (dead-frames gate); scene text out before the next transition starts (L-010)"
       ],
       "gates": {
         "passed": [],
@@ -834,7 +854,8 @@
       "preview": [],
       "regen": "render the demo composition: see work/persian/src/demos/README.md",
       "pitfalls": [
-        "Whole-word mask only; masks across letter joins break shaping"
+        "Whole-word mask only; masks across letter joins break shaping",
+        "L-009: first reveal on the first frame of the scene (dead-frames gate); scene text out before the next transition starts (L-010)"
       ],
       "gates": {
         "passed": [],
@@ -875,7 +896,8 @@
       "preview": [],
       "regen": "render the demo composition: see work/persian/src/demos/README.md",
       "pitfalls": [
-        "Idea only: must be re-implemented with Persian-safe text (docs/PERSIAN-LOCALIZATION-LESSONS.md) and checked at 9:16"
+        "Idea only: must be re-implemented with Persian-safe text (docs/PERSIAN-LOCALIZATION-LESSONS.md) and checked at 9:16",
+        "L-009: first reveal on the first frame of the scene (dead-frames gate); scene text out before the next transition starts (L-010)"
       ],
       "gates": {
         "passed": [],
@@ -916,7 +938,8 @@
       "preview": [],
       "regen": "render the demo composition: see work/persian/src/demos/README.md",
       "pitfalls": [
-        "Idea only: must be re-implemented with Persian-safe text (docs/PERSIAN-LOCALIZATION-LESSONS.md) and checked at 9:16"
+        "Idea only: must be re-implemented with Persian-safe text (docs/PERSIAN-LOCALIZATION-LESSONS.md) and checked at 9:16",
+        "L-009: first reveal on the first frame of the scene (dead-frames gate); scene text out before the next transition starts (L-010)"
       ],
       "gates": {
         "passed": [],
@@ -957,7 +980,8 @@
       "preview": [],
       "regen": "render the demo composition: see work/persian/src/demos/README.md",
       "pitfalls": [
-        "Idea only: must be re-implemented with Persian-safe text (docs/PERSIAN-LOCALIZATION-LESSONS.md) and checked at 9:16"
+        "Idea only: must be re-implemented with Persian-safe text (docs/PERSIAN-LOCALIZATION-LESSONS.md) and checked at 9:16",
+        "L-009: first reveal on the first frame of the scene (dead-frames gate); scene text out before the next transition starts (L-010)"
       ],
       "gates": {
         "passed": [],
@@ -999,7 +1023,8 @@
       "preview": [],
       "regen": "render the demo composition: see work/persian/src/demos/README.md",
       "pitfalls": [
-        "Idea only: must be re-implemented with Persian-safe text (docs/PERSIAN-LOCALIZATION-LESSONS.md) and checked at 9:16"
+        "Idea only: must be re-implemented with Persian-safe text (docs/PERSIAN-LOCALIZATION-LESSONS.md) and checked at 9:16",
+        "L-009: first reveal on the first frame of the scene (dead-frames gate); scene text out before the next transition starts (L-010)"
       ],
       "gates": {
         "passed": [],
@@ -1042,7 +1067,8 @@
       "preview": [],
       "regen": "render the demo composition: see work/persian/src/demos/README.md",
       "pitfalls": [
-        "Third-party-style skill content: use as a code and style source only; the persian-arts skill stays the only workflow"
+        "Third-party-style skill content: use as a code and style source only; the persian-arts skill stays the only workflow",
+        "L-009: first reveal on the first frame of the scene (dead-frames gate); scene text out before the next transition starts (L-010)"
       ],
       "gates": {
         "passed": [],
@@ -1084,7 +1110,8 @@
       "preview": [],
       "regen": "render the demo composition: see work/persian/src/demos/README.md",
       "pitfalls": [
-        "Idea only: must be re-implemented with Persian-safe text (docs/PERSIAN-LOCALIZATION-LESSONS.md) and checked at 9:16"
+        "Idea only: must be re-implemented with Persian-safe text (docs/PERSIAN-LOCALIZATION-LESSONS.md) and checked at 9:16",
+        "L-009: first reveal on the first frame of the scene (dead-frames gate); scene text out before the next transition starts (L-010)"
       ],
       "gates": {
         "passed": [],

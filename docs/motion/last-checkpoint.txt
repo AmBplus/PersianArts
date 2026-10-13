@@ -7,3 +7,11 @@
 2026-10-13T08:09:14+03:30 4b5fe5493b12470a4c66e1666a27a1a0145adcf4 PUSH-OK via=ssh unpushed=1 files=73 msg=chore(motion): pause autopilot, resume notes, uni film state
 
 Claude-Session: https://claude.ai/code/session_01Coo1bMt6WZLj2vRESMYssc
+2026-10-13T09:56:40+03:30 26f2720bf237f1659babafd82081ada31abe4ed8 PUSH-OK via=ssh unpushed=4 files=28 msg=Claude-Session: portable setup, status board, uni short cut
+2026-10-13T13:22:10+03:30 3b03ba49d349f3c7a15f421aac58abb7c7ac55b7 PUSH-OK via=ssh unpushed=1 files=29 msg=Claude-Session: persian-arts skill, skill policy, film gates, metrics and tooling
+2026-10-13T13:25:18+03:30 9c6bd83bc457c17c574cfa052d546888e0f18d96 PUSH-OK via=ssh unpushed=1 files=3 msg=Claude-Session: track persian-arts skill for Claude Code
+2026-10-13T13:38:23+03:30 ade58ac1aa5714663bb617cc76e1bb22c543c7c6 PUSH-OK via=ssh unpushed=1 files=8 msg=Claude-Session: persian-arts intake spec, brief schema, plan template link
+2026-10-13T14:06:48+03:30 2f090f230adc5e67ba9890bffeac793072913439 PUSH-OK via=ssh unpushed=1 files=12 msg=Claude-Session: goal field, reuse definition, portable fonts
+Co-Authored-By: Claude Haiku 5.5 <noreply@anthropic.com>
+2026-10-13T14:41:41+03:30 2751d37dcb7011ef002d18f996ceebb54aaab99d PUSH-OK via=ssh unpushed=1 files=34 msg=persian-arts craft skills, goal memory, advisor, studio spec, commit guard
+2026-10-13T15:40:32+03:30 05155651adf22253b3f948c1b09c109a454daedf PUSH-OK via=ssh unpushed=1 files=20 msg=persian-arts skills v2.0 with identity lines, checklists and mirror

@@ -160,3 +160,7 @@ Each entry: the symptom, why it happens, and the fix that worked. Entries are gr
 - Keep header comments truthful (they are the record): reviewers flag mismatches such as "130×170 cells" when the code says 144.
 - No dead code or `void x;` keep-alive statements; delete unused variables.
 - Write the full structured result to `work/persian/out/<slug>/report.json` — stubs are rejected.
+
+### UTF-8 file edits on Windows (2026-10-13)
+
+- Symptom: a Persian separator cleanup did nothing, or cut a phrase mid-glyph and produced invalid UTF-8 JSON. Cause: Python `Path.read_text()` / `write_text()` defaulted to the Windows cp1256 locale while the source file was UTF-8. Fix: always pass `encoding="utf-8"` for Persian JSON/text reads and writes, preserve a frozen input snapshot, edit separators by `chr(1563)` or an escaped Unicode code point, then parse the actual UTF-8 bytes and verify runtime props against the director. Console encoding errors are separate from successful file writes.

@@ -34,6 +34,8 @@ The producer hat (time, scope, risks) belongs to the lead: it sets the time cap 
 
 ## 3. Internal gates (no owner approval)
 
+Loop rule: one fix round, then ship with notes; scores never block (see [LOOP-POLICY.md](LOOP-POLICY.md)).
+
 The proposal's six gates stay, cheaper: concept and script merge into G1. Films <= 15 s merge G2 and G3 (a styleframe-plus-timing sheet replaces the animatic).
 
 | Gate | Pass criteria | Checks that exist | Checks to build |

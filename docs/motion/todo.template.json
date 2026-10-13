@@ -243,6 +243,8 @@
       "gate": "grid <= 15 ms, SFX within 1 frame, -14 LUFS / TP <= -1 on the final mix",
       "timebox_min": 10,
       "deferrable": true,
+      "deferred": true,
+      "note": "owner must say so; music/sound is never started on inference (e.g. 'the design looks better') Default deferred; only the owner explicit word flips it.",
       "cast_executor": "sonnet (Builder)",
       "cast_role": "Builder",
       "advisor": "none"
@@ -302,6 +304,34 @@
       "gate": "film-process-gates.mjs delivery PASS; DECISIONS.jsonl updated; memory NEXT updated",
       "timebox_min": 3,
       "advisor": "none"
+    },
+    {
+      "id": "retro",
+      "craft": null,
+      "class": "S",
+      "executor": "studio (single-agent)",
+      "inputs": [
+        "review-<n>.md",
+        "docs/motion/LESSONS-LEDGER.jsonl",
+        "run-gates.mjs output"
+      ],
+      "outputs": [
+        "ledger lines",
+        "source-layer fixes (skill/recipe/gate)",
+        "skill_version bump",
+        "SKILLS-CHANGELOG entry"
+      ],
+      "gate": "every systematic defect has a ledger line, a source-layer fix and a detector or checklist item; detectors re-run",
+      "timebox_min": 8,
+      "advisor": "optional"
     }
-  ]
+  ],
+  "version_cap": 3,
+  "versions": {
+    "current": 1,
+    "cap": 3,
+    "user_requested_version": false,
+    "rule": "Refuse a 4th version unless user_requested_version=true (set only when the user asked in chat). Improvement mode improves the skill, not the film."
+  },
+  "skill_version": "2.0"
 }
