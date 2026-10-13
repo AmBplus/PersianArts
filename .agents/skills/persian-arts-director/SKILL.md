@@ -46,3 +46,6 @@ Time budget (2.3): director and writer hats are ONE pass inside the single studi
 ## Pacing defaults 2.6 (measured on 38 references, docs/motion/knowledge/PACING-PROFILES.md)
 - STORY FIRST, not template first: ask what changes from the first to the last second (state change) and what the viewer expects and gets (anticipation -> payoff). Write a new logline/protagonist/emotional arc per film; `pa arc` shapes are an optional menu (inspiration only), justified in the header, never copied.
 - Defaults: 9:16 story/ad median shot 2-3.5 s and 2-3.4 cuts/10 s; 16:9 teaser median shot 3-5 s and 1.6-2.8 cuts/10 s; typography 1.5-2.4 cuts/10 s. Our four films cut 3.2-4.6/10 s (too fast). A hook change inside the first 2-3 s; no near-silent last third (outro energy >= 0.6).
+
+## Step 0 (2.9)
+The orchestrator runs step `env` first (`pa doctor --quiet`, auto `pa bootstrap` / `pa sync`). If a tool or asset you need is missing, restore it from git/vault/script (see docs/motion/ASSETS-IN-GIT.md) and say so in your report; never skip it silently and never use an absolute path.

@@ -30,7 +30,7 @@ PARSE FIRST: take every answer in the message (GOAL first: objective, audience, 
 Create memory/goal-memory.md (GOAL-MEMORY.md) and copy docs/motion/todo.template.json to media/briefs-local/<label>/todo.json. MODE `single-agent` (default): ONE named persistent STUDIO agent (Sonnet, SendMessage) wears all craft hats; `cast` only for large films. Opus ADVISOR (ADVISOR.md) max 3 consults. Cache order append-only: craft skills, goal memory, TODO, current step. Class S: read memory first, append decisions; class M: 5-line header, numbers only.
 
 ## 3. Run the TODO, one craft skill per step
-LANE html-film (default) steps: intake -> memory-init -> treatment -> build -> capture -> sound (owner's word) -> qc -> fix-round -> deliver -> RETRO (see 3b). Remotion lane steps (lane remotion only): intake -> memory-init -> director -> writer -> copy-editor -> art-director -> animatic -> g3-check -> build -> motion-fixes -> render -> sound (deferred) -> qc -> fix-round -> deliver -> RETRO (last). Set the board, call the craft skill by NAME (Skill tool / $name); a worker order says "read .claude/skills/<craft>/SKILL.md, then goal-memory.md, then do the step". Short cut first (12 s, 9 stills per ratio).
+STEP 0 (every lane): env = `pa doctor --quiet` (+ `pa bootstrap` / `pa sync` on FAIL or behind; rule 15). LANE html-film (default) steps: env -> intake -> memory-init -> treatment -> build -> capture -> sound (owner's word) -> qc -> fix-round -> deliver -> RETRO (see 3b). Remotion lane steps (lane remotion only): intake -> memory-init -> director -> writer -> copy-editor -> art-director -> animatic -> g3-check -> build -> motion-fixes -> render -> sound (deferred) -> qc -> fix-round -> deliver -> RETRO (last). Set the board, call the craft skill by NAME (Skill tool / $name); a worker order says "read .claude/skills/<craft>/SKILL.md, then goal-memory.md, then do the step". Short cut first (12 s, 9 stills per ratio).
 
 ## 3b. html-film lane (default)
 - deliver step: `pa deliver <film> <version>`, then report the `output/LATEST/<film>-<ratio>.mp4` path.
@@ -63,6 +63,7 @@ Board: `pwsh -File work/persian/tools/pa.ps1 status add-item <ID> -Goal <goal> -
 Classify defects -> add ledger lines (docs/motion/LESSONS-LEDGER.jsonl) -> fix at the source skill/recipe/gate -> bump `skill_version` and add a SKILLS-CHANGELOG.md entry -> run the detectors -> flip verified ledger rows to `verified-in-next-run`.
 
 ## CHANGELOG (full: docs/motion/SKILLS-CHANGELOG.md)
+- 2.9 (2026-10-14): rule 15 SELF-INSTALLING AND PORTABLE (step 0 env, install.ps1/install.sh, pa install-skill, pa assets-check, ASSETS-IN-GIT.md, capture.mjs finds the browser on any OS, fonts manifest); ledger L-082..L-084.
 - 2.8 (2026-10-14): rule 14 METRICS every version; `pa loop-check`, build_sound `--loop`, audio-check `--loop`, run-gates `--no-logo`, `pa pacing --cuts/--track` (calibrated), meter parser fixed + `pa meter check`; ledger L-078..L-081.
 - 2.7 (2026-10-14): rule 13 GIT-FIRST and PORTABLE; `pa doctor|bootstrap|sync|vault|todo|meter|metrics`, deliver --track, living TODO, tasks.jsonl metering; ledger L-072..L-074.
 - 2.6 (2026-10-13): measured pacing from 38 references (docs/motion/knowledge), `pa pacing` (advisory post-render), `pa music-pick`, optional `pa arc` story-shape menu, STORY FIRST rule in 3b, defaults in craft skills; ledger L-067..L-071.

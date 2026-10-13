@@ -43,3 +43,6 @@ DECISIONS (cuts, trims, rejected alternatives); CURRENT STATE open defects of pa
 - Hub-to-finale continuity: a persistent element carries across, outgoing/incoming overlap 8-12 frames, no empty beat; the finale is the same world as the rest.
 - Check every transition on a strip of the FINAL mp4 (every 3 frames) in both ratios. Complaint "feels like another world": measure music AND picture first, then change.
 - Next-version loop: owner feedback -> frozen scope -> one studio order -> deliver.
+
+## Step 0 (2.9)
+The orchestrator runs step `env` first (`pa doctor --quiet`, auto `pa bootstrap` / `pa sync`). If a tool or asset you need is missing, restore it from git/vault/script (see docs/motion/ASSETS-IN-GIT.md) and say so in your report; never skip it silently and never use an absolute path.

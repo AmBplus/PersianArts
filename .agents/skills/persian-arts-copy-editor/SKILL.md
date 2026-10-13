@@ -37,3 +37,6 @@ Edit the strings inside the film.html header COPY section and the SCENES strings
 
 ## Appends to goal memory
 DECISIONS (terminology and normalization rules fixed for this goal); REJECTED (wordings cut and why).
+
+## Step 0 (2.9)
+The orchestrator runs step `env` first (`pa doctor --quiet`, auto `pa bootstrap` / `pa sync`). If a tool or asset you need is missing, restore it from git/vault/script (see docs/motion/ASSETS-IN-GIT.md) and say so in your report; never skip it silently and never use an absolute path.
