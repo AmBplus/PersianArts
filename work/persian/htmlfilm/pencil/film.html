@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>pencil-html v1 (9:16) - دست‌خط</title>
+<!--
+==========================================================================
+WHAT THIS FILE IS (read me first)
+==========================================================================
+Logline: a shaky-handwriting film in 9:16. The hook says "دست‌خطت" and then
+"زشته؟" (your handwriting is ugly?), three quick tips follow (pen, slow down,
+repeat every day), and the film ends with the CTA "دنبال کن" (follow).
+Ink-and-paper look: coral, ink, paper, blue, yellow, mint. Same copy, shapes
+and timing as the Remotion film in work/persian/src/film/social/scenes.tsx.
+
+STORY BEATS (120-BPM reference grid, one beat = 15 ref frames)
+ scene  name      beats      seconds (start - end)   mechanic
+ 1      HOOK      0-4        0.000 - 2.200           word-block STOMP + shaky pen scribble
+ 2      PROMISE   4-8        2.200 - 4.393           digit counter ROLL + stopwatch ring fills
+ 3      TIP 1     8-14       4.393 - 7.667           pen tip MORPH: blunt line -> fine nib
+ 4      TIP 2     14-20      7.667 - 10.933          slow line SWEEP right-to-left
+ 5      TIP 3     20-27      10.933 - 14.767         seven day ticks, one stroke per row
+ 6      CTA       27-36      14.767 - 19.667         calligraphic LOOP, pill POP, pen BOW, ring-out
+
+EVENTS CONTRACT (global frame at 30 fps, seconds, intended sound cue)
+ event                                   frame   sec     cue
+ hook stamp "دست‌خطت" contact              3      0.10    soft stamp
+ hook stamp "زشته؟" contact (ink block)   ~16     0.53    thud + ink splat
+ counter time-up ring full, crown shake   ~118    3.93    tick
+ tip 1 morph hit (blunt -> nib)           ~169    5.63    swoosh
+ day ticks (rows 1-7 check marks)         per row  per row tick (day 7 double ring)
+ CTA pill pop                            ~469    15.63    pop
+ CTA bow settle + ring-out (final hit)   ~550    18.33    hit + whoosh
+ film end (calm hold, no motion after)    589    19.63    -
+
+MUSIC (not in this file yet, next order): track lnplus-597024, BPM 110,
+downbeat offset T0 = 0.02722 s. Cut times below are on that grid.
+
+HOW TO TWEAK
+ - Copy / colours: the strings in the SCENES section and the COLOR constants.
+ - Timing: edit CUT_BEATS (beat grid). BPM and T0 are constants in the script.
+   Scene-internal motion runs on the 120-BPM reference frame (fTempo = BPM/120).
+ - Every frame is render(n) with n = global frame. No wall-clock, no CSS
+   animations. film.seek(t) renders time t (seconds).
+ - ?capture=1 hides the player UI for frame capture. ?ratio=9x16 is the only
+   ratio for now (default).
+ - Fonts: fonts/Vazirmatn-Variable.ttf (headings), fonts/Estedad-Variable.ttf
+   (body/labels). Local, relative, no CDN.
+==========================================================================
+-->
+<style>
+@font-face{font-family:"PAHead";src:url("fonts/Vazirmatn-Variable.ttf") format("truetype");font-weight:100 900;font-display:block}
+@font-face{font-family:"PABody";src:url("fonts/Estedad-Variable.ttf") format("truetype");font-weight:100 900;font-display:block}
+html,body{margin:0;height:100%;background:#0d0c12;overflow:hidden}
+#wrap{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden;transform-origin:0 0;direction:rtl;background:#f6efe2}
+#stage .layer{position:absolute;inset:0}
+#stage .txt{position:absolute;display:flex;flex-direction:column;text-align:center;direction:rtl;letter-spacing:0;line-height:1.45;white-space:normal}
+#ui{position:fixed;left:0;right:0;bottom:0;display:flex;gap:10px;align-items:center;justify-content:center;padding:10px;background:rgba(13,12,18,.85);color:#f6efe2;font:14px PABody,sans-serif;direction:ltr}
+#ui button{background:#ff5a4e;color:#16141f;border:0;border-radius:6px;padding:6px 14px;font:600 14px PABody,sans-serif;cursor:pointer}
+#ui input[type=range]{width:55vw}
+body.capture #ui{display:none}
+</style>
+</head>
+<body>
+<div id="wrap"><div id="stage"></div></div>
+<div id="ui">
+  <button id="play">پخش / توقف</button>
+  <input id="scrub" type="range" min="0" max="589" value="0">
+  <span id="tlabel">0.00 s</span>
+</div>
+<script>
+"use strict";
+// ---------------------------------------------------------------- constants
+const W = 1080, H = 1920, FPS = 30;
+const BPM = 110, BPM_REF = 120, T0 = 0.02722;
+const TEMPO = BPM / BPM_REF;          // scene-internal clock: ref frames per real frame
+const BEAT_S = 60 / BPM;
+const CUT_BEATS = [0, 4, 8, 14, 20, 27, 36];
+const CUT_FRAMES = CUT_BEATS.map((b, i) => (i === 0 ? 0 : Math.round((T0 + b * BEAT_S) * FPS)));
+const DURATION = CUT_FRAMES[CUT_FRAMES.length - 1];          // 590 frames = 19.667 s
+const C = {ink: "#16141f", paper: "#f6efe2", coral: "#ff5a4e", blue: "#2547d0", yellow: "#ffcf3a", mint: "#3ad6a0"};
+const BG = [C.coral, C.ink, C.paper, C.blue, C.yellow, C.ink];
+const FG = [C.ink, C.paper, C.ink, C.paper, C.ink, C.paper];
+const HEAD = "PAHead", BODY = "PABody";
+const HERO = 230, H1 = 132, H2 = 92, BODYPX = 64, LABEL = 60, DIGIT = 520, PEN_SCALE = 1.25;
+const SAFE = {top: 250, bottom: 400, side: 90};
+const TYPE_KEYS = {hero: HERO, h1: H1, h2: H2, body: BODYPX, label: LABEL, digit: DIGIT};
+
+// layout slots (9:16), same fractions as layout.ts
+function slot(fx, fy, fw, fh) {
+  const sw = W - 2 * SAFE.side, sh = H - SAFE.top - SAFE.bottom;
+  return {x: SAFE.side + fx * sw, y: SAFE.top + fy * sh, w: fw * sw, h: fh * sh};
+}
+
+// ---------------------------------------------------------------- easing / motion (ports of motion.ts)
+const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+const prog = (f, s, d) => clamp((f - s) / d);
+const lerp = (a, b, t) => a + (b - a) * t;
+const C1 = 1.70158, C3 = C1 + 1;
+const outExpo = t => (t >= 1 ? 1 : 1 - Math.pow(2, -10 * t));
+const inExpo = t => (t <= 0 ? 0 : Math.pow(2, 10 * t - 10));
+const outBack = t => 1 + C3 * Math.pow(t - 1, 3) + C1 * Math.pow(t - 1, 2);
+const inBack = t => C3 * t * t * t - C1 * t * t;
+const inOutSine = t => -(Math.cos(Math.PI * t) - 1) / 2;
+const outCubic = t => 1 - Math.pow(1 - t, 3);
+const inCubic = t => t * t * t;
+const shake = (f, at, amp, len = 10) => {
+  if (f < at || f > at + len) return 0;
+  const k = (f - at) / len;
+  return amp * (1 - k) * Math.sin((f - at) * 2.4);
+};
+const stomp = (f, at, from = 2.6, len = 7) => ({
+  s: lerp(from, 1, outExpo(prog(f, at, len))), o: prog(f, at, 2)
+});
+// stamp-in: lifted (1.9) -> lands on `at` with squash (scaleY 0.9) + 1.04 overshoot, settled by at+4
+const stampIn = (f, at, from = 1.9) => {
+  const pre = inCubic(prog(f, at - 8, 8));
+  const settle = outBack(prog(f, at, 4));
+  const s = lerp(from, 1, pre);
+  return {sx: s * (1 + 0.04 * (1 - settle)), sy: s * (1 - 0.1 * (1 - settle)), o: prog(f, at - 8, 2)};
+};
+
+// ---------------------------------------------------------------- ink geometry (deterministic)
+function inkPts(x0, x1, y, amp, waves, jag, seed, n = 90) {
+  const pts = [];
+  for (let i = 0; i <= n; i++) {
+    const t = i / n;
+    const x = x0 + (x1 - x0) * t;
+    const yy = y + amp * Math.sin(t * waves * Math.PI * 2 + seed) + jag * Math.sin(t * 41 + seed * 3) * Math.cos(t * 7 + seed);
+    pts.push([x, yy]);
+  }
+  return pts;
+}
+function loopPts(x0, x1, y, waves, loop, n = 160) {
+  const pts = [];
+  for (let i = 0; i <= n; i++) {
+    const t = i / n, th = t * waves * Math.PI * 2;
+    pts.push([x0 + (x1 - x0) * t + loop * 0.5 * Math.cos(th), y + loop * 0.5 * Math.sin(th)]);
+  }
+  return pts;
+}
+const dOf = pts => "M " + pts.map(p => p[0].toFixed(1) + " " + p[1].toFixed(1)).join(" L ");
+const tipAt = (pts, p) => pts[Math.round(clamp(p) * (pts.length - 1))];
+// draw-on stroke: pathLength 1 + dash offset (pure function of p)
+function drawOn(pts, p, width, color, opts = {}) {
+  const lc = opts.cap || "round";
+  return `<path d="${dOf(pts)}" pathLength="1" stroke-dasharray="1 2" stroke-dashoffset="${(1 - clamp(p)).toFixed(4)}" fill="none" stroke="${color}" stroke-width="${width}" stroke-linecap="${lc}" stroke-linejoin="round" opacity="${opts.o ?? 1}"/>`;
+}
+
+// ---------------------------------------------------------------- pen (simplified port of Pen.tsx: tip at origin, 410 units tall)
+function pen(x, y, {scale = PEN_SCALE, angle = 0, squash = 1} = {}) {
+  const sx = 1 + (1 - squash) * 0.5, sy = squash;
+  return `<g transform="translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${angle.toFixed(2)}) scale(${(scale * sx).toFixed(4)} ${(scale * sy).toFixed(4)})">
+    <path d="M0 0 L-24 -58 L24 -58 Z" fill="${C.ink}"/>
+    <rect x="-30" y="-300" width="60" height="242" rx="12" fill="${C.yellow}" stroke="${C.ink}" stroke-width="6"/>
+    <rect x="-30" y="-258" width="60" height="12" fill="${C.ink}"/>
+    <rect x="-34" y="-360" width="68" height="60" rx="12" fill="${C.coral}" stroke="${C.ink}" stroke-width="6"/>
+    <circle cx="-9" cy="-196" r="5" fill="${C.ink}"/><circle cx="9" cy="-196" r="5" fill="${C.ink}"/>
+  </g>`;
+}
+const svgLayer = inner => `<svg class="layer" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" style="position:absolute;left:0;top:0">${inner}</svg>`;
+// text block in a slot (no letter-spacing, never split per character)
+function txt(box, size, weight, color, family, inner, justify = "center", extra = "") {
+  return `<div class="txt" style="left:${box.x.toFixed(1)}px;top:${box.y.toFixed(1)}px;width:${box.w.toFixed(1)}px;height:${box.h.toFixed(1)}px;justify-content:${justify};align-items:center;font-family:'${family}';font-size:${size}px;font-weight:${weight};color:${color};${extra}">${inner}</div>`;
+}
+const badge = (n, size, bg, fg, s = 1) => `<span style="display:inline-flex;align-items:center;justify-content:center;width:${size * 1.25}px;height:${size * 1.25}px;border-radius:50%;background:${bg};color:${fg};font-size:${size * 0.8}px;font-weight:900;transform:scale(${s});flex-shrink:0;line-height:1">${n}</span>`;
+
+// ---------------------------------------------------------------- scenes (f = scene-local frame on the 120-BPM ref grid)
+// 1. HOOK: stomp + pen scribble + ink splat on the stamp contacts
+function sceneHook(f) {
+  const t = slot(0, 0, 1, 0.5), a = slot(0, 0.52, 1, 0.48);
+  const H1f = 3, H2f = 15;
+  const sh = shake(f, H1f, HERO * 0.035, 8) + shake(f, H2f, HERO * 0.043, 8);
+  const size = HERO * 0.8;
+  const pts = inkPts(a.x + a.w * 0.95, a.x + a.w * 0.05, a.y + a.h * 0.72, a.h * 0.08, 3.3, a.h * 0.07, 1.3);
+  const p = outCubic(prog(f, 0, 40));
+  const tip = tipAt(pts, p);
+  const cross = outBack(prog(f, 40, 8));
+  const cx = a.x + a.w * 0.5, cy = a.y + a.h * 0.72;
+  const splat = (at, fy, rMax) => {
+    const grow = outExpo(prog(f, at, 8)), fade = 1 - prog(f, at + 7, 18);
+    if (grow <= 0 || fade <= 0) return "";
+    const sx = t.x + t.w * 0.5, sy = t.y + t.h * fy;
+    let out = "";
+    for (let i = 0; i < 7; i++) {
+      const ang = (i / 7) * Math.PI * 2 + 0.6;
+      const rr = rMax * (0.4 + 0.6 * (((i * 37) % 10) / 9)) * grow;
+      out += `<ellipse cx="${(sx + Math.cos(ang) * rr * 1.5).toFixed(1)}" cy="${(sy + Math.sin(ang) * rr).toFixed(1)}" rx="${(rr * 0.45 + 4).toFixed(1)}" ry="${(rr * 0.3 + 3).toFixed(1)}" fill="${C.ink}" opacity="${(0.8 * fade).toFixed(3)}"/>`;
+    }
+    return out;
+  };
+  const s1 = stampIn(f, H1f), s2 = stampIn(f, H2f);
+  const word1 = `<div style="transform:scale(${s1.sx},${s1.sy});opacity:${s1.o};line-height:1.3">دست‌خطت</div>`;
+  const word2 = `<div style="transform:scale(${s2.sx},${s2.sy});opacity:${s2.o};line-height:1.3;background:${C.ink};color:${C.coral};padding:0 ${size * 0.25}px;border-radius:${size * 0.12}px;rotate:-3deg">زشته؟</div>`;
+  return `<div class="layer" style="background:${C.coral}"></div>
+    ${svgLayer(`${drawOn(pts, p, 14 * 1.0 * 2.4, C.ink)}
+      <g transform="translate(${cx} ${cy}) scale(${cross})" opacity="${prog(f, 40, 2)}"><line x1="${-a.w * 0.32}" y1="${-a.h * 0.22}" x2="${a.w * 0.32}" y2="${a.h * 0.22}" stroke="${C.paper}" stroke-width="22" stroke-linecap="round"/></g>
+      ${pen(tip[0], tip[1], {scale: PEN_SCALE * 0.85, squash: 1})}`)}
+    ${txt(t, size, 900, C.ink, HEAD, `<div style="transform:translate(${sh.toFixed(2)}px,${(sh * 0.4).toFixed(2)}px);display:flex;flex-direction:column;align-items:center">${word1}${word2}</div>`)}
+    ${svgLayer(splat(H1f, 0.32, HERO * 0.16) + splat(H2f, 0.66, HERO * 0.25))}`;
+}
+
+// 2. PROMISE: digit counter roll + stopwatch ring (time-up at ref 48, crown shake)
+function sceneCount(f) {
+  const t = slot(0, 0.02, 1, 0.62), a = slot(0, 0.66, 1, 0.34);
+  const D = DIGIT, cell = D * 1.2;
+  const roll = 3 * outExpo(prog(f, 1, 20));
+  const word = outExpo(prog(f, 12, 10));
+  const sub = outExpo(prog(f, 30, 10));
+  const ring = prog(f, 4, 44);
+  const crownShake = shake(f, 48, Math.min(W, H) * 0.0093, 8);
+  const crownTilt = shake(f, 48, 3, 2);
+  const r = Math.min(a.w * 0.28, a.h * 0.4);
+  const cx = a.x + a.w - r - 20, cy = a.y + a.h * 0.5;
+  const ang = -Math.PI / 2 - ring * 2 * Math.PI;
+  const penS = Math.max(PEN_SCALE * 0.85, Math.min((a.h * 0.55) / 410, 1.2));
+  const enter = outBack(prog(f, 0, 12));
+  const hop = at => Math.sin(prog(f, at, 9) * Math.PI);
+  const crouch = inOutSine(prog(f, 38, 10));
+  const penX = lerp(a.x - 220 * penS, a.x + a.w * 0.12, enter);
+  const penY = a.y + a.h * 0.92 - (hop(15) + hop(30)) * 70 * penS;
+  const penAng = lerp(-18, 20, outBack(prog(f, 40, 10)));
+  const penSq = 1 - 0.14 * (Math.sin(prog(f, 12, 3) * Math.PI) + Math.sin(prog(f, 27, 3) * Math.PI)) - 0.1 * crouch;
+  const arc = ring >= 1
+    ? `<circle cx="${cx}" cy="${cy}" r="${r}" stroke="${C.yellow}" stroke-width="18" fill="none"/>`
+    : `<path d="M ${cx} ${cy - r} A ${r} ${r} 0 ${ring > 0.5 ? 1 : 0} 0 ${(cx + r * Math.cos(ang)).toFixed(2)} ${(cy + r * Math.sin(ang)).toFixed(2)}" stroke="${C.yellow}" stroke-width="18" fill="none" stroke-linecap="round"/>`;
+  const digitsCol = ["۰", "۱", "۲", "۳"].map(d => `<div style="height:${cell}px">${d}</div>`).join("");
+  const counter = `<div style="display:flex;flex-direction:row;align-items:center;gap:${H1 * 0.3}px">
+      <div style="height:${cell}px;overflow:hidden;font-size:${D}px;font-weight:900;color:${C.yellow};line-height:${cell}px">
+        <div style="transform:translateY(${(-roll * cell).toFixed(2)}px)">${digitsCol}</div></div>
+      <div style="font-size:${H1 * 1.25}px;opacity:${word.toFixed(3)};transform:translateX(${((1 - word) * -H1).toFixed(2)}px)">نکته،</div>
+    </div>
+    <div style="font-family:'${BODY}';font-weight:700;font-size:${H2}px;opacity:${sub.toFixed(3)};transform:translateY(${((1 - sub) * 40).toFixed(2)}px)">برای دست‌خط بهتر</div>`;
+  return `<div class="layer" style="background:${C.ink}"></div>
+    ${svgLayer(`<circle cx="${cx}" cy="${cy}" r="${r}" stroke="rgba(246,239,226,0.18)" stroke-width="18" fill="none"/>
+      ${arc}
+      <line x1="${cx}" y1="${cy}" x2="${(cx + r * 0.7 * Math.cos(ang)).toFixed(2)}" y2="${(cy + r * 0.7 * Math.sin(ang)).toFixed(2)}" stroke="${C.paper}" stroke-width="10" stroke-linecap="round"/>
+      <g transform="translate(0 ${crownShake.toFixed(2)}) rotate(${crownTilt.toFixed(2)} ${cx} ${(cy - r - 31).toFixed(1)})"><rect x="${cx - 16}" y="${cy - r - 46}" width="32" height="30" rx="6" fill="${C.paper}"/></g>
+      ${pen(penX, penY, {scale: penS, angle: penAng, squash: penSq})}`)}
+    ${txt(t, H1, 850, C.paper, HEAD, counter)}`;
+}
+
+// 3. TIP 1: pen tip morph (blunt thick line -> fine blue nib), sparks on the morph hit (ref 34)
+function scenePen(f) {
+  const t = slot(0, 0, 1, 0.3), a = slot(0, 0.3, 1, 0.7);
+  const s = PEN_SCALE * 1.35;
+  const thick = inkPts(a.x + a.w * 0.9, a.x + a.w * 0.45, a.y + a.h * 0.86, 10, 1, 6, 2);
+  const thin = inkPts(a.x + a.w * 0.95, a.x + a.w * 0.08, a.y + a.h * 0.9, a.h * 0.035, 2.5, 0, 0.3);
+  const pThick = outCubic(prog(f, 6, 14));
+  const morph = outBack(prog(f, 34, 12));
+  const squash = 1 - 0.18 * inBack(prog(f, 22, 12)) * (1 - prog(f, 34, 6)) + 0.08 * Math.sin(prog(f, 34, 16) * Math.PI);
+  const pThin = inOutSine(prog(f, 50, 34));
+  const lt = tipAt(thick, pThick);
+  const tip = f < 46 ? lt : tipAt(thin, pThin);
+  const hop = prog(f, 40, 10);
+  const lift = (f >= 40 && f < 50)
+    ? [lerp(lt[0], thin[0][0], outCubic(hop)), lerp(lt[1], thin[0][1], outCubic(hop)) - Math.sin(hop * Math.PI) * 120]
+    : tip;
+  const spark = prog(f, 34, 12);
+  let sparks = "";
+  if (spark > 0 && spark < 1) {
+    for (let i = 0; i < 8; i++) {
+      const an = (i / 8) * Math.PI * 2;
+      const r0 = 30 + 110 * outExpo(spark), r1 = r0 + 50 * (1 - spark);
+      sparks += `<line x1="${(lift[0] + r0 * Math.cos(an)).toFixed(1)}" y1="${(lift[1] + r0 * Math.sin(an)).toFixed(1)}" x2="${(lift[0] + r1 * Math.cos(an)).toFixed(1)}" y2="${(lift[1] + r1 * Math.sin(an)).toFixed(1)}" stroke="${C.coral}" stroke-width="10" stroke-linecap="round"/>`;
+    }
+  }
+  const title = outExpo(prog(f, 3, 12));
+  const badgeS = outBack(prog(f, 0, 10));
+  const inner = `<div style="display:flex;align-items:center;gap:${H1 * 0.25}px;clip-path:inset(0 0 ${((1 - title) * 100).toFixed(2)}% 0);transform:translateY(${((1 - title) * 60).toFixed(2)}px)">
+      ${badge("۱", H1, C.coral, C.paper, badgeS)}<div style="line-height:1.3">قلم مناسب<br>بردار</div></div>`;
+  return `<div class="layer" style="background:${C.paper}"></div>
+    ${svgLayer(`${drawOn(thick, pThick, 34, C.ink, {o: 1 - 0.6 * prog(f, 50, 10)})}
+      ${drawOn(thin, pThin, 12, C.blue)}
+      ${sparks}
+      ${pen(lift[0], lift[1], {scale: s, squash})}`)}
+    ${txt(t, H1, 850, C.ink, HEAD, inner)}`;
+}
+
+// 4. TIP 2: slow line sweep right-to-left; the text is revealed by the same sweep
+function sceneSlow(f) {
+  const t = slot(0, 0.08, 1, 0.34), a = slot(0, 0.48, 1, 0.5);
+  const p = inOutSine(prog(f, 6, 72));
+  const pts = inkPts(a.x + a.w * 0.8, a.x + a.w * 0.02, a.y + a.h * 0.9, a.h * 0.07, 2, a.h * 0.06, 0.7);
+  const tip = tipAt(pts, p);
+  const reveal = inOutSine(prog(f, 2, 24));
+  const inner = `<div style="display:flex;align-items:center;gap:${H1 * 0.25}px;clip-path:inset(-10% 0 -10% ${((1 - reveal) * 100).toFixed(2)}%)">
+      ${badge("۲", H1, C.yellow, C.ink)}<div style="line-height:1.3">آرام بنویس</div></div>
+    <div style="font-family:'${BODY}';font-weight:500;font-size:${BODYPX}px;opacity:${prog(f, 40, 12).toFixed(3)};margin-top:${BODYPX * 0.3}px">عجله، خط را می‌لرزاند</div>`;
+  return `<div class="layer" style="background:${C.blue}"></div>
+    ${svgLayer(`${drawOn(pts, p, 16, C.paper)}
+      ${pen(tip[0], tip[1], {scale: PEN_SCALE, squash: 1})}`)}
+    ${txt(t, H1 * 1.35, 900, C.paper, HEAD, inner)}`;
+}
+
+// 5. TIP 3: seven day rows, each with its own stroke, a tick and a ring pulse
+function sceneDaily(f) {
+  const t = slot(0, 0, 1, 0.16), r = slot(0, 0.19, 1, 0.81);
+  const DAYS = ["روز ۱", "روز ۲", "روز ۳", "روز ۴", "روز ۵", "روز ۶", "روز ۷"];
+  const rowH = r.h / DAYS.length;
+  const labelW = LABEL * 3.6;
+  const rows = DAYS.map((d, i) => {
+    const at = 8 + i * 7;
+    const y = r.y + rowH * (i + 0.5);
+    const pts = inkPts(r.x + r.w - labelW - LABEL * 0.8, r.x + rowH * 0.9, y, rowH * 0.12, 2, rowH * 0.16 * (1 - i / 6), i * 1.7);
+    const T = at + 3 + 11;
+    return {d, i, at, y, pts, T, p: outCubic(prog(f, at + 3, 11)), enter: outExpo(prog(f, at, 10)), check: outBack(prog(f, T, 8)) * (i === 6 ? 1.35 : 1)};
+  });
+  const active = rows.filter(w => f >= w.at + 3).pop() || rows[0];
+  const tip = tipAt(active.pts, active.p);
+  const bounce = f > 64 ? -Math.abs(Math.sin(((f - 70) / 15) * Math.PI)) * 40 : 0;
+  const ringPulse = (T, y, rMax, col) => {
+    const tt = prog(f, T, 14);
+    if (tt <= 0 || tt >= 1) return "";
+    return `<circle cx="${(r.x + rowH * 0.35).toFixed(1)}" cy="${y.toFixed(1)}" r="${lerp(rowH * 0.3, rMax, outExpo(tt)).toFixed(2)}" stroke="${col}" stroke-width="${Math.max(2.5, rowH * 0.03).toFixed(2)}" fill="none" opacity="${(0.5 * (1 - tt)).toFixed(3)}"/>`;
+  };
+  let svg = "", labels = "";
+  for (const w of rows) {
+    const ink = drawOn(w.pts, w.p, 12, C.ink);
+    const rings = w.i === 6
+      ? ringPulse(w.T, w.y, rowH * 1.3, C.coral) + ringPulse(w.T + 4, w.y, rowH * 1.3, C.coral)
+      : ringPulse(w.T, w.y, rowH * 0.9, C.mint);
+    const col = w.i === 6 ? C.coral : C.mint;
+    svg += `<g opacity="${w.enter.toFixed(3)}" transform="translate(${((1 - w.enter) * 200).toFixed(2)} 0)">
+      <line x1="${r.x}" x2="${r.x + r.w}" y1="${(w.y + rowH * 0.48).toFixed(1)}" y2="${(w.y + rowH * 0.48).toFixed(1)}" stroke="rgba(22,20,31,0.15)" stroke-width="3"/>
+      ${ink}${rings}
+      <g transform="translate(${(r.x + rowH * 0.35).toFixed(1)} ${w.y.toFixed(1)}) scale(${w.check.toFixed(4)})">
+        <circle r="${(rowH * 0.3).toFixed(2)}" fill="${col}"/>
+        <path d="M ${(-rowH * 0.13).toFixed(2)} 0 L ${(-rowH * 0.03).toFixed(2)} ${(rowH * 0.1).toFixed(2)} L ${(rowH * 0.15).toFixed(2)} ${(-rowH * 0.1).toFixed(2)}" stroke="${C.ink}" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </g></g>`;
+    labels += `<div style="position:absolute;left:${(r.x + r.w - labelW).toFixed(1)}px;top:${(w.y - rowH / 2).toFixed(1)}px;width:${labelW.toFixed(1)}px;height:${rowH.toFixed(1)}px;display:flex;align-items:center;justify-content:flex-start;font-family:'${BODY}';font-weight:600;font-size:${LABEL}px;color:${C.ink};opacity:${w.enter.toFixed(3)};transform:translateX(${((1 - w.enter) * 200).toFixed(2)}px)">${w.d}</div>`;
+  }
+  const st = stomp(f, 0, 1.8, 6);
+  const inner = `<div style="display:flex;align-items:center;gap:${H2 * 0.25}px;transform:scale(${st.s.toFixed(4)});opacity:${st.o.toFixed(3)}">${badge("۳", H2, C.ink, C.yellow)}<div style="line-height:1.3">هر روز تکرار کن</div></div>`;
+  return `<div class="layer" style="background:${C.yellow}"></div>
+    ${svgLayer(`${svg}${pen(tip[0], tip[1] + bounce, {scale: PEN_SCALE * 0.5, angle: -6})}`)}
+    ${txt(t, H2, 850, C.ink, HEAD, inner)}
+    ${labels}`;
+}
+
+// 6. CTA: loop flourish, pill pop, pen bow (settles on ref 98 = final hit), 3 ring-outs, calm hold
+function sceneCta(f) {
+  const t = slot(0, 0.5, 1, 0.42), a = slot(0, 0, 1, 0.46);
+  const pts = loopPts(a.x + a.w * 0.92, a.x + a.w * 0.08, a.y + a.h * 0.85, 3, a.h * 0.14);
+  const p = inOutSine(prog(f, 2, 34));
+  const end = tipAt(pts, p);
+  const after = prog(f, 36, 14);
+  const px = end[0];
+  const bounceOn = f > 50 && f < 50 + 15 * 1.5;
+  const py = end[1] - Math.sin(after * Math.PI) * 80 - (bounceOn ? Math.abs(Math.sin(((f - 50) / 15) * Math.PI)) * 30 : 0);
+  const HIT = 98;
+  const bowDown = inOutSine(prog(f, 74, 9)), bowUp = outBack(prog(f, 89, 9));
+  const bow = bowDown * (1 - bowUp);
+  const penAngle = lerp(28, 0, outBack(after)) + 40 * bow;
+  const pop = outBack(prog(f, 24, 12));
+  const beat = f > 36 ? 1 + 0.045 * Math.exp(-((f - 36) % 15) / 4) * (1 - prog(f, HIT - 8, 8)) : 1;
+  const sub = outExpo(prog(f, 36, 12));
+  const ringMax = Math.min(W, H) * 0.55;
+  const ring = (delay, col) => {
+    const tt = prog(f, HIT + delay, 20);
+    if (tt <= 0 || tt >= 1) return "";
+    return `<circle cx="${px.toFixed(1)}" cy="${end[1].toFixed(1)}" r="${lerp(H1 * 0.4, ringMax, outExpo(tt)).toFixed(2)}" stroke="${col}" stroke-width="${(Math.max(3, H1 * 0.06) * (1 - tt * 0.6)).toFixed(2)}" fill="none" opacity="${(0.55 * (1 - tt)).toFixed(3)}"/>`;
+  };
+  const flash = 0.25 * outExpo(prog(f, HIT, 3)) * (1 - prog(f, 120, 12));
+  const inner = `<div style="background:${C.coral};color:${C.paper};border-radius:999px;padding:${H1 * 0.1}px ${H1 * 0.55}px;transform:scale(${(pop * beat).toFixed(4)});line-height:1.45">دنبال کن</div>
+    <div style="font-family:'${BODY}';font-weight:700;font-size:${H2 * 0.85}px;margin-top:${H2 * 0.5}px;opacity:${sub.toFixed(3)};transform:translateY(${((1 - sub) * 50).toFixed(2)}px)">نکتهٔ بعدی را ببین</div>`;
+  return `<div class="layer" style="background:${C.ink}"></div>
+    ${svgLayer(`${drawOn(pts, p, 16, C.mint)}
+      ${ring(0, C.coral)}${ring(3, C.mint)}${ring(6, C.paper)}
+      ${pen(px, py, {scale: PEN_SCALE * 0.8, angle: penAngle, squash: 1 - 0.08 * bow})}`)}
+    ${txt(t, H1, 900, C.paper, HEAD, inner, "flex-start")}
+    ${flash > 0 ? `<div class="layer" style="background:${C.paper};opacity:${flash.toFixed(4)}"></div>` : ""}`;
+}
+
+const SCENES = [sceneHook, sceneCount, scenePen, sceneSlow, sceneDaily, sceneCta];
+
+// ---------------------------------------------------------------- render / seek
+const stage = document.getElementById("stage");
+function render(n) {
+  n = Math.max(0, Math.min(DURATION - 1, Math.round(n)));
+  let s = 0;
+  for (let i = 0; i < SCENES.length; i++) if (n >= CUT_FRAMES[i]) s = i;
+  const f = (n - CUT_FRAMES[s]) * TEMPO;          // scene-local, reference grid
+  stage.style.background = BG[s];
+  stage.innerHTML = SCENES[s](f);
+  document.getElementById("scrub").value = n;
+  document.getElementById("tlabel").textContent = (n / FPS).toFixed(2) + " s";
+  window.film.frame = n;
+}
+window.film = {
+  duration: DURATION / FPS, fps: FPS, bpm: BPM, t0: T0, frame: 0, ready: false,
+  seek(t) { render(Math.round(t * FPS)); return this.frame; }
+};
+const params = new URLSearchParams(location.search);
+if (params.get("capture") === "1") document.body.classList.add("capture");
+// fit to window (9:16 only); capture uses scale 1
+function fit() {
+  const sc = params.get("capture") === "1" ? 1 : Math.min(innerWidth / W, (innerHeight - 56) / H);
+  stage.style.transform = `scale(${sc})`;
+  stage.style.width = W + "px"; stage.style.height = H + "px";
+}
+addEventListener("resize", fit); fit();
+
+// minimal player for humans
+let playing = false, startT = 0, startN = 0, raf = 0;
+function tick(ts) {
+  if (!playing) return;
+  const n = startN + (ts - startT) * FPS / 1000;
+  if (n >= DURATION - 1) { playing = false; render(DURATION - 1); return; }
+  render(n); raf = requestAnimationFrame(tick);
+}
+document.getElementById("play").onclick = () => {
+  playing = !playing;
+  if (playing) { if (window.film.frame >= DURATION - 1) window.film.frame = 0; startN = window.film.frame; startT = performance.now(); raf = requestAnimationFrame(tick); }
+  else cancelAnimationFrame(raf);
+};
+document.getElementById("scrub").oninput = e => { playing = false; cancelAnimationFrame(raf); render(+e.target.value); };
+
+document.fonts.load(`900 40px ${HEAD}`).then(() => document.fonts.load(`700 40px ${BODY}`)).then(() => document.fonts.ready).then(() => {
+  render(0);
+  window.film.ready = true;
+});
+render(0);
+</script>
+</body>
+</html>

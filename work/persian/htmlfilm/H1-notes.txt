@@ -1,0 +1,6 @@
+H1 pencil-html (9:16 silent). Exists: work/persian/htmlfilm/pencil/film.html (self-contained, local fonts), SPEC.md, capture.mjs.
+Timings: browser launch 0.15 s; film ready 0.23 s; full capture+encode 590 frames in 40.3 s (14.6 fps); output 1080x1920 h264 yuv420p 30 fps, 19.667 s, 1.58 MB. Stills 9 in 1.4 s.
+Box: about 4 min to first still, total about 6 min including stills and review. 12-minute box held.
+Stills checked (all 9): 0.10 hook stomp (dast-khatet, pen scribble); 0.53 zesht? ink block lift; 1.50 hook pre-hit lift; 3.93 counter ring full + crown; 5.63 tip-1 morph blunt->blue nib; 13.00 day rows, day 6 tick; 15.63 CTA pill pop; 18.33 CTA ring-out, bow; 19.60 calm hold. Persian joins intact, no letter-spacing, Persian digits ok.
+Defects: CTA loop flourish reads as arches, not loops (loopPts is approximate); pen is a simplified SVG (no Pen.tsx face/mood/tremble); ribbon width constant (no nib taper); no inter-scene colour wipe; splat/spark shapes simplified.
+Missing: music and SFX sync (v51 payoff sync is the next order); sound events list is in the film.html EVENTS comment.
