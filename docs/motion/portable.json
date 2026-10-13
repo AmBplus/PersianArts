@@ -6,7 +6,8 @@
   "pencil-html",
   "pencil-social",
   "story-lab",
-  "s06-clock-never-zero"
+  "s06-clock-never-zero",
+  "s03-key-maze"
  ],
  "final_max_mb_each": 12,
  "final_max_mb_total": 60,

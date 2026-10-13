@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>S03 key and maze</title>
+<!--
+==========================================================================
+S03 key-maze (own film, fictional, no client). 9:16, 122 BPM, 10 bars = 40 beats = 19.67 s = 590 frames. Music: kit tr-house-vibez.
+==========================================================================
+LOGLINE   A small brass key with two dot eyes must cross a maze and find the lock; the camera runs with it; the last turn changes everything.
+PROTAGONIST  the key (persistent actor, one SVG group, never re-created): worried -> hesitant hops -> bonk and dizzy -> confident run -> turns in the lock -> happy (eyes close).
+TREATMENT Seeded maze (PA.maze seed 23, 6x10 cells, solution 19 cells) is the world. One camera (PA.camera) follows the key with a 0.3 s lag; zoom
+          keys: whole maze -> in -> pull out at the wall slide -> push into the lock and door. Squash and stretch on every hop (PA.hop).
+          The key walks the solution but first takes the dead-end branch (5 cells), bonks, shakes its head, comes back faster, waits at a stone gate,
+          the gate slides (wall slides open), a continuous run to the lock, the key turns, click, the door opens, warm light floods the frame, copy.
+COPY      "راه هست،" / "فقط باید پیدا شود."
+ART       floor deep teal #0b2233, walls slate #3d5a80 with a light edge, key brass #d9a441, gate stone #8d939e, light #ffe9b0, copy #5a2d0c on light. Vazirmatn.
+SCENES (122 BPM, beat 0.4918 s, bar 1.967 s; route step s = one cell = one hop)
+  1 INTRO     beats  0-4   (0.00-1.97 s)  key waits worried at the entrance, whole maze visible, camera zooms in at beat 3-4.5
+  2 RUN+DEAD  beats  3-22  (1.5-10.8 s)   9 hops to the junction (beat 12), 5 into the dead end, BONK beat 17 (8.36 s), head-shake 17-19, back faster 19-22
+  3 GATE      beats 22-29  (10.8-14.3 s)  waits at the gate (25), riser 25-26, wall slides beat 26 (12.8 s), pull-out, 2 cells/beat run to the lock (29)
+  4 LOCK+DOOR beats 29-40  (14.3-19.7 s)  push-in, key turns beat 32, click beat 33 (16.2 s), shackle opens, door opens 34-36, light floods beat 36 (17.7 s), copy 37 / 38
+EVENTS (beats) steps at each landing | bonk 17 | riser 25-26 | slide+snare 26 | riser 32.4 | click+chord 33 | door boom + shimmer 36 | pops 37, 38
+==========================================================================
+-->
+<style>
+@font-face{font-family:"PAHead";src:url("fonts/Vazirmatn-Variable.woff2") format("woff2");font-weight:100 900;font-display:block}
+html,body{margin:0;height:100%;background:#000;overflow:hidden}
+#stage{position:absolute;left:0;top:0;width:1080px;height:1920px;overflow:hidden;transform-origin:0 0;direction:rtl;background:#0b2233}
+#fx{position:absolute;left:0;top:0}
+.t{position:absolute;display:flex;align-items:center;justify-content:center;text-align:center;font-family:"PAHead";letter-spacing:0;line-height:1.35;white-space:nowrap}
+</style>
+<script src="../lib/pa-motion.js"></script><script src="../lib/pa-camera.js"></script><script src="../lib/pa-maze.js"></script>
+</head>
+<body>
+<div id="stage"><svg id="fx" width="1080" height="1920" viewBox="0 0 1080 1920"></svg><div id="c1" class="t"></div><div id="c2" class="t"></div></div>
+<script>
+"use strict";
+const {clamp, lerp, prog, ease, beats} = PA;
+const params = new URLSearchParams(location.search), W = 1080, H = 1920, FPS = 30, DURATION = 590, DUR = DURATION / FPS, BPM = 122, T0 = 0, BS = beats(BPM).bs;
+const CELL = 170, COLS = 6, ROWS = 10, WW = COLS * CELL, WH = ROWS * CELL;
+const M = PA.maze({cols: COLS, rows: ROWS, seed: 23});
+const path = M.solve([0, 9], [5, 0]), BR = M.branch(path, 3, 5);
+const J = BR.at;                                              // junction index in the solution path
+const R = [...path.slice(0, J + 1), ...BR.cells, ...BR.cells.slice(0, -1).reverse(), path[J], ...path.slice(J + 1)];   // route of cells
+const S_END = R.length - 1;                                    // lock cell step
+const GATE_I = J + 3;                                          // gate between path[GATE_I] and path[GATE_I+1]
+const S_GATE = R.indexOf(path[GATE_I]) === -1 ? 0 : R.findIndex((c, i) => i > J + BR.cells.length * 2 && c[0] === path[GATE_I][0] && c[1] === path[GATE_I][1]);
+const S_DEAD = J + BR.cells.length, S_JUNC2 = S_DEAD + BR.cells.length;
+// beat -> route step keyframes (linear inside each leg)
+const SK = [[0, 0], [3, 0], [3 + J, J], [3 + J + BR.cells.length, S_DEAD], [19, S_DEAD], [22, S_JUNC2], [22 + (S_GATE - S_JUNC2), S_GATE], [26, S_GATE], [29, S_END], [40, S_END]];
+const stepAt = PA.keys(SK, t => t);
+const cc = ([c, r]) => [(c + 0.5) * CELL, (r + 0.5) * CELL];
+function keyWorld(b) {
+  const s = clamp(stepAt(b), 0, S_END), i = Math.min(S_END - 1, Math.floor(s)), f = s - i, a = cc(R[i]), c = cc(R[i + 1]);
+  const moving = Math.abs(stepAt(b + 0.05) - stepAt(b - 0.05)) > 1e-4;
+  const h = PA.hop(moving ? f : 0);
+  return {x: lerp(a[0], c[0], f), y: lerp(a[1], c[1], f), hop: h, moving, s, dir: c[0] === a[0] ? 0 : Math.sign(c[0] - a[0]), vy: c[1] - a[1]};
+}
+// events (beats) derived from the keyframes: one step tick per integer landing
+function landings() { const out = []; for (let k = 0; k < SK.length - 1; k++) { const [b0, s0] = SK[k], [b1, s1] = SK[k + 1]; if (s1 === s0) continue; const dir = Math.sign(s1 - s0); for (let s = s0 + dir; dir > 0 ? s <= s1 : s >= s1; s += dir) out.push(+(b0 + (s - s0) / (s1 - s0) * (b1 - b0)).toFixed(4)); } return out; }
+const LANDS = landings().filter(b => Math.abs(b - 17) > 0.01);
+const EVENTS = [...LANDS.map(b => ["step", b]), ["bonk", 17], ["riser", 25], ["slide", 26], ["riser", 32.4], ["click", 33], ["door boom", 36], ["pop", 37], ["pop", 38]]
+  .map(([name, b]) => ({name, beat: b, t_s: +(b * BS).toFixed(4), frame: Math.round(b * BS * FPS)}));
+// camera
+const LOCK = cc(path[path.length - 1]), DOOR = [LOCK[0], -90];
+const follow = t => { const b = t / BS, k = keyWorld(Math.max(0, b - 0.6)), e = ease.inOutSine(prog(b, 33, 2)); return {x: lerp(k.x, DOOR[0], e), y: lerp(k.y, DOOR[1] + 40, e)}; };
+const cam = PA.camera({zoom: [[0, 1.02], [3, 1.02], [4.5, 2.1], [25, 2.1], [26, 2.1], [27.5, 1.55], [29, 2.2], [31, 2.9], [34, 3.2], [36, 3.0], [40, 2.6]].map(([b, z]) => [b * BS, z]), follow, W, H, clamp: {x0: -80, y0: -300, x1: WW + 80, y1: WH + 80}});
+// static world layer
+const wallD = M.walls.map(([x0, y0, x1, y1]) => `M${x0 * CELL} ${y0 * CELL}L${x1 * CELL} ${y1 * CELL}`).join("");
+let dots = ""; for (let r = 0; r < ROWS; r++) for (let c = 0; c < COLS; c++) dots += `<circle cx="${(c + 0.5) * CELL}" cy="${(r + 0.5) * CELL}" r="4" fill="#1d4259"/>`;
+// gate geometry
+const ga = cc(path[GATE_I]), gb = cc(path[GATE_I + 1]), gx = (ga[0] + gb[0]) / 2, gy = (ga[1] + gb[1]) / 2, gHoriz = ga[1] === gb[1];   // gHoriz: walking horizontally -> gate is a vertical wall
+function eyes(mood, look, bonkT) {
+  const ex = [-13, 13], y = -80;
+  if (mood === 3) return ex.map(x => `<path d="M${x - 7} ${y + 3}Q${x} ${y - 9} ${x + 7} ${y + 3}" fill="none" stroke="#2b1a05" stroke-width="4" stroke-linecap="round"/>`).join("");
+  if (mood === 2) return ex.map(x => `<path d="M${x - 6} ${y - 6}L${x + 6} ${y + 6}M${x + 6} ${y - 6}L${x - 6} ${y + 6}" stroke="#2b1a05" stroke-width="4" stroke-linecap="round"/>`).join("");
+  let g = ex.map(x => `<circle cx="${x}" cy="${y}" r="9" fill="#fff"/><circle cx="${x + look[0] * 3.5}" cy="${y + look[1] * 3}" r="4.2" fill="#2b1a05"/>`).join("");
+  if (mood === 0) g += `<path d="M-22 ${y - 14}L-6 ${y - 10}M22 ${y - 14}L6 ${y - 10}" stroke="#2b1a05" stroke-width="3.5" stroke-linecap="round"/>`;
+  return g;
+}
+function keyHTML(b, K) {
+  const dizzy = b >= 17 && b < 19.2, worried = b < 4.5 || (b >= 25 && b < 26.2), happy = b >= 33;
+  const mood = happy ? 3 : dizzy ? 2 : worried ? 0 : 1;
+  const look = b < 4.5 ? [Math.sin(b * 5), Math.cos(b * 3) * 0.5] : [K.dir || 0.6, 0];
+  const shake = b >= 17 && b < 19 ? Math.sin((b - 17) * 14) * 12 * (1 - (b - 17) / 2) : 0;
+  const turn = ease.inOutSine(prog(b, 32, 0.8)) * 90;
+  const sx = K.hop.sx, sy = K.hop.sy, lift = K.hop.y * 38;
+  const dir = K.dir || 1;
+  const x = K.x, y = K.y - lift + 40;                          // pivot = key tip, resting 40 px below the cell centre
+  return `<g transform="translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${(shake + turn).toFixed(1)}) scale(${sx.toFixed(3)} ${sy.toFixed(3)})">
+    <ellipse cx="0" cy="${(2 + lift * 0.2).toFixed(1)}" rx="${(26 - lift * 0.3).toFixed(1)}" ry="6" fill="rgba(0,0,0,.35)"/>
+    <g transform="scale(${dir} 1)"><rect x="-8" y="-62" width="16" height="56" rx="4" fill="#c9922c"/><rect x="8" y="-22" width="16" height="9" fill="#c9922c"/><rect x="8" y="-38" width="12" height="9" fill="#c9922c"/><rect x="-2" y="-6" width="10" height="6" fill="#b07c1f"/></g>
+    <circle cx="0" cy="-82" r="34" fill="#e2b04a" stroke="#8a5a10" stroke-width="5"/><circle cx="0" cy="-82" r="34" fill="url(#shine)"/>
+    ${eyes(mood, look)}</g>`;
+}
+function render(n) {
+  n = Math.max(0, Math.min(DURATION - 1, Math.round(n)));
+  const T = n / FPS, b = T / BS, C = cam(T), K = keyWorld(b);
+  // bonk shake on the camera (decaying, deterministic)
+  const sk = b >= 17 && b < 18.2 ? Math.exp(-(b - 17) * 5) * 10 : 0, shx = sk * Math.sin((b - 17) * 60), shy = sk * Math.cos((b - 17) * 47);
+  const openK = ease.inOutSine(prog(b, 26, 1.4)), gate = `<g transform="translate(${gHoriz ? 0 : (openK * CELL * 0.95).toFixed(1)} ${gHoriz ? (-openK * CELL * 0.95).toFixed(1) : 0})" opacity="${(1 - 0.0 * openK).toFixed(2)}"><rect x="${(gx - (gHoriz ? 14 : CELL * 0.43)).toFixed(1)}" y="${(gy - (gHoriz ? CELL * 0.43 : 14)).toFixed(1)}" width="${gHoriz ? 28 : CELL * 0.86}" height="${gHoriz ? CELL * 0.86 : 28}" rx="6" fill="#8d939e" stroke="#55606e" stroke-width="4"/></g>`;
+  // trail
+  let tr = ""; const pts = []; for (let q = 0; q <= 8; q++) { const bb = b - (8 - q) * 0.12; if (bb < 3) continue; const kk = keyWorld(bb); pts.push(`${kk.x.toFixed(1)},${kk.y.toFixed(1)}`); }
+  if (pts.length > 1) tr = `<polyline points="${pts.join(" ")}" fill="none" stroke="#ffd37a" stroke-width="6" stroke-dasharray="3 12" stroke-linecap="round" opacity=".55"/>`;
+  // lock + door
+  const lockOpen = ease.inOutSine(prog(b, 33.2, 0.7)), doorK = ease.inOutSine(prog(b, 34, 2));
+  const lk = `<g transform="translate(${LOCK[0]} ${LOCK[1] + 34})"><path d="M-22 -34V-52a22 22 0 0 1 44 0V-34" transform="translate(${(lockOpen * 12).toFixed(1)} ${(-lockOpen * 18).toFixed(1)})" fill="none" stroke="#b9c2cf" stroke-width="9" stroke-linecap="round"/><rect x="-34" y="-34" width="68" height="54" rx="9" fill="#c9922c" stroke="#8a5a10" stroke-width="5"/><circle cx="0" cy="-12" r="7" fill="#3a2305"/></g>`;
+  const dw = 120, dh = 200, dx = LOCK[0] - dw / 2, dy = -dh - 6;
+  const door = `<rect x="${dx - 14}" y="${dy - 14}" width="${dw + 28}" height="${dh + 20}" rx="10" fill="#3a2a1a"/><rect x="${dx}" y="${dy}" width="${dw}" height="${dh + 6}" fill="${doorK > 0.02 ? "#fff1c0" : "#2a1a0c"}"/><g transform="translate(${dx} 0) scale(${(1 - 0.86 * doorK).toFixed(3)} 1)"><rect x="0" y="${dy}" width="${dw}" height="${dh + 6}" fill="#7a4a22" stroke="#4a2a10" stroke-width="5"/><rect x="14" y="${dy + 16}" width="${dw - 28}" height="${(dh - 40) / 2}" fill="#8d5a2c"/><rect x="14" y="${dy + 24 + (dh - 40) / 2}" width="${dw - 28}" height="${(dh - 40) / 2 - 8}" fill="#8d5a2c"/><circle cx="${dw - 16}" cy="${dy + dh / 2}" r="6" fill="#e2b04a"/></g>`;
+  const defs = `<defs><radialGradient id="shine" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient><linearGradient id="fl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#103042"/><stop offset="1" stop-color="#0a1c2a"/></linearGradient></defs>`;
+  const world = `<g transform="${C.transform}"><rect x="-300" y="-500" width="${WW + 600}" height="${WH + 900}" fill="url(#fl)"/><rect x="0" y="0" width="${WW}" height="${WH}" fill="#0e2a3c"/>${dots}
+    <path d="${wallD}" stroke="#0a1620" stroke-width="22" stroke-linecap="round" fill="none"/><path d="${wallD}" stroke="#3d5a80" stroke-width="14" stroke-linecap="round" fill="none"/><path d="${wallD}" stroke="#6f93c0" stroke-width="3" stroke-linecap="round" fill="none" transform="translate(-3 -3)" opacity=".7"/>
+    ${door}${lk}${gate}${tr}${keyHTML(b, K)}</g>`;
+  const fl = ease.inOutSine(prog(b, 36, 1.8)), ds = C.toScreen(DOOR[0], DOOR[1] + 100);
+  let rays = ""; if (fl > 0.2) { const ra = clamp((fl - 0.2) / 0.8) * 0.9, rot = b * 0.05; for (let i = 0; i < 14; i++) { const a0 = rot + i * Math.PI / 7, a1 = a0 + Math.PI / 14, L = 3200; rays += `<polygon points="${ds[0].toFixed(0)},${ds[1].toFixed(0)} ${(ds[0] + Math.cos(a0) * L).toFixed(0)},${(ds[1] + Math.sin(a0) * L).toFixed(0)} ${(ds[0] + Math.cos(a1) * L).toFixed(0)},${(ds[1] + Math.sin(a1) * L).toFixed(0)}" fill="rgba(235,140,30,${(0.7 * ra).toFixed(3)})"/>`; } }
+  const light = fl > 0.001 ? `<rect x="0" y="0" width="1080" height="1920" fill="rgba(255,236,176,${clamp(fl * 1.15).toFixed(3)})"/>${rays}<circle cx="${ds[0].toFixed(0)}" cy="${ds[1].toFixed(0)}" r="${(60 + fl * 1900).toFixed(0)}" fill="url(#bloom)" opacity="${(1 - fl * 0.2).toFixed(2)}"/>` : "";
+  const bloom = `<radialGradient id="bloom"><stop offset="0" stop-color="#fffbe6"/><stop offset=".45" stop-color="#ffe9a8" stop-opacity=".85"/><stop offset="1" stop-color="#ffd27a" stop-opacity="0"/></radialGradient>`;
+  const vign = `<rect x="0" y="0" width="1080" height="1920" fill="url(#vg)" opacity="${(0.55 * (1 - fl)).toFixed(2)}"/><radialGradient id="vg" cx="50%" cy="50%" r="75%"><stop offset=".6" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".7"/></radialGradient>`;
+  document.getElementById("fx").innerHTML = `${defs}<defs>${bloom}</defs><g transform="translate(${shx.toFixed(1)} ${shy.toFixed(1)})">${world}</g>${vign}${light}`;
+  // copy (stamped, on the light)
+  const c1 = document.getElementById("c1"), c2 = document.getElementById("c2"), s1 = ease.outBack(prog(b, 37, 0.5)), s2 = ease.outBack(prog(b, 38, 0.5));
+  c1.style.cssText = `left:0;top:760px;width:1080px;height:240px;font-size:170px;font-weight:900;color:#5a2d0c;opacity:${prog(b, 37, 0.25).toFixed(3)};transform:scale(${(1.25 - 0.25 * s1).toFixed(3)}) rotate(${((1 - s1) * -3).toFixed(2)}deg);text-shadow:0 4px 0 rgba(255,255,255,.7)`;
+  c2.style.cssText = `left:0;top:1010px;width:1080px;height:160px;font-size:98px;font-weight:800;color:#5a2d0c;opacity:${prog(b, 38, 0.25).toFixed(3)};transform:scale(${(1.2 - 0.2 * s2).toFixed(3)});text-shadow:0 3px 0 rgba(255,255,255,.7)`;
+  c1.innerHTML = b >= 37 ? "راه هست،" : ""; c2.innerHTML = b >= 38 ? "فقط باید پیدا شود." : "";
+  window.film.frame = n;
+}
+window.film = {events: EVENTS, cuts: [0, 4.5, 17, 26, 33, 36].map(b => Math.round(b * BS * FPS)), duration: DUR, fps: FPS, bpm: BPM, t0: T0, frame: 0, ready: false, ratio: "9x16", seek(t) { render(Math.round(t * FPS)); return this.frame; }};
+const stage = document.getElementById("stage");
+function fit() { const sc = params.get("capture") === "1" ? 1 : Math.min(innerWidth / W, innerHeight / H); stage.style.transform = `scale(${sc})`; }
+addEventListener("resize", fit); fit();
+Promise.all([document.fonts.load("900 40px PAHead"), document.fonts.load("800 40px PAHead")]).then(() => document.fonts.ready).then(() => { render(0); window.film.ready = true; });
+let playing = false, t0p = 0;
+function tick(ts) { if (!playing) return; render(((ts - t0p) * FPS / 1000) % DURATION); requestAnimationFrame(tick); }
+addEventListener("click", () => { playing = !playing; if (playing) { t0p = performance.now(); requestAnimationFrame(tick); } });
+</script>
+</body>
+</html>

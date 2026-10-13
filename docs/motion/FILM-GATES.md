@@ -54,3 +54,5 @@ html-film applicability (2.2, lane default): edge-touch, empty-band, dead-frames
 |---|---|---|---|
 | Loop (when story is a loop) | `pa loop-check <final.mp4> [--track kit-id]`: video seam step vs the film's median/p90 step, audio RMS within 1.5 dB and centroid within 15% across the seam, beat phase within 20 ms; seam strip image | exists: work/persian/tools/audio/loop_check.py | PASS/WARN/FAIL, WARN judged on the strip |
 | Logo-colour switch | `run-gates.mjs --no-logo` (or VERSION.json `logo:false`, passed by `pa deliver --gates`) skips logo-colour for films without a brand asset | exists: work/persian/tools/gates/run-gates.mjs | switch |
+
+Note 2.10: edge-touch and pacing cuts-on-beat give false alarms on one-take camera films with full-bleed scenery (S03); record as scenery in VERSION.json metrics. A flat flood ending fails empty-band: add rays/texture.

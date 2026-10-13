@@ -1,5 +1,5 @@
 /* pa-motion.js: generic helpers for html-films (no film-specific code). Load with <script src="../lib/pa-motion.js">.
-   Exposes window.PA = {clamp, lerp, prog, ease, rng, faDigits, ltr, beats, sched, loopBlend}. */
+   Exposes (typeof window !== "undefined" ? window : globalThis).PA = {clamp, lerp, prog, ease, rng, faDigits, ltr, beats, sched, loopBlend}. */
 (function () {
   const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
   const lerp = (a, b, t) => a + (b - a) * t;
@@ -25,5 +25,5 @@
   };
   // loop seam: weight 0..1 that blends the ending state into the opening state over [b0,b1] (beats); lerp every style value with it
   const loopBlend = (b, b0, b1) => ease.inOutSine(clamp((b - b0) / (b1 - b0)));
-  window.PA = { clamp, lerp, prog, ease, rng, faDigits, ltr, beats, sched, loopBlend };
+  (typeof window !== "undefined" ? window : globalThis).PA = { clamp, lerp, prog, ease, rng, faDigits, ltr, beats, sched, loopBlend };
 })();

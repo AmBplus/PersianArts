@@ -1,0 +1,197 @@
+{
+ "schema": "persianarts.events/1",
+ "film": "s03-key-maze",
+ "fps": 30,
+ "bpm": 122,
+ "t0_s": 0,
+ "cut_frames": [
+  0
+ ],
+ "duration_frames": 590,
+ "events": [
+  {
+   "name": "step 4",
+   "type": "step",
+   "t_s": 1.9672
+  },
+  {
+   "name": "step 5",
+   "type": "step",
+   "t_s": 2.459
+  },
+  {
+   "name": "step 6",
+   "type": "step",
+   "t_s": 2.9508
+  },
+  {
+   "name": "step 7",
+   "type": "step",
+   "t_s": 3.4426
+  },
+  {
+   "name": "step 8",
+   "type": "step",
+   "t_s": 3.9344
+  },
+  {
+   "name": "step 9",
+   "type": "step",
+   "t_s": 4.4262
+  },
+  {
+   "name": "step 10",
+   "type": "step",
+   "t_s": 4.918
+  },
+  {
+   "name": "step 11",
+   "type": "step",
+   "t_s": 5.4098
+  },
+  {
+   "name": "step 12",
+   "type": "step",
+   "t_s": 5.9016
+  },
+  {
+   "name": "step 13",
+   "type": "step",
+   "t_s": 6.3934
+  },
+  {
+   "name": "step 14",
+   "type": "step",
+   "t_s": 6.8852
+  },
+  {
+   "name": "step 15",
+   "type": "step",
+   "t_s": 7.377
+  },
+  {
+   "name": "step 16",
+   "type": "step",
+   "t_s": 7.8689
+  },
+  {
+   "name": "bonk 17",
+   "type": "hit",
+   "t_s": 8.3607,
+   "variant": "bonk",
+   "role": "accent"
+  },
+  {
+   "name": "step 19.6",
+   "type": "step",
+   "t_s": 9.6393
+  },
+  {
+   "name": "step 20.2",
+   "type": "step",
+   "t_s": 9.9344
+  },
+  {
+   "name": "step 20.8",
+   "type": "step",
+   "t_s": 10.2295
+  },
+  {
+   "name": "step 21.4",
+   "type": "step",
+   "t_s": 10.5246
+  },
+  {
+   "name": "step 22",
+   "type": "step",
+   "t_s": 10.8197
+  },
+  {
+   "name": "step 23",
+   "type": "step",
+   "t_s": 11.3115
+  },
+  {
+   "name": "step 24",
+   "type": "step",
+   "t_s": 11.8033
+  },
+  {
+   "name": "step 25",
+   "type": "step",
+   "t_s": 12.2951
+  },
+  {
+   "name": "riser 25",
+   "type": "riser",
+   "t_s": 12.2951,
+   "dur_s": 0.492
+  },
+  {
+   "name": "slide 26",
+   "type": "hit",
+   "t_s": 12.7869,
+   "variant": "slide",
+   "role": "accent"
+  },
+  {
+   "name": "step 26.5",
+   "type": "step",
+   "t_s": 13.0328
+  },
+  {
+   "name": "step 27",
+   "type": "step",
+   "t_s": 13.2787
+  },
+  {
+   "name": "step 27.5",
+   "type": "step",
+   "t_s": 13.5246
+  },
+  {
+   "name": "step 28",
+   "type": "step",
+   "t_s": 13.7705
+  },
+  {
+   "name": "step 28.5",
+   "type": "step",
+   "t_s": 14.0164
+  },
+  {
+   "name": "step 29",
+   "type": "step",
+   "t_s": 14.2623
+  },
+  {
+   "name": "riser 32.4",
+   "type": "riser",
+   "t_s": 15.9344,
+   "dur_s": 0.295
+  },
+  {
+   "name": "click 33",
+   "type": "click",
+   "t_s": 16.2295,
+   "role": "accent"
+  },
+  {
+   "name": "door boom 36",
+   "type": "hit",
+   "t_s": 17.7049,
+   "variant": "boom",
+   "role": "accent"
+  },
+  {
+   "name": "pop 37",
+   "type": "pop",
+   "t_s": 18.1967
+  },
+  {
+   "name": "pop 38",
+   "type": "pop",
+   "t_s": 18.6885
+  }
+ ]
+}

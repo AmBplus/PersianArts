@@ -39,3 +39,6 @@ Orchestrator, 9 craft skills, goal memory, loop policy, studio single-agent mode
 
 ## 2.3 (2026-10-13)
 Time budget: persian-arts rule 10 (target 10, cap 20 min per film, scope freeze, ONE persistent studio worker, Haiku never for craft, no parallel side tasks); section 3b: one studio order, film-context.md pack, lighten before capture, png FINAL / --draft jpeg; `pa time start|mark|status|end|postmortem` (work/persian/tools/timing); craft skills director, writer, technical updated; todo.template.json timing fields; ledger L-049..L-055.
+
+## 2.10 (2026-10-14)
+S03 story build (key and maze): new generic html-film libs (camera/zoom track with follow lag, path-follow with tangent, persistent actor poses, squash and stretch hop, seeded maze + solver + dead-end branch, node self-test). Rules of thumb recorded in the skill: camera moves are not cuts for the mixer; flat end floods need light rays; derive sound events from the picture keyframes. Ledger L-087..L-091.

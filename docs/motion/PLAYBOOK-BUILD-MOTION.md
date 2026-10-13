@@ -116,3 +116,6 @@ After sound: `pa audio-check`; after the last render: `pa strip` around each tra
 
 ## Arcs (2.6): an optional menu, not a template
 `docs/motion/recipes/arcs.json` holds 6 DIVERSE story shapes drawn from the references (reveal-ladder, problem-turn, one-object-journey, count-stack, type-statement, before-after-pairs). INSPIRATION ONLY: every film defines its own story (logline, protagonist/object, emotional arc, payoffs) from its goal; using a shape is optional, justified in the film.html header, never copied. `pwsh -File work/persian/tools/pa.ps1 arc` lists the menu; `pa arc <shape> --bpm 118 --duration 24` prints a bar/beat/seconds scene table (cuts on bar downbeats). Pacing numbers: docs/motion/knowledge/PACING-PROFILES.md. After the render run `pa pacing <final.mp4> --profile story|teaser|typography|ad` (advisory). Music: `pa music-pick`.
+
+## Lessons 2.10 (S03 key-maze; ledger L-087..L-091)
+Helpers: `work/persian/htmlfilm/lib/` (pa-motion.js, pa-camera.js camera/path/hop/actor, pa-maze.js, `node lib/pa-selftest.mjs`). Camera moves are not cuts: `cut_frames [0]` in events.json. Derive events from the picture keyframes (offsets 0.0 ms). A flat end flood needs light rays or texture (empty-band). One-take camera films: pacing and edge-touch alarms are expected (scenery, no cuts), note them in metrics.

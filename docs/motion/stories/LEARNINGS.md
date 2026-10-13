@@ -23,14 +23,14 @@ Fill one block after each story build. Rule: every gap becomes a fix at the sour
 - new lesson id (L-###):
 
 ## S03 کلید و هزارتو
-- minutes used (pa time) / budget 18:
-- run-gates result:
-- pa audio-check (payoff offsets ms, LUFS, clipping):
-- pa pacing ranges:
-- transition strip viewed (jumps?):
-- what the skill/tool lacked (expected: no camera helper; no path-follow helper (position on polyline by arc length); no squash/stretch helper; seeded RNG helper missing):
-- fix made at the source (file):
-- new lesson id (L-###):
+- minutes used (pa time) / budget 25: about 14 of 25 at deliver (env 0.8, treatment 0.8, build 2.4, capture 3.8 (plus two re-captures of 104 s each), sound 7.1, qc 12.1, deliver 13.4)
+- run-gates result: edge-touch FAIL (maze walls and light rays are full-bleed scenery, 145/212 frames), empty-band FAIL only 2 frames at the flood onset (35%; was 22 frames at 50% until sun rays were added to the flat flood), dead-frames PASS, number-lint PASS, logo-colour skipped (--no-logo), hero-size INFO
+- pa audio-check (payoff offsets ms, LUFS, clipping): PASS 19.6 s, -14.4 LUFS, TP -2.5, tail -96.9 dBFS, max simultaneous 3, offsets 0.0 ms (events derived from the same keyframes that drive the picture)
+- pa pacing ranges: with --cuts events.json --track tr-house-vibez: tempo 122 ok, energy arc ok, cuts on beat 0% / bar 0% = false alarm (one continuous camera, cut list is only camera moves), build too slow / hold long = detector counts a single 18 s scene
+- transition strip viewed (jumps?): yes, every 3 frames around the bonk (8.4 s), gate slide (12.8 s), lock/door (15.7-17.5 s) and the flood + copy (17.6-19.7 s); the key stays centred and continuous across camera zooms (camera = key position 0.6 beats earlier); no jumps
+- what the skill/tool lacked (expected: no camera helper; no path-follow helper; no squash/stretch helper; seeded RNG helper missing): all four confirmed and built; also missing: seeded maze + solver + dead-end finder, a deterministic seed search (done offline with a vm script), `pa time mark env` (phase list has no env), audio-check --events (flag does not exist), build_sound auto-whoosh at every cut_frame (camera moves are not cuts: pass cut_frames [0]), a scenery switch for edge-touch, heredoc with triple quotes through the bash tool breaks (use the Write tool for film files)
+- fix made at the source (file): work/persian/htmlfilm/lib/pa-camera.js (keys, pathFollow with tangent, camera, hop squash-stretch, persistent actor), lib/pa-maze.js (maze, solve, branch), lib/pa-selftest.mjs (node self-test, PASS), pa-motion.js made node-loadable; docs/motion/portable.json own_films; skill 2.10
+- new lesson id (L-###): L-087 (no camera/path/maze lib), L-088 (flat end flood fails empty-band, add light rays), L-089 (build_sound auto whoosh on camera moves), L-090 (pacing/edge-touch false alarms on one-take camera films), L-091 (pa time phases lack env / audio-check lacks --events)
 
 ## S04 سه رود، یک دریا
 - minutes used (pa time) / budget 18:
