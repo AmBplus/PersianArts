@@ -11,7 +11,8 @@ import { DatabaseSync } from 'node:sqlite';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const repo = path.resolve(here, '..', '..', '..', '..');
-const dbPath = process.env.QH_DB || 'D:/P/tools/quota-hub/data/hub.db';
+const qhHome = process.env.QH_HOME || path.resolve(repo, '..', '..', 'tools', 'quota-hub');
+const dbPath = process.env.QH_DB || path.join(qhHome, 'data', 'hub.db');
 const outDir = path.join(repo, 'docs', 'motion', 'ledger');
 const map = JSON.parse(fs.readFileSync(path.join(here, 'phase-map.json'), 'utf8'));
 const FIX_RE = /(-fix|fixes|^fix |-fixes)/i;

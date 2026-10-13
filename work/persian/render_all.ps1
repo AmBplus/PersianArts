@@ -4,7 +4,7 @@ Fast, quality-neutral render pipeline for the Persian films (Remotion 4). See re
   pwsh -File work/persian/render_all.ps1 -Film social -Bpm 124 -T0 0.24283 -OutDir media/film-versions/pencil-social/<version>
 #>
 param(
-  [ValidateSet('social', 'uni')][string]$Film,
+  [ValidateSet('social', 'uni', 'uni/short')][string]$Film,
   [string]$Ratios = '9x16,1x1,4x5,16x9',
   [double]$Bpm,
   [double]$T0,
@@ -22,6 +22,7 @@ param(
 )
 
 $ErrorActionPreference = 'Stop'
+. (Join-Path $PSScriptRoot 'status\render-progress.ps1')
 $total = [Diagnostics.Stopwatch]::StartNew()
 
 # ---------- preflight: what else is loading the machine (renders are slow under load) ----------
@@ -47,8 +48,31 @@ $FvRoot = Join-Path $Root 'media\film-versions'
 $CacheRoot = Join-Path $FvRoot '_bundle-cache'
 $SilentRoot = Join-Path $FvRoot '_silent-cache'
 $Node = (Get-Command node -ErrorAction Stop).Source
-if (-not (Test-Path $Cli)) { throw "Remotion CLI not found: $Cli (run npm install in work/persian/src/workbench)" }
+$FontsDir = Join-Path $Wb 'public\fonts'
+if (-not (Test-Path $Cli) -or -not (Test-Path $FontsDir)) {
+  $Pa = Join-Path $PSScriptRoot 'tools\pa.ps1'
+  Write-Host 'node_modules or public/fonts missing: running pa.ps1 setup -Quick'
+  try { & $Pa setup -Quick } catch { Write-Warning "pa.ps1 setup -Quick failed: $($_.Exception.Message)" }
+  if (-not (Test-Path $Cli)) {
+    throw "Remotion CLI not found ($Cli). Dependencies are not installed. Run once: pwsh work/persian/tools/pa.ps1 setup"
+  }
+  if (-not (Test-Path $FontsDir)) {
+    throw "Fonts missing ($FontsDir). Run once: pwsh work/persian/tools/pa.ps1 setup"
+  }
+}
 
+# ---------- browser: use an installed Chrome/Edge (Remotion's chrome-headless-shell download may be blocked, e.g. HTTP 403) ----------
+function Find-Browser {
+  $cands = @($env:PA_CHROME,
+    "$env:ProgramFiles\Google\Chrome\Application\chrome.exe", "${env:ProgramFiles(x86)}\Google\Chrome\Application\chrome.exe",
+    "$env:LOCALAPPDATA\Google\Chrome\Application\chrome.exe",
+    "${env:ProgramFiles(x86)}\Microsoft\Edge\Application\msedge.exe", "$env:ProgramFiles\Microsoft\Edge\Application\msedge.exe")
+  foreach ($c in $cands) { if ($c -and (Test-Path -LiteralPath $c)) { return (Resolve-Path -LiteralPath $c).Path.Replace('\', '/') } }
+  return $null
+}
+$BrowserExe = Find-Browser
+$BrowserArgs = if ($BrowserExe) { Write-Host "browser: $BrowserExe"; @("--browser-executable=`"$BrowserExe`"", '--chrome-mode=chrome-for-testing') }
+  else { Write-Warning 'No Chrome/Edge found (set env PA_CHROME to chrome.exe). Remotion will try to download chrome-headless-shell, which fails where the download is blocked (HTTP 403).'; @() }
 # OutDir must be media/film-versions/<film-name>/<version>
 $OutFull = [IO.Path]::GetFullPath($(if ([IO.Path]::IsPathRooted($OutDir)) { $OutDir } else { Join-Path $Root $OutDir })).TrimEnd('\')
 $FvFull = [IO.Path]::GetFullPath($FvRoot).TrimEnd('\')
@@ -61,7 +85,7 @@ New-Item -ItemType Directory -Force -Path $OutFull, $CacheRoot, $SilentRoot | Ou
 $known = @('9x16', '1x1', '4x5', '16x9')
 $ratioList = $Ratios.Split(',') | ForEach-Object { $_.Trim() }
 foreach ($r in $ratioList) { if ($r -notin $known) { throw "Unknown ratio '$r' (use $($known -join ','))" } }
-$prefix = if ($Film -eq 'social') { 'Social' } else { 'Uni' }
+$prefix = if ($Film -eq 'social') { 'Social' } elseif ($Film -eq 'uni/short') { 'UniShort' } else { 'Uni' }
 # Verify the ids exist in the entry file (composition ids are derived from it).
 $entryText = Get-Content -Raw (Join-Path $Persian "src\film\$Film\entry.tsx")
 foreach ($r in $ratioList) { if ($entryText -notmatch [regex]::Escape("`"$prefix$r`"")) { throw "Composition $prefix$r not in entry.tsx" } }
@@ -98,7 +122,7 @@ $pubLines = if (Test-Path -LiteralPath $pubDir) {
   }
 }
 $keyBody = (@($srcLines) + @($pubLines) | Where-Object { $_ } | ForEach-Object { "$_" }) -join "`n"
-$bKey = Get-Sha1 ($keyBody + "`nremotion=$remVer`ncfg=$cfgHash")
+$bKey = Get-Sha1 ($keyBody + "`nremotion=$remVer`ncfg=$cfgHash" + $(if ($env:PA_PUBLIC_DIR) { "`npub=$($env:PA_PUBLIC_DIR)" } else { '' }))
 $bundleDir = Join-Path $CacheRoot $bKey
 $entryRel = "..\film\$Film\entry.tsx"
 
@@ -131,6 +155,7 @@ function Invoke-Pool([object[]]$jobs, [int]$throttle) {
       $running.Add($j)
     }
     Start-Sleep -Milliseconds 150
+    Update-RenderBoard $running $done $script:BoardFilm $queue.Count
     foreach ($j in @($running)) {
       if ($j.Proc.HasExited) {
         $j.Clock.Stop(); $j.Exit = $j.Proc.ExitCode; $j.Wall = [math]::Round($j.Clock.Elapsed.TotalSeconds, 2)
@@ -173,7 +198,7 @@ if (-not $NoCache -and (Test-Path (Join-Path $bundleDir '.complete'))) {
       $tmp = "$bundleDir.tmp-$PID-$([guid]::NewGuid().ToString('N').Substring(0, 8))"
       $bsw = [Diagnostics.Stopwatch]::StartNew()
       $log = Join-Path $CacheRoot "$bKey.bundle"
-      $p = Start-Process -FilePath $Node -ArgumentList @($Cli, 'bundle', $entryRel, '--out-dir', $tmp, '--log=error') `
+      $p = Start-Process -FilePath $Node -ArgumentList (@($Cli, 'bundle', $entryRel, '--out-dir', $tmp, '--log=error') + $(if ($env:PA_PUBLIC_DIR) { @("--public-dir=$($env:PA_PUBLIC_DIR)") } else { @() })) `
         -WorkingDirectory $Wb -PassThru -WindowStyle Hidden -Wait -RedirectStandardOutput "$log.out" -RedirectStandardError "$log.err"
       $bsw.Stop(); $bundleWall = [math]::Round($bsw.Elapsed.TotalSeconds, 2)
       if ($p.ExitCode -ne 0) { throw "remotion bundle failed (exit $($p.ExitCode)); see $log.err" }
@@ -214,7 +239,7 @@ if ($Mode -eq 'final') {
       $jobs.Add(@{
         Exe = $Node; Log = (Join-Path $logDir "final-$r"); Entry = $entry
         Args = @($Cli, 'render', $bundleDir, $comp, $out, "--props=$propsFile", '--concurrency', "$Concurrency",
-          '--gl=angle', '--pixel-format=yuv420p', '--overwrite', '--log=error') +
+          '--gl=angle', '--pixel-format=yuv420p', '--overwrite', '--log=error') + $BrowserArgs +
           $(if ($Output -eq 'bt709') { @('--color-space=bt709') } else { @() })
       })
     }
@@ -230,7 +255,7 @@ if ($Mode -eq 'final') {
       $jobs.Add(@{
         Exe = $Node; Log = (Join-Path $logDir "preview-$r-$tag"); Entry = $entry
         Args = @($Cli, 'render', $bundleDir, $comp, $out, "--props=$propsFile", '--frames', $tag, '--scale', '0.5',
-          '--concurrency', "$Concurrency", '--gl=angle', '--overwrite', '--log=error')
+          '--concurrency', "$Concurrency", '--gl=angle', '--overwrite', '--log=error') + $BrowserArgs
       })
       $renders.Add($entry)
     }
@@ -244,7 +269,7 @@ if ($Mode -eq 'final') {
       $entry = [pscustomobject]@{ ratio = $r; compId = $comp; props = $props; frames = "$($fr.A)"; output = $out; cacheHit = $false; wall = 0; exit = 0 }
       $jobs.Add(@{
         Exe = $Node; Log = (Join-Path $logDir "still-$r-f$($fr.A)"); Entry = $entry
-        Args = @($Cli, 'still', $bundleDir, $comp, $out, "--frame=$($fr.A)", "--props=$propsFile", '--gl=angle', '--overwrite', '--log=error')
+        Args = @($Cli, 'still', $bundleDir, $comp, $out, "--frame=$($fr.A)", "--props=$propsFile", '--gl=angle', '--overwrite', '--log=error') + $BrowserArgs
       })
       $renders.Add($entry)
     }
@@ -254,7 +279,8 @@ if ($Mode -eq 'final') {
 # ---------- 3. run ----------
 $throttle = if ($Mode -eq 'stills') { [math]::Min(8, [math]::Max(1, $Parallel * 2)) } else { $Parallel }
 if ($jobs.Count) {
-  $done = Invoke-Pool @($jobs) $throttle
+  $script:BoardFilm = $Film
+  try { $done = Invoke-Pool @($jobs) $throttle } finally { Stop-RenderBoard $Film }
   foreach ($j in $done) { $j.Entry.wall = $j.Wall; $j.Entry.exit = $j.Exit }
 }
 

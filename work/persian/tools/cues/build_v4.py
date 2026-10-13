@@ -5,7 +5,7 @@
 import argparse, json, os, re, subprocess, sys
 from pathlib import Path
 
-REPO = Path("D:/P/project/persianArts")
+REPO = Path(os.environ["PA_REPO"]) if os.environ.get("PA_REPO") else Path(__file__).resolve().parents[4]
 VER_ROOT = REPO / "media/film-versions/pencil-social"
 CUES = VER_ROOT / "v4-cues/cues-9x16.json"
 DUCK_RE = re.compile(r"[\\/](impact|stamp-thud|stinger|ding|ding-chime|success)[\\/]")

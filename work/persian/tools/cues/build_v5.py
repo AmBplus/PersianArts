@@ -1,9 +1,9 @@
 # Build one v5 social film: resolve the symbolic cue sheet for (BPM, T0), mix (ffmpeg only), verify.
 # Usage: python -I build_v5.py --slug lnplus-597024 --bpm 110 --t0 0.02722 --track <mp3> --tj <music.json> --version v5-lnplus-597024 [--sheet]
-import argparse, json, math, re, subprocess
+import argparse, json, math, os, re, subprocess
 from pathlib import Path
 
-REPO = Path("D:/P/project/persianArts")
+REPO = Path(os.environ["PA_REPO"]) if os.environ.get("PA_REPO") else Path(__file__).resolve().parents[4]
 VER = REPO / "media/film-versions/pencil-social"
 CUES = VER / "v5-cues/cues-9x16.json"
 CUT_BEATS = [0, 4, 8, 14, 20, 27, 36]

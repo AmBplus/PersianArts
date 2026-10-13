@@ -150,7 +150,8 @@ $exclude = @(
   ':(exclude,glob)plugins/persianarts-motion/**/node_modules/**',
   ':(exclude)contracts/confidential-terms.local.txt',
   ':(exclude)docs/motion/reports',
-  ':(exclude)work/persian/src/film/uni'
+  ':(exclude)work/persian/src/film/uni',
+  ':(exclude)work/persian/src/workbench/public'
 )
 $pathspec = @($include) + $exclude
 
@@ -158,6 +159,8 @@ $pathspec = @($include) + $exclude
 $raw = @(& git -c core.quotepath=off ls-files -m -o -d --exclude-standard -- @pathspec | Where-Object { $_ })
 
 $binExt = @('.mp3', '.wav', '.ogg', '.flac', '.m4a', '.mp4', '.mov', '.webm', '.png', '.jpg', '.jpeg', '.webp', '.zip')
+$fontExt = @('.ttf', '.otf', '.woff', '.woff2')   # fonts stay committable, but any font over 2 MB aborts
+$fontMax = 2MB
 $soundTextExt = @('.md', '.json', '.jsonl', '.txt', '.csv', '.mjs', '.js', '.ts', '.ps1', '.yml', '.yaml')
 $files = New-Object System.Collections.Generic.List[string]
 $skippedBinary = 0
@@ -165,6 +168,12 @@ foreach ($f in $raw) {
   if ($f -match '^media/') { Write-Host "ABORT: media path in candidates: $f"; exit 1 }
   $ext = [IO.Path]::GetExtension($f).ToLowerInvariant()
   if ($f.StartsWith('sound/') -and ($soundTextExt -notcontains $ext)) { $skippedBinary++; continue }   # sound/: text only
+  if ($fontExt -contains $ext) {
+    $fullF = Join-Path $repo $f
+    if ((Test-Path -LiteralPath $fullF) -and ((Get-Item -LiteralPath $fullF).Length -gt $fontMax)) {
+      Write-Host "ABORT: font over 2 MB: $f"; exit 1
+    }
+  }
   if ($binExt -contains $ext) {
     # Default whitelist: binaries are never committed (skipped and counted).
     # Binaries the caller names explicitly are included unless over 1 MB (then abort).
@@ -216,6 +225,10 @@ foreach ($s in $staged) {
   if (-not $bad -and ($binExt -contains $ext)) {
     $full = Join-Path $repo $s
     if ((Test-Path -LiteralPath $full) -and ((Get-Item -LiteralPath $full).Length -gt 1MB)) { $bad = $true }
+  }
+  if (-not $bad -and ($fontExt -contains $ext)) {
+    $fullF = Join-Path $repo $s
+    if ((Test-Path -LiteralPath $fullF) -and ((Get-Item -LiteralPath $fullF).Length -gt $fontMax)) { $bad = $true }
   }
   if ($bad) { & git reset -q; Write-Host "ABORT: guard tripped on staged file: $s (index reset, nothing committed)"; exit 1 }
 }

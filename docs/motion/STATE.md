@@ -1,6 +1,6 @@
 # STATE: 2026-10-13
 
-Snapshot for a cold start. Paths are relative to the repo root `D:\P\project\persianArts`.
+Snapshot for a cold start. Paths are relative to the repository root (the folder that holds `AGENTS.md`).
 
 ## 1. Finished work
 

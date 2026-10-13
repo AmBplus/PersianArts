@@ -1,5 +1,16 @@
 # RESUME HERE (updated at each checkpoint)
 
+## Owner standing orders 2026-10-13 (DECISIONS D-20261013-13)
+- (a) Owner approves `npm ci` (pinned dependency downloads) in `work/persian/src/workbench`.
+- (b) Lead stops asking permission for routine unblock steps: act, then report. Missing client-private files get clearly-labelled placeholders (never invented client claims); `contracts/confidential-terms.local.txt` is created locally (git-ignored) so the safe checkpoint scan works.
+- (c) Every worker order reports progress to the live status board (`docs/motion/STATUS-PROTOCOL.md`, being created); 10 minutes of silence = stalled.
+- (d) Reports state plainly what is done, what is not, and the measured time. No excuses.
+- (5) Resilience rule (DECISIONS D-20261013-14): do not quit and do not complain about limits. On a block, try at least two alternative reasonable paths before reporting a blocker; the report states the paths tried and their results. Involve the owner only when it truly cannot be done without them. Full rule: [STATUS-PROTOCOL.md](STATUS-PROTOCOL.md) "Resilience rule".
+
+Portability: milestones M1-M6 done (fonts in `work/persian/assets`, `pa.ps1`, render auto-setup, private-file copy, no hard-coded D: paths, checkpoint font guard); M7 docs done (see "Fresh machine" in [README.md](README.md)).
+Open owner items: `contracts/confidential-terms.local.txt` source (RESOLVED 2026-10-13, D-20261013-13: create locally, placeholders for missing client-private files); approval to run `npm ci` (RESOLVED 2026-10-13, D-20261013-13: approved for `work/persian/src/workbench`); where the private files (`PA_PRIVATE_DIR`) are kept (still open).
+Known gap: audio does not travel via git. Audio binaries made in earlier sessions are gitignored and absent on this machine (`.gitignore:53-58`, `:97-99`), so the v51 mix cannot be reproduced here (`hit-stamp-sub.wav` missing) and `pa.ps1` skips the sfx/bgm links on a fresh clone. Status OPEN, decision pending owner/lead (options: `PA_PRIVATE_DIR` audio subfolder, shared folder, or small allowlisted audio with a size cap). Details: [PLAYBOOK-SOUND.md](PLAYBOOK-SOUND.md) section 9 and DECISIONS `D-20261013-12`.
+
 ## AUTOPILOT PAUSED by owner 2026-10-13 ~08:20
 GLM (zcode) sidelined: it timed out on P2 (1500 s) and P3 (1202 s); do not use GLM for scene work. Use Haiku for quick
 actions and Sol (codex-a gpt-6.1-sol via `qh order` / `qh run`) for implementation until the owner says otherwise.

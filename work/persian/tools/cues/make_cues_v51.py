@@ -1,9 +1,9 @@
 # Derive the v5.1 cue sheet from v5 (new file only; v5 cues untouched).
 # Usage: python -I make_cues_v51.py
-import json
+import json, os
 from pathlib import Path
 
-REPO = Path("D:/P/project/persianArts")
+REPO = Path(os.environ["PA_REPO"]) if os.environ.get("PA_REPO") else Path(__file__).resolve().parents[4]
 VER = REPO / "media/film-versions/pencil-social"
 SRC = VER / "v5-cues/cues-9x16.json"
 DST = VER / "v51-cues/cues-9x16-v51.json"

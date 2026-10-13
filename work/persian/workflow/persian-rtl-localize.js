@@ -10,7 +10,8 @@ export const meta = {
 
 // Run from the repo with:  Workflow({scriptPath: '<repo>/work/persian/workflow/persian-rtl-localize.js', args: {slugs: [...], pool: 6, review: true, root: '<repo absolute path>'}})
 // Pick the slugs with status todo / needs-fix / localized from work/persian/progress.json.
-const ROOT = args.root || 'D:\\P\\project\\persianArts'
+const ROOT = args.root || (typeof process !== 'undefined' && process.env && process.env.PA_REPO) || ''
+if (!ROOT) throw new Error('persian-rtl-localize: pass args.root (repo absolute path) or set PA_REPO')
 const SLUGS = args.slugs
 const POOL = args.pool || 6
 const REVIEW = args.review !== false

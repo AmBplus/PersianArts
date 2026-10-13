@@ -15,7 +15,9 @@ const slug = arg("slug"), worker = arg("worker"), model = arg("model"), effort =
 const role = arg("role", "author"), timeout = arg("timeout", "1500"), reviewFile = arg("review");
 if (!slug || !worker || !model) { console.error("need --slug --worker --model"); process.exit(2); }
 const root = resolve(import.meta.dirname, "..", "..");
-const QH = "D:/P/tools/quota-hub/bin/qh.mjs";
+// quota-hub home: env QH_HOME, else the sibling folder tools/quota-hub next to the repo's parent project folder.
+const QH_HOME = process.env.QH_HOME || resolve(root, "..", "..", "tools", "quota-hub");
+const QH = resolve(QH_HOME, "bin", "qh.mjs").replaceAll("\\", "/");
 
 const info = JSON.parse(spawnSync(process.execPath, ["work/persian/card-info.mjs", "--slug", slug], {cwd: root, encoding: "utf8"}).stdout);
 const cardRel = relative(root, info.persianDir).replaceAll("\\", "/");

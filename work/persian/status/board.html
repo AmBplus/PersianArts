@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>وضعیت زنده</title>
+<style>
+@font-face{font-family:Vazirmatn;src:url(fonts/Vazirmatn-Variable.ttf);font-weight:100 900}
+:root{--bg:#f4f5f7;--card:#fff;--fg:#1b1f27;--mut:#6b7280;--line:#e3e6eb;--bar:#e6e9ee;--ok:#16a34a;--run:#2563eb;--que:#9ca3af;--blk:#d97706;--stl:#dc2626}
+@media(prefers-color-scheme:dark){:root{--bg:#0f1218;--card:#181c24;--fg:#e8eaee;--mut:#9aa3b2;--line:#272c37;--bar:#272c37;--ok:#22c55e;--run:#60a5fa;--que:#6b7280;--blk:#f59e0b;--stl:#f87171}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 Vazirmatn,Tahoma,sans-serif}
+main{max-width:980px;margin:0 auto;padding:16px}
+h1{font-size:20px;margin:4px 0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;margin:12px 0}
+.bar{height:14px;background:var(--bar);border-radius:8px;overflow:hidden}
+.bar>i{display:block;height:100%;background:var(--run);transition:width .6s}
+.bar.big{height:28px}.bar.big>i{background:var(--ok)}
+.pct{font-weight:700;font-variant-numeric:tabular-nums}
+.head{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:6px}
+.row{display:grid;grid-template-columns:minmax(0,2fr) 100px minmax(80px,1fr) 110px;gap:8px;align-items:center;padding:8px 0;border-top:1px solid var(--line)}
+.row .t{min-width:0}.row small{color:var(--mut);display:block}
+.chip{display:inline-block;padding:1px 10px;border-radius:999px;color:#fff;font-size:12px;text-align:center}
+.s-done{background:var(--ok)}.s-running{background:var(--run)}.s-queued{background:var(--que)}.s-blocked{background:var(--blk)}.s-stalled{background:var(--stl)}
+.bar.s-queued,.bar.s-blocked,.bar.s-done,.bar.s-running,.bar.s-stalled{background:var(--bar)}
+.bar.s-stalled>i{background:var(--stl)}.bar.s-queued>i,.bar.s-blocked>i{background:var(--que)}.bar.s-done>i{background:var(--ok)}
+#age{font-size:13px;color:var(--mut)}#age.bad{color:var(--stl);font-weight:700}
+.cap{font-size:12px;color:var(--mut);font-weight:400}.legend{font-size:13px;color:var(--mut);margin:4px 0 8px}.outs{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}.out{border:1px solid var(--line);border-radius:8px;padding:4px;max-width:200px;font-size:12px;overflow-wrap:anywhere}.out img{display:block;max-width:190px;max-height:120px;border-radius:4px;cursor:zoom-in}.out video{display:block;max-width:300px;max-height:180px}.out audio{display:block;width:240px}.out a{color:var(--run)}.out small{display:block;color:var(--mut)}.out.wide{max-width:320px}#lb{position:fixed;inset:0;background:#000d;display:none;align-items:center;justify-content:center;z-index:9;cursor:zoom-out}#lb img{max-width:95vw;max-height:95vh}.row2{grid-column:1/-1}
+ul{margin:6px 0;padding-inline-start:20px}
+@media(max-width:560px){.row{grid-template-columns:1fr auto}.row .b{grid-column:1/-1}.row .p{display:none}}
+</style>
+</head>
+<body><main>
+<div class="head"><h1>وضعیت زنده کار</h1><span id="age">…</span></div>
+<div class="legend" title="درصد = مرحله‌های انجام‌شده ÷ کل مرحله‌ها؛ حدسی نیست">ⓘ درصد = مرحله‌های انجام‌شده ÷ کل مرحله‌ها؛ حدسی نیست. آیتمی که مرحله‌بندی ندارد فقط برچسب وضعیت دارد و عدد ندارد.</div>
+<div class="card"><div class="head"><b>پیشرفت کلی</b><span class="pct" id="overall">۰٪</span></div><div class="bar big"><i id="overallbar" style="width:0"></i></div></div>
+<div id="lb" onclick="this.style.display='none'"><img alt=""></div>
+<div class="card"><div class="head"><b>تازه‌ترین خروجی‌ها</b><span class="cap" id="recentcap"></span></div><div class="outs" id="recent">…</div></div>
+<div id="retry" hidden style="background:#fef3c7;color:#78350f;border:1px solid #f59e0b;border-radius:10px;padding:8px 12px;margin:8px 0"><b></b> <details><summary>جزئیات خطا</summary><code dir="ltr" style="display:block;white-space:pre-wrap"></code></details></div>
+<div id="render"></div>
+<div id="goals"></div>
+<div class="card"><b>موانع</b><ul id="blockers"></ul></div>
+</main>
+<script>
+const STALE_MS=10*60*1000;
+const FA={queued:'در صف',running:'در حال انجام',blocked:'مسدود',done:'تمام',stalled:'متوقف‌شده'};
+const fa=n=>String(n).replace(/\d/g,d=>'۰۱۲۳۴۵۶۷۸۹'[d]);
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function ago(ms){const s=Math.max(0,Math.round(ms/1000));if(s<90)return fa(s)+' ثانیه';if(s<5400)return fa(Math.round(s/60))+' دقیقه';return fa(Math.round(s/3600))+' ساعت'}
+function eff(it,now){const t=Date.parse(it.updatedAt);return it.state==='running'&&(!t||now-t>STALE_MS)?'stalled':it.state}
+const U=p=>'/f/'+p.split('/').map(encodeURIComponent).join('/');
+const ext=p=>(p.split('.').pop()||'').toLowerCase();
+const OKP=['media/film-versions/','docs/motion/reports/','work/persian/status/'];
+function outHtml(o,now,mt){const p=o.path||'',x=ext(p),k=o.kind||({png:'image',jpg:'image',svg:'image',mp4:'video',webm:'video',wav:'audio',mp3:'audio'}[x]||'report');const lab=esc(o.label||p.split('/').pop());const t=mt?'<small>'+ago(now-mt)+' پیش</small>':'';
+ if(!OKP.some(d=>p.startsWith(d)))return'<div class="out"><span dir="ltr">'+esc(p)+'</span><small>'+lab+' (فقط مسیر)</small></div>';
+ if(k==='image'&&x!=='md')return'<div class="out"><img loading="lazy" src="'+U(p)+'" alt="'+lab+'" onclick="zoom(this.src)">'+lab+t+'</div>';
+ if(k==='video')return'<div class="out wide"><video controls preload="metadata" src="'+U(p)+'"></video>'+lab+t+'</div>';
+ if(k==='audio')return'<div class="out"><audio controls preload="none" src="'+U(p)+'"></audio>'+lab+t+'</div>';
+ return'<div class="out"><a href="'+U(p)+'" target="_blank">📄 '+lab+'</a>'+t+'</div>'}
+function zoom(src){const l=document.getElementById('lb');l.querySelector('img').src=src;l.style.display='flex'}
+function steps(it){const s=it.steps;return s&&s.total>0?s:null}
+function render(b){
+  const now=Date.now();let latest=0,anyStale=false;
+  const gs=b.goals.map(g=>{
+    const items=g.items.map(it=>{const st=eff(it,now);if(st==='stalled')anyStale=true;latest=Math.max(latest,Date.parse(it.updatedAt)||0);const sp=steps(it);return{...it,st,sp,ipct:sp?Math.round(Math.min(sp.done,sp.total)/sp.total*100):null}});
+    const withSteps=items.filter(x=>x.sp);let pct,cap;
+    if(withSteps.length){pct=Math.round(withSteps.reduce((s,x)=>s+x.ipct,0)/withSteps.length);cap='میانگین '+fa(withSteps.length)+' آیتم مرحله‌دار'}
+    else{const d=items.filter(x=>x.st==='done').length;pct=Math.round(d/Math.max(1,items.length)*100);cap=fa(d)+' از '+fa(items.length)+' آیتم تمام'}
+    return{...g,items,pct,cap}});
+  const overall=Math.round(gs.reduce((s,g)=>s+g.pct,0)/Math.max(1,gs.length));
+  document.getElementById('overall').innerHTML=fa(overall)+'٪ <span class="cap">میانگین '+fa(gs.length)+' هدف</span>';
+  document.getElementById('overallbar').style.width=overall+'%';
+  const r=b.render||{};const rt=Date.parse(r.updatedAt)||0;
+  if(r.running)latest=Math.max(latest,rt);
+  document.getElementById('render').innerHTML=r.running?`<div class="card"><div class="head"><b>رندر: ${esc(r.film)} ${esc(r.ratio)}</b><span class="pct">${fa(r.total?Math.round(r.frame/r.total*100):0)}٪</span></div><div class="bar"><i style="width:${r.total?r.frame/r.total*100:0}%"></i></div><small>فریم ${fa(r.frame)} از ${fa(r.total)} · ${fa(r.fps)} فریم/ثانیه · زمان باقی‌مانده ${ago((r.etaSeconds||0)*1000)}${now-rt>STALE_MS?' · <b style="color:var(--stl)">بدون به‌روزرسانی</b>':''}</small></div>`:'';
+  document.getElementById('goals').innerHTML=gs.map(g=>`<div class="card"><div class="head"><b>${esc(g.title)}</b><span class="pct">${fa(g.pct)}٪ <span class="cap">${g.cap}</span></span></div><div class="bar"><i style="width:${g.pct}%"></i></div>`+g.items.map(it=>{
+    const upd=Date.parse(it.updatedAt);
+    const meta=[it.startedAt?'شروع '+ago(now-Date.parse(it.startedAt))+' پیش':'',it.expectedMinutes?'زمان مورد انتظار '+fa(it.expectedMinutes)+' دقیقه':'',upd?'به‌روزرسانی '+ago(now-upd)+' پیش':''].filter(Boolean).join(' · ');
+    return`<div class="row"><div class="t">${esc(it.title)}<small>${esc(it.note)}${it.note&&meta?' · ':''}${meta}</small></div><div><span class="chip s-${it.st}">${FA[it.st]}</span></div><div class="b">${it.sp?`<div class="bar s-${it.st}"><i style="width:${it.ipct}%"></i></div>`:''}</div><div class="p pct">${it.sp?fa(it.ipct)+'٪ <span class="cap">'+fa(it.sp.done)+' از '+fa(it.sp.total)+' مرحله</span>':''}</div>${(it.outputs&&it.outputs.length)?'<div class="row2 outs">'+it.outputs.map(o=>outHtml(o,now)).join('')+'</div>':''}</div>`}).join('')+`</div>`).join('');
+  document.getElementById('blockers').innerHTML=(b.blockers||[]).map(x=>`<li>${esc(x.text)}${x.owner?` <small>(${esc(x.owner)})</small>`:''}</li>`).join('')||'<li>—</li>';
+  const age=document.getElementById('age');
+  age.textContent='آخرین به‌روزرسانی: '+(latest?ago(now-latest)+' پیش':'—');
+  age.className=anyStale?'bad':'';
+}
+async function recent(){try{const r=await (await fetch('recent.json?'+Date.now(),{cache:'no-store'})).json();const now=Date.now();const el=document.getElementById('recent');const sig=JSON.stringify(r.map(x=>x.path+x.mtime));if(el.dataset.sig!==sig){el.dataset.sig=sig;el.innerHTML=r.map(x=>outHtml({path:x.path,kind:x.kind},now,x.mtime)).join('')||'—'}document.getElementById('recentcap').textContent=fa(r.length)+' فایل جدید (png، mp4، wav، mp3، md)'}catch(e){}}
+recent();setInterval(recent,5000);
+let last=null;
+function note(msg,detail){const n=document.getElementById('retry');if(!msg){n.hidden=true;return}n.hidden=false;n.querySelector('b').textContent=msg;n.querySelector('code').textContent=detail||''}
+async function tick(){try{const r=await fetch('board.json?'+Date.now(),{cache:'no-store'});const t=await r.text();if(!r.ok)throw new Error('HTTP '+r.status+' '+t.slice(0,200));last=JSON.parse(t.replace(/^﻿/,''));note('');render(last)}catch(e){note('در حال تلاش مجدد…',String(e&&e.message||e));if(last)render(last)}}
+tick();setInterval(tick,2000);
+</script>
+</body></html>

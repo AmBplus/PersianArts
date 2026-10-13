@@ -14,7 +14,7 @@
 // server（如手动 npm run dev）占着时直接报错，不会假装"刷新即可"。
 import { spawn, spawnSync } from "node:child_process";
 import {
-  existsSync, lstatSync, mkdirSync, openSync, readFileSync, readdirSync, readlinkSync, rmdirSync, symlinkSync, unlinkSync, writeFileSync,
+  existsSync, lstatSync, mkdirSync, openSync, readFileSync, readdirSync, readlinkSync, rmdirSync, statSync, rmSync, cpSync, unlinkSync, writeFileSync,
 } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -27,8 +27,18 @@ const PORT = Number(opt("port", "5198"));
 const positional = args.filter((a, i) => !a.startsWith("--") && !(i > 0 && args[i - 1] === "--port"));
 
 const isLink = (p) => { try { return lstatSync(p).isSymbolicLink(); } catch { return false; } };
-const rmLink = (p) => { if (isLink(p)) unlinkSync(p); };
-const log = (s) => console.log(`[workbench] ${s}`);
+const isOurCopy = (p) => existsSync(join(p, ".pa-copy"));
+const rmLink = (p) => { if (isLink(p)) unlinkSync(p); else if (isOurCopy(p)) rmSync(p, { recursive: true, force: true }); };
+// No OS special features: plain recursive copy on every OS (no symlink/junction needed).
+// A ".pa-copy" marker lets later runs recognise and safely replace our own copies.
+const linkOrFallback = (target, linkPath) => {
+  const abs = resolve(dirname(linkPath), target);
+  if (statSync(abs).isDirectory()) {
+    cpSync(abs, linkPath, { recursive: true });
+    writeFileSync(join(linkPath, ".pa-copy"), abs);
+  } else cpSync(abs, linkPath);
+  return "copy";
+};const log = (s) => console.log(`[workbench] ${s}`);
 const die = (s, code = 1) => { console.error(`[workbench] ${s}`); process.exit(code); };
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -51,23 +61,23 @@ if (!relink) {
 
   // —— 2. 链接 src → proj，public/* → public/* ——
   rmLink(projLink);
-  symlinkSync(srcDir, projLink);
+  linkOrFallback(srcDir, projLink);
   const pub = join(wb, "public");
   mkdirSync(pub, { recursive: true });
   // 清掉上一部片留下的链接（只删符号链接和我们建的 textures/ 兜底目录，不碰真实文件）
   for (const e of readdirSync(pub)) {
     const p = join(pub, e);
-    if (isLink(p)) unlinkSync(p);
+    if (isLink(p) || isOurCopy(p)) rmLink(p);
     else if (e === "textures" && !isLink(p)) {
       const inner = readdirSync(p);
-      if (inner.every((f) => isLink(join(p, f)))) { for (const f of inner) unlinkSync(join(p, f)); rmdirSync(p); }
+      if (inner.every((f) => isLink(join(p, f)) || isOurCopy(join(p, f)))) { for (const f of inner) rmLink(join(p, f)); rmdirSync(p); }
     }
   }
   let n = 0;
   if (existsSync(publicSrc)) {
     for (const e of readdirSync(publicSrc)) {
       if (e.startsWith(".")) continue;
-      symlinkSync(join(publicSrc, e), join(pub, e));
+      linkOrFallback(join(publicSrc, e), join(pub, e));
       n++;
     }
   }

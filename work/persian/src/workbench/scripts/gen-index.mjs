@@ -7,9 +7,9 @@
 // 同时保证 public/ 下的仓库级链接就位：cardpreviews → gallery/media、sfxlib → assets/audio/sfx、
 // bgmlib → assets/audio/bgm、textures/live（demo 纹理兜底 → demos/_textures）。
 import {
-  existsSync, lstatSync, mkdirSync, readFileSync, readdirSync, realpathSync, statSync, symlinkSync, unlinkSync, writeFileSync,
+  existsSync, lstatSync, mkdirSync, readFileSync, readdirSync, realpathSync, statSync, rmSync, cpSync, unlinkSync, writeFileSync,
 } from "node:fs";
-import { dirname, extname, join, relative } from "node:path";
+import { dirname, extname, join, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const wb = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -17,21 +17,32 @@ const repo = join(wb, "..");
 const banner = "// 自动生成，勿手改：node scripts/gen-index.mjs\n";
 const norm = (s) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
 
-// —— 仓库级链接（相对符号链接，幂等）——
+// No OS special features: plain recursive copy on every OS (no symlink/junction needed).
+// A ".pa-copy" marker lets later runs recognise and safely replace our own copies.
+const linkOrFallback = (target, linkPath) => {
+  const abs = resolve(dirname(linkPath), target);
+  if (statSync(abs).isDirectory()) {
+    cpSync(abs, linkPath, { recursive: true });
+    writeFileSync(join(linkPath, ".pa-copy"), abs);
+  } else cpSync(abs, linkPath);
+  return "copy";
+};// —— 仓库级链接（相对符号链接，幂等）——
 const ensureLink = (linkPath, target) => {
   const abs = join(dirname(linkPath), target);
   if (!existsSync(abs)) return false;
   try {
     const st = lstatSync(linkPath);
     if (st.isSymbolicLink()) unlinkSync(linkPath);
+    else if (existsSync(join(linkPath, ".pa-copy"))) rmSync(linkPath, { recursive: true, force: true }); // our own copy: refresh
     else return true; // 真实文件/目录（成片工程链接进来的）：不动
   } catch { /* 不存在 */ }
   mkdirSync(dirname(linkPath), { recursive: true });
-  symlinkSync(target, linkPath);
+  linkOrFallback(target, linkPath);
   return true;
 };
 const publicDir = join(wb, "public");
 mkdirSync(publicDir, { recursive: true });
+ensureLink(join(wb, "demosrc"), "../demos");
 ensureLink(join(publicDir, "cardpreviews"), "../../gallery/media");
 ensureLink(join(publicDir, "sfxlib"), "../../assets/audio/sfx");
 ensureLink(join(publicDir, "bgmlib"), "../../assets/audio/bgm");

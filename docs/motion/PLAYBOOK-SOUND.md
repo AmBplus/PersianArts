@@ -73,3 +73,11 @@ Cue times: t = T0 + beat * 60 / BPM (for example BPM 120 gives 0.5 s per beat). 
 - Test once on a small order before relying on it (the brief lists one test as the next step).
 - Client logos or posters go only into git-ignored `media/briefs-local/`.
 - Model routing: the lead does not pick models by hand; follow the quota-hub routing rules.
+
+## 9. Portability: audio does not travel via git (known gap, OPEN)
+- Symptom: a fresh clone has no sfx or bgm binaries, no `hit-stamp-sub.wav`, and no `media/film-versions/**` outputs; `pa.ps1` skips the sfx/bgm links because `work/persian/assets/audio/{sfx,bgm}` do not exist.
+- Cause: audio binaries are gitignored (`.gitignore:53-58` for `sound/library/sfx`, `:97-99` for `media/film-versions/**`). `make_cues_v51.py` needs `hit-stamp-sub.wav`, which is only on the machine where it was made.
+- What is in git: `work/persian/sound-task/samples` (26 WAV and 3 sample MP4, commits 1546763, 658d2c5, 76fa483), `media/dana/music/*.mp3` (10 tracks), and the sfx catalogs and manifests.
+- Unverified: the original binaries presumably still exist on the machine where they were made.
+- Consequence: the v51 mix cannot be reproduced on a fresh machine until a transfer path is chosen (options: a `PA_PRIVATE_DIR` audio subfolder, a shared folder, or small allowlisted audio under `work/persian/assets/audio` with a size cap).
+- Status: OPEN, decision pending owner/lead. Record: `docs/motion/reports/2026-10-13/audio-gap-record.md`; DECISIONS `D-20261013-12`.

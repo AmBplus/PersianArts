@@ -46,3 +46,24 @@ A Persian motion-graphics engine: Remotion (React, Chrome renders) scenes with P
 - Daily reports (summary and detail per day, index): [reports/README.md](reports/README.md)
 
 - Autopilot protocol and backlog: [AUTOPILOT.md](AUTOPILOT.md). Resume point (RESUME HERE block): [RESUME.md](RESUME.md).
+
+## Fresh machine
+
+No symlinks needed: the workbench scripts copy folders (gen-index.mjs, open.mjs), no OS special features.
+
+Run from the repo root in PowerShell 7 (`pwsh`). Needs Node, npm, ffmpeg on PATH.
+1. `git clone` the repo, then `cd` into it.
+2. `pwsh work/persian/tools/pa.ps1 setup`: runs `npm ci` in `work/persian/src/workbench` (skipped if `node_modules` exists) and copies `work/persian/assets/fonts` into `workbench/public/fonts`.
+3. Client-private files (never committed): set `$env:PA_PRIVATE_DIR` to the folder that holds them (label `uni-admissions`), then `pwsh work/persian/tools/pa.ps1 setup-private`. It copies `copy-map.json`, the four `uni-local` files and `confidential-terms.local.txt`, and prints MISSING names only.
+4. `pwsh work/persian/tools/pa.ps1 check`: PASS/MISSING table; exit 1 if anything is missing.
+5. Render: `pwsh work/persian/render_all.ps1 -Film social -OutDir media/film-versions/<film>/<version>` (add `-Mode stills` for quick stills; `-Film uni` needs step 3).
+Optional env: `QH_HOME` (quota-hub folder, default sibling `../../tools/quota-hub`), `QH_DB` (quota-hub DB path override), `PA_REPO` (repo root for `persian-rtl-localize.js` and the cue scripts, if not run from the repo).
+Not in git, by design: sound binaries under `media/sfx`, `media/music-pixabay`, `media/music-staging`, `media/film-v2-local` (large, licensed audio and local sources); `media/film-versions/**` (render outputs); `media/briefs-local/**` and `uni-local/` (client copy and logo files); `contracts/confidential-terms.local.txt` (client terms); `workbench/public/*` except `.gitkeep` (generated copies); `node_modules`. Copy the private files from the owner's private folder; the sound and music folders must be copied separately if a film needs them.
+
+## Live status
+
+- Start the board: `node work/persian/status/serve.mjs` (port 4747, localhost only); open http://localhost:4747/ .
+- Data file: `work/persian/status/board.json` (goals, items, blockers, render progress). The page refreshes every 2 seconds.
+- Update from the shell: `pwsh work/persian/tools/pa.ps1 status set <itemId> -State running -Percent 40 -Note "..."`; also `status add-item`, `status blocker add|clear`, `status show`.
+- A running item with no update for 10 minutes shows as stalled (red). Rule for workers: [STATUS-PROTOCOL.md](STATUS-PROTOCOL.md).
+- `render_all.ps1` writes frame x of y, fps and ETA into the render section automatically.
