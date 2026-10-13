@@ -20,8 +20,8 @@ Skip scan, staging and commit. Only push local commits that are not yet on the l
 .PARAMETER Remote
 SSH URL used as the primary push destination (default: the PersianArts repo from AGENTS.md).
 
-Push order: (a) git push origin HEAD:main with GIT_TERMINAL_PROMPT=0 (HTTPS, credential manager);
-(b) on failure, git push <SSH URL> HEAD:main with GIT_SSH_COMMAND='ssh -o BatchMode=yes'.
+Push order: (a) git push https://ambplus9@github.com/AmBplus/PersianArts.git HEAD:main (explicit account, GIT_TERMINAL_PROMPT=0);
+(b) git push origin HEAD:main (GIT_TERMINAL_PROMPT=0); (c) git push <SSH URL> HEAD:main (GIT_SSH_COMMAND='ssh -o BatchMode=yes').
 Each run logs PUSH-OK or PUSH-FAILED (with reason) to docs/motion/last-checkpoint.txt. A run with nothing new to commit
 still retries every commit after the last PUSH-OK point, so a failed push is retried by the next checkpoint.
 
@@ -34,7 +34,8 @@ param(
   [string[]]$Paths = @(),
   [switch]$Only,
   [switch]$PushOnly,
-  [string]$Remote = 'git@github.com:AmBplus/PersianArts.git'
+  [string]$Remote = 'git@github.com:AmBplus/PersianArts.git',
+  [string]$HttpsUrl = 'https://ambplus9@github.com/AmBplus/PersianArts.git'
 )
 $ErrorActionPreference = 'Stop'
 $Trailer = 'Claude-Session: https://claude.ai/code/session_01Coo1bMt6WZLj2vRESMYssc'
@@ -95,15 +96,21 @@ function Invoke-GitPushAttempt([string[]]$PushArgs, [hashtable]$EnvSet) {
 }
 
 function Invoke-PushMain {
+  # Methods in order; the first success wins. No method may prompt (GIT_TERMINAL_PROMPT=0, BatchMode for ssh).
+  # Never force, pull or rebase. Remote config is never changed.
   $reasons = @()
-  # (a) primary: configured origin over HTTPS (credential manager); no terminal prompt, never force
-  $a = Invoke-GitPushAttempt @('origin', 'HEAD:main') @{ GIT_TERMINAL_PROMPT = '0' }
-  if ($a.Ok) { return @{ Ok = $true; Via = 'origin'; Text = $a.Text } }
-  $reasons += "origin exit $($a.Code): $($a.Text)"
-  # (b) fallback: explicit SSH URL with BatchMode (never prompts)
-  $b = Invoke-GitPushAttempt @($Remote, 'HEAD:main') @{ GIT_SSH_COMMAND = 'ssh -o BatchMode=yes'; GIT_TERMINAL_PROMPT = '0' }
-  if ($b.Ok) { return @{ Ok = $true; Via = 'ssh'; Text = $b.Text } }
-  $reasons += "ssh exit $($b.Code): $($b.Text)"
+  # (a) explicit account in the URL: Git Credential Manager picks that account's stored credential
+  $a = Invoke-GitPushAttempt @($HttpsUrl, 'HEAD:main') @{ GIT_TERMINAL_PROMPT = '0' }
+  if ($a.Ok) { return @{ Ok = $true; Via = 'https-user'; Text = $a.Text } }
+  $reasons += "https-user exit $($a.Code): $($a.Text)"
+  # (b) configured origin over HTTPS (credential manager default account)
+  $b = Invoke-GitPushAttempt @('origin', 'HEAD:main') @{ GIT_TERMINAL_PROMPT = '0' }
+  if ($b.Ok) { return @{ Ok = $true; Via = 'origin'; Text = $b.Text } }
+  $reasons += "origin exit $($b.Code): $($b.Text)"
+  # (c) explicit SSH URL with BatchMode (never prompts)
+  $c = Invoke-GitPushAttempt @($Remote, 'HEAD:main') @{ GIT_SSH_COMMAND = 'ssh -o BatchMode=yes'; GIT_TERMINAL_PROMPT = '0' }
+  if ($c.Ok) { return @{ Ok = $true; Via = 'ssh'; Text = $c.Text } }
+  $reasons += "ssh exit $($c.Code): $($c.Text)"
   return @{ Ok = $false; Via = ''; Text = ($reasons -join ' || ') }
 }
 
