@@ -1,140 +1,110 @@
 {
  "metrics": {
-  "duration_s": 19.67,
+  "duration_s": 16.27,
   "fps": 30.0,
   "w": 1080,
   "h": 1920,
   "ratio": "9x16",
   "has_audio": true,
   "cuts": [
-   0.58,
-   2.25,
-   4.38,
-   7.67,
-   10.92,
-   14.79,
-   15.62,
-   18.17
+   5.88,
+   10.04,
+   15.83
   ],
-  "n_scenes": 9,
-  "shot_mean_s": 2.18,
-  "shot_median_s": 2.12,
-  "cuts_per_10s": 4.07,
+  "n_scenes": 4,
+  "shot_mean_s": 4.07,
+  "shot_median_s": 4.98,
+  "cuts_per_10s": 1.84,
   "energy_thirds": [
-   3.26,
-   2.51,
-   2.17
+   0.65,
+   1.24,
+   0.54
   ],
   "energy_ratio": [
-   1.23,
-   0.95,
-   0.82
+   0.8,
+   1.53,
+   0.66
   ],
   "scenes": [
    {
     "start": 0.0,
-    "end": 0.58,
-    "len": 0.58,
-    "elements": 1,
-    "build_s": 0.42,
-    "hold_s": 0.17
+    "end": 5.88,
+    "len": 5.88,
+    "elements": 9,
+    "build_s": 4.58,
+    "hold_s": 1.29
    },
    {
-    "start": 0.58,
-    "end": 2.25,
-    "len": 1.67,
-    "elements": 1,
-    "build_s": 0.12,
-    "hold_s": 1.54
+    "start": 5.88,
+    "end": 10.04,
+    "len": 4.17,
+    "elements": 8,
+    "build_s": 2.54,
+    "hold_s": 1.62
    },
    {
-    "start": 2.25,
-    "end": 4.38,
-    "len": 2.12,
-    "elements": 3,
-    "build_s": 1.5,
-    "hold_s": 0.62
-   },
-   {
-    "start": 4.38,
-    "end": 7.67,
-    "len": 3.29,
+    "start": 10.04,
+    "end": 15.83,
+    "len": 5.79,
     "elements": 6,
-    "build_s": 2.71,
-    "hold_s": 0.58
-   },
-   {
-    "start": 7.67,
-    "end": 10.92,
-    "len": 3.25,
-    "elements": 1,
-    "build_s": 0.12,
-    "hold_s": 3.12
-   },
-   {
-    "start": 10.92,
-    "end": 14.79,
-    "len": 3.88,
-    "elements": 1,
-    "build_s": 0.17,
-    "hold_s": 3.71
-   },
-   {
-    "start": 14.79,
-    "end": 15.62,
-    "len": 0.83,
-    "elements": 2,
-    "build_s": 0.62,
-    "hold_s": 0.21
-   },
-   {
-    "start": 15.62,
-    "end": 18.17,
-    "len": 2.54,
-    "elements": 4,
-    "build_s": 2.46,
+    "build_s": 5.71,
     "hold_s": 0.08
    },
    {
-    "start": 18.17,
-    "end": 19.67,
-    "len": 1.5,
-    "elements": 2,
-    "build_s": 0.58,
-    "hold_s": 0.92
+    "start": 15.83,
+    "end": 16.27,
+    "len": 0.44,
+    "elements": 1,
+    "build_s": 0.25,
+    "hold_s": 0.19
    }
   ],
-  "elements_per_scene": 2.33,
-  "build_s_median": 0.58,
-  "hold_s_median": 0.62
+  "elements_per_scene": 6.0,
+  "build_s_median": 3.56,
+  "hold_s_median": 0.74
  },
  "audio": {
-  "tempo_bpm": 112.3,
-  "beat_s": 0.5341,
-  "cuts_on_beat": 0.625,
-  "cuts_on_bar": 0.125,
-  "lufs": -14.1,
+  "tempo_bpm": 117.5,
+  "beat_s": 0.5108,
+  "cuts_on_beat": 0.333,
+  "cuts_on_bar": 0.0,
+  "lufs": -14.4,
   "rms_arc_db": [
-   -16.0,
-   -17.8,
-   -17.0
+   -17.4,
+   -17.2,
+   -18.2
   ]
  },
  "findings": [
   [
+   "median shot length (s)",
+   4.98,
+   "too slow"
+  ],
+  [
    "cuts per 10 s",
-   4.07,
-   "too fast"
+   1.84,
+   "too slow"
   ],
   [
    "elements per scene",
-   2.33,
-   "sparse"
+   6.0,
+   "busy"
+  ],
+  [
+   "build time median (s)",
+   3.56,
+   "build too slow"
   ],
   [
    "hold time median (s)",
-   0.62,
+   0.74,
    "hold long"
+  ],
+  [
+   "cuts on beat",
+   0.333,
+   "not beat-locked"
   ]
  ]
 }

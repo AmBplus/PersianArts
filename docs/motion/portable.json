@@ -5,7 +5,8 @@
  "own_films": [
   "pencil-html",
   "pencil-social",
-  "story-lab"
+  "story-lab",
+  "s06-clock-never-zero"
  ],
  "final_max_mb_each": 12,
  "final_max_mb_total": 60,

@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>S06 clock never zero</title>
+<!--
+==========================================================================
+S06 clock-never-zero (own film, fictional, no client). 9:16, 118 BPM, 8 bars = 32 beats = 16.27 s = 488 frames.
+==========================================================================
+LOGLINE   A countdown from ten reaches one and jumps back to ten; every lap is calmer; the last line gives the loop a new meaning.
+TREATMENT Protagonist = one big Persian-digit number inside a ring. Lap 1 pressure (cold cyan, tight ring, digits every beat),
+          lap 2 repeat (violet, faster, half-beat ticks), lap 3 release (warm amber, ring open, digits slow and soft),
+          then the sentence stamps in the open ring and the picture glides back to the frame-0 state (loop seam).
+COPY      "هنوز وقت هست." (digits are Persian digits via PA.faDigits, LTR isolate)
+ART       palette cold #0b1f3a/#3dc4e4 -> violet #9a7bff -> warm #ffb347/#fff2d6. Font Vazirmatn variable (weight 900 -> 400 = softening).
+          Ring = SVG stroke-dashoffset, 60 minute marks, no photos, kit sound only.
+SCENES (118 BPM, beat 0.5085 s, bar 2.034 s)
+  1 LAP 1  beats  0-12 (bars 1-3, 0.00-6.10 s)   digits 10..1 one per beat (beats 0-9), the 1 holds: no tick on beats 10-11 (the beat fails to arrive)
+  2 LAP 2  beats 12-20 (bars 4-5, 6.10-10.17 s)  reset sweep at 12; digits every half beat (12-16.5), the 1 holds
+  3 LAP 3  beats 20-28 (bars 6-7, 10.17-14.24 s) soft thud + pad at 20; digits 10,9,8,7 every 2 beats; ring open, warm
+  4 COPY   beats 28-32 (bar 8, 14.24-16.27 s)    the sentence stamps (wood) + bell at 28; from beat 30.5 everything glides back to frame 0
+EVENTS (beats) ticks 0-9, 12-16.5 (x0.5), 20,22,24,26 | riser 10-12 | reset sweep 12 | riser 18-20 | thud 20 | stamp 28 | bell 28 | loop tick 31
+LOOP      frame 0 = digit ۱۰, cyan ring full, tight; the last frames blend to the same state (PA.loopBlend 30.5-31.9).
+==========================================================================
+-->
+<style>
+@font-face{font-family:"PAHead";src:url("fonts/Vazirmatn-Variable.woff2") format("woff2");font-weight:100 900;font-display:block}
+html,body{margin:0;height:100%;background:#000;overflow:hidden}
+#stage{position:absolute;left:0;top:0;width:1080px;height:1920px;overflow:hidden;transform-origin:0 0;direction:rtl}
+#bg{position:absolute;left:0;top:0;width:1080px;height:1920px}
+#fx{position:absolute;left:0;top:0}
+.t{position:absolute;display:flex;align-items:center;justify-content:center;text-align:center;font-family:"PAHead";letter-spacing:0;line-height:1.3;white-space:nowrap}
+</style>
+<script src="../lib/pa-motion.js"></script>
+</head>
+<body>
+<div id="stage"><div id="bg"></div><svg id="fx" width="1080" height="1920" viewBox="0 0 1080 1920"></svg><div id="num" class="t"></div><div id="copy" class="t"></div></div>
+<script>
+"use strict";
+const {clamp, lerp, prog, ease, faDigits, ltr, beats, loopBlend} = PA;
+const params = new URLSearchParams(location.search), W = 1080, H = 1920, FPS = 30, DURATION = 488, DUR = DURATION / FPS, BPM = 118, T0 = 0;
+const BS = beats(BPM).bs, CX = 540, CY = 960;
+const L1 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], L2 = [12, 12.5, 13, 13.5, 14, 14.5, 15, 15.5, 16, 16.5], L3 = [20, 22, 24, 26];
+const EVENT_BEATS = [...[...L1, ...L2, ...L3].map(b => ["tick", b]), ["riser", 10], ["reset sweep", 12], ["riser", 18], ["thud", 20], ["stamp", 28], ["bell", 28], ["loop tick", 31]];
+const EVENTS = EVENT_BEATS.map(([name, b]) => ({name, beat: b, t_s: +(b * BS).toFixed(4), frame: Math.round(b * BS * FPS)}));
+const hex = h => [parseInt(h.slice(1, 3), 16), parseInt(h.slice(3, 5), 16), parseInt(h.slice(5, 7), 16)];
+const mix = (a, b, t) => { const A = hex(a), B = hex(b); return "#" + A.map((v, i) => Math.round(lerp(v, B[i], t)).toString(16).padStart(2, "0")).join(""); };
+const LOOK = [{bg0: "#0b1f3a", bg1: "#04336b", ring: "#3dc4e4", w: 900, rad: 430, sw: 32}, {bg0: "#1c1646", bg1: "#3a2a8a", ring: "#9a7bff", w: 700, rad: 422, sw: 28}, {bg0: "#4a2a14", bg1: "#8a4a1c", ring: "#ffb347", w: 400, rad: 470, sw: 24}];
+const mixLook = (x, y, t) => ({bg0: mix(x.bg0, y.bg0, t), bg1: mix(x.bg1, y.bg1, t), ring: mix(x.ring, y.ring, t), w: lerp(x.w, y.w, t), rad: lerp(x.rad, y.rad, t), sw: lerp(x.sw, y.sw, t)});
+function state(b) {
+  let lap, digit, frac;
+  if (b < 12) { lap = 0; digit = 10 - Math.min(9, Math.floor(b)); frac = 1 - 0.9 * clamp(b / 9); }
+  else if (b < 20) { lap = 1; digit = 10 - Math.min(9, Math.floor((b - 12) * 2)); frac = 1 - 0.9 * clamp((b - 12) / 4.5); }
+  else { lap = 2; digit = 10 - Math.min(3, Math.floor((b - 20) / 2)); frac = 1 - 0.28 * clamp((b - 20) / 8); }
+  const k1 = ease.inOutSine(prog(b, 11.7, 0.6)), k2 = ease.inOutSine(prog(b, 19.7, 0.6));
+  const look = mixLook(mixLook(LOOK[0], LOOK[1], k1), LOOK[2], k2);
+  if (b < 12) look.rad -= 24 * clamp(b / 9);
+  return {lap, digit, frac, look};
+}
+const START = state(0);
+function render(n) {
+  n = Math.max(0, Math.min(DURATION - 1, Math.round(n)));
+  const T = n / FPS, b = T / BS, S = state(b), lb = loopBlend(b, 30.5, 31.9);
+  const look = mixLook(S.look, START.look, lb), frac = lerp(S.frac, START.frac, lb);
+  document.getElementById("bg").style.background = `radial-gradient(ellipse at 50% 47%,${look.bg1} 0%,${look.bg0} 70%)`;
+  const sched = b < 12 ? L1 : b < 20 ? L2 : L3;
+  let tickT = 0; for (const tb of sched) if (tb <= b) tickT = b - tb;
+  const pulse = Math.exp(-tickT * (S.lap === 1 ? 10 : 6));
+  const copyO = ease.outCubic(prog(b, 28, 0.5)) * (1 - lb);
+  const dO = b < 27.6 ? 1 : (b < 28 ? 1 - ease.inOutSine(prog(b, 27.6, 0.4)) : lb);
+  const numEl = document.getElementById("num");
+  numEl.style.cssText = `left:0;top:${CY - 330}px;width:${W}px;height:660px;font-size:${(560 * (1 + 0.035 * pulse)).toFixed(1)}px;font-weight:${Math.round(look.w)};color:${S.lap === 2 && lb < 1 ? mix("#fff2d6", "#ffffff", lb) : "#ffffff"};opacity:${dO.toFixed(3)};text-shadow:0 0 ${(40 + 30 * pulse).toFixed(0)}px ${look.ring}`;
+  numEl.innerHTML = ltr(faDigits(b >= 28 ? START.digit : S.digit));
+  const cp = document.getElementById("copy"), st = ease.outBack(prog(b, 28, 0.45));
+  cp.style.cssText = `left:${CX - 400}px;top:${CY - 150}px;width:800px;height:300px;font-size:104px;font-weight:900;color:#fff2d6;opacity:${copyO.toFixed(3)};transform:scale(${(1.35 - 0.35 * st).toFixed(3)}) rotate(${((1 - st) * -4).toFixed(2)}deg);text-shadow:0 0 40px #ffb347,0 6px 18px rgba(40,20,0,.7)`;
+  cp.innerHTML = copyO > 0.001 ? "هنوز وقت هست." : "";
+  const r = look.rad, circ = 2 * Math.PI * r;
+  let g = `<circle cx="${CX}" cy="${CY}" r="${r.toFixed(1)}" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="${look.sw.toFixed(1)}"/>`;
+  g += `<circle cx="${CX}" cy="${CY}" r="${r.toFixed(1)}" fill="none" stroke="${look.ring}" stroke-width="${look.sw.toFixed(1)}" stroke-linecap="round" stroke-dasharray="${circ.toFixed(1)}" stroke-dashoffset="${(circ * (1 - frac)).toFixed(1)}" transform="rotate(-90 ${CX} ${CY})"/>`;
+  for (let i = 0; i < 60; i++) { const a = i * Math.PI / 30, big = i % 5 === 0, r0 = r + look.sw / 2 + 18, r1 = r0 + (big ? 34 : 16); g += `<line x1="${(CX + Math.cos(a) * r0).toFixed(1)}" y1="${(CY + Math.sin(a) * r0).toFixed(1)}" x2="${(CX + Math.cos(a) * r1).toFixed(1)}" y2="${(CY + Math.sin(a) * r1).toFixed(1)}" stroke="#fff" stroke-width="${big ? 5 : 3}" opacity="${big ? 0.7 : 0.35}"/>`; }
+  [12, 20].forEach(rb => { const k = prog(b, rb, 0.9); if (k > 0 && k < 1) g += `<circle cx="${CX}" cy="${CY}" r="${(r + 40 + k * 520).toFixed(1)}" fill="none" stroke="${look.ring}" stroke-width="${(18 * (1 - k)).toFixed(1)}" opacity="${(0.7 * (1 - k)).toFixed(2)}"/>`; });
+  const ha = -Math.PI / 2 + frac * 2 * Math.PI; g += `<circle cx="${(CX + Math.cos(ha) * r).toFixed(1)}" cy="${(CY + Math.sin(ha) * r).toFixed(1)}" r="${(look.sw * 0.7 + 8 * pulse).toFixed(1)}" fill="#fff"/>`;
+  // lap dots (three laps), current lap lit
+  for (let i = 0; i < 3; i++) { const lit = (b >= 28 ? 2 : S.lap) >= i; g += `<circle cx="${CX + (i - 1) * 70}" cy="1560" r="${lit ? 16 : 12}" fill="${lit ? LOOK[i].ring : "rgba(255,255,255,.25)"}" opacity="${(1 - lb * (i > 0 ? 1 : 0)).toFixed(2)}"/>`; }
+  document.getElementById("fx").innerHTML = g;
+  window.film.frame = n;
+}
+window.film = {events: EVENTS, cuts: [0, 12, 20, 28].map(b => Math.round(b * BS * FPS)), duration: DUR, fps: FPS, bpm: BPM, t0: T0, frame: 0, ready: false, ratio: "9x16", seek(t) { render(Math.round(t * FPS)); return this.frame; }};
+const stage = document.getElementById("stage");
+function fit() { const sc = params.get("capture") === "1" ? 1 : Math.min(innerWidth / W, innerHeight / H); stage.style.transform = `scale(${sc})`; }
+addEventListener("resize", fit); fit();
+Promise.all([document.fonts.load("900 40px PAHead"), document.fonts.load("400 40px PAHead")]).then(() => document.fonts.ready).then(() => { render(0); window.film.ready = true; });
+let playing = false, t0p = 0;
+function tick(ts) { if (!playing) return; render(((ts - t0p) * FPS / 1000) % DURATION); requestAnimationFrame(tick); }
+addEventListener("click", () => { playing = !playing; if (playing) { t0p = performance.now(); requestAnimationFrame(tick); } });
+</script>
+</body>
+</html>

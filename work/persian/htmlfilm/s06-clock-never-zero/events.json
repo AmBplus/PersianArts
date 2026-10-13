@@ -1,0 +1,237 @@
+{
+ "schema": "persianarts.events/1",
+ "film": "s06-clock-never-zero",
+ "fps": 30,
+ "bpm": 118,
+ "t0_s": 0.0,
+ "cut_frames": [
+  0,
+  183,
+  305,
+  427
+ ],
+ "duration_frames": 488,
+ "events": [
+  {
+   "name": "tick 0",
+   "type": "tick",
+   "t_s": 0.0,
+   "intensity": 0.5,
+   "role": "normal"
+  },
+  {
+   "name": "tick 1",
+   "type": "tick",
+   "t_s": 0.5085,
+   "intensity": 0.5,
+   "role": "normal"
+  },
+  {
+   "name": "tick 2",
+   "type": "tick",
+   "t_s": 1.0169,
+   "intensity": 0.5,
+   "role": "normal"
+  },
+  {
+   "name": "tick 3",
+   "type": "tick",
+   "t_s": 1.5254,
+   "intensity": 0.5,
+   "role": "normal"
+  },
+  {
+   "name": "tick 4",
+   "type": "tick",
+   "t_s": 2.0339,
+   "intensity": 0.5,
+   "role": "normal"
+  },
+  {
+   "name": "tick 5",
+   "type": "tick",
+   "t_s": 2.5424,
+   "intensity": 0.5,
+   "role": "normal"
+  },
+  {
+   "name": "tick 6",
+   "type": "tick",
+   "t_s": 3.0508,
+   "intensity": 0.5,
+   "role": "normal"
+  },
+  {
+   "name": "tick 7",
+   "type": "tick",
+   "t_s": 3.5593,
+   "intensity": 0.5,
+   "role": "normal"
+  },
+  {
+   "name": "tick 8",
+   "type": "tick",
+   "t_s": 4.0678,
+   "intensity": 0.5,
+   "role": "normal"
+  },
+  {
+   "name": "tick 9",
+   "type": "tick",
+   "t_s": 4.5763,
+   "intensity": 0.5,
+   "role": "normal"
+  },
+  {
+   "name": "riser into the held one",
+   "type": "riser",
+   "t_s": 5.0847,
+   "dur_s": 1.017,
+   "role": "normal"
+  },
+  {
+   "name": "tick 12",
+   "type": "tick",
+   "t_s": 6.1017,
+   "intensity": 0.5,
+   "role": "normal"
+  },
+  {
+   "name": "reset sweep to ten",
+   "type": "transition",
+   "t_s": 6.1017,
+   "role": "normal"
+  },
+  {
+   "name": "tick 12.5",
+   "type": "tick",
+   "t_s": 6.3559,
+   "intensity": 0.5,
+   "role": "normal"
+  },
+  {
+   "name": "tick 13",
+   "type": "tick",
+   "t_s": 6.6102,
+   "intensity": 0.5,
+   "role": "normal"
+  },
+  {
+   "name": "tick 13.5",
+   "type": "tick",
+   "t_s": 6.8644,
+   "intensity": 0.5,
+   "role": "normal"
+  },
+  {
+   "name": "tick 14",
+   "type": "tick",
+   "t_s": 7.1186,
+   "intensity": 0.5,
+   "role": "normal"
+  },
+  {
+   "name": "tick 14.5",
+   "type": "tick",
+   "t_s": 7.3729,
+   "intensity": 0.5,
+   "role": "normal"
+  },
+  {
+   "name": "tick 15",
+   "type": "tick",
+   "t_s": 7.6271,
+   "intensity": 0.5,
+   "role": "normal"
+  },
+  {
+   "name": "tick 15.5",
+   "type": "tick",
+   "t_s": 7.8814,
+   "intensity": 0.5,
+   "role": "normal"
+  },
+  {
+   "name": "tick 16",
+   "type": "tick",
+   "t_s": 8.1356,
+   "intensity": 0.5,
+   "role": "normal"
+  },
+  {
+   "name": "tick 16.5",
+   "type": "tick",
+   "t_s": 8.3898,
+   "intensity": 0.5,
+   "role": "normal"
+  },
+  {
+   "name": "riser tempo drop",
+   "type": "riser",
+   "t_s": 9.1525,
+   "dur_s": 1.017,
+   "role": "normal"
+  },
+  {
+   "name": "tick 20",
+   "type": "tick",
+   "t_s": 10.1695,
+   "intensity": 0.5,
+   "role": "normal"
+  },
+  {
+   "name": "soft thud third lap",
+   "type": "thud",
+   "t_s": 10.1695,
+   "role": "accent"
+  },
+  {
+   "name": "pad in",
+   "type": "ambient",
+   "t_s": 10.1695,
+   "dur_s": 4.068,
+   "role": "normal"
+  },
+  {
+   "name": "tick 22",
+   "type": "tick",
+   "t_s": 11.1864,
+   "intensity": 0.5,
+   "role": "normal"
+  },
+  {
+   "name": "tick 24",
+   "type": "tick",
+   "t_s": 12.2034,
+   "intensity": 0.5,
+   "role": "normal"
+  },
+  {
+   "name": "tick 26",
+   "type": "tick",
+   "t_s": 13.2203,
+   "intensity": 0.5,
+   "role": "normal"
+  },
+  {
+   "name": "copy stamp (wood)",
+   "type": "stamp",
+   "t_s": 14.2373,
+   "role": "accent",
+   "variant": "wood"
+  },
+  {
+   "name": "bell",
+   "type": "bell",
+   "t_s": 14.2373,
+   "role": "accent"
+  },
+  {
+   "name": "loop tick into frame 0",
+   "type": "tick",
+   "t_s": 15.7627,
+   "role": "normal",
+   "intensity": 0.5
+  }
+ ]
+}

@@ -53,14 +53,14 @@ Fill one block after each story build. Rule: every gap becomes a fix at the sour
 - new lesson id (L-###):
 
 ## S06 ساعتی که به صفر نمی‌رسد
-- minutes used (pa time) / budget 12:
-- run-gates result:
-- pa audio-check (payoff offsets ms, LUFS, clipping):
-- pa pacing ranges:
-- transition strip viewed (jumps?):
-- what the skill/tool lacked (expected: no Persian digit morph/tick helper; no loop-seam gate; no tempo-curve helper (changing tick rate)):
-- fix made at the source (file):
-- new lesson id (L-###):
+- minutes used (pa time) / budget 12: about 10.5 of 15 (studio pass; treatment 1.4, build 3.5, capture 3.9-8.1, sound 8.1, qc 9.0, deliver 9.3 min marks)
+- run-gates result: edge-touch PASS, empty-band PASS (worst 25%), dead-frames PASS, number-lint PASS, logo-colour FAIL = false positive (the film has no logo; gate has no "no logo" scope switch), hero-size INFO 46%
+- pa audio-check (payoff offsets ms, LUFS, clipping): PASS 16.2 s, -14.4 LUFS, TP -2.0, tail -96.3 dBFS (tail rule not meaningful for a loop), max simultaneous 2, cue offsets 0.0 ms; warns "RMS step 9.6 dB 0-1 s" = bed fade-in
+- pa pacing ranges: advisory only: cuts on bar downbeat 0% ("not bar-locked": false alarm, the film has no cuts, only lap resets at beats 12/20/28; detector found scene changes at 5.88/10.04/15.83 s = colour changes), loudness arc -17.4/-17.2/-18.2
+- transition strip viewed (jumps?): yes on the silent mp4 (frames 0-2, 177-185, 300-308, 414-422, 485-487) and a still of the copy at 14.7 s; no jumps; resets are ring ripples + colour cross-blends; video loop seam: mean abs luma diff frame 0 vs frame 487 = 0.55% (<2%); audio loop seam: first 0.5 s vs last 0.5 s RMS diff 1.3 dB (<1.5) but this is partly luck: the builder fades the bed in 0.4 s and out 0.6 s, so the last bar does not truly resolve into the first
+- what the skill/tool lacked: no Persian digit/tick helper (wrote lib/pa-motion.js); no loop-seam gate for video or audio (measured by hand); build_sound.py has no loop mode (bed fade-in/out, tail logic, settle-final fade); pa deliver track skipped the film until it was added to docs/motion/portable.json own_films; logo-colour gate fails on films without a logo; pacing assumes cuts; capture PNG ~3 min for 488 frames
+- fix made at the source (file): work/persian/htmlfilm/lib/pa-motion.js (faDigits, ltr isolate, mulberry32 rng, spring/ease, beats clock, tick sched, loopBlend); docs/motion/portable.json (own_films += s06-clock-never-zero); remaining: loop mode in build_sound.py, loop-seam gate, logo-colour no-logo switch
+- new lesson id (L-###): L-075 (no loop-seam gate), L-076 (build_sound.py has no loop mode), L-077 (logo-colour false positive without logo)
 
 ## S07 بادبادک و باد
 - minutes used (pa time) / budget 18:

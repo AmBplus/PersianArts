@@ -26,3 +26,12 @@ Co-Authored-By: Claude Haiku 5.5 <noreply@anthropic.com>
 2026-10-13T21:29:07+03:30 626863dbba5e0bca273f61722a9d63a7613a77e3 PUSH-OK via=ssh unpushed=1 files=10 msg=feat(motion): single output folder with LATEST, pa deliver, delivery step in the skill
 2026-10-13T23:09:51+03:30 bfabcae5a0a42cdb52ca571a6940e971196fa1b7 PUSH-OK via=ssh unpushed=1 files=27 msg=feat(motion): output compression, audio-check and strip tools, settle-role fix, skill 2.5 lessons
 2026-10-13T23:18:02+03:30 e868f1ffd7dbdfecb149ee61beabef89bf8ad2a0 PUSH-OK via=ssh unpushed=1 files=37 msg=feat(motion): pacing analysis from reference set, pa pacing/arc/music-pick, story-first rule, skill 2.6
+2026-10-13T23:26:51+03:30 2db539e3ce8b04da98552b7c8494176f7cc5ad64 PUSH-OK via=ssh unpushed=1 files=42 msg=feat(motion): portability (doctor, bootstrap, sync, vault), living TODO, task metering, skill 2.7
+2026-10-13T23:27:36+03:30 36b3cd389bf11c5fe4b49442c7ee14a3a84f87f5 PUSH-OK via=ssh unpushed=1 files=45 msg=feat(sound): 7 more kit tracks, music index, story lab S01-S10
+2026-10-13T23:28:21+03:30 49839f64bfa81be2d6c9b8785a1129f86ddc64ba PUSH-OK via=ssh unpushed=1 files=2 msg=feat(deliver): tracked finals of own films (compressed)
+2026-10-13T23:28:47+03:30 e13fbf759729846ccffc864ca5968461c409ffd9 PUSH-OK via=ssh unpushed=1 files=1 msg=chore(checkpoint): allow deliver mp4 up to 12 MB (media stays blocked)
+2026-10-13T23:30:06+03:30 3a7dfa76b894f0d2f47af1a8b31e1741b4149748 PUSH-OK via=ssh unpushed=1 files=2 msg=chore(todo): mark T005 music pack done
+2026-10-13T23:32:02+03:30 687f4b92c177e7b78ddaf0279c670a97a99840b4 PUSH-OK via=ssh unpushed=1 files=1 msg=chore(motion): checkpoint guard accepts text sources under sound/tools and owner-tools
+2026-10-13T23:32:29+03:30 b0e7b6cd7a82382f19a75e59970e7351b7dda336 PUSH-OK via=ssh unpushed=1 files=8 msg=feat(motion): kit builder, mixer sources, owner tools, board data
+2026-10-13T23:33:02+03:30 4c2c9cda82ded35aaa4b4b8e2b5b2415182ddbd4 PUSH-OK via=ssh unpushed=1 files=4 msg=feat(motion): owner tools and board data
+2026-10-13T23:34:08+03:30 1d14dc78fc8227456dec907b757fa4296f66fc62 PUSH-OK via=ssh unpushed=1 files=1 msg=chore(motion): ignore bench and acceptance scratch dirs
