@@ -6,7 +6,7 @@ PersianArts portability helper.
   pwsh -File work/persian/tools/pa.ps1 check
 #>
 param(
-  [Parameter(Position = 0)][ValidateSet('setup', 'setup-private', 'check', 'status', 'render', 'sound', 'assets', 'time')][string]$Command = 'check',
+  [Parameter(Position = 0)][ValidateSet('setup', 'setup-private', 'check', 'status', 'render', 'sound', 'assets', 'time', 'deliver')][string]$Command = 'check',
   [Parameter(Position = 1)][string]$Sub,      # status: set | add-item | blocker | show
   [Parameter(Position = 2)][string]$Id,       # status: item id (set/add-item) or add|clear (blocker)
   [Parameter(Position = 3)][string]$Arg3,     # status blocker add: text
@@ -321,4 +321,10 @@ switch ($Command) {
   'setup' { Invoke-Setup }
   'setup-private' { Invoke-SetupPrivate }
   'check' { Invoke-Check }
+  'deliver' {
+    # pa deliver <film> <version> [--dry-run] | --rebuild | --list  (see output/README.md)
+    $dA = @(@($Sub, $Id, $Arg3) + @($More) | Where-Object { $_ })
+    & node (Join-Path $PSScriptRoot 'deliver/deliver.mjs') @dA
+    exit $LASTEXITCODE
+  }
 }

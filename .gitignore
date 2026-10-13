@@ -133,3 +133,7 @@ work/persian/src/film/conference/copy-map-conference.json
 # asset compressor originals
 _orig/
 **/assets.lock.json
+
+# finished outputs: one folder (see output/README.md; only README.md is tracked)
+output/**
+!output/README.md

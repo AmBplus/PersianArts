@@ -3,7 +3,17 @@
 Target: one film, 9:16 first, with 1:1, 4:5 and 16:9 derived. Time figures come from the measurements in `PLAYBOOK-RENDER.md`.
 Every order cites `docs/motion/FILM-GATES.md` and names its target stage. Structural PASS validates a draft record only; it is not preflight, delivery, creative, or publication approval. Required not-run, unknown, stale, failed, or to-build checks block the claimed stage. See `PLAYBOOK-PROCESS-MEASUREMENT.md` and `plans/MEASURED-TEMPLATE.md` for evidence records. Nothing is public until required evidence is reviewed and the owner accepts it.
 
-## Steps
+## Default lane: html-film (owner decision 2026-10-13)
+One file `work/persian/htmlfilm/<label>/film.html` holds the plan (header comment: GOAL, copy, art direction, scene table, EVENTS, music, FIX LOG) and the film (`window.film.seek(t)`). Steps: intake -> memory-init -> treatment -> build -> capture -> sound (owner's word) -> qc -> fix-round (v2, same file) -> deliver -> RETRO. Remotion (steps below) only for heavy effects not yet proven in html-film.
+Commands (repo root):
+- Stills at EVENTS (look at all 9): `node work/persian/htmlfilm/capture.mjs --html <film.html> --still 0.1,0.53,3.93,5.63,13.0,15.63,18.33,19.6 --stills-dir <dir>/_stills` (about 1.4 s for 9).
+- Full silent render: `node work/persian/htmlfilm/capture.mjs --html <film.html> --out <dir>/silent-9x16.mp4` (`--frames a-b` for a range). Wrapper: `pwsh -File work/persian/tools/pa.ps1 render -Lane html -Film <film.html> -OutDir <dir> [-Stills t1,t2]`.
+- Events: evaluate the EVENTS block into `<dir>/events.json` (reference: media/film-versions/pencil-html/v2/_tools/export_events.mjs).
+- Sound (owner's word only): resolve cues to contact times (`cues-resolved.json`, offsets <= 5 ms), then the v51 recipe via media/film-versions/pencil-html/v2/_tools/build_html_v2.py (bed -18 LUFS, duck -3 dB / 150 ms, final -14 LUFS, TP <= -1 dBTP).
+- Gates: `node work/persian/tools/gates/run-gates.mjs <dir>/silent-9x16.mp4 --src <film.html dir>` (applicability: FILM-GATES.md html-film note).
+Timing evidence (pencil pilot, 9:16, 19.7 s): capture 590 frames in 40.3 s (14.6 fps); v1 about 6 min to silent mp4 with stills; v2 fix round about 9 min; about 16 min worker time from first line to mp4 with sound; Remotion for the same film about 1 hour. Time box: 20 minutes of worker time per film. Lessons of the pilot (QC 74, SHIP WITH NOTES): pen face states, variable-width ribbons, vertical centring, 6-8 frame colour wipe at cuts, hero >= 12%, CTA idle loop.
+
+## Steps (Remotion lane, kept for heavy effects)
 
 | # | Step | Owner | Command or artefact | Time (measured or estimated) |
 |---|---|---|---|---|
@@ -95,3 +105,7 @@ Run through a worker with the account's `CODEX_HOME` (see `PLAYBOOK-SOUND.md` se
 
 ## Confirmed Persian file-encoding safeguard (2026-10-13)
 Python reads/writes for Persian source, copy, director and props must explicitly use UTF-8. After copy edits, parse director and runtime props with UTF-8 and compare authoritative scene text. Keep a versioned snapshot before edits; a renderer pass alone does not prove copy integrity.
+
+## Deliver (last step of every film)
+- `pwsh -File work/persian/tools/pa.ps1 deliver <film> <version>` puts the finals in `output/<film>/<version>/` (hardlinks) and refreshes `output/LATEST/` and `output/INDEX.md`. Preview with `--dry-run`; rebuild only with `deliver --rebuild`.
+- The studio must run it and tell the owner the path `output/LATEST/<film>-<ratio>.mp4`. Details: `output/README.md`.
