@@ -15,3 +15,5 @@ Claude-Session: https://claude.ai/code/session_01Coo1bMt6WZLj2vRESMYssc
 Co-Authored-By: Claude Haiku 5.5 <noreply@anthropic.com>
 2026-10-13T14:41:41+03:30 2751d37dcb7011ef002d18f996ceebb54aaab99d PUSH-OK via=ssh unpushed=1 files=34 msg=persian-arts craft skills, goal memory, advisor, studio spec, commit guard
 2026-10-13T15:40:32+03:30 05155651adf22253b3f948c1b09c109a454daedf PUSH-OK via=ssh unpushed=1 files=20 msg=persian-arts skills v2.0 with identity lines, checklists and mirror
+2026-10-13T15:40:53+03:30 ddd6de690ff41b98532f0ed6f6b372e99ae5481e PUSH-OK via=ssh unpushed=1 files=13 msg=motion docs: studio, loop policy, ledger, gates, goal memory, recipes
+2026-10-13T15:41:19+03:30 9f1185fd693ec59479b6ae8413472a851776c89f PUSH-OK via=ssh unpushed=1 files=29 msg=tools: board, gates detectors, cues, status server

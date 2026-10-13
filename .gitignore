@@ -120,3 +120,5 @@ contracts/confidential-terms.local.txt
 work/persian/_bench/bundle/
 media/_contact_sheets/
 .remotion/
+work/persian/src/workbench/public/conf-local/
+work/persian/src/film/conference/copy-map-conference.json

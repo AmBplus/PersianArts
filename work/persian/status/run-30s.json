@@ -1,0 +1,7 @@
+{
+  "runId": "uni30",
+  "startedAt": "2026-10-13T10:11:20+03:30",
+  "budgetMinutes": 40,
+  "rule": "deliverable with music must exist by startedAt+40 min or the run is failed and the process is fixed before restart",
+  "stages": []
+}

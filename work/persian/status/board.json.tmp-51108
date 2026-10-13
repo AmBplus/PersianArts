@@ -1,0 +1,1249 @@
+{
+  "goals": [
+    {
+      "id": "A",
+      "title": "پروژه قابل حمل (portable)",
+      "items": [
+        {
+          "id": "M1",
+          "title": "فونت‌ها در assets",
+          "state": "done",
+          "percent": 100,
+          "startedAt": "2026-10-13T05:45:51.764Z",
+          "expectedMinutes": 20,
+          "updatedAt": "2026-10-13T05:55:55.2513790Z",
+          "note": "",
+          "steps": {
+            "done": 1,
+            "total": 1
+          },
+          "outputs": [
+            {
+              "label": "گزارش M1",
+              "path": "docs/motion/reports/2026-10-13/M1-report.md",
+              "kind": "report"
+            }
+          ]
+        },
+        {
+          "id": "M2",
+          "title": "pa.ps1 (setup/check)",
+          "state": "done",
+          "percent": 100,
+          "startedAt": "2026-10-13T05:45:51.764Z",
+          "expectedMinutes": 20,
+          "updatedAt": "2026-10-13T05:55:58.0526860Z",
+          "note": "",
+          "steps": {
+            "done": 1,
+            "total": 1
+          },
+          "outputs": [
+            {
+              "label": "گزارش M2",
+              "path": "docs/motion/reports/2026-10-13/M2-report.md",
+              "kind": "report"
+            },
+            {
+              "label": "ممیزی قابل‌حمل",
+              "path": "docs/motion/reports/2026-10-13/portability-audit.md",
+              "kind": "report"
+            }
+          ]
+        },
+        {
+          "id": "M3",
+          "title": "راه‌اندازی خودکار render_all",
+          "state": "done",
+          "percent": 100,
+          "startedAt": "2026-10-13T05:45:51.764Z",
+          "expectedMinutes": 20,
+          "updatedAt": "2026-10-13T05:55:56.1681115Z",
+          "note": "",
+          "steps": {
+            "done": 1,
+            "total": 1
+          },
+          "outputs": [
+            {
+              "label": "گزارش M3",
+              "path": "docs/motion/reports/2026-10-13/M3-report.md",
+              "kind": "report"
+            }
+          ]
+        },
+        {
+          "id": "M4",
+          "title": "setup-private",
+          "state": "running",
+          "percent": 80,
+          "startedAt": "2026-10-13T05:45:51.764Z",
+          "expectedMinutes": 20,
+          "updatedAt": "2026-10-13T05:48:36.0210547Z",
+          "note": "بیشتر در pa.ps1 انجام شده"
+        },
+        {
+          "id": "M5",
+          "title": "حذف مسیرهای D:",
+          "state": "done",
+          "percent": 100,
+          "startedAt": "2026-10-13T05:45:51.764Z",
+          "expectedMinutes": 20,
+          "updatedAt": "2026-10-13T05:55:56.6224648Z",
+          "note": "",
+          "steps": {
+            "done": 1,
+            "total": 1
+          },
+          "outputs": [
+            {
+              "label": "گزارش M5",
+              "path": "docs/motion/reports/2026-10-13/M5-report.md",
+              "kind": "report"
+            }
+          ]
+        },
+        {
+          "id": "M6",
+          "title": "نگهبان فونت checkpoint",
+          "state": "done",
+          "percent": 100,
+          "startedAt": "2026-10-13T05:45:51.764Z",
+          "expectedMinutes": 20,
+          "updatedAt": "2026-10-13T05:55:57.1040705Z",
+          "note": "",
+          "steps": {
+            "done": 1,
+            "total": 1
+          },
+          "outputs": [
+            {
+              "label": "گزارش M6",
+              "path": "docs/motion/reports/2026-10-13/M6-report.md",
+              "kind": "report"
+            }
+          ]
+        },
+        {
+          "id": "M7",
+          "title": "مستندات",
+          "state": "done",
+          "percent": 100,
+          "startedAt": "2026-10-13T05:45:51.764Z",
+          "expectedMinutes": 20,
+          "updatedAt": "2026-10-13T05:55:57.5793884Z",
+          "note": "",
+          "steps": {
+            "done": 1,
+            "total": 1
+          },
+          "outputs": [
+            {
+              "label": "گزارش M7",
+              "path": "docs/motion/reports/2026-10-13/M7-report.md",
+              "kind": "report"
+            }
+          ]
+        },
+        {
+          "id": "M8",
+          "title": "تست clone تمیز",
+          "state": "queued",
+          "percent": 0,
+          "startedAt": "2026-10-13T05:46:55.0125438Z",
+          "expectedMinutes": 20,
+          "updatedAt": "2026-10-13T05:48:35.6134194Z",
+          "note": ""
+        },
+        {
+          "id": "A-push",
+          "title": "commit و push",
+          "state": "blocked",
+          "percent": 0,
+          "startedAt": null,
+          "expectedMinutes": 20,
+          "updatedAt": "2026-10-13T05:56:04.8029882Z",
+          "note": "checkpoint امن ممکن نیست: confidential-terms.local.txt نیست",
+          "outputs": [
+            {
+              "label": "گزارش تابلو",
+              "path": "docs/motion/reports/2026-10-13/status-board-report.md",
+              "kind": "report"
+            }
+          ]
+        },
+        {
+          "id": "UNBLOCK",
+          "title": "Unblock: npm ci + placeholders + smoke render",
+          "state": "running",
+          "percent": 0,
+          "startedAt": "2026-10-13T05:48:36.4704136Z",
+          "expectedMinutes": 25,
+          "updatedAt": "2026-10-13T05:55:59.8661730Z",
+          "note": "order UNBLOCK, started now",
+          "outputs": [
+            {
+              "label": "گزارش UNBLOCK",
+              "path": "docs/motion/reports/2026-10-13/unblock-report.md",
+              "kind": "report"
+            },
+            {
+              "label": "استیل فریم 45",
+              "path": "media/film-versions/uni/unblock-smoke/still-9x16-f45.png",
+              "kind": "image"
+            },
+            {
+              "label": "استیل فریم 390",
+              "path": "media/film-versions/uni/unblock-smoke/still-9x16-f390.png",
+              "kind": "image"
+            },
+            {
+              "label": "استیل فریم 660",
+              "path": "media/film-versions/uni/unblock-smoke/still-9x16-f660.png",
+              "kind": "image"
+            }
+          ]
+        },
+        {
+          "id": "A-commit-whitelist",
+          "title": "Commit + push whitelist (portability milestones)",
+          "state": "done",
+          "percent": 100,
+          "startedAt": "2026-10-13T06:25:44.8322443Z",
+          "expectedMinutes": 20,
+          "updatedAt": "2026-10-13T06:26:49.5570774Z",
+          "note": "waits for UNBLOCK scan PASS",
+          "steps": {
+            "done": 3,
+            "total": 3
+          }
+        },
+        {
+          "id": "RENDER-FIX",
+          "title": "Render fix",
+          "state": "done",
+          "percent": 100,
+          "startedAt": "2026-10-13T05:49:38.2369498Z",
+          "expectedMinutes": 20,
+          "updatedAt": "2026-10-13T05:56:01.7250463Z",
+          "note": "start",
+          "steps": {
+            "done": 1,
+            "total": 1
+          },
+          "outputs": [
+            {
+              "label": "استیل فریم 3",
+              "path": "media/film-versions/uni-render-fix/t1/still-9x16-f3.png",
+              "kind": "image"
+            },
+            {
+              "label": "استیل فریم 15",
+              "path": "media/film-versions/uni-render-fix/t1/still-9x16-f15.png",
+              "kind": "image"
+            },
+            {
+              "label": "استیل فریم 48",
+              "path": "media/film-versions/uni-render-fix/t1/still-9x16-f48.png",
+              "kind": "image"
+            },
+            {
+              "label": "گزارش RENDER-FIX",
+              "path": "docs/motion/reports/2026-10-13/render-fix-report.md",
+              "kind": "report"
+            }
+          ]
+        },
+        {
+          "id": "BOARD-OUTPUTS",
+          "title": "خروجی‌ها و معنی درصد روی تابلو",
+          "state": "done",
+          "percent": 100,
+          "startedAt": "2026-10-13T05:54:29.8830736Z",
+          "expectedMinutes": 20,
+          "updatedAt": "2026-10-13T05:57:43.3537930Z",
+          "note": "start",
+          "outputs": [
+            {
+              "label": "گزارش این سفارش",
+              "path": "docs/motion/reports/2026-10-13/board-outputs-report.md",
+              "kind": "report"
+            }
+          ],
+          "steps": {
+            "done": 5,
+            "total": 5
+          }
+        },
+        {
+          "id": "METERING",
+          "title": "متر زمان (metering)",
+          "state": "done",
+          "percent": 100,
+          "startedAt": "2026-10-13T06:28:19.2140307Z",
+          "expectedMinutes": 15,
+          "updatedAt": "2026-10-13T06:29:14.6735085Z",
+          "note": "",
+          "finishedAt": "2026-10-13T06:29:14.1914388Z",
+          "actualMinutes": 0.9,
+          "steps": {
+            "done": 3,
+            "total": 3
+          },
+          "outputs": [
+            {
+              "label": "METERING.md",
+              "path": "docs/motion/METERING.md",
+              "kind": "report"
+            }
+          ]
+        },
+        {
+          "id": "METRICS-OPUS",
+          "title": "Metrics review (time by activity)",
+          "state": "done",
+          "percent": 100,
+          "expectedMinutes": 20,
+          "updatedAt": "2026-10-13T06:42:05.2321197Z",
+          "note": "",
+          "startedAt": "2026-10-13T06:34:44.7173422Z",
+          "finishedAt": "2026-10-13T06:42:04.3165284Z",
+          "actualMinutes": 7.3,
+          "steps": {
+            "done": 4,
+            "total": 4
+          },
+          "outputs": [
+            {
+              "label": "METRICS.md",
+              "path": "docs/motion/METRICS.md",
+              "kind": "report"
+            },
+            {
+              "label": "metrics-review-report.md",
+              "path": "docs/motion/reports/2026-10-13/metrics-review-report.md",
+              "kind": "report"
+            }
+          ]
+        },
+        {
+          "id": "PLAN-AUDIT",
+          "title": "PLAN-AUDIT",
+          "state": "done",
+          "percent": 100,
+          "startedAt": null,
+          "actualMinutes": null,
+          "expectedMinutes": 20,
+          "updatedAt": "2026-10-13T07:12:35.6067463Z",
+          "note": "",
+          "finishedAt": "2026-10-13T07:12:35.6067463Z"
+        },
+        {
+          "id": "SKILL-BRIEF",
+          "title": "SKILL-BRIEF",
+          "state": "done",
+          "percent": 100,
+          "expectedMinutes": 20,
+          "updatedAt": "2026-10-13T09:39:55.0528738Z",
+          "note": "",
+          "startedAt": "2026-10-13T09:39:12.2128795Z",
+          "finishedAt": "2026-10-13T09:39:55.0528738Z",
+          "actualMinutes": 0.7
+        },
+        {
+          "id": "SK-12",
+          "title": "SK-12",
+          "state": "done",
+          "percent": 100,
+          "startedAt": null,
+          "actualMinutes": null,
+          "expectedMinutes": 20,
+          "updatedAt": "2026-10-13T09:41:20.6051339Z",
+          "note": "",
+          "finishedAt": "2026-10-13T09:41:20.6051339Z"
+        },
+        {
+          "id": "ZT-1",
+          "title": "ZT-1",
+          "state": "done",
+          "percent": 100,
+          "expectedMinutes": 20,
+          "updatedAt": "2026-10-13T09:41:53.6639208Z",
+          "note": "",
+          "startedAt": "2026-10-13T09:41:52.7212630Z",
+          "steps": {
+            "done": 1,
+            "total": 4
+          },
+          "finishedAt": "2026-10-13T09:41:53.6639208Z",
+          "actualMinutes": 0.0
+        },
+        {
+          "id": "ZT-1",
+          "title": "ZT-1",
+          "state": "queued",
+          "percent": 0,
+          "startedAt": null,
+          "finishedAt": null,
+          "actualMinutes": null,
+          "expectedMinutes": 20,
+          "updatedAt": "2026-10-13T09:41:59.1664425Z",
+          "note": ""
+        },
+        {
+          "id": "ZT-2",
+          "title": "ZT-2",
+          "state": "queued",
+          "percent": 0,
+          "startedAt": null,
+          "finishedAt": null,
+          "actualMinutes": null,
+          "expectedMinutes": 20,
+          "updatedAt": "2026-10-13T09:41:59.6363215Z",
+          "note": ""
+        },
+        {
+          "id": "ZT-3",
+          "title": "ZT-3",
+          "state": "done",
+          "percent": 100,
+          "startedAt": null,
+          "actualMinutes": null,
+          "expectedMinutes": 20,
+          "updatedAt": "2026-10-13T09:42:09.0062953Z",
+          "note": "",
+          "finishedAt": "2026-10-13T09:42:09.0062953Z"
+        },
+        {
+          "id": "ZT-4",
+          "title": "ZT-4",
+          "state": "queued",
+          "percent": 0,
+          "startedAt": null,
+          "finishedAt": null,
+          "actualMinutes": null,
+          "expectedMinutes": 20,
+          "updatedAt": "2026-10-13T09:42:00.5828453Z",
+          "note": ""
+        },
+        {
+          "id": "ZT-5",
+          "title": "ZT-5",
+          "state": "queued",
+          "percent": 0,
+          "startedAt": null,
+          "finishedAt": null,
+          "actualMinutes": null,
+          "expectedMinutes": 20,
+          "updatedAt": "2026-10-13T09:42:01.0450626Z",
+          "note": ""
+        },
+        {
+          "id": "ZT-6",
+          "title": "ZT-6",
+          "state": "queued",
+          "percent": 0,
+          "startedAt": null,
+          "finishedAt": null,
+          "actualMinutes": null,
+          "expectedMinutes": 20,
+          "updatedAt": "2026-10-13T09:42:01.5408684Z",
+          "note": ""
+        },
+        {
+          "id": "ZT-7",
+          "title": "ZT-7",
+          "state": "done",
+          "percent": 100,
+          "startedAt": null,
+          "actualMinutes": null,
+          "expectedMinutes": 20,
+          "updatedAt": "2026-10-13T09:42:09.1852490Z",
+          "note": "",
+          "finishedAt": "2026-10-13T09:42:09.1852490Z"
+        },
+        {
+          "id": "ZT-8",
+          "title": "ZT-8",
+          "state": "queued",
+          "percent": 0,
+          "startedAt": null,
+          "finishedAt": null,
+          "actualMinutes": null,
+          "expectedMinutes": 20,
+          "updatedAt": "2026-10-13T09:42:02.4752869Z",
+          "note": ""
+        },
+        {
+          "id": "ZT-9",
+          "title": "ZT-9",
+          "state": "queued",
+          "percent": 0,
+          "startedAt": null,
+          "finishedAt": null,
+          "actualMinutes": null,
+          "expectedMinutes": 20,
+          "updatedAt": "2026-10-13T09:42:02.9380624Z",
+          "note": ""
+        },
+        {
+          "id": "ZT-10",
+          "title": "ZT-10",
+          "state": "queued",
+          "percent": 0,
+          "startedAt": null,
+          "finishedAt": null,
+          "actualMinutes": null,
+          "expectedMinutes": 20,
+          "updatedAt": "2026-10-13T09:42:03.4013201Z",
+          "note": ""
+        },
+        {
+          "id": "ZT-11",
+          "title": "ZT-11",
+          "state": "done",
+          "percent": 100,
+          "startedAt": null,
+          "actualMinutes": null,
+          "expectedMinutes": 20,
+          "updatedAt": "2026-10-13T09:42:09.5185496Z",
+          "note": "",
+          "finishedAt": "2026-10-13T09:42:09.5185496Z"
+        },
+        {
+          "id": "ZT-12",
+          "title": "ZT-12",
+          "state": "queued",
+          "percent": 0,
+          "startedAt": null,
+          "finishedAt": null,
+          "actualMinutes": null,
+          "expectedMinutes": 20,
+          "updatedAt": "2026-10-13T09:42:04.3203543Z",
+          "note": ""
+        },
+        {
+          "id": "ZT-13",
+          "title": "ZT-13",
+          "state": "queued",
+          "percent": 0,
+          "startedAt": null,
+          "finishedAt": null,
+          "actualMinutes": null,
+          "expectedMinutes": 20,
+          "updatedAt": "2026-10-13T09:42:04.7790005Z",
+          "note": ""
+        },
+        {
+          "id": "ZT-14",
+          "title": "ZT-14",
+          "state": "done",
+          "percent": 100,
+          "startedAt": null,
+          "actualMinutes": null,
+          "expectedMinutes": 20,
+          "updatedAt": "2026-10-13T09:42:09.8475196Z",
+          "note": "",
+          "finishedAt": "2026-10-13T09:42:09.8475196Z"
+        },
+        {
+          "id": "ZT-15",
+          "title": "ZT-15",
+          "state": "queued",
+          "percent": 0,
+          "startedAt": null,
+          "finishedAt": null,
+          "actualMinutes": null,
+          "expectedMinutes": 20,
+          "updatedAt": "2026-10-13T09:42:05.7040279Z",
+          "note": ""
+        },
+        {
+          "id": "ZT-16",
+          "title": "ZT-16",
+          "state": "queued",
+          "percent": 0,
+          "startedAt": null,
+          "finishedAt": null,
+          "actualMinutes": null,
+          "expectedMinutes": 20,
+          "updatedAt": "2026-10-13T09:42:06.2062902Z",
+          "note": ""
+        },
+        {
+          "id": "ZT-17",
+          "title": "ZT-17",
+          "state": "queued",
+          "percent": 0,
+          "startedAt": null,
+          "finishedAt": null,
+          "actualMinutes": null,
+          "expectedMinutes": 20,
+          "updatedAt": "2026-10-13T09:42:06.7385073Z",
+          "note": ""
+        },
+        {
+          "id": "ZT-18",
+          "title": "ZT-18",
+          "state": "queued",
+          "percent": 0,
+          "startedAt": null,
+          "finishedAt": null,
+          "actualMinutes": null,
+          "expectedMinutes": 20,
+          "updatedAt": "2026-10-13T09:42:07.2229291Z",
+          "note": ""
+        },
+        {
+          "id": "ZT-19",
+          "title": "ZT-19",
+          "state": "queued",
+          "percent": 0,
+          "startedAt": null,
+          "finishedAt": null,
+          "actualMinutes": null,
+          "expectedMinutes": 20,
+          "updatedAt": "2026-10-13T09:42:07.6837623Z",
+          "note": ""
+        },
+        {
+          "id": "ZT-20",
+          "title": "ZT-20",
+          "state": "done",
+          "percent": 100,
+          "startedAt": null,
+          "actualMinutes": null,
+          "expectedMinutes": 20,
+          "updatedAt": "2026-10-13T09:42:10.0657901Z",
+          "note": "",
+          "finishedAt": "2026-10-13T09:42:10.0657901Z"
+        }
+      ],
+      "percent": 94
+    },
+    {
+      "id": "B",
+      "title": "تیزر uni-admissions",
+      "items": [
+        {
+          "id": "B-logo",
+          "title": "لوگوی SVG",
+          "state": "done",
+          "percent": 100,
+          "startedAt": "2026-10-13T05:45:51.764Z",
+          "expectedMinutes": 20,
+          "updatedAt": "2026-10-13T05:56:02.6051844Z",
+          "note": "",
+          "steps": {
+            "done": 1,
+            "total": 1
+          },
+          "outputs": [
+            {
+              "label": "گزارش لوگو",
+              "path": "docs/motion/reports/2026-10-13/logo-report.md",
+              "kind": "report"
+            },
+            {
+              "label": "لوگو SVG (گیت‌ایگنور، فقط مسیر)",
+              "path": "work/persian/assets/logo (SVG؛ فقط مسیر متنی)",
+              "kind": "report"
+            }
+          ]
+        },
+        {
+          "id": "B-dir",
+          "title": "جهت خلاقانه",
+          "state": "done",
+          "percent": 100,
+          "startedAt": "2026-10-13T05:45:51.764Z",
+          "expectedMinutes": 20,
+          "updatedAt": "2026-10-13T05:56:03.0554458Z",
+          "note": "",
+          "steps": {
+            "done": 1,
+            "total": 1
+          },
+          "outputs": [
+            {
+              "label": "جهت خلاقانه",
+              "path": "docs/motion/reports/2026-10-13/uni-creative-direction.md",
+              "kind": "report"
+            }
+          ]
+        },
+        {
+          "id": "B-review",
+          "title": "بازبینی جهت خلاقانه",
+          "state": "done",
+          "percent": 100,
+          "startedAt": "2026-10-13T05:49:33.1309131Z",
+          "expectedMinutes": 20,
+          "updatedAt": "2026-10-13T05:56:03.4927272Z",
+          "note": "",
+          "steps": {
+            "done": 1,
+            "total": 1
+          },
+          "outputs": [
+            {
+              "label": "بازبینی خلاقانه",
+              "path": "docs/motion/reports/2026-10-13/creative-review.md",
+              "kind": "report"
+            }
+          ]
+        },
+        {
+          "id": "B-scenes",
+          "title": "بازنویسی صحنه‌ها با شبکه ضرب اصلاح‌شده",
+          "state": "queued",
+          "percent": 0,
+          "startedAt": null,
+          "expectedMinutes": 20,
+          "updatedAt": "2026-10-13T05:56:03.9385546Z",
+          "note": "",
+          "outputs": [
+            {
+              "label": "گزارش P3",
+              "path": "docs/motion/reports/2026-10-13/uni-p3-report.md",
+              "kind": "report"
+            }
+          ]
+        },
+        {
+          "id": "B-render",
+          "title": "رندر بی‌صدا",
+          "state": "blocked",
+          "percent": 0,
+          "startedAt": null,
+          "expectedMinutes": 20,
+          "updatedAt": "2026-10-13T05:45:51.764Z",
+          "note": "منتظر صحنه‌ها و npm ci"
+        },
+        {
+          "id": "B-audio",
+          "title": "موسیقی + cue sheet + میکس",
+          "state": "queued",
+          "percent": 0,
+          "startedAt": null,
+          "expectedMinutes": 20,
+          "updatedAt": "2026-10-13T05:45:51.764Z",
+          "note": ""
+        },
+        {
+          "id": "B-fix",
+          "title": "creative fix round",
+          "state": "done",
+          "percent": 100,
+          "startedAt": "2026-10-13T05:51:31.9278891Z",
+          "expectedMinutes": 20,
+          "updatedAt": "2026-10-13T05:59:55.7455223Z",
+          "note": "start"
+        },
+        {
+          "id": "FIRST-VIDEO",
+          "title": "First real silent uni video",
+          "state": "done",
+          "percent": 100,
+          "startedAt": "2026-10-13T05:58:46.5257925Z",
+          "expectedMinutes": 20,
+          "updatedAt": "2026-10-13T06:01:19.8234439Z",
+          "note": "start",
+          "outputs": [
+            {
+              "label": "12 s silent 1080x1920",
+              "path": "media/film-versions/uni/first-video/uni-9x16-12s-silent.mp4",
+              "kind": "video"
+            },
+            {
+              "label": "Full 24 s silent 1080x1920",
+              "path": "media/film-versions/uni/first-video/uni-9x16-full-silent.mp4",
+              "kind": "video"
+            }
+          ],
+          "steps": {
+            "done": 4,
+            "total": 4
+          }
+        },
+        {
+          "id": "B-short-build",
+          "title": "S1 short cut build",
+          "state": "done",
+          "percent": 100,
+          "startedAt": "2026-10-13T06:02:06.9725856Z",
+          "expectedMinutes": 15,
+          "updatedAt": "2026-10-13T06:10:31.6908229Z",
+          "note": "",
+          "outputs": [
+            {
+              "label": "silent video 9x16 12s",
+              "path": "media/film-versions/uni/short-v1/uni-short-9x16-silent.mp4",
+              "kind": "video"
+            },
+            {
+              "label": "f30",
+              "path": "media/film-versions/uni/short-v1/still-9x16-f30.png",
+              "kind": "image"
+            },
+            {
+              "label": "f105",
+              "path": "media/film-versions/uni/short-v1/still-9x16-f105.png",
+              "kind": "image"
+            },
+            {
+              "label": "f165",
+              "path": "media/film-versions/uni/short-v1/still-9x16-f165.png",
+              "kind": "image"
+            },
+            {
+              "label": "f255",
+              "path": "media/film-versions/uni/short-v1/still-9x16-f255.png",
+              "kind": "image"
+            },
+            {
+              "label": "f345",
+              "path": "media/film-versions/uni/short-v1/still-9x16-f345.png",
+              "kind": "image"
+            }
+          ],
+          "steps": {
+            "done": 4,
+            "total": 4
+          }
+        },
+        {
+          "id": "B-short-render",
+          "title": "B-short-render",
+          "state": "done",
+          "percent": 100,
+          "startedAt": "2026-10-13T06:11:20.7126893Z",
+          "expectedMinutes": 20,
+          "updatedAt": "2026-10-13T06:17:20.1984701Z",
+          "note": "",
+          "outputs": [
+            {
+              "label": "contact-9x16-r2.png",
+              "path": "media/film-versions/uni/short-v2/contact-9x16-r2.png",
+              "kind": "image"
+            },
+            {
+              "label": "uni-short-9x16-silent.mp4",
+              "path": "media/film-versions/uni/short-v2/uni-short-9x16-silent.mp4",
+              "kind": "video"
+            },
+            {
+              "label": "contact-1x1-r2.png",
+              "path": "media/film-versions/uni/short-v2/contact-1x1-r2.png",
+              "kind": "image"
+            },
+            {
+              "label": "uni-short-1x1-silent.mp4",
+              "path": "media/film-versions/uni/short-v2/uni-short-1x1-silent.mp4",
+              "kind": "video"
+            },
+            {
+              "label": "contact-4x5-r2.png",
+              "path": "media/film-versions/uni/short-v2/contact-4x5-r2.png",
+              "kind": "image"
+            },
+            {
+              "label": "uni-short-4x5-silent.mp4",
+              "path": "media/film-versions/uni/short-v2/uni-short-4x5-silent.mp4",
+              "kind": "video"
+            },
+            {
+              "label": "contact-16x9-r2.png",
+              "path": "media/film-versions/uni/short-v2/contact-16x9-r2.png",
+              "kind": "image"
+            },
+            {
+              "label": "uni-short-16x9-silent.mp4",
+              "path": "media/film-versions/uni/short-v2/uni-short-16x9-silent.mp4",
+              "kind": "video"
+            },
+            {
+              "label": "check-transition.png",
+              "path": "media/film-versions/uni/short-v2/check-transition.png",
+              "kind": "image"
+            }
+          ],
+          "steps": {
+            "done": 5,
+            "total": 5
+          }
+        },
+        {
+          "id": "B-short-sound",
+          "title": "B-short-sound",
+          "state": "done",
+          "percent": 100,
+          "startedAt": "2026-10-13T06:18:00.2803394Z",
+          "expectedMinutes": 20,
+          "updatedAt": "2026-10-13T06:25:05.6011815Z",
+          "note": "",
+          "outputs": [
+            {
+              "label": "sound 9x16",
+              "path": "media/film-versions/uni/short-v2/uni-short-9x16-sound.mp4",
+              "kind": "video"
+            },
+            {
+              "label": "sound 1x1",
+              "path": "media/film-versions/uni/short-v2/uni-short-1x1-sound.mp4",
+              "kind": "video"
+            },
+            {
+              "label": "sound 4x5",
+              "path": "media/film-versions/uni/short-v2/uni-short-4x5-sound.mp4",
+              "kind": "video"
+            },
+            {
+              "label": "sound 16x9",
+              "path": "media/film-versions/uni/short-v2/uni-short-16x9-sound.mp4",
+              "kind": "video"
+            },
+            {
+              "label": "cue-sheet.json",
+              "path": "media/film-versions/uni/short-v2/audio/cue-sheet.json",
+              "kind": "report"
+            },
+            {
+              "label": "waveform-short-v2.png",
+              "path": "media/film-versions/uni/short-v2/audio/waveform-short-v2.png",
+              "kind": "image"
+            },
+            {
+              "label": "S3-report.md",
+              "path": "docs/motion/reports/2026-10-13/S3-report.md",
+              "kind": "report"
+            }
+          ],
+          "steps": {
+            "done": 5,
+            "total": 5
+          }
+        },
+        {
+          "id": "R30-FILM",
+          "title": "30 s film build",
+          "state": "done",
+          "percent": 100,
+          "expectedMinutes": 15,
+          "updatedAt": "2026-10-13T06:49:02.7696104Z",
+          "note": "",
+          "startedAt": "2026-10-13T06:41:23.0304507Z",
+          "outputs": [
+            {
+              "label": "uni long 9x16 silent",
+              "path": "media/film-versions/uni/long-v1/uni-long-9x16-silent.mp4",
+              "kind": "video"
+            },
+            {
+              "label": "uni long 1x1 silent",
+              "path": "media/film-versions/uni/long-v1/uni-long-1x1-silent.mp4",
+              "kind": "video"
+            },
+            {
+              "label": "uni long 4x5 silent",
+              "path": "media/film-versions/uni/long-v1/uni-long-4x5-silent.mp4",
+              "kind": "video"
+            },
+            {
+              "label": "uni long 16x9 silent",
+              "path": "media/film-versions/uni/long-v1/uni-long-16x9-silent.mp4",
+              "kind": "video"
+            }
+          ],
+          "finishedAt": "2026-10-13T06:49:02.7696104Z",
+          "actualMinutes": 7.7,
+          "steps": {
+            "done": 4,
+            "total": 4
+          }
+        },
+        {
+          "id": "R30-MUSIC",
+          "title": "Music bed 30 s",
+          "state": "done",
+          "percent": 100,
+          "expectedMinutes": 10,
+          "updatedAt": "2026-10-13T06:50:03.5338958Z",
+          "note": "",
+          "startedAt": "2026-10-13T06:41:23.4763737Z",
+          "outputs": [
+            {
+              "label": "long 9x16 sound",
+              "path": "media/film-versions/uni/long-v1/uni-long-9x16-sound.mp4",
+              "kind": "video"
+            },
+            {
+              "label": "long 1x1 sound",
+              "path": "media/film-versions/uni/long-v1/uni-long-1x1-sound.mp4",
+              "kind": "video"
+            },
+            {
+              "label": "long 4x5 sound",
+              "path": "media/film-versions/uni/long-v1/uni-long-4x5-sound.mp4",
+              "kind": "video"
+            },
+            {
+              "label": "long 16x9 sound",
+              "path": "media/film-versions/uni/long-v1/uni-long-16x9-sound.mp4",
+              "kind": "video"
+            },
+            {
+              "label": "waveform",
+              "path": "media/film-versions/uni/long-v1/audio/waveform-long-v1.png",
+              "kind": "image"
+            },
+            {
+              "label": "report",
+              "path": "docs/motion/reports/2026-10-13/R30-MUSIC-report.md",
+              "kind": "report"
+            }
+          ],
+          "finishedAt": "2026-10-13T06:50:03.5338958Z",
+          "actualMinutes": 8.7,
+          "steps": {
+            "done": 4,
+            "total": 4
+          }
+        },
+        {
+          "id": "R30-RENDER",
+          "title": "Render 4 ratios",
+          "state": "queued",
+          "percent": 0,
+          "startedAt": null,
+          "finishedAt": null,
+          "actualMinutes": null,
+          "expectedMinutes": 4,
+          "updatedAt": "2026-10-13T06:41:22.1135326Z",
+          "note": ""
+        },
+        {
+          "id": "R30-MIX",
+          "title": "Mix and mux with sound",
+          "state": "queued",
+          "percent": 0,
+          "startedAt": null,
+          "finishedAt": null,
+          "actualMinutes": null,
+          "expectedMinutes": 6,
+          "updatedAt": "2026-10-13T06:41:22.5633679Z",
+          "note": ""
+        },
+        {
+          "id": "R30-DESIGN",
+          "title": "R30-DESIGN",
+          "state": "done",
+          "percent": 100,
+          "expectedMinutes": 20,
+          "updatedAt": "2026-10-13T07:25:22.5298514Z",
+          "note": "",
+          "startedAt": "2026-10-13T07:17:55.1230591Z",
+          "outputs": [
+            {
+              "label": "uni-long-9x16-silent.mp4",
+              "path": "media/film-versions/uni/long-v3/uni-long-9x16-silent.mp4",
+              "kind": "video"
+            },
+            {
+              "label": "uni-long-1x1-silent.mp4",
+              "path": "media/film-versions/uni/long-v3/uni-long-1x1-silent.mp4",
+              "kind": "video"
+            },
+            {
+              "label": "uni-long-4x5-silent.mp4",
+              "path": "media/film-versions/uni/long-v3/uni-long-4x5-silent.mp4",
+              "kind": "video"
+            },
+            {
+              "label": "uni-long-16x9-silent.mp4",
+              "path": "media/film-versions/uni/long-v3/uni-long-16x9-silent.mp4",
+              "kind": "video"
+            },
+            {
+              "label": "events.json",
+              "path": "media/film-versions/uni/long-v3/events.json",
+              "kind": "report"
+            },
+            {
+              "label": "R30-DESIGN-report.md",
+              "path": "docs/motion/reports/2026-10-13/R30-DESIGN-report.md",
+              "kind": "report"
+            }
+          ],
+          "finishedAt": "2026-10-13T07:25:22.5298514Z",
+          "actualMinutes": 7.5,
+          "steps": {
+            "done": 5,
+            "total": 5
+          }
+        },
+        {
+          "id": "R30-SYNC",
+          "title": "R30-SYNC",
+          "state": "done",
+          "percent": 100,
+          "startedAt": null,
+          "actualMinutes": null,
+          "expectedMinutes": 20,
+          "updatedAt": "2026-10-13T09:39:12.6822361Z",
+          "note": "",
+          "finishedAt": "2026-10-13T09:39:12.6822361Z",
+          "steps": {
+            "done": 5,
+            "total": 5
+          }
+        }
+      ],
+      "percent": 100
+    },
+    {
+      "id": "C",
+      "title": "انتقال صدا",
+      "items": [
+        {
+          "id": "C-audio",
+          "title": "انتقال فایل‌های صوتی بین ماشین‌ها",
+          "state": "queued",
+          "percent": 0,
+          "startedAt": null,
+          "expectedMinutes": 20,
+          "updatedAt": "2026-10-13T05:45:51.764Z",
+          "note": ""
+        }
+      ],
+      "percent": 0
+    },
+    {
+      "id": "R30 visual fix v2",
+      "title": "R30 visual fix v2",
+      "percent": 100,
+      "items": [
+        {
+          "id": "R30-FIX",
+          "title": "R30-FIX",
+          "state": "done",
+          "percent": 100,
+          "expectedMinutes": 20,
+          "updatedAt": "2026-10-13T06:53:23.1800642Z",
+          "note": "",
+          "startedAt": "2026-10-13T06:49:44.8874454Z",
+          "outputs": [
+            {
+              "label": "uni-long-9x16-silent.mp4",
+              "path": "media/film-versions/uni/long-v2/uni-long-9x16-silent.mp4",
+              "kind": "video"
+            },
+            {
+              "label": "uni-long-9x16-sound.mp4",
+              "path": "media/film-versions/uni/long-v2/uni-long-9x16-sound.mp4",
+              "kind": "video"
+            },
+            {
+              "label": "uni-long-1x1-silent.mp4",
+              "path": "media/film-versions/uni/long-v2/uni-long-1x1-silent.mp4",
+              "kind": "video"
+            },
+            {
+              "label": "uni-long-1x1-sound.mp4",
+              "path": "media/film-versions/uni/long-v2/uni-long-1x1-sound.mp4",
+              "kind": "video"
+            },
+            {
+              "label": "uni-long-4x5-silent.mp4",
+              "path": "media/film-versions/uni/long-v2/uni-long-4x5-silent.mp4",
+              "kind": "video"
+            },
+            {
+              "label": "uni-long-4x5-sound.mp4",
+              "path": "media/film-versions/uni/long-v2/uni-long-4x5-sound.mp4",
+              "kind": "video"
+            },
+            {
+              "label": "uni-long-16x9-silent.mp4",
+              "path": "media/film-versions/uni/long-v2/uni-long-16x9-silent.mp4",
+              "kind": "video"
+            },
+            {
+              "label": "uni-long-16x9-sound.mp4",
+              "path": "media/film-versions/uni/long-v2/uni-long-16x9-sound.mp4",
+              "kind": "video"
+            }
+          ],
+          "finishedAt": "2026-10-13T06:53:23.1800642Z",
+          "actualMinutes": 3.6,
+          "steps": {
+            "done": 4,
+            "total": 4
+          }
+        }
+      ]
+    },
+    {
+      "id": "Check whether music sync, LTR digits and hero-size rules were recorded; write FILM-GATES.md",
+      "title": "Check whether music sync, LTR digits and hero-size rules were recorded; write FILM-GATES.md",
+      "percent": 100,
+      "items": [
+        {
+          "id": "RULES-EVIDENCE",
+          "title": "RULES-EVIDENCE",
+          "state": "done",
+          "percent": 100,
+          "startedAt": null,
+          "actualMinutes": null,
+          "expectedMinutes": 20,
+          "updatedAt": "2026-10-13T09:39:13.1677823Z",
+          "note": "",
+          "finishedAt": "2026-10-13T09:39:13.1677823Z"
+        }
+      ]
+    },
+    {
+      "id": "Skill policy in AGENTS.md, CLAUDE.md, persianarts-motion plugin",
+      "title": "Skill policy in AGENTS.md, CLAUDE.md, persianarts-motion plugin",
+      "percent": 0,
+      "items": [
+        {
+          "id": "SK-3",
+          "title": "SK-3",
+          "state": "queued",
+          "percent": 0,
+          "startedAt": null,
+          "finishedAt": null,
+          "actualMinutes": null,
+          "expectedMinutes": 20,
+          "updatedAt": "2026-10-13T09:41:19.8404591Z",
+          "note": ""
+        }
+      ]
+    }
+  ],
+  "blockers": [
+    {
+      "text": "npm ci تأیید نشده است",
+      "owner": "owner"
+    },
+    {
+      "text": "فایل‌های خصوصی مشتری موجود نیست (PA_PRIVATE_DIR)",
+      "owner": "owner"
+    },
+    {
+      "text": "contracts/confidential-terms.local.txt موجود نیست (checkpoint امن ممکن نیست)",
+      "owner": "owner"
+    }
+  ],
+  "render": {
+    "total": 0,
+    "running": false,
+    "frame": 0,
+    "fps": 0,
+    "film": "uni/long",
+    "ratio": "",
+    "updatedAt": "2026-10-13T07:24:27.3066722Z",
+    "etaSeconds": 0
+  }
+}

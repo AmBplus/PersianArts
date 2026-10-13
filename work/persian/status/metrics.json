@@ -1,0 +1,353 @@
+{
+ "generatedAt": "2026-10-13T06:38:49.520Z",
+ "session": "dd8b1f7e-b3ee-4431-8389-904e79023342",
+ "windowStart": "2026-10-13T04:47:26.883Z",
+ "windowEnd": "2026-10-13T06:34:19.000Z",
+ "method": "wall-clock seconds split evenly among concurrent workers; tool calls classified by command; source: Claude Code transcripts",
+ "wallMinutes": 106.9,
+ "workerMinutes": 77.7,
+ "orders": 29,
+ "leadTurnMinutes": 14.3,
+ "waits": [
+  {
+   "from": "2026-10-13T04:51:02.883Z",
+   "to": "2026-10-13T05:22:13.883Z",
+   "minutes": 31.2
+  },
+  {
+   "from": "2026-10-13T05:23:57.883Z",
+   "to": "2026-10-13T05:28:23.883Z",
+   "minutes": 4.4
+  },
+  {
+   "from": "2026-10-13T05:39:54.883Z",
+   "to": "2026-10-13T05:43:55.883Z",
+   "minutes": 4
+  },
+  {
+   "from": "2026-10-13T06:29:35.883Z",
+   "to": "2026-10-13T06:34:19.000Z",
+   "minutes": 4.7
+  }
+ ],
+ "activities": [
+  {
+   "id": "waiting",
+   "label": "انتظار برای مالک (بی‌کار)",
+   "minutes": 44.4,
+   "percent": 41.5
+  },
+  {
+   "id": "render",
+   "label": "رندر (استیل و ویدیو)",
+   "minutes": 10.3,
+   "percent": 9.6
+  },
+  {
+   "id": "build",
+   "label": "پیاده‌سازی کد فیلم",
+   "minutes": 8.5,
+   "percent": 8
+  },
+  {
+   "id": "docs",
+   "label": "نوشتن طرح، سند و گزارش",
+   "minutes": 6.7,
+   "percent": 6.3
+  },
+  {
+   "id": "search",
+   "label": "جست‌وجوی کند فایل",
+   "minutes": 6.1,
+   "percent": 5.7
+  },
+  {
+   "id": "lead",
+   "label": "تصمیم و سفارش‌نویسی مدیر",
+   "minutes": 5.9,
+   "percent": 5.6
+  },
+  {
+   "id": "setup",
+   "label": "قابل‌حمل‌سازی و راه‌اندازی",
+   "minutes": 5.8,
+   "percent": 5.4
+  },
+  {
+   "id": "review",
+   "label": "بازبینی و دور اصلاح",
+   "minutes": 5.5,
+   "percent": 5.2
+  },
+  {
+   "id": "audio",
+   "label": "موسیقی، SFX و میکس",
+   "minutes": 5.4,
+   "percent": 5.1
+  },
+  {
+   "id": "dashboard",
+   "label": "ابزار تابلو و متر زمان",
+   "minutes": 4.5,
+   "percent": 4.2
+  },
+  {
+   "id": "npm",
+   "label": "نصب npm و bundle",
+   "minutes": 2.3,
+   "percent": 2.2
+  },
+  {
+   "id": "git",
+   "label": "git و checkpoint",
+   "minutes": 0.8,
+   "percent": 0.7
+  },
+  {
+   "id": "blocked",
+   "label": "تلاش مسدودشده",
+   "minutes": 0.6,
+   "percent": 0.6
+  }
+ ],
+ "toolMinutes": {
+  "render": 7.2,
+  "search": 6.9,
+  "npm": 4.2,
+  "audio": 0.1
+ },
+ "workers": [
+  {
+   "id": "a419468c",
+   "desc": "Status brief for resume",
+   "model": "haiku",
+   "activity": "docs",
+   "start": "2026-10-13T04:47:49.329Z",
+   "minutes": 0.5
+  },
+  {
+   "id": "ab175c9a",
+   "desc": "Complete P3 uni teaser render",
+   "model": "sonnet",
+   "activity": "blocked",
+   "start": "2026-10-13T04:47:49.346Z",
+   "minutes": 3
+  },
+  {
+   "id": "a04c2e73",
+   "desc": "Locate uni assets relative to project",
+   "model": "haiku",
+   "activity": "setup",
+   "start": "2026-10-13T05:22:21.912Z",
+   "minutes": 1.4
+  },
+  {
+   "id": "a4477f9d",
+   "desc": "Audit tracked vs ignored assets and SFX",
+   "model": "haiku",
+   "activity": "setup",
+   "start": "2026-10-13T05:28:43.528Z",
+   "minutes": 1.3
+  },
+  {
+   "id": "a9c231c9",
+   "desc": "Portable-project decision brief",
+   "model": "sonnet",
+   "activity": "docs",
+   "start": "2026-10-13T05:28:43.538Z",
+   "minutes": 1.6
+  },
+  {
+   "id": "ad21e0fc",
+   "desc": "M1 fonts into repo assets",
+   "model": "haiku",
+   "activity": "setup",
+   "start": "2026-10-13T05:30:41.360Z",
+   "minutes": 0.5
+  },
+  {
+   "id": "a1432bd1",
+   "desc": "M2 pa.ps1 setup and check",
+   "model": "sonnet",
+   "activity": "setup",
+   "start": "2026-10-13T05:30:41.369Z",
+   "minutes": 1.4
+  },
+  {
+   "id": "a86ee73f",
+   "desc": "M6 checkpoint font guard",
+   "model": "sonnet",
+   "activity": "setup",
+   "start": "2026-10-13T05:30:41.377Z",
+   "minutes": 0.5
+  },
+  {
+   "id": "a741cc03",
+   "desc": "M3 render_all auto setup",
+   "model": "sonnet",
+   "activity": "setup",
+   "start": "2026-10-13T05:32:12.969Z",
+   "minutes": 0.4
+  },
+  {
+   "id": "aab2bc5b",
+   "desc": "M5 remove absolute D paths",
+   "model": "haiku",
+   "activity": "setup",
+   "start": "2026-10-13T05:32:12.979Z",
+   "minutes": 0.8
+  },
+  {
+   "id": "a0bac268",
+   "desc": "M7 fresh machine docs",
+   "model": "haiku",
+   "activity": "docs",
+   "start": "2026-10-13T05:33:33.275Z",
+   "minutes": 0.6
+  },
+  {
+   "id": "a1d35ad5",
+   "desc": "Logo to layered SVG",
+   "model": "sonnet",
+   "activity": "build",
+   "start": "2026-10-13T05:33:33.284Z",
+   "minutes": 1.9
+  },
+  {
+   "id": "ad781587",
+   "desc": "Uni teaser creative brief and prompt",
+   "model": "opus",
+   "activity": "docs",
+   "start": "2026-10-13T05:33:33.292Z",
+   "minutes": 5.6
+  },
+  {
+   "id": "a514da5a",
+   "desc": "Record audio portability issue",
+   "model": "haiku",
+   "activity": "docs",
+   "start": "2026-10-13T05:39:19.568Z",
+   "minutes": 0.4
+  },
+  {
+   "id": "a2755b68",
+   "desc": "Live status board and render progress",
+   "model": "sonnet",
+   "activity": "dashboard",
+   "start": "2026-10-13T05:44:23.871Z",
+   "minutes": 3.7
+  },
+  {
+   "id": "a5e07bbd",
+   "desc": "Record owner standing decision",
+   "model": "haiku",
+   "activity": "docs",
+   "start": "2026-10-13T05:44:52.397Z",
+   "minutes": 0.8
+  },
+  {
+   "id": "aa585895",
+   "desc": "Unblock: npm ci, placeholders, smoke render",
+   "model": "sonnet",
+   "activity": "setup",
+   "start": "2026-10-13T05:44:52.406Z",
+   "minutes": 4.2
+  },
+  {
+   "id": "a99009ad",
+   "desc": "Fix stale board items",
+   "model": "haiku",
+   "activity": "dashboard",
+   "start": "2026-10-13T05:48:22.003Z",
+   "minutes": 0.4
+  },
+  {
+   "id": "a043dc44",
+   "desc": "Fix npm ci EPERM and Chrome flags",
+   "model": "sonnet",
+   "activity": "setup",
+   "start": "2026-10-13T05:49:27.773Z",
+   "minutes": 4.7
+  },
+  {
+   "id": "a2632b57",
+   "desc": "Independent review of creative direction",
+   "model": "sonnet",
+   "activity": "review",
+   "start": "2026-10-13T05:49:27.781Z",
+   "minutes": 1.5
+  },
+  {
+   "id": "ac031c30",
+   "desc": "Creative direction fix round",
+   "model": "opus",
+   "activity": "review",
+   "start": "2026-10-13T05:51:16.440Z",
+   "minutes": 8.9
+  },
+  {
+   "id": "a30d3fc6",
+   "desc": "Record resilience standing rule",
+   "model": "haiku",
+   "activity": "docs",
+   "start": "2026-10-13T05:52:00.963Z",
+   "minutes": 0.3
+  },
+  {
+   "id": "a3230c18",
+   "desc": "Board: show outputs and explain percent",
+   "model": "sonnet",
+   "activity": "dashboard",
+   "start": "2026-10-13T05:54:18.019Z",
+   "minutes": 3.6
+  },
+  {
+   "id": "ae9f6370",
+   "desc": "Produce first real uni video now",
+   "model": "sonnet",
+   "activity": "render",
+   "start": "2026-10-13T05:58:30.611Z",
+   "minutes": 3
+  },
+  {
+   "id": "a654b886",
+   "desc": "S1 build 12s short cut",
+   "model": "sonnet",
+   "activity": "build",
+   "start": "2026-10-13T06:00:33.971Z",
+   "minutes": 10.2
+  },
+  {
+   "id": "ac9ddd30",
+   "desc": "S2 render four ratios and fix",
+   "model": "sonnet",
+   "activity": "render",
+   "start": "2026-10-13T06:11:01.682Z",
+   "minutes": 6.5
+  },
+  {
+   "id": "abb7cbb2",
+   "desc": "S3 music, SFX and mix on short cut",
+   "model": "sonnet",
+   "activity": "audio",
+   "start": "2026-10-13T06:17:52.888Z",
+   "minutes": 7.4
+  },
+  {
+   "id": "a3019225",
+   "desc": "Safe checkpoint commit and push",
+   "model": "haiku",
+   "activity": "git",
+   "start": "2026-10-13T06:25:39.905Z",
+   "minutes": 1.2
+  },
+  {
+   "id": "a6c1bde1",
+   "desc": "Metering on board and METERING report",
+   "model": "sonnet",
+   "activity": "dashboard",
+   "start": "2026-10-13T06:28:05.454Z",
+   "minutes": 1.3
+  }
+ ]
+}
