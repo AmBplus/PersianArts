@@ -76,3 +76,22 @@ A research order returns a one-page decision brief (question, 2-4 options, evide
 - Binaries stay under `media/` (ignored) and are never copied into `films/`. `versions.json` references each version by path, sha256, source commit, BPM, T0, track slug and cues file.
 - A missing binary on this machine yields `missing` in `pa verify`; it never fails the film.
 - Music and SFX are referenced by slug or ID only.
+
+## pa: decision (2026-10-13)
+
+Decision: adopt the incoming `work/persian/tools/pa.ps1` as THE command layer. It is PowerShell, already in git, and already the documented entry for setup, private-file copy, readiness check and the live board. The planned Node dispatcher at `scripts/pa/` is not created; new `pa` subcommands are added to `pa.ps1` and call the existing scripts. Mapping of the commands in the table above:
+
+| Planned command | Today | Status |
+|---|---|---|
+| `pa new-film` | none | backlog (B3) |
+| `pa render` | `work/persian/render_all.ps1` (run directly) | wrapper missing (B3) |
+| `pa mix` | `work/persian/mix_film.ps1`, `work/persian/mix_sfx.ps1` | wrapper missing (B3) |
+| `pa preview` | `render_all.ps1 -Mode stills` | wrapper missing (B3) |
+| `pa version` | none (version folders by hand) | backlog (B3) |
+| `pa verify` | `work/persian/tools/gates/run-gates.mjs`, `work/persian/tools/film-process-gates.mjs` | wrapper missing (B3) |
+| `pa scan` | `node contracts/scan.mjs` | wrapper missing (B3) |
+| `pa research-log` | none (DECISIONS.jsonl by hand) | backlog (B3) |
+| `pa order` | `qh order` | wrapper missing (backlog) |
+| `pa setup`, `setup-private`, `check`, `status` | `work/persian/tools/pa.ps1` | exists |
+
+Status: decision proposed by the lead; owner confirmation is pending (DECISIONS line D-20261013-22).

@@ -1,6 +1,46 @@
 # RESUME HERE (updated at each checkpoint)
 
-## Owner standing orders 2026-10-13 (DECISIONS D-20261013-13)
+## CURRENT STATE (2026-10-13, single source; the older blocks below are history)
+
+- Date: 2026-10-13. Last commit before the docs merge: `24baaae`. The merge commit is recorded in `docs/motion/last-checkpoint.txt` (checkpoint writes it after the commit; this block cannot name its own hash).
+- Running orders: none. Autopilot: PAUSED by owner (~08:20). No new orders start until the owner resumes.
+- GLM: sidelined for scene work (two timeouts on P2 and P3). Quick hands: Haiku. Implementation: Sol (gpt-6.1-sol via `qh order` / `qh run`).
+- Uni-admissions teaser: 8 scenes in `work/persian/src/film/uni`; P3 unfinished (GLM timeout, then order 15 stopped, half-edited, unverified). No full render. No sound.
+- Pencil v51: 2 versions with sound, waiting for the owner's listening feedback.
+- Process: the persian-arts system is the entry point for building films; see the MAP in [README.md](README.md).
+
+Owner standing rules (apply to every order and every reply):
+- Personal, non-commercial use. Do not raise licence talk unless the owner asks.
+- Sample films are tested in 9:16 only for now; every ingredient must still work in 1:1, 4:5 and 16:9.
+- Time-box rule: every order states its expected time; an overrun is reported in one line (order, expected vs actual, action). Two overruns on the same kind of task sideline that worker.
+- When the owner asks only to look or show, do not continue beyond that: no fixes, renders or orders unless asked.
+- Sound on request only (D-20261013-19). Cues land on beat or bar. No text-to-speech or synthesis for voice.
+- Anti-slideshow rule; the client's name and institution words never appear in tracked files (label `uni-admissions`).
+- Resilience (D-20261013-14): try at least two reasonable alternatives before reporting a blocker; involve the owner only when it cannot be done without them.
+
+Ordered next steps (one list; merges the two older lists; start only when the owner resumes):
+1. Re-check `work/persian/src/film/uni` against the P3 acceptance (Sol order, short brief, no GLM).
+2. After the check passes: full silent render of the uni teaser (B1); record numbers from raw logs.
+3. B2: re-measure render benchmarks into `work/persian/_bench/results-<date>.csv`.
+4. B3: extend `work/persian/tools/pa.ps1` with the missing commands (see the "pa: decision" paragraph in [ARCHITECTURE.md](ARCHITECTURE.md)); render writes canonical `VERSION.json`.
+5. B5: keep `docs/motion/STATE.md` fresh; rebuild the ledger (`node work/persian/tools/ledger/build_ledger.mjs`); create `docs/motion/manual-orders.jsonl` on the first order.
+
+Owner waiting list (owner-only; the lead never decides these):
+- rubric-v2 weights (rec: accept 1.5, cap 6 recs).
+- `http.sslverify false` in the global gitconfig: owner should remove it.
+- Public URL: Pages URL still says persiandoodle in README, index.html and workflow; owner decides.
+- `media/dana/` (rec: keep tracked).
+- Pencil v51 listening feedback.
+- Public wording for the uni-admissions teaser.
+- Where the client-private files are kept (`PA_PRIVATE_DIR`): open.
+- Audio does not travel via git (D-20261013-12): choose PA_PRIVATE_DIR audio folder, shared folder, or small allowlisted audio.
+- Commit trailer rule: confirm the `Claude-Session` only rule (see [AUTOPILOT.md](AUTOPILOT.md)).
+
+---
+
+## History: incoming owner standing orders
+
+### Owner standing orders 2026-10-13 (DECISIONS D-20261013-13)
 - (a) Owner approves `npm ci` (pinned dependency downloads) in `work/persian/src/workbench`.
 - (b) Lead stops asking permission for routine unblock steps: act, then report. Missing client-private files get clearly-labelled placeholders (never invented client claims); `contracts/confidential-terms.local.txt` is created locally (git-ignored) so the safe checkpoint scan works.
 - (c) Every worker order reports progress to the live status board (`docs/motion/STATUS-PROTOCOL.md`, being created); 10 minutes of silence = stalled.
@@ -11,7 +51,13 @@ Portability: milestones M1-M6 done (fonts in `work/persian/assets`, `pa.ps1`, re
 Open owner items: `contracts/confidential-terms.local.txt` source (RESOLVED 2026-10-13, D-20261013-13: create locally, placeholders for missing client-private files); approval to run `npm ci` (RESOLVED 2026-10-13, D-20261013-13: approved for `work/persian/src/workbench`); where the private files (`PA_PRIVATE_DIR`) are kept (still open).
 Known gap: audio does not travel via git. Audio binaries made in earlier sessions are gitignored and absent on this machine (`.gitignore:53-58`, `:97-99`), so the v51 mix cannot be reproduced here (`hit-stamp-sub.wav` missing) and `pa.ps1` skips the sfx/bgm links on a fresh clone. Status OPEN, decision pending owner/lead (options: `PA_PRIVATE_DIR` audio subfolder, shared folder, or small allowlisted audio with a size cap). Details: [PLAYBOOK-SOUND.md](PLAYBOOK-SOUND.md) section 9 and DECISIONS `D-20261013-12`.
 
-## AUTOPILOT PAUSED by owner 2026-10-13 ~08:20
+---
+
+## History: autopilot pause (our system)
+
+Kept as written at the pause. Its state and next-step lists are superseded by CURRENT STATE above.
+
+### AUTOPILOT PAUSED by owner 2026-10-13 ~08:20
 GLM (zcode) sidelined: it timed out on P2 (1500 s) and P3 (1202 s); do not use GLM for scene work. Use Haiku for quick
 actions and Sol (codex-a gpt-6.1-sol via `qh order` / `qh run`) for implementation until the owner says otherwise.
 
@@ -48,11 +94,11 @@ Next 5 actions, in order:
 - Remote: `origin` = `git@github.com:AmBplus/PersianArts.git` (SSH, owner-set 2026-10-13). Push: `checkpoint.ps1` pushes over SSH (BatchMode, GCM_INTERACTIVE=never); `-PushOnly` retries unpushed commits.
 - Owner note: global `C:/Users/Amir/.gitconfig` has `http.sslverify false` (TLS verification off for all HTTPS git). Recommend removing it; not changed by the agent.
 
-## Next 3 actions
+### Next 3 actions (superseded by the ordered list in CURRENT STATE)
 1. B1: wait for P3 (order 13), then full silent render of the uni-admissions teaser (see AUTOPILOT backlog).
 2. B2: re-measure render benchmarks with raw logs into `work/persian/_bench/results-<date>.csv`.
 3. B5: keep `docs/motion/STATE.md` fresh; rebuild the ledger; merge Haiku order records.
 
-## Waiting for owner
+### Waiting for owner (at pause; superseded by the list in CURRENT STATE)
 rubric-v2 weights (rec accept 1.5, cap 6); `media/dana/` (rec keep tracked);
 pencil v51 listening feedback; public wording for the uni-admissions teaser.

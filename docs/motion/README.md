@@ -2,6 +2,32 @@
 
 Status date: 2026-10-13. Read this file first in any new chat.
 
+## MAP: who owns what (merged 2026-10-13)
+
+Two systems live in this folder. The persian-arts system came in with 24baaae; the production system is ours. Both are kept.
+
+| Area | Owner system | Where | Use it for |
+|---|---|---|---|
+| Entry point to build a film | persian-arts | `/persian-arts` (`.claude/commands/persian-arts.md`, skill `.claude/skills/persian-arts/`) | "build a film" or "make a motion": orchestration, intake, gates, QC |
+| Craft skills (internal) | persian-arts | `.claude/skills/persian-arts-*/` (director, writer, technical, sound, qc, copy-editor, art-director, motion-designer, motion-editor) | steps the orchestrator calls; never triggered alone |
+| Command layer | persian-arts | `work/persian/tools/pa.ps1` (setup, setup-private, check, status) | setup, private-file copy, readiness check, live board |
+| Gates, board, goals | persian-arts | `work/persian/tools/gates/`, `work/persian/status/serve.mjs`, [GOAL-MEMORY.md](GOAL-MEMORY.md), [FILM-GATES.md](FILM-GATES.md), [STATUS-PROTOCOL.md](STATUS-PROTOCOL.md) | quality gates, live status |
+| Process and lessons | persian-arts | [LESSONS-LEDGER.md](LESSONS-LEDGER.md) (lessons per film), [LOOP-POLICY.md](LOOP-POLICY.md), [METERING.md](METERING.md), [METRICS.md](METRICS.md) | retro lessons, loop and quota rules |
+| Render and sound recipes | ours | [PLAYBOOK-BUILD-MOTION.md](PLAYBOOK-BUILD-MOTION.md), [PLAYBOOK-RENDER.md](PLAYBOOK-RENDER.md), [PLAYBOOK-SOUND.md](PLAYBOOK-SOUND.md) | render and sound steps; build-motion is the fast path after `/persian-arts` |
+| Decisions | ours | [DECISIONS.jsonl](DECISIONS.jsonl) (validated by `contracts/schemas/decision.schema.json`) | what we decided, with evidence |
+| Research | ours | [research/INDEX.md](research/INDEX.md) | decision briefs (question, options, evidence) |
+| Production timing and quality accounting | ours | [ledger/](ledger/README.md) (`ledger.jsonl`, per-film tables), [reports/](reports/README.md) (daily two-level reports) | how long films take, what each version cost |
+| Contracts | ours | `contracts/` (schemas, `validate.mjs`, `scan.mjs`) | JSON shapes and the confidentiality and secrets scan |
+| Autopilot and architecture | ours | [AUTOPILOT.md](AUTOPILOT.md), [ARCHITECTURE.md](ARCHITECTURE.md), [adr/](adr/0001-architecture-option-c.md), [RESUME.md](RESUME.md) | unattended-work protocol, folder plan, current state |
+| Render and mix scripts | ours | `work/persian/render_all.ps1`, `work/persian/mix_film.ps1`, `work/persian/mix_sfx.ps1`, `work/persian/tools/cues/` | the actual render, mix and cue work |
+| Checkpoint and commits | shared | `work/persian/tools/checkpoint.ps1` (whitelist commit and push, commit guard) | the only commit path; see the trailer rule in [AUTOPILOT.md](AUTOPILOT.md) |
+
+Routing: "build a film" goes to `/persian-arts`, then PLAYBOOK-BUILD-MOTION for the render and sound recipes. "What did we decide or research" goes to DECISIONS.jsonl and research/. "Time or quality accounting" goes to ledger/ and reports/. LESSONS-LEDGER is not the production ledger: see the note in [ledger/README.md](ledger/README.md).
+
+Commit trailer rule: every commit ends with exactly one `Claude-Session: ...` trailer and has no `Co-Authored-By` line (enforced by `checkpoint.ps1`). Commit ad89a30 has a stray `Co-Authored-By`; history is not rewritten. Details: [AUTOPILOT.md](AUTOPILOT.md).
+
+`pa` decision: `pa.ps1` is the command layer; the planned `pa` CLI skeleton is not built separately. See the "pa: decision" paragraph in [ARCHITECTURE.md](ARCHITECTURE.md).
+
 ## What the project is
 A Persian motion-graphics engine: Remotion (React, Chrome renders) scenes with Persian text, a beat-based cut grid, a sound library with a beat test, and a render and mix pipeline. Output: short 9:16 social films (1:1, 4:5 and 16:9 derived) with a single music track and recorded or library SFX.
 

@@ -99,3 +99,9 @@ Owner rule, 2026-10-13. Motivation: the uni teaser took about 6 h after two GLM 
 - Two overruns on the same kind of task sideline that worker or tool: no more orders to it until the owner lifts the rule.
 - Do not run side research in parallel with the critical path. Finish the film first.
 - Each overrun is recorded in `docs/motion/ledger/README.md` and decided in `docs/motion/DECISIONS.jsonl`.
+
+## Merge notes (2026-10-13, docs merge with persian-arts)
+
+- Commit trailer rule: every commit ends with exactly one `Claude-Session: ...` trailer and has no `Co-Authored-By` line. `checkpoint.ps1` (incoming commit guard) refuses a `-Message` containing `Co-Authored-By` or a second `Claude-Session:`, and appends the trailer itself. Commit ad89a30 contains a stray `Co-Authored-By` line; history is not rewritten. Owner confirmation of this rule is in the waiting list in [RESUME.md](RESUME.md).
+- B3 note: the planned `pa` CLI is NOT built as a separate `work/persian/tools/pa/` tree. The command layer is `work/persian/tools/pa.ps1` (incoming; subcommands today: setup, setup-private, check, status). The missing commands (new-film, render, mix, preview, version, verify, scan, research-log, order) are backlog items in the "pa: decision" paragraph of [ARCHITECTURE.md](ARCHITECTURE.md). B3's remaining scope is: canonical `VERSION.json` from render, and those commands added to `pa.ps1`.
+- `docs/motion/manual-orders.jsonl` (footer rule above) does not exist yet; it is created by the first order run after the owner resumes.

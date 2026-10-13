@@ -455,7 +455,7 @@
         "passed": [
           "CTA scene clear (review-v4)",
           "numbers LTR (1405-1406)",
-          "azmoon.org LTR pill"
+          "[portal-domain] LTR pill"
         ],
         "failed_or_open": [],
         "evidence": "docs/motion/reports/2026-10-13/review-v4.md"
