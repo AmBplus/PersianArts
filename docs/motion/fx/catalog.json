@@ -1,0 +1,1514 @@
+{
+ "_meta": {
+  "generated": "2026-10-13",
+  "engine": "pa-fx (WebGL2, deterministic, SwiftShader in headless)",
+  "gl": "SwiftShader (CPU)",
+  "test": "60 frames per shader at 540x960; verified = compiles + deterministic (hash identical after other frames) + start/end frames match sources + smooth frame diffs",
+  "note": "verified/experimental is measured by `pa fx check`"
+ },
+ "entries": [
+  {
+   "technique": "BowTieHorizontal",
+   "kind": "transition",
+   "family": "wipe",
+   "aliases": [
+    "BowTieHorizontal",
+    "جارو",
+    "کشیدن",
+    "پرده",
+    "wipe",
+    "slide reveal"
+   ],
+   "description": "Bow-tie shaped horizontal wipe.",
+   "use_cases": [
+    "scene change where an image becomes another",
+    "wipe feel"
+   ],
+   "engine": "pa-fx WebGL2 shader",
+   "params": [],
+   "timeline_control": "progress 0..1 (pure function, seekable)",
+   "dependencies": [
+    "work/persian/htmlfilm/lib/pa-fx.js",
+    "work/persian/htmlfilm/lib/shaders/index.js"
+   ],
+   "limits": [
+    "needs WebGL2 (SwiftShader flags in capture.mjs)",
+    "inputs are rasterised canvases/images (DOM must be drawn to a canvas first)"
+   ],
+   "source": "gl-transitions catalogue (MIT), https://github.com/gl-transitions/gl-transitions/blob/master/transitions/BowTieHorizontal.glsl",
+   "status": "verified",
+   "measured": {
+    "fps_540x960": 119.2,
+    "deterministic": true,
+    "step_ratio": 1.97,
+    "start_diff": 0,
+    "end_diff": 0.001
+   },
+   "recipe": "docs/motion/PLAYBOOK-BUILD-MOTION.md#image-fx"
+  },
+  {
+   "technique": "circle-reveal",
+   "kind": "transition",
+   "family": "reveal",
+   "aliases": [
+    "circle-reveal",
+    "دایره",
+    "دریچه",
+    "iris",
+    "باز شدن",
+    "reveal",
+    "open"
+   ],
+   "description": "A circle opens from the centre revealing the new image with a soft rim.",
+   "use_cases": [
+    "scene change where an image becomes another",
+    "reveal feel"
+   ],
+   "engine": "pa-fx WebGL2 shader",
+   "params": [
+    "softness=0.03"
+   ],
+   "timeline_control": "progress 0..1 (pure function, seekable)",
+   "dependencies": [
+    "work/persian/htmlfilm/lib/pa-fx.js",
+    "work/persian/htmlfilm/lib/shaders/index.js"
+   ],
+   "limits": [
+    "needs WebGL2 (SwiftShader flags in capture.mjs)",
+    "inputs are rasterised canvases/images (DOM must be drawn to a canvas first)"
+   ],
+   "source": "native (persian-arts)",
+   "status": "verified",
+   "measured": {
+    "fps_540x960": 132.1,
+    "deterministic": true,
+    "step_ratio": 1.49,
+    "start_diff": 0,
+    "end_diff": 0
+   },
+   "recipe": "docs/motion/PLAYBOOK-BUILD-MOTION.md#image-fx"
+  },
+  {
+   "technique": "circleopen",
+   "kind": "transition",
+   "family": "reveal",
+   "aliases": [
+    "circleopen",
+    "باز شدن",
+    "دایره",
+    "reveal",
+    "iris",
+    "open"
+   ],
+   "description": "Circle opens/closes revealing the new image.",
+   "use_cases": [
+    "scene change where an image becomes another",
+    "reveal feel"
+   ],
+   "engine": "pa-fx WebGL2 shader",
+   "params": [
+    "smoothness=0.3",
+    "opening=true"
+   ],
+   "timeline_control": "progress 0..1 (pure function, seekable)",
+   "dependencies": [
+    "work/persian/htmlfilm/lib/pa-fx.js",
+    "work/persian/htmlfilm/lib/shaders/index.js"
+   ],
+   "limits": [
+    "needs WebGL2 (SwiftShader flags in capture.mjs)",
+    "inputs are rasterised canvases/images (DOM must be drawn to a canvas first)"
+   ],
+   "source": "gl-transitions catalogue (MIT), https://github.com/gl-transitions/gl-transitions/blob/master/transitions/circleopen.glsl",
+   "status": "verified",
+   "measured": {
+    "fps_540x960": 131.9,
+    "deterministic": true,
+    "step_ratio": 2.82,
+    "start_diff": 0,
+    "end_diff": 0
+   },
+   "recipe": "docs/motion/PLAYBOOK-BUILD-MOTION.md#image-fx"
+  },
+  {
+   "technique": "crosswarp",
+   "kind": "transition",
+   "family": "warp",
+   "aliases": [
+    "crosswarp",
+    "موج",
+    "پیچش",
+    "تاب",
+    "warp",
+    "wave",
+    "liquid"
+   ],
+   "description": "Cross warp: images stretch into each other.",
+   "use_cases": [
+    "scene change where an image becomes another",
+    "warp feel"
+   ],
+   "engine": "pa-fx WebGL2 shader",
+   "params": [],
+   "timeline_control": "progress 0..1 (pure function, seekable)",
+   "dependencies": [
+    "work/persian/htmlfilm/lib/pa-fx.js",
+    "work/persian/htmlfilm/lib/shaders/index.js"
+   ],
+   "limits": [
+    "needs WebGL2 (SwiftShader flags in capture.mjs)",
+    "inputs are rasterised canvases/images (DOM must be drawn to a canvas first)"
+   ],
+   "source": "gl-transitions catalogue (MIT), https://github.com/gl-transitions/gl-transitions/blob/master/transitions/crosswarp.glsl",
+   "status": "verified",
+   "measured": {
+    "fps_540x960": 135,
+    "deterministic": true,
+    "step_ratio": 1.81,
+    "start_diff": 0,
+    "end_diff": 0
+   },
+   "recipe": "docs/motion/PLAYBOOK-BUILD-MOTION.md#image-fx"
+  },
+  {
+   "technique": "CrossZoom",
+   "kind": "transition",
+   "family": "zoom",
+   "aliases": [
+    "CrossZoom",
+    "زوم",
+    "انفجار",
+    "بزرگ‌نمایی",
+    "zoom",
+    "burst"
+   ],
+   "description": "Zoom blur burst between the images.",
+   "use_cases": [
+    "scene change where an image becomes another",
+    "zoom feel"
+   ],
+   "engine": "pa-fx WebGL2 shader",
+   "params": [
+    "strength=0.4"
+   ],
+   "timeline_control": "progress 0..1 (pure function, seekable)",
+   "dependencies": [
+    "work/persian/htmlfilm/lib/pa-fx.js",
+    "work/persian/htmlfilm/lib/shaders/index.js"
+   ],
+   "limits": [
+    "needs WebGL2 (SwiftShader flags in capture.mjs)",
+    "inputs are rasterised canvases/images (DOM must be drawn to a canvas first)"
+   ],
+   "source": "gl-transitions catalogue (MIT), https://github.com/gl-transitions/gl-transitions/blob/master/transitions/CrossZoom.glsl",
+   "status": "verified",
+   "measured": {
+    "fps_540x960": 16.1,
+    "deterministic": true,
+    "step_ratio": 6.34,
+    "start_diff": 0,
+    "end_diff": 0
+   },
+   "recipe": "docs/motion/PLAYBOOK-BUILD-MOTION.md#image-fx"
+  },
+  {
+   "technique": "cube",
+   "kind": "transition",
+   "family": "3d",
+   "aliases": [
+    "cube",
+    "مکعب",
+    "چرخش",
+    "سه بعدی",
+    "3d"
+   ],
+   "description": "Rotating cube between the images (pseudo 3D).",
+   "use_cases": [
+    "scene change where an image becomes another",
+    "3d feel"
+   ],
+   "engine": "pa-fx WebGL2 shader",
+   "params": [
+    "persp=0.7",
+    "unzoom=0.3",
+    "reflection=0.4",
+    "floating=3.0"
+   ],
+   "timeline_control": "progress 0..1 (pure function, seekable)",
+   "dependencies": [
+    "work/persian/htmlfilm/lib/pa-fx.js",
+    "work/persian/htmlfilm/lib/shaders/index.js"
+   ],
+   "limits": [
+    "needs WebGL2 (SwiftShader flags in capture.mjs)",
+    "inputs are rasterised canvases/images (DOM must be drawn to a canvas first)"
+   ],
+   "source": "gl-transitions catalogue (MIT), https://github.com/gl-transitions/gl-transitions/blob/master/transitions/cube.glsl",
+   "status": "verified",
+   "measured": {
+    "fps_540x960": 117.1,
+    "deterministic": true,
+    "step_ratio": 1.92,
+    "start_diff": 0,
+    "end_diff": 0
+   },
+   "recipe": "docs/motion/PLAYBOOK-BUILD-MOTION.md#image-fx"
+  },
+  {
+   "technique": "directionalwipe",
+   "kind": "transition",
+   "family": "wipe",
+   "aliases": [
+    "directionalwipe",
+    "جارو",
+    "کشیدن",
+    "پرده",
+    "wipe",
+    "slide reveal"
+   ],
+   "description": "Soft directional wipe along a direction vector.",
+   "use_cases": [
+    "scene change where an image becomes another",
+    "wipe feel"
+   ],
+   "engine": "pa-fx WebGL2 shader",
+   "params": [
+    "direction=vec2(1.0, -1.0)",
+    "smoothness=0.5"
+   ],
+   "timeline_control": "progress 0..1 (pure function, seekable)",
+   "dependencies": [
+    "work/persian/htmlfilm/lib/pa-fx.js",
+    "work/persian/htmlfilm/lib/shaders/index.js"
+   ],
+   "limits": [
+    "needs WebGL2 (SwiftShader flags in capture.mjs)",
+    "inputs are rasterised canvases/images (DOM must be drawn to a canvas first)"
+   ],
+   "source": "gl-transitions catalogue (MIT), https://github.com/gl-transitions/gl-transitions/blob/master/transitions/directionalwipe.glsl",
+   "status": "verified",
+   "measured": {
+    "fps_540x960": 122.5,
+    "deterministic": true,
+    "step_ratio": 3.31,
+    "start_diff": 0,
+    "end_diff": 0
+   },
+   "recipe": "docs/motion/PLAYBOOK-BUILD-MOTION.md#image-fx"
+  },
+  {
+   "technique": "displace-dissolve",
+   "kind": "transition",
+   "family": "dissolve",
+   "aliases": [
+    "displace-dissolve",
+    "مایع",
+    "liquid",
+    "شناور",
+    "متلاشی",
+    "فرو ریختن",
+    "ذره ذره",
+    "dissolve",
+    "disintegrate",
+    "noise"
+   ],
+   "description": "Both images are pushed apart by a noise displacement field while crossfading (liquid shimmer).",
+   "use_cases": [
+    "scene change where an image becomes another",
+    "dissolve feel"
+   ],
+   "engine": "pa-fx WebGL2 shader",
+   "params": [
+    "strength=0.08",
+    "scale=4.0"
+   ],
+   "timeline_control": "progress 0..1 (pure function, seekable)",
+   "dependencies": [
+    "work/persian/htmlfilm/lib/pa-fx.js",
+    "work/persian/htmlfilm/lib/shaders/index.js"
+   ],
+   "limits": [
+    "needs WebGL2 (SwiftShader flags in capture.mjs)",
+    "inputs are rasterised canvases/images (DOM must be drawn to a canvas first)"
+   ],
+   "source": "native (persian-arts)",
+   "status": "verified",
+   "measured": {
+    "fps_540x960": 78.3,
+    "deterministic": true,
+    "step_ratio": 1.54,
+    "start_diff": 0,
+    "end_diff": 0
+   },
+   "recipe": "docs/motion/PLAYBOOK-BUILD-MOTION.md#image-fx"
+  },
+  {
+   "technique": "Dreamy",
+   "kind": "transition",
+   "family": "warp",
+   "aliases": [
+    "Dreamy",
+    "موج",
+    "پیچش",
+    "تاب",
+    "warp",
+    "wave",
+    "liquid"
+   ],
+   "description": "Dreamy wavy crossfade.",
+   "use_cases": [
+    "scene change where an image becomes another",
+    "warp feel"
+   ],
+   "engine": "pa-fx WebGL2 shader",
+   "params": [],
+   "timeline_control": "progress 0..1 (pure function, seekable)",
+   "dependencies": [
+    "work/persian/htmlfilm/lib/pa-fx.js",
+    "work/persian/htmlfilm/lib/shaders/index.js"
+   ],
+   "limits": [
+    "needs WebGL2 (SwiftShader flags in capture.mjs)",
+    "inputs are rasterised canvases/images (DOM must be drawn to a canvas first)"
+   ],
+   "source": "gl-transitions catalogue (MIT), https://github.com/gl-transitions/gl-transitions/blob/master/transitions/Dreamy.glsl",
+   "status": "verified",
+   "measured": {
+    "fps_540x960": 131.6,
+    "deterministic": true,
+    "step_ratio": 1.18,
+    "start_diff": 0,
+    "end_diff": 0
+   },
+   "recipe": "docs/motion/PLAYBOOK-BUILD-MOTION.md#image-fx"
+  },
+  {
+   "technique": "fade",
+   "kind": "transition",
+   "family": "fade",
+   "aliases": [
+    "fade",
+    "محو",
+    "کم‌رنگ شدن",
+    "crossfade",
+    "dissolve"
+   ],
+   "description": "Plain crossfade.",
+   "use_cases": [
+    "scene change where an image becomes another",
+    "fade feel"
+   ],
+   "engine": "pa-fx WebGL2 shader",
+   "params": [],
+   "timeline_control": "progress 0..1 (pure function, seekable)",
+   "dependencies": [
+    "work/persian/htmlfilm/lib/pa-fx.js",
+    "work/persian/htmlfilm/lib/shaders/index.js"
+   ],
+   "limits": [
+    "needs WebGL2 (SwiftShader flags in capture.mjs)",
+    "inputs are rasterised canvases/images (DOM must be drawn to a canvas first)"
+   ],
+   "source": "gl-transitions catalogue (MIT), https://github.com/gl-transitions/gl-transitions/blob/master/transitions/fade.glsl",
+   "status": "verified",
+   "measured": {
+    "fps_540x960": 140.4,
+    "deterministic": true,
+    "step_ratio": 1.02,
+    "start_diff": 0,
+    "end_diff": 0
+   },
+   "recipe": "docs/motion/PLAYBOOK-BUILD-MOTION.md#image-fx"
+  },
+  {
+   "technique": "fadecolor",
+   "kind": "transition",
+   "family": "fade",
+   "aliases": [
+    "fadecolor",
+    "محو",
+    "کم‌رنگ شدن",
+    "crossfade",
+    "dissolve"
+   ],
+   "description": "Fades through a flat colour (default black).",
+   "use_cases": [
+    "scene change where an image becomes another",
+    "fade feel"
+   ],
+   "engine": "pa-fx WebGL2 shader",
+   "params": [
+    "color=vec3(0.0)",
+    "colorPhase=0.4 ; // if 0.0, there is no black phase, if 0.9, the black phase is very important"
+   ],
+   "timeline_control": "progress 0..1 (pure function, seekable)",
+   "dependencies": [
+    "work/persian/htmlfilm/lib/pa-fx.js",
+    "work/persian/htmlfilm/lib/shaders/index.js"
+   ],
+   "limits": [
+    "needs WebGL2 (SwiftShader flags in capture.mjs)",
+    "inputs are rasterised canvases/images (DOM must be drawn to a canvas first)"
+   ],
+   "source": "gl-transitions catalogue (MIT), https://github.com/gl-transitions/gl-transitions/blob/master/transitions/fadecolor.glsl",
+   "status": "verified",
+   "measured": {
+    "fps_540x960": 124.2,
+    "deterministic": true,
+    "step_ratio": 3.35,
+    "start_diff": 0,
+    "end_diff": 0
+   },
+   "recipe": "docs/motion/PLAYBOOK-BUILD-MOTION.md#image-fx"
+  },
+  {
+   "technique": "fadegrayscale",
+   "kind": "transition",
+   "family": "fade",
+   "aliases": [
+    "fadegrayscale",
+    "محو",
+    "کم‌رنگ شدن",
+    "crossfade",
+    "dissolve"
+   ],
+   "description": "Fades through grayscale.",
+   "use_cases": [
+    "scene change where an image becomes another",
+    "fade feel"
+   ],
+   "engine": "pa-fx WebGL2 shader",
+   "params": [
+    "intensity=0.3; // if 0.0, the image directly turn grayscale, if 0.9, the grayscale transition phase is very important"
+   ],
+   "timeline_control": "progress 0..1 (pure function, seekable)",
+   "dependencies": [
+    "work/persian/htmlfilm/lib/pa-fx.js",
+    "work/persian/htmlfilm/lib/shaders/index.js"
+   ],
+   "limits": [
+    "needs WebGL2 (SwiftShader flags in capture.mjs)",
+    "inputs are rasterised canvases/images (DOM must be drawn to a canvas first)"
+   ],
+   "source": "gl-transitions catalogue (MIT), https://github.com/gl-transitions/gl-transitions/blob/master/transitions/fadegrayscale.glsl",
+   "status": "verified",
+   "measured": {
+    "fps_540x960": 131.4,
+    "deterministic": true,
+    "step_ratio": 1.05,
+    "start_diff": 0,
+    "end_diff": 0
+   },
+   "recipe": "docs/motion/PLAYBOOK-BUILD-MOTION.md#image-fx"
+  },
+  {
+   "technique": "GlitchDisplace",
+   "kind": "transition",
+   "family": "glitch",
+   "aliases": [
+    "GlitchDisplace",
+    "اختلال",
+    "گلیچ",
+    "glitch",
+    "digital",
+    "rgb split"
+   ],
+   "description": "Horizontal slice displacement glitch.",
+   "use_cases": [
+    "scene change where an image becomes another",
+    "glitch feel"
+   ],
+   "engine": "pa-fx WebGL2 shader",
+   "params": [],
+   "timeline_control": "progress 0..1 (pure function, seekable)",
+   "dependencies": [
+    "work/persian/htmlfilm/lib/pa-fx.js",
+    "work/persian/htmlfilm/lib/shaders/index.js"
+   ],
+   "limits": [
+    "needs WebGL2 (SwiftShader flags in capture.mjs)",
+    "inputs are rasterised canvases/images (DOM must be drawn to a canvas first)"
+   ],
+   "source": "gl-transitions catalogue (MIT), https://github.com/gl-transitions/gl-transitions/blob/master/transitions/GlitchDisplace.glsl",
+   "status": "verified",
+   "measured": {
+    "fps_540x960": 95.1,
+    "deterministic": true,
+    "step_ratio": 2.7,
+    "start_diff": 0,
+    "end_diff": 0
+   },
+   "recipe": "docs/motion/PLAYBOOK-BUILD-MOTION.md#image-fx"
+  },
+  {
+   "technique": "GlitchMemories",
+   "kind": "transition",
+   "family": "glitch",
+   "aliases": [
+    "GlitchMemories",
+    "اختلال",
+    "گلیچ",
+    "glitch",
+    "digital",
+    "rgb split"
+   ],
+   "description": "Glitchy RGB split memories.",
+   "use_cases": [
+    "scene change where an image becomes another",
+    "glitch feel"
+   ],
+   "engine": "pa-fx WebGL2 shader",
+   "params": [],
+   "timeline_control": "progress 0..1 (pure function, seekable)",
+   "dependencies": [
+    "work/persian/htmlfilm/lib/pa-fx.js",
+    "work/persian/htmlfilm/lib/shaders/index.js"
+   ],
+   "limits": [
+    "needs WebGL2 (SwiftShader flags in capture.mjs)",
+    "inputs are rasterised canvases/images (DOM must be drawn to a canvas first)"
+   ],
+   "source": "gl-transitions catalogue (MIT), https://github.com/gl-transitions/gl-transitions/blob/master/transitions/GlitchMemories.glsl",
+   "status": "verified",
+   "measured": {
+    "fps_540x960": 97.7,
+    "deterministic": true,
+    "step_ratio": 2.01,
+    "start_diff": 0,
+    "end_diff": 0
+   },
+   "recipe": "docs/motion/PLAYBOOK-BUILD-MOTION.md#image-fx"
+  },
+  {
+   "technique": "hexagonalize",
+   "kind": "transition",
+   "family": "pixel",
+   "aliases": [
+    "hexagonalize",
+    "پیکسل",
+    "مربعی",
+    "pixelate",
+    "mosaic"
+   ],
+   "description": "Hexagon mosaic transition.",
+   "use_cases": [
+    "scene change where an image becomes another",
+    "pixel feel"
+   ],
+   "engine": "pa-fx WebGL2 shader",
+   "params": [
+    "steps=50",
+    "horizontalHexagons=20"
+   ],
+   "timeline_control": "progress 0..1 (pure function, seekable)",
+   "dependencies": [
+    "work/persian/htmlfilm/lib/pa-fx.js",
+    "work/persian/htmlfilm/lib/shaders/index.js"
+   ],
+   "limits": [
+    "needs WebGL2 (SwiftShader flags in capture.mjs)",
+    "inputs are rasterised canvases/images (DOM must be drawn to a canvas first)"
+   ],
+   "source": "gl-transitions catalogue (MIT), https://github.com/gl-transitions/gl-transitions/blob/master/transitions/hexagonalize.glsl",
+   "status": "verified",
+   "measured": {
+    "fps_540x960": 125.9,
+    "deterministic": true,
+    "step_ratio": 1.39,
+    "start_diff": 0,
+    "end_diff": 0
+   },
+   "recipe": "docs/motion/PLAYBOOK-BUILD-MOTION.md#image-fx"
+  },
+  {
+   "technique": "LinearBlur",
+   "kind": "transition",
+   "family": "blur",
+   "aliases": [
+    "LinearBlur",
+    "محو حرکت",
+    "blur"
+   ],
+   "description": "Directional blur crossfade.",
+   "use_cases": [
+    "scene change where an image becomes another",
+    "blur feel"
+   ],
+   "engine": "pa-fx WebGL2 shader",
+   "params": [
+    "intensity=0.1"
+   ],
+   "timeline_control": "progress 0..1 (pure function, seekable)",
+   "dependencies": [
+    "work/persian/htmlfilm/lib/pa-fx.js",
+    "work/persian/htmlfilm/lib/shaders/index.js"
+   ],
+   "limits": [
+    "needs WebGL2 (SwiftShader flags in capture.mjs)",
+    "inputs are rasterised canvases/images (DOM must be drawn to a canvas first)"
+   ],
+   "source": "gl-transitions catalogue (MIT), https://github.com/gl-transitions/gl-transitions/blob/master/transitions/LinearBlur.glsl",
+   "status": "verified",
+   "measured": {
+    "fps_540x960": 16.8,
+    "deterministic": true,
+    "step_ratio": 1.3,
+    "start_diff": 0,
+    "end_diff": 0
+   },
+   "recipe": "docs/motion/PLAYBOOK-BUILD-MOTION.md#image-fx"
+  },
+  {
+   "technique": "luma-wipe",
+   "kind": "transition",
+   "family": "wipe",
+   "aliases": [
+    "luma-wipe",
+    "جارو",
+    "کشیدن",
+    "پرده",
+    "wipe",
+    "slide reveal"
+   ],
+   "description": "Luma/diagonal wipe driven by a procedural gradient + noise map (no texture needed).",
+   "use_cases": [
+    "scene change where an image becomes another",
+    "wipe feel"
+   ],
+   "engine": "pa-fx WebGL2 shader",
+   "params": [
+    "angle=0.6",
+    "softness=0.15"
+   ],
+   "timeline_control": "progress 0..1 (pure function, seekable)",
+   "dependencies": [
+    "work/persian/htmlfilm/lib/pa-fx.js",
+    "work/persian/htmlfilm/lib/shaders/index.js"
+   ],
+   "limits": [
+    "needs WebGL2 (SwiftShader flags in capture.mjs)",
+    "inputs are rasterised canvases/images (DOM must be drawn to a canvas first)"
+   ],
+   "source": "native (persian-arts)",
+   "status": "verified",
+   "measured": {
+    "fps_540x960": 120.8,
+    "deterministic": true,
+    "step_ratio": 1.6,
+    "start_diff": 0.422,
+    "end_diff": 0.4
+   },
+   "recipe": "docs/motion/PLAYBOOK-BUILD-MOTION.md#image-fx"
+  },
+  {
+   "technique": "morph",
+   "kind": "transition",
+   "family": "warp",
+   "aliases": [
+    "morph",
+    "موج",
+    "پیچش",
+    "تاب",
+    "warp",
+    "wave",
+    "liquid"
+   ],
+   "description": "Colour-driven morph displacement.",
+   "use_cases": [
+    "scene change where an image becomes another",
+    "warp feel"
+   ],
+   "engine": "pa-fx WebGL2 shader",
+   "params": [
+    "strength=0.1"
+   ],
+   "timeline_control": "progress 0..1 (pure function, seekable)",
+   "dependencies": [
+    "work/persian/htmlfilm/lib/pa-fx.js",
+    "work/persian/htmlfilm/lib/shaders/index.js"
+   ],
+   "limits": [
+    "needs WebGL2 (SwiftShader flags in capture.mjs)",
+    "inputs are rasterised canvases/images (DOM must be drawn to a canvas first)"
+   ],
+   "source": "gl-transitions catalogue (MIT), https://github.com/gl-transitions/gl-transitions/blob/master/transitions/morph.glsl",
+   "status": "verified",
+   "measured": {
+    "fps_540x960": 111,
+    "deterministic": true,
+    "step_ratio": 1.25,
+    "start_diff": 0,
+    "end_diff": 0
+   },
+   "recipe": "docs/motion/PLAYBOOK-BUILD-MOTION.md#image-fx"
+  },
+  {
+   "technique": "noise-dissolve",
+   "kind": "transition",
+   "family": "dissolve",
+   "aliases": [
+    "noise-dissolve",
+    "فرو ریختن",
+    "دود",
+    "noise dissolve",
+    "متلاشی",
+    "ذره ذره",
+    "dissolve",
+    "disintegrate",
+    "noise"
+   ],
+   "description": "Organic noise dissolve: the new image grows through fractal noise blobs with a soft edge (seeded, deterministic).",
+   "use_cases": [
+    "scene change where an image becomes another",
+    "dissolve feel"
+   ],
+   "engine": "pa-fx WebGL2 shader",
+   "params": [
+    "scale=5.0",
+    "softness=0.12"
+   ],
+   "timeline_control": "progress 0..1 (pure function, seekable)",
+   "dependencies": [
+    "work/persian/htmlfilm/lib/pa-fx.js",
+    "work/persian/htmlfilm/lib/shaders/index.js"
+   ],
+   "limits": [
+    "needs WebGL2 (SwiftShader flags in capture.mjs)",
+    "inputs are rasterised canvases/images (DOM must be drawn to a canvas first)"
+   ],
+   "source": "native (persian-arts)",
+   "status": "verified",
+   "measured": {
+    "fps_540x960": 97.3,
+    "deterministic": true,
+    "step_ratio": 17.28,
+    "start_diff": 0,
+    "end_diff": 0
+   },
+   "recipe": "docs/motion/PLAYBOOK-BUILD-MOTION.md#image-fx"
+  },
+  {
+   "technique": "page-curl-lite",
+   "kind": "transition",
+   "family": "fold",
+   "aliases": [
+    "page-curl-lite",
+    "ورق زدن",
+    "صفحه",
+    "page curl",
+    "مچاله",
+    "تا شدن",
+    "ورق",
+    "fold",
+    "crumple",
+    "page turn"
+   ],
+   "description": "Page-turn approximation: a fold line sweeps right to left; the old page shows its darker back mirrored along the fold, the new image lies beneath.",
+   "use_cases": [
+    "scene change where an image becomes another",
+    "fold feel"
+   ],
+   "engine": "pa-fx WebGL2 shader",
+   "params": [
+    "radius=0.16"
+   ],
+   "timeline_control": "progress 0..1 (pure function, seekable)",
+   "dependencies": [
+    "work/persian/htmlfilm/lib/pa-fx.js",
+    "work/persian/htmlfilm/lib/shaders/index.js"
+   ],
+   "limits": [
+    "needs WebGL2 (SwiftShader flags in capture.mjs)",
+    "inputs are rasterised canvases/images (DOM must be drawn to a canvas first)"
+   ],
+   "source": "native (persian-arts)",
+   "status": "verified",
+   "measured": {
+    "fps_540x960": 143.5,
+    "deterministic": true,
+    "step_ratio": 1.2,
+    "start_diff": 0,
+    "end_diff": 0
+   },
+   "recipe": "docs/motion/PLAYBOOK-BUILD-MOTION.md#image-fx"
+  },
+  {
+   "technique": "pixelize",
+   "kind": "transition",
+   "family": "pixel",
+   "aliases": [
+    "pixelize",
+    "پیکسل",
+    "مربعی",
+    "pixelate",
+    "mosaic"
+   ],
+   "description": "Both images pixelate then resolve into the new one.",
+   "use_cases": [
+    "scene change where an image becomes another",
+    "pixel feel"
+   ],
+   "engine": "pa-fx WebGL2 shader",
+   "params": [
+    "squaresMin=ivec2(20)",
+    "steps=50"
+   ],
+   "timeline_control": "progress 0..1 (pure function, seekable)",
+   "dependencies": [
+    "work/persian/htmlfilm/lib/pa-fx.js",
+    "work/persian/htmlfilm/lib/shaders/index.js"
+   ],
+   "limits": [
+    "needs WebGL2 (SwiftShader flags in capture.mjs)",
+    "inputs are rasterised canvases/images (DOM must be drawn to a canvas first)"
+   ],
+   "source": "gl-transitions catalogue (MIT), https://github.com/gl-transitions/gl-transitions/blob/master/transitions/pixelize.glsl",
+   "status": "experimental",
+   "status_reason": "jumpy frame diffs (ratio 35.3, jump 25.477)",
+   "measured": {
+    "fps_540x960": 129.7,
+    "deterministic": true,
+    "step_ratio": 35.3,
+    "start_diff": 0,
+    "end_diff": 0
+   },
+   "recipe": "docs/motion/PLAYBOOK-BUILD-MOTION.md#image-fx"
+  },
+  {
+   "technique": "Radial",
+   "kind": "transition",
+   "family": "reveal",
+   "aliases": [
+    "Radial",
+    "باز شدن",
+    "دایره",
+    "reveal",
+    "iris",
+    "open"
+   ],
+   "description": "Radial clock-style sweep reveals the new image.",
+   "use_cases": [
+    "scene change where an image becomes another",
+    "reveal feel"
+   ],
+   "engine": "pa-fx WebGL2 shader",
+   "params": [
+    "smoothness=1.0"
+   ],
+   "timeline_control": "progress 0..1 (pure function, seekable)",
+   "dependencies": [
+    "work/persian/htmlfilm/lib/pa-fx.js",
+    "work/persian/htmlfilm/lib/shaders/index.js"
+   ],
+   "limits": [
+    "needs WebGL2 (SwiftShader flags in capture.mjs)",
+    "inputs are rasterised canvases/images (DOM must be drawn to a canvas first)"
+   ],
+   "source": "gl-transitions catalogue (MIT), https://github.com/gl-transitions/gl-transitions/blob/master/transitions/Radial.glsl",
+   "status": "verified",
+   "measured": {
+    "fps_540x960": 130.4,
+    "deterministic": true,
+    "step_ratio": 1.98,
+    "start_diff": 0.064,
+    "end_diff": 0
+   },
+   "recipe": "docs/motion/PLAYBOOK-BUILD-MOTION.md#image-fx"
+  },
+  {
+   "technique": "ripple",
+   "kind": "transition",
+   "family": "warp",
+   "aliases": [
+    "ripple",
+    "موج",
+    "ریپل",
+    "water",
+    "پیچش",
+    "تاب",
+    "warp",
+    "wave",
+    "liquid"
+   ],
+   "description": "Ripples spread from the centre while crossfading.",
+   "use_cases": [
+    "scene change where an image becomes another",
+    "warp feel"
+   ],
+   "engine": "pa-fx WebGL2 shader",
+   "params": [
+    "amplitude=100.0",
+    "speed=50.0"
+   ],
+   "timeline_control": "progress 0..1 (pure function, seekable)",
+   "dependencies": [
+    "work/persian/htmlfilm/lib/pa-fx.js",
+    "work/persian/htmlfilm/lib/shaders/index.js"
+   ],
+   "limits": [
+    "needs WebGL2 (SwiftShader flags in capture.mjs)",
+    "inputs are rasterised canvases/images (DOM must be drawn to a canvas first)"
+   ],
+   "source": "gl-transitions catalogue (MIT), https://github.com/gl-transitions/gl-transitions/blob/master/transitions/ripple.glsl",
+   "status": "verified",
+   "measured": {
+    "fps_540x960": 120.9,
+    "deterministic": true,
+    "step_ratio": 1.6,
+    "start_diff": 0,
+    "end_diff": 0
+   },
+   "recipe": "docs/motion/PLAYBOOK-BUILD-MOTION.md#image-fx"
+  },
+  {
+   "technique": "SimpleZoom",
+   "kind": "transition",
+   "family": "zoom",
+   "aliases": [
+    "SimpleZoom",
+    "زوم",
+    "بزرگ‌نمایی",
+    "zoom",
+    "burst"
+   ],
+   "description": "Zoom into the old image, out of the new.",
+   "use_cases": [
+    "scene change where an image becomes another",
+    "zoom feel"
+   ],
+   "engine": "pa-fx WebGL2 shader",
+   "params": [
+    "zoom_quickness=0.8"
+   ],
+   "timeline_control": "progress 0..1 (pure function, seekable)",
+   "dependencies": [
+    "work/persian/htmlfilm/lib/pa-fx.js",
+    "work/persian/htmlfilm/lib/shaders/index.js"
+   ],
+   "limits": [
+    "needs WebGL2 (SwiftShader flags in capture.mjs)",
+    "inputs are rasterised canvases/images (DOM must be drawn to a canvas first)"
+   ],
+   "source": "gl-transitions catalogue (MIT), https://github.com/gl-transitions/gl-transitions/blob/master/transitions/SimpleZoom.glsl",
+   "status": "verified",
+   "measured": {
+    "fps_540x960": 129.2,
+    "deterministic": true,
+    "step_ratio": 1.29,
+    "start_diff": 0,
+    "end_diff": 0
+   },
+   "recipe": "docs/motion/PLAYBOOK-BUILD-MOTION.md#image-fx"
+  },
+  {
+   "technique": "squareswire",
+   "kind": "transition",
+   "family": "grid",
+   "aliases": [
+    "squareswire",
+    "شبکه",
+    "grid"
+   ],
+   "description": "Square grid wire sweep.",
+   "use_cases": [
+    "scene change where an image becomes another",
+    "grid feel"
+   ],
+   "engine": "pa-fx WebGL2 shader",
+   "params": [
+    "squares=ivec2(10,10)",
+    "direction=vec2(1.0, -0.5)",
+    "smoothness=1.6"
+   ],
+   "timeline_control": "progress 0..1 (pure function, seekable)",
+   "dependencies": [
+    "work/persian/htmlfilm/lib/pa-fx.js",
+    "work/persian/htmlfilm/lib/shaders/index.js"
+   ],
+   "limits": [
+    "needs WebGL2 (SwiftShader flags in capture.mjs)",
+    "inputs are rasterised canvases/images (DOM must be drawn to a canvas first)"
+   ],
+   "source": "gl-transitions catalogue (MIT), https://github.com/gl-transitions/gl-transitions/blob/master/transitions/squareswire.glsl",
+   "status": "verified",
+   "measured": {
+    "fps_540x960": 124.5,
+    "deterministic": true,
+    "step_ratio": 18.08,
+    "start_diff": 0,
+    "end_diff": 0
+   },
+   "recipe": "docs/motion/PLAYBOOK-BUILD-MOTION.md#image-fx"
+  },
+  {
+   "technique": "StereoViewer",
+   "kind": "transition",
+   "family": "3d",
+   "aliases": [
+    "StereoViewer",
+    "مکعب",
+    "سه بعدی",
+    "cube",
+    "3d"
+   ],
+   "description": "Stereo-viewer style zoom frame.",
+   "use_cases": [
+    "scene change where an image becomes another",
+    "3d feel"
+   ],
+   "engine": "pa-fx WebGL2 shader",
+   "params": [
+    "zoom=0.88",
+    "corner_radius=0.22"
+   ],
+   "timeline_control": "progress 0..1 (pure function, seekable)",
+   "dependencies": [
+    "work/persian/htmlfilm/lib/pa-fx.js",
+    "work/persian/htmlfilm/lib/shaders/index.js"
+   ],
+   "limits": [
+    "needs WebGL2 (SwiftShader flags in capture.mjs)",
+    "inputs are rasterised canvases/images (DOM must be drawn to a canvas first)"
+   ],
+   "source": "gl-transitions catalogue (MIT), https://github.com/gl-transitions/gl-transitions/blob/master/transitions/StereoViewer.glsl",
+   "status": "experimental",
+   "status_reason": "jumpy frame diffs (ratio 16.2, jump 32.071)",
+   "measured": {
+    "fps_540x960": 45.5,
+    "deterministic": true,
+    "step_ratio": 16.2,
+    "start_diff": 0,
+    "end_diff": 0
+   },
+   "recipe": "docs/motion/PLAYBOOK-BUILD-MOTION.md#image-fx"
+  },
+  {
+   "technique": "swirl",
+   "kind": "transition",
+   "family": "warp",
+   "aliases": [
+    "swirl",
+    "پیچش",
+    "گرداب",
+    "vortex",
+    "twirl",
+    "موج",
+    "تاب",
+    "warp",
+    "wave",
+    "liquid"
+   ],
+   "description": "Both images twist around the centre while crossfading (stronger at mid-transition).",
+   "use_cases": [
+    "scene change where an image becomes another",
+    "warp feel"
+   ],
+   "engine": "pa-fx WebGL2 shader",
+   "params": [
+    "strength=6.0"
+   ],
+   "timeline_control": "progress 0..1 (pure function, seekable)",
+   "dependencies": [
+    "work/persian/htmlfilm/lib/pa-fx.js",
+    "work/persian/htmlfilm/lib/shaders/index.js"
+   ],
+   "limits": [
+    "needs WebGL2 (SwiftShader flags in capture.mjs)",
+    "inputs are rasterised canvases/images (DOM must be drawn to a canvas first)"
+   ],
+   "source": "native (persian-arts)",
+   "status": "verified",
+   "measured": {
+    "fps_540x960": 120.9,
+    "deterministic": true,
+    "step_ratio": 1.61,
+    "start_diff": 0,
+    "end_diff": 0
+   },
+   "recipe": "docs/motion/PLAYBOOK-BUILD-MOTION.md#image-fx"
+  },
+  {
+   "technique": "undulatingBurnOut",
+   "kind": "transition",
+   "family": "burn",
+   "aliases": [
+    "undulatingBurnOut",
+    "سوختن",
+    "burn"
+   ],
+   "description": "Burn-out style undulating radial wipe.",
+   "use_cases": [
+    "scene change where an image becomes another",
+    "burn feel"
+   ],
+   "engine": "pa-fx WebGL2 shader",
+   "params": [
+    "smoothness=0.03",
+    "center=vec2(0.5)",
+    "color=vec3(0.0)"
+   ],
+   "timeline_control": "progress 0..1 (pure function, seekable)",
+   "dependencies": [
+    "work/persian/htmlfilm/lib/pa-fx.js",
+    "work/persian/htmlfilm/lib/shaders/index.js"
+   ],
+   "limits": [
+    "needs WebGL2 (SwiftShader flags in capture.mjs)",
+    "inputs are rasterised canvases/images (DOM must be drawn to a canvas first)"
+   ],
+   "source": "gl-transitions catalogue (MIT), https://github.com/gl-transitions/gl-transitions/blob/master/transitions/undulatingBurnOut.glsl",
+   "status": "verified",
+   "measured": {
+    "fps_540x960": 113.8,
+    "deterministic": true,
+    "step_ratio": 7.16,
+    "start_diff": 0,
+    "end_diff": 0
+   },
+   "recipe": "docs/motion/PLAYBOOK-BUILD-MOTION.md#image-fx"
+  },
+  {
+   "technique": "windowslice",
+   "kind": "transition",
+   "family": "wipe",
+   "aliases": [
+    "windowslice",
+    "جارو",
+    "کشیدن",
+    "پرده",
+    "wipe",
+    "slide reveal"
+   ],
+   "description": "Venetian-blind slices slide in.",
+   "use_cases": [
+    "scene change where an image becomes another",
+    "wipe feel"
+   ],
+   "engine": "pa-fx WebGL2 shader",
+   "params": [
+    "count=10.0",
+    "smoothness=0.5"
+   ],
+   "timeline_control": "progress 0..1 (pure function, seekable)",
+   "dependencies": [
+    "work/persian/htmlfilm/lib/pa-fx.js",
+    "work/persian/htmlfilm/lib/shaders/index.js"
+   ],
+   "limits": [
+    "needs WebGL2 (SwiftShader flags in capture.mjs)",
+    "inputs are rasterised canvases/images (DOM must be drawn to a canvas first)"
+   ],
+   "source": "gl-transitions catalogue (MIT), https://github.com/gl-transitions/gl-transitions/blob/master/transitions/windowslice.glsl",
+   "status": "verified",
+   "measured": {
+    "fps_540x960": 130,
+    "deterministic": true,
+    "step_ratio": 1.6,
+    "start_diff": 0,
+    "end_diff": 0
+   },
+   "recipe": "docs/motion/PLAYBOOK-BUILD-MOTION.md#image-fx"
+  },
+  {
+   "technique": "wipe-left",
+   "kind": "transition",
+   "family": "wipe",
+   "aliases": [
+    "wipe-left",
+    "جارو",
+    "کشیدن",
+    "پرده",
+    "wipe",
+    "slide reveal"
+   ],
+   "description": "Hard-edged wipe from right to left with a soft edge.",
+   "use_cases": [
+    "scene change where an image becomes another",
+    "wipe feel"
+   ],
+   "engine": "pa-fx WebGL2 shader",
+   "params": [
+    "softness=0.04"
+   ],
+   "timeline_control": "progress 0..1 (pure function, seekable)",
+   "dependencies": [
+    "work/persian/htmlfilm/lib/pa-fx.js",
+    "work/persian/htmlfilm/lib/shaders/index.js"
+   ],
+   "limits": [
+    "needs WebGL2 (SwiftShader flags in capture.mjs)",
+    "inputs are rasterised canvases/images (DOM must be drawn to a canvas first)"
+   ],
+   "source": "native (persian-arts)",
+   "status": "verified",
+   "measured": {
+    "fps_540x960": 136.2,
+    "deterministic": true,
+    "step_ratio": 1.22,
+    "start_diff": 0,
+    "end_diff": 0
+   },
+   "recipe": "docs/motion/PLAYBOOK-BUILD-MOTION.md#image-fx"
+  },
+  {
+   "technique": "crumple-fold",
+   "kind": "effect",
+   "family": "fold",
+   "aliases": [
+    "crumple-fold",
+    "مچاله",
+    "چروک",
+    "کاغذ",
+    "crumple",
+    "تا شدن",
+    "ورق",
+    "fold",
+    "page turn"
+   ],
+   "description": "Crumple-ish approximation: faceted fold lines displace and shade the image (paper look), relaxing as t goes 0 to 1.",
+   "use_cases": [
+    "single image treatment: entrance, emphasis, tension"
+   ],
+   "engine": "pa-fx WebGL2 shader",
+   "params": [
+    "facets=5.0",
+    "depth=0.06"
+   ],
+   "timeline_control": "t 0..1 (pure function, seekable)",
+   "dependencies": [
+    "work/persian/htmlfilm/lib/pa-fx.js",
+    "work/persian/htmlfilm/lib/shaders/index.js"
+   ],
+   "limits": [
+    "needs WebGL2 (SwiftShader flags in capture.mjs)",
+    "inputs are rasterised canvases/images (DOM must be drawn to a canvas first)"
+   ],
+   "source": "native (persian-arts)",
+   "status": "verified",
+   "measured": {
+    "fps_540x960": 138.9,
+    "deterministic": true,
+    "step_ratio": 0.56,
+    "start_diff": null,
+    "end_diff": 0
+   },
+   "recipe": "docs/motion/PLAYBOOK-BUILD-MOTION.md#image-fx"
+  },
+  {
+   "technique": "noise-displace",
+   "kind": "effect",
+   "family": "distortion",
+   "aliases": [
+    "noise-displace",
+    "گرما",
+    "heat haze",
+    "لرزش",
+    "موج",
+    "پیچش",
+    "اعوجاج",
+    "distort",
+    "ripple",
+    "swirl"
+   ],
+   "description": "Heat-haze noise displacement that fades out with t.",
+   "use_cases": [
+    "single image treatment: entrance, emphasis, tension"
+   ],
+   "engine": "pa-fx WebGL2 shader",
+   "params": [
+    "strength=0.05",
+    "scale=6.0"
+   ],
+   "timeline_control": "t 0..1 (pure function, seekable)",
+   "dependencies": [
+    "work/persian/htmlfilm/lib/pa-fx.js",
+    "work/persian/htmlfilm/lib/shaders/index.js"
+   ],
+   "limits": [
+    "needs WebGL2 (SwiftShader flags in capture.mjs)",
+    "inputs are rasterised canvases/images (DOM must be drawn to a canvas first)"
+   ],
+   "source": "native (persian-arts)",
+   "status": "verified",
+   "measured": {
+    "fps_540x960": 82.7,
+    "deterministic": true,
+    "step_ratio": 2.03,
+    "start_diff": null,
+    "end_diff": 0
+   },
+   "recipe": "docs/motion/PLAYBOOK-BUILD-MOTION.md#image-fx"
+  },
+  {
+   "technique": "pixel-dissolve",
+   "kind": "effect",
+   "family": "dissolve",
+   "aliases": [
+    "pixel-dissolve",
+    "متلاشی",
+    "فرو ریختن",
+    "پیکسل",
+    "disintegrate",
+    "ذره ذره",
+    "dissolve",
+    "noise"
+   ],
+   "description": "Image breaks into blocks that turn to the background colour in random order (t 0 clean to 1 gone).",
+   "use_cases": [
+    "single image treatment: entrance, emphasis, tension"
+   ],
+   "engine": "pa-fx WebGL2 shader",
+   "params": [
+    "block=48.0",
+    "bg=vec3(0.05, 0.05, 0.08)"
+   ],
+   "timeline_control": "t 0..1 (pure function, seekable)",
+   "dependencies": [
+    "work/persian/htmlfilm/lib/pa-fx.js",
+    "work/persian/htmlfilm/lib/shaders/index.js"
+   ],
+   "limits": [
+    "needs WebGL2 (SwiftShader flags in capture.mjs)",
+    "inputs are rasterised canvases/images (DOM must be drawn to a canvas first)"
+   ],
+   "source": "native (persian-arts)",
+   "status": "verified",
+   "measured": {
+    "fps_540x960": 138.9,
+    "deterministic": true,
+    "step_ratio": 1.3,
+    "start_diff": null,
+    "end_diff": 9.074
+   },
+   "recipe": "docs/motion/PLAYBOOK-BUILD-MOTION.md#image-fx"
+  },
+  {
+   "technique": "rgb-glitch",
+   "kind": "effect",
+   "family": "glitch",
+   "aliases": [
+    "rgb-glitch",
+    "اختلال",
+    "گلیچ",
+    "سیگنال",
+    "glitch",
+    "digital",
+    "rgb split"
+   ],
+   "description": "RGB channel split plus horizontal scanline displacement bands; intensity peaks mid t (seeded).",
+   "use_cases": [
+    "single image treatment: entrance, emphasis, tension"
+   ],
+   "engine": "pa-fx WebGL2 shader",
+   "params": [
+    "amount=0.02",
+    "bands=24.0"
+   ],
+   "timeline_control": "t 0..1 (pure function, seekable)",
+   "dependencies": [
+    "work/persian/htmlfilm/lib/pa-fx.js",
+    "work/persian/htmlfilm/lib/shaders/index.js"
+   ],
+   "limits": [
+    "needs WebGL2 (SwiftShader flags in capture.mjs)",
+    "inputs are rasterised canvases/images (DOM must be drawn to a canvas first)"
+   ],
+   "source": "native (persian-arts)",
+   "status": "verified",
+   "measured": {
+    "fps_540x960": 121.2,
+    "deterministic": true,
+    "step_ratio": 5.67,
+    "start_diff": null,
+    "end_diff": 0
+   },
+   "recipe": "docs/motion/PLAYBOOK-BUILD-MOTION.md#image-fx"
+  },
+  {
+   "technique": "ripple-wave",
+   "kind": "effect",
+   "family": "distortion",
+   "aliases": [
+    "ripple-wave",
+    "موج",
+    "آب",
+    "ripple",
+    "پیچش",
+    "اعوجاج",
+    "distort",
+    "swirl"
+   ],
+   "description": "Concentric ripples radiate from the centre, damping with t.",
+   "use_cases": [
+    "single image treatment: entrance, emphasis, tension"
+   ],
+   "engine": "pa-fx WebGL2 shader",
+   "params": [
+    "amplitude=0.02",
+    "frequency=24.0"
+   ],
+   "timeline_control": "t 0..1 (pure function, seekable)",
+   "dependencies": [
+    "work/persian/htmlfilm/lib/pa-fx.js",
+    "work/persian/htmlfilm/lib/shaders/index.js"
+   ],
+   "limits": [
+    "needs WebGL2 (SwiftShader flags in capture.mjs)",
+    "inputs are rasterised canvases/images (DOM must be drawn to a canvas first)"
+   ],
+   "source": "native (persian-arts)",
+   "status": "verified",
+   "measured": {
+    "fps_540x960": 137.2,
+    "deterministic": true,
+    "step_ratio": 1.75,
+    "start_diff": null,
+    "end_diff": 0
+   },
+   "recipe": "docs/motion/PLAYBOOK-BUILD-MOTION.md#image-fx"
+  },
+  {
+   "technique": "swirl-vortex",
+   "kind": "effect",
+   "family": "distortion",
+   "aliases": [
+    "swirl-vortex",
+    "گرداب",
+    "پیچش",
+    "vortex",
+    "موج",
+    "اعوجاج",
+    "distort",
+    "ripple",
+    "swirl"
+   ],
+   "description": "Vortex twist around the centre that unwinds as t goes 0 to 1 (t=0 twisted, t=1 clean).",
+   "use_cases": [
+    "single image treatment: entrance, emphasis, tension"
+   ],
+   "engine": "pa-fx WebGL2 shader",
+   "params": [
+    "strength=7.0"
+   ],
+   "timeline_control": "t 0..1 (pure function, seekable)",
+   "dependencies": [
+    "work/persian/htmlfilm/lib/pa-fx.js",
+    "work/persian/htmlfilm/lib/shaders/index.js"
+   ],
+   "limits": [
+    "needs WebGL2 (SwiftShader flags in capture.mjs)",
+    "inputs are rasterised canvases/images (DOM must be drawn to a canvas first)"
+   ],
+   "source": "native (persian-arts)",
+   "status": "verified",
+   "measured": {
+    "fps_540x960": 138.7,
+    "deterministic": true,
+    "step_ratio": 1.02,
+    "start_diff": null,
+    "end_diff": 0
+   },
+   "recipe": "docs/motion/PLAYBOOK-BUILD-MOTION.md#image-fx"
+  }
+ ]
+}

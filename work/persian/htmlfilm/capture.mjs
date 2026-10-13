@@ -60,7 +60,7 @@ const mark = (label) => console.log(`[${((Date.now() - t0) / 1000).toFixed(2)}s]
 const profile = mkdtempSync(join(tmpdir(), "pencil-html-chrome-"));
 const chrome = spawn(CHROME, [
   "--headless", `--remote-debugging-port=${PORT}`, `--user-data-dir=${profile}`,
-  `--window-size=${W},${H}`, "--disable-gpu", "--no-first-run", "--no-default-browser-check",
+  `--window-size=${W},${H}`, "--disable-gpu", "--use-gl=angle", "--use-angle=swiftshader", "--enable-unsafe-swiftshader", "--ignore-gpu-blocklist", "--no-first-run", "--no-default-browser-check",
   "--allow-file-access-from-files", "--hide-scrollbars", "about:blank",
 ], {stdio: "ignore"});
 

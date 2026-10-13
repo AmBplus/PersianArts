@@ -48,3 +48,6 @@ DECISIONS (visual choices with rejected alternatives); REJECTED looks; CONSTRAIN
 
 ## Step 0 (2.9)
 The orchestrator runs step `env` first (`pa doctor --quiet`, auto `pa bootstrap` / `pa sync`). If a tool or asset you need is missing, restore it from git/vault/script (see docs/motion/ASSETS-IN-GIT.md) and say so in your report; never skip it silently and never use an absolute path.
+
+## Image FX (2.12)
+A transform/transition of an image is a story decision: write in the plan what changes and why that look (a liquid dissolve for time flowing, a fold for pages, a glitch for signal loss). Candidates come from `pa fx find "<need>"` (docs/motion/fx/catalog.json); keep one world: the effect never introduces a new palette.

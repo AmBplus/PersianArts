@@ -1,5 +1,9 @@
 # SKILLS-CHANGELOG
 
+## 2.12 (2026-10-14): Image FX phase 1
+- pa-fx.js runner + 36 shaders + catalog + `pa fx find|list|check|demo`; capture.mjs SwiftShader flags; motion-designer/art-director/PLAYBOOK/FILM-GATES.
+- Ledger L-098..L-100; decision D-20261014-06; T021 done, phase 2 added to the TODO.
+
 ## 2.9 (2026-10-14): self-installing skill
 - Rule 15, step 0 env in SKILL.md, all craft skills and todo.template.json; START.md; docs/motion/ASSETS-IN-GIT.md.
 - Tools: install.ps1, install.sh, `pa install-skill`, `pa assets-check`, `pa doctor --quiet`, bootstrap copies fonts and creates .env from examples; capture.mjs browser resolver; fonts manifest.

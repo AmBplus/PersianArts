@@ -1,0 +1,1 @@
+Vendored shader files under transitions/ that carry "License: MIT" headers come from https://github.com/gl-transitions/gl-transitions (MIT License, copyright the gl-transitions authors and the individual shader authors named in each file). Native shaders are ours.

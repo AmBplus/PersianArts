@@ -5,6 +5,7 @@ Date: 2026-10-14. Start on any machine: [START.md](../../START.md).
 ## CURRENT STATE (2026-10-14 01:10 +03:30; single source; the older blocks below are history)
 
 - Date and time: 2026-10-14 01:10 (+03:30). Last commit before this refresh: `08427c01` (S07 kite-wind film v1). This refresh is committed on top of it; its hash is the newest line in `docs/motion/last-checkpoint.txt` (this block cannot name its own hash). Check with `git log -1`.
+- Image FX phase 1 done (skill 2.12): `pa fx find|list|check|demo`, work/persian/htmlfilm/lib/pa-fx.js, 36 shaders (34 verified), docs/motion/fx/catalog.json. Next: phase 2 geometry effects only if a story needs them (TODO).
 - Weekly Claude quota: about 88% used at 2026-10-14 01:xx. Stop at the quota limit only after a checkpoint, then RESUME after the reset.
 - Git pack: 301 MB after prune. Git-first: everything needed to continue is committed, except media, output and binaries.
 

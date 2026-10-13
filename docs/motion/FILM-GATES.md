@@ -58,3 +58,8 @@ html-film applicability (2.2, lane default): edge-touch, empty-band, dead-frames
 Note 2.10: edge-touch and pacing cuts-on-beat give false alarms on one-take camera films with full-bleed scenery (S03); record as scenery in VERSION.json metrics. A flat flood ending fails empty-band: add rays/texture.
 
 Note 2.11: `run-gates --scenery` (or VERSION.json scenery:true) marks edge-touch N/A for full-bleed scenery films; a clear sky needs clouds in every opening view (empty-band).
+
+### Image FX determinism (2.12)
+| Gate | Check | Evidence | Status |
+|---|---|---|---|
+| FX determinism and continuity | `pa fx check`: every shader compiles, same frame twice (other frames in between) gives the same hash, start/end frames equal the sources, frame-to-frame diff curve is smooth; `pa fx demo` re-renders in a fresh browser session (md5 identical) | exists: work/persian/htmlfilm/lib/fx-lab.mjs | automated; only `verified` catalog entries are default choices |

@@ -43,3 +43,6 @@ DECISIONS (motion choices, easing family per scene, rejected alternative); REJEC
 
 ## Step 0 (2.9)
 The orchestrator runs step `env` first (`pa doctor --quiet`, auto `pa bootstrap` / `pa sync`). If a tool or asset you need is missing, restore it from git/vault/script (see docs/motion/ASSETS-IN-GIT.md) and say so in your report; never skip it silently and never use an absolute path.
+
+## Image FX (2.12)
+When a scene needs an image to transform or hand over to another image (crumble, ripple, swirl, dissolve, wipe, glitch, fold): run `pwsh -File work/persian/tools/pa.ps1 fx find "<what the story needs, Persian or English>"`, then use `work/persian/htmlfilm/lib/pa-fx.js` (`PA.fx.create(canvas).transition({from,to,shader,progress})` / `.effect({source,shader,t})`, progress is a pure function of film time, seekable). Choose by STORY (what changes, what the viewer expects), never by novelty; prefer `verified` catalog entries; draw DOM scenes to canvases first (rasterise), keep text cards readable at the end frames. Experimental entries need a look at the strip. Phase 2 (geometry shatter/particles) is not built.

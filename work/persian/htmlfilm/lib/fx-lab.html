@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="fa" dir="rtl"><head><meta charset="utf-8"><title>pa-fx lab</title>
+<style>@font-face{font-family:"PAHead";src:url("../../assets/fonts/Vazirmatn-Variable.woff2") format("woff2");font-weight:100 900;font-display:block}body{margin:0;background:#000}</style>
+<script src="pa-fx.js"></script><script src="shaders/index.js"></script></head><body>
+<script>
+/* fx-lab page: two generated test images (neutral pattern, Persian text card) and a measuring harness. The numbers it returns are used by fx-lab.mjs.
+   Time functions (performance.now) are used ONLY to measure speed, never to produce pixels. */
+const W = 540, H = 960;
+function mk(w, h) { const c = document.createElement("canvas"); c.width = w; c.height = h; return c; }
+function imgPattern() { const c = mk(W, H), x = c.getContext("2d"); const g = x.createLinearGradient(0, 0, W, H); g.addColorStop(0, "#0b3d5c"); g.addColorStop(0.5, "#2a9d8f"); g.addColorStop(1, "#e9c46a"); x.fillStyle = g; x.fillRect(0, 0, W, H);
+  x.strokeStyle = "rgba(255,255,255,.35)"; x.lineWidth = 3; for (let i = 0; i < 12; i++) { x.beginPath(); x.arc(W / 2, H / 2, 40 + i * 38, 0, Math.PI * 2); x.stroke(); }
+  x.fillStyle = "rgba(0,0,0,.25)"; for (let i = 0; i < 8; i++) x.fillRect(i * 70, 0, 18, H); return c; }
+function imgText() { const c = mk(W, H), x = c.getContext("2d"); x.fillStyle = "#14161f"; x.fillRect(0, 0, W, H); x.direction = "rtl"; x.textAlign = "center"; x.fillStyle = "#f4f1ea";
+  x.font = "800 74px PAHead, sans-serif"; x.fillText("زمان فرو می‌ریزد", W / 2, H / 2 - 20); x.font = "500 34px PAHead, sans-serif"; x.fillStyle = "#e9c46a"; x.fillText("و دوباره ساخته می‌شود", W / 2, H / 2 + 50);
+  x.fillStyle = "#2a9d8f"; x.fillRect(W / 2 - 90, H / 2 + 90, 180, 6); return c; }
+let A = imgPattern(), B = imgText();
+const cv = mk(W, H); document.body.appendChild(cv);
+let fx; const px = new Uint8Array(W * H * 4);
+function hashPixels() { const gl = fx.gl; gl.readPixels(0, 0, W, H, gl.RGBA, gl.UNSIGNED_BYTE, px); let h = 2166136261 >>> 0; for (let i = 0; i < px.length; i += 7) { h ^= px[i]; h = Math.imul(h, 16777619) >>> 0; } return h; }
+function snap() { const gl = fx.gl; const out = new Uint8Array(W * H * 4); gl.readPixels(0, 0, W, H, gl.RGBA, gl.UNSIGNED_BYTE, out); return out; }
+function mad(a, b) { let s = 0, n = 0; for (let i = 0; i < a.length; i += 17) { s += Math.abs(a[i] - b[i]); n++; } return s / n; }
+function render(kind, name, p) { if (kind === "transition") fx.transition({ from: A, to: B, shader: name, progress: p, seed: 7 }); else fx.effect({ source: B, shader: name, t: p, seed: 7 }); }
+window.labInit = () => { fx = PA.fx.create(cv, { width: W, height: H }); return fx.info(); };
+window.labList = () => Object.values(PA.fx.registry).map((r) => ({ name: r.name, kind: r.kind }));
+window.labRun = (name, kind, N) => {
+  const res = { name, kind, compiled: false };
+  try { fx.compile(name); res.compiled = true; } catch (e) { res.error = String(e.message).slice(0, 300); return res; }
+  const ref0 = (render("transition", "fade", 0), snap()), ref1 = (render("transition", "fade", 1), snap());
+  const hs = [], steps = []; let prev = null; const t0 = performance.now();
+  for (let i = 0; i < N; i++) { render(kind, name, i / (N - 1)); const s = snap(); if (prev) steps.push(mad(prev, s)); prev = s; }
+  res.ms_per_frame = +((performance.now() - t0) / N).toFixed(2); res.fps = +(1000 / res.ms_per_frame).toFixed(1);
+  // determinism: frame 30 rendered, other frames in between, rendered again -> identical hash
+  render(kind, name, 0.5); const h1 = hashPixels(); render(kind, name, 0.1); render(kind, name, 0.9); render(kind, name, 0.5); const h2 = hashPixels(); res.hash = h1; res.deterministic = h1 === h2;
+  // continuity: smoothness of the frame-to-frame diff curve
+  const sorted = steps.slice().sort((a, b) => a - b), med = sorted[Math.floor(sorted.length / 2)], mx = sorted[sorted.length - 1];
+  res.step_median = +med.toFixed(3); res.step_max = +mx.toFixed(3); res.step_ratio = +(mx / Math.max(med, 0.25)).toFixed(2);
+  let jump = 0; for (let i = 1; i < steps.length; i++) jump = Math.max(jump, Math.abs(steps[i] - steps[i - 1])); res.step_jump = +jump.toFixed(3);
+  if (kind === "transition") { render(kind, name, 0); res.end0_diff = +mad(snap(), ref0).toFixed(3); render(kind, name, 1); res.end1_diff = +mad(snap(), ref1).toFixed(3); }
+  else { render(kind, name, 1); res.end1_diff_vs_source = +mad(snap(), ref1 === null ? ref1 : (render("transition", "fade", 1), snap())).toFixed(3); }
+  render(kind, name, 0.5); const t = mk(270, 480); t.getContext("2d").drawImage(cv, 0, 0, 270, 480); res.thumb = t.toDataURL("image/jpeg", 0.8);
+  return res;
+};
+window.labFrame = (kind, name, p) => { render(kind, name, p); return cv.toDataURL("image/png"); };
+window.labSetImages = (ua, ub) => Promise.all([ua, ub].map((u) => new Promise((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = rej; i.src = u; }))).then(([a, b]) => { A = a; B = b; return true; });
+window.labReady = document.fonts.ready.then(() => true);
+</script></body></html>
