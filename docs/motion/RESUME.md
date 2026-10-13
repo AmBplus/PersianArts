@@ -1,40 +1,65 @@
 # RESUME HERE (updated at each checkpoint)
 
-## CURRENT STATE (2026-10-13, single source; the older blocks below are history)
+Date: 2026-10-14. Start on any machine: [START.md](../../START.md).
 
-- Date: 2026-10-13. Last commit before the docs merge: `24baaae`. The merge commit is recorded in `docs/motion/last-checkpoint.txt` (checkpoint writes it after the commit; this block cannot name its own hash).
-- Running orders: none. Autopilot: PAUSED by owner (~08:20). No new orders start until the owner resumes.
-- GLM: sidelined for scene work (two timeouts on P2 and P3). Quick hands: Haiku. Implementation: Sol (gpt-6.1-sol via `qh order` / `qh run`).
-- Uni-admissions teaser: 8 scenes in `work/persian/src/film/uni`; P3 unfinished (GLM timeout, then order 15 stopped, half-edited, unverified). No full render. No sound.
-- Pencil v51: 2 versions with sound, waiting for the owner's listening feedback.
-- Process: the persian-arts system is the entry point for building films; see the MAP in [README.md](README.md).
+## CURRENT STATE (2026-10-14, single source; the older blocks below are history)
 
-Owner standing rules (apply to every order and every reply):
-- Personal, non-commercial use. Do not raise licence talk unless the owner asks.
-- Sample films are tested in 9:16 only for now; every ingredient must still work in 1:1, 4:5 and 16:9.
-- Time-box rule: every order states its expected time; an overrun is reported in one line (order, expected vs actual, action). Two overruns on the same kind of task sideline that worker.
-- When the owner asks only to look or show, do not continue beyond that: no fixes, renders or orders unless asked.
-- Sound on request only (D-20261013-19). Cues land on beat or bar. No text-to-speech or synthesis for voice.
-- Anti-slideshow rule; the client's name and institution words never appear in tracked files (label `uni-admissions`).
-- Resilience (D-20261013-14): try at least two reasonable alternatives before reporting a blocker; involve the owner only when it cannot be done without them.
-
-Ordered next steps (one list; merges the two older lists; start only when the owner resumes):
-1. Re-check `work/persian/src/film/uni` against the P3 acceptance (Sol order, short brief, no GLM).
-2. After the check passes: full silent render of the uni teaser (B1); record numbers from raw logs.
-3. B2: re-measure render benchmarks into `work/persian/_bench/results-<date>.csv`.
-4. B3: extend `work/persian/tools/pa.ps1` with the missing commands (see the "pa: decision" paragraph in [ARCHITECTURE.md](ARCHITECTURE.md)); render writes canonical `VERSION.json`.
-5. B5: keep `docs/motion/STATE.md` fresh; rebuild the ledger (`node work/persian/tools/ledger/build_ledger.mjs`); create `docs/motion/manual-orders.jsonl` on the first order.
-
-Owner waiting list (owner-only; the lead never decides these):
-- rubric-v2 weights (rec: accept 1.5, cap 6 recs).
-- `http.sslverify false` in the global gitconfig: owner should remove it.
-- Public URL: Pages URL still says persiandoodle in README, index.html and workflow; owner decides.
-- `media/dana/` (rec: keep tracked).
-- Pencil v51 listening feedback.
-- Public wording for the uni-admissions teaser.
-- Where the client-private files are kept (`PA_PRIVATE_DIR`): open.
-- Audio does not travel via git (D-20261013-12): choose PA_PRIVATE_DIR audio folder, shared folder, or small allowlisted audio.
-- Commit trailer rule: confirm the `Claude-Session` only rule (see [AUTOPILOT.md](AUTOPILOT.md)).
+- Date: 2026-10-14. Last film checkpoint: `9f06ed84` (S06 clock film, 15 files, pushed to origin main). This RESUME refresh is committed right after it; its hash is the newest line in `docs/motion/last-checkpoint.txt` (this block cannot name its own hash).
+- Cross-machine start (any new chat, any machine): read [START.md](../../START.md) at the repo root. Clone over SSH (`git@github.com:AmBplus/PersianArts.git`), then `pwsh -File work/persian/tools/pa.ps1 bootstrap`, then `pwsh -File work/persian/tools/pa.ps1 sync`, then open `output/LATEST` (or `deliver/` for finals of our own films). Client material: set `PA_VAULT_PASS`, then `pa vault unpack` (see [PORTABILITY.md](PORTABILITY.md)). `pa` = `pwsh -File work/persian/tools/pa.ps1` (not on PATH).
+- What exists:
+  - html-film default lane: `work/persian/htmlfilm/` (film.html, events.json, rules.json per film; `lib/pa-motion.js`).
+  - Skill 2.7 with rules 9-13 (`.claude/skills`, `.agents/skills`).
+  - Kit sound and mixer (`sound/tools`, `build_sound.py`).
+  - Compression (`pa compress`) and `deliver/LATEST` (S06 final: `deliver/s06-clock-never-zero-9x16.mp4`).
+  - Pacing tool (`pa pacing`, `work/persian/tools/pacing/`).
+  - Story lab S01-S10: S06 built (v1, 10.7 min). S03 and S07 are next; S05 and S02 later.
+  - Tools: `pa todo` (list|next|add|done), `pa meter` (task|seed), `pa metrics`, `pa doctor`, `pa vault` (pack|unpack|list).
+- Owner standing rules (apply to every order and every reply):
+  - Git-first and portable: everything needed to continue must be committed (except media, output and binaries; see below).
+  - Time budget: 10 minutes for a small task, 20 minutes for a standard order; overruns are reported in one line.
+  - Scope freeze during a film: no side tasks while a film is being built.
+  - Persistent studio: the same studio worker continues its films.
+  - Haiku is never used for craft (quick lookups and small actions only).
+  - Personal, non-commercial use. Do not raise licence talk unless the owner asks.
+  - Sample films are tested in 9:16 only for now; every ingredient must still work in 1:1, 4:5 and 16:9.
+  - Quota ownership: stop at 90% of the weekly quota, after a checkpoint.
+  - Sound on request only (D-20261013-19). Cues land on beat or bar. No text-to-speech or synthesis for voice.
+  - Anti-slideshow rule; client name and institution words never appear in tracked files (label `uni-admissions`).
+  - Resilience (D-20261013-14): try at least two reasonable alternatives before reporting a blocker.
+  - Do not commit media/**, output/** or other binaries except the owner-listed deliver/ finals.
+- TODO top 10 (`pa todo list`, open items, 2026-10-14):
+  1. T015 (now) Checkpoint policy: commit after every task.
+  2. T002 Story build S03.
+  3. T003 Story build S07.
+  4. T004 Pacing calibration: conference v5 known cuts 4.07/10.17/16.27/22.37 s vs detected.
+  5. T013 Carry-over: 4 simultaneous-cue defect in old finals (rebuild with build_sound).
+  6. T014 Cleanup duplicate decision ids D-20261013-01/-16 in DECISIONS.jsonl.
+  7. T017 Add loop-seam gate to build_sound.py.
+  8. T018 Add loop mode to build_sound.py.
+  9. T019 Logo-colour gate: add a switch for logo-less films.
+  10. T020 Fix pa meter -Kind/-Worker flag parse bug and malformed tasks.jsonl line.
+- Next 3 actions, in order:
+  1. Story S03, then S07 (S05 and S02 later).
+  2. Fix the tools above: pacing calibration (T004), meter flags (T020), loop-seam gate and loop mode (T017, T018), logo gate switch (T019).
+  3. Vault: set `PA_VAULT_PASS`, then `pa vault pack` for the client folders (T010).
+- Known defects (not yet fixed):
+  - `pa pacing` beat calibration: conference v5 cuts sit on bars, but the tool reported 0% (T004).
+  - `pa meter`: -Kind/-Worker flag parse bug, and one malformed line in tasks.jsonl (T020).
+  - No loop-seam gate and no loop mode in `build_sound.py` (T017, T018).
+  - Logo-colour gate has no switch for logo-less films (T019).
+  - PNG capture is slow: use `--draft` for previews.
+  - Duplicate decision ids D-20261013-01 and D-20261013-16 (T014).
+  - 4 simultaneous cues in old finals (T013).
+  - `pa todo add --owner` is ignored: items default to owner lead.
+- Waiting for owner (only the owner decides these):
+  - Vault passphrase `PA_VAULT_PASS`, then `pa vault pack` for client folders (T010).
+  - qh vendor decision.
+  - `media/dana/` keep, move to vault, or drop (T007). The working tree has uncommitted deletions there; they are not committed.
+  - Remove `http.sslverify false` from the global `.gitconfig` (T008).
+  - Public Pages URL: still persiandoodle in README, index.html and the workflow (T009).
+  - Research-centre emblem asset: owner can send it (T012).
+  - Preact build step decision (T011).
+  - Local git prune of unreachable objects (T006): owner approved on 2026-10-14; run after this refresh commit (see the prune report in the chat log, not in this file).
 
 ---
 
