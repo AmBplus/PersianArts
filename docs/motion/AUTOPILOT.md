@@ -88,3 +88,14 @@ Every order ends with: no human is present, do not ask questions, and the footer
 ## Footer for every order (appends to manual-orders.jsonl)
 "After finishing, append one JSON line {order, model, started, finished, result, files} to docs/motion/manual-orders.jsonl.
 No human is present, do not ask questions."
+
+## Time boxes and sidelining
+
+Owner rule, 2026-10-13. Motivation: the uni teaser took about 6 h after two GLM timeouts.
+
+- Every order states its expected time: a time box in minutes and a matching `--timeout`.
+- A result that misses the expected time is an overrun. Report one plain line: order, expected vs actual, action taken.
+- Action on an overrun: stop the job, then re-order a narrower slice with the partial output as input, or escalate to a stronger worker.
+- Two overruns on the same kind of task sideline that worker or tool: no more orders to it until the owner lifts the rule.
+- Do not run side research in parallel with the critical path. Finish the film first.
+- Each overrun is recorded in `docs/motion/ledger/README.md` and decided in `docs/motion/DECISIONS.jsonl`.

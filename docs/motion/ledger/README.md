@@ -38,3 +38,4 @@ Rule: every report must include total elapsed, per-phase seconds, and what chang
 - `step window` is the wall time since the previous version's final mp4. Parallel tracks (dogo, feeblom, dolphins) interleave, so a step window is not a per-phase time.
 - `ratio` render times come from `render-report.json`. The version folders have none, so the render time of v3 to v51 is not measured.
 - Timezone: qh times are UTC. File times are converted from epoch to UTC; the VERSION.json notes use local time (UTC+3:30).
+- Overruns must be recorded: each order that misses its expected time gets one line with order, expected, actual and action taken.
