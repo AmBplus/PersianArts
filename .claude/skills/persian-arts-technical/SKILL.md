@@ -44,3 +44,10 @@ Time budget (2.3): capture ONCE per version; png for FINAL, `--draft` (jpeg q97,
 - Capture: PNG is Chrome's bottleneck; PNG for finals, JPEG q97 for finals only if the budget forces it and the report says so (conference v3-v5 used JPEG); `--draft` for previews; lighten before capture; one capture pair per version.
 - Delivery: `pa deliver` compresses by default (CRF 20-23, SSIM guard); `pa compress <paths>` for existing outputs; originals in media/film-versions are never touched (new file renamed over the hardlink).
 - Known pitfalls: settle role (build_sound), PA_DUCK env, tv-order, rules.json event types.
+
+## Lessons 2.8
+- Per version fill the VERSION.json `metrics` block (time marks, audio-check, loop-check, pacing, gates, quality notes). `pa deliver <film> <v> --gates` runs the gates on the delivered finals and passes `--no-logo` when VERSION.json says `logo:false`.
+- `pa meter task "<title>" -Kind <k> -Worker <w> -Model <m> -Minutes <n> -Result done` (real parameters); `pa meter check` validates the log.
+
+## Step 0 (2.9)
+The orchestrator runs step `env` first (`pa doctor --quiet`, auto `pa bootstrap` / `pa sync`). If a tool or asset you need is missing, restore it from git/vault/script (see docs/motion/ASSETS-IN-GIT.md) and say so in your report; never skip it silently and never use an absolute path.

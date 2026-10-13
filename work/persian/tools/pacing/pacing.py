@@ -30,11 +30,19 @@ def html_chars(html):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawTextHelpFormatter)
-    ap.add_argument("film"); ap.add_argument("--html"); ap.add_argument("--chars"); ap.add_argument("--profile"); ap.add_argument("--ratio"); ap.add_argument("--md"); ap.add_argument("--label")
+    ap.add_argument("film"); ap.add_argument("--html"); ap.add_argument("--chars"); ap.add_argument("--profile"); ap.add_argument("--ratio"); ap.add_argument("--md"); ap.add_argument("--label"); ap.add_argument("--cuts", help="real cut times: comma list of seconds or an events.json (cut_frames/fps); preferred over detection"); ap.add_argument("--track", help="kit music id: beat/bar grid from its .music.json (period) + film offset t0_s from --events/--cuts json (default 0)"); ap.add_argument("--events", help="events.json with bpm/t0_s/cut_frames")
     a = ap.parse_args()
     mp4 = a.film if a.film.lower().endswith(".mp4") else None
     if not mp4: sys.exit("pacing needs an mp4 for the numbers (html is optional via --html)")
-    m = P.video_metrics(mp4)
+    real = None; ev = None
+    for src in (a.events, a.cuts if a.cuts and a.cuts.lower().endswith(".json") else None):
+        if src: ev = json.load(open(src, encoding="utf-8"))
+    if a.cuts:
+        if ev is not None and a.cuts.lower().endswith(".json"):
+            real = [cf / float(ev.get("fps", 30)) for cf in ev.get("cut_frames", []) if cf > 0]
+        else: real = [float(x) for x in a.cuts.split(",") if x.strip()]
+    elif ev and ev.get("cut_frames"): real = [cf / float(ev.get("fps", 30)) for cf in ev["cut_frames"] if cf > 0]
+    m = P.video_metrics(mp4, cuts_override=real)
     ratio = a.ratio or m["ratio"]
     prof = a.profile or ("story" if ratio == "9x16" else "teaser")
     S = json.load(open(KN / "ref-pacing-summary.json", encoding="utf-8"))
@@ -42,11 +50,21 @@ def main():
     ref = S["by_style"][style]
     refr = S["by_ratio"].get(ratio) or ref
     if prof == "ad": ref = S["by_ratio"]["9x16"]
-    au = P.audio_metrics(mp4, m["cuts"], m["duration_s"]) if m["has_audio"] else None
+    grid = None
+    if a.track or (ev and ev.get("bpm")):
+        import numpy as _np
+        if a.track:
+            mj = json.load(open(R / "sound/library/kit/music" / (a.track.replace("tr-", "") + ".music.json"), encoding="utf-8")); bpm = float(ev.get("bpm") or mj["bpm"]) if ev else mj["bpm"]
+        else: bpm = float(ev["bpm"])
+        t0 = float(ev.get("t0_s", 0.0)) if ev else 0.0; bs = 60.0 / bpm
+        grid = {"beats": [t0 + k * bs for k in range(int((m["duration_s"] - t0) / bs) + 1)], "bars": [t0 + k * 4 * bs for k in range(int((m["duration_s"] - t0) / (4 * bs)) + 1)], "bpm": bpm, "source": "track grid %s bpm %.2f t0 %.3f" % (a.track or "events.json", bpm, t0)}
+    au = P.audio_metrics(mp4, m["cuts"], m["duration_s"], grid) if m["has_audio"] else None
     chars = [int(x) for x in a.chars.split(",")] if a.chars else (html_chars(a.html) if a.html else None)
     L = []
     P_ = L.append
     P_("PACING %s  (%s, %.1f s, ratio %s, profile %s=%s, n_ref=%d)  [advisory]" % (a.label or Path(mp4).name, "%dx%d" % (m["w"], m["h"]), m["duration_s"], ratio, prof, style, ref["n"]))
+    if real: P_("cuts: %d given, %d detected; detected cuts matching a real cut within 120 ms: %d" % (len(real), len(m["cuts_detected"]), sum(1 for r in real if any(abs(r - d) <= 0.12 for d in m["cuts_detected"]))))
+    if au: P_("beat/bar grid source: %s" % au["grid_source"])
     P_("%-28s %-9s %-16s %s" % ("metric", "ours", "ref p25..p75", "verdict"))
     findings = []
     def row(name, v, rng, lo="too fast", hi="too slow", fmt="%.2f"):

@@ -47,3 +47,10 @@ CURRENT STATE "Open defects" block (id, scene, frame, status); DECISIONS (score 
 
 ## Pacing defaults 2.6 (measured on 38 references, docs/motion/knowledge/PACING-PROFILES.md)
 - Run `pa pacing <final.mp4> --profile ...` (advisory, never blocks) and list its findings: cut rate vs profile, no cut in first 3 s, cuts off the music grid, flat/quiet-outro energy arc, scenes below the readability floor.
+
+## Lessons 2.8
+- Loop story: run `pa loop-check` and look at the seam strip it writes (last 0.5 s above first 0.5 s). FAIL = a visible jump; WARN = within the film's normal motion, judge on the strip.
+- `pa pacing` with the film's events.json and kit id for exact beat/bar numbers; detection alone misreads wipes. Gates: `--no-logo` for films without a brand asset.
+
+## Step 0 (2.9)
+The orchestrator runs step `env` first (`pa doctor --quiet`, auto `pa bootstrap` / `pa sync`). If a tool or asset you need is missing, restore it from git/vault/script (see docs/motion/ASSETS-IN-GIT.md) and say so in your report; never skip it silently and never use an absolute path.

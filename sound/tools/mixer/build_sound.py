@@ -188,6 +188,7 @@ def main():
     ap.add_argument("--bpm", type=float)
     ap.add_argument("--t0", type=float)
     ap.add_argument("--seed", type=int, default=7)
+    ap.add_argument("--loop", action="store_true", help="loop mode (also events.json loop:true): no bed fade-in/out, circular 2-beat crossfade, cues ringing over the end wrap to the start, no exp tail")
     a = ap.parse_args()
 
     out = Path(a.out_dir); tmp = out / "tmp"; tmp.mkdir(parents=True, exist_ok=True)
@@ -199,6 +200,7 @@ def main():
     evdoc = json.load(open(a.events, encoding="utf-8"))
     rules = json.load(open(a.rules, encoding="utf-8"))
     fps = float(evdoc.get("fps", 30))
+    loop = bool(a.loop or evdoc.get("loop"))
     kit = Kit()
 
     # music map
@@ -225,6 +227,8 @@ def main():
     settle_s = None
     if settle_ev:
         e = settle_ev[-1]; settle_s = e["t_s"] if "t_s" in e else e["frame"] / fps
+    if loop:
+        settle_s = None  # a loop has no final settle: nothing ends the bed
     cut_s = [cf / fps for cf in (evdoc.get("cut_frames") or []) if 0 < cf / fps < film_dur - 0.2]
 
     # music offset / alignment
@@ -247,15 +251,27 @@ def main():
     def pre(x):
         return ["-ss", fl(x)] if x >= 0 else []
 
-    chain = "afade=t=in:st=0:d=0.4,loudnorm=I=-18:TP=-1.5:LRA=11"
+    fadein = "" if loop else "afade=t=in:st=0:d=0.4,"
+    chain = fadein + "loudnorm=I=-18:TP=-1.5:LRA=11"
     j1 = loudnorm_json(run(["-nostats"] + pre(off) + ["-i", track, "-t", fl(film_dur), "-af", chain + ":print_format=json", "-f", "null", "-"]))
-    lchain = ("afade=t=in:st=0:d=0.4,loudnorm=I=-18:TP=-1.5:LRA=11:measured_I=%s:measured_TP=%s:measured_LRA=%s:measured_thresh=%s:offset=%s:linear=false"
+    lchain = (fadein + "loudnorm=I=-18:TP=-1.5:LRA=11:measured_I=%s:measured_TP=%s:measured_LRA=%s:measured_thresh=%s:offset=%s:linear=false"
               % (j1["input_i"], j1["input_tp"], j1["input_lra"], j1["input_thresh"], j1["target_offset"]))
     two_copy = settle_s is not None and delta is not None and abs(delta) > 0.001 and bool(cut_s)
     Tc = None
     spl = tmp / "bed_spliced.raw"
     bedA = tmp / "bedA.raw"
-    run(["-y", "-loglevel", "error"] + pre(off) + ["-i", track, "-t", fl(film_dur), "-af", lchain, "-ar", SR, "-ac", 2, "-f", "f32le", bedA])
+    XF = 2 * beat_s
+    run(["-y", "-loglevel", "error"] + pre(off) + ["-i", track, "-t", fl(film_dur + (XF if loop else 0)), "-af", lchain, "-ar", SR, "-ac", 2, "-f", "f32le", bedA])
+    if loop:  # circular crossfade: the music continuing past the end is blended into the head, so the last beat flows into the first
+        Af = array.array("f"); Af.frombytes(open(bedA, "rb").read())
+        nL = int(film_dur * SR); nX = int(XF * SR)
+        if len(Af) >= 2 * (nL + nX):
+            for i in range(nX):
+                wgt = i / float(nX)
+                for ch_ in (0, 1):
+                    Af[2 * i + ch_] = Af[2 * i + ch_] * wgt + Af[2 * (nL + i) + ch_] * (1 - wgt)
+            Af = Af[: 2 * nL]
+            open(bedA, "wb").write(Af.tobytes())
     if two_copy:
         bedB = tmp / "bedB.raw"
         run(["-y", "-loglevel", "error"] + pre(off + delta) + ["-i", track, "-t", fl(film_dur), "-af", lchain, "-ar", SR, "-ac", 2, "-f", "f32le", bedB])
@@ -286,7 +302,7 @@ def main():
     bed = tmp / "bed.wav"
     fade_from = settle_s if settle_s is not None else max(0.0, film_dur - 0.6)
     run(["-y", "-loglevel", "error", "-f", "f32le", "-ar", SR, "-ac", 2, "-i", spl, "-t", fl(film_dur), "-af",
-         "afade=t=out:st=%s:d=0.6:curve=exp" % fl(fade_from), "-ar", SR, "-ac", 2, "-c:a", "pcm_f32le", bed])
+         "anull" if loop else "afade=t=out:st=%s:d=0.6:curve=exp" % fl(fade_from), "-ar", SR, "-ac", 2, "-c:a", "pcm_f32le", bed])
 
     # L-a self-check: the bed must not be silent (< -40 dB RMS) for > 1.5 s before the film end
     bedraw = tmp / "bed_check.raw"
@@ -314,6 +330,13 @@ def main():
         fc.append(ch + ",adelay=%d|%d[c%d]" % (ms, ms, i)); labels.append("[c%d]" % i)
         if c["duck"]:
             dips.append("between(t\\,%s\\,%s)" % (fl(c["t_s"]), fl(c["t_s"] + 0.15)))
+    if loop:  # cues that ring over the end are wrapped to the start
+        base = len(cues)
+        for j, c in enumerate([c for c in cues if c["t_s"] + c["duration_s"] > film_dur + 0.02], 1):
+            i = base + j; skip = film_dur - c["t_s"]; d2 = c["duration_s"] - skip
+            inputs += ["-i", REPO / c["file"]]
+            fc.append("[%d:a]atrim=start=%s:duration=%s,asetpts=PTS-STARTPTS,aformat=sample_fmts=fltp:sample_rates=48000:channel_layouts=stereo,volume=%sdB,afade=t=out:st=%s:d=%s,adelay=0|0[c%d]"
+                      % (i, fl(skip), fl(d2), fl(c["gain_db"]), fl(max(0.0, d2 - 0.1)), fl(min(0.1, d2)), i)); labels.append("[c%d]" % i)
     bedf = "[0:a]aformat=sample_fmts=fltp:sample_rates=48000:channel_layouts=stereo,atrim=duration=%s" % fl(film_dur)
     if dips:
         bedf += (",volume=enable='%s':volume=" % "+".join(dips)) + os.environ.get("PA_DUCK", "0.708")
@@ -330,14 +353,14 @@ def main():
 
     j2 = loudnorm_json(run(["-nostats", "-i", summ, "-t", fl(film_dur), "-af", "loudnorm=I=-14:TP=-1.5:LRA=11:print_format=json", "-f", "null", "-"]))
     final = tmp / "final.wav"; tail_used = None
-    for tail in (0.35, 0.6, 1.0):
+    for tail in ((0.0,) if loop else (0.35, 0.6, 1.0)):
         run(["-y", "-loglevel", "error", "-i", summ, "-t", fl(film_dur), "-af",
-             "loudnorm=I=-14:TP=-1.5:LRA=11:measured_I=%s:measured_TP=%s:measured_LRA=%s:measured_thresh=%s:offset=%s:linear=false,afade=t=out:st=%s:d=%s:curve=exp,alimiter=limit=0.75:attack=3:release=60:level=disabled"
-             % (j2["input_i"], j2["input_tp"], j2["input_lra"], j2["input_thresh"], j2["target_offset"], fl(film_dur - tail), fl(tail)),
+             "loudnorm=I=-14:TP=-1.5:LRA=11:measured_I=%s:measured_TP=%s:measured_LRA=%s:measured_thresh=%s:offset=%s:linear=false,%salimiter=limit=0.75:attack=3:release=60:level=disabled"
+             % (j2["input_i"], j2["input_tp"], j2["input_lra"], j2["input_thresh"], j2["target_offset"], "" if loop else "afade=t=out:st=%s:d=%s:curve=exp," % (fl(film_dur - tail), fl(tail))),
              "-ar", SR, "-ac", 2, "-c:a", "pcm_s24le", final])
         tl = run(["-nostats", "-sseof", "-0.25", "-i", final, "-af", "astats=measure_overall=Peak_level", "-f", "null", "-"])
         pk = re.findall(r"Peak level dB: (-?[\d.]+|-inf)", tl); tail_used = tail
-        if pk and (pk[-1] == "-inf" or float(pk[-1]) < -50.0):
+        if loop or (pk and (pk[-1] == "-inf" or float(pk[-1]) < -50.0)):
             break
     outmp4 = out / ("social-%s-final.mp4" % ratio)
     run(["-y", "-loglevel", "error", "-i", film, "-i", final, "-map", "0:v:0", "-map", "1:a:0", "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-t", fl(film_dur), "-movflags", "+faststart", outmp4])

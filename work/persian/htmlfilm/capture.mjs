@@ -15,7 +15,14 @@ import {fileURLToPath, pathToFileURL} from "node:url";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(HERE, "..", "..", "..");
-const CHROME = join(ROOT, "work/persian/.remotion/chrome-headless-shell/win64/chrome-headless-shell-win64/chrome-headless-shell.exe");
+// Browser: PA_CHROME, else the first chrome-headless-shell found under the Remotion download folders (any OS; `pa bootstrap` / install.* download it)
+const CHROME = (() => {
+  if (process.env.PA_CHROME && existsSync(process.env.PA_CHROME)) return process.env.PA_CHROME;
+  const exe = process.platform === "win32" ? "chrome-headless-shell.exe" : "chrome-headless-shell";
+  const find = (d, depth = 0) => { if (!existsSync(d) || depth > 4) return null; for (const e of readdirSync(d, {withFileTypes: true})) { const f = join(d, e.name); if (e.isFile() && e.name === exe) return f; if (e.isDirectory()) { const r = find(f, depth + 1); if (r) return r; } } return null; };
+  for (const base of ["work/persian/.remotion", "work/persian/src/workbench/node_modules/.remotion"]) { const r = find(join(ROOT, base, "chrome-headless-shell")); if (r) return r; }
+  console.error("chrome-headless-shell not found: run `pwsh -File work/persian/tools/pa.ps1 bootstrap` (or set PA_CHROME)"); process.exit(3);
+})();
 const HTML_IDX = process.argv.indexOf("--html");
 const FILM = HTML_IDX >= 0 ? resolve(process.argv[HTML_IDX + 1]) : join(HERE, "pencil/film.html");
 const RATIO = (() => { const i = process.argv.indexOf("--ratio"); return i >= 0 ? process.argv[i + 1] : "9x16"; })();

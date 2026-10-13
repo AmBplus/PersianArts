@@ -42,7 +42,7 @@ def merge(ts, gap=0.3):
     return out
 
 
-def video_metrics(path, dur=None):
+def video_metrics(path, dur=None, cuts_override=None):
     info = probe(path)
     dur = dur or info["duration_s"]
     fr = frames_gray(path)
@@ -58,8 +58,14 @@ def video_metrics(path, dur=None):
         thr_s = max(10.0, 2.5 * float(np.median(sd)))
         for i in range(1, len(sd) - 1):
             if sd[i] > thr_s and sd[i] >= sd[max(0, i - k):i + k].max():
-                soft.append((i + k) / FPS)
-    cuts = [c for c in merge(sc + spikes + soft, gap=0.6) if 0.4 < c < dur - 0.3]
+                # the +-0.25 s window saturates into a plateau: report its CENTRE (calibration: the first index was 0.28 s early)
+                lo = i
+                while lo > 0 and sd[lo - 1] >= 0.95 * sd[i]: lo -= 1
+                hi = i
+                while hi < len(sd) - 1 and sd[hi + 1] >= 0.95 * sd[i]: hi += 1
+                soft.append(((lo + hi) / 2 + k) / FPS)
+    cuts_detected = [c for c in merge(sc + spikes + soft, gap=0.6) if 0.4 < c < dur - 0.3]
+    cuts = [c for c in cuts_override if 0.1 < c < dur - 0.1] if cuts_override else cuts_detected
     cutf = {int(round(c * FPS)) for c in cuts}
     # motion energy per 0.25 s (cut frames removed)
     dd = d.copy()
@@ -89,7 +95,7 @@ def video_metrics(path, dur=None):
         last = max(e) if e else a
         scenes.append({"start": round(a, 2), "end": round(b, 2), "len": round(b - a, 2), "elements": len(e), "build_s": round(last - a, 2), "hold_s": round(b - last, 2)})
     lens = [s["len"] for s in scenes]
-    return {**info, "cuts": [round(c, 2) for c in cuts], "n_scenes": len(scenes), "shot_mean_s": round(float(np.mean(lens)), 2), "shot_median_s": round(float(np.median(lens)), 2),
+    return {**info, "cuts_source": "given" if cuts_override else "detected", "cuts_detected": [round(c, 2) for c in cuts_detected], "cuts": [round(c, 2) for c in cuts], "n_scenes": len(scenes), "shot_mean_s": round(float(np.mean(lens)), 2), "shot_median_s": round(float(np.median(lens)), 2),
             "cuts_per_10s": round(len(cuts) / dur * 10, 2), "energy_thirds": [round(float(x), 2) for x in thirds],
             "energy_ratio": [round(float(x) / mean_en, 2) for x in thirds], "energy_curve_025s": [round(x, 2) for x in en],
             "scenes": scenes, "elements_per_scene": round(float(np.mean([s["elements"] for s in scenes])), 2),
@@ -102,7 +108,7 @@ def lufs(path):
     return float(I[-1]) if I else None
 
 
-def audio_metrics(path, cuts, dur):
+def audio_metrics(path, cuts, dur, grid=None):
     import librosa
     tmp = Path(tempfile.mkdtemp()) / "a.wav"
     subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(path), "-vn", "-ac", "1", "-ar", "22050", str(tmp)], check=True)
@@ -122,11 +128,14 @@ def audio_metrics(path, cuts, dur):
         st = oenv[np.clip(bf, 0, len(oenv) - 1)]
         ph = [st[k::4].sum() for k in range(4)]
         k = int(np.argmax(ph)); bars = bt[k::4]
+    grid_src = "audio onset tracking"
+    if grid:  # explicit track grid (kit .music.json period + film offset): bars/beats are exact, not estimated
+        bt = np.array(grid["beats"]); bars = np.array(grid["bars"]); tempo = grid["bpm"]; grid_src = grid["source"]
     def frac(grid):
         if not len(cuts) or not len(grid): return None
         return round(float(np.mean([np.min(np.abs(grid - c)) <= TOL for c in cuts])), 3)
     rms = librosa.feature.rms(y=y, frame_length=2048, hop_length=1024)[0]
     n = len(rms); db = lambda x: round(float(20 * np.log10(max(float(np.sqrt(np.mean(x ** 2))), 1e-6))), 1)
     arc = [db(rms[: n // 3]), db(rms[n // 3: 2 * n // 3]), db(rms[2 * n // 3:])]
-    return {"tempo_bpm": round(tempo, 1), "beat_s": round(60 / tempo, 4), "cuts_on_beat": frac(bt), "cuts_on_bar": frac(bars), "lufs": lufs(path),
+    return {"grid_source": grid_src, "tempo_bpm": round(tempo, 1), "beat_s": round(60 / tempo, 4), "cuts_on_beat": frac(bt), "cuts_on_bar": frac(bars), "lufs": lufs(path),
             "rms_arc_db": arc, "beats": [round(float(b), 3) for b in bt[:400]], "bars": [round(float(b), 3) for b in bars[:120]]}

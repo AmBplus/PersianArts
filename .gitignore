@@ -155,3 +155,7 @@ vault/*
 work/persian/_bench/
 work/persian/sound-task/tmp-accept/
 work/persian/sound-task/samples/
+work/persian/_install/
+
+# local env (created by install from the examples; never commit)
+/.env

@@ -6,6 +6,7 @@
   "required": ["film", "version", "date", "source_commit", "bpm", "t0_s", "ratios", "outputs", "status", "promoted", "owner_score", "notes"],
   "additionalProperties": false,
   "properties": {
+    "metrics": {"type": "object", "description": "per-version measurements (rule 14): time marks, audio-check, loop-check, pacing with --cuts/--track, gates, quality notes"},
     "film": {"type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"},
     "version": {"type": "string", "pattern": "^v[0-9]+(-[a-z0-9]+)*$"},
     "date": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$"},

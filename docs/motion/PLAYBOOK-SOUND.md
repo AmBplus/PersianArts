@@ -109,3 +109,6 @@ Runs only on the owner's word (owner gate): no sound work starts, and `pa sound`
 
 
 Viditor music pack (2026-10-13): audit of the 24 tracks in work/viditor-reference/music-standalone.json (see docs/motion/knowledge/MUSIC-AUDIT.md). Only 7 have local audio and only 7038 passed the beat grid, so it is the single addition (tr-vd-7038-upbeat-slide, 100 BPM, upbeat). The variety matrix is printed by work/persian/tools/audio/kit_matrix.py; the 70-90 BPM and calm/emotional/ambient cells remain empty.
+
+## Loop mode (2.8)
+`build_sound.py --loop`: no bed fade-in/out, circular 2-beat crossfade (the music continuing past the end is blended into the head), cues ringing over the end wrap to the start, master without the exp tail. Verify: `pa audio-check --loop` and `pa loop-check --track <kit id>`. S06 rebuild (v1-loop): audio seam RMS 1.2 dB, centroid 8%, beat phase 14.6 ms; the old non-loop build had a 54 ms phase offset.

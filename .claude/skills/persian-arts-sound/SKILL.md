@@ -44,3 +44,10 @@ DECISIONS (track choice, rejected tracks); CURRENT STATE lines for audio files; 
 
 ## Pacing defaults 2.6 (measured on 38 references, docs/motion/knowledge/PACING-PROFILES.md)
 - Pick the track with `pa music-pick --mood ... --bpm 100-124 --duration <s>` (mood tags, BPM fit, grid verdict, arc fit) and cut on its bar grid: measured, only the html v2 build reached 62% cuts on beat; the other films sit at chance (10-22%); good references 33-67%. Target >= 60% of cuts within 60 ms of a beat and the structural cuts on bar downbeats. References master at about -11 LUFS; ours stays -14..-15 on purpose.
+
+## Lessons 2.8 (loop mode)
+- Loop film (the last frame flows into the first): `build_sound.py --loop` (or events.json `loop: true`): no bed fade in/out, 2-beat circular crossfade of the bed, cues ringing over the end wrap to the start, no exp tail. Check with `pa audio-check <mp4> --loop` and `pa loop-check <mp4> --track <kit id>` (RMS within 1.5 dB, centroid within 15%, beat phase across the seam within 20 ms).
+- Use the real cut list (`pa pacing --cuts events.json --track <kit id>`) to prove cuts sit on the bar grid.
+
+## Step 0 (2.9)
+The orchestrator runs step `env` first (`pa doctor --quiet`, auto `pa bootstrap` / `pa sync`). If a tool or asset you need is missing, restore it from git/vault/script (see docs/motion/ASSETS-IN-GIT.md) and say so in your report; never skip it silently and never use an absolute path.

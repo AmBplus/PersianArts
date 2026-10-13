@@ -36,3 +36,18 @@ scenes (start-end, len, elements, build, hold):
   10 19.33-19.67 len 0.34 el  1 build 0.17 hold 0.17
 note: hold = last element appearance -> next cut (proxy); readability floor uses scene length minus build time.
 ```
+
+## Recalibrated (T004, 2026-10-13): real cuts / track grid instead of detection
+Cause of the old 0% on bar: (1) the detector saw 9 content changes, none inside 120 ms of the 4 real structural cuts (8-frame wipe: detection fires 0.1-0.3 s off); (2) the bar phase was guessed from audio onsets. With the film's own cut list and the track grid the same cuts are exact.
+```
+PACING film-C social v51  (1080x1920, 19.7 s, ratio 9x16, profile story=story-reels, n_ref=14)  [advisory]
+beat/bar grid source: track grid tr-lnplus-597024 bpm 110.00 t0 0.027
+median shot length (s)       1.89      1.45..4.24       ok
+cuts per 10 s                4.58      2.12..3.44       too fast
+cuts in first 3 s            2         >= 1 typical     ok
+build time median (s)        0.89      0.6..3.31        ok
+hold time median (s)         0.31      0.23..0.44       ok
+cuts on beat (60 ms)         56%       chance 22%, ref 34% near chance: cuts not beat-locked
+cuts on bar downbeat         33%       chance 5%        near/below chance: cuts not bar-locked
+note: hold = last element appearance -> next cut (proxy); readability floor uses scene length minus build time.
+```

@@ -32,6 +32,7 @@
     "Scribe": "haiku"
   },
   "steps": [
+    "env",
     {
       "id": "intake",
       "craft": null,
@@ -551,7 +552,7 @@
     "user_requested_version": false,
     "rule": "Refuse a 4th version unless user_requested_version=true (set only when the user asked in chat). Improvement mode improves the skill, not the film."
   },
-  "skill_version": "2.2",
+  "skill_version": "2.9",
   "lane": "html-film",
   "lanes": [
     "html-film",

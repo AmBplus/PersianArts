@@ -1,5 +1,15 @@
 # SKILLS-CHANGELOG
 
+## 2.9 (2026-10-14): self-installing skill
+- Rule 15, step 0 env in SKILL.md, all craft skills and todo.template.json; START.md; docs/motion/ASSETS-IN-GIT.md.
+- Tools: install.ps1, install.sh, `pa install-skill`, `pa assets-check`, `pa doctor --quiet`, bootstrap copies fonts and creates .env from examples; capture.mjs browser resolver; fonts manifest.
+- Ledger L-082..L-084; decision D-20261014-03.
+
+## 2.8 (2026-10-14): loop mode, calibrated pacing, per-version metrics
+- Rule 14 METRICS every version; version.schema optional `metrics`; sound/qc/technical skills, FILM-GATES rows, PLAYBOOK-SOUND loop section.
+- Tools: `pa loop-check`, build_sound `--loop`, audio-check `--loop`, run-gates `--no-logo`, deliver `--gates`, pacing `--cuts/--track/--events` + calibration test, meter parser and `pa meter check`.
+- Ledger L-078..L-081; decision D-20261014-02.
+
 ## 2.7 (2026-10-14): git-first and portable
 - Rule 13 and checklist item; START.md; docs/motion/PORTABILITY.md (audit); tools in work/persian/tools/portable (doctor, bootstrap, sync, vault, todo, meter, metrics); requirements-pa.txt; .env.example files; deliver --track; todo.jsonl/TODO.md; ledger/tasks.jsonl (273 seeded lines).
 - Fixed absolute paths in 4 live scripts; qh documented as external optional (not vendored).

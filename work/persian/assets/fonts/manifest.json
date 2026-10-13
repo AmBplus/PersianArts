@@ -1,0 +1,25 @@
+{
+ "note": "fonts used by films and tools (OFL, see OFL-NOTICES.md). Verified by `pa assets-check`. Films reference them by relative path (fonts/ next to film.html) or from work/persian/assets/fonts; pa bootstrap/install copies into src/workbench/public/fonts.",
+ "files": {
+  "ArefRuqaa-Regular.ttf": {
+   "sha256": "ceb786d83ba92f35e96efcd8623c2858d288e0c543c8761ba35b1020989464f9",
+   "bytes": 110696
+  },
+  "Estedad-Variable.ttf": {
+   "sha256": "1b3cce8b11425201912e7b3311d08ac2b10211c86335a1e205ac31319cac0e85",
+   "bytes": 285060
+  },
+  "Lalezar-Regular.ttf": {
+   "sha256": "7b80807bc831f141de0f7dcf6816412bf0c548968d548c5156ca388733390ea9",
+   "bytes": 290016
+  },
+  "Vazirmatn-Variable.ttf": {
+   "sha256": "696249a2c74b39ffdef55de4df2809c5b639d3ff80d618d8160a095d2fd49dca",
+   "bytes": 241328
+  },
+  "Vazirmatn-Variable.woff2": {
+   "sha256": "d4fc1df80bb6fb088d2b1ece4348690752343c49e677f7fade40c0da78a02677",
+   "bytes": 111128
+  }
+ }
+}

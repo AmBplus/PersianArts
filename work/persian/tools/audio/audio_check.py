@@ -40,7 +40,7 @@ def ebu(path):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawTextHelpFormatter)
-    ap.add_argument("mp4"); ap.add_argument("--transitions", default=""); ap.add_argument("--json", action="store_true")
+    ap.add_argument("mp4"); ap.add_argument("--transitions", default=""); ap.add_argument("--json", action="store_true"); ap.add_argument("--loop", action="store_true", help="loop film: skip the tail rule and the fade-in step warning (use pa loop-check for the seam)")
     a = ap.parse_args()
     x = decode(a.mp4); dur = len(x) / SR
     tr = [float(t) for t in a.transitions.split(",") if t.strip()]
@@ -57,7 +57,7 @@ def main():
         if abs(j) > 3.0: fails.append("RMS jump %.1f dB at t=%.2f (limit 3.0): music/mix changes at this cut" % (j, t))
         if cj > 40: warns.append("centroid jump %.0f%% at t=%.2f" % (cj, t))
     for (i, r0, _), (_, r1, _) in zip(win, win[1:]):
-        if abs(r1 - r0) > 1.5 and not near(i + 1):
+        if abs(r1 - r0) > 1.5 and not near(i + 1) and not (a.loop and i == 0):
             warns.append("RMS step %.1f dB between %ds and %ds (no transition given)" % (r1 - r0, i, i + 1))
     tail_start = max(0.0, dur - 0.5)
     run = best = 0.0; at = 0.0
@@ -68,7 +68,7 @@ def main():
         else: run = 0.0
     if best > 0.5: fails.append("silence gap %.1f s (< -40 dBFS) ending near t=%.1f before the tail" % (best, at + 0.1))
     tail = db(np.max(np.abs(x[-int(0.25 * SR):]))) if len(x) else -120
-    if tail >= -50: fails.append("tail peak %.1f dBFS (needs < -50)" % tail)
+    if tail >= -50 and not a.loop: fails.append("tail peak %.1f dBFS (needs < -50)" % tail)
     I, TP = ebu(a.mp4)
     if TP is not None and TP > -1.0: fails.append("true peak %.1f dBTP (limit -1.0)" % TP)
     if I is not None:

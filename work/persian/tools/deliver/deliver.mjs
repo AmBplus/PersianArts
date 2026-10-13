@@ -167,5 +167,9 @@ for (const p of list) {
 const sheet = fs.readdirSync(vdir).find((n) => /^(sheet|contact).*\.jpg$/i.test(n));
 if (sheet) console.log(`  ${film}-${arg}-stills.jpg: ${DRY ? 'dry-run' : link(path.join(vdir, sheet), path.join(dst, `${film}-${arg}-stills.jpg`))}`);
 if (!DRY) fs.writeFileSync(path.join(dst, 'OUTPUT.md'), outputMd(film, arg, vj, list), 'utf8');
+if (args.includes('--gates') && !DRY) { // gates on the delivered finals; --no-logo is passed automatically when VERSION.json says logo:false (no brand asset)
+  const noLogo = vj.logo === false || vj.no_brand_asset === true;
+  for (const p of list) { const f = path.join(dst, `${film}-${p.ratio}-${arg}${p.sound ? '' : '-silent'}.mp4`); const r = execFileSync('node', [path.join(path.dirname(fileURLToPath(import.meta.url)), '../gates/run-gates.mjs'), f, ...(noLogo ? ['--no-logo'] : [])], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }).toString(); console.log(r.split(String.fromCharCode(10)).slice(0, 12).join(String.fromCharCode(10))); }
+}
 if (!DRY && !args.includes('--no-compress')) await compressPaths([dst]); // default ON: SSIM-guarded CRF 20-23, TV-safe (see compress.mjs)
 process.stdout.write(rebuild(scan()));

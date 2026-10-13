@@ -48,3 +48,9 @@ html-film applicability (2.2, lane default): edge-touch, empty-band, dead-frames
 | Gate | Check | Evidence | Status |
 |---|---|---|---|
 | Pacing (advisory) | `pa pacing <final.mp4> --profile ...`: shot length, cuts/10 s, build/hold, cuts on beat/bar, energy arc vs the p25..p75 of 38 references; scores inform, never block | exists: work/persian/tools/pacing/pacing.py | advisory |
+
+### Loop and gate switches (2.8)
+| Gate | Check | Evidence | Status |
+|---|---|---|---|
+| Loop (when story is a loop) | `pa loop-check <final.mp4> [--track kit-id]`: video seam step vs the film's median/p90 step, audio RMS within 1.5 dB and centroid within 15% across the seam, beat phase within 20 ms; seam strip image | exists: work/persian/tools/audio/loop_check.py | PASS/WARN/FAIL, WARN judged on the strip |
+| Logo-colour switch | `run-gates.mjs --no-logo` (or VERSION.json `logo:false`, passed by `pa deliver --gates`) skips logo-colour for films without a brand asset | exists: work/persian/tools/gates/run-gates.mjs | switch |

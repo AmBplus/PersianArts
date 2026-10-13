@@ -42,3 +42,6 @@ DECISIONS (visual choices with rejected alternatives); REJECTED looks; CONSTRAIN
 - ONE WORLD: the finale shares palette, background family and typography with the rest; never switch to a new look at the end (a bright end card reads as another film).
 - PEER LOGOS: equal standing = equal height/weight, one row, same baseline and spacing; real brand assets only (trimmed, transparent, own colours), never redrawn lookalikes; a missing asset gets a typographic stand-in labelled as such, and the owner is told which asset to send.
 - CONTRAST: no blue on blue; >= 4.5:1 body, >= 3:1 large; scrim behind text over photos/gradients.
+
+## Step 0 (2.9)
+The orchestrator runs step `env` first (`pa doctor --quiet`, auto `pa bootstrap` / `pa sync`). If a tool or asset you need is missing, restore it from git/vault/script (see docs/motion/ASSETS-IN-GIT.md) and say so in your report; never skip it silently and never use an absolute path.

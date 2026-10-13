@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // run-gates.mjs: automatic picture detectors for a motion film.
 // Usage: node work/persian/tools/gates/run-gates.mjs <video.mp4 | stills-folder> [--events events.json] [--src <film source dir>]
-//        [--logo-files a.svg,b.json] [--step 3] [--max-dim 480] [--only edge,empty,dead,dup,num,logo,hero] [--json out.json]
+//        [--logo-files a.svg,b.json] [--no-logo] [--step 3] [--max-dim 480] [--only edge,empty,dead,dup,num,logo,hero] [--json out.json]
 // Exit code 1 if any gate FAILs (hero-size is an estimate and only WARNs).
 import fs from 'node:fs';
 import path from 'node:path';
@@ -20,7 +20,11 @@ const VALUE_FLAGS = new Set(['events', 'src', 'logo-files', 'step', 'max-dim', '
 const target = argv.find((a, i) => !a.startsWith('--') && !(i > 0 && argv[i - 1].startsWith('--') && VALUE_FLAGS.has(argv[i - 1].slice(2))));
 const opt = (k, d) => { const i = argv.indexOf('--' + k); return i >= 0 ? argv[i + 1] : d; };
 if (!target) { console.error('usage: run-gates.mjs <video|stills-folder> [--events f] [--src dir] [--only a,b] [--step N] [--json out]'); process.exit(2); }
-const only = opt('only', 'edge,empty,dead,dup,num,logo,hero').split(',');
+// --no-logo (or a VERSION.json / meta.json next to the video with "logo": false, or no_brand_asset) skips the logo-colour gate
+let noLogo = argv.includes('--no-logo');
+if (!noLogo) { try { for (const dir of [path.dirname(target), path.dirname(path.dirname(target))]) for (const n of ['VERSION.json', 'meta.json']) { const f = path.join(dir, n); if (fs.existsSync(f)) { const j = JSON.parse(fs.readFileSync(f, 'utf8')); if (j.logo === false || j.no_brand_asset === true || j.brand_asset === false) noLogo = true; } } } catch { /* ignore */ } }
+const only = opt('only', 'edge,empty,dead,dup,num,logo,hero').split(',').filter((x) => !(noLogo && x === 'logo'));
+if (noLogo) console.log('logo-colour gate skipped (no brand asset)');
 const step = +opt('step', 3), maxDim = +opt('max-dim', 480);
 const isDir = fs.statSync(target).isDirectory();
 const dirOf = isDir ? target : path.dirname(target);

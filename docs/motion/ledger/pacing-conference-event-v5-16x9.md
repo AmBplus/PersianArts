@@ -36,3 +36,19 @@ scenes (start-end, len, elements, build, hold):
   10 22.62-28.47 len 5.84 el  2 build 0.46 hold 5.39
 note: hold = last element appearance -> next cut (proxy); readability floor uses scene length minus build time.
 ```
+
+## Recalibrated (T004, 2026-10-13): real cuts / track grid instead of detection
+Cause of the old 0% on bar: (1) the detector saw 9 content changes, none inside 120 ms of the 4 real structural cuts (8-frame wipe: detection fires 0.1-0.3 s off); (2) the bar phase was guessed from audio onsets. With the film's own cut list and the track grid the same cuts are exact.
+```
+PACING film-A 16x9 v5  (1920x1080, 28.5 s, ratio 16x9, profile teaser=promo-teaser, n_ref=15)  [advisory]
+cuts: 4 given, 9 detected; detected cuts matching a real cut within 120 ms: 0
+beat/bar grid source: track grid tr-lnplus-597024 bpm 118.00 t0 0.000
+median shot length (s)       6.10      3.15..5.24       too slow
+cuts per 10 s                1.40      1.56..2.77       too slow
+cuts in first 3 s            0         >= 1 typical     no early cut/hook change
+build time median (s)        5.82      1.23..3.14       build too slow
+hold time median (s)         0.25      0.21..1.3        ok
+cuts on beat (60 ms)         100%      chance 24%, ref 22% locked
+cuts on bar downbeat         100%      chance 6%        locked
+note: hold = last element appearance -> next cut (proxy); readability floor uses scene length minus build time.
+```

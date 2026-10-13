@@ -12,7 +12,8 @@ import { fileURLToPath } from 'node:url';
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = process.env.PA_ROOT ? path.resolve(process.env.PA_ROOT) : path.resolve(HERE, '../../../..');
 const P = (...a) => path.join(ROOT, ...a);
-const [cmd, ...rest] = process.argv.slice(2);
+const [cmd, ...rest0] = process.argv.slice(2);
+const rest = rest0.map((a) => (/^-[A-Za-z]{2,}$/.test(a) ? '--' + a.slice(1).toLowerCase() : a)); // PowerShell style -Kind -> --kind
 const flags = {}; const pos = [];
 for (let i = 0; i < rest.length; i++) { const a = rest[i]; if (a.startsWith('--')) { const k = a.slice(2); const n = rest[i + 1]; if (n === undefined || n.startsWith('--')) flags[k] = true; else { flags[k] = n; i++; } } else pos.push(a); }
 const now = () => new Date().toISOString();
@@ -26,7 +27,7 @@ const PYTHON = () => has('python3') ? 'python3' : has('python') ? 'python' : nul
 const table = (rows) => { const w = [0, 0, 0]; rows.forEach((r) => r.forEach((c, i) => { if (i < 2) w[i] = Math.max(w[i], String(c).length); })); rows.forEach((r) => console.log(`${String(r[0]).padEnd(w[0])}  ${String(r[1]).padEnd(w[1])}  ${r[2] ?? ''}`)); };
 
 // ---------------- doctor ----------------
-function doctor(quick) {
+function doctor(quick, quiet) {
   const R = [];
   const add = (name, status, fix) => R.push([status, name, fix || '']);
   const g = has('git'); add('git', g ? 'PASS' : 'FAIL', g ? g : 'install git: https://git-scm.com');
@@ -61,9 +62,10 @@ function doctor(quick) {
   try { const free = fs.statfsSync(ROOT); const gb = (free.bavail * free.bsize) / 1e9; add(`disk free ${gb.toFixed(1)} GB`, gb > 5 ? 'PASS' : gb > 1 ? 'WARN' : 'FAIL', 'free disk space (renders need ~5 GB)'); } catch { /* old node */ }
   add('git remote is SSH', /git@github\.com/.test(run('git', ['remote', 'get-url', 'origin']).stdout || '') ? 'PASS' : 'WARN', 'git remote set-url origin git@github.com:AmBplus/PersianArts.git');
   const cnt = { PASS: 0, WARN: 0, FAIL: 0 }; R.forEach((r) => cnt[r[0]]++);
-  console.log(`PA DOCTOR  (${ROOT})`); table(R.map((r) => [r[0], r[1], r[2] && r[0] !== 'PASS' ? 'fix: ' + r[2] : '']));
-  console.log(`\nPASS ${cnt.PASS}  WARN ${cnt.WARN}  FAIL ${cnt.FAIL}`);
-  return cnt.FAIL ? 1 : 0;
+  if (quiet) { R.filter((r) => r[0] !== 'PASS').forEach((r) => console.log(`${r[0]} ${r[1]} fix: ${r[2]}`)); console.log(`doctor: PASS ${cnt.PASS} WARN ${cnt.WARN} FAIL ${cnt.FAIL}`); }
+  else { console.log(`PA DOCTOR  (${ROOT})`); table(R.map((r) => [r[0], r[1], r[2] && r[0] !== 'PASS' ? 'fix: ' + r[2] : ''])); console.log(`\nPASS ${cnt.PASS}  WARN ${cnt.WARN}  FAIL ${cnt.FAIL}`); }
+  let af = 0; if (!quick) af = assetsCheck(!!quiet);
+  return cnt.FAIL || af ? 1 : 0;
 }
 
 // ---------------- bootstrap ----------------
@@ -81,6 +83,13 @@ function bootstrap() {
     if (dry) continue;
     const r = spawnSync(s.c, s.a, { cwd: s.cwd || ROOT, stdio: 'inherit', shell: IS_WIN && /\.cmd$/.test(s.c) });
     if (r.status !== 0) console.log(`  WARN step failed (${s.label}); run doctor for the exact fix`);
+  }
+  // fonts: copy the tracked fonts to the places films/tools reference (workbench public/fonts)
+  const fsrc = P('work/persian/assets/fonts'), fdst = path.join(wb, 'public/fonts');
+  if (fs.existsSync(fsrc)) { const fl = fs.readdirSync(fsrc).filter((f) => /\.(ttf|otf|woff2?)$/.test(f)); const need = fl.filter((f) => !fs.existsSync(path.join(fdst, f))); console.log((dry ? '[dry-run] ' : '> ') + `fonts: ${fl.length - need.length} already in public/fonts, ${need.length} to copy`); if (!dry && need.length) { fs.mkdirSync(fdst, { recursive: true }); need.forEach((f) => fs.copyFileSync(path.join(fsrc, f), path.join(fdst, f))); } }
+  // env files from the examples (never with secrets)
+  for (const [ex, dst] of [['.env.example', '.env'], ['work/persian/.freesound.env.example', 'work/persian/.freesound.env'], ['work/persian/.jamendo.env.example', 'work/persian/.jamendo.env']]) {
+    if (fs.existsSync(P(dst))) console.log(`[skip] ${dst} exists`); else if (fs.existsSync(P(ex))) { console.log((dry ? '[dry-run] ' : '> ') + `create ${dst} from ${ex} (empty values; keys are OPTIONAL: freesound/jamendo only fill the sfx/music library)`); if (!dry) fs.copyFileSync(P(ex), P(dst)); }
   }
   console.log('> doctor'); return doctor(false);
 }
@@ -138,11 +147,19 @@ function meter() {
     readJsonl(P('docs/motion/ledger/manual-orders.jsonl')).forEach((o, i) => { if (have.has('manual:' + i)) return; const m = o.start && o.end ? +((Date.parse(o.end) - Date.parse(o.start)) / 60000).toFixed(2) : null; appendJsonl(TASKS, { title: o.title, kind: o.phase || 'manual', worker: 'studio', model: null, start: o.start, end: o.end, minutes: m, result: 'done', outputs: o.outputs || [], quota: null, source_id: 'manual:' + i }); n++; });
     return console.log('seeded ' + n + ' task lines into docs/motion/ledger/tasks.jsonl');
   }
+  if (sub === 'check') return meterCheck();
   if (sub !== 'task') return console.error('usage: pa meter task <title> --kind <k> --worker <w> [--model m] [--start iso --end iso | --minutes n] [--result done|partial|failed] [--outputs a,b] [--quota note]\n       pa meter seed');
   const title = a.join(' '); const end = flags.end || now(); const start = flags.start || null;
   const minutes = flags.minutes ? +flags.minutes : start ? +((Date.parse(end) - Date.parse(start)) / 60000).toFixed(2) : null;
-  appendJsonl(TASKS, { title, kind: flags.kind || 'other', worker: flags.worker || 'studio', model: flags.model || null, start, end, minutes, result: flags.result || 'done', outputs: flags.outputs ? String(flags.outputs).split(',') : [], quota: flags.quota || null });
+  appendJsonl(TASKS, { title, kind: flags.kind || 'other', worker: flags.worker || 'studio', model: flags.model || null, start, end, minutes, result: flags.result || 'done', outputs: flags.outputs ? String(flags.outputs).split(',') : [], quota: flags.quota || flags.note || null });
   console.log('logged: ' + title);
+}
+function meterCheck() {
+  const lines = fs.existsSync(TASKS) ? fs.readFileSync(TASKS, 'utf8').split(String.fromCharCode(10)).filter(Boolean) : []; let bad = 0;
+  lines.forEach((l, i) => { let o; try { o = JSON.parse(l); } catch { console.log(`line ${i + 1}: invalid JSON`); bad++; return; }
+    const why = []; if (!o.title) why.push('no title'); if (/(^|\s)--?(kind|worker|model|start|end|result|outputs|note)(?![a-z])/i.test(o.title || '')) why.push('title swallowed an option'); if (!['done', 'partial', 'failed'].includes(o.result)) why.push('bad result'); if (!o.kind) why.push('no kind');
+    if (why.length) { console.log(`line ${i + 1}: ${why.join(', ')}: ${(o.title || '').slice(0, 70)}`); bad++; } });
+  console.log(bad ? `FAIL ${bad} malformed of ${lines.length}` : `PASS ${lines.length} lines ok`); process.exitCode = bad ? 1 : 0;
 }
 function metrics(days = 7, brief = false) {
   const cut = Date.now() - days * 86400000;
@@ -213,9 +230,59 @@ function track() {
   console.log(`deliver/ total ${(total / 1048576).toFixed(1)} MB of ${cfg.final_max_mb_total} MB. Staging is the checkpoint's job: git add deliver/ (gitignore exception exists).`);
 }
 
+// ---------------- assets-check ----------------
+function assetsCheck(quiet) {
+  const R = []; const ok = (n, st, d) => R.push([st, n, d || '']);
+  const sha = (f) => crypto.createHash('sha256').update(fs.readFileSync(f)).digest('hex');
+  const fd = P('work/persian/assets/fonts'); const mf = path.join(fd, 'manifest.json');
+  if (!fs.existsSync(mf)) ok('fonts manifest', 'FAIL', 'git checkout -- work/persian/assets/fonts');
+  else { const m = JSON.parse(fs.readFileSync(mf, 'utf8')).files; const bad = []; for (const [f, v] of Object.entries(m)) { const fp = path.join(fd, f); if (!fs.existsSync(fp)) bad.push(f + ' missing'); else if (sha(fp) !== v.sha256) bad.push(f + ' hash differs'); } ok(`fonts ${Object.keys(m).length} files (sha256)`, bad.length ? 'FAIL' : 'PASS', bad.join('; ') || 'git checkout -- work/persian/assets/fonts'); }
+  const catF = P('sound/library/kit/catalog.json'); const kit = P('sound/library/kit');
+  if (!fs.existsSync(catF)) ok('kit catalog', 'FAIL', 'git checkout -- sound/library/kit');
+  else {
+    const cat = JSON.parse(fs.readFileSync(catF, 'utf8')); const kp = (e) => path.join(kit, e.path.replace(/^sound\/library\/kit\//, ''));
+    const miss = cat.entries.filter((e) => !fs.existsSync(kp(e))); const big = cat.entries.filter((e) => fs.existsSync(kp(e)) && fs.statSync(kp(e)).size > 2 * 1048576);
+    ok(`kit sfx ${cat.entries.length} (files present, <= 2 MB each)`, miss.length || big.length ? 'FAIL' : 'PASS', `${miss.length} missing, ${big.length} over 2 MB: pwsh -File sound/tools/restore_library.ps1`);
+    const mus = fs.readdirSync(path.join(kit, 'music')); const maps = mus.filter((f) => f.endsWith('.music.json'));
+    const lone = maps.filter((f) => !mus.includes(f.replace('.music.json', '.ogg')) && !mus.includes(f.replace('.music.json', '.mp3')));
+    ok(`kit music ${maps.length} maps with audio`, lone.length ? 'FAIL' : maps.length >= 7 ? 'PASS' : 'WARN', lone.join(',') || 'git checkout -- sound/library/kit/music');
+  }
+  for (const f of ['requirements-pa.txt', 'work/persian/src/workbench/package-lock.json', 'work/persian/tools/assets/package-lock.json', 'sound/requirements.txt', 'docs/motion/knowledge/ref-pacing-summary.json', 'docs/motion/recipes/arcs.json', 'work/persian/htmlfilm/lib/pa-motion.js', 'work/persian/htmlfilm/capture.mjs', '.env.example']) ok('tracked: ' + f, fs.existsSync(P(f)) ? 'PASS' : 'FAIL', 'git checkout -- ' + f);
+  ok('viditor media (optional, derived data is tracked)', fs.existsSync(P('work/viditor-reference/assets/videos')) ? 'PASS' : 'WARN', 'optional: only a pacing re-measure needs it; tools skip it when absent');
+  const f = R.filter((r) => r[0] === 'FAIL').length;
+  if (!quiet) { console.log('PA ASSETS-CHECK'); table(R.map((r) => [r[0], r[1], r[0] !== 'PASS' ? 'fix: ' + r[2] : ''])); console.log(`\nFAIL ${f}  WARN ${R.filter((r) => r[0] === 'WARN').length}  PASS ${R.filter((r) => r[0] === 'PASS').length}`); }
+  else R.filter((r) => r[0] !== 'PASS').forEach((r) => console.log(`${r[0]} ${r[1]} fix: ${r[2]}`));
+  return f ? 1 : 0;
+}
+
+// ---------------- install-skill ----------------
+function skillVersion(dir) { try { return /skill_version:\s*([\d.]+)/.exec(fs.readFileSync(path.join(dir, 'SKILL.md'), 'utf8'))[1]; } catch { return null; } }
+function installSkill() {
+  const home = process.env.PA_HOME || os.homedir(); const dry = !!flags['dry-run']; const check = !!flags.check;
+  const none = !flags.user && !flags.project && !flags.agents; const targets = [];
+  if (flags.agents || none) targets.push(['agents', path.join(home, '.agents/skills'), '.agents/skills']);
+  if (flags.user || none) targets.push(['user', path.join(home, '.claude/skills'), '.claude/skills']);
+  const repoVer = skillVersion(P('.claude/skills/persian-arts')); let worst = 0;
+  if (flags.project) { console.log(`project scope: skills already live in ${ROOT}/.claude/skills (version ${repoVer}); the clone is the install`); return 0; }
+  for (const [name, dest, srcRel] of targets) {
+    const skills = fs.readdirSync(P(srcRel)).filter((d) => d.startsWith('persian-arts'));
+    const meta = path.join(dest, 'persian-arts', '.persian-arts.install.json');
+    if (check) {
+      const have = fs.existsSync(meta) ? JSON.parse(fs.readFileSync(meta, 'utf8')) : null;
+      const st = !have ? 'WARN' : have.skill_version !== repoVer ? 'WARN' : 'PASS';
+      console.log(`${st}  skill ${name}: ${dest}  installed ${have ? have.skill_version : '-'}  repo ${repoVer}${st === 'WARN' ? '  -> pa install-skill --' + name : ''}`); if (st !== 'PASS') worst = 1; continue;
+    }
+    for (const sk of skills) { const from = P(srcRel, sk), to = path.join(dest, sk); console.log(`${dry ? '[dry-run] ' : ''}copy ${srcRel}/${sk} -> ${to}`); if (!dry) { fs.rmSync(to, { recursive: true, force: true }); fs.cpSync(from, to, { recursive: true }); } }
+    if (name === 'user') { const cmd = P('.claude/commands/persian-arts.md'); const to = path.join(home, '.claude/commands/persian-arts.md'); console.log(`${dry ? '[dry-run] ' : ''}copy .claude/commands/persian-arts.md -> ${to}`); if (!dry && fs.existsSync(cmd)) { fs.mkdirSync(path.dirname(to), { recursive: true }); fs.copyFileSync(cmd, to); } }
+    if (!dry) fs.writeFileSync(meta, JSON.stringify({ skill_version: repoVer, repo: ROOT, installed_at: now(), note: 'tools locate the repo via PA_ROOT or ~/.persian-arts/root' }, null, 1));
+  }
+  if (!check) { if (!dry) { fs.mkdirSync(path.join(home, '.persian-arts'), { recursive: true }); fs.writeFileSync(path.join(home, '.persian-arts/root'), ROOT); console.log(`wrote ${path.join(home, '.persian-arts/root')} (PA_ROOT fallback)`); } else console.log(`[dry-run] write ${path.join(home, '.persian-arts/root')}`); }
+  return worst;
+}
+
 const main = async () => {
   switch (cmd) {
-    case 'doctor': process.exit(doctor(!!flags.quick)); break;
+    case 'doctor': process.exit(doctor(!!flags.quick, !!flags.quiet)); break;
     case 'bootstrap': process.exit(bootstrap()); break;
     case 'sync': sync(); break;
     case 'todo': todo(); break;
@@ -223,6 +290,8 @@ const main = async () => {
     case 'metrics': metrics(+(flags.days || 7), false); break;
     case 'vault': await vault(); break;
     case 'track': track(); break;
+    case 'assets-check': process.exit(assetsCheck(!!flags.quiet)); break;
+    case 'install-skill': process.exit(installSkill()); break;
     default: console.error('usage: doctor [--quick] | bootstrap [--dry-run] | sync [--no-pull] | todo | meter | metrics | vault | track');
   }
 };

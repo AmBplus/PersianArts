@@ -6,7 +6,7 @@ PersianArts portability helper.
   pwsh -File work/persian/tools/pa.ps1 check
 #>
 param(
-  [Parameter(Position = 0)][ValidateSet('setup', 'setup-private', 'check', 'status', 'render', 'sound', 'assets', 'time', 'deliver', 'compress', 'audio-check', 'strip', 'pacing', 'arc', 'music-pick', 'doctor', 'bootstrap', 'sync', 'vault', 'todo', 'meter', 'metrics')][string]$Command = 'check',
+  [Parameter(Position = 0)][ValidateSet('setup', 'setup-private', 'check', 'status', 'render', 'sound', 'assets', 'time', 'deliver', 'compress', 'audio-check', 'strip', 'pacing', 'arc', 'music-pick', 'loop-check', 'assets-check', 'install-skill', 'doctor', 'bootstrap', 'sync', 'vault', 'todo', 'meter', 'metrics')][string]$Command = 'check',
   [Parameter(Position = 1)][string]$Sub,      # status: set | add-item | blocker | show
   [Parameter(Position = 2)][string]$Id,       # status: item id (set/add-item) or add|clear (blocker)
   [Parameter(Position = 3)][string]$Arg3,     # status blocker add: text
@@ -312,6 +312,8 @@ function Invoke-Time {
   node @a; exit $LASTEXITCODE
 }
 
+$FwdNames = 'Owner','Note','Title','Track','Film','Events','Label','Goal','Stills','State','Lane','Percent'
+$Fwd = @(); foreach ($n in $FwdNames) { if ($PSBoundParameters.ContainsKey($n)) { $Fwd += "--$($n.ToLower())"; $Fwd += "$($PSBoundParameters[$n])" } }
 switch ($Command) {
   'time' { Invoke-Time }
   'assets' { Invoke-Assets }
@@ -321,16 +323,17 @@ switch ($Command) {
   'setup' { Invoke-Setup }
   'setup-private' { Invoke-SetupPrivate }
   'check' { Invoke-Check }
-  { $_ -in 'doctor','bootstrap','sync','vault','todo','meter','metrics' } { & node (Join-Path $PSScriptRoot 'portable/pa-portable.mjs') $Command @(@($Sub, $Id, $Arg3) + @($More) | Where-Object { $_ }); exit $LASTEXITCODE }
-  'pacing' { & (Join-Path $Root 'sound\.venv\Scripts\python.exe') (Join-Path $PSScriptRoot 'pacing/pacing.py') @(@($Sub, $Id, $Arg3) + @($More) | Where-Object { $_ }); exit $LASTEXITCODE }
-  'arc' { & (Join-Path $Root 'sound\.venv\Scripts\python.exe') (Join-Path $PSScriptRoot 'pacing/arc.py') @(@($Sub, $Id, $Arg3) + @($More) | Where-Object { $_ }); exit $LASTEXITCODE }
-  'music-pick' { & (Join-Path $Root 'sound\.venv\Scripts\python.exe') (Join-Path $PSScriptRoot 'pacing/music_pick.py') @(@($Sub, $Id, $Arg3) + @($More) | Where-Object { $_ }); exit $LASTEXITCODE }
-  'compress' { & node (Join-Path $PSScriptRoot 'deliver/compress.mjs') @(@($Sub, $Id, $Arg3) + @($More) | Where-Object { $_ }); exit $LASTEXITCODE }
-  'audio-check' { & python (Join-Path $PSScriptRoot 'audio/audio_check.py') @(@($Sub, $Id, $Arg3) + @($More) | Where-Object { $_ }); exit $LASTEXITCODE }
-  'strip' { & python (Join-Path $PSScriptRoot 'audio/strip.py') @(@($Sub, $Id, $Arg3) + @($More) | Where-Object { $_ }); exit $LASTEXITCODE }
+  { $_ -in 'assets-check','install-skill','doctor','bootstrap','sync','vault','todo','meter','metrics' } { & node (Join-Path $PSScriptRoot 'portable/pa-portable.mjs') $Command @(@($Sub, $Id, $Arg3) + @($More) + @($Fwd) | Where-Object { $_ }); exit $LASTEXITCODE }
+  'loop-check' { & (Join-Path $Root 'sound\.venv\Scripts\python.exe') (Join-Path $PSScriptRoot 'audio/loop_check.py') @(@($Sub, $Id, $Arg3) + @($More) + @($Fwd) | Where-Object { $_ }); exit $LASTEXITCODE }
+  'pacing' { & (Join-Path $Root 'sound\.venv\Scripts\python.exe') (Join-Path $PSScriptRoot 'pacing/pacing.py') @(@($Sub, $Id, $Arg3) + @($More) + @($Fwd) | Where-Object { $_ }); exit $LASTEXITCODE }
+  'arc' { & (Join-Path $Root 'sound\.venv\Scripts\python.exe') (Join-Path $PSScriptRoot 'pacing/arc.py') @(@($Sub, $Id, $Arg3) + @($More) + @($Fwd) | Where-Object { $_ }); exit $LASTEXITCODE }
+  'music-pick' { & (Join-Path $Root 'sound\.venv\Scripts\python.exe') (Join-Path $PSScriptRoot 'pacing/music_pick.py') @(@($Sub, $Id, $Arg3) + @($More) + @($Fwd) | Where-Object { $_ }); exit $LASTEXITCODE }
+  'compress' { & node (Join-Path $PSScriptRoot 'deliver/compress.mjs') @(@($Sub, $Id, $Arg3) + @($More) + @($Fwd) | Where-Object { $_ }); exit $LASTEXITCODE }
+  'audio-check' { & python (Join-Path $PSScriptRoot 'audio/audio_check.py') @(@($Sub, $Id, $Arg3) + @($More) + @($Fwd) | Where-Object { $_ }); exit $LASTEXITCODE }
+  'strip' { & python (Join-Path $PSScriptRoot 'audio/strip.py') @(@($Sub, $Id, $Arg3) + @($More) + @($Fwd) | Where-Object { $_ }); exit $LASTEXITCODE }
   'deliver' {
     # pa deliver <film> <version> [--dry-run] | --rebuild | --list  (see output/README.md)
-    $dA = @(@($Sub, $Id, $Arg3) + @($More) | Where-Object { $_ })
+    $dA = @(@($Sub, $Id, $Arg3) + @($More) + @($Fwd) | Where-Object { $_ })
     & node (Join-Path $PSScriptRoot 'deliver/deliver.mjs') @dA
     exit $LASTEXITCODE
   }
