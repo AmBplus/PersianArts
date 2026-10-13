@@ -1,0 +1,7 @@
+- 23:14:43 start (box 12 min, ends ~23:26)
+- 23:18:46 music_map run on 23 wav (5546 m4a missing from assets)
+- 23:19:32 audit json+md written; kit track tr-vd-7038-upbeat-slide added (ogg 0.8MB + music.json)
+- 23:19:52 verify: scan exit 0; validate exit 1 (pre-existing VERSION.json/DECISIONS.jsonl, not touched); 5 ffprobe ok; box held
+- 23:20:56 NEW BOX 12 min: locate 17 missing viditor audio, audit, add, INDEX.json, matrix, music-pick
+- 23:22:27 found 17 in D:/P/test/music (m4a); audited; adding 7
+- 23:23:29 box2 done: 7 added (2 grid PASS, 5 bed-only), INDEX.json 15 tracks, music_pick accepts emotional, 5 picks ok, scan exit 0. no commits

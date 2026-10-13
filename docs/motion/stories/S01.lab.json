@@ -1,0 +1,121 @@
+{
+  "id": "S01",
+  "title": "استکان چای",
+  "logline_fa": "یک استکان چای داغ آرام‌آرام سرد می‌شود؛ بخار کم می‌شود، رنگ چای تیره می‌ماند و دست نامرئی دوباره پرش می‌کند: «دیر نشده، دوباره داغ می‌شود.»",
+  "genre": "still-life / time and state change",
+  "ratios": [
+    "9x16"
+  ],
+  "ratio_note": "9x16 only",
+  "duration_s": 18,
+  "tempo_bpm": "72-84, calm",
+  "mood": "warm, patient, quiet humour",
+  "protagonist": {
+    "what": "a clear tea glass (istikan) with saucer and a sugar cube",
+    "build": "3 SVG layers: glass outline, liquid rect with clip-path, steam as 3 animated paths; level and colour are numbers driven by seek(t)",
+    "state_change": "hot amber and full steam at 0s, cold pale and still at 11s, refilled hot at 18s (same pose as 0s = loop)"
+  },
+  "emotional_arc": "comfort -> neglect -> loss of warmth -> small rescue -> comfort again",
+  "beats": [
+    {
+      "from_s": 0,
+      "to_s": 3,
+      "what": "hot tea, steam rises, slow push-in"
+    },
+    {
+      "from_s": 3,
+      "to_s": 9,
+      "what": "time passes with no clock: steam thins and liquid colour fades; sugar cube dissolves"
+    },
+    {
+      "from_s": 9,
+      "to_s": 12,
+      "what": "cold: steam stops, glass looks lonely, light dims"
+    },
+    {
+      "from_s": 12,
+      "to_s": 16,
+      "what": "a kettle spout enters from top, pours: level rises, colour returns, steam bursts"
+    },
+    {
+      "from_s": 16,
+      "to_s": 18,
+      "what": "copy lands, frame equals frame 0 (loop)"
+    }
+  ],
+  "payoffs": [
+    {
+      "t": 3,
+      "viewer_expects": "sugar cube touches the tea",
+      "viewer_gets": "cube melts with a tiny ripple ring",
+      "sound": {
+        "anticipation": "soft inhale riser 0.4s before",
+        "hit": "glass tick + plop at contact",
+        "ring": "short bell-like glass ring 0.8s",
+        "tail": "room tone dips"
+      }
+    },
+    {
+      "t": 11.5,
+      "viewer_expects": "last steam disappears",
+      "viewer_gets": "a single silence gap, light drops",
+      "sound": {
+        "anticipation": "low pad sustains, then pulls out",
+        "hit": "soft thud",
+        "ring": "none (deliberate dead air 0.3s)",
+        "tail": "near-silence"
+      }
+    },
+    {
+      "t": 13,
+      "viewer_expects": "kettle pours",
+      "viewer_gets": "level rises, steam bursts upward",
+      "sound": {
+        "anticipation": "rising water trickle",
+        "hit": "kettle whoosh at first drop",
+        "ring": "warm shimmer ring",
+        "tail": "steam hiss fading into copy"
+      }
+    },
+    {
+      "t": 17,
+      "viewer_expects": "copy lands",
+      "viewer_gets": "last word lands as steam curls the same way as frame 0",
+      "sound": {
+        "anticipation": "held breath",
+        "hit": "soft wooden tap on word",
+        "ring": "glass ring",
+        "tail": "fade matching frame 0 so the loop is seamless"
+      }
+    }
+  ],
+  "on_screen_copy_fa": [
+    "چای سرد شد؟",
+    "دوباره داغ می‌شود."
+  ],
+  "assets": [
+    "SVG glass, saucer, kettle spout, steam paths, sugar cube",
+    "kit sfx: water pour, glass tick, soft thud, warm pad"
+  ],
+  "lab": {
+    "tests": [
+      "state change driven by one variable (temperature)",
+      "clip-path liquid level",
+      "loop/seamless ending",
+      "silence as a payoff"
+    ],
+    "likely_skill_gaps": [
+      "no spring/keys helper in lib",
+      "no loop-seam gate (frame 0 vs last frame diff)",
+      "steam path generator missing"
+    ],
+    "acceptance": [
+      "run-gates: dead-frames/empty-band clean on 6 stills",
+      "pa audio-check: payoff offsets <= 5 ms, no clipping",
+      "loop gate: mean abs diff first vs last frame < 2%"
+    ],
+    "budget_minutes": 12,
+    "risk": "low; the silence beat may trip dead-frame gates (false positive)",
+    "learning_value_1_5": 3
+  }
+}

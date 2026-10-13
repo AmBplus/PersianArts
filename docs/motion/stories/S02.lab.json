@@ -1,0 +1,118 @@
+{
+  "id": "S02",
+  "title": "فانوس دریایی و کشتی",
+  "logline_fa": "کشتی کوچکی در شب مه‌آلود راه را گم کرده؛ چراغ فانوس دریایی می‌چرخد، هر بار که نورش به کشتی می‌خورد کشتی کمی نزدیک‌تر می‌شود تا به بندر برسد.",
+  "genre": "journey / light sweep",
+  "ratios": [
+    "9x16",
+    "16x9"
+  ],
+  "ratio_note": "9x16 first, then a true 16:9 re-design (not a crop)",
+  "duration_s": 24,
+  "tempo_bpm": "60-70 with swell, cinematic",
+  "mood": "night, hopeful",
+  "protagonist": {
+    "what": "a small ship with two porthole eyes",
+    "build": "SVG hull + sail + 2 circles as eyes; bob = sine on y and rotation around keel pivot; fog as 3 pre-blurred ellipse layers (no live filter)",
+    "state_change": "lost and small in dark fog -> lit, large, docked with eyes looking up at the light"
+  },
+  "emotional_arc": "lost -> hope -> guided -> arrival",
+  "beats": [
+    {
+      "from_s": 0,
+      "to_s": 5,
+      "what": "dark sea, ship alone, eyes scanning"
+    },
+    {
+      "from_s": 5,
+      "to_s": 12,
+      "what": "lighthouse beam sweeps; each hit reveals more sea, ship drifts toward it"
+    },
+    {
+      "from_s": 12,
+      "to_s": 19,
+      "what": "camera pushes along the beam, parallax of waves and fog"
+    },
+    {
+      "from_s": 19,
+      "to_s": 24,
+      "what": "ship docks, beam rests on it, copy appears"
+    }
+  ],
+  "payoffs": [
+    {
+      "t": 5,
+      "viewer_expects": "beam turns on",
+      "viewer_gets": "first sweep hits the ship and eyes widen",
+      "sound": {
+        "anticipation": "low swell 0.6s",
+        "hit": "electric clunk at switch-on",
+        "ring": "long airy ring",
+        "tail": "sea ambience lifts"
+      }
+    },
+    {
+      "t": 9,
+      "viewer_expects": "second sweep",
+      "viewer_gets": "ship jumps with joy, squash boing",
+      "sound": {
+        "anticipation": "tension strings rise",
+        "hit": "boing + horn blip on hit",
+        "ring": "horn echo",
+        "tail": "wave wash tail"
+      }
+    },
+    {
+      "t": 16,
+      "viewer_expects": "camera push",
+      "viewer_gets": "world opens, fog parts, harbour lights appear",
+      "sound": {
+        "anticipation": "rising pad",
+        "hit": "soft impact at reveal",
+        "ring": "shimmer",
+        "tail": "drone resolves"
+      }
+    },
+    {
+      "t": 22,
+      "viewer_expects": "docking",
+      "viewer_gets": "ship settles, one beam pulse on the copy",
+      "sound": {
+        "anticipation": "held note",
+        "hit": "wood thud on dock",
+        "ring": "bell ring",
+        "tail": "sea tail then silence"
+      }
+    }
+  ],
+  "on_screen_copy_fa": [
+    "راه را گم کرده‌ای؟",
+    "یک نور کافی است."
+  ],
+  "assets": [
+    "SVG lighthouse, ship, waves, fog layers, beam as gradient polygon",
+    "kit sfx: swell, clunk, boing, horn, bell, waves"
+  ],
+  "lab": {
+    "tests": [
+      "continuous camera on one big stage",
+      "light sweep as a driving clock",
+      "16:9 re-design with a different composition",
+      "character rig with bob"
+    ],
+    "likely_skill_gaps": [
+      "no camera helper (pan/zoom with parallax)",
+      "no persistent-actor timeline",
+      "per-ratio layout table missing",
+      "fog without live blur"
+    ],
+    "acceptance": [
+      "run-gates clean on both 9x16 and 16x9 stills",
+      "pacing ranges within the BPM band, no cut shorter than 0.8 s",
+      "transition strip viewed: no jump in ship position across camera moves"
+    ],
+    "budget_minutes": 20,
+    "risk": "medium; the 16:9 layout is a second composition and may eat the budget",
+    "learning_value_1_5": 5
+  }
+}

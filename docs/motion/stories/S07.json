@@ -1,0 +1,24 @@
+{
+  "slug": "story-kite-wind",
+  "title": "بادبادک و باد",
+  "intent": "بادبادکی کاغذی روی تپه‌ای ساکت منتظر است؛ وقتی باد می‌آید و موسیقی بالا می‌رود، بادبادک با دمِ بلندش می‌رقصد و در اوج، بی‌نخ می‌شود و آزاد می‌ماند.",
+  "audience": "general short-form viewers (internal story lab)",
+  "language": "fa",
+  "ratios": [
+    "9x16"
+  ],
+  "duration_s": 20,
+  "tone": "lyrical, then euphoric; tempo 96 then 128 after the drop",
+  "must_have": [
+    "Persian copy only, original, neutral",
+    "all assets drawn as SVG or kit sound; no photos",
+    "protagonist: a diamond kite with a face and a tail of bows",
+    "3-4 payoff moments with anticipation->hit->ring->tail"
+  ],
+  "must_not": [
+    "no real organisations, brands or people",
+    "no secrets or client names"
+  ],
+  "confidential": false,
+  "owner_approved": false
+}

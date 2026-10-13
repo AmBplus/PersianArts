@@ -20,3 +20,10 @@ Curated base sound for any film, usable on a fresh clone with no downloads. Owne
 - `pwsh -File sound/tools/restore_library.ps1` verifies the kit (default, no downloads).
 - `pwsh -File sound/tools/restore_library.ps1 -Full` prints the plan; add `-Run` to execute: freesound_fetch / freesound_fill / freesound_payoff_fill (need `work/persian/.freesound.env` with your own FREESOUND_API_KEY), jamendo_fetch (needs `work/persian/.jamendo.env`), Internet Archive script, Kenney zips (CC0, pages in `sound/library/sfx/kenney/manifest.json`).
 - Regenerate the kit: `sound/tools/kit/build.py` (sfx), `sound/tools/kit/music.py` (music, needs `sound/.venv` and the staged tracks).
+
+## viditor additions (2026-10-13)
+- Added tr-vd-7038-upbeat-slide (Viditor 7038, 100 BPM, grid PASS, 73 s, ogg 112 kbps, loudnorm -16 LUFS).
+- Audit of the 24 listed tracks: 7 have local audio, 6 fail the grid, 17 files are missing. See docs/motion/knowledge/MUSIC-AUDIT.md.
+- Variety matrix script: work/persian/tools/audio/kit_matrix.py (counts kit mood tags x tempo bands).
+- Gaps still open: 70-90 BPM, calm/emotional, ambient/minimal (no track at all).
+- Music index: sound/library/kit/music/INDEX.json (15 tracks); kit_matrix.py reads it. Bed-only tracks (grid FAIL, match >= 0.96) are flagged bed_only=true.

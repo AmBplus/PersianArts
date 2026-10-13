@@ -1,0 +1,117 @@
+{
+  "id": "S05",
+  "title": "شهری روی صفحه دفتر",
+  "logline_fa": "روی یک صفحه خط‌دار دفتر، یک خط کج کشیده می‌شود و کم‌کم خانه، خیابان و شهر می‌شود؛ دوربین پیوسته عقب می‌رود تا ببینی همه‌چیز در یک دفتر بوده.",
+  "genre": "transformation / continuous zoom",
+  "ratios": [
+    "9x16"
+  ],
+  "ratio_note": "9x16 only",
+  "duration_s": 28,
+  "tempo_bpm": "92-104, curious",
+  "mood": "wonder, hand-made",
+  "protagonist": {
+    "what": "a hand-drawn line that becomes buildings",
+    "build": "ink draw-on ribbons (drawOn idea from pencil v2), buildings as SVG groups scaling from a baseline pivot; page as ruled-line pattern",
+    "state_change": "one wobbly line -> a house -> a street -> a skyline -> the whole notebook seen from far"
+  },
+  "emotional_arc": "small mark -> growth -> scale reveal",
+  "beats": [
+    {
+      "from_s": 0,
+      "to_s": 4,
+      "what": "one line on the page, close-up"
+    },
+    {
+      "from_s": 4,
+      "to_s": 12,
+      "what": "line turns into a house, then neighbours sprout"
+    },
+    {
+      "from_s": 12,
+      "to_s": 21,
+      "what": "camera zooms out continuously while the city grows on the same page"
+    },
+    {
+      "from_s": 21,
+      "to_s": 28,
+      "what": "notebook closes in frame; copy on its cover"
+    }
+  ],
+  "payoffs": [
+    {
+      "t": 4,
+      "viewer_expects": "line closes into a shape",
+      "viewer_gets": "roof pops on top",
+      "sound": {
+        "anticipation": "pencil scratch build",
+        "hit": "pop at roof close",
+        "ring": "tiny ring",
+        "tail": "paper rustle"
+      }
+    },
+    {
+      "t": 12,
+      "viewer_expects": "zoom starts",
+      "viewer_gets": "page was bigger than thought, city appears",
+      "sound": {
+        "anticipation": "rising sweep",
+        "hit": "whoosh as camera releases",
+        "ring": "shimmer",
+        "tail": "city hum"
+      }
+    },
+    {
+      "t": 21,
+      "viewer_expects": "notebook closes",
+      "viewer_gets": "page fold and cover with copy",
+      "sound": {
+        "anticipation": "suspense hush",
+        "hit": "paper clap",
+        "ring": "soft ring",
+        "tail": "quiet"
+      }
+    },
+    {
+      "t": 26,
+      "viewer_expects": "last window lights up",
+      "viewer_gets": "single yellow window glows",
+      "sound": {
+        "anticipation": "held note",
+        "hit": "click",
+        "ring": "bell",
+        "tail": "pad out"
+      }
+    }
+  ],
+  "on_screen_copy_fa": [
+    "هر شهر",
+    "از یک خط شروع شد."
+  ],
+  "assets": [
+    "SVG ruled paper, ink ribbons, seeded building groups, notebook cover",
+    "kit sfx: pencil scratch, pop, whoosh, paper rustle, clap"
+  ],
+  "lab": {
+    "tests": [
+      "continuous zoom over one scene (no cuts)",
+      "100+ small shapes within the DOM budget",
+      "hand-drawn ink draw-on",
+      "transformation of one shape into many"
+    ],
+    "likely_skill_gaps": [
+      "no camera/zoom helper",
+      "DOM-node budget: capture speed with 100+ nodes",
+      "no instancing helper",
+      "no scale-aware stroke width"
+    ],
+    "acceptance": [
+      "capture fps >= 8 on the zoom section",
+      "run-gates: no dead frames during the zoom",
+      "transition strip: zoom is monotone, no step"
+    ],
+    "budget_minutes": 20,
+    "risk": "high; node count may slow capture; fallback is canvas for far buildings",
+    "learning_value_1_5": 5
+  }
+}

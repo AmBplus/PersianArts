@@ -1,0 +1,24 @@
+{
+  "slug": "story-key-maze",
+  "title": "کلید و هزارتو",
+  "intent": "کلیدی کوچک با دو چشم باید از هزارتویی از دیوارها بگذرد و قفلی را پیدا کند؛ دوربین همراهش می‌دود و آخرین پیچ همه‌چیز را عوض می‌کند.",
+  "audience": "general short-form viewers (internal story lab)",
+  "language": "fa",
+  "ratios": [
+    "9x16"
+  ],
+  "duration_s": 20,
+  "tone": "playful tension, fast; tempo 120-132, driving",
+  "must_have": [
+    "Persian copy only, original, neutral",
+    "all assets drawn as SVG or kit sound; no photos",
+    "protagonist: a brass key with two dot eyes",
+    "3-4 payoff moments with anticipation->hit->ring->tail"
+  ],
+  "must_not": [
+    "no real organisations, brands or people",
+    "no secrets or client names"
+  ],
+  "confidential": false,
+  "owner_approved": false
+}

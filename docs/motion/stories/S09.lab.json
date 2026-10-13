@@ -1,0 +1,118 @@
+{
+  "id": "S09",
+  "title": "نامه‌ای که پرنده شد",
+  "logline_fa": "نامه‌ای با خطی روان نوشته می‌شود؛ حرف آخرش بلند می‌شود، کاغذ تا می‌شود و نامه پرنده‌ای می‌شود که از پنجره پرواز می‌کند و کلمه «پیام» را با خود می‌برد.",
+  "genre": "typography-led / morph",
+  "ratios": [
+    "9x16",
+    "16x9"
+  ],
+  "ratio_note": "9x16 first; 16:9 as a wide window composition",
+  "duration_s": 22,
+  "tempo_bpm": "70-80, lyrical",
+  "mood": "gentle, poetic",
+  "protagonist": {
+    "what": "a Persian word on a folded letter that becomes a bird",
+    "build": "word as SVG text with a stroke-dash or clip reveal (joins intact); fold = 2 polygons transforming; bird = path morph between paper and wings (same point count)",
+    "state_change": "written letter -> folded paper -> bird in flight with the word on its wing"
+  },
+  "emotional_arc": "writing -> folding -> release",
+  "beats": [
+    {
+      "from_s": 0,
+      "to_s": 6,
+      "what": "letter written, word reveals right to left with joins intact"
+    },
+    {
+      "from_s": 6,
+      "to_s": 12,
+      "what": "paper folds twice (origami steps)"
+    },
+    {
+      "from_s": 12,
+      "to_s": 18,
+      "what": "bird forms and flaps; window opens"
+    },
+    {
+      "from_s": 18,
+      "to_s": 22,
+      "what": "bird flies out, camera follows; copy"
+    }
+  ],
+  "payoffs": [
+    {
+      "t": 5,
+      "viewer_expects": "last stroke of the word",
+      "viewer_gets": "the word completes with an underline flourish",
+      "sound": {
+        "anticipation": "pen scratch swell",
+        "hit": "ink dot tap",
+        "ring": "soft ring",
+        "tail": "paper room tone"
+      }
+    },
+    {
+      "t": 9,
+      "viewer_expects": "fold click",
+      "viewer_gets": "paper folds sharply with a crease line",
+      "sound": {
+        "anticipation": "tick build",
+        "hit": "paper snap",
+        "ring": "tiny ring",
+        "tail": "rustle"
+      }
+    },
+    {
+      "t": 14,
+      "viewer_expects": "bird forms",
+      "viewer_gets": "paper becomes wings, first flap",
+      "sound": {
+        "anticipation": "rising air",
+        "hit": "wing flap whoosh",
+        "ring": "sparkle",
+        "tail": "air"
+      }
+    },
+    {
+      "t": 20,
+      "viewer_expects": "flies out",
+      "viewer_gets": "window light floods, bird leaves the frame",
+      "sound": {
+        "anticipation": "held breath",
+        "hit": "soft boom",
+        "ring": "long shimmer",
+        "tail": "pad out"
+      }
+    }
+  ],
+  "on_screen_copy_fa": [
+    "پیام",
+    "نوشتم، پرواز کرد."
+  ],
+  "assets": [
+    "SVG word using the fa kit font (joined text), paper polygons, bird path, window",
+    "kit sfx: pen scratch, paper snap, wing flap, shimmer"
+  ],
+  "lab": {
+    "tests": [
+      "typography-led joined-glyph reveal",
+      "path morph with same point count",
+      "16:9 re-design",
+      "transformation text -> object"
+    ],
+    "likely_skill_gaps": [
+      "no path-morph helper",
+      "right-to-left reveal clip may cut glyph overhangs",
+      "font fallback risk in capture",
+      "no text-to-path outline tool"
+    ],
+    "acceptance": [
+      "font check: no fallback font in captured frames",
+      "transition strip: morph has no pop",
+      "run-gates edge-touch clean in both ratios"
+    ],
+    "budget_minutes": 20,
+    "risk": "high; morph quality",
+    "learning_value_1_5": 5
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "slug": "story-three-rivers",
+  "title": "سه رود، یک دریا",
+  "intent": "سه رود با سه رنگ از سه سو می‌آیند؛ هر کدام کوچک است و هیچ‌کدام برتر نیست، اما در یک نقطه به هم می‌رسند و یک دریای پهن می‌شوند.",
+  "audience": "general short-form viewers (internal story lab)",
+  "language": "fa",
+  "ratios": [
+    "16x9",
+    "9x16"
+  ],
+  "duration_s": 22,
+  "tone": "calm, grand; tempo 80-90, flowing",
+  "must_have": [
+    "Persian copy only, original, neutral",
+    "all assets drawn as SVG or kit sound; no photos",
+    "protagonist: three water streams (teal, amber, indigo), equal peers",
+    "3-4 payoff moments with anticipation->hit->ring->tail"
+  ],
+  "must_not": [
+    "no real organisations, brands or people",
+    "no secrets or client names"
+  ],
+  "confidential": false,
+  "owner_approved": false
+}

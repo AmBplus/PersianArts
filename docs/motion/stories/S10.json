@@ -1,0 +1,25 @@
+{
+  "slug": "story-workshop-table",
+  "title": "میز کارگاه، قبل و بعد",
+  "intent": "میز کارگاه شلوغ و بی‌نظم است؛ خطی وسط صفحه کنار می‌رود و ابزارها، که هر کدام شخصیتی دارند، خودشان را می‌چینند: یک سو آشوب، سوی دیگر نظم.",
+  "audience": "general short-form viewers (internal story lab)",
+  "language": "fa",
+  "ratios": [
+    "16x9",
+    "9x16"
+  ],
+  "duration_s": 20,
+  "tone": "light humour; tempo 110-120, comic",
+  "must_have": [
+    "Persian copy only, original, neutral",
+    "all assets drawn as SVG or kit sound; no photos",
+    "protagonist: a hammer, a screwdriver and a tape measure, equal peers with dot eyes",
+    "3-4 payoff moments with anticipation->hit->ring->tail"
+  ],
+  "must_not": [
+    "no real organisations, brands or people",
+    "no secrets or client names"
+  ],
+  "confidential": false,
+  "owner_approved": false
+}

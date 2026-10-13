@@ -1,0 +1,116 @@
+{
+  "id": "S06",
+  "title": "ساعتی که به صفر نمی‌رسد",
+  "logline_fa": "شمارش معکوس از ده شروع می‌شود، هر بار به یک می‌رسد و دوباره از ده برمی‌گردد؛ اما هر دور آرام‌تر می‌شود، تا جمله آخر معنی تازه‌ای پیدا کند: «هنوز وقت هست».",
+  "genre": "typography / loop",
+  "ratios": [
+    "9x16",
+    "1x1"
+  ],
+  "ratio_note": "9x16 first; 1x1 as a simple second ratio",
+  "duration_s": 14,
+  "tempo_bpm": "100-110, ticking",
+  "mood": "wry, rhythmic",
+  "protagonist": {
+    "what": "a big Persian-digit countdown inside a circle ring",
+    "build": "digits as text (faDigits), ring as SVG stroke-dashoffset, 3 loops, each loop with a different colour and ease",
+    "state_change": "anxious tight digits and ring -> relaxed rounded digits and warm colour; last frame equals first frame"
+  },
+  "emotional_arc": "pressure -> repeat -> release",
+  "beats": [
+    {
+      "from_s": 0,
+      "to_s": 4,
+      "what": "first countdown 10..1, ring tightens"
+    },
+    {
+      "from_s": 4,
+      "to_s": 8,
+      "what": "second countdown, faster, ring ticks"
+    },
+    {
+      "from_s": 8,
+      "to_s": 12,
+      "what": "third loop slows, digits soften; ring stays open"
+    },
+    {
+      "from_s": 12,
+      "to_s": 14,
+      "what": "copy on the ring and seamless return to start"
+    }
+  ],
+  "payoffs": [
+    {
+      "t": 2,
+      "viewer_expects": "ticks accelerate",
+      "viewer_gets": "a final beat fails to arrive at 1",
+      "sound": {
+        "anticipation": "tick every beat, gap shrinks",
+        "hit": "tick",
+        "ring": "tiny ring",
+        "tail": "tick tail"
+      }
+    },
+    {
+      "t": 4,
+      "viewer_expects": "reaches 1",
+      "viewer_gets": "jumps back to 10 with a wipe, not zero",
+      "sound": {
+        "anticipation": "riser into 1",
+        "hit": "soft reset sweep",
+        "ring": "air ring",
+        "tail": "tick reset"
+      }
+    },
+    {
+      "t": 9,
+      "viewer_expects": "third loop",
+      "viewer_gets": "digits slow down, ring opens",
+      "sound": {
+        "anticipation": "tempo-drop effect",
+        "hit": "soft thud",
+        "ring": "warm ring",
+        "tail": "pad in"
+      }
+    },
+    {
+      "t": 13,
+      "viewer_expects": "copy lands",
+      "viewer_gets": "the sentence stamps and the ring stays open",
+      "sound": {
+        "anticipation": "held breath",
+        "hit": "wood stamp",
+        "ring": "bell",
+        "tail": "seamless tick into frame 0"
+      }
+    }
+  ],
+  "on_screen_copy_fa": [
+    "هنوز وقت هست."
+  ],
+  "assets": [
+    "Persian digits (faDigits), SVG ring, a stamp",
+    "kit sfx: clock tick, riser, reset sweep, wood stamp, bell"
+  ],
+  "lab": {
+    "tests": [
+      "typography-led kinetic text",
+      "digit change without per-char split cuts",
+      "loop/seamless ending",
+      "tick-driven sound sync"
+    ],
+    "likely_skill_gaps": [
+      "no Persian digit morph/tick helper",
+      "no loop-seam gate",
+      "no tempo-curve helper (changing tick rate)"
+    ],
+    "acceptance": [
+      "payoff offsets <= 5 ms including the tick grid",
+      "loop gate: first vs last frame diff < 2%",
+      "run-gates number-lint clean (Persian digits)"
+    ],
+    "budget_minutes": 12,
+    "risk": "low; the loop seam must be exact",
+    "learning_value_1_5": 4
+  }
+}

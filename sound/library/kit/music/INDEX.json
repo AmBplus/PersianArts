@@ -1,0 +1,298 @@
+{
+ "schema": "persianarts.music_index/1",
+ "count": 15,
+ "tracks": [
+  {
+   "id": "tr-bgm-tech-house",
+   "file": "bgm-tech-house.ogg",
+   "bpm": 124.0,
+   "t0": 0.242,
+   "duration_s": 90.0,
+   "grid": "FAIL",
+   "mood_tags": [
+    "tech-house",
+    "driving"
+   ],
+   "good_for": [],
+   "avoid_for": [],
+   "bed_only": false,
+   "sidecar": "bgm-tech-house.music.json"
+  },
+  {
+   "id": "tr-dogo-jump-1267515",
+   "file": "dogo-jump-1267515.ogg",
+   "bpm": 119.9,
+   "t0": 0.232,
+   "duration_s": 90.0,
+   "grid": "FAIL",
+   "mood_tags": [
+    "house",
+    "happy",
+    "marimba",
+    "bright"
+   ],
+   "good_for": [],
+   "avoid_for": [],
+   "bed_only": false,
+   "sidecar": "dogo-jump-1267515.music.json"
+  },
+  {
+   "id": "tr-house-vibez",
+   "file": "house-vibez.ogg",
+   "bpm": 122.0,
+   "t0": 0.051,
+   "duration_s": 90.0,
+   "grid": "PASS",
+   "mood_tags": [
+    "house",
+    "groove"
+   ],
+   "good_for": [],
+   "avoid_for": [],
+   "bed_only": false,
+   "sidecar": "house-vibez.music.json"
+  },
+  {
+   "id": "tr-lnplus-597024",
+   "file": "lnplus-597024.ogg",
+   "bpm": 110.0,
+   "t0": 0.029,
+   "duration_s": 90.0,
+   "grid": "PASS",
+   "mood_tags": [
+    "background",
+    "corporate",
+    "steady",
+    "upbeat"
+   ],
+   "good_for": [],
+   "avoid_for": [],
+   "bed_only": false,
+   "sidecar": "lnplus-597024.music.json"
+  },
+  {
+   "id": "tr-miromax-promo-513944",
+   "file": "miromax-promo-513944.ogg",
+   "bpm": 118.0,
+   "t0": 0.159,
+   "duration_s": 90.0,
+   "grid": "PASS",
+   "mood_tags": [
+    "promo",
+    "underscore",
+    "clean"
+   ],
+   "good_for": [],
+   "avoid_for": [],
+   "bed_only": false,
+   "sidecar": "miromax-promo-513944.music.json"
+  },
+  {
+   "id": "tr-px-99s-d",
+   "file": "px-99s-d.ogg",
+   "bpm": 118.0,
+   "t0": 0.024,
+   "duration_s": 90.0,
+   "grid": "PASS",
+   "mood_tags": [
+    "bright",
+    "id-only",
+    "unknown-mood"
+   ],
+   "good_for": [],
+   "avoid_for": [],
+   "bed_only": false,
+   "sidecar": "px-99s-d.music.json"
+  },
+  {
+   "id": "tr-the-mountain-epic-610137",
+   "file": "the-mountain-epic-610137.ogg",
+   "bpm": 110.0,
+   "t0": 0.031,
+   "duration_s": 90.0,
+   "grid": "FAIL",
+   "mood_tags": [
+    "epic",
+    "cinematic",
+    "light"
+   ],
+   "good_for": [],
+   "avoid_for": [],
+   "bed_only": false,
+   "sidecar": "the-mountain-epic-610137.music.json"
+  },
+  {
+   "id": "tr-vd-5546-mystery-teaser",
+   "file": "tr-vd-5546-mystery-teaser.ogg",
+   "bpm": 165.0,
+   "t0": 0.218,
+   "duration_s": 75.2,
+   "grid": "FAIL",
+   "mood_tags": [
+    "dramatic",
+    "mysterious"
+   ],
+   "good_for": [
+    "mystery and reveal films",
+    "dramatic teasers"
+   ],
+   "avoid_for": [
+    "upbeat product films"
+   ],
+   "bed_only": true,
+   "sidecar": "tr-vd-5546-mystery-teaser.music.json"
+  },
+  {
+   "id": "tr-vd-5687-coffee-capsule-teaser",
+   "file": "tr-vd-5687-coffee-capsule-teaser.ogg",
+   "bpm": 89.0,
+   "t0": 0.334,
+   "duration_s": 40.1,
+   "grid": "PASS",
+   "mood_tags": [
+    "upbeat",
+    "fresh"
+   ],
+   "good_for": [
+    "product and food reels",
+    "bright lifestyle cuts"
+   ],
+   "avoid_for": [
+    "dramatic or emotional films"
+   ],
+   "bed_only": false,
+   "sidecar": "tr-vd-5687-coffee-capsule-teaser.music.json"
+  },
+  {
+   "id": "tr-vd-5724-old-house-nostalgia",
+   "file": "tr-vd-5724-old-house-nostalgia.ogg",
+   "bpm": 110.0,
+   "t0": 0.122,
+   "duration_s": 75.0,
+   "grid": "FAIL",
+   "mood_tags": [
+    "emotional",
+    "calm",
+    "warm"
+   ],
+   "good_for": [
+    "memory and family stories",
+    "calm documentary beds"
+   ],
+   "avoid_for": [
+    "fast promo cuts"
+   ],
+   "bed_only": true,
+   "sidecar": "tr-vd-5724-old-house-nostalgia.music.json"
+  },
+  {
+   "id": "tr-vd-5831-salon-elegant",
+   "file": "tr-vd-5831-salon-elegant.ogg",
+   "bpm": 110.0,
+   "t0": 0.268,
+   "duration_s": 90.0,
+   "grid": "FAIL",
+   "mood_tags": [
+    "calm",
+    "elegant"
+   ],
+   "good_for": [
+    "calm beauty and lifestyle",
+    "soft intros and outros"
+   ],
+   "avoid_for": [
+    "tight beat-synced cuts"
+   ],
+   "bed_only": true,
+   "sidecar": "tr-vd-5831-salon-elegant.music.json"
+  },
+  {
+   "id": "tr-vd-5914-kids-album-playful",
+   "file": "tr-vd-5914-kids-album-playful.ogg",
+   "bpm": 120.0,
+   "t0": 1.678,
+   "duration_s": 60.0,
+   "grid": "FAIL",
+   "mood_tags": [
+    "playful",
+    "quirky"
+   ],
+   "good_for": [
+    "playful stories",
+    "children and school films"
+   ],
+   "avoid_for": [
+    "serious or dramatic films"
+   ],
+   "bed_only": true,
+   "sidecar": "tr-vd-5914-kids-album-playful.music.json"
+  },
+  {
+   "id": "tr-vd-6852-corporate-build",
+   "file": "tr-vd-6852-corporate-build.ogg",
+   "bpm": 120.0,
+   "t0": 0.176,
+   "duration_s": 41.0,
+   "grid": "PASS",
+   "mood_tags": [
+    "corporate",
+    "clean",
+    "driving"
+   ],
+   "good_for": [
+    "explainers",
+    "company and B2B films"
+   ],
+   "avoid_for": [
+    "playful kids content"
+   ],
+   "bed_only": false,
+   "sidecar": "tr-vd-6852-corporate-build.music.json"
+  },
+  {
+   "id": "tr-vd-6960-lab-graphic-minimal",
+   "file": "tr-vd-6960-lab-graphic-minimal.ogg",
+   "bpm": 120.0,
+   "t0": 0.128,
+   "duration_s": 43.0,
+   "grid": "FAIL",
+   "mood_tags": [
+    "minimal",
+    "tech",
+    "quirky"
+   ],
+   "good_for": [
+    "science and tech explainers",
+    "minimal motion graphics"
+   ],
+   "avoid_for": [
+    "emotional stories"
+   ],
+   "bed_only": true,
+   "sidecar": "tr-vd-6960-lab-graphic-minimal.music.json"
+  },
+  {
+   "id": "tr-vd-7038-upbeat-slide",
+   "file": "tr-vd-7038-upbeat-slide.ogg",
+   "bpm": 100.0,
+   "t0": 0.194,
+   "duration_s": 73.1,
+   "grid": "PASS",
+   "mood_tags": [
+    "upbeat",
+    "playful"
+   ],
+   "good_for": [
+    "product and lifestyle reels",
+    "light explainers",
+    "shopping and food stories"
+   ],
+   "avoid_for": [
+    "dramatic or emotional films",
+    "tight 12-15 s cuts (no clean ending)"
+   ],
+   "bed_only": false,
+   "sidecar": "tr-vd-7038-upbeat-slide.music.json"
+  }
+ ]
+}

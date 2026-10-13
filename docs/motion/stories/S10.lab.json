@@ -1,0 +1,118 @@
+{
+  "id": "S10",
+  "title": "میز کارگاه، قبل و بعد",
+  "logline_fa": "میز کارگاه شلوغ و بی‌نظم است؛ خطی وسط صفحه کنار می‌رود و ابزارها، که هر کدام شخصیتی دارند، خودشان را می‌چینند: یک سو آشوب، سوی دیگر نظم.",
+  "genre": "split-screen contrast / humour",
+  "ratios": [
+    "16x9",
+    "9x16"
+  ],
+  "ratio_note": "16:9 designed as a left/right split, 9:16 re-design as a top/bottom split",
+  "duration_s": 20,
+  "tempo_bpm": "110-120, comic",
+  "mood": "light humour",
+  "protagonist": {
+    "what": "a hammer, a screwdriver and a tape measure, equal peers with dot eyes",
+    "build": "3 SVG tools with two dot eyes; each hops to its slot with different timing (anticipation, overshoot); a divider line slides between the halves",
+    "state_change": "messy pile on one half -> each tool in its slot on the other half"
+  },
+  "emotional_arc": "chaos -> decision -> order",
+  "beats": [
+    {
+      "from_s": 0,
+      "to_s": 5,
+      "what": "two tables: one clean outline, one messy"
+    },
+    {
+      "from_s": 5,
+      "to_s": 14,
+      "what": "divider slides; tools hop one by one to the tidy side"
+    },
+    {
+      "from_s": 14,
+      "to_s": 18,
+      "what": "tidy side full, messy side empty"
+    },
+    {
+      "from_s": 18,
+      "to_s": 20,
+      "what": "copy over the tidy table"
+    }
+  ],
+  "payoffs": [
+    {
+      "t": 5,
+      "viewer_expects": "divider starts to slide",
+      "viewer_gets": "first tool hops with surprise eyes",
+      "sound": {
+        "anticipation": "pizzicato build",
+        "hit": "wood tick on hop landing",
+        "ring": "tiny ring",
+        "tail": "mess shuffle tail"
+      }
+    },
+    {
+      "t": 8,
+      "viewer_expects": "second tool hops",
+      "viewer_gets": "tape measure unrolls past the slot and snaps back",
+      "sound": {
+        "anticipation": "spring-wind riser",
+        "hit": "boing + spring",
+        "ring": "spring ring",
+        "tail": "roll"
+      }
+    },
+    {
+      "t": 12,
+      "viewer_expects": "third tool lands",
+      "viewer_gets": "all tools click into place at once",
+      "sound": {
+        "anticipation": "silence 0.2s",
+        "hit": "tight snare + click",
+        "ring": "short ring",
+        "tail": "pad"
+      }
+    },
+    {
+      "t": 17,
+      "viewer_expects": "tidy table",
+      "viewer_gets": "soft light on the tidy side, copy appears",
+      "sound": {
+        "anticipation": "held breath",
+        "hit": "bell",
+        "ring": "shimmer",
+        "tail": "pad out"
+      }
+    }
+  ],
+  "on_screen_copy_fa": [
+    "قبل: همه‌چیز همه‌جا.",
+    "بعد: هر چیز سرِ جایش."
+  ],
+  "assets": [
+    "SVG table, hammer, screwdriver, tape, divider, clutter shapes",
+    "kit sfx: wood tick, boing, spring, click, bell"
+  ],
+  "lab": {
+    "tests": [
+      "split-screen contrast",
+      "three equal peers with individual timing",
+      "16:9 re-design vs 9:16 top/bottom",
+      "humour timing (overshoot, anticipation)"
+    ],
+    "likely_skill_gaps": [
+      "no spring helper (overshoot)",
+      "per-ratio layout table",
+      "no gate for equal peer sizing",
+      "tool rig helper"
+    ],
+    "acceptance": [
+      "peer sizes within 10% of each other (hero-size gate)",
+      "payoff offsets <= 5 ms",
+      "pacing: three hops on the beat grid +-1 frame"
+    ],
+    "budget_minutes": 16,
+    "risk": "low-medium; two compositions",
+    "learning_value_1_5": 4
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "id": "S08",
+  "title": "جشن فانوس‌های عددی",
+  "logline_fa": "هر فانوس یک عدد است؛ فانوس‌ها یکی‌یکی روشن می‌شوند و بالا می‌روند، کوچک‌ها زیاد و بزرگ‌ها کم، تا جمع همه آسمان را پر کند و یک عدد بزرگ بماند.",
+  "genre": "infographic counting / festival",
+  "ratios": [
+    "9x16",
+    "1x1"
+  ],
+  "ratio_note": "9x16 first; 1x1 is a straightforward re-flow",
+  "duration_s": 24,
+  "tempo_bpm": "88-100, festive",
+  "mood": "warm night, celebratory",
+  "protagonist": {
+    "what": "a paper lantern that carries a Persian number",
+    "build": "SVG rounded rect + inner glow circle + text; 30 instances, size proportional to the value (real scale), seeded positions",
+    "state_change": "dark empty sky -> lanterns lit one by one -> sky full -> total number counted at the top"
+  },
+  "emotional_arc": "dark -> sparks -> crowd -> total",
+  "beats": [
+    {
+      "from_s": 0,
+      "to_s": 4,
+      "what": "night sky, one lantern lights with the number ۱"
+    },
+    {
+      "from_s": 4,
+      "to_s": 14,
+      "what": "lanterns light in groups, sizes grow with value, counter climbs"
+    },
+    {
+      "from_s": 14,
+      "to_s": 20,
+      "what": "all fly up together; total counts to the final number"
+    },
+    {
+      "from_s": 20,
+      "to_s": 24,
+      "what": "total stamps in the sky; copy"
+    }
+  ],
+  "payoffs": [
+    {
+      "t": 1,
+      "viewer_expects": "first lantern lights",
+      "viewer_gets": "sky is dark, one warm glow",
+      "sound": {
+        "anticipation": "airy inhale",
+        "hit": "match strike",
+        "ring": "soft ring",
+        "tail": "crackle tail"
+      }
+    },
+    {
+      "t": 8,
+      "viewer_expects": "group of lanterns",
+      "viewer_gets": "lights appear on the grid beat, sizes by number",
+      "sound": {
+        "anticipation": "steady pulse",
+        "hit": "pluck per lantern",
+        "ring": "bell ring",
+        "tail": "pad"
+      }
+    },
+    {
+      "t": 18,
+      "viewer_expects": "counter reaches total",
+      "viewer_gets": "the number slams in and everything flashes warm",
+      "sound": {
+        "anticipation": "riser to the total",
+        "hit": "boom",
+        "ring": "glow shimmer",
+        "tail": "held pad"
+      }
+    },
+    {
+      "t": 22,
+      "viewer_expects": "total in place",
+      "viewer_gets": "sky rests, copy fades up",
+      "sound": {
+        "anticipation": "held breath",
+        "hit": "wood tap",
+        "ring": "bell",
+        "tail": "silence"
+      }
+    }
+  ],
+  "on_screen_copy_fa": [
+    "هر عدد، یک نور.",
+    "جمع ما، یک آسمان."
+  ],
+  "assets": [
+    "SVG lanterns generated, stars, seeded layout; fictional numbers only",
+    "kit sfx: match, pluck, bell, boom"
+  ],
+  "lab": {
+    "tests": [
+      "data/infographic counting at real scale",
+      "Persian digits with correct shaping",
+      "many instances (30) within the DOM budget",
+      "number-lint gate"
+    ],
+    "likely_skill_gaps": [
+      "no counter/odometer in lib (only inline in pencil)",
+      "no real-scale legend helper",
+      "number-lint rules for fictional data",
+      "DOM count"
+    ],
+    "acceptance": [
+      "run-gates number-lint clean, totals add up",
+      "lantern sizes proportional to values within 2%",
+      "payoff offsets <= 5 ms"
+    ],
+    "budget_minutes": 18,
+    "risk": "medium; 30 lantern nodes + glow",
+    "learning_value_1_5": 4
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "slug": "story-number-lanterns",
+  "title": "جشن فانوس‌های عددی",
+  "intent": "هر فانوس یک عدد است؛ فانوس‌ها یکی‌یکی روشن می‌شوند و بالا می‌روند، کوچک‌ها زیاد و بزرگ‌ها کم، تا جمع همه آسمان را پر کند و یک عدد بزرگ بماند.",
+  "audience": "general short-form viewers (internal story lab)",
+  "language": "fa",
+  "ratios": [
+    "9x16",
+    "1x1"
+  ],
+  "duration_s": 24,
+  "tone": "warm night, celebratory; tempo 88-100, festive",
+  "must_have": [
+    "Persian copy only, original, neutral",
+    "all assets drawn as SVG or kit sound; no photos",
+    "protagonist: a paper lantern that carries a Persian number",
+    "3-4 payoff moments with anticipation->hit->ring->tail"
+  ],
+  "must_not": [
+    "no real organisations, brands or people",
+    "no secrets or client names"
+  ],
+  "confidential": false,
+  "owner_approved": false
+}

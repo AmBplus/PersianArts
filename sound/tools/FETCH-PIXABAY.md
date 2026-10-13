@@ -11,9 +11,9 @@ One-time setup (Windows PowerShell, run from the repo root):
     pip install -r sound/requirements-fetch.txt
     python sound/tools/fetch_pixabay_track.py --check
 
-Run (default output `D:\P\project\persianArts\media\music-pixabay`, created if missing):
+Run (default output `media/music-pixabay`, created if missing):
 
-    python sound/tools/fetch_pixabay_track.py --out D:\P\project\persianArts\media\music-pixabay "https://pixabay.com/music/<category>-<name>-<id>/"
+    python sound/tools/fetch_pixabay_track.py --out media/music-pixabay "https://pixabay.com/music/<category>-<name>-<id>/"
 
 Per track you get `<slug>.mp3` and `<slug>.txt` (page URL, title, artist, timestamp, license note). Size and, if
 `ffprobe` is on PATH, duration are printed.

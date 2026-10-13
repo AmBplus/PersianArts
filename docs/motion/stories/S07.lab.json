@@ -1,0 +1,120 @@
+{
+  "id": "S07",
+  "title": "بادبادک و باد",
+  "logline_fa": "بادبادکی کاغذی روی تپه‌ای ساکت منتظر است؛ وقتی باد می‌آید و موسیقی بالا می‌رود، بادبادک با دمِ بلندش می‌رقصد و در اوج، بی‌نخ می‌شود و آزاد می‌ماند.",
+  "genre": "music-led / character-light",
+  "ratios": [
+    "9x16"
+  ],
+  "ratio_note": "9x16 only",
+  "duration_s": 20,
+  "tempo_bpm": "96 then 128 after the drop",
+  "mood": "lyrical, then euphoric",
+  "protagonist": {
+    "what": "a diamond kite with a face and a tail of bows",
+    "build": "SVG polygon + 2 dot eyes + tail as a chain of small bows following the head with delayed offsets; wind as one scalar",
+    "state_change": "limp on the ground -> trembling -> dancing in the wind -> free without string"
+  },
+  "emotional_arc": "waiting -> awakening -> exhilaration -> freedom",
+  "beats": [
+    {
+      "from_s": 0,
+      "to_s": 5,
+      "what": "hill, kite limp, quiet wind"
+    },
+    {
+      "from_s": 5,
+      "to_s": 10,
+      "what": "wind rises, music builds, kite lifts"
+    },
+    {
+      "from_s": 10,
+      "to_s": 10.5,
+      "what": "beat drop: near silence then hit"
+    },
+    {
+      "from_s": 10.5,
+      "to_s": 18,
+      "what": "dance, tail swirls, camera follows up"
+    },
+    {
+      "from_s": 18,
+      "to_s": 20,
+      "what": "string snaps, kite stays in the air, copy"
+    }
+  ],
+  "payoffs": [
+    {
+      "t": 5,
+      "viewer_expects": "wind starts",
+      "viewer_gets": "kite twitches then lifts",
+      "sound": {
+        "anticipation": "filtered noise riser",
+        "hit": "gust whoosh",
+        "ring": "airy ring",
+        "tail": "leaves rustle"
+      }
+    },
+    {
+      "t": 10.5,
+      "viewer_expects": "drop",
+      "viewer_gets": "the whole world snaps into motion",
+      "sound": {
+        "anticipation": "0.5s near silence + reverse cymbal",
+        "hit": "kick + sub boom exactly on the drop",
+        "ring": "long wide ring",
+        "tail": "groove begins"
+      }
+    },
+    {
+      "t": 15,
+      "viewer_expects": "tail swirl",
+      "viewer_gets": "tail loops a figure-eight on the beat",
+      "sound": {
+        "anticipation": "percussive roll",
+        "hit": "snare accent",
+        "ring": "shaker ring",
+        "tail": "groove"
+      }
+    },
+    {
+      "t": 18,
+      "viewer_expects": "string snaps",
+      "viewer_gets": "string flicks away, kite floats",
+      "sound": {
+        "anticipation": "tension note",
+        "hit": "thin snap",
+        "ring": "sparkle ring",
+        "tail": "pad out"
+      }
+    }
+  ],
+  "on_screen_copy_fa": [
+    "گاهی باید رها شد."
+  ],
+  "assets": [
+    "SVG kite, hill, clouds, bow chain",
+    "kit music excerpt with a drop (or 2 excerpts joined by a riser), gust and snap sfx"
+  ],
+  "lab": {
+    "tests": [
+      "emotional music-led pacing with a drop",
+      "follow-through (secondary motion with delay)",
+      "simple character with a face",
+      "payoff exactly on the drop"
+    ],
+    "likely_skill_gaps": [
+      "no follow-through/chain helper",
+      "no beat-grid lookup from a music excerpt",
+      "no pa tool to find the drop time in a kit track"
+    ],
+    "acceptance": [
+      "drop hit offset <= 5 ms vs kit track drop time",
+      "pacing: visual speed ratio after/before the drop > 1.5",
+      "pa audio-check: LUFS in range, no clipping at the drop"
+    ],
+    "budget_minutes": 18,
+    "risk": "medium; finding the drop in the kit music",
+    "learning_value_1_5": 5
+  }
+}

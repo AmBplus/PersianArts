@@ -1,0 +1,118 @@
+{
+  "id": "S04",
+  "title": "سه رود، یک دریا",
+  "logline_fa": "سه رود با سه رنگ از سه سو می‌آیند؛ هر کدام کوچک است و هیچ‌کدام برتر نیست، اما در یک نقطه به هم می‌رسند و یک دریای پهن می‌شوند.",
+  "genre": "collaboration / metaphor",
+  "ratios": [
+    "16x9",
+    "9x16"
+  ],
+  "ratio_note": "16:9 designed first as a wide map, then a 9:16 re-design as a vertical stack",
+  "duration_s": 22,
+  "tempo_bpm": "80-90, flowing",
+  "mood": "calm, grand",
+  "protagonist": {
+    "what": "three water streams (teal, amber, indigo), equal peers",
+    "build": "3 SVG stroke paths animated by stroke-dashoffset, width grows with flow; same weight and speed",
+    "state_change": "three thin separate lines -> one thick merged delta -> sea with all three colours still visible"
+  },
+  "emotional_arc": "separate -> approach -> meet -> become one",
+  "beats": [
+    {
+      "from_s": 0,
+      "to_s": 5,
+      "what": "three sources appear one after the other, equal spacing"
+    },
+    {
+      "from_s": 5,
+      "to_s": 13,
+      "what": "three paths wind toward the centre in parallel"
+    },
+    {
+      "from_s": 13,
+      "to_s": 18,
+      "what": "merge point: widths add, colours blend as marbling"
+    },
+    {
+      "from_s": 18,
+      "to_s": 22,
+      "what": "sea, copy, three colours still visible in the flow"
+    }
+  ],
+  "payoffs": [
+    {
+      "t": 5,
+      "viewer_expects": "second river starts",
+      "viewer_gets": "the third arrives exactly on beat, equal",
+      "sound": {
+        "anticipation": "3-note arpeggio build",
+        "hit": "pluck per river on arrival",
+        "ring": "soft bell",
+        "tail": "trickle"
+      }
+    },
+    {
+      "t": 13,
+      "viewer_expects": "merge point",
+      "viewer_gets": "all three touch at once and width triples",
+      "sound": {
+        "anticipation": "long riser",
+        "hit": "deep water boom",
+        "ring": "wide shimmer",
+        "tail": "wash"
+      }
+    },
+    {
+      "t": 16,
+      "viewer_expects": "colours blend",
+      "viewer_gets": "marbled colours swirl but stay readable",
+      "sound": {
+        "anticipation": "sustained chord",
+        "hit": "soft whoosh",
+        "ring": "glassy ring",
+        "tail": "flow tail"
+      }
+    },
+    {
+      "t": 21,
+      "viewer_expects": "sea reveal",
+      "viewer_gets": "copy sits on calm water",
+      "sound": {
+        "anticipation": "held breath",
+        "hit": "low note",
+        "ring": "long ring",
+        "tail": "calm sea ambience"
+      }
+    }
+  ],
+  "on_screen_copy_fa": [
+    "هر رود، یک رنگ.",
+    "با هم، یک دریا."
+  ],
+  "assets": [
+    "SVG paths, marbling via layered opacity, wave texture",
+    "kit sfx: pluck x3, water boom, shimmer, ambience"
+  ],
+  "lab": {
+    "tests": [
+      "multi-party collaboration (three equal peers)",
+      "16:9 re-design as a map composition",
+      "path-driven animation with length metrics",
+      "colour readability on blend"
+    ],
+    "likely_skill_gaps": [
+      "no equal-peers layout check",
+      "no marbling blend helper",
+      "per-ratio layout table",
+      "no gate for colour-blend contrast"
+    ],
+    "acceptance": [
+      "run-gates hero-size/edge-touch clean on both ratios",
+      "three sources arrive within 40 ms of the grid",
+      "transition strip: no colour pops at the merge"
+    ],
+    "budget_minutes": 18,
+    "risk": "medium; marbling look in CSS only",
+    "learning_value_1_5": 4
+  }
+}

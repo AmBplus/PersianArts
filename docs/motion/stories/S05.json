@@ -1,0 +1,24 @@
+{
+  "slug": "story-notebook-city",
+  "title": "شهری روی صفحه دفتر",
+  "intent": "روی یک صفحه خط‌دار دفتر، یک خط کج کشیده می‌شود و کم‌کم خانه، خیابان و شهر می‌شود؛ دوربین پیوسته عقب می‌رود تا ببینی همه‌چیز در یک دفتر بوده.",
+  "audience": "general short-form viewers (internal story lab)",
+  "language": "fa",
+  "ratios": [
+    "9x16"
+  ],
+  "duration_s": 28,
+  "tone": "wonder, hand-made; tempo 92-104, curious",
+  "must_have": [
+    "Persian copy only, original, neutral",
+    "all assets drawn as SVG or kit sound; no photos",
+    "protagonist: a hand-drawn line that becomes buildings",
+    "3-4 payoff moments with anticipation->hit->ring->tail"
+  ],
+  "must_not": [
+    "no real organisations, brands or people",
+    "no secrets or client names"
+  ],
+  "confidential": false,
+  "owner_approved": false
+}

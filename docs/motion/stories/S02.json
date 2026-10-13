@@ -1,0 +1,25 @@
+{
+  "slug": "story-lighthouse-ship",
+  "title": "فانوس دریایی و کشتی",
+  "intent": "کشتی کوچکی در شب مه‌آلود راه را گم کرده؛ چراغ فانوس دریایی می‌چرخد، هر بار که نورش به کشتی می‌خورد کشتی کمی نزدیک‌تر می‌شود تا به بندر برسد.",
+  "audience": "general short-form viewers (internal story lab)",
+  "language": "fa",
+  "ratios": [
+    "9x16",
+    "16x9"
+  ],
+  "duration_s": 24,
+  "tone": "night, hopeful; tempo 60-70 with swell, cinematic",
+  "must_have": [
+    "Persian copy only, original, neutral",
+    "all assets drawn as SVG or kit sound; no photos",
+    "protagonist: a small ship with two porthole eyes",
+    "3-4 payoff moments with anticipation->hit->ring->tail"
+  ],
+  "must_not": [
+    "no real organisations, brands or people",
+    "no secrets or client names"
+  ],
+  "confidential": false,
+  "owner_approved": false
+}

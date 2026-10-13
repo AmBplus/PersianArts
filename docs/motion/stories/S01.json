@@ -1,0 +1,24 @@
+{
+  "slug": "story-tea-glass",
+  "title": "استکان چای",
+  "intent": "یک استکان چای داغ آرام‌آرام سرد می‌شود؛ بخار کم می‌شود، رنگ چای تیره می‌ماند و دست نامرئی دوباره پرش می‌کند: «دیر نشده، دوباره داغ می‌شود.»",
+  "audience": "general short-form viewers (internal story lab)",
+  "language": "fa",
+  "ratios": [
+    "9x16"
+  ],
+  "duration_s": 18,
+  "tone": "warm, patient, quiet humour; tempo 72-84, calm",
+  "must_have": [
+    "Persian copy only, original, neutral",
+    "all assets drawn as SVG or kit sound; no photos",
+    "protagonist: a clear tea glass (istikan) with saucer and a sugar cube",
+    "3-4 payoff moments with anticipation->hit->ring->tail"
+  ],
+  "must_not": [
+    "no real organisations, brands or people",
+    "no secrets or client names"
+  ],
+  "confidential": false,
+  "owner_approved": false
+}
