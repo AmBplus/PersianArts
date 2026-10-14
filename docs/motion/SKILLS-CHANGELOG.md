@@ -1,5 +1,10 @@
 # SKILLS-CHANGELOG
 
+## 2.15 (2026-10-14): story-lab fold (S01-S07)
+- Rule 16 in SKILL.md: new story per film, per-ratio layout table (lib/pa-layout.js), camera moves not cuts (lib/pa-camera.js, no auto whoosh, --one-take/--scenery), payoff/beam events on the beat, no empty openings, canvas for many shapes, size rules.
+- Tools: `pa compress` copies AAC audio up to 200 kbps (true peak untouched, fixes L-106); sync script writes skill_version into the .agents mirror; DECISIONS.jsonl duplicate ids renumbered (D-20261013-38/-39, D-20261014-08).
+- Folds ledger L-087..L-107; T014 done.
+
 ## 2.12 (2026-10-14): Image FX phase 1
 - pa-fx.js runner + 36 shaders + catalog + `pa fx find|list|check|demo`; capture.mjs SwiftShader flags; motion-designer/art-director/PLAYBOOK/FILM-GATES.
 - Ledger L-098..L-100; decision D-20261014-06; T021 done, phase 2 added to the TODO.

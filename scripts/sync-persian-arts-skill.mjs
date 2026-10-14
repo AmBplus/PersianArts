@@ -25,10 +25,11 @@ for (const skill of skills) {
   if (!m) { console.error(rel + ': no frontmatter'); process.exit(2); }
   const name = (m[1].match(/^name:\s*(.+)$/m) || [])[1]?.trim();
   const description = (m[1].match(/^description:\s*(.+)$/m) || [])[1]?.trim();
+  const sv = (m[1].match(/^skill_version:\s*(.+)$/m) || [])[1]?.trim();
   if (!name || !description) { console.error(rel + ': name/description missing'); process.exit(2); }
   const out = `---
 name: ${name}
-description: ${description}
+description: ${description}${sv ? '\nskill_version: ' + sv : ''}
 ---
 
 <!-- GENERATED from ${rel} by scripts/sync-persian-arts-skill.mjs. Do not edit; run the script. -->

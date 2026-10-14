@@ -6,7 +6,6 @@ After every completed task the lead orders `pa todo done <id>` plus a checkpoint
 
 ## Next
 - [ ] T013 Carry-over: 4 simultaneous-cue defect in old finals (rebuild with build_sound) (studio, est 20 min)
-- [ ] T014 Cleanup duplicate decision ids D-20261013-01/-16 in DECISIONS.jsonl (lead, est 10 min)
 - [ ] T023 Image FX phase 2: geometry effects (crumple/shatter/particles via OGL/Three), only if a story needs it (studio, est 25 min)
 
 ## Waiting for owner
@@ -19,5 +18,6 @@ After every completed task the lead orders `pa todo done <id>` plus a checkpoint
 - [ ] T012 Research-centre emblem asset: owner can send it (owner)
 
 ## Done today
+- [x] T014 Cleanup duplicate decision ids D-20261013-01/-16 in DECISIONS.jsonl (lead, est 10 min, actual 3)
 - [x] T024 Story build S05 (studio, est 25 min)
 - [x] T025 Story build S02 (studio, est 25 min)

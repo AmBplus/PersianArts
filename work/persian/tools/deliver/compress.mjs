@@ -51,7 +51,7 @@ async function encode(src, dst, crf, info) {
     '-maxrate', '6M', '-bufsize', '12M', '-profile:v', 'high', '-level', '4.1', '-g', String(g), '-keyint_min', String(g), '-sc_threshold', '0',
     '-x264-params', 'open-gop=0:bframes=2', '-color_range', 'tv', '-colorspace', 'bt709', '-color_primaries', 'bt709', '-color_trc', 'bt709'];
   if (a) {
-    const br = +a.bit_rate || 0, copy = a.codec_name === 'aac' && br && br <= 132000 && a.channels === 2 && +a.sample_rate === 48000;
+    const br = +a.bit_rate || 0, copy = a.codec_name === 'aac' && br && br <= 200000 && a.channels === 2 && +a.sample_rate === 48000;
     args.push('-map', '0:a:0', ...(copy ? ['-c:a', 'copy'] : ['-c:a', 'aac', '-profile:a', 'aac_low', '-b:a', '128k', '-ar', '48000', '-ac', '2']));
   }
   args.push('-movflags', '+faststart', '-f', 'mp4', dst);
