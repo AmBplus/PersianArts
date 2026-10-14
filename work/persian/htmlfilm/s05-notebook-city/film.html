@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>S05 notebook city</title>
+<!--
+==========================================================================
+S05 notebook-city (own film, fictional, no client). 9:16, 100 BPM, 12 bars = 48 beats = 28.8 s = 864 frames. Music: kit tr-vd-7038-upbeat-slide.
+==========================================================================
+LOGLINE   On a ruled notebook page one wobbly line becomes a house, then a street, then a whole city; the camera never cuts, it only pulls back until you see it was all one notebook.
+PROTAGONIST  the pen (persistent actor, screen-space sprite that follows the ink tip, rests on the desk at the end) and the line that becomes buildings.
+TREATMENT ONE continuous zoom (log-space, 3.2 -> 0.38) over one canvas world (page 2400 x 3400). Ink draw-on (PA.drawOn) with hand wobble (PA.wobble),
+          scale-aware stroke width (PA.strokePx). 1 hero house + ~110 seeded lots; buildings sprout outward by distance from the house.
+          After beat 40 the cover swings over the page; copy on the cover; a single window lights up. No pa fx shader: a hinge-wipe cover serves the story (verified-shader runner not needed).
+          DOM budget: ONE canvas, 0 DOM nodes per frame (see node count in the report).
+COPY      "هر شهر" / "از یک خط شروع شد."
+ART       desk #2b3a55, page cream #fbf6e6, ruled lines #bcd3f0, margin #e58f8f, ink #1b2a6b, lit window #ffd23f, cover navy #1f3a8a with cream copy. Vazirmatn.
+SCENES (100 BPM, beat 0.6 s, bar 2.4 s)
+  1 LINE     beats  0-6   (0.0-3.6 s)   the wobbly baseline draws on, close-up, pen follows the tip
+  2 HOUSE    beats  6-9   (3.6-5.4 s)   walls close, ROOF POPS at beat 7 (4.2 s), door and window
+  3 SPROUT   beats  9-20  (5.4-12 s)    8 neighbours drawn one by one, zoom starts to ease out
+  4 RELEASE  beats 20-40  (12-24 s)     camera releases at 20 (whoosh): continuous zoom out, ~100 buildings sprout outward, lit windows
+  5 COVER    beats 40-48  (24-28.8 s)   cover hinge-closes 40-43 (paper clap at 43), copy, last window lights at 45 (click + bell), pad out
+EVENTS (beats) scratch riser 4-7 | roof pop 7 | rising sweep 17-20 | whoosh + shimmer 20 | sprout pops 24,28,32,36 | cover slide 40 | clap 43 | window click + bell 45 | pad 45-48
+==========================================================================
+-->
+<style>
+@font-face{font-family:"PAHead";src:url("fonts/Vazirmatn-Variable.woff2") format("woff2");font-weight:100 900;font-display:block}
+html,body{margin:0;height:100%;background:#000;overflow:hidden}
+#stage{position:absolute;left:0;top:0;width:1080px;height:1920px;overflow:hidden;transform-origin:0 0;direction:rtl}
+canvas{position:absolute;left:0;top:0}
+</style>
+<script src="../lib/pa-motion.js"></script><script src="../lib/pa-camera.js"></script><script src="../lib/pa-ink.js"></script>
+</head>
+<body>
+<div id="stage"><canvas id="cv" width="1080" height="1920"></canvas></div>
+<script>
+"use strict";
+const {clamp, lerp, prog, ease, beats, rng} = PA;
+const params = new URLSearchParams(location.search), W = 1080, H = 1920, FPS = 30, DURATION = 864, DUR = DURATION / FPS, BPM = 100, T0 = 0, BS = beats(BPM).bs;
+const EVENTS = [["scratch riser", 4], ["roof pop", 7], ["rising sweep", 17], ["release whoosh", 20], ["sprout pop", 24], ["sprout pop", 28], ["sprout pop", 32], ["sprout pop", 36], ["cover slide", 40], ["cover clap", 43], ["window click", 45], ["pad out", 45]]
+  .map(([name, b]) => ({name, beat: b, t_s: +(b * BS).toFixed(4), frame: Math.round(b * BS * FPS)}));
+const PW = 2400, PH = 3400, CXW = 1200, CYW = 1700;
+const cv = document.getElementById("cv"), ctx = cv.getContext("2d");
+// ---------------- world: strokes (pts, t0 beat, dur beats, kind)
+const strokes = []; let seedN = 100;
+const S = (pts, t0, dur, kind = "ink", amp = 2.4) => { const p = PA.wobble(pts, seedN++, amp, 36); strokes.push({pts: p, t0, dur, kind, len: PA.polyLen(p), box: [Math.min(...p.map(q => q[0])), Math.min(...p.map(q => q[1])), Math.max(...p.map(q => q[0])), Math.max(...p.map(q => q[1]))]}); return strokes[strokes.length - 1]; };
+// hero: baseline, walls, roof (pops), door, window
+S([[1000, 1700], [1400, 1700]], 0, 5.6, "ink", 5);
+S([[1050, 1700], [1050, 1500], [1350, 1500], [1350, 1700]], 5.4, 1.4);
+const roof = S([[1020, 1500], [1200, 1340], [1380, 1500]], 6.3, 0.7, "roof");
+S([[1160, 1700], [1160, 1600], [1230, 1600], [1230, 1700]], 7.3, 0.6); S([[1090, 1560], [1140, 1560], [1140, 1610], [1090, 1610], [1090, 1560]], 7.9, 0.6); S([[1280, 1560], [1330, 1560], [1330, 1610], [1280, 1610], [1280, 1560]], 8.4, 0.5);
+// seeded city: lots on a jittered grid, built outward from the hero house
+const R = rng(2025), lots = [];
+for (let j = -5; j <= 5; j++) for (let i = -5; i <= 5; i++) { if (Math.abs(i) < 1 && j === 0) continue; if (R() < 0.17) continue;
+  const x = CXW + i * 215 + (R() - 0.5) * 40, y = CYW + j * 300 + (R() - 0.5) * 30 + 40, w = 120 + R() * 70, h = 110 + R() * 260 * (1 - Math.hypot(i, j) / 9);
+  lots.push({x, y, w, h: Math.max(100, h), d: Math.hypot(i * 215, j * 300), roof: Math.floor(R() * 3), win: 2 + Math.floor(R() * 3), lit: R() < 0.16}); }
+lots.sort((a, b) => a.d - b.d);
+const N = lots.length; const litWins = [];
+lots.forEach((L, n) => {
+  const t0 = n < 8 ? 9 + n * 1.4 : 20.2 + (n - 8) * (17.6 / (N - 8)), dur = n < 8 ? 1.3 : 1.0, x0 = L.x - L.w / 2, x1 = L.x + L.w / 2, y0 = L.y, y1 = L.y - L.h;
+  S([[x0, y0], [x0, y1], [x1, y1], [x1, y0]], t0, dur * 0.45, "ink", 2.2);
+  if (L.roof === 0) S([[x0 - 12, y1], [L.x, y1 - 70], [x1 + 12, y1]], t0 + dur * 0.4, dur * 0.25, "ink", 2.2); else if (L.roof === 1) S([[x0 - 8, y1], [x1 + 8, y1 - 26]], t0 + dur * 0.4, dur * 0.2, "ink", 2);
+  for (let k = 0; k < L.win; k++) { const wx = x0 + 22 + (k % 2) * (L.w - 66), wy = y1 + 28 + Math.floor(k / 2) * 52; const st = S([[wx, wy], [wx + 26, wy], [wx + 26, wy + 28], [wx, wy + 28], [wx, wy]], t0 + dur * (0.62 + 0.08 * k), dur * 0.16, "ink", 1.2); if (L.lit && k === 0) litWins.push({x: wx, y: wy, t: t0 + dur * 0.9}); }
+  S([[x0 - 30, y0 + 8], [x1 + 30, y0 + 8]], t0 + dur * 0.1, dur * 0.3, "road", 2.5);
+});
+const NODES = 0;                                                // DOM nodes per frame (everything is canvas)
+// faint pencil doodles in the margins of the opening view (a page is never perfectly empty; also keeps the empty-band gate honest)
+const R2 = rng(9), doodles = []; for (let y = 1230; y < 2200; y += 80) doodles.push({x: 990 + R2() * 420, y, r: 14 + R2() * 14, k: Math.floor(R2() * 3)});
+// ---------------- camera
+const zoomAt = PA.logKeys([[0, 3.2], [6, 3.0], [9, 2.6], [20, 1.4], [40, 0.38], [48, 0.38]]);
+function camAt(b) {
+  const e = ease.inOutSine(prog(b, 9, 31)), z = zoomAt(b);
+  const hx = b < 6 ? lerp(1060, 1340, prog(b, 0, 5.6)) : lerp(1200, 1200, 1), hy = b < 6 ? 1640 : 1600;
+  return {z, cx: b < 9 ? lerp(hx, 1200, ease.inOutSine(prog(b, 5.6, 3.4))) : lerp(1200, 1200, e), cy: b < 9 ? lerp(hy, 1600, prog(b, 5.6, 3.4)) : lerp(1600, 1750, e)};
+}
+// ---------------- pen actor
+function penTipWorld(b) {                                      // tip of the stroke being drawn (smoothed over 3 taps)
+  let best = null;
+  for (const s of strokes) { if (s.kind === "road") continue; const p = (b - s.t0) / s.dur; if (p > 0 && p < 1 && (!best || s.t0 > best.t0)) best = s; }
+  if (!best) { let last = null; for (const s of strokes) if (s.kind !== "road" && s.t0 + s.dur <= b && (!last || s.t0 > last.t0)) last = s; best = last; if (!best) return {x: 1000, y: 1700}; return PA.polyAt(best.pts, 1); }
+  return PA.polyAt(best.pts, clamp((b - best.t0) / best.dur));
+}
+const penWorld = b => { const a = penTipWorld(b), c = penTipWorld(b - 0.12), d = penTipWorld(b - 0.25); return {x: (a.x + c.x + d.x) / 3, y: (a.y + c.y + d.y) / 3}; };
+function drawPen(x, y, ang, sc) {
+  ctx.save(); ctx.translate(x, y); ctx.rotate(ang); ctx.scale(sc, sc);
+  ctx.fillStyle = "rgba(0,0,0,.18)"; ctx.beginPath(); ctx.ellipse(18, 10, 150, 12, 0, 0, 7); ctx.fill();
+  ctx.fillStyle = "#2a5bd7"; ctx.beginPath(); ctx.moveTo(0, 0); ctx.lineTo(-46, -13); ctx.lineTo(-300, -16); ctx.lineTo(-300, 16); ctx.lineTo(-46, 13); ctx.closePath(); ctx.fill();
+  ctx.fillStyle = "#f2f2f2"; ctx.fillRect(-300, -16, 40, 32); ctx.fillStyle = "#ffd23f"; ctx.fillRect(-200, -16, 12, 32);
+  ctx.fillStyle = "#1b2a6b"; ctx.beginPath(); ctx.moveTo(0, 0); ctx.lineTo(-46, -13); ctx.lineTo(-46, 13); ctx.closePath(); ctx.fill();
+  ctx.restore();
+}
+// ---------------- render
+function render(n) {
+  n = Math.max(0, Math.min(DURATION - 1, Math.round(n)));
+  const T = n / FPS, b = T / BS, C = camAt(b), z = C.z;
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+  ctx.fillStyle = "#2b3a55"; ctx.fillRect(0, 0, W, H);
+  const g = ctx.createRadialGradient(540, 960, 200, 540, 960, 1300); g.addColorStop(0, "rgba(255,255,255,.07)"); g.addColorStop(1, "rgba(0,0,0,.25)"); ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+  ctx.setTransform(z, 0, 0, z, W / 2 - C.cx * z, H / 2 - C.cy * z);
+  // page, shadow, ruled lines, margin, spiral
+  ctx.fillStyle = "rgba(0,0,0,.28)"; ctx.fillRect(24, 30, PW, PH);
+  ctx.fillStyle = "#fbf6e6"; ctx.fillRect(0, 0, PW, PH);
+  ctx.lineWidth = Math.max(1.2 / z, 1.5); ctx.strokeStyle = "#bcd3f0"; ctx.beginPath();
+  for (let y = 120; y < PH; y += 60) { ctx.moveTo(0, y); ctx.lineTo(PW, y); } ctx.stroke();
+  ctx.strokeStyle = "#e58f8f"; ctx.lineWidth = 3 / Math.max(z, 0.5); ctx.beginPath(); ctx.moveTo(190, 0); ctx.lineTo(190, PH); ctx.stroke();
+  ctx.fillStyle = "#8a93a6"; for (let y = 90; y < PH; y += 130) { ctx.beginPath(); ctx.arc(60, y, 20, 0, 7); ctx.fill(); }
+  // doodles (light pencil)
+  ctx.strokeStyle = "rgba(95,105,140,.6)"; ctx.lineWidth = PA.strokePx(z, 2.4, 5, 0.38, 3.2); ctx.lineCap = "round";
+  for (const d of doodles) { ctx.beginPath(); if (d.k === 0) ctx.arc(d.x, d.y, d.r, 0, 6.1); else if (d.k === 1) { for (let q = 0; q < 6; q++) { const aa = q * Math.PI / 3 - 1.57; ctx.moveTo(d.x, d.y); ctx.lineTo(d.x + Math.cos(aa) * d.r, d.y + Math.sin(aa) * d.r); } } else { ctx.moveTo(d.x - d.r, d.y); for (let q = 1; q <= 4; q++) ctx.lineTo(d.x - d.r + q * d.r / 2, d.y + (q % 2 ? -d.r * 0.5 : d.r * 0.5)); } ctx.stroke(); }
+  // ink
+  const lw = PA.strokePx(z, 3.2, 9, 0.38, 3.2); ctx.lineCap = "round"; ctx.lineJoin = "round";
+  const vx0 = C.cx - W / 2 / z - 60, vx1 = C.cx + W / 2 / z + 60, vy0 = C.cy - H / 2 / z - 60, vy1 = C.cy + H / 2 / z + 60;
+  for (const s of strokes) {
+    const p = clamp((b - s.t0) / s.dur); if (p <= 0) continue;
+    if (s.box[2] < vx0 || s.box[0] > vx1 || s.box[3] < vy0 || s.box[1] > vy1) continue;
+    ctx.save();
+    if (s.kind === "roof") { const k = b >= 7 ? Math.max(0, Math.sin(Math.min(1, (b - 7) / 0.9) * Math.PI)) * 0.1 : 0; ctx.translate(1200, 1500); ctx.scale(1 + k, 1 + k * 1.6); ctx.translate(-1200, -1500); }
+    ctx.strokeStyle = s.kind === "road" ? "rgba(27,42,107,.45)" : "#1b2a6b"; ctx.lineWidth = s.kind === "road" ? lw * 0.7 : lw;
+    PA.drawOn(ctx, s.pts, ease.inOutSine(p)); ctx.restore();
+  }
+  // lit windows (warm squares)
+  for (const w of litWins) { const k = prog(b, w.t, 0.5); if (k > 0) { ctx.fillStyle = `rgba(255,210,63,${(0.95 * k).toFixed(2)})`; ctx.fillRect(w.x + 3, w.y + 3, 20, 22); } }
+  // cover (hinge on the page's left edge), after beat 40
+  const cs = ease.inOutSine(prog(b, 40, 3));
+  if (cs > 0) {
+    ctx.fillStyle = "rgba(0,0,0,.3)"; ctx.fillRect(18 + 0, 26, PW * cs, PH);
+    const gr = ctx.createLinearGradient(0, 0, PW * cs, 0); gr.addColorStop(0, "#27489f"); gr.addColorStop(0.85, "#1f3a8a"); gr.addColorStop(1, "#162b69"); ctx.fillStyle = gr; ctx.fillRect(0, 0, PW * cs, PH);
+    ctx.fillStyle = "rgba(0,0,0,.25)"; ctx.fillRect(PW * cs - 40 * Math.min(1, cs * 4), 0, 40 * Math.min(1, cs * 4), PH);
+    ctx.fillStyle = "#c9b58a"; ctx.fillRect(PW * 0.06, PH * 0.06, 14, PH * 0.88); ctx.fillRect(PW * 0.06, PH * 0.06, PW * cs * 0.88, 14);
+  }
+  // pen (screen space, persistent): follows the ink tip, then rests on the desk
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+  const tip = penWorld(Math.min(b, 40)), sx = W / 2 + (tip.x - C.cx) * z, sy = H / 2 + (tip.y - C.cy) * z;
+  const rest = prog(b, 38, 2.5), er = ease.inOutSine(rest), pk = clamp(0.5 + 0.5 * z / 3.2, 0.45, 1);
+  const px = lerp(sx, 900, er), py = lerp(sy, 1640, er), pa = lerp(-0.6, -0.95, er), ps = lerp(pk, 0.55, er);
+  const penOn = b < 40 ? clamp(prog(b, 0, 0.5) + 0.0) : 1;
+  if (penOn > 0.01) drawPen(px, py, pa, ps);
+  // copy on the cover (screen space)
+  if (cs >= 0.97) {
+    const k = prog(b, 43, 0.6), kk = ease.outBack(prog(b, 43, 0.6)), pcx = W / 2 + (CXW - C.cx) * z, pcy = H / 2 + (CYW - C.cy) * z;
+    ctx.globalAlpha = k; ctx.textAlign = "center"; ctx.direction = "rtl"; ctx.fillStyle = "#fff2d6";
+    ctx.font = `900 ${Math.round(150 * (0.9 + 0.1 * kk))}px PAHead`; ctx.fillText("هر شهر", pcx, pcy - 150);
+    const k2 = prog(b, 44, 0.6); ctx.globalAlpha = k2; ctx.font = "800 72px PAHead"; ctx.fillText("از یک خط شروع شد.", pcx, pcy - 20);
+    // last window lights up (click + bell at beat 45)
+    const hx = pcx, hy = pcy + 330, wl = prog(b, 45, 0.8); ctx.globalAlpha = k2;
+    ctx.strokeStyle = "#fff2d6"; ctx.lineWidth = 7; ctx.lineJoin = "round"; ctx.beginPath(); ctx.moveTo(hx - 120, hy + 80); ctx.lineTo(hx - 120, hy - 20); ctx.lineTo(hx, hy - 110); ctx.lineTo(hx + 120, hy - 20); ctx.lineTo(hx + 120, hy + 80); ctx.closePath(); ctx.stroke();
+    ctx.strokeRect(hx - 28, hy - 10, 56, 56);
+    if (wl > 0) { const gl = ctx.createRadialGradient(hx, hy + 18, 4, hx, hy + 18, 140 * wl); gl.addColorStop(0, `rgba(255,224,110,${(0.9 * wl).toFixed(2)})`); gl.addColorStop(1, "rgba(255,210,63,0)"); ctx.globalAlpha = 1; ctx.fillStyle = gl; ctx.fillRect(hx - 160, hy - 140, 320, 320); ctx.fillStyle = "#ffd23f"; ctx.fillRect(hx - 24, hy - 6, 48, 48); }
+    ctx.globalAlpha = 1;
+  }
+  window.film.frame = n;
+}
+window.film = {events: EVENTS, cuts: [0], duration: DUR, fps: FPS, bpm: BPM, t0: T0, frame: 0, ready: false, ratio: "9x16", nodes: NODES, strokes: strokes.length, buildings: N + 1, seek(t) { render(Math.round(t * FPS)); return this.frame; }};
+const stage = document.getElementById("stage");
+function fit() { const sc = params.get("capture") === "1" ? 1 : Math.min(innerWidth / W, innerHeight / H); stage.style.transform = `scale(${sc})`; }
+addEventListener("resize", fit); fit();
+Promise.all([document.fonts.load("900 40px PAHead"), document.fonts.load("800 40px PAHead")]).then(() => document.fonts.ready).then(() => { render(0); window.film.ready = true; });
+let playing = false, t0p = 0;
+function tick(ts) { if (!playing) return; render(((ts - t0p) * FPS / 1000) % DURATION); requestAnimationFrame(tick); }
+addEventListener("click", () => { playing = !playing; if (playing) { t0p = performance.now(); requestAnimationFrame(tick); } });
+</script>
+</body>
+</html>

@@ -43,14 +43,15 @@ Fill one block after each story build. Rule: every gap becomes a fix at the sour
 - new lesson id (L-###):
 
 ## S05 شهری روی صفحه دفتر
-- minutes used (pa time) / budget 20:
-- run-gates result:
-- pa audio-check (payoff offsets ms, LUFS, clipping):
-- pa pacing ranges:
-- transition strip viewed (jumps?):
-- what the skill/tool lacked (expected: no camera/zoom helper; DOM-node budget: capture speed with 100+ nodes; no instancing helper; no scale-aware stroke width):
-- fix made at the source (file):
-- new lesson id (L-###):
+- minutes used (pa time) / budget 25: about 11 of 25 (treatment 1.4, build 2.3, capture 3.8, sound 5.6, qc 8.1, deliver 10.6)
+- run-gates result: edge-touch N/A (--scenery), empty-band PASS worst 21% (first capture FAIL 87 frames: the opening blank page is uniform per row; fixed with faint pencil doodles), dead-frames PASS, number-lint PASS, logo-colour skipped
+- pa audio-check (payoff offsets ms, LUFS, clipping): PASS 28.8 s, -14.4 LUFS, TP -1.1, tail -74.4 dBFS, max simultaneous 3, --events 14 of 14 on the beat grid within 5 ms
+- pa pacing ranges: --one-take --cuts events.json --track vd-7038-upbeat-slide: tempo 100 (below the generic 113-136 reference, by design), energy arc ok, loudness arc -16.9/-16.8/-17.2
+- DOM/render budget: ONE canvas, 0 DOM nodes per frame, 595 strokes, 107 buildings; capture 15.2 fps with JPEG q97 over the whole zoom (PNG would be about 6 min for 864 frames; JPEG chosen to fit the budget)
+- transition strip viewed (jumps?): yes, roof pop (4 s), release (11.5-12.5 s), zoom-out, cover closing (24-26.5 s), copy; zoom is monotone in log space (3.2 -> 0.38), no step; the cover hinge closes smoothly
+- what the skill/tool lacked: no ink draw-on/wobble/scale-aware stroke helper (built lib/pa-ink.js), no log-space zoom track; pa compress kept an 18 MB file ("keep", audio TP) so a manual x264 crf 25 level 4.1 encode was needed to get under the 12 MB per-final limit; kit ids with their own tr- prefix break `replace("tr-","")` in pacing.py/loop_check.py (fixed); the pa fx shader transition was not used (a hinge-wipe cover serves the story)
+- fix made at the source (file): work/persian/htmlfilm/lib/pa-ink.js (+ selftest), pacing.py and loop_check.py track lookup, skill 2.13
+- new lesson id (L-###): L-101 (blank opening page fails empty-band: add faint content), L-102 (kit track ids with a tr- prefix: fixed), L-103 (pa compress keeps large TV-safe files when audio TP is hot: open), L-104 (dense line art makes 18 MB at crf 16: use crf 25 level 4.1 and maxrate)
 
 ## S06 ساعتی که به صفر نمی‌رسد
 - minutes used (pa time) / budget 12: about 10.5 of 15 (studio pass; treatment 1.4, build 3.5, capture 3.9-8.1, sound 8.1, qc 9.0, deliver 9.3 min marks)

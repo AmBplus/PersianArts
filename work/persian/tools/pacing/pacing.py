@@ -55,7 +55,7 @@ def main():
     if a.track or (ev and ev.get("bpm")):
         import numpy as _np
         if a.track:
-            mj = json.load(open(R / "sound/library/kit/music" / (a.track.replace("tr-", "") + ".music.json"), encoding="utf-8")); bpm = float(ev.get("bpm") or mj["bpm"]) if ev else mj["bpm"]
+            mj = json.load(open(R / "sound/library/kit/music" / (next((c for c in (a.track, a.track[3:] if a.track.startswith("tr-") else a.track, "tr-" + a.track) if (R / "sound/library/kit/music" / (c + ".music.json")).exists()), a.track) + ".music.json"), encoding="utf-8")); bpm = float(ev.get("bpm") or mj["bpm"]) if ev else mj["bpm"]
         else: bpm = float(ev["bpm"])
         t0 = float(ev.get("t0_s", 0.0)) if ev else 0.0; bs = 60.0 / bpm
         grid = {"beats": [t0 + k * bs for k in range(int((m["duration_s"] - t0) / bs) + 1)], "bars": [t0 + k * 4 * bs for k in range(int((m["duration_s"] - t0) / (4 * bs)) + 1)], "bpm": bpm, "source": "track grid %s bpm %.2f t0 %.3f" % (a.track or "events.json", bpm, t0)}

@@ -49,3 +49,6 @@ S03 story build (key and maze): new generic html-film libs (camera/zoom track wi
 
 ## 2.11 (2026-10-14)
 S07 story build (kite and wind): `pa music-drop`, lib/pa-chain.js (follow-through chain + integrate), gates --scenery, pacing --one-take, audio-check --events, pa time phase env (all with tests in work/persian/tools/test_s07_fixes.py). Lessons: music-led drop placement via --t0 -N*bar_s, soft kit drops need added kick+sub, clear sky needs clouds for empty-band. Ledger L-092..L-097.
+
+## 2.13 (2026-10-14)
+S05 story build (notebook city): lib/pa-ink.js (wobble, draw-on, scale-aware stroke, log-space zoom), canvas pattern for 100+ shapes (0 DOM nodes), track id lookup fix in pacing/loop-check. Ledger L-101..L-104.

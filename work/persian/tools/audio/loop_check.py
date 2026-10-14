@@ -52,7 +52,7 @@ def main():
     oenv = librosa.onset.onset_strength(y=y, sr=SR); _, bf = librosa.beat.beat_track(onset_envelope=oenv, sr=SR); bt = librosa.frames_to_time(bf, sr=SR)
     beat = None
     if a.track:
-        mj = R / "sound/library/kit/music" / (a.track.replace("tr-", "") + ".music.json")
+        mj = R / "sound/library/kit/music" / (next((c for c in (a.track, a.track[3:] if a.track.startswith("tr-") else a.track, "tr-" + a.track) if (R / "sound/library/kit/music" / (c + ".music.json")).exists()), a.track) + ".music.json")
         beat = json.load(open(mj, encoding="utf-8"))["beat_s"]
     elif len(bt) > 3: beat = float(np.median(np.diff(bt)))
     if beat and len(bt) > 2:

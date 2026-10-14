@@ -1,0 +1,104 @@
+{
+ "schema": "persianarts.events/1",
+ "film": "s05-notebook-city",
+ "fps": 30,
+ "bpm": 100,
+ "t0_s": 0.0,
+ "cut_frames": [
+  0
+ ],
+ "duration_frames": 864,
+ "events": [
+  {
+   "name": "pencil scratch build",
+   "type": "riser",
+   "t_s": 2.4,
+   "dur_s": 1.8,
+   "variant": "scratch",
+   "role": "normal"
+  },
+  {
+   "name": "roof pop",
+   "type": "pop",
+   "t_s": 4.2,
+   "role": "accent"
+  },
+  {
+   "name": "rising sweep",
+   "type": "riser",
+   "t_s": 10.2,
+   "dur_s": 1.8,
+   "role": "normal"
+  },
+  {
+   "name": "camera release whoosh",
+   "type": "transition",
+   "t_s": 12.0,
+   "role": "accent"
+  },
+  {
+   "name": "release shimmer",
+   "type": "ring",
+   "t_s": 12.0,
+   "variant": "soft",
+   "role": "normal"
+  },
+  {
+   "name": "sprout pop 24",
+   "type": "pop",
+   "t_s": 14.4,
+   "role": "normal"
+  },
+  {
+   "name": "sprout pop 28",
+   "type": "pop",
+   "t_s": 16.8,
+   "role": "normal"
+  },
+  {
+   "name": "sprout pop 32",
+   "type": "pop",
+   "t_s": 19.2,
+   "role": "normal"
+  },
+  {
+   "name": "sprout pop 36",
+   "type": "pop",
+   "t_s": 21.6,
+   "role": "normal"
+  },
+  {
+   "name": "cover slide",
+   "type": "slide",
+   "t_s": 24.0,
+   "role": "normal"
+  },
+  {
+   "name": "cover clap",
+   "type": "hit",
+   "t_s": 25.8,
+   "variant": "clap",
+   "role": "accent"
+  },
+  {
+   "name": "window click",
+   "type": "click",
+   "t_s": 27.0,
+   "role": "accent"
+  },
+  {
+   "name": "window bell",
+   "type": "ring",
+   "t_s": 27.0,
+   "variant": "accent",
+   "role": "accent"
+  },
+  {
+   "name": "pad out",
+   "type": "ambient",
+   "t_s": 27.0,
+   "dur_s": 1.8,
+   "role": "normal"
+  }
+ ]
+}
