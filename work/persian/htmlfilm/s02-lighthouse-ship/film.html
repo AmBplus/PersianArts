@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>S02 lighthouse and ship</title>
+<!--
+==========================================================================
+S02 lighthouse-ship (own film, fictional, no client). BOTH ratios from this one file: ?ratio=16x9 (primary) and ?ratio=9x16 (re-composed, NOT a crop).
+100 BPM, 10 bars = 40 beats = 24 s = 720 frames. Music: kit tr-vd-7038-upbeat-slide.
+==========================================================================
+LOGLINE   A small ship with two porthole eyes is lost in a foggy night; the lighthouse beam sweeps once per bar, each sweep that touches the ship draws it closer, until it docks and the light rests on it.
+PROTAGONIST  the ship (persistent actor, one rig: hull/cabin/mast with pivots at the keel: bob + pitch, eyes track the light, squash-and-stretch jump at the second hit).
+CLOCK     the lighthouse beam angle = angle to the ship + A*sin(pi*(beat-8)/4): it crosses the ship exactly on beats 8,12,16,...,36 (every bar). The beam is the rhythm.
+LAYOUT    ONE table per ratio (PA.layout): 16:9 = wide stage 3600 px, lighthouse on the right, ship sails left -> right under a continuous camera pan (cx keys);
+          9:16 = tall composition: lighthouse tall on the left, ship sails from the far horizon (tiny) to the foreground dock (large), camera pushes then pulls back.
+COPY      "راه را گم کرده‌ای؟" (early, small) / "یک نور کافی است." (end, on the beam pulse at beat 36)
+ART       night #050b1e -> #0d2a4a, fog = pre-drawn gradient ellipses (no live blur), beam warm #fff2b0 additive, ship dark red-brown -> lit warm, harbour lights #ffd23f. Vazirmatn.
+SCENES (100 BPM, beat 0.6 s, bar 2.4 s)
+  1 LOST    beats  0-8   (0-4.8 s)    dark sea, fog, ship alone, eyes scanning, copy 1, low swell riser 6-8
+  2 LIGHT   beats  8-16  (4.8-9.6 s)  switch-on clunk at 8 (first sweep hits, eyes widen), ship drifts closer on each bar; tension riser 14-16
+  3 JOY     beat  16     (9.6 s)      second hit: squash jump, boing + horn blip
+  4 PUSH    beats 16-30  (9.6-18 s)   camera moves along the beam (parallax), fog parts, harbour lights appear, reveal hit at 28
+  5 DOCK    beats 30-40  (18-24 s)    ship settles at the dock at 36 (wood thud + bell), beam pulses on the copy, pad out
+EVENTS (beats) swell riser 6-8 | switch-on 8 | tension riser 14-16 | joy hit 16 | pad riser 24-26 | reveal 28 | held note 35-36 | dock 36 | soft chimes on sweeps 12,20,24,32 | pad 36-40
+==========================================================================
+-->
+<style>
+@font-face{font-family:"PAHead";src:url("fonts/Vazirmatn-Variable.woff2") format("woff2");font-weight:100 900;font-display:block}
+html,body{margin:0;height:100%;background:#000;overflow:hidden}
+#stage{position:absolute;left:0;top:0;overflow:hidden;transform-origin:0 0;direction:rtl}
+canvas{position:absolute;left:0;top:0}
+</style>
+<script src="../lib/pa-motion.js"></script><script src="../lib/pa-camera.js"></script><script src="../lib/pa-layout.js"></script>
+</head>
+<body>
+<div id="stage"><canvas id="cv"></canvas></div>
+<script>
+"use strict";
+const {clamp, lerp, prog, ease, beats, rng} = PA;
+const params = new URLSearchParams(location.search), RATIO = params.get("ratio") === "16x9" ? "16x9" : "9x16";
+const FPS = 30, DURATION = 720, DUR = DURATION / FPS, BPM = 100, T0 = 0, BS = beats(BPM).bs;
+// ---------------- per-ratio layout table (a real second composition)
+const LAYOUT = {
+  "16x9": {horizon: 470, wx: 3600, lh: {x: 3010, base: 810, h: 640, w: 150}, ship: [[560, 700, 1.0], [2760, 735, 1.1]], dock: [2790, 780],
+    cam: {cx: [[0, 960], [8, 1010], [16, 1380], [28, 2000], [36, 2430], [40, 2440]], cy: [[0, 540], [40, 540]], z: [[0, 1], [28, 1], [36, 0.94], [40, 0.94]]},
+    copy1: {x: 960, y: 170, size: 74}, copy2: {x: 960, y: 940, size: 108}, fogY: 560, lights: [2380, 2900]},
+  "9x16": {horizon: 980, wx: 1080, lh: {x: 330, base: 1430, h: 1000, w: 230}, ship: [[870, 1030, 0.3], [690, 1590, 1.15]], dock: [680, 1650],
+    cam: {cx: [[0, 640], [16, 600], [30, 540], [40, 540]], cy: [[0, 1180], [16, 1120], [30, 960], [40, 960]], z: [[0, 1.3], [16, 1.22], [30, 1.0], [40, 1.0]]},
+    copy1: {x: 770, y: 330, size: 58}, copy2: {x: 540, y: 1790, size: 118}, fogY: 1150, lights: [420, 940]}
+};
+const L = PA.layout(LAYOUT, RATIO), W = L.W, H = L.H;
+const EVENTS = [["swell riser", 6], ["switch-on", 8], ["sweep chime", 12], ["tension riser", 14], ["joy hit", 16], ["sweep chime", 20], ["pad riser", 24], ["sweep chime", 24.01], ["reveal hit", 28], ["sweep chime", 32], ["held note", 35], ["dock hit", 36], ["pad out", 36]]
+  .map(([name, b]) => ({name, beat: Math.round(b), t_s: +(Math.round(b) * BS).toFixed(4), frame: Math.round(Math.round(b) * BS * FPS)}));
+const cv = document.getElementById("cv"); cv.width = W; cv.height = H; const ctx = cv.getContext("2d");
+const stage = document.getElementById("stage"); stage.style.width = W + "px"; stage.style.height = H + "px";
+const camCX = PA.keys(L.cam.cx, ease.inOutSine), camCY = PA.keys(L.cam.cy, ease.inOutSine), camZ = PA.keys(L.cam.z, ease.inOutSine);
+const stars = (() => { const R = rng(5); return Array.from({length: 110}, () => ({x: R() * L.wx * 1.2, y: R() * L.horizon, r: 0.8 + R() * 2, p: R() * 6})); })();
+// ---------------- fog sprites (pre-rendered, no live blur)
+const fogSpr = (() => { const c = document.createElement("canvas"); c.width = 600; c.height = 200; const g = c.getContext("2d"); const gr = g.createRadialGradient(300, 100, 10, 300, 100, 300); gr.addColorStop(0, "rgba(200,220,255,.5)"); gr.addColorStop(1, "rgba(200,220,255,0)"); g.save(); g.scale(1, 0.34); g.fillStyle = gr; g.fillRect(0, 0, 600, 600); g.restore(); return c; })();
+// ---------------- story state
+const hitBeats = [8, 12, 16, 20, 24, 28, 32, 36];
+const prog1 = PA.keys([[0, 0], [8, 0], [12, 0.13], [16, 0.3], [20, 0.47], [28, 0.72], [36, 0.97], [37.5, 1], [40, 1]], ease.inOutSine);
+const shipPos = b => { const s = prog1(b), a = L.ship[0], c = L.ship[1]; return {x: lerp(a[0], c[0], s), y: lerp(a[1], c[1], s), sc: lerp(a[2], c[2], s)}; };
+const lampOf = () => ({x: L.lh.x, y: L.lh.base - L.lh.h + 26});
+const beamOn = b => prog(b, 7.7, 0.5);
+const beamOff = b => { const sp = shipPos(b), lp = lampOf(); return b < 8 ? 0 : 0.16 * (b < 36.5 ? 1 : 1 - prog(b, 36.5, 2)) * Math.sin(Math.PI * (b - 8) / 4); };
+const beamAng = b => { const sp = shipPos(b), lp = lampOf(); return Math.atan2(sp.y - 20 * sp.sc - lp.y, sp.x - lp.x) + beamOff(b); };
+const litAt = b => { if (b < 7.7) return 0; const sp = shipPos(b), lp = lampOf(), d = Math.abs(beamAng(b) - Math.atan2(sp.y - 20 * sp.sc - lp.y, sp.x - lp.x)); return clamp(1 - d / 0.05) * beamOn(b) + (b >= 37 ? 0.5 * prog(b, 37, 1) : 0); };
+const mixC = (a, b, t) => { const A = [1, 3, 5].map(i => parseInt(a.slice(i, i + 2), 16)), B = [1, 3, 5].map(i => parseInt(b.slice(i, i + 2), 16)); return "#" + A.map((v, i) => Math.round(lerp(v, B[i], t)).toString(16).padStart(2, "0")).join(""); };
+// ---------------- drawing pieces
+function lighthouse(b, lit) {
+  const {x, base, h, w} = L.lh, lampY = base - h + 26;
+  ctx.fillStyle = "#1a2433"; ctx.beginPath(); ctx.moveTo(x - w * 1.5, base + 60); ctx.quadraticCurveTo(x - w * 0.8, base - 40, x, base - 22); ctx.quadraticCurveTo(x + w * 0.9, base - 44, x + w * 1.7, base + 60); ctx.closePath(); ctx.fill();   // island
+  const tw0 = w, tw1 = w * 0.6, top = base - h + 70;
+  for (let i = 0; i < 6; i++) { const y0 = base - 20 - (base - 20 - top) * i / 6, y1 = base - 20 - (base - 20 - top) * (i + 1) / 6, wa = lerp(tw0, tw1, i / 6), wb = lerp(tw0, tw1, (i + 1) / 6);
+    ctx.fillStyle = i % 2 ? "#cfd6e6" : "#b3343a"; ctx.beginPath(); ctx.moveTo(x - wa / 2, y0); ctx.lineTo(x + wa / 2, y0); ctx.lineTo(x + wb / 2, y1); ctx.lineTo(x - wb / 2, y1); ctx.closePath(); ctx.fill(); }
+  ctx.fillStyle = "rgba(5,11,30,.35)"; ctx.beginPath(); ctx.moveTo(x + tw0 * 0.1, base - 20); ctx.lineTo(x + tw0 / 2, base - 20); ctx.lineTo(x + tw1 / 2, top); ctx.lineTo(x + tw1 * 0.1, top); ctx.closePath(); ctx.fill();
+  ctx.fillStyle = "#2a3347"; ctx.fillRect(x - tw1 * 0.85, top - 8, tw1 * 1.7, 14);                       // gallery
+  const on = beamOn(b); ctx.fillStyle = on > 0.01 ? `rgba(255,236,150,${0.35 + 0.65 * on})` : "#27405f"; ctx.fillRect(x - tw1 * 0.42, lampY - 34, tw1 * 0.84, 62);       // lamp room
+  ctx.fillStyle = "#b3343a"; ctx.beginPath(); ctx.moveTo(x - tw1 * 0.55, lampY - 34); ctx.lineTo(x, lampY - 78); ctx.lineTo(x + tw1 * 0.55, lampY - 34); ctx.closePath(); ctx.fill();
+  if (on > 0.01) { const gl = ctx.createRadialGradient(x, lampY, 4, x, lampY, 260 * on); gl.addColorStop(0, "rgba(255,244,190,.85)"); gl.addColorStop(1, "rgba(255,244,190,0)"); ctx.fillStyle = gl; ctx.fillRect(x - 280, lampY - 280, 560, 560); }
+}
+function beam(b) {
+  const on = beamOn(b); if (on < 0.01) return; const lp = lampOf(), a = beamAng(b), half = 0.05, len = 5200;
+  ctx.save(); ctx.globalCompositeOperation = "lighter";
+  const g = ctx.createLinearGradient(lp.x, lp.y, lp.x + Math.cos(a) * len, lp.y + Math.sin(a) * len); g.addColorStop(0, `rgba(255,240,170,${0.55 * on})`); g.addColorStop(0.5, `rgba(255,240,170,${0.2 * on})`); g.addColorStop(1, "rgba(255,240,170,0)");
+  ctx.fillStyle = g; ctx.beginPath(); ctx.moveTo(lp.x, lp.y); ctx.lineTo(lp.x + Math.cos(a - half) * len, lp.y + Math.sin(a - half) * len); ctx.lineTo(lp.x + Math.cos(a + half) * len, lp.y + Math.sin(a + half) * len); ctx.closePath(); ctx.fill(); ctx.restore();
+}
+function eyes(b, lit) {
+  const sc = b < 8 ? [Math.sin(b * 2.1) * 0.8, Math.sin(b * 1.3) * 0.3] : [-0.8, -0.2], r = 17 + (b >= 8 && b < 9.2 ? 6 * Math.exp(-(b - 8) * 2) : 0) + (b >= 16 && b < 17.5 ? 4 : 0);
+  const joy = b >= 16 && b < 17.6, up = b >= 37;
+  [-30, 30].forEach(ex => {
+    if (joy) { ctx.strokeStyle = "#1a1208"; ctx.lineWidth = 6; ctx.lineCap = "round"; ctx.beginPath(); ctx.arc(ex, -62, 15, Math.PI * 1.1, Math.PI * 1.9); ctx.stroke(); return; }
+    ctx.fillStyle = "#fff"; ctx.beginPath(); ctx.arc(ex, -66, r, 0, 7); ctx.fill(); ctx.fillStyle = "#1a1208"; const px = up ? 0 : sc[0] * 6, py = up ? -6 : sc[1] * 6; ctx.beginPath(); ctx.arc(ex + px, -66 + py, r * 0.46, 0, 7); ctx.fill();
+  });
+  if (!joy) { ctx.strokeStyle = "#1a1208"; ctx.lineWidth = 5; ctx.beginPath(); ctx.arc(0, -40, 16, 0.2 * Math.PI, 0.8 * Math.PI); ctx.stroke(); } else { ctx.strokeStyle = "#1a1208"; ctx.lineWidth = 6; ctx.beginPath(); ctx.arc(0, -52, 22, 0.1 * Math.PI, 0.9 * Math.PI); ctx.stroke(); }
+}
+function ship(b, lit) {
+  const sp = shipPos(b), bob = Math.sin(b * 2 * Math.PI / 3.2) * 7 * (b > 37 ? 0.3 : 1), pitch = Math.sin(b * 2 * Math.PI / 3.2 + 0.8) * 0.05 * (b > 37 ? 0.3 : 1);
+  const hp = b >= 16 && b < 17.2 ? PA.hop((b - 16) / 1.2) : {y: 0, sx: 1, sy: 1};
+  ctx.save(); ctx.translate(sp.x, sp.y + bob - hp.y * 70 * sp.sc); ctx.rotate(pitch); ctx.scale(sp.sc * hp.sx, sp.sc * hp.sy);
+  ctx.fillStyle = "rgba(0,0,0,.3)"; ctx.beginPath(); ctx.ellipse(0, 46, 150, 12, 0, 0, 7); ctx.fill();
+  const hull = mixC("#4a2018", "#b4503a", lit), cab = mixC("#8a93a8", "#f2efe6", lit), sail = mixC("#6e7690", "#fff6dd", lit);
+  ctx.strokeStyle = mixC("#3a2a1a", "#6b4a2a", lit); ctx.lineWidth = 7; ctx.beginPath(); ctx.moveTo(0, -100); ctx.lineTo(0, -270); ctx.stroke();
+  ctx.fillStyle = sail; ctx.beginPath(); ctx.moveTo(8, -265); ctx.lineTo(8, -118); ctx.lineTo(116, -126); ctx.closePath(); ctx.fill();
+  ctx.fillStyle = hull; ctx.beginPath(); ctx.moveTo(-150, -34); ctx.lineTo(150, -34); ctx.lineTo(106, 44); ctx.lineTo(-106, 44); ctx.closePath(); ctx.fill();
+  ctx.fillStyle = cab; ctx.beginPath(); ctx.roundRect(-72, -112, 144, 80, 14); ctx.fill();
+  eyes(b, lit); ctx.restore();
+}
+function waves(b, cx, z) {
+  for (let k = 0; k < 4; k++) {
+    const y0 = L.horizon + 24 + k * (H - L.horizon) / (RATIO === "16x9" ? 5 : 3.2), amp = 5 + 3 * k, wl = 240 + 90 * k, ph = b * (0.6 + 0.2 * k) * 1.6 + k;
+    ctx.fillStyle = ["#0b2440", "#0a1f38", "#08182c", "#06121f"][k]; ctx.beginPath(); ctx.moveTo(-200, 2000);
+    for (let x = -200; x <= L.wx + 400; x += 40) ctx.lineTo(x, y0 + Math.sin(x / wl * 6.28 + ph) * amp);
+    ctx.lineTo(L.wx + 400, 2000); ctx.closePath(); ctx.fill();
+  }
+}
+function render(n) {
+  n = Math.max(0, Math.min(DURATION - 1, Math.round(n)));
+  const T = n / FPS, b = T / BS, z = camZ(b), cx = camCX(b), cy = camCY(b), lit = litAt(b);
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+  const sky = ctx.createLinearGradient(0, 0, 0, H); sky.addColorStop(0, "#050b1e"); sky.addColorStop(0.55, "#0b2038"); sky.addColorStop(1, "#0d2a4a"); ctx.fillStyle = sky; ctx.fillRect(0, 0, W, H);
+  // stars (parallax 0.25)
+  ctx.fillStyle = "#fff"; stars.forEach(s => { const sx = (s.x - cx * 0.25) * 1 + W / 2 - L.wx * 0.1; ctx.globalAlpha = 0.45 + 0.4 * Math.sin(b * 1.4 + s.p); ctx.beginPath(); ctx.arc(((sx % (W + 40)) + W + 40) % (W + 40) - 20, (s.y - cy * 0.15 + H / 2 - L.horizon * 0.5) * 0.8, s.r, 0, 7); ctx.fill(); }); ctx.globalAlpha = 1;
+  ctx.setTransform(z, 0, 0, z, W / 2 - cx * z, H / 2 - cy * z);
+  ctx.fillStyle = "#08152a"; ctx.fillRect(-300, L.horizon - 6, L.wx + 700, 16);
+  waves(b, cx, z); lighthouse(b, lit);
+  // harbour lights (appear as the fog parts, beats 26-30)
+  const hl = L.lights; for (let i = 0; i < 12; i++) { const t = prog(b, 26 + i * 0.3, 0.6); if (t <= 0) continue; const x = lerp(hl[0], hl[1], i / 11), y = RATIO === "16x9" ? L.dock[1] + 20 : L.dock[1] - 160 - (i % 3) * 40;
+    const gg = ctx.createRadialGradient(x, y, 2, x, y, 28 * t); gg.addColorStop(0, `rgba(255,210,63,${0.95 * t})`); gg.addColorStop(1, "rgba(255,210,63,0)"); ctx.fillStyle = gg; ctx.fillRect(x - 32, y - 32, 64, 64); }
+  ctx.fillStyle = "#3a2a1a"; ctx.fillRect(L.dock[0] - 150, L.dock[1] - 6, 300, 22);                       // dock planks
+  beam(b); ship(b, lit);
+  // fog layers drifting (parallax 1.0 / 1.4), thinning after the reveal
+  const fogA = lerp(0.9, 0.3, ease.inOutSine(prog(b, 24, 6))); ctx.globalAlpha = fogA;
+  for (let k = 0; k < 5; k++) { const fx = ((k * 700 + b * (14 + 6 * k)) % (L.wx + 1200)) - 600, fy = L.fogY + (k % 3) * 40 - 20; ctx.drawImage(fogSpr, fx, fy, 1200 * (1 + k * 0.1), 300); }
+  ctx.globalAlpha = 1;
+  // copy (screen space)
+  ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.textAlign = "center"; ctx.direction = "rtl";
+  const c1 = prog(b, 2.5, 1) * (1 - prog(b, 9, 1.5)); if (c1 > 0.01) { ctx.globalAlpha = c1; ctx.fillStyle = "#dfeaff"; ctx.font = `700 ${L.copy1.size}px PAHead`; ctx.shadowColor = "rgba(0,10,40,.8)"; ctx.shadowBlur = 18; ctx.fillText("راه را گم کرده‌ای؟", L.copy1.x, L.copy1.y); ctx.shadowBlur = 0; ctx.globalAlpha = 1; }
+  const c2 = prog(b, 36.6, 0.8); if (c2 > 0.01) { const pulse = 0.75 + 0.25 * Math.exp(-Math.max(0, b - 36) * 1.2); ctx.globalAlpha = c2; ctx.fillStyle = "#fff4c0"; ctx.font = `900 ${L.copy2.size}px PAHead`; ctx.shadowColor = `rgba(255,214,90,${pulse})`; ctx.shadowBlur = 30; ctx.fillText("یک نور کافی است.", L.copy2.x, L.copy2.y); ctx.shadowBlur = 0; ctx.globalAlpha = 1; }
+  window.film.frame = n;
+}
+window.film = {events: EVENTS, cuts: [0], duration: DUR, fps: FPS, bpm: BPM, t0: T0, frame: 0, ready: false, ratio: RATIO, seek(t) { render(Math.round(t * FPS)); return this.frame; }};
+function fit() { const sc = params.get("capture") === "1" ? 1 : Math.min(innerWidth / W, innerHeight / H); stage.style.transform = `scale(${sc})`; }
+addEventListener("resize", fit); fit();
+Promise.all([document.fonts.load("900 40px PAHead"), document.fonts.load("700 40px PAHead")]).then(() => document.fonts.ready).then(() => { render(0); window.film.ready = true; });
+let playing = false, t0p = 0;
+function tick(ts) { if (!playing) return; render(((ts - t0p) * FPS / 1000) % DURATION); requestAnimationFrame(tick); }
+addEventListener("click", () => { playing = !playing; if (playing) { t0p = performance.now(); requestAnimationFrame(tick); } });
+</script>
+</body>
+</html>

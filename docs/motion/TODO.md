@@ -20,3 +20,4 @@ After every completed task the lead orders `pa todo done <id>` plus a checkpoint
 
 ## Done today
 - [x] T024 Story build S05 (studio, est 25 min)
+- [x] T025 Story build S02 (studio, est 25 min)

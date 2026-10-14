@@ -1,7 +1,7 @@
 ---
 name: persian-arts
 description: The ONLY skill to use in the PersianArts repo for any motion graphic, promo, teaser, reel, social cut or Persian/RTL animated video request, or when the user types /persian-arts. Thin TODO-driven orchestrator: intake, goal memory, then one internal craft skill per step (director, writer, copy-editor, art-director, motion-editor, technical, motion-designer, sound, qc). Do not use any other motion, video or Persian skill here.
-skill_version: 2.13
+skill_version: 2.14
 ---
 
 # persian-arts (orchestrator)
@@ -65,6 +65,7 @@ Board: `pwsh -File work/persian/tools/pa.ps1 status add-item <ID> -Goal <goal> -
 Classify defects -> add ledger lines (docs/motion/LESSONS-LEDGER.jsonl) -> fix at the source skill/recipe/gate -> bump `skill_version` and add a SKILLS-CHANGELOG.md entry -> run the detectors -> flip verified ledger rows to `verified-in-next-run`.
 
 ## CHANGELOG (full: docs/motion/SKILLS-CHANGELOG.md)
+- 2.14 (2026-10-14): S02 lessons: both ratios from ONE film.html with a per-ratio layout table (lib/pa-layout.js: wide pan stage for 16:9, tall far-to-near composition for 9:16, never a crop); a light sweep clock = beam angle offset A*sin(pi*(beat-hit0)/period) so it crosses the subject on the beat grid; build the audio once and mux it on both ratios; pa compress may refuse a final it mis-measures (check ebur128 yourself); ledger L-105..L-107.
 - 2.13 (2026-10-14): S05 lessons: canvas films for 100+ shapes (one canvas, 0 DOM nodes, 15 fps JPEG capture; lib/pa-ink.js: wobble, drawOn, scale-aware stroke, log zoom); a blank opening page needs faint content (empty-band is per-row uniformity); kit track ids that carry their own tr- prefix are looked up by candidates (pacing, loop-check); dense line art needs crf 25 / level 4.1 to stay under 12 MB per final; ledger L-101..L-104.
 - 2.12 (2026-10-14): Image FX phase 1: pa-fx WebGL2 deterministic shader runner (work/persian/htmlfilm/lib/pa-fx.js + 36 shaders, 34 verified), `pa fx find|list|check|demo`, docs/motion/fx/catalog.json (Persian + English aliases), capture.mjs SwiftShader flags; motion-designer/art-director choose a transition/effect by STORY via `pa fx find`; ledger L-098..L-100.
 - 2.11 (2026-10-14): S07 lessons: music-led films use `pa music-drop <kit id>` (drop bar + grid time; start the bed N bars in with build_sound `--t0 -N*bar_s` so the picture hit lands on the drop; record grid vs strongest-hit offsets and the RMS jump: kit drops are soft, add kick+sub); follow-through = lib/pa-chain.js (lagging chain, integrate wind to a phase); a clear sky needs clouds in every opening view (empty-band); new switches: run-gates `--scenery` (or VERSION.json scenery:true), pacing `--one-take`, audio-check `--events`, pa time phase env; tests work/persian/tools/test_s07_fixes.py; ledger L-092..L-097.

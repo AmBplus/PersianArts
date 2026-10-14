@@ -1,0 +1,103 @@
+{
+ "schema": "persianarts.events/1",
+ "film": "s02-lighthouse-ship",
+ "fps": 30,
+ "bpm": 100,
+ "t0_s": 0.0,
+ "cut_frames": [
+  0
+ ],
+ "duration_frames": 720,
+ "events": [
+  {
+   "name": "low swell",
+   "type": "riser",
+   "t_s": 3.6,
+   "dur_s": 1.2,
+   "variant": "swell",
+   "role": "normal"
+  },
+  {
+   "name": "lamp switch-on clunk (first sweep hits)",
+   "type": "hit",
+   "t_s": 4.8,
+   "variant": "clunk",
+   "role": "accent"
+  },
+  {
+   "name": "sweep chime 12",
+   "type": "tick",
+   "t_s": 7.2,
+   "role": "normal"
+  },
+  {
+   "name": "tension strings rise",
+   "type": "riser",
+   "t_s": 8.4,
+   "dur_s": 1.2,
+   "role": "normal"
+  },
+  {
+   "name": "joy jump boing + horn",
+   "type": "hit",
+   "t_s": 9.6,
+   "variant": "boing",
+   "role": "accent"
+  },
+  {
+   "name": "sweep chime 20",
+   "type": "tick",
+   "t_s": 12.0,
+   "role": "normal"
+  },
+  {
+   "name": "sweep chime 24",
+   "type": "tick",
+   "t_s": 14.4,
+   "role": "normal"
+  },
+  {
+   "name": "rising pad",
+   "type": "riser",
+   "t_s": 14.4,
+   "dur_s": 1.2,
+   "variant": "pad",
+   "role": "normal"
+  },
+  {
+   "name": "harbour reveal",
+   "type": "hit",
+   "t_s": 16.8,
+   "variant": "reveal",
+   "role": "accent"
+  },
+  {
+   "name": "sweep chime 32",
+   "type": "tick",
+   "t_s": 19.2,
+   "role": "normal"
+  },
+  {
+   "name": "held note",
+   "type": "riser",
+   "t_s": 21.0,
+   "dur_s": 0.6,
+   "variant": "held",
+   "role": "normal"
+  },
+  {
+   "name": "dock thud + bell",
+   "type": "hit",
+   "t_s": 21.6,
+   "variant": "dock",
+   "role": "accent"
+  },
+  {
+   "name": "sea tail pad",
+   "type": "ambient",
+   "t_s": 21.6,
+   "dur_s": 2.4,
+   "role": "normal"
+  }
+ ]
+}

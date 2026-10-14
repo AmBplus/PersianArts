@@ -52,3 +52,6 @@ S07 story build (kite and wind): `pa music-drop`, lib/pa-chain.js (follow-throug
 
 ## 2.13 (2026-10-14)
 S05 story build (notebook city): lib/pa-ink.js (wobble, draw-on, scale-aware stroke, log-space zoom), canvas pattern for 100+ shapes (0 DOM nodes), track id lookup fix in pacing/loop-check. Ledger L-101..L-104.
+
+## 2.14 (2026-10-14)
+S02 story build (lighthouse and ship, both ratios): lib/pa-layout.js per-ratio layout table (+ self-test), beam-as-clock pattern, audio built once for both ratios. Ledger L-105..L-107.

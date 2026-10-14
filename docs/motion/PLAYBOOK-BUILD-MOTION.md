@@ -128,3 +128,6 @@ Phase 1 (2.12): `work/persian/htmlfilm/lib/pa-fx.js` is a deterministic WebGL2 r
 
 ## Lessons 2.13 (S05 notebook-city; ledger L-101..L-104)
 Canvas for 100+ shapes (`lib/pa-ink.js`), log-space zoom, one persistent screen-space pen; blank opening pages need faint doodles; dense line art: crf 25, `-level 4.1`, maxrate 14M to stay under the 12 MB final limit.
+
+## Lessons 2.14 (S02 lighthouse-ship; ledger L-105..L-107)
+Both ratios from one file: `lib/pa-layout.js` table with its own positions, camera keys and text boxes per ratio; capture both ratios in parallel on different ports; light-sweep clock via beat-locked zero crossings; build audio once, mux for both.

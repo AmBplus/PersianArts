@@ -13,14 +13,14 @@ Fill one block after each story build. Rule: every gap becomes a fix at the sour
 - new lesson id (L-###):
 
 ## S02 فانوس دریایی و کشتی
-- minutes used (pa time) / budget 20:
-- run-gates result:
-- pa audio-check (payoff offsets ms, LUFS, clipping):
-- pa pacing ranges:
-- transition strip viewed (jumps?):
-- what the skill/tool lacked (expected: no camera helper (pan/zoom with parallax); no persistent-actor timeline; per-ratio layout table missing; fog without live blur):
-- fix made at the source (file):
-- new lesson id (L-###):
+- minutes used (pa time) / budget 20 after the rate-limit resume: about 12 (marks build 7.8, capture 10.0, sound 11.4, qc 11.8; the first session only read inputs)
+- run-gates result: 16x9 edge-touch N/A (scenery), empty-band FAIL 2 frames at 31% (dark sea band, marginal), dead-frames PASS, number-lint PASS; 9x16 empty-band PASS (worst 17%), dead-frames PASS, number-lint PASS
+- pa audio-check (payoff offsets ms, LUFS, clipping): PASS both ratios, -14.4 LUFS, TP -1.5, tail -88.3 dBFS, max simultaneous 3, --events 13 of 13 on the beat grid within 5 ms
+- pa pacing ranges: --one-take --cuts events.json --track vd-7038-upbeat-slide: tempo 100 (slow vs reference, by design), energy arc ok both ratios
+- transition strip viewed (jumps?): yes on 16x9 every 3 frames around the four beam hits (4.8, 9.6, 16.6, 21.6 s): camera pan monotone, ship continuous, beam crosses the ship on the beat; the 9x16 strip was built but only the 9 stills per ratio were viewed
+- what the skill/tool lacked: per-ratio layout table (built lib/pa-layout.js); pa compress measured TP 2.8 on a final that ebur128 reads -1.5 and refused to compress (open); stills are viewed by contact sheets only; capture JPEG q97 used for both ratios (42 s each) to fit the box
+- fix made at the source (file): work/persian/htmlfilm/lib/pa-layout.js (+ selftest4), skill 2.14
+- new lesson id (L-###): L-105 (per-ratio layout table: fixed), L-106 (pa compress TP measurement disagrees with ebur128: open), L-107 (beam as clock: zero crossings of A*sin(pi*(beat-8)/4) land the light on beats: fixed in film)
 
 ## S03 کلید و هزارتو
 - minutes used (pa time) / budget 25: about 14 of 25 at deliver (env 0.8, treatment 0.8, build 2.4, capture 3.8 (plus two re-captures of 104 s each), sound 7.1, qc 12.1, deliver 13.4)

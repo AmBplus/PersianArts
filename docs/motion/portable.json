@@ -9,7 +9,8 @@
   "s06-clock-never-zero",
   "s03-key-maze",
   "s07-kite-wind",
-  "s05-notebook-city"
+  "s05-notebook-city",
+  "s02-lighthouse-ship"
  ],
  "final_max_mb_each": 12,
  "final_max_mb_total": 60,

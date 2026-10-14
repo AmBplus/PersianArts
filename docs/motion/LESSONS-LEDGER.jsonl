@@ -102,3 +102,6 @@
 {"id": "L-102", "date": "2026-10-14", "defect": "kit track ids that already start with tr- break replace(tr-,'') in pacing.py and loop_check.py", "evidence": "S05; fixed: candidate lookup", "class": "systematic", "status": "fixed"}
 {"id": "L-103", "date": "2026-10-14", "defect": "pa compress keeps a large file when the audio true peak is hot, so a 18 MB final stays above the 12 MB limit", "evidence": "S05 compress output; open", "class": "systematic", "status": "open"}
 {"id": "L-104", "date": "2026-10-14", "defect": "dense line art at crf 16 gives an 18 MB final; use crf 25, level 4.1, maxrate 14M", "evidence": "S05; documented in VERSION.json", "class": "systematic", "status": "fixed"}
+{"id": "L-105", "date": "2026-10-14", "defect": "no per-ratio layout table: a 16:9 redesign would be a crop", "evidence": "S02; fixed: lib/pa-layout.js", "class": "systematic", "status": "fixed"}
+{"id": "L-106", "date": "2026-10-14", "defect": "pa compress reports TP 2.8 on a final whose ebur128 true peak is -1.5 and refuses to compress", "evidence": "S02 compress output; open", "class": "systematic", "status": "open"}
+{"id": "L-107", "date": "2026-10-14", "defect": "a rhythmic light needs the beam angle driven by a beat-locked zero crossing, not free rotation", "evidence": "S02 film.html", "class": "systematic", "status": "fixed"}

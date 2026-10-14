@@ -23,7 +23,7 @@ Date: 2026-10-14. Start on any machine: [START.md](../../START.md).
 - Kit sound: 15 music tracks and 304 SFX; mixer with `--loop` and the final-role fix (`sound/tools`, `build_sound.py`).
 - Compression, and TV-safe deliver with `deliver/LATEST` (S06 final: `deliver/s06-clock-never-zero-9x16.mp4`).
 - `pa` tools: `time`, `meter`, `todo` (list|next|add|done), `metrics`, `pacing` (`--cuts`, `--track`, `--one-take`), `arc`, `music-pick`, `music-drop`, `audio-check` (`--loop`, `--events`), `loop-check`, `strip`, `doctor`, `bootstrap`, `sync`, `install-skill`, `assets-check`, `vault` (pack|unpack|list).
-- Story lab S01-S10: S06 built (v1), S03 built (v1, libs `pa-camera.js`, `pa-maze.js`), S07 built (v1, lib `pa-chain.js`, `pa music-drop`), S05 built (v1, 11 min, lib `pa-ink.js`, canvas pattern; skill 2.13). S02 is next.
+- Story lab S01-S10: S06 built (v1), S03 built (v1, libs `pa-camera.js`, `pa-maze.js`), S07 built (v1, lib `pa-chain.js`, `pa music-drop`), S05 built (v1, 11 min, lib `pa-ink.js`, canvas pattern; skill 2.13). S02 built (v1, both ratios, lib `pa-layout.js`, skill 2.14); the story lab S01..S10 first batch is complete except S01/S04/S08-S10.
 - Conference teaser v1-v5 (client; vault pending).
 
 ### OWNER STANDING RULES (verbatim in short; apply to every order and reply)
@@ -42,10 +42,10 @@ Date: 2026-10-14. Start on any machine: [START.md](../../START.md).
 
 ### Next actions, in order
 1. T021 Image-FX phase 1: GL-transition shader runner, catalog, `pa fx find`. Spike target: fix the abrupt cut of the client teaser with a shader transition on a neutral test first.
-2. S02: lighthouse and ship, 16:9 redesign (S05 done).
+2. Next story from docs/motion/stories/STORIES.md (S02 done): S04 or S01.
 3. Apply a pa fx shader to a real film (spike: the client teaser abrupt cut).
 4. Story-lab learnings are folded into the skill up to 2.13.
-5. Open tool defects: pa compress keeps hot-TP files (L-103); kit hard-drop audit (L-097); pacing drops 0.2 s early; `.agents` skill_version line; duplicate decision ids D-20261013-01 and D-20261013-16 (T014); carry-over 4 simultaneous cues in old finals (T013).
+5. Open tool defects: pa compress mis-measures TP (L-106); pa compress keeps hot-TP files (L-103); kit hard-drop audit (L-097); pacing drops 0.2 s early; `.agents` skill_version line; duplicate decision ids D-20261013-01 and D-20261013-16 (T014); carry-over 4 simultaneous cues in old finals (T013).
 
 ### Waiting for owner (only the owner decides)
 - Vault passphrase `PA_VAULT_PASS`, then `pa vault pack` for client folders (T010).
