@@ -4,10 +4,11 @@ Date: 2026-10-14. Start on any machine: [START.md](../../START.md).
 
 ## CURRENT STATE (2026-10-14 01:10 +03:30; single source; the older blocks below are history)
 
-- Date and time: 2026-10-14 01:10 (+03:30). Last commit before this refresh: `08427c01` (S07 kite-wind film v1). This refresh is committed on top of it; its hash is the newest line in `docs/motion/last-checkpoint.txt` (this block cannot name its own hash). Check with `git log -1`.
-- Image FX phase 1 done (skill 2.12): `pa fx find|list|check|demo`, work/persian/htmlfilm/lib/pa-fx.js, 36 shaders (34 verified), docs/motion/fx/catalog.json. Next: phase 2 geometry effects only if a story needs them (TODO).
-- Weekly Claude quota: about 88% used at 2026-10-14 01:xx. Stop at the quota limit only after a checkpoint, then RESUME after the reset.
-- Git pack: 301 MB after prune. Git-first: everything needed to continue is committed, except media, output and binaries.
+- Date and time: 2026-10-14 (+03:30). HEAD before this checkpoint: `1e220bd6` (skill 2.15, story-lab rule 16). The checkpoint commit on top of it is the newest line in `docs/motion/last-checkpoint.txt` (this block cannot name its own hash). Check with `git log -1`.
+- Skill `persian-arts` is at 2.15. S02 (lighthouse-ship, both ratios) is done. All planned story-lab stories are done. Only T015 is open.
+- Weekly Claude quota: 96% used. Autopilot is PAUSED until the weekly reset on 2026-10-19 ~01:30 (+03:30). Stop at the quota limit only after a checkpoint, then RESUME after the reset.
+- Git-first: everything needed to continue is committed, except media, output and binaries.
+- Repo hygiene flag: `media/dana/` has 140 tracked files, which contradicts [ASSETS-IN-GIT.md](ASSETS-IN-GIT.md). Owner decision needed (T007).
 
 ### How to start (any machine, any new chat)
 1. Read [START.md](../../START.md) at the repo root.
@@ -41,16 +42,12 @@ Date: 2026-10-14. Start on any machine: [START.md](../../START.md).
 - In a NEW chat say `ادامه از RESUME.md` (continue from RESUME.md), then re-create the cron job with the cycle prompt stored in [AUTOPILOT.md](AUTOPILOT.md) (section "Cycle prompt").
 
 ### Next actions, in order
-1. T021 Image-FX phase 1: GL-transition shader runner, catalog, `pa fx find`. Spike target: fix the abrupt cut of the client teaser with a shader transition on a neutral test first.
-2. Next story from docs/motion/stories/STORIES.md (S02 done): S04 or S01.
-3. Apply a pa fx shader to a real film (spike: the client teaser abrupt cut).
-4. Story-lab learnings are folded into the skill up to 2.13.
-5. Open tool defects: pa compress mis-measures TP (L-106); pa compress keeps hot-TP files (L-103); kit hard-drop audit (L-097); pacing drops 0.2 s early; `.agents` skill_version line; duplicate decision ids D-20261013-01 and D-20261013-16 (T014); carry-over 4 simultaneous cues in old finals (T013).
+1. T015 (the only open item). Resume it after the weekly reset on 2026-10-19 ~01:30 (+03:30), then re-create the autopilot cron per [AUTOPILOT.md](AUTOPILOT.md).
 
 ### Waiting for owner (only the owner decides)
+- `media/dana/` (140 tracked files contradict ASSETS-IN-GIT.md): keep, move to vault, or drop (T007).
 - Vault passphrase `PA_VAULT_PASS`, then `pa vault pack` for client folders (T010).
 - qh vendor decision.
-- `media/dana/`: keep, move to vault, or drop (T007).
 - Remove `http.sslverify false` from the global `.gitconfig` (T008).
 - Public Pages URL: still `persiandoodle` in README, index.html and the workflow (T009).
 - Research-centre emblem asset (T012).

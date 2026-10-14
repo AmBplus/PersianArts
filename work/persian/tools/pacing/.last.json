@@ -1,0 +1,60 @@
+{
+ "metrics": {
+  "duration_s": 24.0,
+  "fps": 30.0,
+  "w": 1080,
+  "h": 1920,
+  "ratio": "9x16",
+  "has_audio": true,
+  "cuts_source": "detected",
+  "cuts_detected": [],
+  "cuts": [],
+  "n_scenes": 1,
+  "shot_mean_s": 24.0,
+  "shot_median_s": 24.0,
+  "cuts_per_10s": 0.0,
+  "energy_thirds": [
+   0.49,
+   1.08,
+   0.77
+  ],
+  "energy_ratio": [
+   0.63,
+   1.39,
+   0.99
+  ],
+  "scenes": [
+   {
+    "start": 0.0,
+    "end": 24.0,
+    "len": 24.0,
+    "elements": 24,
+    "build_s": 22.92,
+    "hold_s": 1.08
+   }
+  ],
+  "elements_per_scene": 24.0,
+  "build_s_median": 22.92,
+  "hold_s_median": 1.08
+ },
+ "audio": {
+  "grid_source": "track grid vd-7038-upbeat-slide bpm 100.00 t0 0.000",
+  "tempo_bpm": 100.0,
+  "beat_s": 0.6,
+  "cuts_on_beat": 0.0,
+  "cuts_on_bar": 0.0,
+  "lufs": -14.4,
+  "rms_arc_db": [
+   -16.7,
+   -16.9,
+   -17.4
+  ]
+ },
+ "findings": [
+  [
+   "tempo (bpm, from mix)",
+   100.0,
+   "slow music"
+  ]
+ ]
+}
