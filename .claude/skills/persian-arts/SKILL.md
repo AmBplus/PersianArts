@@ -104,7 +104,7 @@ writing a new effect.
 2. **Script** → short Persian lines (≤ 12 words headline, ≤ 18 body), each timed to picture; ≥ 1.5s on screen per line. `references/narrative.md`.
 3. **Storyboard** → scene table: beats, seconds, layers, light, easing, transition into the next scene, and the EVENTS contract (each payoff → a sound cue).
 4. **Image & motion** → copy a starter (`work/persian/htmlfilm/starters/` — `s01-grainy-gradient`, `s02-kinetic-colorblock`: each has `film.html` + README + a measured render) or start from `assets/film-template/film.html` (palette tokens, grain, vignette, pure `seek(t)`); palettes `references/palettes.md`; motion `references/motion.md`; **effects** `references/effects.md`; **Persian text** `references/persian-text.md`. Card library (`work/persian/tools/cards/card-find.mjs`) is a composition reference, not a mandate.
-5. **Sound** → `events.json` from the real edit, then `sound/tools/mixer/build_sound.py` (music bed + cues + ducking), then `pa.ps1 audio-check`. `references/audio.md`.
+5. **Sound** → `events.json` from the real edit, then the real sound pipeline (music bed + cues + ducking), then the objective gates: `python scripts/persian-sound/make_sound.py --in <clip>.fa.mp4 --out <clip>.fa.sound.mp4 --slug <slug> --category <cat> [--tags a,b] [--profile P]` and `python scripts/persian-sound/verify_sound.py <clip>.fa.sound.mp4` (mixer + gates live in `scripts/persian-sound/mix.py`, spec in `docs/PERSIAN-SOUND-SPEC.md`). `references/audio.md`.
 6. **QC & metrics** → extract scene frames + measure (`scripts/frames-extract.mjs`, `scripts/qc-check.mjs`), score the 9 criteria with timestamp evidence, write `metrics/clip-0N.json`.
 7. **Improve the skill** → every issue becomes a rule/example/checklist item here or in `references/`; log it in `metrics/skill-changelog.md`.
 8. **Next clip** with the updated skill; verify prior issues are actually fixed.
@@ -145,7 +145,7 @@ So the order is: build → look → score → fix → look again.
 # 1. build the review sheets (whole film, a suspicious moment, phone width)
 node work/persian/tools/qc/contact.mjs <frames-dir|video.mp4> --out out/qc --at <t> --n 24
 # 2. save the motion baseline (diagnostic, not a pass/fail gate)
-node work/persian/tools/gates/motion-energy.mjs <frames-dir|video.mp4> --out metrics/motion/<film>.json --max-dim 320
+node work/persian/tools/gates/motion-energy.mjs <frames-dir|video.mp4> --out work/persian/htmlfilm/<film>/metrics/motion/<film>.json --max-dim 320
 # 3. read the anti-pattern list before you start a scene
 #    .claude/skills/persian-arts/references/motion-anti.md
 ```
@@ -170,7 +170,7 @@ their timestamp. Compare against the professional references in `work/persian/re
 Reference levels: 3 = obvious flaw a casual viewer notices · 6 = works but ordinary · 9 = professional-studio grade.
 
 ## Metrics record (every clip)
-Write `metrics/clip-0N.json` exactly in the schema of the mission brief: `files`, `specs`, `scores` (each with `evidence` — timestamp/frame/text), `issues` (unique id `C{clip}-{n}`, `severity`, `timestamp`, `description`, `root_cause` pointing at a skill/prompt gap, `skill_change` pointing at the rule added, `status`), `average`. Save scene keyframes in `metrics/frames/clip-0N/`. Update `metrics/scoreboard.md` and `metrics/skill-changelog.md` after every clip.
+Metrics live next to the film, not in a global folder: `work/persian/htmlfilm/<film>/metrics/clip-0N.json` (frames in `metrics/frames/clip-0N/`, motion baseline in `metrics/motion/<film>.json`). Write `clip-0N.json` exactly in the schema of the mission brief: `files`, `specs`, `scores` (each with `evidence` — timestamp/frame/text), `issues` (unique id `C{clip}-{n}`, `severity`, `timestamp`, `description`, `root_cause` pointing at a skill/prompt gap, `skill_change` pointing at the rule added, `status`), `average`. Save scene keyframes in `metrics/frames/clip-0N/`. Update `metrics/scoreboard.md` and `metrics/skill-changelog.md` after every clip.
 
 ## Pre-delivery checklist
 - [ ] Story: hook visible in first 3s, one payoff on a beat, close/CTA present.
@@ -178,10 +178,10 @@ Write `metrics/clip-0N.json` exactly in the schema of the mission brief: `files`
 - [ ] Visual: 3+ depth layers per scene; one light direction; texture present; 60/30/10 palette.
 - [ ] Motion: ≥ 2 named easings with jobs; every scene join has ≥ 12-frame overlap or beat-locked cut; no linear > 0.2s.
 - [ ] Typo: no letter-spacing/per-char animation on Persian; hero ≥ 12% of 9:16 height; contrast checked.
-- [ ] Audio: events.json matches the real edit; −14 LUFS; true peak ≤ −1.0; ducking under cues; `pa audio-check` pass.
+- [ ] Audio: events.json matches the real edit; −14 LUFS; true peak ≤ −1.0; ducking under cues; `python scripts/persian-sound/verify_sound.py <clip>.fa.sound.mp4` passes.
 - [ ] Sync: payoff events on the beat grid (≤ 5ms); text appears with its narration/move.
 - [ ] Tech: 1080×1920 (or brief ratio) 30fps, keyframe ≤ 2s, no black/freeze frames beyond intent, `qc-check.mjs` run.
 - [ ] Look: `contact.mjs` sheets built and READ (sheet/strip/phone); all 7 axes ≥ 8; three worst problems listed with timestamps.
-- [ ] Baseline: `motion-energy.mjs` report saved to `metrics/motion/<film>.json` (diagnostic — record the number, do not gate on it).
+- [ ] Baseline: `motion-energy.mjs` report saved to `work/persian/htmlfilm/<film>/metrics/motion/<film>.json` (diagnostic — record the number, do not gate on it).
 - [ ] Anti-patterns: `references/motion-anti.md` checked (no dead camera, no single-easing film, no all-at-once entrances, no end-card hold > 1.4 s, no page chrome).
 - [ ] Evidence: scene frames saved in `metrics/frames/clip-0N/`; every score has a timestamp/frame; issues have root causes and skill changes.
