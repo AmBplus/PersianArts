@@ -1,6 +1,6 @@
 ---
 name: persian-arts-sound
-description: INTERNAL craft skill of the persian-arts orchestrator (sound for motion films: one recorded track on the beat, SFX from events). Invoked only by the persian-arts TODO step "sound"; never auto-trigger for general requests.
+description: INTERNAL craft skill of the persian-arts orchestrator (sound for motion films — one recorded track on the beat, SFX from events). Invoked only by the persian-arts TODO step "sound"; never auto-trigger for general requests.
 ---
 
 <!-- GENERATED from .claude/skills/persian-arts-sound/SKILL.md by scripts/sync-persian-arts-skill.mjs. Do not edit; run the script. -->

@@ -1,7 +1,7 @@
 ---
 name: persian-arts
-description: Motion-graphics studio skill for Persian/RTL animated videos in this repo — use for any motion graphic, promo, teaser, reel, social cut, or Persian animated video request, and whenever the user types /persian-arts. Produces motion (not stills): story → script → storyboard → image/motion → sound, with measurement-based QC. It is the ONLY motion/video skill here; do not use persian-motion-director or any other director/video skill.
-skill_version: 3.0
+description: Motion-graphics studio skill for Persian/RTL animated videos in this repo — use for any motion graphic, promo, teaser, reel, social cut, or Persian animated video request, and whenever the user types /persian-arts. Produces motion (not stills) — story → script → storyboard → image/motion → sound, with measurement-based QC. It is the ONLY motion/video skill here; do not use persian-motion-director or any other director/video skill.
+skill_version: 3.1
 ---
 
 <!-- GENERATED from .claude/skills/persian-arts/SKILL.md by scripts/sync-persian-arts-skill.mjs. Do not edit; run the script. -->
@@ -49,6 +49,28 @@ node work/persian/htmlfilm/capture.mjs --html <film.html> --ratio 9x16 --out <fi
 - Encodes with `-g 60 -keyint_min 60` (2s keyframes — C1-10).
 - `--shot canvas` exports `canvas.toDataURL()` instead: pixel-exact, but a single PNG over ~4MB cannot come back through CDP (`returnByValue` times out), so keep it for small/draft frames only.
 
+
+## Craft skills (children — read at their step, never standalone)
+
+Nine craft skills live beside this file as `.claude/skills/persian-arts-*/`. The orchestrator (this file) owns the film, the order of steps and the call itself; a child owns one craft and returns its deliverable to the parent. Read a child's `SKILL.md` only when the workflow reaches its step. A child never auto-triggers, never scores its own work, and never replaces the parent.
+
+| Workflow step | Child skill | What it returns |
+|---|---|---|
+| 1 Story · 3 Storyboard | `persian-arts-director` | logline, arc, scene table |
+| 2 Script | `persian-arts-writer` | timed Persian lines |
+| 2 Script (on-screen wording) | `persian-arts-copy-editor` | edited Persian copy |
+| 3 Storyboard (look) | `persian-arts-art-director` | styleframes, palette, hierarchy |
+| 4 Image & motion (grammar) | `persian-arts-motion-designer` | easing/camera/transition choices |
+| 4 Image & motion (edit) | `persian-arts-motion-editor` | pacing, holds, picture lock |
+| 4 Image & motion (build) | `persian-arts-technical` | Remotion/html build, render, probe |
+| 5 Sound | `persian-arts-sound` | events.json, mix on the beat |
+| 6 QC & metrics | `persian-arts-qc` | scored gates with timestamp evidence |
+
+Rules:
+
+- The step names and time boxes are the ones in `docs/motion/todo.template.json` (lane `html-film`); the pass/fail thresholds are the rows of `docs/motion/FILM-GATES.md`.
+- If a child is unavailable, the parent does that step itself with the parent rules — it never substitutes another director/video skill.
+- `.agents/skills/` is a generated mirror (Codex); edit only `.claude/skills/` and re-run `node scripts/sync-persian-arts-skill.mjs`.
 
 ## Workflow (per film)
 1. **Story** → logline, protagonist/object, arc (hook ≤ 3s → build → payoff on the beat → close/CTA). `references/narrative.md`.

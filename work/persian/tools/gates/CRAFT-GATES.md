@@ -93,3 +93,30 @@ These stay reviewer/QC judgement. Never report them as passed by a script.
 adding its module next to it and one `if (only.includes('<id>'))` row — keep every existing row, exit code and
 N/A rule intact, and re-run the base invocation before and after to prove nothing changed. Current behaviour is
 recorded in `media/briefs-local/storylab-craft/gates-craft-report.md`.
+
+---
+
+## G-MOTION / G-LOOK — measured motion + the review loop (added 2026-10-19)
+
+Two gates from the reference motion projects (`Mort1d/motion-graphics-skills`, `bangtutorial/bang-motion`,
+`Tejashmakwana/motionmaxxing`, `howseen-ai/claude-motion-design`). Numbers calibrated on this repo, see
+`docs/motion/MOTION-METRICS-2026-10-19.md`.
+
+| id | what it measures | command | status |
+|---|---|---|---|
+| `G-MOTION` | motion energy of the delivered frames: moving %, longest static run, hits/min, per-second timeline | `node tools/gates/motion-energy.mjs <frames-dir\|video.mp4> --out metrics/motion/<film>.json --max-dim 320` | DIAGNOSTIC — thresholds are OFF by default; pass `--min-moving/--max-static/--hits-min/--hits-max` only when the project has its own measured band |
+| `G-LOOK` | the review sheets a human/model scores | `node tools/qc/contact.mjs <frames-dir\|video.mp4> --out out/qc --at <t> --n 24` | REQUIRED before delivery: `sheet.jpg`, `strip.jpg`, `phone.jpg`, `review.json` |
+
+Corpus bands (motion-graphics subset, 5 films, `--max-dim 320`):
+moving % 39.7 / 63.0 / 82.1 · static run 14 / 37 / 66 frames · hits/min 276 / 358 / 605.
+
+The numbers quoted by the reference projects (>=75 % moving, <=3 static frames, 55-90 hits/min) FAIL on
+professional reference films under this metric — they are calibrated against a different definition of a "hit".
+Do not paste them into a gate without measuring a local corpus first.
+
+`G-LOOK` scoring rule (also written into `review.json`): 7 axes — hook in the first 2 s, readability at 360 px,
+motion quality (no dead frames, every move has a job), variety (something new every 2-4 s), composition (one hero
+per frame, no page chrome), accuracy (brand/numbers/Persian), sync. Nothing ships below 8 on any axis.
+
+Reference material to judge against: `work/persian/reference-motion/index.html` (71 artefacts, 52 MB) and
+`work/persian/reference-motion/MANIFEST.md`.

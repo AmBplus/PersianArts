@@ -323,7 +323,7 @@ scripts/sync-agent-skills.ts · sync-embedded-skills.ts · sync-readme.ts · val
 | herk | 1,852 | ۱۵ skill (~۸۰۰ میانگین) | ۴۰۶ کارت | ۱۵ mirror | ۳۰+ | ✅ ۸ gate در ۲ فاز | ✅ |
 | remotion-dev | 5,385 | ۱۲ skill (۸۸–۱,۵۹۴) | TECHNIQUE.md | — | ۴ sync/validate | بخشی | ✅ remotion still |
 | charlie947 | 346 | ۱۵ skill (~۷۲۰) | effects.md | دمو GIF | کم | ✅ review rules | ✅ |
-| **persian-arts (ما)** | — | ۱۱۳ خط (۱ skill) | motion.md ۱۳۱ خط | **۰ کارت، ۰ استارتر** | gates ۵ عدد | **۵ gate بدون آستانهٔ motion** | **❌** |
+| **persian-arts (ما)** | — | ۱۳۵ خط (۱ skill + ۹ craft child) | motion.md ۱۳۱ خط | **۲۳۰ کارت ساختاریافته** (`work/persian/tools/cards/cards.json`: id/category/beats/transitionOverlapFrames/poster) — ولی **بدون جدول پارامتر و بدون دموی پخش‌شدنی** | **۲۵ gate** (craft-common، dead-frames، black-bands، scene-variety، light-model، material-flatness، hud-anchor، overlay-hud، text-envelope، text-collision، token-check، kit-usage، …) | **بدون آستانهٔ motion (نه درصد فریم متحرک، نه ضربه/دقیقه)** | **❌** |
 
 **سه شکاف اصلی ما:** (۱) نمونه/استارتر/دموی همراه skill — هیچ ریپوی موفقی ندارد «صفر نمونه»؛ (۲) کارت رسپی با جدول پارامتر؛ (۳) حلقهٔ دیدن فریم — contact sheet + نمره‌دهی، که در ۹ ریپو از ۱۰ وجود دارد.
 

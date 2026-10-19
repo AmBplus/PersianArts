@@ -1,6 +1,6 @@
 ---
 name: persian-arts-art-director
-description: INTERNAL craft skill of the persian-arts orchestrator (art director for motion graphics: styleframes, hierarchy, palette). Invoked only by the persian-arts TODO step "art-director"; never auto-trigger for general requests.
+description: INTERNAL craft skill of the persian-arts orchestrator (art director for motion graphics — styleframes, hierarchy, palette). Invoked only by the persian-arts TODO step "art-director"; never auto-trigger for general requests.
 ---
 
 # persian-arts-art-director (internal)

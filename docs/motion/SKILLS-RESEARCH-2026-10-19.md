@@ -208,8 +208,8 @@
 | ویژگی | ما | بهترین نمونهٔ بررسی‌شده |
 |---|---|---|
 | Routing جدول «کِی چه بخوان» | ندارد (یک SKILL.md ۱۱۳ خط) | `video-shotcraft`، `remotion-best-practices` |
-| کارت رسپی | ندارد؛ فهرست کلمه‌ای | ۱۲۴ / ۱۰۸ / ۴۰۶ کارت |
-| Gate عددی با اسکریپت | `tools/gates/*.mjs` دارد (hero-size، empty-band، logo-colour…) ولی `motion.md` صفت‌محور است | `motionmaxxing` G0–G5 |
+| کارت رسپی | **۲۳۰ کارت ساختاریافته** در `work/persian/tools/cards/cards.json` (id/category/beats/overlap/poster) — ولی **بدون جدول پارامتر «حس تنظیم» و بدون دموی پخش‌شدنی** | ۱۲۴ / ۱۰۸ / ۴۰۶ کارت |
+| Gate عددی با اسکریپت | **۲۵ gate موجود** (craft-common، dead-frames، scene-variety، light-model، material-flatness، hud-anchor، text-envelope، …) — ولی **آستانهٔ motion ندارد**: نه «درصد فریم متحرک»، نه «ضربه در دقیقه»، نه «بیشترین run ساکن» | `motionmaxxing` G0–G5 |
 | حلقه نقد با contact sheet و نمره | ندارد به این شکل | `howseen` §8، `Mort1d` مرحلهٔ ۷ |
 | Preset عددی حرکت | ندارد | spring presets در `howseen` |
 | «Never ship» | دارد ولی کوتاه و کلی | ۱۲ مورد مشخص با مثال شکست |

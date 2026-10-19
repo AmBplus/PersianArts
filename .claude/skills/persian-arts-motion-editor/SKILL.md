@@ -1,6 +1,6 @@
 ---
 name: persian-arts-motion-editor
-description: INTERNAL craft skill of the persian-arts orchestrator (the MOTION-GRAPHICS editor: pacing, holds, cut-on-action, animatic review, picture lock). Invoked only by the persian-arts TODO step "motion-editor"; never auto-trigger for general requests.
+description: INTERNAL craft skill of the persian-arts orchestrator (the MOTION-GRAPHICS editor — pacing, holds, cut-on-action, animatic review, picture lock). Invoked only by the persian-arts TODO step "motion-editor"; never auto-trigger for general requests.
 ---
 
 # persian-arts-motion-editor (internal)

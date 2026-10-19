@@ -1,6 +1,6 @@
 ---
 name: persian-arts-motion-designer
-description: INTERNAL craft skill of the persian-arts orchestrator (motion designer: motion grammar, easing, camera, transitions). Invoked only by the persian-arts TODO steps "motion-designer"; never auto-trigger for general requests.
+description: INTERNAL craft skill of the persian-arts orchestrator (motion designer — motion grammar, easing, camera, transitions). Invoked only by the persian-arts TODO steps "motion-designer"; never auto-trigger for general requests.
 ---
 
 <!-- GENERATED from .claude/skills/persian-arts-motion-designer/SKILL.md by scripts/sync-persian-arts-skill.mjs. Do not edit; run the script. -->

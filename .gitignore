@@ -171,3 +171,12 @@ metrics/frames/
 media/film-versions/
 media/music-staging/
 media/motions-sample-full/
+
+# reference motion artefacts (52 MB, re-fetchable: work/persian/reference-motion/fetch-reference.ps1)
+work/persian/reference-motion/*.mp4
+work/persian/reference-motion/*.gif
+work/persian/reference-motion/*.jpg
+work/persian/reference-motion/*.png
+work/persian/reference-motion/*.webp
+work/persian/reference-motion/qc/
+work/persian/reference-motion/index.html
