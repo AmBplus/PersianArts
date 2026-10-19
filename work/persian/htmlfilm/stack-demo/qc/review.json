@@ -1,0 +1,46 @@
+{
+ "target": "D:\\P\\project\\persianArts\\work\\persian\\htmlfilm\\stack-demo\\stack-demo.mp4",
+ "source": "stack-demo.mp4",
+ "durationS": 10,
+ "fps": 30,
+ "tiles": {
+  "sheet": [
+   0,
+   0.42,
+   0.83,
+   1.25,
+   1.67,
+   2.08,
+   2.5,
+   2.92,
+   3.33,
+   3.75,
+   4.17,
+   4.58,
+   5,
+   5.42,
+   5.83,
+   6.25,
+   6.67,
+   7.08,
+   7.5,
+   7.92,
+   8.33,
+   8.75,
+   9.17,
+   9.58
+  ],
+  "stripStart": 3.5,
+  "stripFrames": 12
+ },
+ "rubric": [
+  "hook: something interesting in the first 2 seconds",
+  "readability at 360px: the message survives on a phone",
+  "motion quality: no dead frames, no linear drift, every move has a job",
+  "variety: something new every 2-4 seconds",
+  "composition: one hero per frame, no page chrome",
+  "accuracy: brand colours, real numbers, correct Persian",
+  "sync: picture and sound land together"
+ ],
+ "rule": "score every rubric line 1-10; nothing ships below 8 on any line"
+}
