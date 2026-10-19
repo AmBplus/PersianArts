@@ -1,0 +1,22 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<script src="../lib/pa-motion.js"></script>
+<script src="../lib/pa-camera.js"></script>
+<script src="../lib/pa-layout.js"></script>
+</head><body>
+<canvas id="cv" width="1080" height="1920"></canvas>
+<script>
+"use strict";
+const cv = document.getElementById("cv"), ctx = cv.getContext("2d");
+function seek(t) {
+  ctx.setTransform(1,0,0,1,0,0);
+  ctx.clearRect(0,0,1080,1920);
+  ctx.fillStyle = "#0e1220"; ctx.fillRect(0,0,1080,1920);
+  ctx.fillStyle = "#e8b04b"; ctx.fillRect(100, 100, 880, 1720);
+  ctx.fillStyle = "#fff"; ctx.font = "60px sans-serif";
+  ctx.fillText("t=" + t.toFixed(2), 200, 900);
+}
+window.film = {seek, duration: 20, fps: 30, ready: true};
+seek(0);
+</script>
+</body></html>

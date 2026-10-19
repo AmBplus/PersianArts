@@ -6,7 +6,7 @@ PersianArts portability helper.
   pwsh -File work/persian/tools/pa.ps1 check
 #>
 param(
-  [Parameter(Position = 0)][ValidateSet('setup', 'setup-private', 'check', 'status', 'render', 'sound', 'assets', 'time', 'deliver', 'compress', 'audio-check', 'strip', 'pacing', 'arc', 'music-pick', 'music-drop', 'loop-check', 'fx', 'assets-check', 'install-skill', 'doctor', 'bootstrap', 'sync', 'vault', 'todo', 'meter', 'metrics')][string]$Command = 'check',
+  [Parameter(Position = 0)][ValidateSet('setup', 'setup-private', 'check', 'status', 'render', 'sound', 'assets', 'time', 'deliver', 'compress', 'audio-check', 'strip', 'pacing', 'arc', 'music-pick', 'music-drop', 'loop-check', 'fx', 'craft', 'assets-check', 'install-skill', 'doctor', 'bootstrap', 'sync', 'vault', 'todo', 'meter', 'metrics')][string]$Command = 'check',
   [Parameter(Position = 1)][string]$Sub,      # status: set | add-item | blocker | show
   [Parameter(Position = 2)][string]$Id,       # status: item id (set/add-item) or add|clear (blocker)
   [Parameter(Position = 3)][string]$Arg3,     # status blocker add: text
@@ -293,7 +293,7 @@ function Invoke-Assets {
   # pa assets optimize|tv-check|report <paths...> [--dry-run --rewrite-refs --audio --svg --fonts ...]
   $py = @((Join-Path $PSScriptRoot 'assets\.venv\Scripts\python.exe')) | Where-Object { Test-Path $_ } | Select-Object -First 1
   if (-not $py) { $py = 'python' }  # system python needs: pillow numpy fonttools brotli (optional resvg-py)
-  $paths = @($Id, $Arg3) + @($More) | Where-Object { $_ }
+  $paths = @(@($Id, $Arg3) + @($More) | Where-Object { $_ })  # outer @() keeps this a real array: with one path the pipeline alone yields a scalar string and @paths would splat it character by character
   $t = Join-Path $PSScriptRoot 'assets'
   switch ($Sub) {
     'optimize' { & $py -P (Join-Path $t 'optimize_assets.py') @paths }
@@ -326,6 +326,7 @@ switch ($Command) {
   { $_ -in 'assets-check','install-skill','doctor','bootstrap','sync','vault','todo','meter','metrics' } { & node (Join-Path $PSScriptRoot 'portable/pa-portable.mjs') $Command @(@($Sub, $Id, $Arg3) + @($More) + @($Fwd) | Where-Object { $_ }); exit $LASTEXITCODE }
   'loop-check' { & (Join-Path $Root 'sound\.venv\Scripts\python.exe') (Join-Path $PSScriptRoot 'audio/loop_check.py') @(@($Sub, $Id, $Arg3) + @($More) + @($Fwd) | Where-Object { $_ }); exit $LASTEXITCODE }
   'fx' { & node (Join-Path $Persian 'htmlfilm/lib/fx.mjs') @(@($Sub, $Id, $Arg3) + @($More) | Where-Object { $_ }); exit $LASTEXITCODE }
+  'craft' { & node (Join-Path $Root '.claude/skills/persian-arts/beauty/tools/craft.mjs') @(@($Sub, $Id, $Arg3) + @($More) | Where-Object { $_ }); exit $LASTEXITCODE }
   'pacing' { & (Join-Path $Root 'sound\.venv\Scripts\python.exe') (Join-Path $PSScriptRoot 'pacing/pacing.py') @(@($Sub, $Id, $Arg3) + @($More) + @($Fwd) | Where-Object { $_ }); exit $LASTEXITCODE }
   'arc' { & (Join-Path $Root 'sound\.venv\Scripts\python.exe') (Join-Path $PSScriptRoot 'pacing/arc.py') @(@($Sub, $Id, $Arg3) + @($More) + @($Fwd) | Where-Object { $_ }); exit $LASTEXITCODE }
   'music-pick' { & (Join-Path $Root 'sound\.venv\Scripts\python.exe') (Join-Path $PSScriptRoot 'pacing/music_pick.py') @(@($Sub, $Id, $Arg3) + @($More) + @($Fwd) | Where-Object { $_ }); exit $LASTEXITCODE }

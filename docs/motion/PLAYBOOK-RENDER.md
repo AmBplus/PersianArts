@@ -114,3 +114,20 @@ Test: `work/persian/htmlfilm/pencil/film.v2.html`, frames 0-239, 1080x1920, same
 
 Crops (400x300 on frame 120, jpeg q97 / q95 vs png): top text region 0.99680 / 0.99404, middle 0.99794 / 0.99700, lower 0.99880 / 0.99784.
 Decision: both jpeg variants stay below the quality bar (threshold 0.999576, our earlier Remotion finding), q97 is closest but still under and costs more bytes; text/edge crops show the loss. So **png is the default for FINAL captures; `--draft` (or `CAP_FORMAT=jpeg`, `CAP_QUALITY` to override q) = jpeg q97 for DRAFT/preview captures only** (about 1.6x faster here). The earlier 13 fps jpeg figure on the conference film was dominated by its DOM weight; the cure for slow capture is lighter pages (fewer DOM nodes, pre-blurred assets), not a lossy format, for finals.
+
+## html-film capture flags: work/persian/htmlfilm/capture.mjs - read from the script 2026-10-16
+`node work/persian/htmlfilm/capture.mjs <flags>`; `pa render -Lane html -Film <film.html> -OutDir <dir>` wraps the common case. `--out` and `--stills-dir` are resolved against the repo root; `--html` is resolved to an absolute path.
+
+| flag | meaning | default |
+|---|---|---|
+| `--html <film.html>` | film page to capture | `work/persian/htmlfilm/pencil/film.html` |
+| `--ratio` | canvas ratio: `16x9` = 1920x1080, anything else = 1080x1920; also passed to the page as `?ratio=` | `9x16` |
+| `--port <n>` | CDP debugging port of the chrome-headless-shell process (change it to run two captures side by side) | `9333` |
+| `--out <path.mp4>` | output mp4 | `media/film-versions/pencil-html/v1/silent-9x16.mp4` |
+| `--stills-dir <dir>` | folder for the `--still` PNGs (unused without `--still`) | `media/film-versions/pencil-html/v1/_stills` |
+| `--still t1,t2,...` | stills-only mode: one PNG per second value, named `t<ts>s_f<frame>.png`, then exit; no mp4 is encoded and the asset pre-pass and the TV check are skipped | off (whole film captured) |
+| `--frames a-b` | inclusive frame range of the fixed 30 fps timeline | whole film, `0-(duration*30-1)` |
+| `--rewrite-refs` | asset pre-pass also rewrites asset references inside git-tracked folders (untracked/ignored folders always get converted and rewritten) | off |
+| `--tv-fix` | after the capture, if `tv_check.py` exits non-zero, re-encode the mp4 TV-safe with `optimize_assets.py --no-images --delete-originals`; without it the TV check is report-only | off |
+
+Related flags already used in the section above: `--draft` (jpeg q97 instead of png; `CAP_FORMAT=jpeg`, `CAP_QUALITY` overrides q) and `--no-optimize` (skips the asset pre-pass AND the post-capture TV check). Every capture is 30 fps, `libx264 -preset medium -crf 16 -pix_fmt yuv420p` plus `+faststart`.

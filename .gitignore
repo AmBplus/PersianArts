@@ -159,3 +159,15 @@ work/persian/_install/
 
 # local env (created by install from the examples; never commit)
 /.env
+
+# htmlfilm demo build output (bundled three/pixi, captured frames; not source)
+work/persian/htmlfilm/*/build/
+# local toolchain installs (Blender etc.), never in git
+tools/blender-*/
+# scratch captures / benches
+/tmp/
+metrics/frames/
+# derived media staging (re-downloadable; finals live under deliver/)
+media/film-versions/
+media/music-staging/
+media/motions-sample-full/

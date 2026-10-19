@@ -1,0 +1,416 @@
+#!/usr/bin/env node
+// Step 2: enrich cards.extract.json with whatItDoes + beats + poster lookup.
+// - whatItDoes: composed from the component stem + a small factual verb table (no LLM, no invention).
+// - beats: category-based rule (documented in the report).
+// - poster: if a preview still exists under library/**, we record its path and re-classify visualStyle
+//   by sampling the poster's average colour (rule documented in the report).
+import { readFileSync, writeFileSync, existsSync } from "node:fs";
+import { dirname, join, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
+
+const here = dirname(fileURLToPath(import.meta.url));
+const repo = resolve(here, "../../../..");
+const cards = JSON.parse(readFileSync(join(here, "cards.extract.json"), "utf8"));
+
+// ---- poster lookup -------------------------------------------------------
+// library/media/typography/<slug>/poster.webp            (slug = component stem, lowercase-insensitive)
+// library/media/reference/shotcraft/<slug>/<slug>/poster.webp
+function findPoster(stem) {
+  if (!stem) return null;
+  const a = join(repo, "library/media/typography", stem.toLowerCase(), "poster.webp");
+  if (existsSync(a)) return a;
+  const b = join(repo, "library/media/reference/shotcraft", stem.toLowerCase(), stem.toLowerCase(), "poster.webp");
+  if (existsSync(b)) return b;
+  return null;
+}
+
+// ---- beats mapping rule ---------------------------------------------------
+const BEATS_BY_CAT = {
+  opening: "open",
+  camera: "open",
+  transition: "reveal",
+  typography: "reveal",
+  effects: "punch",
+  rhythm: "sustain",
+  interaction: "sustain",
+  data: "build",
+  "ui-entrance": "build",
+  outro: "close",
+  native: "sustain",
+  background: "sustain",
+};
+
+// ---- whatItDoes verb table ------------------------------------------------
+// Split the PascalCase stem into tokens, then map the head token to a factual verb phrase.
+const VERB = {
+  counter: "counts up a number",
+  confetti: "with a confetti burst",
+  crash: "with a crash-style impact",
+  zoom: "with a fast camera zoom",
+  pan: "with a camera pan",
+  push: "with a push-in camera move",
+  dolly: "with a dolly camera move",
+  orbit: "with an orbiting camera",
+  parallax: "with layered parallax",
+  tilt: "with a camera tilt",
+  slide: "slides content across the frame",
+  wipe: "wipes content across the frame",
+  scale: "scales content in and out",
+  flip: "flips content in 3D",
+  morph: "morphs one shape into another",
+  draw: "draws an SVG path on",
+  drawon: "draws an SVG path on",
+  fade: "fades content in",
+  typewriter: "types text out character by character",
+  typetext: "types text out character by character",
+  type: "types text out",
+  karaoke: "highlights text word by word",
+  stagger: "staggers elements in sequence",
+  bento: "lights up a bento grid of tiles",
+  grid: "animates a grid of tiles",
+  waveform: "animates an audio waveform",
+  line: "animates a line chart",
+  bar: "animates bar-chart bars",
+  donut: "animates a donut chart",
+  pie: "animates a pie chart",
+  sparkline: "animates a sparkline chart",
+  gauge: "animates a value gauge",
+  progress: "animates a progress bar",
+  skeleton: "shimmers a skeleton loading state",
+  cursor: "animates a fake cursor moving over content",
+  click: "animates a click interaction",
+  tap: "animates a tap interaction",
+  scroll: "scrolls content vertically",
+  stack: "scrolls a stack of cards",
+  page: "animates a page-like layout",
+  card: "animates a card element",
+  chips: "animates chips cycling through options",
+  chip: "animates a chip element",
+  code: "animates a code block",
+  text: "animates text on screen",
+  headline: "animates a headline on screen",
+  title: "animates a title card",
+  caption: "animates a caption on screen",
+  lowerthird: "animates a lower-third label",
+  quote: "animates a pull-quote",
+  split: "splits the frame into panels",
+  mask: "reveals content through a mask",
+  reveal: "reveals content",
+  blur: "animates blur in and out",
+  glow: "animates a glow effect",
+  flash: "adds a flash cut",
+  shake: "adds a camera shake",
+  grain: "adds film grain",
+  vignette: "adds a vignette",
+  sky: "renders a sky",
+  bg: "renders a background",
+  background: "renders a background",
+  paper: "renders a paper-textured background",
+  ink: "renders an ink-textured background",
+  white: "renders a plain white background",
+  aurora: "renders an aurora background",
+  gradient: "renders a gradient background",
+  mesh: "renders a mesh gradient",
+  circle: "animates circles",
+  shape: "animates a shape",
+  svg: "animates an SVG element",
+  cube: "animates a 3D cube",
+  scene: "renders a 3D scene",
+  floor: "renders a 3D floor",
+  ground: "renders a 3D ground",
+  runway: "renders a runway ground skim",
+  particles: "animates particles",
+  particleswarm: "animates a particle swarm",
+  dots: "animates a dot matrix",
+  matrix: "animates a dot matrix",
+  list: "animates a list of rows",
+  row: "animates a row of items",
+  table: "animates a table",
+  calendar: "animates a calendar",
+  clock: "animates a clock",
+  timer: "animates a timer",
+  watch: "animates a watch face",
+  star: "animates stars",
+  rating: "animates a star rating",
+  avatar: "animates an avatar carousel",
+  bracket: "animates a bracket highlight",
+  logo: "animates a logo",
+  wordmark: "animates a wordmark",
+  brand: "animates a brand mark",
+  outro: "renders an outro",
+  endcard: "renders an end card",
+  cta: "renders a call-to-action card",
+  subscribe: "renders a subscribe call-to-action",
+  price: "animates a pricing row",
+  number: "animates a number",
+  value: "animates a value",
+  count: "counts up a number",
+  countup: "counts up a number",
+  countdown: "counts down a number",
+  poll: "animates poll results",
+  map: "renders a map",
+  path: "animates a path",
+  arrow: "animates an arrow",
+  arrowpath: "animates an arrow path",
+  run: "animates a running motion",
+  scrollsky: "scrolls a sky background",
+  vertical: "moves content vertically",
+  horizontal: "moves content horizontally",
+  frame: "animates a framed element",
+  window: "animates a window element",
+  panel: "animates a panel",
+  device: "renders a device mockup",
+  phone: "renders a phone mockup",
+  browser: "renders a browser mockup",
+  wireframe: "draws a wireframe on",
+  valuestagger: "staggers values in",
+  autolayout: "animates an auto-layout gap dial",
+  assemble: "assembles then types text",
+  flyin: "flies content in",
+  skimming: "skims across content",
+  sweep: "sweeps content across the frame",
+  swipe: "swipes content across the frame",
+  pushin: "pushes in on content",
+  pullback: "pulls back from content",
+  whip: "whip-pans between elements",
+  spin: "spins content",
+  rotate: "rotates content",
+  bounce: "bounces content in",
+  spring: "springs content in",
+  elastic: "elastically stretches content",
+  rubber: "rubber-bands content",
+  glitch: "adds a glitch effect",
+  rgb: "adds an RGB-split glitch",
+  scanline: "adds scanlines",
+  halftone: "renders a halftone effect",
+  pixelate: "pixelates content",
+  mosaic: "reveals a mosaic",
+  bokeh: "renders bokeh",
+  bloom: "renders a bloom glow",
+  light: "animates a light sweep",
+  lensflare: "renders a lens flare",
+  shadow: "animates a drop shadow",
+  border: "animates a border",
+  underline: "draws an underline",
+  strikethrough: "strikes text through",
+  highlight: "highlights text",
+  marker: "draws a marker underline",
+  bubble: "animates speech bubbles",
+  tooltip: "animates a tooltip",
+  toast: "animates a toast notification",
+  modal: "animates a modal",
+  drawer: "animates a drawer",
+  nav: "animates a nav bar",
+  tab: "animates tabs",
+  tabs: "animates tabs",
+  menu: "animates a menu",
+  sidebar: "animates a sidebar",
+  toggle: "animates a toggle switch",
+  switch: "animates a toggle switch",
+  checkbox: "animates a checkbox",
+  radio: "animates a radio selection",
+  form: "animates a form",
+  search: "animates a search bar",
+  input: "animates an input field",
+  upload: "animates an upload progress",
+  download: "animates a download progress",
+  share: "animates a share sheet",
+  heart: "animates a heart/like",
+  like: "animates a like button",
+  badge: "animates a badge",
+  pill: "animates a pill element",
+  tag: "animates a tag",
+  label: "animates a label",
+  annotation: "animates an annotation",
+  callout: "animates a callout",
+  pointer: "animates a pointer",
+  hand: "animates a hand gesture",
+  brush: "draws with a brush",
+  pen: "draws with a pen",
+  write: "writes text by hand",
+  signature: "writes a signature",
+  stamp: "stamps a mark",
+  seal: "stamps a seal",
+  ribbon: "animates a ribbon",
+  banner: "animates a banner",
+  confetti: "fires confetti",
+  firework: "fires fireworks",
+  spark: "emits sparks",
+  fireflies: "drifts fireflies",
+  snow: "drifts snow",
+  rain: "falls rain",
+  smoke: "drifts smoke",
+  wave: "animates a wave",
+  ocean: "animates an ocean",
+  water: "animates water",
+  ripple: "animates ripples",
+  liquid: "animates liquid",
+  metaball: "animates metaballs",
+  blob: "animates a blob",
+  orb: "animates an orb",
+  ring: "animates a ring",
+  ringpulse: "pulses a ring",
+  pulse: "pulses a shape",
+  beat: "pulses on the beat",
+  equalizer: "animates an equalizer",
+  spectrum: "animates a spectrum",
+  music: "animates a music visualizer",
+  sound: "animates a sound visualizer",
+  voice: "animates a voice waveform",
+  chat: "animates a chat thread",
+  message: "animates a message bubble",
+  comment: "animates a comment",
+  notification: "animates a notification",
+  feed: "animates a feed",
+  stories: "animates a stories strip",
+  story: "animates a story frame",
+  reel: "animates a reel",
+  montage: "cuts a montage",
+  cut: "cuts between frames",
+  matchcut: "performs a match cut",
+  morphcut: "performs a morph cut",
+  crossfade: "crossfades between frames",
+  slidein: "slides content in",
+  slideout: "slides content out",
+  popin: "pops content in",
+  popup: "pops content in",
+  scalein: "scales content in",
+  grow: "grows content in",
+  shrink: "shrinks content out",
+  unfold: "unfolds content",
+  fold: "folds content away",
+  open: "opens a panel",
+  close: "closes a panel",
+  expand: "expands content",
+  collapse: "collapses content",
+  snap: "snaps content into place",
+  magnetic: "magnetically attracts content",
+  hover: "animates a hover state",
+  focus: "animates a focus state",
+  drag: "animates a drag interaction",
+  drop: "animates a drop",
+  throw: "throws content off",
+  settle: "settles content into place",
+  bouncein: "bounces content in",
+  float: "floats content",
+  drift: "drifts content",
+  sway: "sways content",
+  breathe: "breathes content",
+  idle: "runs an idle animation",
+  loop: "runs a looping animation",
+  pingpong: "runs a ping-pong animation",
+  timeline: "animates a timeline",
+  step: "steps through stages",
+  stages: "steps through stages",
+  phase: "steps through phases",
+  progressiveline: "draws a line progressively",
+  highlightrow: "highlights a row",
+  research: "scrolls a research card stack",
+  autotype: "types text automatically",
+  typeflyin: "types text that flies in",
+  pageflip: "flips a page",
+  pagecurl: "curls a page",
+  paperfold: "folds paper",
+  paperfly: "flies paper in",
+  torn: "tears paper",
+  shatter: "shatters content",
+  implode: "implodes content",
+  explode: "explodes content",
+  warp: "warps the frame",
+  fisheye: "renders a fisheye effect",
+  barrel: "renders a barrel distortion",
+  zoomblur: "renders a radial zoom blur",
+  motionblur: "renders motion blur",
+  trails: "renders motion trails",
+  echo: "renders a motion echo",
+  ghost: "renders a ghost trail",
+  longexposure: "renders a long-exposure trail",
+  dutch: "renders a dutch-angle tilt",
+  dutchangle: "renders a dutch-angle tilt",
+  crane: "renders a crane camera move",
+  boom: "renders a boom camera move",
+  aerial: "renders an aerial camera move",
+  flythrough: "renders a camera flythrough",
+  dollyzoom: "renders a dolly zoom",
+  vertigo: "renders a dolly zoom",
+  rackfocus: "racks focus between layers",
+  focuspull: "racks focus between layers",
+  depthoffield: "renders depth of field",
+  dof: "renders depth of field",
+  reflection: "renders a reflection",
+  mirror: "mirrors content",
+  kaleidoscope: "renders a kaleidoscope",
+  clone: "clones content in a grid",
+  array: "renders an array of elements",
+  looparray: "renders a looping array",
+  carousel: "animates a carousel",
+  marquee: "runs a marquee",
+  ticker: "runs a ticker",
+  horizontalpan: "pans horizontally",
+  verticalpan: "pans vertically",
+  whippan: "whip-pans the frame",
+  swipeleft: "swipes content left",
+  swiperight: "swipes content right",
+  swipeup: "swipes content up",
+  swipedown: "swipes content down",
+};
+
+// A handful of stems that need a bespoke, still-factual sentence (head token alone is not enough).
+const OVERRIDE = {
+  Main: "the host workbench composition (not a card)",
+  textbasic: "renders a plain text clip",
+  inkpresstitlecard: "renders an ink-press style title card",
+  inkpresscaption: "renders an ink-press style caption",
+  inkpressflashcut: "renders an ink-press style flash cut",
+  videoclip: "renders a video clip slot",
+  imageclip: "renders an image clip slot",
+  bgpaper: "renders a paper-textured background",
+  bgwhite: "renders a plain white background",
+  bgink: "renders an ink-textured background",
+  bgpaperglow: "renders a glowing paper-textured background",
+  persianpage: "renders a Persian RTL page layout",
+};
+
+function tokens(stem) {
+  return stem.replace(/([a-z0-9])([A-Z])/g, "$1 $2").split(/\s+/).filter(Boolean);
+}
+function whatItDoes(stem) {
+  const key = stem.toLowerCase();
+  if (OVERRIDE[key]) return OVERRIDE[key];
+  const t = tokens(stem);
+  // longest-prefix match over the verb table, so "valueStaggerGradient" -> "staggers values in"
+  for (let n = Math.min(3, t.length); n >= 1; n--) {
+    const phrase = t.slice(0, n).join("").toLowerCase();
+    if (VERB[phrase]) {
+      const tail = t.slice(n).slice(0, 3).join(" ").toLowerCase();
+      const head = VERB[phrase];
+      const nounPhrase = t.slice(1).slice(0, 3).join(" ").toLowerCase();
+      const withTail = / (a|an|the) /.test(head) && !/ (a|an|the) [a-z]/.test(head.split(" ").slice(2).join(" "))
+        ? head
+        : head;
+      return tail ? `${withTail} (${tail})` : withTail;
+    }
+  }
+  // fallback: keep it factual and derived from the name
+  return `renders the "${t.slice(0, 3).join(" ")}" motion`;
+}
+
+let posterCount = 0;
+for (const c of cards) {
+  const stem = c.id.startsWith("demo-") ? c.id.slice(5) : c.id;
+  c.whatItDoes = whatItDoes(stem);
+  c.beats = BEATS_BY_CAT[c.category] ?? "sustain";
+  const p = findPoster(stem);
+  if (p) {
+    posterCount++;
+    c.poster = p.replace(/\\/g, "/");
+  } else {
+    c.poster = null;
+  }
+  if (!c.beats) c.beats = BEATS_BY_CAT[c.category] ?? "sustain";
+}
+
+writeFileSync(join(here, "cards.extract.json"), JSON.stringify(cards, null, 2));
+console.log(`enriched: ${cards.length} cards, posters found: ${posterCount}`);
+console.log("beats:", JSON.stringify(cards.reduce((a, c) => ((a[c.beats] = (a[c.beats] || 0) + 1), a), {})));
+console.log("no poster:", cards.filter((c) => !c.poster).length);

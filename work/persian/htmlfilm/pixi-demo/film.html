@@ -1,0 +1,406 @@
+<!doctype html>
+<!--
+  PIXI-DEMO «یک دانه» — 7s, 1080x1920, rendered entirely with PixiJS v8 (WebGL).
+  Purpose: show what a GPU renderer buys us over the canvas-2D films — real bloom, additive
+  particles, soft shockwaves, per-frame deterministic seek. Persian type stays in Pixi `Text`
+  (canvas shaping) so letter joins are the browser's job, not a glyph atlas.
+  Capture contract (../capture.mjs): window.film = {ready, duration, seek(t)}.
+-->
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>pixi-demo · یک دانه</title>
+<style>
+@font-face{font-family:"PAHead";src:url("../fonts/Vazirmatn-Variable.woff2") format("woff2");font-weight:100 900;font-display:block}
+html,body{margin:0;height:100%;background:#000;overflow:hidden}
+canvas{display:block;position:absolute;left:0;top:0}
+</style>
+<script src="./pixi.min.js"></script>
+</head>
+<body>
+<script>
+(async () => {
+  const W = 1080, H = 1920, DUR = 7.0;
+
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+  const seg = (t, a, b) => clamp((t - a) / (b - a), 0, 1);
+  const outCubic = (p) => 1 - Math.pow(1 - p, 3);
+  const smooth = (p) => p * p * (3 - 2 * p);
+  const lerp = (a, b, p) => a + (b - a) * p;
+
+  await document.fonts.load('700 100px "PAHead"');
+  await document.fonts.load('400 100px "PAHead"');
+  await document.fonts.ready;
+
+  const app = new PIXI.Application();
+  await app.init({
+    width: W, height: H,
+    background: 0x04060c,
+    antialias: true,
+    preference: 'webgl',
+    preserveDrawingBuffer: true,
+    resolution: 1,
+    autoDensity: false,
+    powerPreference: 'high-performance',
+  });
+  document.body.appendChild(app.canvas);
+  app.ticker.stop();
+
+  const cv = (w, h) => { const c = document.createElement('canvas'); c.width = w; c.height = h; return c; };
+  const tex = (c) => PIXI.Texture.from(c);
+
+  const bgCanvas = cv(8, 1024);
+  {
+    const g = bgCanvas.getContext('2d');
+    const grd = g.createLinearGradient(0, 0, 0, 1024);
+    grd.addColorStop(0.00, '#02040a');
+    grd.addColorStop(0.30, '#070c18');
+    grd.addColorStop(0.58, '#0d1524');
+    grd.addColorStop(0.82, '#080d18');
+    grd.addColorStop(1.00, '#03050b');
+    g.fillStyle = grd; g.fillRect(0, 0, 8, 1024);
+  }
+  const bgTex = tex(bgCanvas);
+
+  const dotCanvas = cv(64, 64);
+  {
+    const g = dotCanvas.getContext('2d');
+    const grd = g.createRadialGradient(32, 32, 0, 32, 32, 32);
+    grd.addColorStop(0, 'rgba(255,255,255,1)');
+    grd.addColorStop(0.30, 'rgba(255,255,255,0.72)');
+    grd.addColorStop(0.62, 'rgba(255,255,255,0.16)');
+    grd.addColorStop(1, 'rgba(255,255,255,0)');
+    g.fillStyle = grd; g.fillRect(0, 0, 64, 64);
+  }
+  const dotTex = tex(dotCanvas);
+
+  const glowCanvas = cv(256, 256);
+  {
+    const g = glowCanvas.getContext('2d');
+    const grd = g.createRadialGradient(128, 128, 0, 128, 128, 128);
+    grd.addColorStop(0, 'rgba(255,255,255,1)');
+    grd.addColorStop(0.12, 'rgba(255,255,255,0.78)');
+    grd.addColorStop(0.34, 'rgba(255,255,255,0.28)');
+    grd.addColorStop(0.62, 'rgba(255,255,255,0.07)');
+    grd.addColorStop(1, 'rgba(255,255,255,0)');
+    g.fillStyle = grd; g.fillRect(0, 0, 256, 256);
+  }
+  const glowTex = tex(glowCanvas);
+
+  // soft shockwave ring: a gradient band, not a vector stroke
+  const ringCanvas = cv(256, 256);
+  {
+    const g = ringCanvas.getContext('2d');
+    const grd = g.createRadialGradient(128, 128, 0, 128, 128, 128);
+    grd.addColorStop(0.00, 'rgba(255,255,255,0)');
+    grd.addColorStop(0.30, 'rgba(255,255,255,0)');
+    grd.addColorStop(0.40, 'rgba(255,255,255,0.55)');
+    grd.addColorStop(0.455, 'rgba(255,255,255,0.95)');
+    grd.addColorStop(0.52, 'rgba(255,255,255,0.30)');
+    grd.addColorStop(0.66, 'rgba(255,255,255,0.04)');
+    grd.addColorStop(1.00, 'rgba(255,255,255,0)');
+    g.fillStyle = grd; g.fillRect(0, 0, 256, 256);
+  }
+  const ringTex = tex(ringCanvas);
+
+  const vigCanvas = cv(512, 512);
+  {
+    const g = vigCanvas.getContext('2d');
+    const grd = g.createRadialGradient(256, 250, 60, 256, 256, 300);
+    grd.addColorStop(0, 'rgba(0,0,0,0)');
+    grd.addColorStop(0.55, 'rgba(0,0,0,0.16)');
+    grd.addColorStop(0.82, 'rgba(0,0,0,0.52)');
+    grd.addColorStop(1, 'rgba(0,0,0,0.86)');
+    g.fillStyle = grd; g.fillRect(0, 0, 512, 512);
+  }
+  const vigTex = tex(vigCanvas);
+
+  // ---- scene graph ----
+  const world = new PIXI.Container();
+  app.stage.addChild(world);
+
+  const bg = new PIXI.Sprite(bgTex);
+  bg.width = W; bg.height = H;
+  world.addChild(bg);
+
+  const coolHaze = new PIXI.Sprite(glowTex);
+  coolHaze.anchor.set(0.5); coolHaze.position.set(540, 260);
+  coolHaze.width = 1500; coolHaze.height = 1200;
+  coolHaze.tint = 0x6f8fc9; coolHaze.alpha = 0.10; coolHaze.blendMode = 'add';
+  world.addChild(coolHaze);
+
+  const pool = new PIXI.Sprite(glowTex);
+  pool.anchor.set(0.5); pool.position.set(540, 720);
+  pool.width = 900; pool.height = 900;
+  pool.tint = 0xffb877; pool.alpha = 0; pool.blendMode = 'add';
+  world.addChild(pool);
+
+  // ---- snow ----
+  const snow = new PIXI.Container();
+  world.addChild(snow);
+  const flakes = [];
+  let rs = 1337;
+  const rnd = () => ((rs = (rs * 1664525 + 1013904223) % 4294967296) / 4294967296);
+  for (let i = 0; i < 420; i++) {
+    const s = new PIXI.Sprite(dotTex);
+    s.anchor.set(0.5);
+    const depth = Math.pow(rnd(), 1.6);
+    flakes.push({
+      s,
+      x0: rnd() * (W + 160) - 80,
+      y0: rnd() * (H + 240) - 120,
+      vy: 12 + depth * 90,
+      sway: 6 + depth * 30,
+      ph: rnd() * Math.PI * 2,
+      depth,
+    });
+    const sz = 2.5 + depth * 11;
+    s.width = sz; s.height = sz;
+    s.tint = depth > 0.72 ? 0xfff2dc : 0xd9e6ff;
+    snow.addChild(s);
+  }
+
+  // ---- seed of light ----
+  const seedGroup = new PIXI.Container();
+  world.addChild(seedGroup);
+
+  const streak = new PIXI.Sprite(glowTex);
+  streak.anchor.set(0.5, 1); streak.blendMode = 'add'; streak.tint = 0xffd9a0;
+  seedGroup.addChild(streak);
+
+  const halo = new PIXI.Sprite(glowTex);
+  halo.anchor.set(0.5); halo.blendMode = 'add'; halo.tint = 0xffc98a;
+  seedGroup.addChild(halo);
+
+  const core = new PIXI.Sprite(dotTex);
+  core.anchor.set(0.5); core.width = 54; core.height = 54;
+  core.tint = 0xfffaf0; core.blendMode = 'add';
+  seedGroup.addChild(core);
+
+  const trail = new PIXI.Container();
+  world.addChild(trail);
+  const trailDots = [];
+  for (let i = 0; i < 18; i++) {
+    const d = new PIXI.Sprite(dotTex);
+    d.anchor.set(0.5); d.blendMode = 'add'; d.tint = 0xffe0b0;
+    trailDots.push(d); trail.addChild(d);
+  }
+
+  // ---- shockwaves ----
+  const rings = [];
+  for (let i = 0; i < 3; i++) {
+    const s = new PIXI.Sprite(ringTex);
+    s.anchor.set(0.5); s.position.set(540, 720);
+    s.blendMode = 'add'; s.tint = 0xffe6c0;
+    world.addChild(s);
+    rings.push(s);
+  }
+
+  // ---- burst particles ----
+  const burst = new PIXI.Container();
+  world.addChild(burst);
+  const parts = [];
+  for (let i = 0; i < 110; i++) {
+    const s = new PIXI.Sprite(dotTex);
+    s.anchor.set(0.5); s.blendMode = 'add';
+    s.tint = i % 6 === 0 ? 0xfff6e4 : (i % 3 === 0 ? 0xffcf95 : 0xffb877);
+    const a = rnd() * Math.PI * 2;
+    const sp = 70 + Math.pow(rnd(), 0.6) * 520;
+    parts.push({ s, a, sp, sz: 5 + rnd() * 26, delay: rnd() * 0.1 });
+    burst.addChild(s);
+  }
+
+  // ---- type ----
+  const titleStyle = {
+    fontFamily: 'PAHead', fontWeight: '700', fontSize: 196, fill: 0xfff7e6,
+    align: 'center', padding: 40, letterSpacing: 0,
+  };
+  const titleGroup = new PIXI.Container();
+  titleGroup.position.set(540, 1080);
+  world.addChild(titleGroup);
+
+  const titleWide = new PIXI.Text({ text: 'یک دانه', style: { ...titleStyle, fill: 0xffc98a }, resolution: 2 });
+  titleWide.anchor.set(0.5);
+  titleWide.blendMode = 'add';
+  titleWide.alpha = 0.22;
+  titleWide.filters = [new PIXI.BlurFilter({ strength: 46, quality: 3 })];
+  titleGroup.addChild(titleWide);
+
+  const titleBloom = new PIXI.Text({ text: 'یک دانه', style: { ...titleStyle, fill: 0xffe0b4 }, resolution: 2 });
+  titleBloom.anchor.set(0.5);
+  titleBloom.blendMode = 'add';
+  titleBloom.alpha = 0.5;
+  titleBloom.filters = [new PIXI.BlurFilter({ strength: 15, quality: 3 })];
+  titleGroup.addChild(titleBloom);
+
+  const title = new PIXI.Text({ text: 'یک دانه', style: titleStyle, resolution: 2 });
+  title.anchor.set(0.5);
+  titleGroup.addChild(title);
+
+  const sweep = new PIXI.Sprite(glowTex);
+  sweep.anchor.set(0.5); sweep.position.set(540, 1080);
+  sweep.width = 56; sweep.height = 300;
+  sweep.tint = 0xfff0d2; sweep.blendMode = 'add'; sweep.alpha = 0;
+  world.addChild(sweep);
+
+  const maskG = new PIXI.Graphics();
+  world.addChild(maskG);
+  titleGroup.mask = maskG;
+
+  const rule = new PIXI.Graphics();
+  world.addChild(rule);
+
+  const sub = new PIXI.Text({
+    text: 'یک دانه، یک جنگل',
+    style: { fontFamily: 'PAHead', fontWeight: '400', fontSize: 58, fill: 0xc7d2e2, align: 'center', padding: 20, letterSpacing: 0 },
+    resolution: 2,
+  });
+  sub.anchor.set(0.5);
+  sub.position.set(540, 1372);
+  world.addChild(sub);
+
+  const label = new PIXI.Text({
+    text: 'PixiJS v8 · WebGL',
+    style: { fontFamily: 'Segoe UI, Arial', fontWeight: '400', fontSize: 26, fill: 0x9aa4b4, letterSpacing: 3 },
+    resolution: 2,
+  });
+  label.anchor.set(0.5);
+  label.position.set(540, 1810);
+  world.addChild(label);
+
+  // ---- overlays outside the camera ----
+  const vig = new PIXI.Sprite(vigTex);
+  vig.width = W; vig.height = H;
+  app.stage.addChild(vig);
+
+  const flash = new PIXI.Graphics();
+  flash.rect(0, 0, W, H).fill(0xfff1d8);
+  flash.alpha = 0; flash.blendMode = 'add';
+  app.stage.addChild(flash);
+
+  const fade = new PIXI.Graphics();
+  fade.rect(0, 0, W, H).fill(0x000000);
+  app.stage.addChild(fade);
+
+  // ---- timeline ----
+  const T_LAND = 2.45;
+  const TITLE_W = title.width + 80;
+  const TITLE_H = 320;
+
+  function seedAt(t) {
+    const p = seg(t, 0.12, T_LAND);
+    const e = Math.pow(p, 1.85);
+    return {
+      x: 540 + Math.sin(p * Math.PI * 1.15) * 62,
+      y: lerp(70, 720, e),
+      p,
+    };
+  }
+
+  function seek(t) {
+    const lit = seg(t, 1.5, T_LAND);
+    pool.alpha = 0.17 * lit * (1 - 0.35 * seg(t, 4.2, 7.0));
+
+    for (const f of flakes) {
+      const y = ((f.y0 + f.vy * t) % (H + 240)) - 120;
+      f.s.x = f.x0 + Math.sin(t * 0.5 + f.ph) * f.sway;
+      f.s.y = y;
+      f.s.alpha = (0.14 + f.depth * 0.6) * (1 - 0.5 * seg(t, 6.0, 7.0));
+    }
+
+    const sp = seedAt(t);
+    const gone = seg(t, T_LAND, T_LAND + 0.16);
+    seedGroup.position.set(sp.x, sp.y);
+    seedGroup.alpha = 1 - gone;
+    const pulse = 1 + 0.05 * Math.sin(t * 6.4);
+    const hs = (560 + 240 * sp.p) * pulse;
+    halo.width = hs; halo.height = hs;
+    halo.alpha = (0.75 + 0.25 * sp.p) * (1 - gone);
+    const speed = Math.max(0, 1.85 * Math.pow(sp.p, 0.85));
+    streak.width = 90 + 60 * sp.p;
+    streak.height = 220 * speed * (1 - gone);
+    streak.alpha = 0.28 * speed * (1 - gone);
+
+    for (let i = 0; i < trailDots.length; i++) {
+      const q = seedAt(t - i * 0.038);
+      const d = trailDots[i];
+      const k = 1 - i / trailDots.length;
+      d.x = q.x; d.y = q.y;
+      d.width = d.height = 34 * k * (0.35 + 0.65 * sp.p);
+      d.alpha = 0.45 * k * (1 - gone);
+    }
+
+    for (let i = 0; i < rings.length; i++) {
+      const p = seg(t, T_LAND + i * 0.12, T_LAND + 1.00 + i * 0.12);
+      const r = rings[i];
+      r.visible = p > 0 && p < 1;
+      const sc = 0.18 + outCubic(p) * 2.6;
+      r.scale.set(sc);
+      r.alpha = Math.pow(1 - p, 2.4) * 0.85;
+    }
+
+    for (const q of parts) {
+      const p = seg(t, T_LAND + q.delay, T_LAND + q.delay + 1.7);
+      const e = 1 - Math.pow(1 - p, 2.6);
+      q.s.x = 540 + Math.cos(q.a) * q.sp * e;
+      q.s.y = 720 + Math.sin(q.a) * q.sp * e * 0.8 + 220 * p * p;
+      q.s.width = q.s.height = q.sz * (1 - 0.8 * p);
+      q.s.alpha = (1 - p) * 0.85;
+    }
+
+    // impact flash
+    flash.alpha = 0.09 * Math.exp(-Math.max(0, t - T_LAND) * 14) * (t > T_LAND ? 1 : 0);
+
+    // title reveal, right to left (RTL)
+    const rv = outCubic(seg(t, 2.85, 3.85));
+    const right = 540 + TITLE_W / 2;
+    const w = TITLE_W * rv;
+    maskG.clear();
+    if (rv > 0) maskG.rect(right - w, 1080 - TITLE_H / 2, w, TITLE_H).fill(0xffffff);
+    titleGroup.alpha = 0.2 + 0.8 * rv;
+    sweep.x = right - w;
+    sweep.alpha = 0.7 * Math.sin(Math.PI * rv);
+    const punch = 1 + 0.018 * Math.exp(-Math.max(0, t - 3.1) * 8) * seg(t, 2.95, 3.15);
+    titleGroup.scale.set(punch);
+    titleWide.alpha = 0.22 * rv;
+    titleBloom.alpha = 0.5 * rv;
+
+    // hairline rule under the title, drawn outward from the centre
+    const lp = outCubic(seg(t, 3.95, 4.75));
+    rule.clear();
+    if (lp > 0) {
+      const half = 175 * lp;
+      rule.rect(540 - half, 1252, half * 2, 2).fill({ color: 0xd8c39a, alpha: 0.5 * lp });
+    }
+
+    const sb = outCubic(seg(t, 4.70, 5.75));
+    sub.alpha = sb * 0.92;
+    sub.y = 1372 + (1 - sb) * 24;
+    label.alpha = 0.72 * seg(t, 5.35, 6.05);
+
+    const cam = smooth(seg(t, 0, DUR));
+    const shakeAmp = 7 * Math.exp(-Math.max(0, t - T_LAND) * 7) * (t > T_LAND ? 1 : 0);
+    world.scale.set(1.035 - 0.035 * cam);
+    world.x = Math.sin(t * 88) * shakeAmp;
+    world.y = 6 * cam + Math.cos(t * 71) * shakeAmp;
+
+    // starts at 0.5, not 1.0: a fully black WebGL frame trips the capture gate
+    fade.alpha = Math.max(0.5 * (1 - seg(t, 0, 0.75)), seg(t, 6.40, 7.0));
+  }
+
+  seek(0);
+  app.renderer.render(app.stage);
+
+  window.film = {
+    ready: true,
+    duration: DUR,
+    seek: (t) => { seek(t); app.renderer.render(app.stage); },
+  };
+})().catch((e) => {
+  document.title = 'ERR ' + e.message;
+  window.__filmError = String(e && e.stack || e);
+});
+</script>
+</body>
+</html>

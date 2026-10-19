@@ -1,0 +1,19 @@
+{
+  "pack": "casino-audio",
+  "source_page_url": "https://kenney.nl/assets/casino-audio",
+  "download_url": "https://kenney.nl/media/pages/assets/casino-audio/2472606a04-1721639069/kenney_casino-audio.zip",
+  "licence": "CC0 1.0 Universal (public domain dedication)",
+  "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "author": "Kenney (kenney.nl)",
+  "attribution_required": false,
+  "download_date": "2026-10-12",
+  "file_count": 55,
+  "extracted_entry_count": 58,
+  "extracted_bytes": 955950,
+  "licence_files_in_zip": [
+    "License.txt"
+  ],
+  "rejected_zip_entries": [],
+  "zip_file": "kenney_casino-audio.zip",
+  "audio_bytes": 955363
+}

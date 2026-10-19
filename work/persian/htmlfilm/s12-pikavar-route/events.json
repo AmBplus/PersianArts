@@ -1,0 +1,71 @@
+{
+ "schema": "persianarts.events/1",
+ "film": "s12-pikavar-route",
+ "fps": 30,
+ "bpm": 120,
+ "t0_s": 0,
+ "cut_frames": [
+  0
+ ],
+ "duration_frames": 600,
+ "one_take": true,
+ "events": [
+  {
+   "name": "riser into the route",
+   "type": "riser",
+   "t_s": 3.0,
+   "dur_s": 1.0,
+   "role": "normal"
+  },
+  {
+   "name": "route live",
+   "type": "hit",
+   "t_s": 3.0,
+   "variant": "start",
+   "role": "accent"
+  },
+  {
+   "name": "city lights pass",
+   "type": "ambient",
+   "t_s": 5.0,
+   "dur_s": 9.0,
+   "role": "normal"
+  },
+  {
+   "name": "district bloom 1",
+   "type": "hit",
+   "t_s": 9.5,
+   "variant": "bloom",
+   "role": "normal"
+  },
+  {
+   "name": "district bloom 2",
+   "type": "hit",
+   "t_s": 12.5,
+   "variant": "bloom",
+   "role": "normal"
+  },
+  {
+   "name": "last handover",
+   "type": "riser",
+   "t_s": 14.0,
+   "dur_s": 4.5,
+   "variant": "tension",
+   "role": "normal"
+  },
+  {
+   "name": "door opens",
+   "type": "hit",
+   "t_s": 18.5,
+   "variant": "door",
+   "role": "accent"
+  },
+  {
+   "name": "counter zero / delivered",
+   "type": "settle",
+   "t_s": 19.967,
+   "role": "final",
+   "ends_film": true
+  }
+ ]
+}

@@ -1,0 +1,491 @@
+<!doctype html>
+<!--
+  PRODUCT-DEMO «شبنم» — 10s, 1080x1920, 30fps.
+  A real set, not a void: stone counter, plaster wall, warm window spill, dew on the stone,
+  steam drifting, shallow depth of field, film grain and a handheld camera.
+  three r186 (transmission glass, PCF soft shadows, BokehPass, procedural studio env),
+  GSAP (seekable timeline), Tone.js (score rendered offline).
+  Capture contract (../capture.mjs): window.film = {ready, duration, seek(t)}.
+-->
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>product-demo · شبنم</title>
+<style>
+@font-face{font-family:"PAHead";src:url("../fonts/Vazirmatn-Variable.woff2") format("woff2");font-weight:100 900;font-display:block}
+html,body{margin:0;height:100%;background:#000;overflow:hidden}
+canvas{display:block;position:absolute;left:0;top:0}
+</style>
+<script src="./stack.js"></script>
+</head>
+<body>
+<script>
+(async () => {
+  const W = 1080, H = 1920, DUR = 10.0;
+  const { THREE, gsap } = window;
+  const { EffectComposer, UnrealBloomPass, OutputPass, BokehPass } = window.FX;
+
+  await document.fonts.load('700 100px "PAHead"');
+  await document.fonts.load('400 100px "PAHead"');
+  await document.fonts.ready;
+
+  const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true, alpha: false });
+  renderer.setPixelRatio(1);
+  renderer.setSize(W, H);
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.0;
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  if ('transmissionResolutionScale' in renderer) renderer.transmissionResolutionScale = 0.7;
+  document.body.appendChild(renderer.domElement);
+
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x0a0806);
+  scene.fog = new THREE.FogExp2(0x0a0806, 0.045);
+
+  const camera = new THREE.PerspectiveCamera(32, W / H, 0.1, 60);
+  camera.position.set(0, 1.15, 5.2);
+  camera.lookAt(0, 0.40, 0);
+
+  // studio environment: warm window on one side, cool bounce on the other — PMREM'd, no files
+  const env = new THREE.Scene();
+  const addPanel = (w, h, x, y, z, c, ry) => {
+    const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ color: c }));
+    m.position.set(x, y, z); m.rotation.y = ry || 0; env.add(m);
+  };
+  env.background = new THREE.Color(0x050403);
+  addPanel(4, 3.2, 2.6, 1.2, 0, 0xffd3a1, -Math.PI / 2);
+  addPanel(3, 2.2, -2.4, 0.9, 0.4, 0x7d97c4, Math.PI / 2);
+  addPanel(6, 6, 0, 4.2, 0, 0x241a12, 0);
+  addPanel(6, 6, 0, -1.4, 0, 0x0a0806, 0);
+  const pmrem = new THREE.PMREMGenerator(renderer);
+  scene.environment = pmrem.fromScene(env, 0.02).texture;
+  scene.environmentIntensity = 0.55;
+
+  // ---- post ----
+  const composer = new EffectComposer(renderer);
+  composer.setSize(W, H);
+  const { RenderPass } = window.FX;
+  composer.addPass(new RenderPass(scene, camera));
+  const bloom = new UnrealBloomPass(new THREE.Vector2(W * 0.5, H * 0.5), 0.22, 0.6, 0.98);
+  composer.addPass(bloom);
+  composer.addPass(new OutputPass());
+
+  // ---- procedural textures ----
+  const noiseCanvas = (size, amp, basev) => {
+    const c = document.createElement('canvas'); c.width = c.height = size;
+    const g = c.getContext('2d');
+    const img = g.createImageData(size, size);
+    let s = 4242;
+    const r = () => ((s = (s * 1664525 + 1013904223) % 4294967296) / 4294967296);
+    for (let i = 0; i < size * size; i++) {
+      const v = basev + (r() - 0.5) * amp;
+      img.data[i * 4] = img.data[i * 4 + 1] = img.data[i * 4 + 2] = Math.max(0, Math.min(255, v));
+      img.data[i * 4 + 3] = 255;
+    }
+    g.putImageData(img, 0, 0);
+    return c;
+  };
+
+  const stoneTex = (() => {
+    const c = noiseCanvas(512, 26, 42);
+    const g = c.getContext('2d');
+    g.globalAlpha = 0.22;
+    let s = 99;
+    const r = () => ((s = (s * 1664525 + 1013904223) % 4294967296) / 4294967296);
+    for (let i = 0; i < 60; i++) {
+      g.strokeStyle = i % 2 ? 'rgba(90,84,74,0.5)' : 'rgba(18,16,14,0.6)';
+      g.lineWidth = 0.6 + r() * 2.4;
+      g.beginPath();
+      let x = r() * 512, y = r() * 512;
+      g.moveTo(x, y);
+      for (let k = 0; k < 6; k++) {
+        x += (r() - 0.5) * 120; y += (r() - 0.5) * 120;
+        g.lineTo(x, y);
+      }
+      g.stroke();
+    }
+    const t = new THREE.CanvasTexture(c);
+    t.wrapS = t.wrapT = THREE.RepeatWrapping;
+    t.repeat.set(3, 3);
+    t.colorSpace = THREE.SRGBColorSpace;
+    t.anisotropy = 8;
+    return t;
+  })();
+
+  const radial = (() => {
+    const c = document.createElement('canvas'); c.width = c.height = 256;
+    const g = c.getContext('2d');
+    const grd = g.createRadialGradient(128, 128, 0, 128, 128, 128);
+    grd.addColorStop(0, 'rgba(255,255,255,1)');
+    grd.addColorStop(0.3, 'rgba(255,255,255,0.34)');
+    grd.addColorStop(1, 'rgba(255,255,255,0)');
+    g.fillStyle = grd; g.fillRect(0, 0, 256, 256);
+    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t;
+  })();
+
+  // ---- set: counter + wall ----
+  const counter = new THREE.Mesh(
+    new THREE.PlaneGeometry(24, 24),
+    new THREE.MeshStandardMaterial({ map: stoneTex, color: 0x8d8578, roughness: 0.42, metalness: 0.05, envMapIntensity: 0.6 })
+  );
+  counter.rotation.x = -Math.PI / 2;
+  counter.receiveShadow = true;
+  scene.add(counter);
+
+  const wall = new THREE.Mesh(
+    new THREE.PlaneGeometry(24, 14),
+    new THREE.MeshStandardMaterial({ color: 0x1b1512, roughness: 0.95, metalness: 0 })
+  );
+  wall.position.set(0, 6, -2.6);
+  wall.receiveShadow = true;
+  scene.add(wall);
+
+  const spillTex = (() => {
+    const c = document.createElement('canvas'); c.width = 256; c.height = 384;
+    const g = c.getContext('2d');
+    const grd = g.createRadialGradient(128, 192, 10, 128, 192, 210);
+    grd.addColorStop(0, 'rgba(255,206,150,0.85)');
+    grd.addColorStop(0.45, 'rgba(255,190,130,0.28)');
+    grd.addColorStop(1, 'rgba(255,180,120,0)');
+    g.fillStyle = grd; g.fillRect(0, 0, 256, 384);
+    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t;
+  })();
+  const spill = new THREE.Mesh(
+    new THREE.PlaneGeometry(2.6, 3.9),
+    new THREE.MeshBasicMaterial({ map: spillTex, transparent: true, blending: THREE.AdditiveBlending, depthWrite: false, opacity: 0.55 })
+  );
+  spill.position.set(-1.15, 1.5, -2.58);
+  scene.add(spill);
+
+  // ---- the jar ----
+  const jar = new THREE.Group();
+  jar.scale.setScalar(0.86);
+  scene.add(jar);
+
+  const glassMat = new THREE.MeshPhysicalMaterial({
+    color: 0xffffff, metalness: 0, roughness: 0.09, transmission: 1, thickness: 0.22,
+    ior: 1.48, clearcoat: 1, clearcoatRoughness: 0.06, envMapIntensity: 1.15,
+    attenuationColor: new THREE.Color(0xffeeda), attenuationDistance: 6,
+    side: THREE.DoubleSide,
+  });
+  const wallGlass = new THREE.Mesh(new THREE.CylinderGeometry(0.60, 0.565, 0.90, 96, 1, true), glassMat);
+  wallGlass.position.y = 0.45;
+  jar.add(wallGlass);
+
+  const baseGlass = new THREE.Mesh(new THREE.CircleGeometry(0.566, 96), glassMat);
+  baseGlass.rotation.x = -Math.PI / 2;
+  baseGlass.position.y = 0.002;
+  jar.add(baseGlass);
+
+  const goldMat = new THREE.MeshStandardMaterial({ color: 0xd6ab72, metalness: 1, roughness: 0.28, envMapIntensity: 1.6 });
+  const rim = new THREE.Mesh(new THREE.TorusGeometry(0.596, 0.017, 20, 120), goldMat);
+  rim.rotation.x = Math.PI / 2;
+  rim.position.y = 0.898;
+  rim.castShadow = true;
+  jar.add(rim);
+
+  const creamMat = new THREE.MeshPhysicalMaterial({
+    color: 0xe6d2b6, roughness: 0.78, metalness: 0,
+    sheen: 0.55, sheenColor: new THREE.Color(0xfff1dc), sheenRoughness: 0.7,
+  });
+  const fillMesh = new THREE.Mesh(new THREE.CylinderGeometry(0.552, 0.53, 0.80, 96), creamMat);
+  fillMesh.position.y = 0.42;
+  fillMesh.castShadow = true;
+  jar.add(fillMesh);
+
+  const dome = new THREE.Mesh(new THREE.SphereGeometry(0.552, 96, 48, 0, Math.PI * 2, 0, Math.PI / 2), creamMat);
+  dome.scale.y = 0.075;
+  dome.position.y = 0.82;
+  jar.add(dome);
+
+  const labelCanvas = document.createElement('canvas');
+  labelCanvas.width = 1024; labelCanvas.height = 320;
+  {
+    const g = labelCanvas.getContext('2d');
+    g.fillStyle = '#efe5d3';
+    g.fillRect(0, 0, 1024, 320);
+    g.textAlign = 'center';
+    g.fillStyle = '#2b2218';
+    g.font = '700 132px PAHead';
+    g.fillText('شبنم', 512, 150);
+    g.fillStyle = 'rgba(43,34,24,0.72)';
+    g.font = '400 46px PAHead';
+    g.fillText('کرم شب', 512, 226);
+    g.strokeStyle = 'rgba(43,34,24,0.35)';
+    g.lineWidth = 2;
+    g.beginPath(); g.moveTo(392, 252); g.lineTo(632, 252); g.stroke();
+  }
+  const labelTex = new THREE.CanvasTexture(labelCanvas);
+  labelTex.colorSpace = THREE.SRGBColorSpace;
+  labelTex.anisotropy = 8;
+  const label = new THREE.Mesh(
+    new THREE.CylinderGeometry(0.603, 0.603, 0.30, 96, 1, true, -0.58, 1.16),
+    new THREE.MeshStandardMaterial({ map: labelTex, roughness: 0.72, metalness: 0, envMapIntensity: 0.5 })
+  );
+  label.position.y = 0.30;
+  jar.add(label);
+
+  // ---- dew on the stone ----
+  const dewMat = new THREE.MeshPhysicalMaterial({
+    color: 0xffffff, roughness: 0.03, metalness: 0, transmission: 0.95, thickness: 0.08,
+    ior: 1.33, envMapIntensity: 1.4, transparent: true,
+  });
+  let s0 = 31337;
+  const rnd = () => ((s0 = (s0 * 1664525 + 1013904223) % 4294967296) / 4294967296);
+  const dew = new THREE.Group();
+  scene.add(dew);
+  for (let i = 0; i < 9; i++) {
+    const r = 0.012 + rnd() * 0.026;
+    const d = new THREE.Mesh(new THREE.SphereGeometry(r, 24, 16), dewMat);
+    const a = rnd() * Math.PI * 2;
+    const dist = 0.75 + rnd() * 0.85;
+    d.position.set(Math.cos(a) * dist, r * 0.55, Math.sin(a) * dist * 0.8 + 0.15);
+    d.scale.y = 0.62;
+    dew.add(d);
+  }
+
+  // ---- steam ----
+  const steam = new THREE.Group();
+  scene.add(steam);
+  const wisps = [];
+  for (let i = 0; i < 7; i++) {
+    const sp = new THREE.Sprite(new THREE.SpriteMaterial({
+      map: radial, color: 0xffe7cf, transparent: true, opacity: 0, depthWrite: false, blending: THREE.AdditiveBlending,
+    }));
+    const w = 0.5 + rnd() * 0.5;
+    sp.scale.set(w, w, 1);
+    wisps.push({ sp, x: (rnd() - 0.5) * 0.7, z: 0.1 + rnd() * 0.4, ph: rnd() });
+    steam.add(sp);
+  }
+
+  // ---- lights ----
+  const key = new THREE.DirectionalLight(0xffd0a0, 2.6);
+  key.position.set(2.0, 3.0, 1.8);
+  key.castShadow = true;
+  key.shadow.mapSize.set(2048, 2048);
+  key.shadow.camera.left = -2; key.shadow.camera.right = 2;
+  key.shadow.camera.top = 2.4; key.shadow.camera.bottom = -0.6;
+  key.shadow.camera.near = 0.5; key.shadow.camera.far = 12;
+  key.shadow.bias = -0.0006;
+  key.shadow.normalBias = 0.02;
+  key.shadow.radius = 5;
+  scene.add(key);
+
+  const fill = new THREE.DirectionalLight(0x9fb6dd, 0.9);
+  fill.position.set(-2.4, 1.4, 1.2);
+  scene.add(fill);
+
+  const rimLight = new THREE.DirectionalLight(0xffe3c0, 1.2);
+  rimLight.position.set(-0.6, 1.8, -2.2);
+  scene.add(rimLight);
+
+  scene.add(new THREE.AmbientLight(0x2a2620, 0.5));
+
+  // ---- type (upper frame, on the wall plane) ----
+  function typeTexture(text, size, weight, color) {
+    const pad = 40;
+    const probe = document.createElement('canvas').getContext('2d');
+    probe.font = `${weight} ${size}px PAHead`;
+    const w = Math.ceil(probe.measureText(text).width) + pad * 2;
+    const h = Math.ceil(size * 1.6);
+    const c = document.createElement('canvas');
+    c.width = w; c.height = h;
+    const g = c.getContext('2d');
+    g.font = `${weight} ${size}px PAHead`;
+    g.textAlign = 'center'; g.textBaseline = 'middle';
+    g.fillStyle = color;
+    g.fillText(text, w / 2, h / 2);
+    const t = new THREE.CanvasTexture(c);
+    t.colorSpace = THREE.SRGBColorSpace;
+    t.minFilter = THREE.LinearFilter;
+    t.generateMipmaps = false;
+    return { tex: t, aspect: w / h };
+  }
+
+  const titleType = typeTexture('شبنم', 200, '700', '#e9dcc6');
+  const titleMat = new THREE.MeshBasicMaterial({ map: titleType.tex, transparent: true, depthWrite: false, opacity: 0, toneMapped: true });
+  const titleW = 1.25;
+  const title = new THREE.Mesh(new THREE.PlaneGeometry(titleW, titleW / titleType.aspect), titleMat);
+  title.position.set(0, 1.22, -1.5);
+  scene.add(title);
+
+  const subType = typeTexture('کرم شب · ۵۰ میلی‌لیتر', 68, '400', '#b3a692');
+  const subMat = new THREE.MeshBasicMaterial({ map: subType.tex, transparent: true, depthWrite: false, opacity: 0, toneMapped: true });
+  const subW = 1.15;
+  const subtitle = new THREE.Mesh(new THREE.PlaneGeometry(subW, subW / subType.aspect), subMat);
+  subtitle.position.set(0, 0.98, -1.5);
+  scene.add(subtitle);
+
+  const credType = typeTexture('three · GSAP · TONE', 38, '400', '#7a7266');
+  const credMat = new THREE.MeshBasicMaterial({ map: credType.tex, transparent: true, depthWrite: false, opacity: 0, toneMapped: true });
+  const credW = 0.62;
+  const credit = new THREE.Mesh(new THREE.PlaneGeometry(credW, credW / credType.aspect), credMat);
+  credit.position.set(0, 0.80, -1.5);
+  scene.add(credit);
+
+  // ---- camera-attached overlays ----
+  const grainTex = (() => {
+    const c = noiseCanvas(256, 255, 128);
+    const t = new THREE.CanvasTexture(c);
+    t.wrapS = t.wrapT = THREE.RepeatWrapping;
+    t.repeat.set(2, 3.5);
+    return t;
+  })();
+  const grainQuad = new THREE.Mesh(
+    new THREE.PlaneGeometry(2.4, 4.3),
+    new THREE.MeshBasicMaterial({ map: grainTex, transparent: true, opacity: 0.055, depthTest: false, depthWrite: false })
+  );
+  grainQuad.position.z = -4.85;
+  grainQuad.renderOrder = 8;
+  camera.add(grainQuad);
+
+  const vigTex = (() => {
+    const c = document.createElement('canvas'); c.width = 256; c.height = 456;
+    const g = c.getContext('2d');
+    const grd = g.createRadialGradient(128, 228, 40, 128, 228, 250);
+    grd.addColorStop(0, 'rgba(0,0,0,0)');
+    grd.addColorStop(0.6, 'rgba(0,0,0,0.18)');
+    grd.addColorStop(1, 'rgba(0,0,0,0.62)');
+    g.fillStyle = grd; g.fillRect(0, 0, 256, 456);
+    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t;
+  })();
+  const vigQuad = new THREE.Mesh(
+    new THREE.PlaneGeometry(2.4, 4.3),
+    new THREE.MeshBasicMaterial({ map: vigTex, transparent: true, depthTest: false, depthWrite: false })
+  );
+  vigQuad.position.z = -4.9;
+  vigQuad.renderOrder = 9;
+  camera.add(vigQuad);
+
+  const fadeMat = new THREE.MeshBasicMaterial({ color: 0x000000, transparent: true, opacity: 0.6, depthTest: false, depthWrite: false });
+  const fadeQuad = new THREE.Mesh(new THREE.PlaneGeometry(2.4, 4.3), fadeMat);
+  fadeQuad.position.z = -4.8;
+  fadeQuad.renderOrder = 10;
+  camera.add(fadeQuad);
+  scene.add(camera);
+
+  // ---- droplet ----
+  const drop = new THREE.Mesh(new THREE.SphereGeometry(0.062, 32, 32), creamMat);
+  drop.scale.set(1, 1.25, 1);
+  drop.position.set(0, 2.4, 0);
+  drop.castShadow = true;
+  scene.add(drop);
+
+  const rippleMat = new THREE.MeshBasicMaterial({ color: 0xfff2df, transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false });
+  const ripple = new THREE.Mesh(new THREE.TorusGeometry(0.05, 0.005, 12, 72), rippleMat);
+  ripple.rotation.x = -Math.PI / 2;
+  ripple.position.y = 0.845;
+  jar.add(ripple);
+
+  // ---- timeline ----
+  const tl = gsap.timeline({ paused: true });
+  tl.fromTo(fadeMat, { opacity: 0.6 }, { opacity: 0, duration: 1.4, ease: 'power2.out' }, 0);
+  tl.fromTo(camera.position, { z: 5.35 }, { z: 5.02, duration: 10.0, ease: 'none' }, 0);
+  tl.fromTo(jar.rotation, { y: -0.32 }, { y: 0.10, duration: 10.0, ease: 'none' }, 0);
+
+  tl.fromTo(drop.position, { y: 2.4 }, { y: 0.845, duration: 0.62, ease: 'power2.in' }, 3.35);
+  tl.to(drop.scale, { x: 0.001, y: 0.001, z: 0.001, duration: 0.05 }, 3.98);
+  tl.fromTo(ripple.scale, { x: 1, y: 1, z: 1 }, { x: 8, y: 8, z: 8, duration: 0.9, ease: 'power2.out' }, 3.98);
+  tl.fromTo(rippleMat, { opacity: 0.6 }, { opacity: 0, duration: 0.9, ease: 'power2.out' }, 3.98);
+  tl.to(dome.scale, { y: 0.058, duration: 0.09 }, 3.98);
+  tl.to(dome.scale, { y: 0.075, duration: 0.5, ease: 'elastic.out(1,0.45)' }, 4.07);
+
+  tl.to(titleMat, { opacity: 0.95, duration: 1.2, ease: 'power2.out' }, 4.55);
+  tl.fromTo(title.position, { y: 1.30 }, { y: 1.22, duration: 1.4, ease: 'power3.out' }, 4.55);
+  tl.to(subMat, { opacity: 0.85, duration: 1.0, ease: 'power2.out' }, 5.25);
+  tl.fromTo(subtitle.position, { y: 1.04 }, { y: 0.98, duration: 1.1, ease: 'power3.out' }, 5.25);
+  tl.to(credMat, { opacity: 0.7, duration: 0.9, ease: 'power2.out' }, 6.2);
+
+  tl.to(fadeMat, { opacity: 1, duration: 0.85, ease: 'power2.in' }, 9.15);
+
+  function seek(t) {
+    tl.seek(t);
+    // handheld: two slow sines plus a faster tremor, never enough to read as a pan
+    camera.position.x = Math.sin(t * 0.63) * 0.008 + Math.sin(t * 2.1) * 0.0022;
+    camera.position.y = 1.15 + Math.cos(t * 0.81) * 0.006 + Math.sin(t * 2.7) * 0.0016;
+    camera.rotation.z = Math.sin(t * 0.47) * 0.0016;
+
+    grainTex.offset.set((t * 0.31) % 1, (t * 0.57) % 1);
+
+    for (const w of wisps) {
+      const p = ((t * 0.13 + w.ph) % 1);
+      w.sp.position.set(w.x + Math.sin(t * 0.5 + w.ph * 6) * 0.05, 0.95 + p * 0.95, w.z);
+      const a = Math.sin(p * Math.PI);
+      w.sp.material.opacity = a * a * 0.10;
+      w.sp.scale.setScalar(0.45 + p * 0.55);
+    }
+
+    composer.render();
+  }
+
+  seek(0);
+  renderer.render(scene, camera);
+
+  window.film = {
+    ready: true,
+    duration: DUR,
+    seek,
+    async audio() {
+      const { Tone } = window;
+      const buffer = await Tone.Offline(async () => {
+        const master = new Tone.Limiter(-2).toDestination();
+        const rev = new Tone.Freeverb({ roomSize: 0.92, dampening: 2200, wet: 0.55 }).connect(master);
+        const pad = new Tone.PolySynth(Tone.Synth, {
+          oscillator: { type: 'sine' }, envelope: { attack: 2.6, decay: 1.8, sustain: 0.45, release: 4.0 },
+        }).connect(rev);
+        pad.volume.value = -22;
+        pad.triggerAttackRelease(['A2', 'E3', 'B3'], 6.5, 0.5);
+
+        const air = new Tone.Noise('brown').connect(new Tone.Filter(600, 'lowpass').connect(rev));
+        air.volume.value = -42;
+        air.start(0).stop(10);
+
+        const pluck = new Tone.PluckSynth({ attackNoise: 1.4, dampening: 3600, resonance: 0.9 }).connect(rev);
+        pluck.volume.value = -13;
+        pluck.triggerAttack('A4', 3.98);
+        pluck.triggerAttack('E5', 4.12);
+
+        const sub = new Tone.Synth({ oscillator: { type: 'sine' }, envelope: { attack: 0.01, decay: 0.8, sustain: 0, release: 0.35 } }).connect(master);
+        sub.volume.value = -19;
+        sub.triggerAttackRelease('A1', 0.8, 3.97);
+
+        const bell = new Tone.FMSynth({ harmonicity: 2.01, modulationIndex: 4, envelope: { attack: 0.005, decay: 2.0, sustain: 0.02, release: 2.6 } }).connect(rev);
+        bell.volume.value = -24;
+        bell.triggerAttackRelease('A5', 1.5, 4.9);
+      }, DUR, 2);
+
+      const raw = typeof buffer.get === 'function' ? buffer.get() : buffer;
+      const ch = raw.numberOfChannels, len = raw.length, sr = raw.sampleRate;
+      const out = new DataView(new ArrayBuffer(44 + len * ch * 2));
+      const w = (o, s) => { for (let i = 0; i < s.length; i++) out.setUint8(o + i, s.charCodeAt(i)); };
+      w(0, 'RIFF'); out.setUint32(4, 36 + len * ch * 2, true); w(8, 'WAVEfmt ');
+      out.setUint32(16, 16, true); out.setUint16(20, 1, true); out.setUint16(22, ch, true);
+      out.setUint32(24, sr, true); out.setUint32(28, sr * ch * 2, true);
+      out.setUint16(32, ch * 2, true); out.setUint16(34, 16, true);
+      w(36, 'data'); out.setUint32(40, len * ch * 2, true);
+      const chans = [];
+      for (let c = 0; c < ch; c++) chans.push(raw.getChannelData(c));
+      let o = 44;
+      for (let i = 0; i < len; i++) {
+        for (let c = 0; c < ch; c++) {
+          const v = Math.max(-1, Math.min(1, chans[c][i]));
+          out.setInt16(o, v < 0 ? v * 0x8000 : v * 0x7fff, true);
+          o += 2;
+        }
+      }
+      const bytes = new Uint8Array(out.buffer);
+      let bin = '';
+      for (let i = 0; i < bytes.length; i += 8192) bin += String.fromCharCode.apply(null, bytes.subarray(i, i + 8192));
+      return btoa(bin);
+    },
+  };
+})().catch((e) => {
+  document.title = 'ERR ' + e.message;
+  window.__filmError = String((e && e.stack) || e);
+});
+</script>
+</body>
+</html>

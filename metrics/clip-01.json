@@ -1,0 +1,173 @@
+{
+  "clip": 1,
+  "title": "دانه‌ی برف — snow seed",
+  "series": "یک دانه (one seed)",
+  "date": "2026-10-18",
+  "skill_version": "3.0",
+  "files": {
+    "final": "output/clip-01/clip-01-final.mp4",
+    "silent": "output/clip-01/clip-01-9x16-silent.mp4",
+    "source": "work/persian/htmlfilm/clip-01-seeds/film.v18.html",
+    "events": "work/persian/htmlfilm/clip-01-seeds/events.json",
+    "frames": "metrics/frames/clip-01/",
+    "sound_report": "output/clip-01/verify.json"
+  },
+  "specs": {
+    "ratio": "9x16",
+    "resolution": "1080x1920",
+    "fps": 30,
+    "duration_s": 20.0,
+    "frames": 600,
+    "bpm": 120,
+    "beats": 40,
+    "codec": "h264 yuv420p, aac 48k stereo",
+    "bitrate_mbps": 1.58,
+    "keyframe_interval_s": 2.0,
+    "lufs": -14.0,
+    "true_peak_dbtp": -3.8,
+    "tail_peak_dbfs": -68.98,
+    "music": "tr-dogo-jump-1267515 (119.9 BPM, marimba/bright)",
+    "cues": 12
+  },
+  "scores": {
+    "STORY": {
+      "score": 5,
+      "evidence": "Hook = a flake fading in at 0.4s (t=1s frame), but nothing else happens until copy at 3.0s. The 'landing' beat at 15.5s never contacts the ground: at t=16s the flake sits at y=0.79 while the soil line is y=0.82, so there is no impact, no squash, no consequence. The sprout that is supposed to pay off the title is invisible: at t=19s the frame shows only the flake, and no sprout is ever legible in the keyframes (t=19s frame)."
+    },
+    "SCRIPT": {
+      "score": 5,
+      "evidence": "Lines are fluent Persian and correctly short (5, 2, 3, 5 words), each on screen 2.6-3.6s. But lines 3 and 4 say the same thing twice: «…بهار می‌شود» (16.0-18.6s) and «از یک دانه، یک بهار» (18.2-20s) - the closing line restates instead of adding information."
+    },
+    "VISUAL": {
+      "score": 4,
+      "evidence": "Three layers technically exist (gradient sky, light wedge, snow ground) but the 'light' is a hard-edged polygon: at t=1s and t=8s a straight boundary runs from top-left to bottom-centre with no falloff - it reads as a paper cut-out, not light. No grain, no vignette, no texture anywhere. The middle third of the frame is empty and the subject (flake, ~100px) is under 10% of the frame width."
+    },
+    "MOTION": {
+      "score": 4,
+      "evidence": "One easing family only (ease.inOutSine) on every move: flakeX/flakeY/camZoom/camX all use it (film.v18.html lines 55-58). The camera is a single monotone zoom 1.00->1.16 over 15s (t=1s vs t=12s frames are near-identical in scale). No stagger, no anticipation, no follow-through; the 'landing' has no contact deformation."
+    },
+    "TYPO": {
+      "score": 3,
+      "evidence": "Body copy is 52px = 2.7% of frame height and the only 'hero' is 120px = 6.3%, against the skill's own token (hero >= 12% of 9:16 height = 230px): a casual viewer reads this as caption text, not design. Two copy lines overlap on screen: at t=12s «هر دانه‌ای یک مسیر دارد» is still ~35% visible under «یک دانه…», and at t=19s «…بهار می‌شود» sits on top of «از یک دانه، یک بهار». Root cause: fade-outs were written as prog(t, t1-0.4, t1), but PA.prog's third argument is a DURATION, so the fade never completed."
+    },
+    "AUDIO": {
+      "score": 6,
+      "evidence": "Bed + 12 cues, measured -14.0 LUFS integrated, true peak -3.8 dBTP, last 0.25s peak -68.98 dBFS, max 2 simultaneous audible cues (output/clip-01/verify.json). Ordinary but correct: the mix is clean and nothing is buried. One event ('bed-start', type ambient) had no rule and was dropped silently (verify.json events_without_rule)."
+    },
+    "SYNC": {
+      "score": 6,
+      "evidence": "Every cue lands at delta 0.0 ms on its contact frame (verify.json offset_table). Copy enters at 3.0s / 11.5s / 16.0s, all on the 0.5s beat grid; the hero enters at 18.2s, which is 0.2s off the grid (18.0 / 18.5)."
+    },
+    "TECH": {
+      "score": 8,
+      "evidence": "1080x1920 @30fps, yuv420p, 600 frames, 20.000s, 1.58 Mbps, keyframe every 60 frames (2.0s), qc-check found 0 black and 0 freeze frames, audio AAC 48k stereo at -14.0 LUFS. Points off for the first render of this clip being a flat non-film (see C1-09) - the delivery only became valid after the capture pipeline was fixed."
+    },
+    "OVERALL": {
+      "score": 4,
+      "evidence": "Watching the keyframes in order (t=1,4,8,12,16,19) the piece reads as a first draft: a small snowflake drifting in front of a hard light wedge, with caption-sized text and two lines colliding at the end. It is coherent but not yet a designed film."
+    }
+  },
+  "average": 5.0,
+  "issues": [
+    {
+      "id": "C1-01",
+      "severity": "high",
+      "timestamp": "8.0s / 19.0s",
+      "description": "Copy is set far below the skill's own type tokens: body 52px (2.7% of height), the only hero-sized line 120px (6.3%) against a 12% minimum.",
+      "root_cause": "SKILL.md states the hero/body ratio as a token, but nothing in the template or the QC scripts turns it into a number that can fail; the film was authored by eye at whatever size looked 'fine' on a 1080px canvas.",
+      "skill_change": "film-template/film.html now derives hero/body from the layout tokens (hero = 0.12*H) and references/motion.md gains a typography section; qc-check reports type size as a checklist item.",
+      "status": "open"
+    },
+    {
+      "id": "C1-02",
+      "severity": "critical",
+      "timestamp": "11.5-12.4s, 18.6-19.6s",
+      "description": "Two copy lines are visible at once, overlapping in the same band (t=12s and t=19s frames).",
+      "root_cause": "Fade-outs were written as prog(t, t1 - 0.4, t1) assuming the third argument is an end time; PA.prog(T, start, duration) takes a DURATION, so the out-fade ran at 1/16 speed and never finished. There is also no build-time check that two lines cannot coexist.",
+      "skill_change": "Added PF.win(t, start, end) to lib/pa-film.js (unambiguous window) and PF.typeQueue(), which throws on overlapping copy windows at load time. references/motion.md documents the prog() trap explicitly.",
+      "status": "fixed"
+    },
+    {
+      "id": "C1-03",
+      "severity": "high",
+      "timestamp": "0-15s",
+      "description": "The light shaft is a hard-edged polygon: a straight, fully saturated boundary with no falloff on either edge.",
+      "root_cause": "references/palettes.md described light as a colour, not as a construction; nothing said a beam needs a soft cross-fade, so the cheapest shape (one filled path) was used.",
+      "skill_change": "PF.beam() in lib/pa-film.js draws a cached sprite with a gradient along the beam AND a destination-in alpha ramp across it; references/palettes.md gains the 'light is built, not filled' rule.",
+      "status": "open"
+    },
+    {
+      "id": "C1-04",
+      "severity": "medium",
+      "timestamp": "whole film",
+      "description": "No grain, no vignette, no surface texture; background is a single clean radial gradient and the middle third of the frame is empty.",
+      "root_cause": "Principle 2 asks for 'texture at low opacity' but the film template shipped without any texture layer, so every film started from bare vector fills.",
+      "skill_change": "PF.grain() (cached boiling noise tile) and PF.vignette() are now part of the kit and are applied in every clip's seek(); the template calls both by default.",
+      "status": "open"
+    },
+    {
+      "id": "C1-05",
+      "severity": "high",
+      "timestamp": "15.5-20s",
+      "description": "The seed never lands (flake stops above the soil line at t=16s) and the sprout payoff is never visible (t=19s shows no sprout).",
+      "root_cause": "Same prog() duration misuse in the sprout window (19.0-19.8 written as a window), plus the storyboard had no explicit contact point - the beat list named 'lands' but no frame where geometry touches geometry.",
+      "skill_change": "references/narrative.md now requires every physical beat to name a contact frame and the deformation that proves it; clip-02 builds the drop impact and the surface break as explicit contact frames.",
+      "status": "fixed"
+    },
+    {
+      "id": "C1-06",
+      "severity": "medium",
+      "timestamp": "whole film",
+      "description": "Every animated value uses the same easing (inOutSine); the camera is a single monotone zoom, with no stagger or anticipation.",
+      "root_cause": "references/motion.md listed easing jobs but the film used a hand-rolled keyf() with one default easing for all four tracks, and nothing measured easing variety.",
+      "skill_change": "PF.motion names the jobs (enter/reveal/settle/spring/ambient/exit) and lib/pa-film.js keyframes take a per-segment easing; the checklist asks for >= 2 named easings with jobs per film.",
+      "status": "fixed"
+    },
+    {
+      "id": "C1-07",
+      "severity": "medium",
+      "timestamp": "16.0-20s",
+      "description": "The last two lines restate the same idea: «…بهار می‌شود» then «از یک دانه، یک بهار».",
+      "root_cause": "references/narrative.md had no rule about the closing line earning its place; the copy was written line by line without a final read-through as one paragraph.",
+      "skill_change": "references/narrative.md: the closing line must add information (a consequence, a turn, or a number), never rephrase the previous line; read the four lines as one paragraph before boarding.",
+      "status": "open"
+    },
+    {
+      "id": "C1-08",
+      "severity": "low",
+      "timestamp": "0s",
+      "description": "Event 'bed-start' (type ambient) was dropped: no rule exists for that type, so the intended opening pad is missing.",
+      "root_cause": "references/audio.md never listed which event types the rule table actually implements, so an unsupported type looked valid.",
+      "skill_change": "references/audio.md lists the supported types and says ambient beds come from the music track, not from cues.",
+      "status": "open"
+    },
+    {
+      "id": "C1-09",
+      "severity": "critical",
+      "timestamp": "render",
+      "description": "The full render produced a flat, non-film video (YAVG 16, uniform frame) while short frame captures of the same file looked correct.",
+      "root_cause": "Three stacked pipeline faults: (a) the bundled chrome-headless-shell's GPU/renderer process died on this machine ('GPU process isn't usable. Goodbye'), (b) Page.captureScreenshot with software compositing returned the stale surface with the canvas layer missing, and (c) capture.mjs had no CDP timeout, so the process exited leaving the previous (black) mp4 in place and exit code 0.",
+      "skill_change": "capture.mjs now: tries system Chrome/Edge before the bundled shell, health-checks each candidate with a timed Page.enable, time-boxes every CDP call (20s), deletes the output on abort, preloads @font-face families, uses a compositor barrier before each screenshot, and gates every render with a black-frame + canvas-vs-capture luma cross-check.",
+      "status": "fixed"
+    },
+    {
+      "id": "C1-10",
+      "severity": "medium",
+      "timestamp": "render",
+      "description": "Keyframes were 8.3s apart (frames 1, 251, 501) against the skill's <= 2s token.",
+      "root_cause": "capture.mjs passed no -g/-keyint_min to x264 and x264's default put one keyframe every 250 frames; the token was never checked by any script.",
+      "skill_change": "capture.mjs encodes with -g 60 -keyint_min 60 (2s at 30fps); qc-check.mjs reports the measured keyframe interval.",
+      "status": "fixed"
+    },
+    {
+      "id": "C1-11",
+      "severity": "high",
+      "timestamp": "render",
+      "description": "A canvas-only film never loads its @font-face rules: the first renders of this clip painted Persian in a fallback face while document.fonts.check reported 'NOT matched'.",
+      "root_cause": "Fonts load lazily on text layout; a film that only calls ctx.fillText never asks the layout engine, so nothing triggered the download and nothing failed loudly.",
+      "skill_change": "capture.mjs reads the @font-face families out of the HTML and force-loads each with document.fonts.load() before the first frame, then prints the in-page check; a NOT-matched family is now visible in the log.",
+      "status": "fixed"
+    }
+  ],
+  "notes": "Baseline clip of the 'یک دانه' series. It was authored before the craft kit existed, which is exactly why it is scored first: it defines the issues that clips 2-5 have to answer."
+}

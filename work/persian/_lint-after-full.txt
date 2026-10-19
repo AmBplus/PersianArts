@@ -1,0 +1,43 @@
+
+=== work/persian/htmlfilm/s10-factory-parsa/film.html
+  duration 20.00 s  |  render region lines 1050-1071
+  PASS  P01  purity: requestAnimationFrame for animation state
+  PASS  P02  purity: wall-clock time (Date.now / performance.now) in render
+  PASS  P03  purity: unseeded Math.random in render
+  WARN  P04  purity: remote asset URL  [work/persian/htmlfilm/s10-factory-parsa/film.html:570]
+        - warn line 570: XML namespace (not fetched) — films must be self-contained, local assets only: http://www.w3.org/2000/svg
+  PASS  P05  purity: scroll-driven API
+  WARN  T01  type: letter-spacing on Persian text  [work/persian/htmlfilm/s10-factory-parsa/film.html:527]
+        - warn line 527: letter-spacing present (Latin-only tracking is legal; confirm no Persian run passes through this rule) — tracking breaks Persian letter joins (PERSIAN-LOCALIZATION-LESSONS.md)
+  PASS  T02  type: text stroke
+  PASS  T03  type: per-character split of Persian
+  PASS  T04  type: Persian numerals not wrapped in an LTR isolate
+  PASS  D01  design: declared token layer (CSS custom properties or one palette object)
+        · CSS custom properties: 17 | largest palette object keys: 0
+  PASS  D02  design: key light declared in the film header
+        · key light at line 19
+  PASS  D03  design: type roles, at least two differing in WEIGHT
+        · distinct text weights: [12, 19, 22, 34, 36, 100, 500, 600, 900] (n=9, threshold 2) | named type roles seen: 9 [deck, display, headline, label, legal, numeral, button, subtitle, body]
+  PASS  K01  kit: usage counts and density
+        · N=20.0s | counts: fx/shader 3, spring 6, outBack/outExpo 3, ltr()/iso 6, camera/pathFollow/hop 1, wobble/drawOn 0 | total 19 call(s), 5 distinct families [fx, spring, overshoot, isolate, camera]
+  PASS  K02  kit: secondary action (spring / overshoot)
+        · spring 6 + overshoot 3
+  PASS  K03  kit: shader effect used via story
+        · fx/shader references: 3
+  SKIP  X01  text: declared rectangle overlap (source proxy, NOT pixels)
+        · no parseable declared text rectangle (found 2 per-ratio table(s), 0 entries carrying both `size` and `x`) — nothing to compare, a PASS here would be vacuous
+  SKIP  C01  persian-safety: tracking / per-char split / text-transform / stroke on Persian (card lane)
+        · N/A (lane: html-film): the html-film lane evaluates the same rules as T01/T02/T03 on the single film file
+  SKIP  C02  determinism: no unseeded Math.random() / Date.now() / performance.now() (card lane)
+        · N/A (lane: html-film): the html-film lane checks the render region in P02/P03
+  SKIP  C03  accent discipline: distinct saturated accent hues vs budget (card lane)
+        · N/A (lane: workbench-card only): the html-film lane has no declared per-unit accent field
+  SKIP  C04  sanity: manifest duration/frame coverage + every card reference resolves (card lane)
+        · N/A (lane: workbench-card only)
+  SKIP  C05  type scale: hero type band vs the measured library bar (card lane)
+        · N/A (lane: workbench-card only): the html-film lane declares a per-ratio type table, which X01/T04 read
+
+--- summary: 1 file(s), 0 FAIL, 2 WARN, 6 SKIP ---
+    cannot see: the rendered frame, taste, lighting, hierarchy in pixels, motion.
+    PASS means "no known source pattern found", never "this film is good". bug-free != good.
+    SKIP means the check had nothing to evaluate (wrong lane or empty input), never a PASS.

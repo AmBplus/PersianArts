@@ -1,0 +1,4 @@
+file 'D:/P/project/persianArts/work/persian/src/workbench/work/persian/src/workbench/media/briefs-local/styling-probe/demo-BrandInkOpen.mp4'
+file 'D:/P/project/persianArts/work/persian/src/workbench/work/persian/src/workbench/media/briefs-local/styling-probe/demo-PaperTitleCard.mp4'
+file 'D:/P/project/persianArts/work/persian/src/workbench/work/persian/src/workbench/media/briefs-local/styling-probe/demo-GradientWordSweep.mp4'
+file 'D:/P/project/persianArts/work/persian/src/workbench/work/persian/src/workbench/media/briefs-local/styling-probe/demo-NeonTripleMarquee.mp4'

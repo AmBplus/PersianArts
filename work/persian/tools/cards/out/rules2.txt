@@ -1,0 +1,136 @@
+BTY-COMP-001 [COMPOSITION] Use a 12-column grid in 9:16 and a 16-column grid in 16:9 with 24px gutters
+   numbers: 12 columns 9:16; 16 columns 16:9; 24px gutter; margins from the envelope rule
+   do: Put the grid in the per-ratio layout table and place every element on a column edge
+   anti: Free-placed elements that never line up between scenes
+BTY-COMP-002 [COMPOSITION] Hold the hero at or above 25 percent of frame height in 9:16 and 22 percent in 16:9 at the hero moment
+   numbers: hero >= 25% of frame height in 9:16; >= 22% in 16:9; measured on the text or the subject, never on the largest decorative element
+   do: Measure the hero's height fraction on the still at its hero moment
+   anti: A prop at roughly 8% of frame area in the middle of a vast dark wall
+BTY-COMP-003 [COMPOSITION] Change framing, background family, entrance direction or hero scale band between every pair of consecutive scenes
+   numbers: 4 variety axes; 0 shared values on any axis between consecutive scenes; >= 3 framing families per film
+   do: Diff consecutive rows of the scene table on all four axes before building
+   anti: s10: seven frames of one identical stage with a different small object in the middle
+BTY-COMP-004 [COMPOSITION] Give the hero a floor and the frame a foreground in every scene
+   numbers: hero >= 25% height; 1 foreground occluder; 1 named negative-space form
+   do: Fill the frame from the layout table outward; put the foreground in first
+   anti: A hero at 20% of frame height with the bottom 40-45% an empty striped floor
+BTY-COMP-007 [COMPOSITION] Design the end card as its own artefact with its own grid, hierarchy and safe area, built after the rest of the film
+   numbers: own grid, own y ladder, own safe area; 0 text on text; screenshot-clean at 100%
+   do: Build the end card last, from its own layout table entry, still inside the film's page hue family
+   anti: An end card with a headline over the certificate's own text, a ribbon and seal over the border, and two flat pills
+BTY-COMP-008 [COMPOSITION] Model the end card on the batch's best frame: a real lockup with logo, headline, subtitle, CTA, legal row and product
+   numbers: lockup = stroked hexagon mark + headline + subtitle + one signal CTA + legal row + product; 3-step hierarchy in that order
+   do: Lay the lockup on its own grid with one signal colour against a near-black field
+   anti: An end card that is two-thirds empty with a stray decorative ring
+BTY-COMP-009 [COMPOSITION] Keep a decorative band, stripe or ribbon out of any legal or ISO row
+   numbers: 0 overlaps between decorative bands and legal rows; enforce with a region check
+   do: Compute legal-row boxes first and forbid decoration intersecting them
+   anti: The hazard-stripe band running through the ISO certification row
+BTY-COLOR-003 [COLOR] Hold the area budget at roughly 60% page, 30% surface, 10% accent plus signal across the film
+   numbers: 60/30/10 by screen area across the film; accent plus signal <= 10%
+   do: Measure the budget on a contact sheet of the film, not per scene
+   anti: Five scene colours each given equal area plus a fifth end-card world
+BTY-COLOR-004 [COLOR] Budget the signal colour at a maximum of 2 uses per scene and 1 per frame
+   numbers: <= 2 signal uses per scene; <= 1 per frame; signal is a different hue from accent
+   do: Count the signal instances per scene in the scene table before building
+   anti: Signal orange used on five objects in one frame so it stops signalling
+BTY-COLOR-008 [COLOR] Name exactly one hero-contrast frame per film in the header
+   numbers: 1 named frame where contrast, scale and colour all peak; ideally the end card
+   do: Write the hero-contrast frame id into the header and build the film toward it
+   anti: Every scene at maximum saturation so no scene peaks
+BTY-COLOR-010 [COLOR] State the accent budget for each scene in the scene table
+   numbers: accent plus signal area per scene stated as a percentage; target <= 10% of frame area
+   do: Add an accent-budget column to the scene table and measure it on the still
+   anti: An accent that quietly grew to cover a third of the frame
+BTY-COLOR-012 [COLOR] Use a duotone or gradient map to unify imagery into one designed palette
+   numbers: 2 hues; grayscale contrast 1.1; one multiply layer for highlights, one screen layer for shadows
+   do: Grayscale the layer, then multiply a shadow hue and screen a highlight hue
+   anti: Teal-and-orange duotone at full saturation
+BTY-DEPTH-009 [DEPTH] Never ship a scene that is more than 60% blank field
+   numbers: blank-field share <= 60% of frame area in every scene; measure it on the still
+   do: Open the scene with content already present; add a foreground plane rather than shrinking the layout
+   anti: ~90% and ~95% blank cream scenes back to back
+BTY-TEXTURE-003 [TEXTURE] Build a mesh-gradient background from 3-6 soft radial blobs on a dark field
+   numbers: 3-6 layers; each radial gradient 50-70% extent at a moving centre; restraint is two hues plus one accent
+   do: Stack radial-gradients in one element and move each layer's centre from noise(index*7.3 + 0.15*p)
+   anti: A saturated rainbow mesh used as a background
+BTY-TEXTURE-006 [TEXTURE] Keep bloom cheap: a quarter-resolution bright pass with two mips, added back
+   numbers: quarter-res bright pass; 2 mips; add back; not 5 mips and kernel size array [6,10,14,18,22]
+   do: Downsample, threshold at ~0.7, blur twice at quarter res, add
+   anti: A full-res UnrealBloomPass-class bloom on a 1080x1920 frame
+BTY-LIGHT-011 [LIGHT] Scale every emissive treatment as a function of its host object size
+   numbers: hr *= clamp(h/320, 0.42, 1.15); alpha *= clamp(h/420, 0.40, 1.15)
+   do: Multiply glow radius and alpha by the host's height ratio inside the object's own draw call
+   anti: Three identical orange rings on three mini billets at once
+BTY-LIGHT-015 [LIGHT] State one light temperature per film and derive every gradient, glow and shadow tint from it
+   numbers: 1 temperature token per film; every gradient stop is a tint of it; cool fill <= 25%
+   do: Put the key hue in the header and compute all ramp stop colours as HSL shifts of it
+   anti: Warm amber field cut against a cold blue end card world
+BTY-MATERIAL-005 [MATERIAL] Emissive materials get a two-stop glow with true falloff plus a hot core
+   numbers: core alpha 0.85-1.0 at <= 0.35x radius; falloff to 0 at 1.6-2.2x radius; <= 1 per frame
+   do: Draw the body, then a radial gradient in lighter blend, then a 2-3px near-white core
+   anti: A flat orange rectangle with no glow at all
+BTY-MATERIAL-006 [MATERIAL] Give a frosted glass panel a rim and an inner shadow, not a flat rounded rect
+   numbers: frost alpha 0.10-0.22; inner shadow 8-14% L* darker at the top edge; rim 1-2px at 60-80% alpha
+   do: blur a copy of the background through the panel rect, then draw the rim and an inner top shadow
+   anti: Identical flat rounded rects with the same soft drop shadow stacked at random angles
+BTY-TYPE-001 [TYPE] Use eight named type roles: display, headline, deck, body, label, legal, numeral, button
+   numbers: 8 roles; display 96-132px weight 800-900; headline 56-72px 600-700; deck 34-40px 300-400; body 28-32px 400; label 20-24px 500-600; legal 16-18px 300; numeral weight 700-800 at 1.4x its element; button 30-34px 600
+   do: Define one PA.type object per ratio with role, size, weight, lineHeight, colour and tracking
+   anti: A single Vazirmatn face at 2-3 sizes carrying every word in the film
+BTY-TYPE-002 [TYPE] Force two-axis contrast: at least one adjacent role pair differs by >= 200 weight units AND >= 1.5x size
+   numbers: weight delta >= 200 axis units; size ratio >= 1.5 between adjacent roles
+   do: Pair label 600/22px with headline 800/66px, plus a rule device
+   anti: Headline and sub-line the same white and the same weight, differing only in point size
+BTY-TYPE-005 [TYPE] Express every type size in px against a 1080 short-axis reference, so both ratios get identical optical size
+   numbers: size = factor * min(W,H); 9:16 min = 1080, 16:9 min = 1080; ladder 20:24:40:72:120:168:260
+   do: Compute sizes once from min(W,H) and reuse the same numbers in both ratio branches
+   anti: Bigger type in the landscape cut because the canvas is wider
+BTY-TYPE-006 [TYPE] Keep the 1080-reference modular ladder; never jump 3+ steps inside one frame's visual group
+   numbers: steps 1 : 1.2 : 2 : 3.6 : 6 : 8.4 : 13 (20/24/40/72/120/168/260); max 2 steps apart within a group
+   do: Read the size from the ladder table rather than choosing a number per scene
+   anti: A 260px display beside a 24px label with nothing between
+BTY-TYPE-010 [TYPE] Give the label role a graphic device: a short accent rule above the label, right-aligned to its measured width
+   numbers: rule height 3-4px; width = measured label width; gap 10-14px; colour is signal or accent, never the body colour
+   do: ctx.measureText(label).width then fillRect above it, inset by one pixel so it reads as a rule and not a bar
+   anti: Label carried by colour alone with no device
+BTY-TYPE-011 [TYPE] One display line per film carrying the claim
+   numbers: 1 display block per film; 1-3 words; 96-132px at 1080 reference
+   do: Reserve the display role in the header for the single claim and give every other line a smaller role
+   anti: Every scene title set at display scale
+BTY-TYPE-017 [TYPE] Set line-height >= 1.4 for Naskh display, >= 1.6 for body, >= 1.9-2.2 for Nastaliq
+   numbers: 1.4 display Naskh; 1.6 body; 1.9-2.2 Nastaliq; a Persian mask container needs the full line box >= 1.5em
+   do: Put lineHeight in the type role table, never a Latin default
+   anti: Dots of پ چ ژ and the descender of ی clipped at line-height 1
+BTY-TYPE-018 [TYPE] Push underlines and overlines further from the baseline than the Latin offset
+   numbers: offset >= 1.35x the Latin offset; clearance >= 6px at 1080 from the measured descender bottom
+   do: Measure the ink box of the actual string and place the rule below it
+   anti: A Latin-tuned underline floating 40px low (recorded in brand-ink-open)
+BTY-TYPE-026 [TYPE] Put every text block on one 8px baseline grid shared by all scenes
+   numbers: 8px baseline grid; all text block y positions are multiples of 8
+   do: Round every text y in the layout table to a multiple of 8 and reuse the table across scenes
+   anti: A caption block that drifts between two scenes instead of holding its baseline
+BTY-FA-004 [FA] Never give a per-character or per-word Persian span a non-zero margin, padding or border
+   numbers: margin 0, padding 0, border 0 on any inline span inside a Persian word
+   do: Use the parent's letter positions or a transform on the whole run; do not pad the span
+   anti: Padded per-character spans splitting a Persian word into disconnected letters
+BTY-FA-009 [FA] Transform the ancestor element, never the individual glyph, when scaling Persian
+   numbers: scale/rotate/translate/skew/opacity/blur all safe on an ancestor; per-glyph transform is not
+   do: Wrap the run in a group and apply ctx.translate/scale before drawing the whole run
+   anti: Scaling single glyphs and watching the dots drift
+BTY-FA-020 [FA] Keep a mask container at least 1.5em tall so a Persian reveal never clips dots or descenders
+   numbers: mask height >= 1.5em for Naskh (>= 1.9em Nastaliq); inner run translateY 0.3em to 0
+   do: Size the overflow wrapper from the measured line box, not from a Latin value
+   anti: A masked Persian line whose dots are sliced flat at the top
+BTY-FA-021 [FA] Never scale a Persian line below 1.0 as a reveal when its mask is tight
+   numbers: reveal scale band 1.04 to 1.00; never below 1.0
+   do: Animate the mask position, not a downward scale, when the line box is tight
+   anti: A settle that shrinks a Persian headline until the yeh tail is cut
+BTY-FA-026 [FA] Re-measure Persian text after document.fonts.load(); a mount-time measurement uses the fallback font
+   numbers: await document.fonts.load() before any measureText; 0 hard-coded Latin character-width grids
+   do: Load fonts, then measure, then build the layout table
+   anti: A layout built from fallback-font widths that shifts when the real face loads
+BTY-FA-030 [FA] Never use hand-drawn dot-matrix pixel Persian digits
+   numbers: 0 pixel-font Persian digits; rasterise the real font or abandon the treatment
+   do: If a pixel register is wanted, render the real Persian glyph and posterise it, or drop the numbers
+   anti: A dot-matrix ۲ read as an Arabic ٣

@@ -1,0 +1,19 @@
+{
+  "pack": "sci-fi-sounds",
+  "source_page_url": "https://kenney.nl/assets/sci-fi-sounds",
+  "download_url": "https://kenney.nl/media/pages/assets/sci-fi-sounds/6b296f9ecf-1677589334/kenney_sci-fi-sounds.zip",
+  "licence": "CC0 1.0 Universal (public domain dedication)",
+  "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "author": "Kenney (kenney.nl)",
+  "attribution_required": false,
+  "download_date": "2026-10-12",
+  "file_count": 73,
+  "extracted_entry_count": 77,
+  "extracted_bytes": 6009542,
+  "licence_files_in_zip": [
+    "License.txt"
+  ],
+  "rejected_zip_entries": [],
+  "zip_file": "kenney_sci-fi-sounds.zip",
+  "audio_bytes": 6008825
+}

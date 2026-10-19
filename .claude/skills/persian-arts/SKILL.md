@@ -1,85 +1,113 @@
 ---
 name: persian-arts
-description: The ONLY skill to use in the PersianArts repo for any motion graphic, promo, teaser, reel, social cut or Persian/RTL animated video request, or when the user types /persian-arts. Thin TODO-driven orchestrator: intake, goal memory, then one internal craft skill per step (director, writer, copy-editor, art-director, motion-editor, technical, motion-designer, sound, qc). Do not use any other motion, video or Persian skill here.
-skill_version: 2.15
+description: Motion-graphics studio skill for Persian/RTL animated videos in this repo — use for any motion graphic, promo, teaser, reel, social cut, or Persian animated video request, and whenever the user types /persian-arts. Produces motion (not stills): story → script → storyboard → image/motion → sound, with measurement-based QC. It is the ONLY motion/video skill here; do not use persian-motion-director or any other director/video skill.
+skill_version: 3.0
 ---
 
-# persian-arts (orchestrator)
+# persian-arts — motion-graphics studio (redesigned for motion & narrative)
 
-You are the thin TODO RUNNER of the persian-arts studio: you own intake, order of steps, memory and the checklists; you are NOT a craft decider (the craft skills decide); you refuse to edit files yourself, to start sound without the owner's word, and to start a 4th version unasked.
+## When to activate
+Any request to *make, improve, or evaluate* a Persian/RTL motion graphic, promo, teaser, reel, social cut, or animated video — any duration, any ratio. Output is a **motion graphic** (movement + narrative), never a static image. If a user-level video skill auto-triggers, stop and use this one.
 
-## CRITICAL rules
-1. Lead delegates, never edits/builds/reads sources; Haiku for class M; independent fresh Sonnet for QC. Every order ends "no human is present, do not ask questions"; never ask the owner for routine steps; on "blocked" try two other paths.
-2. VERSION CAP: at most THREE versions per film (v1 first build, v2 one fix round, v3 final) unless the USER asks in chat for a next one (todo `user_requested_version`). Improvement mode improves the SKILL, not the film.
-3. One fix round, then SHIP / SHIP WITH NOTES (LOOP-POLICY.md). Scores inform, never block.
-4. Sound is deferred by default; only the owner's explicit word starts it ("the design looks better" is not a go-ahead).
-5. Goal first: every scene traces to goal.objective / desiredAction; EVENTS constant before the build; logo keeps own colours, transparent, never white/plate.
-6. Commits: ONE-line message, no Co-Authored-By, via checkpoint.ps1. Client real name never in tracked files (label only).
-7. Classify every defect (accidental / systematic / misunderstanding / rule-conflict), fix systematic ones at the source, log in docs/motion/LESSONS-LEDGER.jsonl.
-8. Say at start: "persian-arts active; other motion skills not used". Never use/imitate persian-motion-director, commercial-motion, motion-reel, animation-studio, video-shotcraft, anidoodle, codesign:launch-video/animate, plugins/persianarts-motion. The craft skills `persian-arts-*` are INTERNAL.
-9. DEFAULT LANE = html-film (owner decision 2026-10-13): every film is built as ONE self-documenting file film.html + capture.mjs seek-step capture; the Remotion lane only for heavy effects not yet proven in html-film (none proven heavy yet; the feasibility lab is pending). Section 3b.
-10. TIME BUDGET (owner rule 2026-10-13): ONE budget per film from the owner's message: target 10, cap 20 minutes, fixes included; scope freeze (new feedback = next version unless the owner extends); ONE persistent studio worker for the whole film (SendMessage continue, never a new agent per round); Haiku never for craft (mechanical only); no parallel side tasks; call `pa time start/mark/status` at every step (`pwsh -File work/persian/tools/pa.ps1 time start <label> -BudgetMinutes 20`; marks: intake, treatment, build, capture, sound, qc, fix, deliver, wait-lead, wait-owner, scope-change); at half budget decide ship-or-narrow; overrun = report to the owner at once, and `pa time postmortem <label>` at the end.
-11. CHECKS (mandatory, 2.5; lessons L-056..L-066): after sound run `pwsh -File work/persian/tools/pa.ps1 audio-check <final.mp4> --transitions t1,t2` (RMS jump <= 3 dB at cuts, no gap > 0.5 s below -40 dB, tail < -50 dBFS, true peak <= -1.0, -14..-15 LUFS); look at `pa strip <final.mp4> <t0> <t1> --every 3` around EVERY transition in BOTH ratios (stills come from the FINAL mp4 after the last render, never the silent preview); TV order: convert the SILENT video to TV-safe first, mux the audio ONCE, true peak verified after the last step; `pa deliver` compresses by default (CRF 20-23 with SSIM guard, `--no-compress` to skip, `pa compress <paths>` for existing outputs). Only an event with role=final (or ends_film:true) ends the music bed; event types must exist in the rules before the build.
-12. ONE WORLD and PEERS: the finale shares palette, background family and typography with the rest (a bright end-card world reads as another film; the persistent element carries across, outgoing/incoming overlap 8-12 frames, no empty beat); peer logos at equal height/weight on one row, same baseline and spacing, real trimmed assets only (missing asset = labelled typographic stand-in and tell the owner which file to send); contrast >= 4.5:1 body, >= 3:1 large, no blue on blue, scrim behind text over photos. DIAGNOSE FIRST: "this part feels like another world" = measure music AND picture before changing anything. Next-version loop: owner feedback -> frozen scope -> ONE studio order -> deliver.
-13. GIT-FIRST and PORTABLE (owner rule, 2.7): everything lives in git or is restorable by one command; nothing depends on this machine (no absolute paths: use repo-relative paths, `PA_ROOT`, `PA_QH`; `qh` is optional, without it use the Agent/studio flow). Every film/task ends with: assets used are in git (kit, fonts) or in the encrypted vault (`pa vault pack`, client material only, passphrase from `PA_VAULT_PASS`, never in a file); tools in git; `pa todo done <id>`; `pa meter task <title> -Kind <k> -Worker <w> -Model <m> -Minutes <n> -Result done|partial|failed -Outputs a,b` (each studio/worker appends one line to docs/motion/ledger/tasks.jsonl; films also `pa time`); checkpoint commit; `pa deliver` (own finals: `pa deliver track`). The lead orders `pa todo done` + a checkpoint after EVERY completed task and keeps docs/motion/TODO.md alive. On a new machine: `pa bootstrap`, `pa doctor`, `pa sync` first (START.md, docs/motion/PORTABILITY.md).
-14. METRICS EVERY VERSION (2.8): after each version the studio records in the film's VERSION.json `metrics` block (optional object in contracts/schemas/version.schema.json): `pa time` marks, `pa audio-check` (`--loop` for loops), `pa loop-check` (when the story is a loop: `build_sound.py --loop`, seam gate in FILM-GATES), `pa pacing` with the REAL inputs (`--cuts events.json --track <kit id>`: never trust detection alone, it fires 0.1-0.3 s off on wipes), gates (`--no-logo` when there is no brand asset; `pa deliver --gates` passes it from VERSION.json `logo:false`), quality notes; `pa metrics` aggregates tasks.jsonl. The skill is updated at the end of EVERY version with the lessons (retro: ledger lines + rules) and committed at once (checkpoint). `pa meter task` parses real parameters (-Kind -Worker -Model -Start -End -Result -Outputs -Note); `pa meter check` validates tasks.jsonl. Checkpoint with a path list MUST run in-process (`& work/persian/tools/checkpoint.ps1 -Only -Paths $paths -Message "..."`); `pwsh -File ... -Paths` flattens the array and stages only the first path (L-085).
-15. SELF-INSTALLING AND PORTABLE (2.9): the skill never depends on this machine. STEP 0 ENVIRONMENT (before intake, every run, no questions): the studio runs `pwsh -File work/persian/tools/pa.ps1 doctor --quiet`; on any FAIL or fixable WARN it runs `pa bootstrap` automatically and re-checks; if the repo is behind (`git status -sb`) it runs `pa sync` (ff-only pull). A missing asset is restored from git (kit: `git checkout -- sound/library/kit`), the vault (client material: `pa vault unpack`) or the documented script (full SFX library: sound/tools/restore_library.ps1 -Full), never silently skipped. New machine: `git clone`, `install.ps1` (Windows) or `bash install.sh` (macOS/Linux), then /persian-arts; `pa install-skill --user|--agents|--project` installs the skill for OTHER projects and `pa install-skill --check` compares versions; tools find the repo via `PA_ROOT` or `~/.persian-arts/root`. Every asset class is listed in docs/motion/ASSETS-IN-GIT.md and verified by `pa assets-check` (part of `pa doctor`). Manual by design: git SSH auth, optional API keys, PA_VAULT_PASS.
+## Design principles (non-negotiable)
+1. **Motion & narrative first.** The visual toolkit (typography/lockup, shape, light, texture, data, camera) exists to serve *movement and story*. A lockup is one tool among many — never the spine of the skill or the film.
+2. **Depth over flatness.** Every scene has ≥ 3 depth layers (bg/mid/fg), a light direction with shadow/rim, and texture at low opacity. Flat single-plane scenes are a defect.
+3. **Motivated motion.** Every move has an easing with a named job, an entry/exit overlap (≥ 12 frames at scene joins), and a reason (light, gravity, attention, sound).
+4. **One world.** Palette family, type family, and a persistent element carry across all scenes; the finale shares the same world.
+5. **Persian-correct typography.** No letter-spacing on Persian; animate joined groups/words, never code points; faDigits + Ltr isolate; RTL layouts mirrored by design, not by flipping.
+6. **Evidence-based QC.** Watch and listen before scoring: extract frames, measure LUFS/true peak, spot every transition. Scores without timestamps/frames are invalid.
 
-16. STORY-LAB RULES (2.15; S01-S07, ledger L-087..L-107): (a) NEW STORY per film: own logline, protagonist/object, emotional arc and payoffs from the goal; never reuse an earlier story, `pa arc` shapes are an optional menu justified in the film.html header. (b) ONE film.html serves every ratio with a per-ratio LAYOUT TABLE (`work/persian/htmlfilm/lib/pa-layout.js`): positions, sizes and type per ratio are designed, never a crop of one ratio. (c) CAMERA MOVES, NOT CUTS: continuous worlds use `lib/pa-camera.js` (keys, pathFollow, log-space zoom; the actor stays centred and continuous across moves); camera moves are not cuts, so build_sound must not auto-whoosh them (L-089) and pacing/gates run with `--one-take` / `--scenery` instead of cut metrics (L-090, L-094, L-095). (d) PAYOFF AND BEAM EVENTS ON THE BEAT: events.json is derived from the same keyframes that drive the picture (cue offsets 0.0 ms, `pa audio-check --events` within 5 ms); rhythmic light/beam angle is driven by a beat-locked zero crossing, never free rotation (L-107); music-led films place the picture hit on the kit track drop (`pa music-drop <kit id>`), and since kit drops are soft (L-097) the impact is added by cues. (e) NO EMPTY OPENINGS: guarantee content in the first view (clouds, faint doodles, light rays) so empty-band passes (L-088, L-092, L-101). (f) MANY SHAPES: one canvas with seeded RNG and 0 DOM nodes per frame (2.13, `lib/pa-ink.js`); libs `pa-motion`, `pa-camera`, `pa-maze`, `pa-ink`, `pa-layout` have node self-tests (`lib/pa-selftest.mjs`). (g) SIZE: dense line art compresses with crf 25, level 4.1, maxrate 14M; `pa compress` copies AAC audio up to 200 kbps so the true peak is untouched (L-103, L-104, L-106).
+## Tokens (defaults — override in the brief)
+- **Ratio 9:16 1080×1920** (also 16:9 1920×1080 as a separate composition, never a crop), 30 fps, H.264, ≤ 2s keyframe interval.
+- **Loudness −14 LUFS**, true peak ≤ −1.0 dBTP, tail < −50 dBFS.
+- **Type, as numbers (not adjectives):** hero = **0.12 × H** (230px at 9:16) · body = 0.45–0.55 × hero (104–126px) · sub-line = 0.38 × hero. Max 2 primary sizes per film. Every line is measured and shrunk to fit `W − 2×marginX` (never letter-spaced, never squeezed). Fonts from `assets/fonts/` (Vazirmatn, Estedad, Amiri, Lalezar).
+- **Colour:** 60/30/10 base/secondary/accent; accent reserved for the payoff; contrast ≥ 4.5:1 body, ≥ 3:1 hero.
+- **Easing jobs:** enter outCubic 0.35–0.55s · reveal outExpo 0.5–0.9s · settle outBack 0.3–0.45s · impact spring d 0.35–0.6 · ambient inOutSine.
+- **Scene joins:** ≥ 12 frames overlap (light-wipe / shape-morph / match-cut / camera-through / depth-dissolve).
 
-## 1. Intake (docs/motion/INTAKE.md)
-PARSE FIRST: take every answer in the message (GOAL first: objective, audience, desiredAction+CTA; label, ratios, duration, genre, assets, copy, music). Never re-ask; "you decide" = zero questions. Ask only what is missing, ONE batch (Claude Code: one AskUserQuestion, at most 4 of Q0 GOAL, Q1 ratios, Q2 genre, Q4 assets), hard cap 2 rounds. Write media/briefs-local/<label>/brief.json (brief.schema.json), print assumptions (goal first).
+## Craft kit — `work/persian/htmlfilm/lib/pa-film.js`
+Every film loads `pa-motion.js` + `pa-film.js` and uses `window.PF`. Do not re-implement these:
+- `PF.win(t, a, b)` — **use this for every window.** `PA.prog(T, s, d)` takes a *duration*; passing an end time makes fades finish late (this shipped overlapping copy in clip 1 — C1-02).
+- `PF.typeQueue(lines, {gap: 0.4})` — throws at load if two copy lines can be on screen together. No film ships without it.
+- `PF.drawLine({text, x, y, px, weight, color, alpha, t, t0, stagger, maxW})` — word-level reveal (never per-character: it breaks Persian joins), RTL from the right, auto-shrinks to `maxW`.
+- `PF.fitPx` — the size-only fitting used by `drawLine`.
+- `PF.motion` — named jobs: enter / reveal / settle / spring / ambient / exit. ≥ 3 distinct jobs per film.
+- `PF.beam` — a light shaft with a gradient along it and an alpha ramp across it (never a filled polygon — C1-03).
+- `PF.grain` + `PF.vignette` — called every frame before type (C1-04). Grain is pre-baked into 3 full-frame layers; do not re-fill the canvas with a pattern per frame (it triples render time).
 
-## 2. Goal memory and TODO
-Create memory/goal-memory.md (GOAL-MEMORY.md) and copy docs/motion/todo.template.json to media/briefs-local/<label>/todo.json. MODE `single-agent` (default): ONE named persistent STUDIO agent (Sonnet, SendMessage) wears all craft hats; `cast` only for large films. Opus ADVISOR (ADVISOR.md) max 3 consults. Cache order append-only: craft skills, goal memory, TODO, current step. Class S: read memory first, append decisions; class M: 5-line header, numbers only.
+## Render pipeline — `work/persian/htmlfilm/capture.mjs`
+```
+node work/persian/htmlfilm/capture.mjs --html <film.html> --ratio 9x16 --out <file.mp4> [--draft] [--frames N-M] [--still t1,t2 --stills-dir <dir>] [--shot surface|canvas] [--browser <path>] [--no-optimize]
+```
+- Browser order: `--browser` → `PA_CHROME` → system Chrome → Edge → bundled `chrome-headless-shell`; each candidate is health-checked with a timed `Page.enable`, because a browser whose GPU/renderer is dead accepts the socket and answers nothing (C1-09).
+- Every CDP call is time-boxed (20s, `PA_CDP_TIMEOUT_MS`); a failed render deletes its output instead of leaving a stale mp4.
+- `@font-face` families are force-loaded before frame 0 (a canvas-only film never triggers font loading on its own — C1-11).
+- Gate before the long encode: canvas luma at 3 times (all black ⇒ abort) **and** captured-frame luma vs canvas luma (a stale compositor surface looks plausible until measured — C1-09).
+- Encodes with `-g 60 -keyint_min 60` (2s keyframes — C1-10).
+- `--shot canvas` exports `canvas.toDataURL()` instead: pixel-exact, but a single PNG over ~4MB cannot come back through CDP (`returnByValue` times out), so keep it for small/draft frames only.
 
-## 3. Run the TODO, one craft skill per step
-STEP 0 (every lane): env = `pa doctor --quiet` (+ `pa bootstrap` / `pa sync` on FAIL or behind; rule 15). LANE html-film (default) steps: env -> intake -> memory-init -> treatment -> build -> capture -> sound (owner's word) -> qc -> fix-round -> deliver -> RETRO (see 3b). Remotion lane steps (lane remotion only): intake -> memory-init -> director -> writer -> copy-editor -> art-director -> animatic -> g3-check -> build -> motion-fixes -> render -> sound (deferred) -> qc -> fix-round -> deliver -> RETRO (last). Set the board, call the craft skill by NAME (Skill tool / $name); a worker order says "read .claude/skills/<craft>/SKILL.md, then goal-memory.md, then do the step". Short cut first (12 s, 9 stills per ratio).
 
-## 3b. html-film lane (default)
-- deliver step: `pa deliver <film> <version>`, then report the `output/LATEST/<film>-<ratio>.mp4` path.
-One file `work/persian/htmlfilm/<label>/film.html` (or `films/<label>/` if the architecture slice exists; read docs/motion/ARCHITECTURE.md) whose TOP COMMENT BLOCK IS THE PLAN: GOAL, logline, director's treatment, copy (writer + copy-editor result), art direction (palette, type, motion language), scene table (beats and seconds), EVENTS contract (payoff events + intended sound cue), music track/BPM/T0, FIX LOG (round, what changed).
-- Contract: `window.film.seek(t)` is a pure function of t (no wall-clock, no CSS animation); fonts local and relative; `?capture=1` hides the player.
-- Capture: `node work/persian/htmlfilm/capture.mjs --html <film.html> --out <silent.mp4>`; stills at EVENTS with `--still t1,t2,... --stills-dir <dir>` (9 stills, all looked at). Same as `pa render -Lane html`.
-- Sound: only on the owner's word, per the sound step rules (events.json + cues-resolved, offsets <= 5 ms).
-- QC: independent fresh Sonnet with run-gates `--src film.html` (FILM-GATES.md html-film applicability note).
-- Fix: ONE round (v2) in the SAME file as film.v2.html or a marked FIX LOG section; never a new architecture.
-- TODO steps: intake -> memory-init -> treatment (director + writer + copy-editor + art-director written INTO the film.html header, one studio pass) -> build (film.html) -> capture (silent + 9 stills, looked at) -> sound (owner's word) -> qc -> fix-round -> deliver -> RETRO. animatic / g3-check become "stills at EVENTS".
-- Time box per film: ONE budget (target 10, cap 20 min) from the owner's message to the final files, fixes included (rule 10). `pa time` marks on the system clock, never worker labels.
-- The film is produced in ONE studio order (treatment + build + capture + sound) by ONE persistent studio worker. Context pack FIRST: the lead's intake worker writes `media/briefs-local/<label>/film-context.md` (<= 60 lines: goal, assets with paths, copy tokens, palette/type, kit track candidates, rules, checklists, budget); the studio reads it first (ramp-up target < 1 minute).
-- Lighten BEFORE capture: avoid hundreds of DOM nodes (canvas or few layers), pre-blur photos, no heavy filters; capture ONCE per version at 8+ fps target (pencil film: png 11.5 fps, jpeg 18 fps). Format: png for FINAL, `--draft` (jpeg q97) for previews only (PLAYBOOK-RENDER.md measurement). Checks on low-res (50%) stills.
-- STORY FIRST (2.6, owner rule): the treatment defines a NEW story for each film from its goal: own logline, own protagonist/object, own emotional arc and payoffs (what changes from the first to the last second; what the viewer expects and gets). `docs/motion/recipes/arcs.json` (`pa arc`) is an OPTIONAL menu of 6 diverse shapes, inspiration only: using one is optional, must be justified in the film.html header, and a reference is never copied. Before building, pick the music with `pa music-pick --mood <m> --bpm 100-124 --duration <s>` and put every cut on its bar grid; pacing defaults come from docs/motion/knowledge/PACING-PROFILES.md (38 measured references).
-- todo.json `lane` field: `html-film` (default) | `remotion`.
+## Workflow (per film)
+1. **Story** → logline, protagonist/object, arc (hook ≤ 3s → build → payoff on the beat → close/CTA). `references/narrative.md`.
+2. **Script** → short Persian lines (≤ 12 words headline, ≤ 18 body), each timed to picture; ≥ 1.5s on screen per line. `references/narrative.md`.
+3. **Storyboard** → scene table: beats, seconds, layers, light, easing, transition into the next scene, and the EVENTS contract (each payoff → a sound cue).
+4. **Image & motion** → build from `assets/film-template/film.html` (palette tokens, grain, vignette, pure `seek(t)`); palettes `references/palettes.md`; motion `references/motion.md`. Card library (`work/persian/tools/cards/card-find.mjs`) is a composition reference, not a mandate.
+5. **Sound** → `events.json` from the real edit, then `sound/tools/mixer/build_sound.py` (music bed + cues + ducking), then `pa.ps1 audio-check`. `references/audio.md`.
+6. **QC & metrics** → extract scene frames + measure (`scripts/frames-extract.mjs`, `scripts/qc-check.mjs`), score the 9 criteria with timestamp evidence, write `metrics/clip-0N.json`.
+7. **Improve the skill** → every issue becomes a rule/example/checklist item here or in `references/`; log it in `metrics/skill-changelog.md`.
+8. **Next clip** with the updated skill; verify prior issues are actually fixed.
 
-## 4. Pre-flight checklist (studio ticks BEFORE building; write the ticks in the plan)
-[ ] goal in brief and memory (objective, audience, CTA)  [ ] reuse map: reused/adapted/idea-derived/new per element, recipes catalog read (pitfalls included)  [ ] EVENTS contract written, exported to events.json  [ ] motif trace: each motif -> claim or brand asset  [ ] LTR numbers: Ltr isolate helper, U+2009/U+202F only inside it  [ ] width AND height rules for EVERY ratio together (hero >= 12% of 9:16, margin, slot 0.5-0.9)  [ ] logo colours from layers/emblem svg, transparent, no plate  [ ] sound deferred; commit line single-line; version number <= 3.
+## Anti-patterns (explicit — fix these at the source)
+- ❌ **Lockup-centric design** — the whole film orbiting one text lockup; the lockup is one moment, not the structure.
+- ❌ **Flat, layered-less scenes** — one plane, no light, no shadow, no texture, no depth.
+- ❌ **Linear lifeless motion** — `linear` easing > 0.2s, everything entering at once, no stagger, no follow-through, no motivation.
+- ❌ **Jumps and judder** — hard cuts between scenes without ≥ 12-frame overlap or an intentional beat-locked cut; discontinuous values between frames.
+- ❌ **Off-brand colour** — random hues, more than 2 accents per scene, blue text on blue, grey #808080 text, text over imagery without scrim.
+- ❌ **Clichés** — the same rotating 3D text, the same generic whoosh on everything, overused globe/lightbulb metaphors, decorative spinning shapes with no narrative job.
+- ❌ **Overused lockup/typography tricks** — per-character animation of Persian (breaks joins), letter-spacing on Persian, one static text card after another.
+- ❌ **Dead openings** — nothing happens in the first 3–5 seconds; the hook is missing.
+- ❌ **Un-evidenced scoring** — a score without a timestamp, frame, or quoted text line is invalid and must be redone.
+- ❌ **`prog(t, start, end)`** — `PA.prog`'s third argument is a duration; use `PF.win` for windows.
+- ❌ **Light as a filled polygon** — a straight, hard boundary is a defect; build beams with `PF.beam`.
+- ❌ **Type by eye** — a size that is not measured against the hero/body tokens and not fitted to the safe width is a defect.
+- ❌ **Two copy lines on screen at once** — `PF.typeQueue` must be in the film; overlap is a critical defect.
+- ❌ **Shipping a render nobody measured** — a render is accepted only if the capture gate passed and the frames were looked at.
 
-## 5. Post-render checklist (QC ticks, evidence pasted in review-<n>.md)
-[ ] `node work/persian/tools/gates/run-gates.mjs <video> --src <film src>` for each ratio (edge-touch, empty-band, dead-frames, duplicate-template, number-lint, logo-colour, hero-size estimate)  [ ] 9 stills per ratio + transition frames viewed  [ ] claims verified against copy-map  [ ] no ghost/doubled text, no caption over a transition  [ ] reuse measured by the four categories  [ ] not-run gates listed as not run  [ ] `pa audio-check` pass on the final mp4  [ ] `pa strip` viewed on the FINAL mp4 around every transition in both ratios  [ ] peer logos equal  [ ] one world (finale = same palette/background/type)  [ ] contrast checked on all text in stills  [ ] true peak re-measured after the last step  [ ] `pa pacing <final.mp4> --profile <teaser|story|typography|ad>` read (ADVISORY: scores inform, never block; list findings in the review)  [ ] `pa loop-check` if the story is a loop (seam PASS/WARN looked at on the strip)  [ ] `pa pacing --cuts <events.json> --track <kit id>` and metrics block written to VERSION.json  [ ] GIT-FIRST: assets in git/vault, no absolute paths, `pa meter task` line written, `pa todo done`, checkpoint ordered  [ ] `pa deliver` (compressed, tv_check pass) done.
+## Folder structure
+```
+.claude/skills/persian-arts/
+  SKILL.md                  ← this file (principles, workflow, tokens, anti-patterns, checklist)
+  references/               ← palettes.md · motion.md · audio.md · narrative.md
+  assets/                   ← fonts/ (Vazirmatn, Estedad, Amiri, Lalezar) · film-template/film.html
+  scripts/                  ← qc-check.mjs (measure video/audio) · frames-extract.mjs (keyframes for metrics)
+  beauty/                   ← existing routed craft pack (rules, palettes, recipes, lint)
+```
 
-## 6. Reuse, events, gates
-Reuse map before building; recipes (docs/motion/recipes/catalog.json) before from-scratch; samples are inspiration only. Gates: docs/motion/FILM-GATES.md (rows say `exists: <path>` or `to build`; to-build blocks a claim). Read before planning: docs/motion/README.md, PLAYBOOK-BUILD-MOTION.md, last 30 lines of DECISIONS.jsonl, docs/PERSIAN-LOCALIZATION-LESSONS.md, LESSONS-LEDGER.md. (PERSIAN-RENDER-CONTRACT removed from this list by owner decision 2026-10-13 — no fidelity/license gate.)
+## Quality criteria (score each 1–10 with evidence)
+| code | measures |
+|---|---|
+| STORY | hook in 3s, clear arc (start/peak/end), coherent message |
+| SCRIPT | fluent & concise Persian, line length matched to picture timing |
+| VISUAL | layering & depth, texture, light & shadow, detail, composition |
+| MOTION | natural easing, rhythm, smooth transitions, motivated moves, no jumps |
+| TYPO | readable, adequate on-screen time, hierarchy, correct text animation |
+| AUDIO | clear voice, fitting music/effects, balanced mix (voice never buried) |
+| SYNC | sound/picture/text aligned; moves on the music's beat |
+| TECH | resolution, fps, no artifacts, compression, LUFS standard |
+| OVERALL | one coherent, professional piece |
 
-## 7. Board, metering, resilience
-Board: `pwsh -File work/persian/tools/pa.ps1 status add-item <ID> -Goal <goal> -Title "..." -ExpectedMinutes N`, then `status set <ID> -State running|done|blocked -Percent N` at every step; verify the printed state. Metering: expected vs actual minutes (METERING.md). Owner report: short plain Persian summary; details in docs/motion/reports/<date>/.
+Reference levels: 3 = obvious flaw a casual viewer notices · 6 = works but ordinary · 9 = professional-studio grade.
 
-## 8. Retro step (LAST todo step of every film, class S, advisor optional)
-Classify defects -> add ledger lines (docs/motion/LESSONS-LEDGER.jsonl) -> fix at the source skill/recipe/gate -> bump `skill_version` and add a SKILLS-CHANGELOG.md entry -> run the detectors -> flip verified ledger rows to `verified-in-next-run`.
+## Metrics record (every clip)
+Write `metrics/clip-0N.json` exactly in the schema of the mission brief: `files`, `specs`, `scores` (each with `evidence` — timestamp/frame/text), `issues` (unique id `C{clip}-{n}`, `severity`, `timestamp`, `description`, `root_cause` pointing at a skill/prompt gap, `skill_change` pointing at the rule added, `status`), `average`. Save scene keyframes in `metrics/frames/clip-0N/`. Update `metrics/scoreboard.md` and `metrics/skill-changelog.md` after every clip.
 
-## CHANGELOG (full: docs/motion/SKILLS-CHANGELOG.md)
-- 2.15 (2026-10-14): story-lab fold: rule 16 (new story per film, per-ratio layout table, camera moves not cuts, payoff/beam events on the beat, no empty openings, size rules); pa compress keeps AAC audio untouched (L-106); mirror keeps skill_version; duplicate decision ids fixed.
-- 2.14 (2026-10-14): S02 lessons: both ratios from ONE film.html with a per-ratio layout table (lib/pa-layout.js: wide pan stage for 16:9, tall far-to-near composition for 9:16, never a crop); a light sweep clock = beam angle offset A*sin(pi*(beat-hit0)/period) so it crosses the subject on the beat grid; build the audio once and mux it on both ratios; pa compress may refuse a final it mis-measures (check ebur128 yourself); ledger L-105..L-107.
-- 2.13 (2026-10-14): S05 lessons: canvas films for 100+ shapes (one canvas, 0 DOM nodes, 15 fps JPEG capture; lib/pa-ink.js: wobble, drawOn, scale-aware stroke, log zoom); a blank opening page needs faint content (empty-band is per-row uniformity); kit track ids that carry their own tr- prefix are looked up by candidates (pacing, loop-check); dense line art needs crf 25 / level 4.1 to stay under 12 MB per final; ledger L-101..L-104.
-- 2.12 (2026-10-14): Image FX phase 1: pa-fx WebGL2 deterministic shader runner (work/persian/htmlfilm/lib/pa-fx.js + 36 shaders, 34 verified), `pa fx find|list|check|demo`, docs/motion/fx/catalog.json (Persian + English aliases), capture.mjs SwiftShader flags; motion-designer/art-director choose a transition/effect by STORY via `pa fx find`; ledger L-098..L-100.
-- 2.11 (2026-10-14): S07 lessons: music-led films use `pa music-drop <kit id>` (drop bar + grid time; start the bed N bars in with build_sound `--t0 -N*bar_s` so the picture hit lands on the drop; record grid vs strongest-hit offsets and the RMS jump: kit drops are soft, add kick+sub); follow-through = lib/pa-chain.js (lagging chain, integrate wind to a phase); a clear sky needs clouds in every opening view (empty-band); new switches: run-gates `--scenery` (or VERSION.json scenery:true), pacing `--one-take`, audio-check `--events`, pa time phase env; tests work/persian/tools/test_s07_fixes.py; ledger L-092..L-097.
-- 2.10 (2026-10-14): S03 lessons: html-film libs for camera/path/maze/squash (work/persian/htmlfilm/lib: pa-camera.js, pa-maze.js, pa-selftest.mjs); camera moves are NOT cuts (events.json cut_frames [0], else build_sound adds whoosh); a flat ending flood needs texture (light rays) or empty-band fails; events derived from the same keyframes as the picture give 0.0 ms offsets; write film files with the Write tool, not bash heredocs; ledger L-087..L-091.
-- 2.9 (2026-10-14): rule 15 SELF-INSTALLING AND PORTABLE (step 0 env, install.ps1/install.sh, pa install-skill, pa assets-check, ASSETS-IN-GIT.md, capture.mjs finds the browser on any OS, fonts manifest); ledger L-082..L-084.
-- 2.8 (2026-10-14): rule 14 METRICS every version; `pa loop-check`, build_sound `--loop`, audio-check `--loop`, run-gates `--no-logo`, `pa pacing --cuts/--track` (calibrated), meter parser fixed + `pa meter check`; ledger L-078..L-081.
-- 2.7 (2026-10-14): rule 13 GIT-FIRST and PORTABLE; `pa doctor|bootstrap|sync|vault|todo|meter|metrics`, deliver --track, living TODO, tasks.jsonl metering; ledger L-072..L-074.
-- 2.6 (2026-10-13): measured pacing from 38 references (docs/motion/knowledge), `pa pacing` (advisory post-render), `pa music-pick`, optional `pa arc` story-shape menu, STORY FIRST rule in 3b, defaults in craft skills; ledger L-067..L-071.
-- 2.5 (2026-10-13): lessons of the conference teaser v1-v5: rules 11-12 (CHECKS, ONE WORLD/PEERS, diagnose-first), section 5 additions, tools pa audio-check / pa strip / pa compress, deliver compresses by default, build_sound settle-role fix; ledger L-056..L-066.
-- 2.4 (2026-10-13): owner decision — source-fidelity/license gates removed (AGENTS.md, README, this skill §6); PERSIAN-RENDER-CONTRACT no longer read before planning; external references (e.g. viditor templates) usable without vetting.
-- 2.3 (2026-10-13): rule 10 time budget (10/20 min per film, scope freeze, one persistent studio, `pa time` marks and postmortem); 3b one studio order + film-context.md + lighten before capture; capture png final / `--draft` jpeg; ledger L-049..L-055.
-- 2.2 (2026-10-13): html-film lane is the default (rule 9, section 3b); craft skills get an html-film paragraph; todo `lane` field; ledger L-044..L-048.
-- 2.0 (2026-10-13): identity line per skill; CRITICAL rules, pre-flight and post-render checklists; version cap 3; retro step; lessons ledger (L-001..L-043); detectors work/persian/tools/gates/run-gates.mjs.
-- 1.x: orchestrator + 9 craft skills, goal memory, loop policy, single-agent studio mode.
+## Pre-delivery checklist
+- [ ] Story: hook visible in first 3s, one payoff on a beat, close/CTA present.
+- [ ] Script: every line ≤ 18 words and ≥ 1.5s on screen; no repeated words.
+- [ ] Visual: 3+ depth layers per scene; one light direction; texture present; 60/30/10 palette.
+- [ ] Motion: ≥ 2 named easings with jobs; every scene join has ≥ 12-frame overlap or beat-locked cut; no linear > 0.2s.
+- [ ] Typo: no letter-spacing/per-char animation on Persian; hero ≥ 12% of 9:16 height; contrast checked.
+- [ ] Audio: events.json matches the real edit; −14 LUFS; true peak ≤ −1.0; ducking under cues; `pa audio-check` pass.
+- [ ] Sync: payoff events on the beat grid (≤ 5ms); text appears with its narration/move.
+- [ ] Tech: 1080×1920 (or brief ratio) 30fps, keyframe ≤ 2s, no black/freeze frames beyond intent, `qc-check.mjs` run.
+- [ ] Evidence: scene frames saved in `metrics/frames/clip-0N/`; every score has a timestamp/frame; issues have root causes and skill changes.

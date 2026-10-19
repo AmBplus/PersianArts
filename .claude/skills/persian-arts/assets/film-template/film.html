@@ -1,0 +1,84 @@
+<!doctype html>
+<!--
+==========================================================================
+PA-FILM-TEMPLATE — template for one bespoke Persian motion-graphics film (html-film lane).
+Copy to work/persian/htmlfilm/<label>/film.html and fill every TODO. This file is self-contained (no external film.js).
+The TOP COMMENT BLOCK IS THE PLAN (fill it BEFORE coding):
+  LOGLINE / PROTAGONIST (persistent actor) / CLOCK (what sets the rhythm) / LAYOUT (per-ratio table)
+  / COPY (Persian, copy-editor approved) / ART (palette hexes, light direction, texture) / SCENES (beats + seconds) / EVENTS (-> sound cues).
+RENDER:  node work/persian/htmlfilm/capture.mjs --html <this file> --out <silent.mp4> --ratio 9x16 --still t1,t2 --stills-dir <dir>
+SOUND:   python sound/tools/mixer/build_sound.py --film <silent.mp4> --events events.json --track <kit id> --out-dir <dir>
+RULES: window.film.seek(t) is a PURE function of t (no wall-clock, no CSS animation); fonts are local via @font-face;
+       Persian text follows docs/PERSIAN-LOCALIZATION-LESSONS.md (no letter-spacing, motion on joined groups/words).
+==========================================================================
+-->
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PA film</title>
+<style>
+@font-face{font-family:"PAHead";src:url("fonts/Vazirmatn-Variable.woff2") format("woff2");font-weight:100 900;font-display:block}
+html,body{margin:0;height:100%;background:#000;overflow:hidden}
+#stage{position:absolute;left:0;top:0;overflow:hidden;transform-origin:0 0;direction:rtl}
+canvas{position:absolute;left:0;top:0}
+.grain{position:absolute;inset:-10%;pointer-events:none;opacity:.06;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E")}
+.vignette{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 45%,transparent 55%,rgba(0,0,0,.35) 100%)}
+</style>
+<script src="../lib/pa-motion.js"></script>
+<script src="../lib/pa-camera.js"></script>
+<script src="../lib/pa-layout.js"></script>
+</head>
+<body>
+<div id="stage"><canvas id="cv"></canvas><div class="grain"></div><div class="vignette"></div></div>
+<script>
+"use strict";
+/* =========================================================================
+   film.js — ALL state is a pure function of time t (seconds). seek(t) draws.
+   One canvas + seeded RNG; palette/light/texture give depth; every move is eased.
+   ====================================================================== */
+const {clamp, lerp, prog, ease, rng, faDigits, ltr} = PA;
+const FPS = 30;
+const DURATION = 20;                 // TODO: seconds
+const cv = document.getElementById("cv"), ctx = cv.getContext("2d");
+
+// ---- layout table: per-ratio composition (never a crop of another ratio)
+const L = PA.layout({
+  "9x16":  {W:1080, H:1920, heroPx:96, bodyPx:44, marginX:96},
+  "16x9":  {W:1920, H:1080, heroPx:88, bodyPx:40, marginX:120},
+}, new URLSearchParams(location.search).get("ratio") || "9x16");
+cv.width = L.W; cv.height = L.H;
+
+// ---- palette tokens (one family per film; see references/palettes.md)
+const C = {
+  bg0:"#0e1220", bg1:"#1a2138",      // base + gradient partner
+  ink:"#f5efe4",                     // primary text
+  muted:"#b9c0d4",                   // secondary text
+  accent:"#e8b04b",                  // ONE accent for payoffs
+  accent2:"#4cc9c0",                 // one support color
+  scrim:"rgba(8,10,18,0.55)",        // behind text over imagery
+};
+
+// ---- timeline: scenes with motivated, eased motion + transitions (>= 12 frame overlap)
+const scenes = [
+  // TODO: replace with real scenes. Each: enter (0.25–0.5s outCubic), a motivated middle
+  // move (camera/light/parallax), and an exit that hands off through a TRANSITION
+  // (light-wipe / shape-morph / match-cut / camera-through / depth-dissolve), not a hard cut.
+  {id:"s1", from:0,   to:5,             draw(t){}},
+  {id:"s2", from:5,   to:10,            draw(t){}},
+  {id:"s3", from:10,  to:DURATION,      draw(t){}},
+];
+
+function seek(t) {
+  t = clamp(t, 0, DURATION);
+  ctx.clearRect(0, 0, L.W, L.H);
+  // TODO: draw the active scene + transition overlap (pure function of t)
+  const s = scenes.find(s => t >= s.from && t < s.to) || scenes[scenes.length - 1];
+  s.draw(t - s.from, t);
+}
+window.film = {seek, duration: DURATION, fps: FPS, layout: L};
+seek(0);
+</script>
+</body>
+</html>

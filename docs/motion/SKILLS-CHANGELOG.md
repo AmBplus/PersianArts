@@ -1,5 +1,13 @@
 # SKILLS-CHANGELOG
 
+## 2.16 (2026-10-16): batch S08-S12 capture and evidence integrity
+- Rule 17 in SKILL.md: capture port isolation and the ~300 s segmentation rule (segmented joins are re-encoded, never stream-copied), keyframe interval <= 2 s, events.json derived from the renderer's real edit and verified against the delivered mp4, stills regenerated from the final mp4, `film-integrity.mjs --write-version` before deliver, no debug overlay on the capture path, silent-v1 TV-safe needs the inaudible AAC track, hero size measured on text, no gate delta across detector revisions.
+- Tools (rounds 1-2): `pa.ps1` Invoke-Assets single-path splat (L-108); `compress.mjs` TV check read `'fail'` against `"FAIL"` and always passed (L-109); `deliver.mjs` re-checks TV-safe instead of printing the recorded claim (L-110); capture.mjs auto DevTools port, `Runtime.exceptionThrown` surface, `@font-face` file check (exit 4), cross-platform venv python probe (L-112..L-115).
+- Tools (integrity round): new `work/persian/tools/verify/film-integrity.mjs` - I1 events-vs-render, I2 stale stills (pixel MAD), I3 frame-base sanity, `--write-version` VERSION.json writer; VERSION.json written for all five films (L-118..L-121).
+- Gates hardened: number-lint lints real files and never PASSes an empty scan (L-122); hero-size replaced by a text-line metric with the old blob metric kept as a diagnostic (L-123); duplicate-template consumes events.json scene starts (L-124); logo-colour derives the film's own colours with no hardcoded palette (L-125, still OPEN through the default `--logo-files`); empty-band got a measured per-ratio baseline.
+- New detectors written but NOT wired into run-gates.mjs: `overlay-hud.mjs` (burned-in debug overlay, found in the s09 v1 masters) and `black-bands.mjs` (black bands inside the raster, confirmed by cropdetect on s09 v1 16:9). Wiring is open item 1 (L-116, L-117).
+- Flipped to `verified-in-next-run` by this batch: L-082, L-083, L-091, L-094, L-096, L-105 - the first lessons ever to reach that state.
+
 ## 2.15 (2026-10-14): story-lab fold (S01-S07)
 - Rule 16 in SKILL.md: new story per film, per-ratio layout table (lib/pa-layout.js), camera moves not cuts (lib/pa-camera.js, no auto whoosh, --one-take/--scenery), payoff/beam events on the beat, no empty openings, canvas for many shapes, size rules.
 - Tools: `pa compress` copies AAC audio up to 200 kbps (true peak untouched, fixes L-106); sync script writes skill_version into the .agents mirror; DECISIONS.jsonl duplicate ids renumbered (D-20261013-38/-39, D-20261014-08).
@@ -11,7 +19,7 @@
 
 ## 2.9 (2026-10-14): self-installing skill
 - Rule 15, step 0 env in SKILL.md, all craft skills and todo.template.json; START.md; docs/motion/ASSETS-IN-GIT.md.
-- Tools: install.ps1, install.sh, `pa install-skill`, `pa assets-check`, `pa doctor --quiet`, bootstrap copies fonts and creates .env from examples; capture.mjs browser resolver; fonts manifest.
+- Tools: install.ps1, install.sh, `pa install-skill`, `pa assets-check`, `pa doctor --quiet`, bootstrap copies the tracked fonts into src/workbench/public/fonts (never into a film's own htmlfilm/<label>/fonts/) and creates .env from examples; capture.mjs browser resolver; fonts manifest.
 - Ledger L-082..L-084; decision D-20261014-03.
 
 ## 2.8 (2026-10-14): loop mode, calibrated pacing, per-version metrics

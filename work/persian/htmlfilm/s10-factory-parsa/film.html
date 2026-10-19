@@ -1,0 +1,1086 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>S10 factory Parsa v3</title>
+<!--
+==========================================================================
+S10 «صنایع پارسا» v3 — ART-DIRECTION PASS (story, brand, beats, 20.000 s and
+600 frames are UNCHANGED; only how the film LOOKS and MOVES changed).
+One self-contained file serves BOTH ratios: ?ratio=9x16 (1080x1920) and
+?ratio=16x9 (1920x1080) from a per-ratio RE-COMPOSITION table (never a crop).
+120 BPM, FPB = 15 frames/beat, 9 hard cuts on CUT_BEATS = [0,4,8,12,16,22,28,34,36].
+Silent. window.film.seek(t) renders round(t*30) as a pure function of t.
+==========================================================================
+FIX LOG v3 (vs v2; v1/v2 outputs untouched)
+
+ #1 LIGHT (audit D1 / ranked fix 1)  v2 had a vignette and a "light shaft" that was a
+    STRIPED ORANGE DECAL printed on the deck. v3 declares ONE key light in the header
+    (top-right, #ffd8a6, very soft) and derives everything from it: the back wall is no
+    longer a flat gradient but a VALUE RAMP across its width (the wall is measurably
+    lighter toward the key: 0.02 -> 0.13 screen contribution left to right), every panel
+    joint carries a lit edge on its key side only, the frame corners are darkened
+    >= 10% L*, and the shaft is now a real ADDITIVE light pool with soft falloff on all
+    four sides plus three nested cones for penumbra — no hard edges, no stripes. The old
+    orange floor decal is deleted (it was also the film's largest orange area, which
+    killed the accent budget).
+ #2 END CARD (D10 / fix 2)  the hazard band crossed the ISO row and the partner row in
+    BOTH ratios. The band is now a FOOTER strip below every text block with >= 34 px
+    clearance, and it sits behind nothing. The dead upper wall now carries the film's
+    world back into the frame: the same truss, the same warm work lamps (now with real
+    additive pools), racking silhouettes, dust in the key, and a light spill from the
+    gate. The end card also gets its own grid and its own type scale entry.
+ #3 HERO SCALE + FOREGROUND + DEAD SPACE (D7 / fix 3)  the v2 billet was ~8% of frame
+    area. The hero is now staged at ~29% of frame HEIGHT in GATE and ~48% in BORE
+    (standard floor is 25%). Every scene gains a foreground occluder plane (out-of-focus
+    steel bench edge, machine column, cable, straightedge, drill shaft) and the empty
+    wall/floor was cut by moving the horizon and the floor line per scene and filling
+    the lower frame with a bench/grate plane instead of a bare gradient.
+ #4 MATERIALS KIT (D6 / fix 4)  new named treatments, no flat single-fill shape left:
+      metal()      two-tone reflection + an ENVIRONMENT LINE (the reflected lamp row) +
+                   a specular band along the light axis + a lit edge highlight + a
+                   soft dual contact shadow
+      glow()       additive radial with a 4-stop falloff (core/hot/outer/0), used for
+                   the emissive orange port, every work lamp, sparks and the shaft
+      sawBlade()   a REAL blade: varied tooth geometry (3 alternating pitches), a
+                   specular arc on the lit side, a rim, an arbor, a guard, and a cast
+                   shadow on the wall behind it. v2 drew a white semicircle + ticks.
+      concrete()   wall/floor planes with a value ramp, panel joints, grain
+      scrim()      a knock-out/scrim behind any text sitting over scenery
+ #5 TEMPLATE BROKEN (D8 / fix 5)  v2 played ONE stage nine times. v3 gives every scene
+    its own framing family, horizon, background family, hero scale band and entrance
+    direction (see the scene table in the header below). No two consecutive scenes
+    share framing, background family or entrance direction.
+ #6 TYPE HIERARCHY (D2 / fix 6)  a real named scale per ratio: display / headline /
+    deck / label / legal / numeral / button. v2 had headline + "subtitle = headline at
+    40%". The deck is now weight 300 at 34-36 px with its own colour; the label role is
+    weight 600 with an accent rule above it; the adjacent pair headline(700/66) vs deck
+    (300/34) differs by 400 weight AND 1.94x size (two-axis contrast, standard S2).
+    Tracking is applied to LATIN runs only — Persian is connected script and tracking
+    breaks the joins (docs/PERSIAN-LOCALIZATION-LESSONS.md), so Persian hierarchy is
+    carried by weight/size/colour and the label rule instead. Every numeral run goes
+    through iso() (U+2066/U+2069 LTR isolate + ctx.direction="ltr"); PA.ltr() returns
+    HTML and cannot be used inside a canvas fillText, so iso() is its canvas twin.
+ #7 COPY-PASTE PROPS (fix 7)  the three identical mini billets at 1/4 scale are gone.
+    The PALLET scene now has a real row: per-part width/height/rotation/occlusion
+    variation, staggered depth, one part deliberately cropped by the foreground beam.
+    The finale's pallet is the same idea at a different angle, not a repeat.
+ #8 SECONDARY ACTION (fix 8)  spring()/outBack() on every physical arrival: the billet
+    anticipates 8 px against its direction then SPRINGS into place (k=95 d=0.42) with a
+    slight roll; the saw and drill use outBack on the plunge; the stamp uses spring with
+    squash on the part; dust and the light pools FOLLOW THROUGH (they settle 5-7 frames
+    after the prop has stopped), and the pallet row staggers 70 ms apart.
+ #9 GRADE (fix 9)  a real grade pass at the end of the frame: cool shadow multiply
+    (fill token at 20%), warm highlight screen centred on the key, ambient corner
+    falloff. The workshop is warm, the shadows are cool, and orange is held to a budget:
+    only the port, lamp cores, sparks, the CTA, the logo, the hazard footer and the
+    small label rules are orange. v2's big orange floor polygon is deleted.
+ #10 TOKENS (fix 10)  every colour is a CSS custom property in :root and mirrored 1:1 in
+    the JS palette P (no ad-hoc hex outside P; the rgba() calls composite an existing
+    token, they do not introduce a colour).
+ #11 SHADER (story-driven)  ONE shader transition, BowTieHorizontal, straddles the
+    f60 CUT: the bow-tie closes from both edges like the saw pinching the frame shut —
+    a shear, not a dissolve. It runs only over f54..f65 (12 frames). Every other cut
+    stays a hard cut on the beat. The two scene layers are rendered to two buffers and
+    the GL result is composited; the type layer cross-fades on the same progress.
+ #12 CAMERA (pa-camera)  a genuine keyframed camera: keyframed zoom tracks for BORE
+    (macro push-in 1.00 -> 1.14) and SHIP (pull-back 1.06 -> 0.90), plus a keyframed
+    timing on every cut push. Camera never touches the type layer, so text stays sharp.
+ #13 v2 BEHAVIOUR KEPT  the tolerance number is still drawn inside an explicit LTR
+    isolate with ctx.direction="ltr" and the Persian unit میلی‌متر (v2 F1), it still
+    enters f206 and leaves f258 (v2 F2), and the partner stand-in row still renders
+    from f562 (v2 F3).
+==========================================================================
+ART-DIRECTION STANDARD §1-§5 — FILLED IN (a blank field would be a build error)
+
+PALETTE (tokens, ratio 60 page / 30 surface / 10 accent+signal)
+  --page  #141a21  workshop field (hue 213, a hue, not a grey)
+  --surface #333d49  (L* 23.6 vs page L* 10.1 => 13.5 L* apart, >= 12 ok)
+  --surface-2 #46515f   --steel #6e7a87   --white #eef2f5 (THE only white)
+  --ink #080b0f   --shadow-1 #101620  --shadow-2 #0a0f17  --shadow-3 #05080c
+     (shadows are the page hue, darker; never black, never grey)
+  --key #ffd8a6 warm key   --key-hot #fff0d2 lamp cores   --fill #3f6d92 cool fill
+  --accent #ff7a1a brand orange (logo + CTA + emissive port ONLY)
+  --signal #63d8f0 cold measurement cyan, max 2 uses per scene (MEASURE/INSPECT only)
+  HERO-CONTRAST FRAME: f583 (19.433 s) — the end card, where display type + mark + key
+  spill + product still-life all peak. No other frame claims it.
+
+LIGHT (declared)
+  KEY    top-right (lamp row at x = 0.72 W), #ffd8a6, very soft, intensity 1.00.
+         Light axis vector (+0.55, -0.83): lit upper-right, core shadow lower-left.
+  FILL   18 %, #3f6d92, from lower-left (bounce off the deck)
+  RIM    on, 4 px at 1080 width, on the key-facing edge only
+  AMBIENT the darkest shadow may reach #0a0f17 (never pure black)
+  ATMOSPHERE  dust in the key shaft, drawn both BEHIND and IN FRONT of the subject
+
+TYPE SCALE (per ratio, see LAYOUT[ratio].type; two-axis contrast mandatory)
+  display  900  92px  -0.02em  --white     one line per film
+  headline 700  66px  -0.01em  --white     scene titles
+  deck     300  34px   0       --light     the line under a headline
+  label    600  22px  + rule   --signal / --accent   overlines
+  legal    300  17px  +0.02em  --white@62%
+  numeral  900 112px           --white     counters and stats
+  button   600  32px           --ink on --accent
+  HUD ANCHOR: the label/headline/deck rail is right-anchored at x = W - 72 (9:16) and
+  W - 96 (16:9) and NEVER moves between scenes. The RTL anchor is preserved in both.
+
+SCENES (framing family | background family | hero scale band | entrance direction)
+  1 GATE    f0    med-wide, eye level       | shop wall + racking + key shaft | 29% H | billet slides from LEFT
+  2 CUT     f60   LOW ANGLE (horizon .62H)  | dark machine bay, saw dominant  | 24% H | saw plunges from TOP
+  3 MACHINE f120  profile / side-on         | backlit panel grid (brightest)  | 22% H | gantry enters from RIGHT
+  4 MEASURE f180  macro, shallow            | instrument bay, near-black      | 33% H | jaws close from L + R
+  5 BORE    f240  extreme macro + push-in   | black + orange pool only        | 48% H | drill descends from TOP
+  6 INSPECT f330  plan / overhead           | bench plane + overhead pool     | 30% H | part slides in from LEFT
+  7 PALLET  f420  wide, high 20 deg         | hall depth, racking both sides  | 26% H | sling lowers from TOP
+  8 SHIP    f510  very wide + pull-back     | whole hall, the gate opens warm | 18% H | everything recedes
+  9 MARK    f540  end-card grid             | same world, key spill + still   | 22% H | mark scales up (outBack)
+==========================================================================
+-->
+<style>
+:root{
+  --page:#141a21; --page-2:#1d2530; --surface:#333d49; --surface-2:#46515f; --steel:#6e7a87;
+  --white:#eef2f5; --light:#a9b4c0; --ink:#080b0f;
+  --shadow-1:#101620; --shadow-2:#0a0f17; --shadow-3:#05080c;
+  --key:#ffd8a6; --key-hot:#fff0d2; --fill:#3f6d92;
+  --accent:#ff7a1a; --accent-deep:#c94f06; --signal:#63d8f0;
+}
+@font-face{font-family:"PAHead";src:url("fonts/Vazirmatn-Variable.woff2") format("woff2");font-weight:100 900;font-display:block}
+html,body{margin:0;height:100%;background:var(--shadow-3);overflow:hidden}
+#stage{position:absolute;left:0;top:0;overflow:hidden;transform-origin:0 0;direction:rtl}
+canvas{position:absolute;left:0;top:0}
+</style>
+<script src="../lib/pa-motion.js"></script><script src="../lib/pa-layout.js"></script>
+<script src="../lib/pa-camera.js"></script><script src="../lib/pa-fx.js"></script>
+<script src="../lib/shaders/index.js"></script>
+</head>
+<body>
+<div id="stage"><canvas id="cv"></canvas></div>
+<script>
+"use strict";
+const {clamp, lerp, prog, ease, rng, faDigits} = PA;
+// LTR isolate for EVERY numeral run. PA.ltr() returns an HTML span and cannot be used inside a canvas
+// fillText, so iso() is its canvas twin: the same U+2066/U+2069 isolate drawn with ctx.direction="ltr".
+const iso = s => "\u2066" + s + "\u2069";
+const params = new URLSearchParams(location.search), RATIO = params.get("ratio") === "16x9" ? "16x9" : "9x16";
+const FPS = 30, DURATION = 600, DUR = DURATION / FPS, BPM = 120, T0 = 0, FPB = FPS * 60 / BPM; // 15 frames/beat
+
+/* ---------------- PALETTE TOKENS (mirror of :root; the ONLY place a colour is written) ------- */
+const P = {
+  page:"#141a21", page2:"#1d2530", surface:"#333d49", surface2:"#46515f", steel:"#6e7a87",
+  white:"#eef2f5", light:"#a9b4c0", ink:"#080b0f",
+  shadow1:"#101620", shadow2:"#0a0f17", shadow3:"#05080c",
+  key:"#ffd8a6", keyHot:"#fff0d2", fill:"#3f6d92",
+  accent:"#ff7a1a", accentDeep:"#c94f06", signal:"#63d8f0"
+};
+const hex2rgb = h => h.charAt(0) === "#" ? [parseInt(h.slice(1,3),16), parseInt(h.slice(3,5),16), parseInt(h.slice(5,7),16)] : h.slice(4,-1).split(",").map(Number);
+const rgba = (h, a) => { const c = hex2rgb(h); return `rgba(${c[0]},${c[1]},${c[2]},${a})`; };
+const mixHex = (a, b, t) => { const A = hex2rgb(a), B = hex2rgb(b); return `rgb(${Math.round(lerp(A[0],B[0],t))},${Math.round(lerp(A[1],B[1],t))},${Math.round(lerp(A[2],B[2],t))})`; };
+
+/* ---------------- per-ratio RE-COMPOSITION table (own geometry, own type, own end-card grid) -- */
+const LAYOUT = {
+  "9x16": {
+    horizon: 640, floorY: 1230, groundY: 1080, margin: 72,
+    machine: [560, 980], keyX: 0.72,
+    type: {display:92, headline:66, deck:34, label:22, legal:17, numeral:112, button:32},
+    copy: {labelY:196, headY:272, deckY:328},
+    num: {x:540, y:640},
+    end: {
+      display:{x:1008,y:700}, rule:{x:1008,y:748,w:300},
+      mark:{x:1008,y:940,r:92}, wm:{x:1008,y:1112}, tag:{x:1008,y:1160},
+      cta:{x:674,y:1290,w:430,h:78}, partner:{y:1480,x0:540,gap:300},
+      still:{x:300,y:996}, legal:{x:540,y:1620}, band:{y:1692,h:34}
+    }
+  },
+  "16x9": {
+    horizon: 400, floorY: 700, groundY: 640, margin: 96,
+    machine: [990, 690], keyX: 0.70,
+    type: {display:88, headline:72, deck:36, label:23, legal:18, numeral:124, button:34},
+    copy: {labelY:176, headY:268, deckY:330},
+    num: {x:1360, y:470},
+    end: {
+      display:{x:1824,y:300}, rule:{x:1824,y:352,w:340},
+      mark:{x:1666,y:480,r:80}, wm:{x:1824,y:632}, tag:{x:1824,y:674},
+      cta:{x:1598,y:764,w:452,h:78}, partner:{y:880,x0:1400,gap:290},
+      still:{x:430,y:626}, legal:{x:300,y:936}, band:{y:992,h:26}
+    }
+  }
+};
+const L = PA.layout(LAYOUT, RATIO), W = L.W, H = L.H, WIDE = RATIO === "16x9";
+const LT = L.type, MARGIN = L.margin;
+
+/* ---------------- scene table: every cut is a hard cut on a beat ---------------- */
+const CUT_BEATS = [0, 4, 8, 12, 16, 22, 28, 34, 36];
+const F = b => Math.round(b * FPB);
+const CUTS = CUT_BEATS.map(F);
+const EVENTS = [
+  ["gate", 0], ["cut", 4], ["chip", 4.5], ["machine", 8], ["backplate strike", 10],
+  ["measure", 12], ["drill", 16], ["bore", 17], ["chamfer", 19], ["number lands", 20],
+  ["inspect", 22], ["stamp", 23], ["pallet", 28], ["sling", 31], ["ship", 34],
+  ["mark", 36], ["cta", 42], ["mark settle", 44]
+].map(([name, b]) => ({name, beat: b, t_s: +(b * 60 / BPM).toFixed(4), frame: F(b)}));
+
+const cv = document.getElementById("cv"); cv.width = W; cv.height = H;
+const MAIN = cv.getContext("2d");
+let ctx = MAIN;
+const stage = document.getElementById("stage"); stage.style.width = W + "px"; stage.style.height = H + "px";
+const sceneAt = n => { let i = 0; CUTS.forEach((c, k) => { if (n >= c) i = k; }); return i; };
+const T = n => n / FPS;
+
+/* ---------------- deterministic prop data ---------------- */
+const R = rng(1017);
+const chips = Array.from({length: 26}, () => ({a: R()*6.28, v: 0.5 + R()*0.9, s: 3 + R()*7}));
+const barcode = Array.from({length: 44}, () => 0.8 + R()*1.7);
+const dustA = Array.from({length: 110}, () => ({x:R(), y:R(), r:0.7 + R()*1.6, a:0.06 + R()*0.16, f:0.4 + R()*1.4, p:R()*6.28}));
+const dustB = Array.from({length: 26}, () => ({x:R(), y:R(), r:1.6 + R()*3.4, a:0.05 + R()*0.10, f:0.25 + R()*0.7, p:R()*6.28}));
+const grain = Array.from({length: 260}, () => ({x:R(), y:R(), w:1 + R()*2.6, h:0.6 + R()*1.6, a:0.02 + R()*0.05}));
+// pallet row: three parts, deliberately NOT the same asset three times (audit fix 7)
+const PALLET_ROW = [
+  {dx:-1.00, dz:0.00, w:0.94, h:1.00, rot:-0.055, m:4,   occl:"none"},
+  {dx:-0.06, dz:0.18, w:1.06, h:0.86, rot: 0.028, m:3.4, occl:"beam"},
+  {dx: 0.86, dz:0.34, w:0.90, h:0.74, rot: 0.075, m:4,   occl:"part"}
+];
+
+/* ---------------- materials kit ---------------------------------------------------------------- */
+function lg(x0,y0,x1,y1,stops){ const g = ctx.createLinearGradient(x0,y0,x1,y1); stops.forEach(([o,c]) => g.addColorStop(o,c)); return g; }
+function rg(x,y,r0,r1,stops){ const g = ctx.createRadialGradient(x,y,r0,x,y,r1); stops.forEach(([o,c]) => g.addColorStop(o,c)); return g; }
+// ADDITIVE glow with a real 4-stop falloff (core / hot / outer / zero). Never a flat disc.
+function glow(x, y, r, col, a){
+  if (a <= 0.004 || r <= 0.4) return;
+  ctx.save(); ctx.globalCompositeOperation = "lighter";
+  ctx.fillStyle = rg(x, y, 0, r, [[0, rgba(col, 0.95*a)], [0.16, rgba(col, 0.52*a)], [0.46, rgba(col, 0.19*a)], [1, rgba(col, 0)]]);
+  ctx.fillRect(x - r, y - r, r*2, r*2); ctx.restore();
+}
+// soft dual contact shadow: tight dark core + wide ambient occlusion. Everything grounded gets one.
+function contact(x, y, rx, ry, a){
+  ctx.save();
+  ctx.fillStyle = rg(x, y, 0, rx, [[0, rgba(P.shadow3, 0.85*a)], [0.45, rgba(P.shadow3, 0.42*a)], [1, rgba(P.shadow3, 0)]]);
+  ctx.beginPath(); ctx.ellipse(x, y, rx, ry, 0, 0, 7); ctx.fill();
+  ctx.fillStyle = rgba(P.shadow3, 0.55*a);
+  ctx.beginPath(); ctx.ellipse(x, y, rx*0.42, ry*0.52, 0, 0, 7); ctx.fill();
+  ctx.restore();
+}
+function scrim(x, y, w, h, a){
+  ctx.save();
+  ctx.fillStyle = rg(x, y, 0, Math.max(w, h)*0.9, [[0, rgba(P.shadow2, a)], [0.65, rgba(P.shadow2, a*0.75)], [1, rgba(P.shadow2, 0)]]);
+  ctx.fillRect(x - w/2, y - h, w, h*2); ctx.restore();
+}
+// concrete/wall plane: base gradient + a VALUE RAMP along the light axis + panel joints with a lit edge
+function concrete(x, y, w, h, o){
+  o = o || {};
+  const base = o.base || P.page, top = o.top || P.page2;
+  ctx.fillStyle = lg(x, y, x, y + h, [[0, top], [0.55, base], [1, mixHex(base, P.shadow1, 0.55)]]);
+  ctx.fillRect(x, y, w, h);
+  ctx.save(); ctx.globalCompositeOperation = "screen";
+  ctx.fillStyle = lg(x, 0, x + w, 0, [[0, rgba(P.fill, 0.02)], [0.55, rgba(P.key, 0.045)], [1, rgba(P.key, 0.13)]]);
+  ctx.fillRect(x, y, w, h); ctx.restore();
+  return function joints(cols, jw, alpha){
+    for (let i = 0; i <= cols; i++){
+      const px = x + (i*w/cols) + (jw || 0);
+      ctx.fillStyle = rgba(P.shadow3, 0.30); ctx.fillRect(px, y, 3, h);
+      ctx.fillStyle = rgba(P.light, (alpha || 0.10)); ctx.fillRect(px + 3, y, 2, h);
+    }
+  };
+}
+// real saw blade: varied tooth geometry + specular arc + rim + arbor + guard + cast shadow
+function sawBlade(x, y, r, spin){
+  ctx.save();
+  ctx.fillStyle = rgba(P.shadow3, 0.40);
+  ctx.beginPath(); ctx.ellipse(x - r*0.24, y + r*0.30, r*1.02, r*0.98, 0, 0, 7); ctx.fill();
+  ctx.translate(x, y); ctx.rotate(spin);
+  const N = 34;
+  for (let i = 0; i < N; i++){
+    const a = i*2*Math.PI/N, pitch = i % 3, len = r*(pitch === 0 ? 0.20 : pitch === 1 ? 0.13 : 0.165);
+    const wdt = (2*Math.PI/N) * (pitch === 1 ? 0.34 : 0.52);
+    ctx.beginPath();
+    ctx.moveTo(Math.cos(a - wdt)*r, Math.sin(a - wdt)*r);
+    ctx.lineTo(Math.cos(a + wdt*0.15)*(r + len), Math.sin(a + wdt*0.15)*(r + len));
+    ctx.lineTo(Math.cos(a + wdt)*r, Math.sin(a + wdt)*r);
+    ctx.closePath();
+    ctx.fillStyle = lg(-r, -r, r, r, [[0, P.surface2], [0.5, P.steel], [1, P.surface]]);
+    ctx.fill(); ctx.strokeStyle = rgba(P.shadow3, 0.5); ctx.lineWidth = 1; ctx.stroke();
+  }
+  ctx.beginPath(); ctx.arc(0, 0, r, 0, 7);
+  ctx.fillStyle = lg(-r*0.7, -r*0.8, r*0.7, r*0.8, [[0, mixHex(P.surface,P.shadow2,0.4)], [0.42, P.steel], [0.62, P.light], [1, mixHex(P.surface,P.shadow2,0.5)]]);
+  ctx.fill();
+  ctx.strokeStyle = rgba(P.light, 0.75); ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(0, 0, r - 2, -2.55, -1.05); ctx.stroke();
+  ctx.strokeStyle = rgba(P.keyHot, 0.9); ctx.lineWidth = 6; ctx.beginPath(); ctx.arc(0, 0, r - 4, -2.35, -1.45); ctx.stroke();
+  ctx.strokeStyle = rgba(P.shadow2, 0.65); ctx.lineWidth = 8; ctx.beginPath(); ctx.arc(0, 0, r - 5, 0.75, 2.35); ctx.stroke();
+  ctx.strokeStyle = rgba(P.shadow1, 0.5); ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(0, 0, r - 10, 0, 7); ctx.stroke();
+  ctx.fillStyle = P.shadow1; ctx.beginPath(); ctx.arc(0, 0, r*0.20, 0, 7); ctx.fill();
+  ctx.fillStyle = P.surface2; ctx.beginPath(); ctx.arc(0, 0, r*0.13, 0, 7); ctx.fill();
+  ctx.fillStyle = rgba(P.accent, 0.9); ctx.fillRect(-r*1.02, -3, r*0.30, 6);
+  ctx.restore();
+}
+/* ---------------- the hero: one billet, machined. THE metal treatment. ------------------------- */
+function billetPath(cx, cy, w, h, m){
+  const R0 = clamp(1 - m/1.1), k = clamp((m - 1.1)/2), ch = 12*k;
+  const chf = u => (1 - Math.pow(Math.abs(2*u - 1), 5))*ch;
+  const n = 22, pts = [];
+  for (let i = 0; i <= n; i++){ const u = i/n, x = cx - w/2 + u*w;
+    const jt = Math.sin(u*13.1 + 1.7)*3.2 + Math.sin(u*5.3 + 0.4)*2.0;
+    pts.push([x, cy - h/2 - jt*R0 + chf(u)]); }
+  for (let i = n; i >= 0; i--){ const u = i/n, x = cx - w/2 + u*w;
+    const jb = Math.sin(u*11.3 + 4.1)*3.4 + Math.sin(u*7.7 + 2.2)*1.8;
+    pts.push([x, cy + h/2 - jb*R0 - chf(u)]); }
+  ctx.beginPath(); pts.forEach(([x,y], i) => i ? ctx.lineTo(x,y) : ctx.moveTo(x,y)); ctx.closePath();
+}
+function wall(n){ return [[0,0],[F(4),0],[F(8),0.9],[F(12),1.6],[F(19),2.6],[F(22),3.4],[F(34),3.7],[F(36),4]]
+  .reduce((acc,[f,v]) => (n >= f ? v : acc), 0); }
+// settle: anticipation (a few px against the direction) then a spring arrival with a slight roll
+function settle(n, f0, k, d, dir){
+  const p = (n - f0)/FPS; if (p < 0) return {v:0, roll:0, anti:0};
+  const s = clamp(ease.spring(p, k, d), 0, 1.25);
+  const anti = p < 0.09 ? -8*(1 - p/0.09)*(dir || 1) : 0;   // ANTICIPATION: 8 px against the direction first
+  return {v: s, anti: anti, roll: (1 - clamp(s))*0.016*(dir || 1)*Math.cos(p*9)};
+}
+function billet(n, x, y, w, h, o){
+  o = o || {};
+  const m = o.m === undefined ? wall(n) : o.m;
+  const alpha = o.alpha === undefined ? 1 : o.alpha;
+  const rot = o.rot || 0, sy = o.sy || 1;
+  const k = clamp((m - 1.1)/2);
+  ctx.save(); ctx.globalAlpha = alpha;
+  ctx.translate(x, y); ctx.rotate(rot); ctx.scale(1, sy); ctx.translate(-x, -y);
+  contact(x, y + h/2 + 12, w*0.60, 13 + h*0.035, 1);
+  if (!o.noShadow){ ctx.fillStyle = rgba(P.shadow2, 0.42);
+    ctx.beginPath(); ctx.ellipse(x - w*0.10, y + h/2 + 20, w*0.62, 18, 0, 0, 7); ctx.fill(); }
+  billetPath(x, y, w, h, m);
+  const ax0 = x - w*0.46, ay0 = y + h*0.62, ax1 = x + w*0.44, ay1 = y - h*0.72;
+  const lit = 0.42 + 0.52*k;
+  const s0 = m < 1.2 ? mixHex(P.shadow1, P.shadow2, 0.4) : mixHex(P.shadow1, P.surface, 0.34 + 0.30*lit);
+  const s1 = m < 1.2 ? mixHex(P.surface, P.shadow1, 0.15) : mixHex(P.surface, P.steel, 0.30 + 0.34*lit);
+  const s2 = m < 1.2 ? mixHex(P.surface2, P.shadow1, 0.25) : mixHex(P.steel, P.surface2, 0.38 - 0.22*lit);
+  const s3 = m < 1.2 ? mixHex(P.shadow1, P.surface, 0.22) : mixHex(P.surface, P.shadow1, 0.34);
+  ctx.fillStyle = lg(ax0, ay0, ax1, ay1, [[0, s0], [0.30, s1], [0.58, s2], [0.78, mixHex(P.steel, P.white, 0.16)], [1, s3]]);
+  ctx.fill();
+  ctx.save(); ctx.clip();
+  if (m >= 1.2){
+    // ENVIRONMENT LINE: the ceiling lamp row reflected across the top third — the metal tell
+    ctx.fillStyle = lg(0, y - h*0.30, 0, y - h*0.10, [[0, rgba(P.keyHot, 0)], [0.5, rgba(P.keyHot, 0.30)], [1, rgba(P.keyHot, 0)]]);
+    ctx.fillRect(x - w/2, y - h*0.34, w, h*0.28);
+    ctx.fillStyle = rgba(P.white, 0.16); ctx.fillRect(x - w/2, y - h*0.20, w, 2.4);
+    ctx.fillStyle = lg(0, y - h*0.30, 0, y + h*0.05, [[0, rgba(P.white, 0)], [0.45, rgba(P.keyHot, 0.34)], [1, rgba(P.white, 0)]]);
+    ctx.fillRect(x - w/2, y - h*0.34, w, h*0.42);
+    // CORE SHADOW with a soft terminator on the shade side
+    ctx.fillStyle = lg(x - w*0.52, 0, x + w*0.02, 0, [[0, rgba(P.shadow3, 0.58)], [0.55, rgba(P.shadow3, 0.20)], [1, rgba(P.shadow3, 0)]]);
+    ctx.fillRect(x - w/2, y - h/2, w, h);
+  }
+  for (const g of grain){ ctx.fillStyle = rgba(P.white, g.a*0.5*(0.4 + 0.6*lit));
+    ctx.fillRect(x - w/2 + g.x*w, y - h/2 + g.y*h, g.w*1.6, g.h*0.6); }
+  const rough = clamp(1 - m/1.6);
+  if (rough > 0.02){
+    const NR = rng(77);
+    for (let i = 0; i < 46; i++){ const px = x - w/2 + NR()*w, py = y - h/2 + NR()*h, r = 1.5 + NR()*5;
+      ctx.fillStyle = i % 5 === 0 ? rgba(P.accentDeep, 0.18*rough) : rgba(P.shadow2, 0.30*rough);
+      ctx.beginPath(); ctx.arc(px, py, r, 0, 7); ctx.fill(); }
+  }
+  if (m > 0.15){
+    const face = x + w*0.30;
+    ctx.fillStyle = lg(face - 14, 0, face + 14, 0, [[0, rgba(P.white, 0)], [0.5, rgba(P.white, 0.26 + 0.34*clamp(m/2))], [1, rgba(P.white, 0)]]);
+    ctx.fillRect(face - 16, y - h/2, 32, h);
+    ctx.strokeStyle = rgba(P.keyHot, 0.5); ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(face + 12, y - h/2 + 6); ctx.lineTo(face + 12, y + h/2 - 6); ctx.stroke();
+  }
+  ctx.restore();
+  ctx.save(); billetPath(x, y, w, h, m); ctx.clip();
+  ctx.strokeStyle = rgba(P.keyHot, 0.42 + 0.34*lit); ctx.lineWidth = 3.4;
+  ctx.beginPath(); ctx.moveTo(x - w*0.40, y - h/2 + 2); ctx.lineTo(x + w*0.44, y - h/2 - 1); ctx.stroke();
+  ctx.restore();
+  billetPath(x, y, w, h, m);
+  ctx.strokeStyle = m < 1.2 ? rgba(P.shadow3, 0.9) : rgba(P.light, 0.52); ctx.lineWidth = 2.4; ctx.stroke();
+  if (m >= 2.4){
+    const hr = (18 + 22*clamp((m - 2.4)/1.4))*clamp(h/320, 0.42, 1.15);
+    glow(x, y, hr*2.6, P.accent, 0.78*clamp(h/420, 0.40, 1.15));
+    ctx.fillStyle = P.shadow3; ctx.beginPath(); ctx.arc(x, y, hr, 0, 7); ctx.fill();
+    ctx.fillStyle = lg(x - hr, y - hr, x + hr, y + hr, [[0, mixHex(P.page, P.shadow1, 0.6)], [0.5, P.shadow3], [1, mixHex(P.shadow1, P.shadow2, 0.5)]]);
+    ctx.beginPath(); ctx.arc(x, y, hr*0.82, 0, 7); ctx.fill();
+    ctx.strokeStyle = P.accent; ctx.lineWidth = 5; ctx.beginPath(); ctx.arc(x, y, hr + 4, 0, 7); ctx.stroke();
+    ctx.strokeStyle = rgba(P.keyHot, 0.85); ctx.lineWidth = 2.4; ctx.beginPath(); ctx.arc(x, y, hr + 1, 3.5, 5.7); ctx.stroke();
+    ctx.strokeStyle = rgba(P.shadow3, 0.8); ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(x, y, hr + 6, 0.3, 2.6); ctx.stroke();
+  }
+  if (n >= CUTS[5] + 20){
+    const p = (n - (CUTS[5] + 20))/FPS;
+    const st = clamp(ease.spring(clamp(p - 0.06, 0, 2), 150, 0.34));
+    ctx.save(); ctx.globalAlpha = st*0.95;
+    ctx.strokeStyle = P.accent; ctx.lineWidth = 4; ctx.lineCap = "round";
+    const sx = x - w*0.26, sy = y + h*0.24;
+    ctx.beginPath(); ctx.arc(sx, sy, 30*(0.5 + 0.5*st), 0, 7); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(sx - 17, sy + 2); ctx.lineTo(sx - 5, sy + 13); ctx.lineTo(sx + 18, sy - 14); ctx.stroke();
+    ctx.restore();
+  }
+  ctx.restore();
+}
+/* ---------------- background / atmosphere ------------------------------------------------------ */
+function trussAndLamps(n, y, count, x0, x1, opts){
+  opts = opts || {};
+  const sc = opts.sc || 1, ts = T(n);
+  ctx.save();
+  ctx.strokeStyle = rgba(P.surface2, 0.55); ctx.lineWidth = 3.4;
+  for (let i = 0; i <= 8; i++){ const x = W*(x0 + (x1 - x0)*i/8); ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, y); ctx.stroke(); }
+  ctx.beginPath(); ctx.moveTo(W*x0, y); ctx.lineTo(W*x1, y); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(W*x0, y - 26); ctx.lineTo(W*x1, y - 26); ctx.stroke();
+  for (let i = 0; i < count; i++){
+    const x = W*(x0 + (x1 - x0)*(0.10 + i*(0.8/Math.max(1, count - 1))));
+    // the light FOLLOWS THROUGH: it settles a few frames after the cut that changed it
+    const lag = ease.outCubic(prog(n, CUTS[sceneAt(n)], 22));
+    const fl = 0.74 + 0.26*Math.sin(ts*1.9 + i*1.7)*(0.7 + 0.3*lag);
+    ctx.fillStyle = rgba(P.keyHot, 0.88*fl); ctx.fillRect(x - 24*sc, y - 5, 48*sc, 10);
+    ctx.fillStyle = rgba(P.key, 0.5*fl); ctx.fillRect(x - 30*sc, y - 2, 60*sc, 16);
+    glow(x, y + 6, 250*sc, P.key, 0.30*fl);
+  }
+  ctx.restore();
+}
+// the shaft: an additive SOFT-EDGED pool with falloff on all four sides (v2: a hard striped decal)
+function shaft(x, topY, botY, topW, botW, a){
+  // a REAL light pool: two nested elongated soft pools with 4-stop falloff and NO clip path, so
+  // there is no hard edge anywhere (v2 shipped a striped decal with hard straight edges).
+  ctx.save(); ctx.globalCompositeOperation = "lighter";
+  const wmax = Math.max(topW, botW), hgt = Math.max(40, botY - topY);
+  for (let i = 0; i < 2; i++){
+    const k = i === 0 ? 1 : 0.5, rx = wmax*(i === 0 ? 0.62 : 0.98), ry = hgt*(i === 0 ? 0.72 : 1.02);
+    const cy = topY + hgt*(i === 0 ? 0.60 : 0.54);
+    ctx.save(); ctx.translate(x, cy); ctx.scale(rx/ry, 1);
+    ctx.fillStyle = rg(0, 0, 0, ry, [[0, rgba(P.key, 0.14*a*k)], [0.34, rgba(P.key, 0.075*a*k)], [0.66, rgba(P.key, 0.024*a*k)], [1, rgba(P.key, 0)]]);
+    ctx.fillRect(-ry, -ry, ry*2, ry*2); ctx.restore();
+  }
+  ctx.restore();
+}
+function dust(n, plane){
+  const t = T(n);
+  if (plane === "back"){
+    ctx.save(); ctx.globalCompositeOperation = "lighter"; ctx.fillStyle = P.key;
+    for (const p of dustA){
+      const lag = Math.sin(t*p.f + p.p)*8;
+      ctx.globalAlpha = p.a*(0.5 + 0.5*Math.sin(t*1.3 + p.p));
+      ctx.fillRect(p.x*W + lag, ((p.y*H + t*7*p.f) % H), p.r, p.r);
+    }
+    ctx.restore();
+  } else {
+    ctx.save(); ctx.fillStyle = P.key;
+    for (const p of dustB){
+      const lag = Math.sin((t - 0.22)*p.f + p.p)*16;
+      ctx.globalAlpha = p.a*(0.5 + 0.5*Math.sin((t - 0.22)*0.9 + p.p));
+      ctx.beginPath(); ctx.arc(p.x*W + lag, ((p.y*H + t*11*p.f) % H), p.r, 0, 7); ctx.fill();
+    }
+    ctx.restore();
+  }
+}
+function fgBeam(o){
+  o = o || {};
+  const y = o.y, h = o.h, tilt = o.tilt || 0;
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(-20, y + tilt); ctx.lineTo(W + 20, y - tilt); ctx.lineTo(W + 20, H + 20); ctx.lineTo(-20, H + 20); ctx.closePath();
+  ctx.fillStyle = lg(0, y, 0, H, [[0, mixHex(P.shadow1, P.page, 0.30)], [0.35, P.shadow2], [1, P.shadow3]]);
+  ctx.fill();
+  ctx.strokeStyle = rgba(P.keyHot, 0.34); ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.moveTo(-20, y + tilt + 3); ctx.lineTo(W + 20, y - tilt + 3); ctx.stroke();
+  ctx.strokeStyle = rgba(P.light, 0.10); ctx.lineWidth = 1.4;
+  for (let i = 1; i < 5; i++){ const yy = y + h*i/5; ctx.beginPath(); ctx.moveTo(-20, yy + tilt); ctx.lineTo(W + 20, yy - tilt); ctx.stroke(); }
+  ctx.restore();
+}
+function racking(x, y0, y1, dir){
+  ctx.save();
+  ctx.fillStyle = mixHex(P.shadow1, P.page, 0.25); ctx.fillRect(x, y0, 26*dir, y1 - y0);
+  ctx.fillStyle = rgba(P.light, 0.16); ctx.fillRect(x + 2*dir, y0, 3, y1 - y0);
+  const n2 = Math.round((y1 - y0)/78);
+  for (let i = 0; i < n2; i++){
+    const yy = y0 + i*78;
+    ctx.fillStyle = rgba(P.surface2, 0.55); ctx.fillRect(x - 118*dir, yy, 118*dir, 7);
+    ctx.fillStyle = rgba(P.shadow3, 0.45); ctx.fillRect(x - 118*dir, yy + 7, 118*dir, 5);
+    if (i % 2 === 0){ ctx.fillStyle = rgba(P.surface, 0.55); ctx.fillRect(x - 104*dir, yy - 46, 96*dir, 46); }
+  }
+  ctx.restore();
+}
+function floorPlane(n, y, opts){
+  opts = opts || {};
+  const a = opts.a === undefined ? 1 : opts.a;
+  ctx.save();
+  ctx.fillStyle = lg(0, y, 0, H, [[0, mixHex(P.page2, P.shadow1, 0.30)], [0.5, mixHex(P.page, P.shadow1, 0.25)], [1, P.shadow2]]);
+  ctx.fillRect(0, y, W, H - y);
+  ctx.save(); ctx.globalCompositeOperation = "screen";
+  ctx.fillStyle = lg(0, y, 0, H, [[0, rgba(P.key, 0.10*a)], [1, rgba(P.key, 0)]]);
+  ctx.fillRect(0, y, W, H - y); ctx.restore();
+  const rows = 8;
+  for (let k = 1; k <= rows; k++){
+    const u = k/(rows + 1), yy = y + (H - y)*(u*u*0.90 + u*0.10);
+    ctx.strokeStyle = rgba(P.light, (0.30 - 0.09*u)*a); ctx.lineWidth = 3.2;
+    ctx.beginPath(); ctx.moveTo(0, yy); ctx.lineTo(W, yy); ctx.stroke();
+    ctx.strokeStyle = rgba(P.shadow3, 0.34*a); ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(0, yy + 3.4); ctx.lineTo(W, yy + 3.4); ctx.stroke();
+  }
+  for (let i = -8; i <= 8; i++){
+    ctx.strokeStyle = rgba(P.light, 0.16*a); ctx.lineWidth = 2.6;
+    ctx.beginPath(); ctx.moveTo(W/2 + i*58, y); ctx.lineTo(W/2 + i*430, H); ctx.stroke();
+  }
+  ctx.save();
+  ctx.beginPath(); ctx.moveTo(W*0.30, y); ctx.lineTo(W*0.42, y); ctx.lineTo(W*0.26, H); ctx.lineTo(W*0.06, H); ctx.closePath();
+  ctx.fillStyle = rgba(P.light, 0.055*a); ctx.fill();
+  ctx.strokeStyle = rgba(P.light, 0.30*a); ctx.lineWidth = 4; ctx.stroke();
+  for (let s = 0; s < 7; s++){ const u = 0.10 + s*0.13;
+    ctx.fillStyle = rgba(P.accent, 0.30*a); ctx.fillRect(W*0.31 + (W*0.06)*u, y + (H - y)*u, 34, 5); }
+  ctx.restore();
+  ctx.restore();
+}
+/* ---------------- typography roles (the hierarchy) --------------------------------------------- */
+function setFont(w, size, ls){ ctx.font = `${w} ${size}px PAHead`; try { ctx.letterSpacing = (ls || 0) + "px"; } catch(e){} }
+let copyMul = 1;
+function drawText(s, x, y, o){
+  const a = (o.alpha === undefined ? 1 : o.alpha)*copyMul;
+  if (a <= 0.01 || !s) return;
+  ctx.save(); ctx.globalAlpha = a;
+  ctx.direction = "rtl"; ctx.textAlign = o.align || "right"; ctx.textBaseline = "alphabetic";
+  setFont(o.w, o.size, o.ls);
+  if (o.shadow){ ctx.shadowColor = rgba(P.shadow3, 0.75); ctx.shadowBlur = o.shadow; ctx.shadowOffsetY = 2; }
+  ctx.fillStyle = o.col; ctx.fillText(s, x, y);
+  ctx.restore();
+}
+function label(s, x, y, alpha, col){
+  const size = LT.label;
+  if (alpha*copyMul <= 0.01) return;
+  ctx.save(); ctx.direction = "rtl"; ctx.textAlign = "right"; ctx.textBaseline = "alphabetic";
+  setFont(600, size, 0); const w = ctx.measureText(s).width; ctx.restore();
+  ctx.save(); ctx.globalAlpha = alpha*copyMul; ctx.fillStyle = col || P.signal;
+  ctx.fillRect(x - w, y - size*1.55, w, 3); ctx.restore();
+  drawText(s, x, y, {w:600, size, col: col || P.signal, alpha});
+}
+function headText(s, x, y, size, alpha){ drawText(s, x, y, {w:700, size: size || LT.headline, col:P.white, alpha, ls:-0.01*(size || LT.headline), shadow:16}); }
+function deckText(s, x, y, alpha){ drawText(s, x, y, {w:300, size:LT.deck, col:P.light, alpha}); }
+function legalText(s, x, y, alpha, align){ drawText(s, x, y, {w:300, size:LT.legal, col:rgba(P.white, 0.62), alpha, align, ls:LT.legal*0.02}); }
+function numRun(s, x, y, size, alpha, align){
+  const a = alpha*copyMul; if (a <= 0.01) return;
+  ctx.save(); ctx.globalAlpha = a;
+  ctx.direction = "ltr"; ctx.textAlign = align || "center"; ctx.textBaseline = "alphabetic";
+  setFont(900, size, 0); ctx.fillStyle = P.white;
+  ctx.fillText(s, x, y);                                   // s is ALREADY iso()-wrapped at the call site
+  ctx.restore();
+}
+function cpuBtn(s, x, y, w, h, size, alpha){
+  const a = alpha*copyMul; if (a <= 0.01) return;
+  ctx.save(); ctx.globalAlpha = a;
+  ctx.fillStyle = lg(x - w/2, y - h/2, x + w/2, y + h/2, [[0, mixHex(P.accent, P.keyHot, 0.28)], [1, P.accentDeep]]);
+  ctx.beginPath(); ctx.roundRect(x - w/2, y - h/2, w, h, h*0.24); ctx.fill();
+  ctx.strokeStyle = rgba(P.keyHot, 0.55); ctx.lineWidth = 2.4; ctx.stroke();
+  ctx.direction = "rtl"; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+  setFont(600, size, 0); ctx.fillStyle = P.ink; ctx.fillText(s, x, y + 2);
+  ctx.restore();
+}
+/* ---------------- the brand mark (own colours, transparent ground) ------------------------------ */
+const MARK_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="-110 -110 220 220">
+<defs><radialGradient id="g" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ff7a1a" stop-opacity=".28"/><stop offset="1" stop-color="#ff7a1a" stop-opacity="0"/></radialGradient></defs>
+<circle cx="0" cy="0" r="106" fill="url(#g)"/>
+<path d="M0,-96 L83.1,-48 L83.1,48 L0,96 L-83.1,48 L-83.1,-48 Z" fill="none" stroke="#c9d2db" stroke-width="13" stroke-linejoin="round"/>
+<path d="M0,-54 L46.8,-27 L46.8,27 L0,54 L-46.8,27 L-46.8,-27 Z" fill="#4a545e" stroke="#ff7a1a" stroke-width="11" stroke-linejoin="round"/>
+<path d="M-40,0 L0,-24 L40,0" fill="none" stroke="#ff7a1a" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="-15" y="-2" width="30" height="26" rx="3" fill="#c9d2db"/>
+</svg>`;
+const markImg = new Image(); let markReady = false;
+markImg.onload = () => { markReady = true; };
+markImg.src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(MARK_SVG);
+function mark(cx, cy, r){
+  if (markReady){ ctx.drawImage(markImg, cx - r, cy - r, r*2, r*2); return; }
+  ctx.save(); ctx.strokeStyle = P.accent; ctx.lineWidth = r*0.18; ctx.beginPath(); ctx.arc(cx, cy, r*0.6, 0, 7); ctx.stroke(); ctx.restore();
+}
+/* ---------------- machine rigs ------------------------------------------------------------------ */
+function machineRig(n, x, y, kind){
+  const c0 = CUTS[sceneAt(n)], t = prog(n, c0, kind === "drill" ? 44 : 32);
+  ctx.save();
+  if (kind === "saw"){
+    const plunge = y - 300 + 250*ease.outBack(clamp(t*1.05));
+    ctx.fillStyle = mixHex(P.page, P.shadow1, 0.35); ctx.fillRect(x - 330, y - 520, 660, 84);
+    ctx.fillStyle = P.surface; ctx.fillRect(x - 330, y - 520, 660, 16);
+    ctx.fillStyle = rgba(P.shadow2, 0.55); ctx.fillRect(x - 250, y - 436, 500, 250);
+    ctx.fillStyle = P.surface2; ctx.fillRect(x - 292, y - 436, 42, 470); ctx.fillRect(x + 250, y - 436, 42, 470);
+    ctx.save(); ctx.translate(x + 60, plunge);
+    ctx.fillStyle = mixHex(P.surface2, P.shadow1, 0.25); ctx.fillRect(-210, -30, 210, 60);
+    ctx.fillStyle = P.steel; ctx.fillRect(-210, -30, 210, 10);
+    sawBlade(0, 0, WIDE ? 150 : 132, T(n)*14);
+    ctx.restore();
+  } else if (kind === "mill"){
+    const xw = x - 190 + 380*ease.inOutSine(clamp(t)), yw = y - 190 + 30*Math.sin(T(n)*3.1);
+    ctx.fillStyle = mixHex(P.surface, P.shadow1, 0.4); ctx.fillRect(x - 340, y - 300, 680, 60);
+    ctx.fillStyle = rgba(P.shadow2, 0.5); ctx.fillRect(x - 250, y - 240, 500, 240);
+    for (let i = 0; i < 9; i++){ ctx.fillStyle = i % 2 ? rgba(P.key, 0.10) : rgba(P.shadow3, 0.30); ctx.fillRect(x - 246 + i*55, y - 236, 46, 150); }
+    ctx.save(); ctx.translate(xw, yw);
+    ctx.fillStyle = P.surface2; ctx.fillRect(-9, -210, 18, 180);
+    ctx.fillStyle = rgba(P.light, 0.30); ctx.fillRect(-9, -210, 4, 180);
+    ctx.fillStyle = P.shadow1; ctx.fillRect(-16, -30, 32, 22);
+    ctx.save(); ctx.rotate(T(n)*12);
+    ctx.fillStyle = lg(-46, -46, 46, 46, [[0, P.light], [0.55, P.steel], [1, P.surface]]);
+    ctx.beginPath();
+    for (let i = 0; i < 4; i++){ const a = i*Math.PI/2; ctx.moveTo(0,0); ctx.lineTo(Math.cos(a)*46, Math.sin(a)*46); ctx.lineTo(Math.cos(a + 0.5)*24, Math.sin(a + 0.5)*24); }
+    ctx.fill();
+    ctx.strokeStyle = rgba(P.keyHot, 0.7); ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(0, 0, 40, -2.4, -1.2); ctx.stroke();
+    ctx.restore();
+    ctx.fillStyle = P.steel; ctx.beginPath(); ctx.arc(0, 0, 12, 0, 7); ctx.fill();
+    ctx.restore();
+  } else {
+    const down = y - 260 + 236*ease.outBack(clamp(t*1.15));
+    ctx.save(); ctx.translate(x, y); ctx.scale(1.55, 1.55); ctx.translate(-x, -y);
+    ctx.fillStyle = mixHex(P.page, P.shadow1, 0.4); ctx.fillRect(x - 250, y - 560, 500, 70);
+    ctx.fillStyle = rgba(P.shadow2, 0.5); ctx.fillRect(x - 180, y - 490, 360, 300);
+    ctx.save(); ctx.translate(x, down);
+    ctx.fillStyle = P.surface2; ctx.fillRect(-30, -200, 60, 156);
+    ctx.fillStyle = rgba(P.light, 0.28); ctx.fillRect(-30, -200, 6, 156);
+    ctx.fillStyle = P.accent; ctx.fillRect(-34, -212, 68, 12);
+    ctx.fillStyle = lg(-12, -44, 12, 50, [[0, P.light], [0.5, P.steel], [1, P.surface]]);
+    ctx.beginPath(); ctx.moveTo(-12, -44); ctx.lineTo(12, -44); ctx.lineTo(0, 52); ctx.closePath(); ctx.fill();
+    ctx.strokeStyle = rgba(P.keyHot, 0.6); ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(-10, -40); ctx.lineTo(0, 48); ctx.stroke();
+    ctx.strokeStyle = rgba(P.shadow3, 0.55); ctx.lineWidth = 3;
+    for (let i = 0; i < 10; i++){ const yy = -38 + i*9; ctx.beginPath(); ctx.moveTo(-11, yy); ctx.lineTo(11, yy + 7); ctx.stroke(); }
+    glow(0, 50, 60, P.key, 0.30*prog(n, CUTS[4] + 34, 26));
+    ctx.restore();
+    ctx.restore();
+  }
+  ctx.restore();
+}
+function caliperRig(n, x, y, w){
+  const t0 = CUTS[3], t = prog(n, t0 + 4, 30), cl = ease.outCubic(clamp(t*1.1));
+  const gap = lerp(w*1.6, w*0.99, cl), yTop = y - 210, yBot = y + 170;
+  ctx.save();
+  ctx.fillStyle = P.surface; ctx.fillRect(x - 22, yTop, 44, yBot - yTop);
+  ctx.fillStyle = rgba(P.light, 0.30); ctx.fillRect(x - 22, yTop, 6, yBot - yTop);
+  ctx.fillStyle = rgba(P.shadow2, 0.4); ctx.fillRect(x + 12, yTop, 10, yBot - yTop);
+  const jawL = x - gap/2, jawR = x + gap/2;
+  [jawL, jawR].forEach((jx, i) => {
+    ctx.fillStyle = lg(0, y - 34, 0, y + 34, [[0, P.light], [0.45, P.steel], [1, P.surface]]);
+    ctx.fillRect(i ? jx : jx - 62, y - 34, 62, 68);
+    ctx.fillStyle = rgba(P.shadow3, 0.35); ctx.fillRect(i ? jx + 52 : jx, y - 34, 10, 68);
+    ctx.strokeStyle = rgba(P.keyHot, 0.65); ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(i ? jx + 1 : jx - 61, y - 26); ctx.lineTo(i ? jx + 1 : jx - 61, y + 26); ctx.stroke();
+  });
+  ctx.fillStyle = rgba(P.shadow2, 0.88); ctx.fillRect(x - 170, yTop - 108, 340, 74);
+  ctx.strokeStyle = rgba(P.light, 0.30); ctx.lineWidth = 2; ctx.strokeRect(x - 170, yTop - 108, 340, 74);
+  ctx.save(); ctx.globalCompositeOperation = "lighter";
+  for (let i = 0; i < 22; i++){ const on = i/21 <= cl;
+    ctx.fillStyle = on ? rgba(P.signal, 0.85) : rgba(P.light, 0.16); ctx.fillRect(x - 152 + i*14, yTop - 94, 7, 46); }
+  ctx.restore();
+  ctx.save(); ctx.globalCompositeOperation = "lighter";
+  ctx.fillStyle = rg(x, yTop - 70, 0, 240, [[0, rgba(P.signal, 0.16*cl)], [1, rgba(P.signal, 0)]]);
+  ctx.fillRect(x - 240, yTop - 310, 480, 480); ctx.restore();
+  ctx.restore();
+}
+function sparks(n, x, y, f0, count){
+  const dt = n - f0; if (dt < 0 || dt > 24) return;
+  const t = dt/FPS;
+  ctx.save(); ctx.globalCompositeOperation = "lighter";
+  for (let i = 0; i < count; i++){
+    const c = chips[i % chips.length], life = clamp(1 - t/0.76);
+    const px = x + Math.cos(c.a)*c.v*t*900, py = y + Math.sin(c.a)*c.v*t*620 + 1400*t*t;
+    const r = c.s*life; if (r <= 0.2) continue;
+    glow(px, py, r*3.2, P.accent, life);
+  }
+  ctx.restore();
+}
+/* ---------------- PURE world painter for scene s at frame n ------------------------------------ */
+function paintWorld(n, s){
+  const t = T(n);
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+  ctx.globalAlpha = 1; ctx.globalCompositeOperation = "source-over";
+  const keyX = W*L.keyX;
+  ctx.fillStyle = P.page; ctx.fillRect(0, 0, W, H);   // full base coverage: no frame may leave stale pixels
+
+  if (s === 0){                                   // 1 GATE | med-wide, eye level | shop wall + racking
+    ctx.fillStyle = lg(0, 0, 0, L.horizon, [[0, mixHex(P.shadow1, P.page, 0.35)], [0.6, P.page], [1, P.page2]]);
+    ctx.fillRect(0, 0, W, L.floorY);
+    const joints = concrete(0, 0, W, L.floorY, {base:P.page, top:mixHex(P.shadow1, P.page, 0.4)});
+    joints(7, 0, 0.12);
+    for (let i = 0; i < 7; i++){ const w = W/7;
+      ctx.fillStyle = rgba(P.shadow3, 0.42); ctx.fillRect(i*w + 20, L.horizon*0.16, w - 40, L.horizon*0.34);
+      ctx.save(); ctx.globalCompositeOperation = "lighter";
+      ctx.fillStyle = rgba(P.key, 0.05); ctx.fillRect(i*w + 40, L.horizon*0.16, w - 80, L.horizon*0.34); ctx.restore(); }
+    racking(W*0.055, L.horizon*0.30, L.floorY, 1);
+    racking(W*0.945, L.horizon*0.30, L.floorY, -1);
+    floorPlane(n, L.floorY, {a:1});
+    shaft(keyX, L.horizon*0.06, L.floorY + (H - L.floorY)*0.5, W*0.20, W*0.72, 1);
+    trussAndLamps(n, L.horizon*0.17, 4, 0.08, 0.92, {sc:1});
+    glow(keyX, L.floorY + 60, W*0.46, P.key, 0.30);
+    const st = settle(n, 0, 95, 0.42, 1);
+    const hw = WIDE ? 780 : 800, hh = (WIDE ? 420 : 560);
+    billet(n, lerp(-hw*0.62, W*0.44, st.v) + st.anti, L.floorY - hh/2 - 24, hw, hh, {m:0, rot: st.roll});
+    fgBeam({y: H - (WIDE ? 150 : 250), h: 250, tilt: -6});
+  }
+
+  if (s === 1){                                   // 2 CUT | LOW ANGLE (horizon .62H) | dark machine bay
+    const hz = H*0.62;
+    ctx.fillStyle = lg(0, 0, 0, hz, [[0, P.shadow3], [0.55, mixHex(P.shadow1, P.page, 0.5)], [1, mixHex(P.page, P.surface, 0.30)]]);
+    ctx.fillRect(0, 0, W, hz);
+    const joints = concrete(0, 0, W, hz, {base:mixHex(P.page, P.shadow1, 0.2), top:P.shadow3});
+    joints(9, 0, 0.09);
+    ctx.save(); ctx.globalCompositeOperation = "lighter";
+    ctx.fillStyle = lg(0, 0, W, 0, [[0, rgba(P.key, 0)], [0.55, rgba(P.key, 0.05)], [1, rgba(P.key, 0.14)]]);
+    ctx.fillRect(0, 0, W, hz); ctx.restore();
+    machineRig(n, L.machine[0], L.machine[1] + (WIDE ? 120 : 210), "saw");
+    floorPlane(n, hz - 30, {a:0.9});
+    trussAndLamps(n, 44, 5, 0.02, 0.98, {sc:0.8});
+    shaft(W*0.66, 30, H*0.9, W*0.16, W*0.85, 0.75);
+    const st = settle(n, CUTS[1], 110, 0.5, -1);
+    const hw = WIDE ? 700 : 720, hh = WIDE ? 300 : 420;
+    const deck1 = hz - 40;
+    billet(n, L.machine[0] - (WIDE ? 40 : 10) + st.anti, deck1 - hh/2 - 10, hw, hh, {m:0.35, rot: st.roll*0.6});
+    sparks(n, L.machine[0] + 40, deck1 - hh - 60, CUTS[1] + 16, 18);
+    fgBeam({y: H - 190, h: 190, tilt: 4});
+  }
+
+  if (s === 2){                                   // 3 MACHINE | profile | backlit panel grid (brightest)
+    const hz = L.floorY;
+    ctx.fillStyle = lg(0, 0, 0, hz, [[0, mixHex(P.page, P.surface, 0.45)], [0.6, mixHex(P.page, P.surface, 0.24)], [1, P.page]]);
+    ctx.fillRect(0, 0, W, hz);
+    const joints = concrete(0, 0, W, hz, {base:mixHex(P.page, P.surface, 0.2), top:mixHex(P.page2, P.surface, 0.3)});
+    joints(10, 0, 0.16);
+    for (let i = 0; i < 10; i++){
+      const w = W/10, x = i*w + 18;
+      ctx.fillStyle = lg(0, hz*0.10, 0, hz*0.50, [[0, rgba(P.key, 0.16)], [1, rgba(P.key, 0.02)]]);
+      ctx.fillRect(x, hz*0.10, w - 36, hz*0.40);
+      ctx.strokeStyle = rgba(P.light, 0.10); ctx.lineWidth = 2; ctx.strokeRect(x, hz*0.10, w - 36, hz*0.40);
+    }
+    floorPlane(n, L.floorY, {a:1});
+    machineRig(n, L.machine[0], L.machine[1], "mill");
+    trussAndLamps(n, hz*0.14, 4, 0.05, 0.95, {sc:1.1});
+    shaft(W*0.34, hz*0.12, L.floorY + 120, W*0.22, W*0.60, 0.8);
+    const st = settle(n, CUTS[2], 90, 0.45, -1);
+    const hw = WIDE ? 720 : 700, hh = WIDE ? 300 : 430;
+    const by2 = L.floorY - hh/2 - 16;
+    billet(n, lerp(W + hw*0.55, L.machine[0] - 170, st.v) + st.anti, by2, hw, hh, {m:1.0, rot: st.roll});
+    sparks(n, L.machine[0] - 170, by2 - hh*0.40, CUTS[2] + 10, 14);
+    ctx.save(); ctx.strokeStyle = rgba(P.shadow1, 0.9); ctx.lineWidth = 8;
+    ctx.beginPath(); ctx.moveTo(W*0.93, -10); ctx.quadraticCurveTo(W*0.90, H*0.16, W*0.86, H*0.30); ctx.stroke(); ctx.restore();
+    fgBeam({y: H - (WIDE ? 120 : 300), h: 300, tilt: 0});
+  }
+
+  if (s === 3){                                   // 4 MEASURE | macro, shallow | instrument bay, near-black
+    ctx.fillStyle = lg(0, 0, 0, H, [[0, P.shadow3], [0.45, mixHex(P.shadow2, P.page, 0.22)], [1, P.shadow2]]);
+    ctx.fillRect(0, 0, W, H);
+    const joints = concrete(0, 0, W, H*0.72, {base:mixHex(P.shadow2, P.page, 0.20), top:P.shadow3});
+    joints(6, 0, 0.07);
+    glow(W*0.72, H*0.30, W*0.55, P.key, 0.16);
+    ctx.save(); ctx.strokeStyle = rgba(P.signal, 0.28); ctx.lineWidth = 5;
+    ctx.beginPath(); ctx.moveTo(W*0.06, H*0.16); ctx.lineTo(W*0.94, H*0.13); ctx.stroke(); ctx.restore();
+    const hw = WIDE ? 900 : 840, hh = WIDE ? 330 : 620;
+    const st = settle(n, CUTS[3], 85, 0.46, -1);
+    billet(n, W*0.5, H*0.52 - hh*0.06, hw, hh, {m:1.7, sy: 1 - 0.10*(1 - clamp(st.v)), rot: 0.006*Math.sin(t*2)});
+    caliperRig(n, W*0.5, H*0.52 - (WIDE ? 0 : 20), hw*0.94);
+    const na = prog(n, CUTS[3] + 26, 10)*(1 - prog(n, CUTS[4] + 18, 12));
+    if (na > 0.01){
+      const sh = n < CUTS[3] + 32 ? Math.sin((n - CUTS[3] - 26)*2.4)*3*(1 - prog(n, CUTS[3] + 26, 6)) : 0;
+      scrim(L.num.x, L.num.y - LT.numeral*0.35, WIDE ? 1000 : 900, 260, 0.72);
+      label("رواداری", L.num.x + (WIDE ? 250 : 200), L.num.y - LT.numeral*1.05, na, P.signal);
+      numRun(iso("±" + faDigits("0") + "٫" + faDigits("02") + " میلی‌متر"), L.num.x + sh, L.num.y, LT.numeral, na);
+      ctx.save(); ctx.globalAlpha = na*copyMul; ctx.strokeStyle = P.accent; ctx.lineWidth = 5;
+      ctx.beginPath(); ctx.moveTo(L.num.x - LT.numeral*1.9, L.num.y + 26); ctx.lineTo(L.num.x + LT.numeral*1.9, L.num.y + 26); ctx.stroke(); ctx.restore();
+    }
+    fgBeam({y: H - (WIDE ? 92 : 240), h: 240, tilt: -3});
+  }
+
+  if (s === 4){                                   // 5 BORE | extreme macro + keyframed push-in | black + orange pool
+    const z = lerp(1.0, 1.14, ease.outCubic(prog(n, CUTS[4], 62)));
+    ctx.setTransform(z, 0, 0, z, (W/2)*(1 - z) + (WIDE ? 30 : 0), (H/2)*(1 - z) - (WIDE ? 10 : 60));
+    ctx.fillStyle = lg(0, -H, 0, H, [[0, P.shadow3], [0.5, mixHex(P.shadow2, P.page, 0.16)], [1, P.shadow3]]);
+    ctx.fillRect(-W, -H, W*3, H*3);
+    for (let i = 0; i < 3; i++) glow(W*(0.20 + i*0.30), H*0.18, W*0.30, P.key, 0.10 + i*0.02);
+    const hw = WIDE ? 1180 : 1040, hh = WIDE ? 470 : 900;
+    const st = settle(n, CUTS[4], 120, 0.4, -1);
+    billet(n, W*0.5, H*0.54, hw, hh, {m:2.1, sy: 1 - 0.12*(1 - clamp(st.v))});
+    machineRig(n, W*0.5, H*0.46, "drill");
+    sparks(n, W*0.5, H*0.52 + 40, CUTS[4] + 18, 16);
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    shaft(W*0.5, -20, H*0.55, W*0.10, W*0.50, 0.55);
+  }
+
+  if (s === 5){                                   // 6 INSPECT | plan / overhead | bench plane + overhead pool
+    ctx.fillStyle = lg(0, 0, 0, H, [[0, mixHex(P.page, P.shadow1, 0.45)], [0.55, mixHex(P.page, P.surface, 0.18)], [1, mixHex(P.shadow1, P.page, 0.3)]]);
+    ctx.fillRect(0, 0, W, H);
+    glow(W*0.5, H*0.34, W*0.62, P.key, 0.34);
+    ctx.save(); ctx.strokeStyle = rgba(P.light, 0.18); ctx.lineWidth = 2.6;
+    for (let i = 0; i <= 16; i++){ const x = i*W/16; ctx.beginPath(); ctx.moveTo(x, H*0.10); ctx.lineTo(x, H*0.92); ctx.stroke(); }
+    for (let i = 0; i <= 10; i++){ const y = H*0.10 + i*(H*0.82/10); ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke(); }
+    ctx.strokeStyle = rgba(P.shadow3, 0.30); ctx.lineWidth = 2;
+    for (let i = 0; i <= 16; i++){ const x = i*W/16 + 2.6; ctx.beginPath(); ctx.moveTo(x, H*0.10); ctx.lineTo(x, H*0.92); ctx.stroke(); }
+    ctx.restore();
+    { const NB = rng(4242);                                   // bench grain: breaks the empty band honestly
+      for (let i = 0; i < 300; i++){ const gx = NB()*W, gy = H*0.10 + NB()*H*0.82;
+        ctx.fillStyle = i % 6 ? rgba(P.shadow3, 0.20) : rgba(P.light, 0.13);
+        ctx.fillRect(gx, gy, 1 + NB()*4, 1 + NB()*2); } }
+    ctx.fillStyle = rgba(P.shadow2, 0.30); ctx.fillRect(0, 0, W, H*0.10); ctx.fillRect(0, H*0.92, W, H*0.08);
+    const st = settle(n, CUTS[5], 80, 0.44, 1);
+    const hw = WIDE ? 900 : 780, hh = WIDE ? 340 : 560;
+    billet(n, lerp(-hw*0.7, W*0.5, st.v), H*0.44, hw, hh, {m:2.6, rot: st.roll});
+    if (n >= CUTS[5] + 20){                                          // stamp: spring impact + squash
+      const p = (n - (CUTS[5] + 20))/FPS;
+      const im = clamp(ease.spring(clamp(p, 0, 2), 170, 0.32));
+      const sy = 1 + 0.10*(1 - im)*Math.cos(Math.min(p, 1)*9);
+      billet(n, W*0.5, H*0.44, hw, hh, {m:2.6, sy: sy, noShadow:true});
+    }
+    ctx.save(); ctx.translate(W*0.5, H*0.80); ctx.rotate(-0.055);       // straightedge crossing the frame
+    ctx.fillStyle = lg(0, -30, 0, 30, [[0, P.light], [0.4, P.steel], [1, P.surface]]);
+    ctx.fillRect(-W, -30, W*2, 60);
+    ctx.fillStyle = rgba(P.shadow3, 0.35); ctx.fillRect(-W, 12, W*2, 18); ctx.restore();
+    scrim(W*0.5, H*0.06, W*0.86, 170, 0.66);
+    fgBeam({y: H - (WIDE ? 70 : 170), h: 170, tilt: 2});
+  }
+
+  if (s === 6){                                   // 7 PALLET | wide, high 20 deg | hall depth, racking both sides
+    const hz = L.floorY;
+    ctx.fillStyle = lg(0, 0, 0, hz, [[0, P.shadow3], [1, mixHex(P.page, P.surface, 0.22)]]);
+    ctx.fillRect(0, 0, W, hz);
+    const joints = concrete(0, 0, W, hz, {base:mixHex(P.page, P.shadow1, 0.2), top:P.shadow3});
+    joints(8, 0, 0.12);
+    for (let i = 1; i <= 7; i++){                             // transverse panel joints: the wall is a built surface
+      const yy = hz*i/8;
+      ctx.strokeStyle = rgba(P.light, 0.11); ctx.lineWidth = 2.8; ctx.beginPath(); ctx.moveTo(0, yy); ctx.lineTo(W, yy); ctx.stroke();
+      ctx.strokeStyle = rgba(P.shadow3, 0.32); ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(0, yy + 3.6); ctx.lineTo(W, yy + 3.6); ctx.stroke();
+    }
+    for (let i = 0; i < 3; i++){                              // skylights: the key spills in from the roof, not from nowhere
+      const sx = W*(0.18 + i*0.30);
+      ctx.fillStyle = rgba(P.key, 0.16); ctx.fillRect(sx, hz*0.10, W*0.11, 26);
+      ctx.fillStyle = rgba(P.keyHot, 0.30); ctx.fillRect(sx, hz*0.10, W*0.11, 5);
+      glow(sx + W*0.055, hz*0.10 + 30, 150, P.key, 0.18);
+    }
+    { const NB = rng(9091);
+      for (let i = 0; i < 260; i++){ const gx = NB()*W, gy = NB()*hz;
+        ctx.fillStyle = i % 5 ? rgba(P.shadow3, 0.20) : rgba(P.light, 0.12);
+        ctx.fillRect(gx, gy, 1 + NB()*4, 1 + NB()*2); } }
+    racking(W*0.10, hz*0.50, L.floorY + 120, 1);
+    racking(W*0.90, hz*0.50, L.floorY + 120, -1);
+    floorPlane(n, L.floorY, {a:1});
+    trussAndLamps(n, hz*0.28, 4, 0.10, 0.90, {sc:0.9});
+    shaft(W*0.52, hz*0.5, H*0.98, W*0.20, W*0.80, 0.8);
+    const baseY = L.floorY + (WIDE ? 96 : 210);
+    const pw = (WIDE ? 250 : 210), dw = WIDE ? 900 : 760;
+    ctx.fillStyle = mixHex(P.surface2, P.shadow2, 0.4); ctx.fillRect(W*0.5 - dw/2, baseY - 4, dw, 30);
+    ctx.fillStyle = rgba(P.light, 0.34); ctx.fillRect(W*0.5 - dw/2, baseY - 9, dw, 5);
+    ctx.fillStyle = rgba(P.shadow3, 0.5); ctx.fillRect(W*0.5 - dw/2, baseY + 26, dw, 12);
+    PALLET_ROW.forEach((pr, i) => {
+      const stag = clamp((n - CUTS[6] - i*2.1)/FPS/0.72, 0, 1);
+      const yv = baseY - 54 - pr.dz*46 + lerp(-260, 0, ease.spring(stag, 70 + i*14, 0.44));
+      const w2 = pw*pr.w, h2 = (WIDE ? 120 : 130)*pr.h;
+      billet(n, W*0.5 + pr.dx*(WIDE ? 300 : 250), yv, w2, h2, {m:pr.m, rot:pr.rot + (1 - stag)*0.05*pr.dx});
+    });
+    if (n >= CUTS[6] + 40){                                          // the sling takes the weight (spring)
+      const w2 = ease.spring(clamp((n - CUTS[6] - 40)/FPS, 0, 2), 55, 0.4);
+      const yy = baseY - 210 + 210*(1 - w2);
+      ctx.save(); ctx.strokeStyle = rgba(P.light, 0.55); ctx.lineWidth = 7;
+      ctx.beginPath(); ctx.moveTo(W*0.5 - 130, 0); ctx.lineTo(W*0.5 - 90, yy); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(W*0.5 + 130, 0); ctx.lineTo(W*0.5 + 90, yy); ctx.stroke();
+      ctx.strokeStyle = rgba(P.accent, 0.6); ctx.lineWidth = 5;
+      ctx.beginPath(); ctx.moveTo(W*0.5 - 90, yy); ctx.lineTo(W*0.5 + 90, yy); ctx.stroke(); ctx.restore();
+    }
+    fgBeam({y: H - (WIDE ? 230 : 470), h: 470, tilt: -4});            // one part passes behind this beam
+    fgBeam({y: H - (WIDE ? 120 : 240), h: 240, tilt: 0});
+  }
+
+  if (s === 7){                                   // 8 SHIP | very wide + keyframed pull-back | hall, gate opens
+    const z = lerp(1.06, 0.90, ease.inOutSine(prog(n, CUTS[7], 30)));
+    ctx.setTransform(z, 0, 0, z, (W/2)*(1 - z), (H/2)*(1 - z) - (WIDE ? 0 : 40));
+    const hz = L.floorY - 40;
+    ctx.fillStyle = lg(0, 0, 0, hz, [[0, mixHex(P.shadow1, P.page, 0.3)], [1, mixHex(P.page, P.surface, 0.26)]]);
+    ctx.fillRect(-W, -H, W*3, hz + H);
+    const joints = concrete(0, 0, W, hz, {base:P.page, top:mixHex(P.shadow1, P.page, 0.4)});
+    joints(8, 0, 0.10);
+    const gX = W*0.72, gW = W*0.20;
+    const open = ease.outCubic(prog(n, CUTS[7] + 6, 26));
+    ctx.save();
+    ctx.fillStyle = lg(0, hz*0.3, 0, L.floorY, [[0, rgba(P.key, 0.34 + 0.30*open)], [1, rgba(P.accentDeep, 0.16)]]);
+    ctx.fillRect(gX - gW/2*open, hz*0.30, gW*open, L.floorY - hz*0.30);
+    glow(gX, hz*0.55, gW*0.9, P.key, 0.34*open);
+    ctx.restore();
+    racking(W*0.06, hz*0.8, L.floorY + 100, 1);
+    racking(W*0.94, hz*0.8, L.floorY + 100, -1);
+    floorPlane(n, L.floorY, {a:1});
+    trussAndLamps(n, hz*0.5, 5, 0.04, 0.96, {sc:0.8});
+    shaft(W*0.58, hz*0.45, H, W*0.18, W*0.90, 0.7);
+    billet(n, gX - 220, L.floorY - 40, WIDE ? 340 : 300, WIDE ? 150 : 190, {m:4, rot:-0.02});
+    billet(n, gX + 240, L.floorY - 6, WIDE ? 300 : 260, WIDE ? 130 : 170, {m:4, rot:0.03});
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    fgBeam({y: H - (WIDE ? 110 : 220), h: 220, tilt: -2});
+  }
+}
+/* ---------------- scene copy: label + headline + deck (3 roles max per frame) ------------------ */
+function sceneCopy(n, s, mul){
+  copyMul = mul === undefined ? 1 : mul;
+  const cx = W - MARGIN;
+  const yL = L.copy.labelY, yH = L.copy.headY, yD = L.copy.deckY;
+  const ent = (f, d) => prog(n, f, d === undefined ? 13 : d);
+  const out = (f, d) => prog(n, f, d === undefined ? 8 : d);
+  const STEPS = ["۰۱","۰۲","۰۳","۰۴","۰۵","۰۶","۰۷","۰۸"];
+  if (s === 0){
+    label("مرحلهٔ " + iso(STEPS[0]) + " — خط تولید", cx, yL, ent(0, 8), P.signal);
+    headText("شمش خام", cx, yH, LT.headline, ent(2, 12));
+    deckText("فولاد AISI 4140 — قطعهٔ ریخته‌گری", cx, yD, ent(8, 12)*(1 - out(CUTS[1] - 6, 6)));
+  }
+  if (s === 1){
+    label("برش اول", cx, yL, ent(CUTS[1] + 12), P.accent);
+    headText("برش شمش", cx, yH, LT.headline, ent(CUTS[1] + 4, 12));
+    deckText("تیغهٔ برش — برش اول", cx, yD, ent(CUTS[1] + 20, 12)*(1 - out(CUTS[2] - 6, 6)));
+  }
+  if (s === 2){
+    label("ماشین‌کاری", cx, yL, ent(CUTS[2] + 14), P.signal);
+    headText("به اندازهٔ مو، دقیق.", cx, yH, LT.headline, ent(CUTS[2] + 4, 14));
+    deckText("برش و تراش قطعه در یک مرحله", cx, yD, ent(CUTS[2] + 26, 14)*(1 - out(CUTS[3] - 8, 8)));
+  }
+  if (s === 3){
+    label("اندازه‌گیری", cx, yL, ent(CUTS[3] + 12), P.signal);
+    headText("رواداری", cx, yH, LT.headline, ent(CUTS[3] + 4, 12));
+    deckText("گیج تماسی، خوانش دیجیتال", cx, yD, ent(CUTS[3] + 22, 14)*(1 - out(CUTS[4] - 6, 6)));
+  }
+  if (s === 4){
+    label("پخ‌زنی", cx, yL, ent(CUTS[4] + 12), P.accent);
+    headText("سوراخ‌کاری و پخ‌زنی", cx, yH, LT.headline*0.92, ent(CUTS[4] + 4, 14));
+    deckText("پخ " + iso("۴۵") + " درجه — شعاع " + iso("۲") + " میلی‌متر", cx, yD, ent(CUTS[4] + 30, 16)*(1 - out(CUTS[5] - 6, 6)));
+  }
+  if (s === 5){
+    label("کنترل کیفیت", cx, yL, ent(CUTS[5] + 12), P.signal);
+    headText("بازرسی کیفی", cx, yH, LT.headline, ent(CUTS[5] + 4, 14));
+    deckText("هر قطعه پیش از بسته‌بندی اندازه‌گیری می‌شود.", cx, yD, ent(CUTS[5] + 26, 16)*(1 - out(CUTS[6] - 8, 8)));
+  }
+  if (s === 6){
+    label("بارگیری", cx, yL, ent(CUTS[6] + 12), P.accent);
+    headText("بارگیری", cx, yH, LT.headline, ent(CUTS[6] + 4, 14));
+    deckText("بسته‌بندی صنعتی، آمادهٔ ارسال", cx, yD, ent(CUTS[6] + 24, 16)*(1 - out(CUTS[7] - 6, 6)));
+  }
+  if (s === 7){
+    headText("خط تولید، یک شیفت کامل", cx, yH, LT.headline*0.94, ent(CUTS[7] + 6, 14)*(1 - out(CUTS[8] - 10, 10)));
+    deckText("ظرفیت ماهانه، تحویل قراردادی", cx, yD, ent(CUTS[7] + 20, 14)*(1 - out(CUTS[8] - 8, 8)));
+  }
+  copyMul = 1;
+}
+/* ---------------- end card: its own grid, own hierarchy, own safe area -------------------------- */
+function finale(n){
+  const t = T(n), a0 = prog(n, CUTS[8], 22), E = L.end;
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+  ctx.fillStyle = P.page; ctx.fillRect(0, 0, W, H);
+  ctx.fillStyle = lg(0, 0, 0, H, [[0, mixHex(P.shadow2, P.page, 0.30)], [0.45, mixHex(P.page, P.shadow1, 0.25)], [1, P.shadow2]]);
+  ctx.fillRect(0, 0, W, H);
+  const joints = concrete(0, 0, W, L.floorY, {base:mixHex(P.page, P.shadow1, 0.2), top:mixHex(P.shadow1, P.page, 0.35)});
+  joints(WIDE ? 12 : 8, 0, 0.10);
+  trussAndLamps(n, WIDE ? 92 : 150, 5, 0.04, 0.96, {sc:1});
+  racking(W*0.035, WIDE ? 200 : 300, L.floorY + 60, 1);
+  racking(W*0.965, WIDE ? 200 : 300, L.floorY + 60, -1);
+  floorPlane(n, L.floorY, {a:1});
+  shaft(W*0.60, WIDE ? 80 : 140, H, W*0.24, W*0.90, 0.85);
+  // product still life: the pallet row at a different angle, not a copy of scene 7
+  const palA = prog(n, CUTS[8] + 8, 18);
+  if (palA > 0.01){
+    const px = E.still.x, py = E.still.y, sc = WIDE ? 1 : 0.86;
+    ctx.save(); ctx.globalAlpha = 0.96*palA;
+    ctx.fillStyle = mixHex(P.surface2, P.shadow2, 0.42); ctx.fillRect(px - 250*sc, py - 6, 500*sc, 26*sc);
+    ctx.fillStyle = rgba(P.light, 0.32); ctx.fillRect(px - 250*sc, py - 11, 500*sc, 5);
+    PALLET_ROW.forEach((pr, i) => {
+      const st2 = ease.spring(clamp((n - CUTS[8] - 8 - i*2)/FPS/0.8, 0, 2), 70 + i*12, 0.44);
+      billet(n, px + (i - 1)*168*sc, py - 54*sc - pr.dz*22 + lerp(-120, 0, st2), 158*sc*pr.w, 96*sc*pr.h, {m:4, rot:pr.rot*1.3});
+    });
+    ctx.restore();
+  }
+  const ms = 0.82 + 0.18*ease.outBack(a0);
+  glow(E.mark.x, E.mark.y, E.mark.r*3.0, P.accent, 0.22*a0);
+  glow(E.mark.x - E.mark.r*0.5, E.mark.y - E.mark.r*0.5, E.mark.r*2.4, P.key, 0.16*a0);
+  ctx.save(); ctx.globalAlpha = a0; ctx.translate(E.mark.x, E.mark.y); ctx.scale(ms, ms); ctx.translate(-E.mark.x, -E.mark.y);
+  mark(E.mark.x, E.mark.y, E.mark.r); ctx.restore();
+  const mx = WIDE ? E.wm.x : E.mark.x;
+  drawText("صنایع پارسا", mx, E.wm.y, {w:900, size:WIDE ? 66 : 64, col:P.white, alpha:prog(n, CUTS[8] + 6, 18), ls:-1});
+  drawText("تولید قطعات صنعتی دقیق", mx, E.tag.y, {w:300, size:WIDE ? 26 : 25, col:P.light, alpha:prog(n, CUTS[8] + 10, 18)});
+  drawText("از شمش تا اطمینان.", E.display.x, E.display.y, {w:900, size:LT.display, col:P.white, alpha:prog(n, CUTS[8] + 22, 20), ls:-LT.display*0.02, shadow:20});
+  ctx.save(); ctx.globalAlpha = prog(n, CUTS[8] + 30, 16)*copyMul; ctx.strokeStyle = P.accent; ctx.lineWidth = 5;
+  ctx.beginPath(); ctx.moveTo(E.rule.x - E.rule.w, E.rule.y); ctx.lineTo(E.rule.x, E.rule.y); ctx.stroke(); ctx.restore();
+  cpuBtn("درخواست استعلام قیمت", E.cta.x, E.cta.y, E.cta.w, E.cta.h, LT.button, prog(n, CUTS[8] + 44, 16));
+  const pa = prog(n, CUTS[8] + 22, 12);
+  if (pa > 0.01){
+    ctx.save(); ctx.globalAlpha = pa*copyMul;
+    ctx.direction = "rtl"; ctx.textAlign = "center"; ctx.textBaseline = "alphabetic";
+    setFont(500, LT.label, 0);
+    const names = ["شرکت فولاد آریا", "پتروشیمی خلیج", "راه‌آهن ایران"];
+    names.forEach((s2, i) => {
+      const x = E.partner.x0 + (i - 1)*E.partner.gap;
+      ctx.fillStyle = P.light; ctx.fillText(s2, x, E.partner.y);
+      ctx.strokeStyle = rgba(P.light, 0.20); ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(x - E.partner.gap*0.38, E.partner.y + 16); ctx.lineTo(x + E.partner.gap*0.38, E.partner.y + 16); ctx.stroke();
+    });
+    ctx.fillStyle = rgba(P.white, 0.55); setFont(600, Math.round(LT.label*0.86), 0);
+    ctx.fillText("نمونهٔ مشتریان صنعتی", E.partner.x0, E.partner.y - LT.label*1.7);
+    ctx.restore();
+  }
+  const la = prog(n, CUTS[8] + 34, 14);
+  if (la > 0.01){
+    ctx.save(); ctx.globalAlpha = la*copyMul;
+    const bx = E.legal.x, by = E.legal.y - 24;
+    ctx.fillStyle = rgba(P.white, 0.86);
+    let x = bx - 116;
+    barcode.forEach(bw => { ctx.fillRect(x, by - 46, bw*1.7, 46); x += bw*1.7 + 4.2; });
+    ctx.restore();
+    legalText("IR-PA 4140 / ISO 9001", E.legal.x + 150, E.legal.y, la, "center");
+  }
+  const bandY = E.band.y, bandH = E.band.h;
+  ctx.save();
+  ctx.fillStyle = rgba(P.shadow1, 0.96); ctx.fillRect(0, bandY, W, bandH);
+  const off = (t*34) % 64;
+  for (let x = -64; x < W + 64; x += 64){
+    ctx.save(); ctx.translate(x + off, bandY + 2); ctx.beginPath();
+    ctx.moveTo(0, 0); ctx.lineTo(24, 0); ctx.lineTo(0, bandH - 4); ctx.lineTo(-24, bandH - 4); ctx.closePath();
+    ctx.fillStyle = rgba(P.accent, 0.68); ctx.fill(); ctx.restore();
+  }
+  ctx.strokeStyle = rgba(P.light, 0.22); ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.moveTo(0, bandY - 1); ctx.lineTo(W, bandY - 1); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(0, bandY + bandH + 1); ctx.lineTo(W, bandY + bandH + 1); ctx.stroke();
+  ctx.restore();
+}
+/* ---------------- grade: warm workshop, cool shadows, corner falloff ---------------------------- */
+function grade(){
+  ctx.save();
+  ctx.globalCompositeOperation = "multiply";
+  ctx.fillStyle = rgba(P.fill, 0.20); ctx.fillRect(0, 0, W, H);
+  ctx.globalCompositeOperation = "screen";
+  ctx.fillStyle = rg(W*L.keyX, H*0.10, 0, Math.max(W, H)*0.95, [[0, rgba(P.key, 0.13)], [0.5, rgba(P.key, 0.05)], [1, rgba(P.key, 0)]]);
+  ctx.fillRect(0, 0, W, H);
+  ctx.globalCompositeOperation = "source-over";
+  ctx.fillStyle = rg(W*0.5, H*0.44, Math.min(W, H)*0.34, Math.max(W, H)*0.82, [[0, rgba(P.shadow2, 0)], [0.6, rgba(P.shadow2, 0.28)], [1, rgba(P.shadow2, 0.62)]]);
+  ctx.fillRect(0, 0, W, H);
+  ctx.restore();
+}
+/* ---------------- the shader transition (story: the saw pinches the frame shut) ----------------- */
+let FX = null, FXOK = false;
+try { FX = PA.fx.create(null, {width: W, height: H}); PA.fx.compile("BowTieHorizontal"); FXOK = true; } catch (e) { FXOK = false; }
+const TBUF = {a: document.createElement("canvas"), b: document.createElement("canvas")};
+TBUF.a.width = TBUF.b.width = W; TBUF.a.height = TBUF.b.height = H;
+const TA = TBUF.a.getContext("2d"), TBB = TBUF.b.getContext("2d");
+const TRANS = {at: CUTS[1], len: 12, shader: "BowTieHorizontal", seed: 7};
+/* ---------------- render (a PURE function of the integer frame n) ------------------------------- */
+const PERF = params.get("perf") === "1";
+function paint(n, s){ if (s >= 8){ finale(n); return; } paintWorld(n, s); }
+function render(n){
+  n = Math.max(0, Math.min(DURATION - 1, Math.round(n)));
+  const s = sceneAt(n), pr = prog(n, TRANS.at - TRANS.len/2, TRANS.len);
+  ctx.globalAlpha = 1; ctx.globalCompositeOperation = "source-over";
+  if (FXOK && pr > 0.001 && pr < 0.999){
+    const sFrom = sceneAt(TRANS.at - TRANS.len/2), sTo = sceneAt(TRANS.at + TRANS.len/2);
+    ctx = TA; paint(n, sFrom); dust(n, "back");
+    ctx = TBB; paint(n, sTo); dust(n, "back");
+    ctx = MAIN; ctx.setTransform(1, 0, 0, 1, 0, 0);
+    let ok = true;
+    try { FX.transition({from: TBUF.a, to: TBUF.b, shader: TRANS.shader, progress: pr, seed: TRANS.seed}); } catch (e) { ok = false; }
+    if (ok) ctx.drawImage(FX.canvas, 0, 0, W, H); else ctx.drawImage(TBUF.b, 0, 0, W, H);
+    sceneCopy(n, sFrom, 1 - pr);
+    sceneCopy(n, sTo, pr);
+  } else {
+    ctx = MAIN; paint(n, s); dust(n, "back");
+    sceneCopy(n, s, 1);
+  }
+  dust(n, "front");
+  grade();
+  window.film.frame = n;
+}
+/* ---------------- film API ---------------- */
+window.film = {
+  events: EVENTS, cuts: CUTS, cut_frames: CUTS, cut_beats: CUT_BEATS, duration: DUR, fps: FPS, bpm: BPM, t0: T0,
+  frame: 0, ready: false, ratio: RATIO, layout: L, tokens: P,
+  light: {key:"top-right", colour:P.key, softness:"very soft", fill:P.fill, ambient:P.shadow2},
+  fx: () => (FXOK ? FX.info() : {backend:"none"}),
+  seek(t){ render(Math.round(t*FPS)); return this.frame; }
+};
+function fit(){ const sc = params.get("capture") === "1" ? 1 : Math.min(innerWidth/W, innerHeight/H); stage.style.transform = `scale(${sc})`; }
+addEventListener("resize", fit); fit();
+Promise.all([document.fonts.load("900 40px PAHead"), document.fonts.load("700 40px PAHead"), document.fonts.load("300 40px PAHead"), document.fonts.load("600 40px PAHead")])
+  .then(() => document.fonts.ready).then(() => { render(0); window.film.ready = true; });
+</script>
+</body>
+</html>

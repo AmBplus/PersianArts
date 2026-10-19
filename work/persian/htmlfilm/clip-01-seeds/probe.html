@@ -1,0 +1,24 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<script src="../lib/pa-motion.js"></script>
+<script src="../lib/pa-camera.js"></script>
+</head><body>
+<canvas id="cv" width="1080" height="1920"></canvas>
+<script>
+try {
+  const f = PA.keys([[0, 0], [2, 1]], PA.ease.inOutSine);
+  console.log("keys ok f(1)=", f(1));
+} catch (e) { console.log("KEYS ERROR:", e.message); }
+const ctx = document.getElementById("cv").getContext("2d");
+function seek(t) {
+  ctx.setTransform(1,0,0,1,0,0);
+  ctx.clearRect(0,0,1080,1920);
+  const bg = ctx.createRadialGradient(300, 300, 40, 540, 1000, 1200);
+  bg.addColorStop(0, "#1a2138"); bg.addColorStop(1, "#0e1220");
+  ctx.fillStyle = bg; ctx.fillRect(0,0,1080,1920);
+  ctx.fillStyle = "#e8b04b"; ctx.fillRect(200 + 200*Math.sin(t), 800, 200, 200);
+}
+window.film = {seek, duration: 5, fps: 30, ready: true};
+seek(0);
+</script>
+</body></html>

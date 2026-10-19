@@ -1,0 +1,130 @@
+{
+ "schema": "persianarts.events/1",
+ "film": "s11-sabadak-app",
+ "fps": 30,
+ "bpm": 130,
+ "t0_s": 0,
+ "cut_frames": [
+  0,
+  28,
+  55,
+  83,
+  111,
+  138,
+  166,
+  187,
+  228
+ ],
+ "duration_frames": 540,
+ "events": [
+  {
+   "id": "wipe0",
+   "name": "cover",
+   "type": "wipe",
+   "frame": 0,
+   "t_s": 0,
+   "role": "accent"
+  },
+  {
+   "id": "wipe1",
+   "name": "swarm",
+   "type": "wipe",
+   "frame": 28,
+   "t_s": 0.9333,
+   "role": "accent"
+  },
+  {
+   "id": "wipe2",
+   "name": "basket",
+   "type": "wipe",
+   "frame": 55,
+   "t_s": 1.8333,
+   "role": "accent"
+  },
+  {
+   "id": "wipe3",
+   "name": "sieve",
+   "type": "wipe",
+   "frame": 83,
+   "t_s": 2.7667,
+   "role": "accent"
+  },
+  {
+   "id": "wipe4",
+   "name": "press",
+   "type": "wipe",
+   "frame": 111,
+   "t_s": 3.7,
+   "role": "accent"
+  },
+  {
+   "id": "wipe5",
+   "name": "signed",
+   "type": "wipe",
+   "frame": 138,
+   "t_s": 4.6,
+   "role": "accent"
+  },
+  {
+   "id": "wipe6",
+   "name": "road",
+   "type": "wipe",
+   "frame": 166,
+   "t_s": 5.5333,
+   "role": "accent"
+  },
+  {
+   "id": "wipe7",
+   "name": "door",
+   "type": "wipe",
+   "frame": 187,
+   "t_s": 6.2333,
+   "role": "accent"
+  },
+  {
+   "id": "wipe8",
+   "name": "quiet",
+   "type": "wipe",
+   "frame": 228,
+   "t_s": 7.6,
+   "role": "accent"
+  },
+  {
+   "id": "offer",
+   "name": "offer pill + chip + label",
+   "type": "pop",
+   "frame": 340,
+   "t_s": 11.3333,
+   "dur_s": 0.4,
+   "role": "accent"
+  },
+  {
+   "id": "strip",
+   "name": "tab strip build",
+   "type": "pop",
+   "frame": 384,
+   "t_s": 12.8,
+   "dur_s": 0.8,
+   "role": "normal"
+  },
+  {
+   "id": "sweep",
+   "name": "coral rule sweep",
+   "type": "pop",
+   "frame": 415,
+   "t_s": 13.8333,
+   "dur_s": 0.5,
+   "role": "normal"
+  },
+  {
+   "id": "tapping",
+   "name": "tap ring on the offer",
+   "type": "pop",
+   "frame": 459,
+   "t_s": 15.3,
+   "dur_s": 0.4,
+   "role": "normal"
+  }
+ ],
+ "beat_frames": 6
+}

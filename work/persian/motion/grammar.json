@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "note": "An effect is not a card. It is a point in this space: subject x op x modifier x layer x camera x light x surface x time. Cards, recipes and generated effects are all just coordinates.",
+  "axes": {
+    "subject": ["text", "shape", "image", "object3d", "light", "particles", "camera", "whole"],
+    "op": ["enter", "exit", "reveal", "sweep", "settle", "drift", "pulse", "assemble", "scatter", "morph", "type", "count"],
+    "modifier": ["ease", "spring", "noise", "gravity", "drag", "stagger", "mirror", "rtl", "seed", "beat"],
+    "layer": ["bg", "mid", "fg", "type"],
+    "camera": ["static", "push", "pull", "orbit", "handheld", "whip", "dollyZoom", "focalRack"],
+    "light": ["key", "rim", "fill", "shaft", "practical", "flicker"],
+    "surface": ["grain", "bloom", "halation", "vignette", "grade", "texture"],
+    "transition": ["cut", "wipe", "morphMatch", "cameraThrough", "dissolve"],
+    "audio": ["pad", "pluck", "impact", "riser", "sparkle", "foley"]
+  },
+  "easing": {
+    "enter": "outCubic",
+    "reveal": "outExpo",
+    "settle": "outBack",
+    "impact": "spring",
+    "ambient": "inOutSine",
+    "exit": "inCubic"
+  },
+  "rules": [
+    "one primary op per shot; everything else supports it",
+    "after the payoff lands, hold >= 0.6s of stillness (breathe)",
+    "every move needs a source: light, gravity, attention or sound",
+    "no linear easing above 0.2s",
+    "scene joins need >= 12 frames of overlap",
+    "hero type = 0.12 x H, sub = 0.38 x hero, no letter-spacing on Persian"
+  ],
+  "ops": {
+    "enter": { "params": ["dy", "dx", "scaleFrom", "dur", "ease", "stagger"] },
+    "exit": { "params": ["dy", "scaleTo", "dur", "ease"] },
+    "reveal": { "params": ["dir", "soft", "dur", "ease"] },
+    "sweep": { "params": ["angle", "width", "dur", "tint", "alpha"] },
+    "settle": { "params": ["amp", "freq", "damp", "dur"] },
+    "drift": { "params": ["amp", "speed", "seed"] },
+    "pulse": { "params": ["amp", "freq", "phase"] }
+  }
+}

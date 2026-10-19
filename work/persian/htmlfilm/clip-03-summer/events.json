@@ -1,0 +1,22 @@
+{
+  "schema": "persianarts.events/1",
+  "film": "clip-03-9x16 (تابستان)",
+  "fps": 30,
+  "bpm": 118,
+  "t0_s": 0,
+  "duration_frames": 610,
+  "cut_frames": [],
+  "events": [
+    {"name": "growth", "type": "riser", "frame": 72, "intensity": 0.4, "dur_s": 2.8},
+    {"name": "sun-crest", "type": "reveal", "frame": 75, "intensity": 0.6},
+    {"name": "copy-1-in", "type": "tick", "frame": 81, "intensity": 0.45},
+    {"name": "copy-1-out", "type": "whoosh", "frame": 180, "intensity": 0.25},
+    {"name": "copy-2-in", "type": "tick", "frame": 225, "intensity": 0.45},
+    {"name": "birds", "type": "whoosh", "frame": 246, "intensity": 0.18},
+    {"name": "copy-2-out", "type": "whoosh", "frame": 315, "intensity": 0.22},
+    {"name": "copy-3-in", "type": "tick", "frame": 360, "intensity": 0.45},
+    {"name": "copy-3-out", "type": "whoosh", "frame": 465, "intensity": 0.25},
+    {"name": "hero-reveal", "type": "reveal", "frame": 516, "intensity": 0.85, "role": "accent"},
+    {"name": "end", "type": "settle", "frame": 597, "intensity": 0.7, "role": "final", "ends_film": true}
+  ]
+}

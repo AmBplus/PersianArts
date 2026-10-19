@@ -1,0 +1,327 @@
+{
+ "cross_source_duplicate_groups": [
+  [
+   "freesound:whoosh/391445-ukulele-whoosh-2-wav.mp3",
+   "freesound:whoosh/391449-ukulele-whoosh-3-wav.mp3"
+  ],
+  [
+   "kenney:misc/footstep_carpet_001.ogg",
+   "kenney:misc/footstep_carpet_002.ogg"
+  ],
+  [
+   "kenney:misc/footstep_carpet_003.ogg",
+   "kenney:misc/footstep_carpet_004.ogg"
+  ]
+ ],
+ "name_vs_category_doubts": [
+  {
+   "id": "freesound:ambience/209518-20131202-ripping-off-paper-towel-zoomh2nxy-wav.mp3",
+   "category": "ambience",
+   "name_suggests": [
+    "paper-pencil"
+   ]
+  },
+  {
+   "id": "freesound:ambience/209655-20131203-crushing-paper-zoomh2nxy-wav.mp3",
+   "category": "ambience",
+   "name_suggests": [
+    "paper-pencil"
+   ]
+  },
+  {
+   "id": "freesound:ambience/232506-bathroom-paper-wav.mp3",
+   "category": "ambience",
+   "name_suggests": [
+    "paper-pencil"
+   ]
+  },
+  {
+   "id": "freesound:ambience/232542-throwing-garbage-wing-paper-wav.mp3",
+   "category": "ambience",
+   "name_suggests": [
+    "paper-pencil"
+   ]
+  },
+  {
+   "id": "freesound:ambience/232828-sound-16-breaking-paper-mp3.mp3",
+   "category": "ambience",
+   "name_suggests": [
+    "paper-pencil"
+   ]
+  },
+  {
+   "id": "freesound:ambience/334199-paper-crumple-2.mp3",
+   "category": "ambience",
+   "name_suggests": [
+    "paper-pencil"
+   ]
+  },
+  {
+   "id": "freesound:ambience/334200-paper-crumple-3.mp3",
+   "category": "ambience",
+   "name_suggests": [
+    "paper-pencil"
+   ]
+  },
+  {
+   "id": "freesound:ambience/334201-paper-crumple-1.mp3",
+   "category": "ambience",
+   "name_suggests": [
+    "paper-pencil"
+   ]
+  },
+  {
+   "id": "freesound:ambience/502043-paper-crumple-short-wav.mp3",
+   "category": "ambience",
+   "name_suggests": [
+    "paper-pencil"
+   ]
+  },
+  {
+   "id": "freesound:ambience/533478-balling-up-paper-and-throwing-it-in-the-trash-m4a.mp3",
+   "category": "ambience",
+   "name_suggests": [
+    "paper-pencil"
+   ]
+  },
+  {
+   "id": "freesound:ambience/533490-writing-on-paper-with-a-pencil-m4a.mp3",
+   "category": "ambience",
+   "name_suggests": [
+    "paper-pencil"
+   ]
+  },
+  {
+   "id": "freesound:ambience/682750-page-tear-long-wav.mp3",
+   "category": "ambience",
+   "name_suggests": [
+    "paper-pencil"
+   ]
+  },
+  {
+   "id": "freesound:ambience/682755-page-tear-short-wav.mp3",
+   "category": "ambience",
+   "name_suggests": [
+    "paper-pencil"
+   ]
+  },
+  {
+   "id": "freesound:ambience/682757-page-turn-short-wav.mp3",
+   "category": "ambience",
+   "name_suggests": [
+    "paper-pencil"
+   ]
+  },
+  {
+   "id": "freesound:ambience/682759-pages-flipping-short-wav.mp3",
+   "category": "ambience",
+   "name_suggests": [
+    "paper-pencil"
+   ]
+  },
+  {
+   "id": "freesound:ambience/798007-simulating-heartbeat-with-paper-bag-crackling.mp3",
+   "category": "ambience",
+   "name_suggests": [
+    "paper-pencil"
+   ]
+  },
+  {
+   "id": "freesound:ambience/843263-slidingdoors.mp3",
+   "category": "ambience",
+   "name_suggests": [
+    "ding-chime"
+   ]
+  },
+  {
+   "id": "freesound:ambience/90801-ripping-paper-wav.mp3",
+   "category": "ambience",
+   "name_suggests": [
+    "paper-pencil"
+   ]
+  },
+  {
+   "id": "freesound:ding/527561-ding-click-wav.mp3",
+   "category": "ding-chime",
+   "name_suggests": [
+    "click"
+   ]
+  },
+  {
+   "id": "freesound:impact/767043-glass-jar-thudding-against-a-wooden-table.mp3",
+   "category": "impact",
+   "name_suggests": [
+    "ding-chime"
+   ]
+  },
+  {
+   "id": "freesound:pop/399342-plastic-bubble-wrap-multiple-pops-06-wav.mp3",
+   "category": "pop",
+   "name_suggests": [
+    "bubble"
+   ]
+  },
+  {
+   "id": "freesound:pop/399343-plastic-bubble-wrap-multiple-pops-11-wav.mp3",
+   "category": "pop",
+   "name_suggests": [
+    "bubble"
+   ]
+  },
+  {
+   "id": "freesound:pop/541351-click-pop-02-wav.mp3",
+   "category": "pop",
+   "name_suggests": [
+    "click"
+   ]
+  },
+  {
+   "id": "freesound:riser/806666-basic-riser-glitch.mp3",
+   "category": "riser",
+   "name_suggests": [
+    "glitch"
+   ]
+  },
+  {
+   "id": "freesound:stinger/441346-swoosh-6-wav.mp3",
+   "category": "stinger",
+   "name_suggests": [
+    "whoosh"
+   ]
+  },
+  {
+   "id": "freesound:stinger/444638-swoosh-21-wav.mp3",
+   "category": "stinger",
+   "name_suggests": [
+    "whoosh"
+   ]
+  },
+  {
+   "id": "freesound:stinger/444640-swoosh-27-wav.mp3",
+   "category": "stinger",
+   "name_suggests": [
+    "whoosh"
+   ]
+  },
+  {
+   "id": "freesound:stinger/444642-swoosh-25-wav.mp3",
+   "category": "stinger",
+   "name_suggests": [
+    "whoosh"
+   ]
+  },
+  {
+   "id": "freesound:stinger/736852-transition-hit-and-whoosh.mp3",
+   "category": "stinger",
+   "name_suggests": [
+    "whoosh"
+   ]
+  },
+  {
+   "id": "kenney:misc/glitch_001.ogg",
+   "category": "misc",
+   "name_suggests": [
+    "glitch"
+   ]
+  },
+  {
+   "id": "kenney:misc/glitch_002.ogg",
+   "category": "misc",
+   "name_suggests": [
+    "glitch"
+   ]
+  },
+  {
+   "id": "kenney:misc/glitch_003.ogg",
+   "category": "misc",
+   "name_suggests": [
+    "glitch"
+   ]
+  },
+  {
+   "id": "kenney:misc/glitch_004.ogg",
+   "category": "misc",
+   "name_suggests": [
+    "glitch"
+   ]
+  },
+  {
+   "id": "kenney:paper-pencil/card-slide-1.ogg",
+   "category": "paper-pencil",
+   "name_suggests": [
+    "slide"
+   ]
+  },
+  {
+   "id": "kenney:paper-pencil/card-slide-2.ogg",
+   "category": "paper-pencil",
+   "name_suggests": [
+    "slide"
+   ]
+  },
+  {
+   "id": "kenney:paper-pencil/card-slide-3.ogg",
+   "category": "paper-pencil",
+   "name_suggests": [
+    "slide"
+   ]
+  },
+  {
+   "id": "kenney:paper-pencil/card-slide-4.ogg",
+   "category": "paper-pencil",
+   "name_suggests": [
+    "slide"
+   ]
+  },
+  {
+   "id": "kenney:paper-pencil/card-slide-5.ogg",
+   "category": "paper-pencil",
+   "name_suggests": [
+    "slide"
+   ]
+  },
+  {
+   "id": "kenney:paper-pencil/card-slide-6.ogg",
+   "category": "paper-pencil",
+   "name_suggests": [
+    "slide"
+   ]
+  },
+  {
+   "id": "kenney:paper-pencil/card-slide-7.ogg",
+   "category": "paper-pencil",
+   "name_suggests": [
+    "slide"
+   ]
+  },
+  {
+   "id": "kenney:paper-pencil/card-slide-8.ogg",
+   "category": "paper-pencil",
+   "name_suggests": [
+    "slide"
+   ]
+  },
+  {
+   "id": "kenney:ui/tick_001.ogg",
+   "category": "ui",
+   "name_suggests": [
+    "tick-clock"
+   ]
+  },
+  {
+   "id": "kenney:ui/tick_002.ogg",
+   "category": "ui",
+   "name_suggests": [
+    "tick-clock"
+   ]
+  },
+  {
+   "id": "kenney:ui/tick_004.ogg",
+   "category": "ui",
+   "name_suggests": [
+    "tick-clock"
+   ]
+  }
+ ],
+ "name_vs_category_doubt_total": 44
+}

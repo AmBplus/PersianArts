@@ -1,0 +1,182 @@
+{
+ "schema": "persianarts.events/1",
+ "film": "s10-factory-parsa",
+ "fps": 30,
+ "bpm": 120,
+ "t0_s": 0,
+ "beat_frames": 15,
+ "cut_frames": [
+  0,
+  60,
+  120,
+  180,
+  240,
+  330,
+  420,
+  510,
+  540
+ ],
+ "duration_frames": 600,
+ "events": [
+  {
+   "id": "wipe0",
+   "name": "gate hit: cold shop light, raw billet",
+   "type": "wipe",
+   "frame": 0,
+   "t_s": 0,
+   "role": "accent"
+  },
+  {
+   "id": "wipe1",
+   "name": "hard cut: the saw bites",
+   "type": "wipe",
+   "frame": 60,
+   "t_s": 2,
+   "role": "accent"
+  },
+  {
+   "id": "chip",
+   "name": "chips fly",
+   "type": "tick",
+   "frame": 68,
+   "t_s": 2.2667,
+   "role": "normal"
+  },
+  {
+   "id": "wipe2",
+   "name": "hard cut: squaring the blank",
+   "type": "wipe",
+   "frame": 120,
+   "t_s": 4,
+   "role": "accent"
+  },
+  {
+   "id": "machine",
+   "name": "spindle engages",
+   "type": "hit",
+   "frame": 132,
+   "t_s": 4.4,
+   "role": "normal"
+  },
+  {
+   "id": "wipe3",
+   "name": "hard cut: caliper closes",
+   "type": "wipe",
+   "frame": 180,
+   "t_s": 6,
+   "role": "accent"
+  },
+  {
+   "id": "number",
+   "name": "tolerance number lands",
+   "type": "hit",
+   "frame": 206,
+   "t_s": 6.8667,
+   "role": "accent"
+  },
+  {
+   "id": "numberout",
+   "name": "tolerance number leaves",
+   "type": "tick",
+   "frame": 258,
+   "t_s": 8.6,
+   "role": "normal"
+  },
+  {
+   "id": "wipe4",
+   "name": "hard cut: the drill plunges",
+   "type": "wipe",
+   "frame": 240,
+   "t_s": 8,
+   "role": "accent"
+  },
+  {
+   "id": "bore",
+   "name": "hole opens",
+   "type": "hit",
+   "frame": 255,
+   "t_s": 8.5,
+   "role": "accent"
+  },
+  {
+   "id": "chamfer",
+   "name": "chamfer turns orange",
+   "type": "tick",
+   "frame": 285,
+   "t_s": 9.5,
+   "role": "normal"
+  },
+  {
+   "id": "wipe5",
+   "name": "hard cut: quality inspection",
+   "type": "wipe",
+   "frame": 330,
+   "t_s": 11,
+   "role": "accent"
+  },
+  {
+   "id": "stamp",
+   "name": "inspection stamp lands",
+   "type": "hit",
+   "frame": 352,
+   "t_s": 11.7333,
+   "role": "accent"
+  },
+  {
+   "id": "wipe6",
+   "name": "hard cut: pallet and sling",
+   "type": "wipe",
+   "frame": 420,
+   "t_s": 14,
+   "role": "accent"
+  },
+  {
+   "id": "sling",
+   "name": "sling takes the weight",
+   "type": "hit",
+   "frame": 465,
+   "t_s": 15.5,
+   "role": "normal"
+  },
+  {
+   "id": "wipe7",
+   "name": "hard cut: the hall pulls back",
+   "type": "wipe",
+   "frame": 510,
+   "t_s": 17,
+   "role": "accent"
+  },
+  {
+   "id": "wipe8",
+   "name": "hard cut: brand mark finale",
+   "type": "wipe",
+   "frame": 540,
+   "t_s": 18,
+   "role": "accent"
+  },
+  {
+   "id": "partner",
+   "name": "partner stand-in row in",
+   "type": "tick",
+   "frame": 562,
+   "t_s": 18.7333,
+   "role": "normal"
+  },
+  {
+   "id": "cta",
+   "name": "CTA line",
+   "type": "tick",
+   "frame": 584,
+   "t_s": 19.4667,
+   "role": "accent"
+  },
+  {
+   "id": "settle",
+   "name": "mark and partner row settle",
+   "type": "tick",
+   "frame": 592,
+   "t_s": 19.7333,
+   "role": "normal"
+  }
+ ]
+}

@@ -1,0 +1,75 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>html,body{margin:0;background:#000;overflow:hidden}canvas{display:block}</style></head>
+<body>
+<script type="module">
+import * as THREE from "../../src/workbench/node_modules/three/build/three.module.js";
+
+const W = 1080, H = 1920;
+const renderer = new THREE.WebGLRenderer({antialias: true, preserveDrawingBuffer: true});
+renderer.setSize(W, H, false);
+renderer.setPixelRatio(1);
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.1;
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+document.body.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+scene.fog = new THREE.FogExp2(0x0b141d, 0.0016);
+const cam = new THREE.PerspectiveCamera(38, W / H, 1, 6000);
+cam.position.set(0, 120, 620);
+cam.lookAt(0, 60, 0);
+
+// ground plane with a procedural-ish look (vertex noise)
+const g = new THREE.PlaneGeometry(4000, 4000, 120, 120);
+const pos = g.attributes.position;
+for (let i = 0; i < pos.count; i++) {
+  const x = pos.getX(i), y = pos.getY(i);
+  pos.setZ(i, Math.sin(x * 0.004) * 40 + Math.cos(y * 0.006) * 26 + Math.sin(x * 0.02 + y * 0.01) * 8);
+}
+g.computeVertexNormals();
+const ground = new THREE.Mesh(g, new THREE.MeshStandardMaterial({color: 0x2a1e17, roughness: 0.95, metalness: 0.0}));
+ground.rotation.x = -Math.PI / 2;
+scene.add(ground);
+
+// a few objects to read light and shadow
+for (let i = 0; i < 5; i++) {
+  const s = new THREE.Mesh(new THREE.SphereGeometry(40 + i * 8, 48, 32), new THREE.MeshStandardMaterial({color: 0xe9c07c, roughness: 0.35, metalness: 0.1}));
+  s.position.set(-260 + i * 130, 40, -120 + i * 60);
+  s.castShadow = true;
+  scene.add(s);
+}
+
+const sun = new THREE.DirectionalLight(0xffd9a0, 3.2);
+sun.position.set(-400, 520, 260);
+sun.castShadow = true;
+sun.shadow.mapSize.set(1024, 1024);
+sun.shadow.camera.near = 100; sun.shadow.camera.far = 2000;
+sun.shadow.camera.left = -600; sun.shadow.camera.right = 600;
+sun.shadow.camera.top = 600; sun.shadow.camera.bottom = -600;
+scene.add(sun);
+scene.add(new THREE.HemisphereLight(0x8fb4c8, 0x24180f, 0.55));
+
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+// particles (rain-ish)
+const N = 900, arr = new Float32Array(N * 3);
+for (let i = 0; i < N; i++) { arr[i * 3] = (Math.random() - 0.5) * 1400; arr[i * 3 + 1] = Math.random() * 900; arr[i * 3 + 2] = (Math.random() - 0.5) * 1200; }
+const pg = new THREE.BufferGeometry();
+pg.setAttribute("position", new THREE.BufferAttribute(arr, 3));
+const pts = new THREE.Points(pg, new THREE.PointsMaterial({color: 0xcfe3ef, size: 3, transparent: true, opacity: 0.55, depthWrite: false}));
+scene.add(pts);
+
+window.film = {
+  ready: true, duration: 10, fps: 30,
+  seek(t) {
+    cam.position.x = Math.sin(t * 0.3) * 60;
+    cam.position.y = 120 + Math.sin(t * 0.5) * 20;
+    cam.lookAt(0, 60, 0);
+    pts.position.y = -((t * 260) % 900) + 450;
+    renderer.render(scene, cam);
+  },
+};
+window.film.seek(0);
+</script>
+</body></html>

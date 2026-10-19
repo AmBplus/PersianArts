@@ -15,7 +15,7 @@ Rule: everything we do is in git or restorable by one command; nothing depends o
 | sound/.venv, tools/assets/.venv | local | ignored by design | rebuild needed | `pa bootstrap` from `requirements-pa.txt` |
 | node_modules, Remotion chrome-headless-shell | local | ignored by design | rebuild needed | `pa bootstrap` (npm ci, `remotion browser ensure`) |
 | ffmpeg, ffprobe | system | not in git | films cannot render | install; doctor prints the command |
-| Fonts used by films | work/persian/assets/fonts (5 tracked), more in media/dana history | PARTLY in git | a film may fall back to a wrong font | doctor lists referenced-but-missing fonts; add small woff2 to assets/fonts before a film uses them |
+| Fonts used by films | work/persian/assets/fonts (5 tracked), more in media/dana history | PARTLY in git | a film may fall back to a wrong font | doctor checks only the font FILENAMES referenced by sources under work/persian/src against work/persian/assets/fonts; it does NOT check a film's own htmlfilm/<label>/fonts/ folder, and film.html resolves `fonts/x.woff2` relative to itself, so a new film should reference the canonical zero-setup path `../../assets/fonts/Vazirmatn-Variable.woff2` (or ship its own copy in htmlfilm/<label>/fonts/ and accept that doctor says nothing about it) |
 | SFX/music kit | sound/library/kit (304 sfx, 15 music maps) | in git | none | `restore_library.ps1` verifies |
 | Full SFX library, media/music-staging, media/music-pixabay | local | ignored by design (large, licences) | extra tracks missing | pick what a film needs into the kit (<= 2 MB each) |
 | .freesound.env, .jamendo.env (keys) | work/persian | ignored, secrets | cannot be in git | `.example` files provided; own keys per machine |

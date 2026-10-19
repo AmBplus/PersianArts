@@ -1,0 +1,16 @@
+{
+ "fonts/Estedad-Variable.ttf": {
+  "new": "Estedad-Variable.woff2",
+  "bytes_before": 285060,
+  "bytes_after": 121124,
+  "mode": "woff2",
+  "ssim": null
+ },
+ "fonts/Vazirmatn-Variable.ttf": {
+  "new": "Vazirmatn-Variable.woff2",
+  "bytes_before": 241328,
+  "bytes_after": 110904,
+  "mode": "woff2",
+  "ssim": null
+ }
+}

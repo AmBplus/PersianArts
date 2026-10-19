@@ -1,0 +1,35 @@
+// debug: open the film and dump page errors + state (temporary, not a deliverable)
+import {spawn} from "node:child_process";
+import {mkdtempSync, existsSync, readdirSync} from "node:fs";
+import {tmpdir} from "node:os";
+import {join, resolve, dirname} from "node:path";
+import {fileURLToPath, pathToFileURL} from "node:url";
+const HERE = dirname(fileURLToPath(import.meta.url));
+const ROOT = resolve(HERE, "..", "..", "..", "..");
+const exe = "chrome-headless-shell.exe";
+const find = (d, depth = 0) => { if (!existsSync(d) || depth > 4) return null; for (const e of readdirSync(d, {withFileTypes: true})) { const f = join(d, e.name); if (e.isFile() && e.name === exe) return f; if (e.isDirectory()) { const r = find(f, depth + 1); if (r) return r; } } return null; };
+const CHROME = find(join(ROOT, "work/persian/.remotion", "chrome-headless-shell"));
+const PORT = 9455;
+const profile = mkdtempSync(join(tmpdir(), "dbg-"));
+const chrome = spawn(CHROME, ["--headless", `--remote-debugging-port=${PORT}`, `--user-data-dir=${profile}`, "--window-size=1080,1920", "--disable-gpu", "--no-first-run", "--allow-file-access-from-files", "about:blank"], {stdio: "ignore"});
+let ws0 = null;
+for (let i = 0; i < 100 && !ws0; i++) { try { const l = await (await fetch(`http://127.0.0.1:${PORT}/json/list`)).json(); const p = l.find(t => t.type === "page"); if (p) ws0 = p.webSocketDebuggerUrl; } catch {} if (!ws0) await new Promise(r => setTimeout(r, 100)); }
+const ws = new WebSocket(ws0);
+await new Promise((res, rej) => { ws.onopen = res; ws.onerror = rej; });
+let id = 0; const pending = new Map(); const logs = [];
+ws.onmessage = ev => { const m = JSON.parse(ev.data);
+  if (m.method === "Runtime.consoleAPICalled") logs.push("console." + m.params.type + ": " + m.params.args.map(a => a.value ?? a.description).join(" "));
+  if (m.method === "Runtime.exceptionThrown") logs.push("EXCEPTION: " + JSON.stringify(m.params.exceptionDetails.exception?.description || m.params.exceptionDetails.text));
+  if (m.id && pending.has(m.id)) { const {res, rej} = pending.get(m.id); pending.delete(m.id); m.error ? rej(new Error(JSON.stringify(m.error))) : res(m.result); } };
+const send = (method, params = {}) => new Promise((res, rej) => { const i = ++id; pending.set(i, {res, rej}); ws.send(JSON.stringify({id: i, method, params})); });
+const ev = async e => (await send("Runtime.evaluate", {expression: e, returnByValue: true, awaitPromise: true})).result.value;
+await send("Runtime.enable"); await send("Page.enable");
+const RATIO = process.argv[2] || "9x16";
+const FILM = resolve(ROOT, "work/persian/htmlfilm/s12-pikavar-route/film.html");
+await send("Page.navigate", {url: pathToFileURL(FILM).href + "?capture=1&ratio=" + RATIO});
+await new Promise(r => setTimeout(r, 2500));
+console.log("logs:", logs.join("\n") || "(none)");
+console.log("hasPA:", await ev("typeof PA"), "hasfilm:", await ev("typeof window.film"));
+console.log("err:", await ev("(()=>{try{window.__x=1;return 'ok'}catch(e){return String(e)}})()"));
+console.log("manual render test:", await ev("(()=>{try{return 'no-access'}catch(e){return String(e)}})()"));
+ws.close(); chrome.kill();

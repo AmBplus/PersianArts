@@ -1,0 +1,32 @@
+== assembly 1920 1080 bg #0D1D2C frac 0.93
+   ink rows: max 0.291 thr 0.087  ink frac total 0.017
+     run y  538- 610  h=  73  peak=0.291
+   type_block h=73 lines=2 pitch=36.5 y=538-610
+   autocorr x: peak(3..60)=0.679 at lag 4 ; ac[5..20]=[ 0.431  0.34   0.05  -0.193 -0.092  0.053]
+   autocorr y: peak(3..60)=0.780 at lag 4 ; ac[5..20]=[ 0.312  0.584  0.221 -0.124  0.174  0.485]
+   edge thr 0.02  rows>0.5:0 cols>0.5:0  maxrow 0.21 @974  maxcol 0.10 @1357
+   edge thr 0.04  rows>0.5:0 cols>0.5:0  maxrow 0.16 @974  maxcol 0.08 @133
+   edge thr 0.08  rows>0.5:0 cols>0.5:0  maxrow 0.11 @975  maxcol 0.02 @1356
+== chipcycle 1920 1080 bg #0D1D2C frac 0.90
+   ink rows: max 0.185 thr 0.060  ink frac total 0.013
+     run y  416- 451  h=  36  peak=0.185
+     run y  637- 671  h=  35  peak=0.123
+     run y  974- 980  h=   7  peak=0.079
+   type_block h=36 lines=1 pitch=36.0 y=416-451
+   autocorr x: peak(3..60)=0.468 at lag 4 ; ac[5..20]=[ 0.208  0.188 -0.031 -0.237 -0.071  0.181]
+   autocorr y: peak(3..60)=0.810 at lag 4 ; ac[5..20]=[ 0.142  0.736  0.116 -0.473  0.095  0.659]
+   edge thr 0.02  rows>0.5:0 cols>0.5:0  maxrow 0.21 @974  maxcol 0.11 @1155
+   edge thr 0.04  rows>0.5:0 cols>0.5:0  maxrow 0.16 @974  maxcol 0.08 @930
+   edge thr 0.08  rows>0.5:0 cols>0.5:0  maxrow 0.12 @975  maxcol 0.02 @1078
+== counter 1920 1080 bg #0D1D2C frac 0.90
+   ink rows: max 0.242 thr 0.072  ink frac total 0.027
+     run y  459- 613  h= 155  peak=0.151
+     run y  717- 740  h=  24  peak=0.242
+     run y  829- 832  h=   4  peak=0.077
+     run y  976-1025  h=  50  peak=0.079
+   type_block h=155 lines=1 pitch=155.0 y=459-613
+   autocorr x: peak(3..60)=0.479 at lag 4 ; ac[5..20]=[ 0.284  0.256  0.118 -0.071  0.071  0.214]
+   autocorr y: peak(3..60)=0.828 at lag 4 ; ac[5..20]=[0.544 0.751 0.484 0.189 0.388 0.547]
+   edge thr 0.02  rows>0.5:0 cols>0.5:0  maxrow 0.20 @974  maxcol 0.11 @928
+   edge thr 0.04  rows>0.5:0 cols>0.5:0  maxrow 0.16 @982  maxcol 0.09 @926
+   edge thr 0.08  rows>0.5:0 cols>0.5:0  maxrow 0.11 @975  maxcol 0.03 @982

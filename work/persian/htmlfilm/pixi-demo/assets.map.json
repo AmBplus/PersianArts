@@ -1,0 +1,93 @@
+{
+ "stills/t1_00s_f030.png": {
+  "new": "t1_00s_f030.webp",
+  "bytes_before": 597990,
+  "bytes_after": 32804,
+  "mode": "lossy q95",
+  "ssim": 0.9875
+ },
+ "stills/t2_60s_f078.png": {
+  "new": "t2_60s_f078.webp",
+  "bytes_before": 732158,
+  "bytes_after": 42944,
+  "mode": "lossy q95",
+  "ssim": 0.9927
+ },
+ "stills/t3_50s_f105.png": {
+  "new": "t3_50s_f105.webp",
+  "bytes_before": 900381,
+  "bytes_after": 50504,
+  "mode": "lossy q95",
+  "ssim": 0.9858
+ },
+ "stills/t3_60s_f108.png": {
+  "new": "t3_60s_f108.webp",
+  "bytes_before": 682873,
+  "bytes_after": 230704,
+  "mode": "lossless",
+  "ssim": 1.0
+ },
+ "stills/t5_20s_f156.png": {
+  "new": "t5_20s_f156.webp",
+  "bytes_before": 671670,
+  "bytes_after": 224302,
+  "mode": "lossless",
+  "ssim": 1.0
+ },
+ "stills/t5_40s_f162.png": {
+  "new": "t5_40s_f162.webp",
+  "bytes_before": 807778,
+  "bytes_after": 50382,
+  "mode": "lossy q95",
+  "ssim": 0.9864
+ },
+ "check/f_0.5.png": {
+  "new": "f_0.5.webp",
+  "bytes_before": 84183,
+  "bytes_after": 53510,
+  "mode": "lossless",
+  "ssim": 1.0
+ },
+ "check/f_2.45.png": {
+  "new": "f_2.45.webp",
+  "bytes_before": 141263,
+  "bytes_after": 90596,
+  "mode": "lossless",
+  "ssim": 1.0
+ },
+ "check/f_3.2.png": {
+  "new": "f_3.2.webp",
+  "bytes_before": 167129,
+  "bytes_after": 21800,
+  "mode": "lossy q95",
+  "ssim": 0.9853
+ },
+ "check/f_6.0.png": {
+  "new": "f_6.0.webp",
+  "bytes_before": 132826,
+  "bytes_after": 89462,
+  "mode": "lossless",
+  "ssim": 1.0
+ },
+ "check/g_2.45.png": {
+  "new": "g_2.45.webp",
+  "bytes_before": 137042,
+  "bytes_after": 86966,
+  "mode": "lossless",
+  "ssim": 1.0
+ },
+ "check/g_3.2.png": {
+  "new": "g_3.2.webp",
+  "bytes_before": 166109,
+  "bytes_after": 112248,
+  "mode": "lossless",
+  "ssim": 1.0
+ },
+ "check/g_6.0.png": {
+  "new": "g_6.0.webp",
+  "bytes_before": 128333,
+  "bytes_after": 86244,
+  "mode": "lossless",
+  "ssim": 1.0
+ }
+}

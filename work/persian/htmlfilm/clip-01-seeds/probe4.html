@@ -1,0 +1,30 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<script src="../lib/pa-motion.js"></script>
+<script src="../lib/pa-camera.js"></script>
+<script src="../lib/pa-layout.js"></script>
+</head><body>
+<canvas id="cv" width="1080" height="1920"></canvas>
+<script>
+const ctx = document.getElementById("cv").getContext("2d");
+function seek(t) {
+  try {
+    const L = PA.layout({"9x16": {W:1080, H:1920, heroPx:120, bodyPx:52, marginX:96},
+                         "16x9": {W:1920, H:1080, heroPx:110, bodyPx:46, marginX:120}},
+                        new URLSearchParams(location.search).get("ratio") || "9x16");
+    const R = PA.rng(20261018);
+    const v = R();
+    const g = ctx.createRadialGradient(300, 300, 40, 540, 1000, 1200);
+    g.addColorStop(0, "#1a2138"); g.addColorStop(1, "#0e1220");
+    ctx.setTransform(1,0,0,1,0,0);
+    ctx.fillStyle = g; ctx.fillRect(0,0,1080,1920);
+    ctx.fillStyle = "#e8b04b"; ctx.fillRect(200 + 200 * v, 800, 200, 200);
+  } catch (e) {
+    ctx.setTransform(1,0,0,1,0,0);
+    ctx.fillStyle = "#c44536"; ctx.fillRect(0,0,1080,1920);
+  }
+}
+window.film = {seek, duration: 2, fps: 30, ready: true};
+seek(1);
+</script>
+</body></html>

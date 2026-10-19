@@ -1,0 +1,213 @@
+{
+ "radius": {
+  "n_ge4": 57,
+  "median_of_detected": 10,
+  "max": 84
+ },
+ "texture_periodicity": {
+  "median": 0.559,
+  "p10": 0.166,
+  "p90": 0.753,
+  "n_ge_030": 206,
+  "n_ge_050": 152,
+  "pct_ge_030": 82.1
+ },
+ "accent_hues": [
+  [
+   "#DCA045",
+   1
+  ],
+  [
+   "#DB4D67",
+   1
+  ],
+  [
+   "#AC813F",
+   1
+  ],
+  [
+   "#CF9944",
+   1
+  ],
+  [
+   "#AD6945",
+   1
+  ],
+  [
+   "#A98140",
+   1
+  ],
+  [
+   "#DE4D67",
+   1
+  ],
+  [
+   "#D29A44",
+   1
+  ],
+  [
+   "#3167BC",
+   1
+  ],
+  [
+   "#54C47F",
+   1
+  ],
+  [
+   "#3E7BF9",
+   1
+  ],
+  [
+   "#683577",
+   1
+  ]
+ ],
+ "accent_families": [
+  {
+   "hex": "#B27338",
+   "n": 7,
+   "ex": "library/media/typography/highlight/poster.webp"
+  },
+  {
+   "hex": "#CE924A",
+   "n": 5,
+   "ex": "library/media/typography/counter/poster.webp"
+  },
+  {
+   "hex": "#5B2E6F",
+   "n": 5,
+   "ex": "library/media/reference/shotcraft/card-stack/card-stack/poster.webp"
+  },
+  {
+   "hex": "#36446B",
+   "n": 4,
+   "ex": "library/media/reference/shotcraft/counter-confetti/counter-confetti/poster.webp"
+  },
+  {
+   "hex": "#4464B4",
+   "n": 3,
+   "ex": "library/media/reference/shotcraft/avatar-bracket-carousel/avatar-bracket-carousel/poster.webp"
+  },
+  {
+   "hex": "#624992",
+   "n": 3,
+   "ex": "library/media/reference/shotcraft/flying-words/flying-words/poster.webp"
+  },
+  {
+   "hex": "#DC4D67",
+   "n": 2,
+   "ex": "library/media/typography/fonthymp/poster.webp"
+  },
+  {
+   "hex": "#317FEE",
+   "n": 2,
+   "ex": "library/media/reference/shotcraft/brand-frame-snap/brand-frame-snap/poster.webp"
+  },
+  {
+   "hex": "#32906A",
+   "n": 2,
+   "ex": "library/media/reference/shotcraft/collab-cursor-moves/dialogue-duet/poster.webp"
+  },
+  {
+   "hex": "#886A39",
+   "n": 2,
+   "ex": "library/media/reference/shotcraft/neon-triple-marquee/neon-triple-marquee/poster.webp"
+  }
+ ],
+ "devices": {
+  "has_dotgrid": {
+   "n": 206,
+   "pct": 82.1,
+   "typography_n": 37,
+   "typography_pct": 94.9,
+   "shotcraft_n": 169,
+   "shotcraft_pct": 79.7
+  },
+  "has_accent": {
+   "n": 44,
+   "pct": 17.5,
+   "typography_n": 8,
+   "typography_pct": 20.5,
+   "shotcraft_n": 36,
+   "shotcraft_pct": 17.0
+  },
+  "has_radius": {
+   "n": 57,
+   "pct": 22.7,
+   "typography_n": 4,
+   "typography_pct": 10.3,
+   "shotcraft_n": 53,
+   "shotcraft_pct": 25.0
+  },
+  "has_glow": {
+   "n": 48,
+   "pct": 19.1,
+   "typography_n": 21,
+   "typography_pct": 53.8,
+   "shotcraft_n": 27,
+   "shotcraft_pct": 12.7
+  },
+  "has_border": {
+   "n": 79,
+   "pct": 31.5,
+   "typography_n": 35,
+   "typography_pct": 89.7,
+   "shotcraft_n": 44,
+   "shotcraft_pct": 20.8
+  }
+ },
+ "bg_frac": {
+  "median": 0.772,
+  "p25": 0.576,
+  "p75": 0.913
+ },
+ "contrast": {
+  "median": 3.98,
+  "p10": 1.29,
+  "p90": 8.91,
+  "min": 1.0,
+  "n_ge_4_5": 84,
+  "n_ge_3_0": 174,
+  "ge_4_5_pct": 33.5
+ },
+ "type_ratio": {
+  "n": 251,
+  "min": 0.0,
+  "p10": 0.0444,
+  "p25": 0.0778,
+  "median": 0.1444,
+  "p75": 0.363,
+  "p90": 0.9889,
+  "max": 1.0,
+  "single_line_n": 140,
+  "single_line_median": 0.0907
+ },
+ "type_px": {
+  "median": 94.0,
+  "p25": 50.0,
+  "p75": 178.0,
+  "max": 1080.0
+ },
+ "bimodality": {
+  "dark": 92,
+  "mid": 11,
+  "light": 148,
+  "dark_pct": 36.7,
+  "mid_pct": 4.4,
+  "light_pct": 59.0,
+  "dark_mean": 0.1119,
+  "light_mean": 0.9133
+ },
+ "mean_lum_by_kind": {
+  "typography": {
+   "n": 39,
+   "median": 0.1205,
+   "dark_pct": 87.2
+  },
+  "shotcraft": {
+   "n": 212,
+   "median": 0.8945,
+   "dark_pct": 27.4
+  }
+ }
+}

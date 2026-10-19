@@ -1,0 +1,14 @@
+
+=== work/persian/htmlfilm/s10-factory-parsa/film.html
+  duration 20.00 s  |  render region lines 1050-1071
+  PASS  P01  purity: requestAnimationFrame for animation state
+  WARN  T01  type: letter-spacing on Persian text  [work/persian/htmlfilm/s10-factory-parsa/film.html:527]
+        - warn line 527: letter-spacing present (Latin-only tracking is legal; confirm no Persian run passes through this rule) — tracking breaks Persian letter joins (PERSIAN-LOCALIZATION-LESSONS.md)
+  PASS  D01  design: declared token layer (CSS custom properties or one palette object)
+        · CSS custom properties: 17 | largest palette object keys: 0
+  PASS  K02  kit: secondary action (spring / overshoot)
+        · spring 6 + overshoot 3
+
+--- summary: 1 file(s), 0 FAIL, 1 WARN ---
+    cannot see: the rendered frame, taste, lighting, hierarchy in pixels, motion.
+    PASS means "no known source pattern found", never "this film is good". bug-free != good.

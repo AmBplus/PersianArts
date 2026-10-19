@@ -1,0 +1,25 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<script src="../lib/pa-motion.js"></script>
+<script src="../lib/pa-camera.js"></script>
+</head><body>
+<canvas id="cv" width="1080" height="1920"></canvas>
+<script>
+const ctx = document.getElementById("cv").getContext("2d");
+function seek(t) {
+  try {
+    const f = PA.keys([[0, 0], [2, 1]], PA.ease.inOutSine);
+    const v = f(1);
+    ctx.setTransform(1,0,0,1,0,0);
+    ctx.clearRect(0,0,1080,1920);
+    ctx.fillStyle = "#0e1220"; ctx.fillRect(0,0,1080,1920);
+    ctx.fillStyle = "#6fcf97"; ctx.fillRect(200, 200 + 400 * v, 300, 300); // v should be ~0.5..1
+  } catch (e) {
+    ctx.setTransform(1,0,0,1,0,0);
+    ctx.fillStyle = "#c44536"; ctx.fillRect(0,0,1080,1920); // red = keys threw
+  }
+}
+window.film = {seek, duration: 2, fps: 30, ready: true};
+seek(1);
+</script>
+</body></html>

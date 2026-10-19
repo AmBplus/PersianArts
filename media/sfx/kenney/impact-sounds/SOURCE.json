@@ -1,0 +1,19 @@
+{
+  "pack": "impact-sounds",
+  "source_page_url": "https://kenney.nl/assets/impact-sounds",
+  "download_url": "https://kenney.nl/media/pages/assets/impact-sounds/87b4ddecda-1677589768/kenney_impact-sounds.zip",
+  "licence": "CC0 1.0 Universal (public domain dedication)",
+  "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "author": "Kenney (kenney.nl)",
+  "attribution_required": false,
+  "download_date": "2026-10-12",
+  "file_count": 130,
+  "extracted_entry_count": 133,
+  "extracted_bytes": 1035004,
+  "licence_files_in_zip": [
+    "License.txt"
+  ],
+  "rejected_zip_entries": [],
+  "zip_file": "kenney_impact-sounds.zip",
+  "audio_bytes": 1034296
+}

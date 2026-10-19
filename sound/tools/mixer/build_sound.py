@@ -204,9 +204,25 @@ def main():
     kit = Kit()
 
     # music map
-    mid = re.sub(r"^tr-", "", a.track)
+    # Kit ids are `tr-<name>` but the files on disk are inconsistent: some keep the `tr-` prefix
+    # (tr-vd-*.ogg), some do not (dogo-jump-*.ogg). Resolve through INDEX.json's `file` field first so
+    # both layouts work; the old strip-the-prefix guess broke on every tr-vd-* track.
     mdir = REPO / "sound/library/kit/music"
+    idx_path = mdir / "INDEX.json"
+    entry = None
+    if idx_path.exists():
+        for e in json.load(open(idx_path, encoding="utf-8")).get("tracks", []):
+            if e.get("id") == a.track or e.get("id") == "tr-" + re.sub(r"^tr-", "", a.track):
+                entry = e
+                break
+    if entry:
+        mid = re.sub(r"\.(ogg|mp3|wav)$", "", entry["file"])
+    else:
+        mid = re.sub(r"^tr-", "", a.track)
     track = mdir / (mid + ".ogg")
+    if not track.exists() and (mdir / ("tr-" + mid + ".ogg")).exists():
+        mid = "tr-" + mid
+        track = mdir / (mid + ".ogg")
     tj = json.load(open(mdir / (mid + ".music.json"), encoding="utf-8"))
     bpm = a.bpm or evdoc.get("bpm") or tj["bpm"]
     t0f = a.t0 if a.t0 is not None else evdoc.get("t0_s", tj["t0"])  # film time of a beat (cut grid)

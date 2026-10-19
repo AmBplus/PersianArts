@@ -6,7 +6,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
-import { compressPaths } from './compress.mjs';
+import { compressPaths, tvSafeVerdict } from './compress.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../..');
 const FV = path.join(ROOT, 'media/film-versions');
@@ -57,9 +57,7 @@ function link(src, dst) {
   try { fs.linkSync(src, dst); return 'HARDLINK'; } catch { fs.copyFileSync(src, dst); return 'COPY(fallback)'; }
 }
 
-function outputMd(film, ver, vj, list) {
-  const tv = vj.verify?.tv_check ? 'بله (' + vj.verify.tv_check + ')'
-    : list.some((p) => /\.tv\.mp4$/.test(p.file) || /final-tv-safe/.test(JSON.stringify(vj.outputs || []))) ? 'بله' : 'ثبت نشده';
+function outputMd(film, ver, vj, list, tv) {
   const track = vj.track ? path.basename(typeof vj.track === 'string' ? vj.track : (vj.track.path || vj.track.slug || '')) : 'بدون موسیقی';
   const withSound = list.some((p) => p.sound);
   const dur = list.map((p) => p.dur.toFixed(1)).join(' / ');
@@ -166,10 +164,19 @@ for (const p of list) {
 }
 const sheet = fs.readdirSync(vdir).find((n) => /^(sheet|contact).*\.jpg$/i.test(n));
 if (sheet) console.log(`  ${film}-${arg}-stills.jpg: ${DRY ? 'dry-run' : link(path.join(vdir, sheet), path.join(dst, `${film}-${arg}-stills.jpg`))}`);
-if (!DRY) fs.writeFileSync(path.join(dst, 'OUTPUT.md'), outputMd(film, arg, vj, list), 'utf8');
+// TV-safe: the string in VERSION.json is a CLAIM; the real tv_check is re-run on the delivered finals here
+// (compress.mjs tvSafeVerdict) and a claim is only ever printed next to what was checked. Dry runs and a
+// checker that cannot run print "claimed, not verified" instead of a yes/no.
+const delivFiles = list.map((p) => path.join(dst, `${film}-${p.ratio}-${arg}${p.sound ? '' : '-silent'}.mp4`));
+const tvText = tvSafeVerdict(vj.verify?.tv_check || (list.some((p) => /\.tv\.mp4$/.test(p.file) || /final-tv-safe/.test(JSON.stringify(vj.outputs || []))) ? 'tv.mp4 / final-tv-safe recorded in VERSION.json' : ''), DRY ? [] : delivFiles);
+console.log(`  TV-safe: ${tvText}`);
+if (!DRY) fs.writeFileSync(path.join(dst, 'OUTPUT.md'), outputMd(film, arg, vj, list, tvText), 'utf8');
 if (args.includes('--gates') && !DRY) { // gates on the delivered finals; --no-logo is passed automatically when VERSION.json says logo:false (no brand asset)
   const noLogo = vj.logo === false || vj.no_brand_asset === true;
-  for (const p of list) { const f = path.join(dst, `${film}-${p.ratio}-${arg}${p.sound ? '' : '-silent'}.mp4`); const r = execFileSync('node', [path.join(path.dirname(fileURLToPath(import.meta.url)), '../gates/run-gates.mjs'), f, ...(noLogo ? ['--no-logo'] : [])], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }).toString(); console.log(r.split(String.fromCharCode(10)).slice(0, 12).join(String.fromCharCode(10))); }
+  // run-gates.mjs also reads "scenery": true from VERSION.json/meta.json, but the delivered folder has no
+  // VERSION.json, so the same fact has to be forwarded as --scenery like logo:false is forwarded as --no-logo.
+  const scenery = vj.scenery === true;
+  for (const p of list) { const f = path.join(dst, `${film}-${p.ratio}-${arg}${p.sound ? '' : '-silent'}.mp4`); const r = execFileSync('node', [path.join(path.dirname(fileURLToPath(import.meta.url)), '../gates/run-gates.mjs'), f, ...(noLogo ? ['--no-logo'] : []), ...(scenery ? ['--scenery'] : [])], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }).toString(); console.log(r.split(String.fromCharCode(10)).slice(0, 12).join(String.fromCharCode(10))); }
 }
 if (!DRY && !args.includes('--no-compress')) await compressPaths([dst]); // default ON: SSIM-guarded CRF 20-23, TV-safe (see compress.mjs)
 process.stdout.write(rebuild(scan()));

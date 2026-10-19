@@ -1,0 +1,10 @@
+export const SAMA_SCHOOLS_PREVIEW = {
+  id: "SamaSchoolsPreview",
+  width: 1080,
+  height: 1920,
+  fps: 30,
+  durationInFrames: 405,
+  copy: ["از کجا شروع کنم؟", "یک پرسش، یک مسیر.", "برای قدمِ بعدی.", "مدارس سما"],
+  beats: [0, 60, 126, 195, 264, 324, 405],
+  font: "Estedad",
+} as const;

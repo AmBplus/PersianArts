@@ -1,0 +1,292 @@
+{
+  "total": 1564,
+  "per_source": {
+    "kenney": 611,
+    "freesound": 743,
+    "anidoodle": 8,
+    "owner-pack": 202
+  },
+  "per_category_total": {
+    "alarm-timer": 40,
+    "ambience": 78,
+    "boing-cartoon": 25,
+    "boom-sub": 52,
+    "bubble": 20,
+    "camera-shutter": 11,
+    "click": 39,
+    "ding-chime": 104,
+    "downlifter": 20,
+    "fail": 20,
+    "glitch": 21,
+    "impact": 157,
+    "misc": 171,
+    "paper-pencil": 140,
+    "pop": 36,
+    "riser": 69,
+    "slide": 31,
+    "sparkle-magic": 21,
+    "stamp-thud": 37,
+    "stinger": 171,
+    "success": 37,
+    "swoosh-transition": 20,
+    "tick-clock": 20,
+    "typing": 31,
+    "ui": 118,
+    "whoosh": 75
+  },
+  "per_category_usable": {
+    "alarm-timer": 32,
+    "ambience": 53,
+    "boing-cartoon": 19,
+    "boom-sub": 52,
+    "bubble": 12,
+    "camera-shutter": 11,
+    "click": 24,
+    "ding-chime": 91,
+    "downlifter": 19,
+    "fail": 18,
+    "glitch": 19,
+    "impact": 133,
+    "misc": 123,
+    "paper-pencil": 85,
+    "pop": 24,
+    "riser": 59,
+    "slide": 11,
+    "sparkle-magic": 14,
+    "stamp-thud": 31,
+    "stinger": 171,
+    "success": 28,
+    "swoosh-transition": 20,
+    "tick-clock": 13,
+    "typing": 22,
+    "ui": 82,
+    "whoosh": 53
+  },
+  "counts": {
+    "alarm-timer": {
+      "freesound": 40
+    },
+    "ambience": {
+      "freesound": 25,
+      "kenney": 33,
+      "owner-pack": 20
+    },
+    "boing-cartoon": {
+      "freesound": 25
+    },
+    "boom-sub": {
+      "freesound": 52
+    },
+    "bubble": {
+      "freesound": 20
+    },
+    "camera-shutter": {
+      "owner-pack": 11
+    },
+    "click": {
+      "freesound": 25,
+      "kenney": 13,
+      "owner-pack": 1
+    },
+    "ding-chime": {
+      "freesound": 46,
+      "kenney": 45,
+      "owner-pack": 13
+    },
+    "downlifter": {
+      "freesound": 20
+    },
+    "fail": {
+      "freesound": 20
+    },
+    "glitch": {
+      "freesound": 20,
+      "owner-pack": 1
+    },
+    "impact": {
+      "freesound": 25,
+      "kenney": 96,
+      "owner-pack": 36
+    },
+    "misc": {
+      "freesound": 27,
+      "kenney": 116,
+      "owner-pack": 28
+    },
+    "paper-pencil": {
+      "anidoodle": 6,
+      "freesound": 81,
+      "kenney": 31,
+      "owner-pack": 22
+    },
+    "pop": {
+      "anidoodle": 2,
+      "freesound": 25,
+      "kenney": 9
+    },
+    "riser": {
+      "freesound": 55,
+      "kenney": 8,
+      "owner-pack": 6
+    },
+    "slide": {
+      "freesound": 20,
+      "owner-pack": 11
+    },
+    "sparkle-magic": {
+      "freesound": 20,
+      "owner-pack": 1
+    },
+    "stamp-thud": {
+      "freesound": 37
+    },
+    "stinger": {
+      "freesound": 58,
+      "kenney": 103,
+      "owner-pack": 10
+    },
+    "success": {
+      "freesound": 37
+    },
+    "swoosh-transition": {
+      "freesound": 20
+    },
+    "tick-clock": {
+      "freesound": 20
+    },
+    "typing": {
+      "owner-pack": 31
+    },
+    "ui": {
+      "kenney": 118
+    },
+    "whoosh": {
+      "freesound": 25,
+      "kenney": 39,
+      "owner-pack": 11
+    }
+  },
+  "usable_counts": {
+    "alarm-timer": {
+      "freesound": 32
+    },
+    "ambience": {
+      "freesound": 14,
+      "kenney": 33,
+      "owner-pack": 6
+    },
+    "boing-cartoon": {
+      "freesound": 19
+    },
+    "boom-sub": {
+      "freesound": 52
+    },
+    "bubble": {
+      "freesound": 12
+    },
+    "camera-shutter": {
+      "owner-pack": 11
+    },
+    "click": {
+      "freesound": 22,
+      "kenney": 1,
+      "owner-pack": 1
+    },
+    "ding-chime": {
+      "freesound": 41,
+      "kenney": 37,
+      "owner-pack": 13
+    },
+    "downlifter": {
+      "freesound": 19
+    },
+    "fail": {
+      "freesound": 18
+    },
+    "glitch": {
+      "freesound": 19
+    },
+    "impact": {
+      "freesound": 17,
+      "kenney": 81,
+      "owner-pack": 35
+    },
+    "misc": {
+      "freesound": 16,
+      "kenney": 89,
+      "owner-pack": 18
+    },
+    "paper-pencil": {
+      "anidoodle": 6,
+      "freesound": 30,
+      "kenney": 30,
+      "owner-pack": 19
+    },
+    "pop": {
+      "anidoodle": 2,
+      "freesound": 21,
+      "kenney": 1
+    },
+    "riser": {
+      "freesound": 47,
+      "kenney": 8,
+      "owner-pack": 4
+    },
+    "slide": {
+      "freesound": 5,
+      "owner-pack": 6
+    },
+    "sparkle-magic": {
+      "freesound": 13,
+      "owner-pack": 1
+    },
+    "stamp-thud": {
+      "freesound": 31
+    },
+    "stinger": {
+      "freesound": 58,
+      "kenney": 103,
+      "owner-pack": 10
+    },
+    "success": {
+      "freesound": 28
+    },
+    "swoosh-transition": {
+      "freesound": 20
+    },
+    "tick-clock": {
+      "freesound": 13
+    },
+    "typing": {
+      "owner-pack": 22
+    },
+    "ui": {
+      "kenney": 82
+    },
+    "whoosh": {
+      "freesound": 10,
+      "kenney": 39,
+      "owner-pack": 4
+    }
+  },
+  "owner_over_15s": [
+    "sound/library/sfx/owner-pack/ambience/radio-snow-01.wav",
+    "sound/library/sfx/owner-pack/ambience/radio-snow-02.wav",
+    "sound/library/sfx/owner-pack/ambience/radio-snow-07.wav",
+    "sound/library/sfx/owner-pack/ambience/radio-snow-08.wav",
+    "sound/library/sfx/owner-pack/ambience/radio-snow-09.wav",
+    "sound/library/sfx/owner-pack/glitch/distortion-squiggly.wav",
+    "sound/library/sfx/owner-pack/misc/heartbeat-progressive-slow-to-fast.wav",
+    "sound/library/sfx/owner-pack/misc/heartbeat.wav",
+    "sound/library/sfx/owner-pack/misc/medical-heart-stopping-01.wav",
+    "sound/library/sfx/owner-pack/paper-pencil/writing-loop-59s.mp3",
+    "sound/library/sfx/owner-pack/paper-pencil/writing-session-5min.mp3",
+    "sound/library/sfx/owner-pack/typing/type-02.mp3",
+    "sound/library/sfx/owner-pack/typing/type-03.mp3",
+    "sound/library/sfx/owner-pack/typing/type-05.mp3",
+    "sound/library/sfx/owner-pack/typing/type-06.mp3",
+    "sound/library/sfx/owner-pack/typing/type-07.mp3",
+    "sound/library/sfx/owner-pack/typing/type-08.mp3",
+    "sound/library/sfx/owner-pack/typing/type-09.mp3"
+  ]
+}

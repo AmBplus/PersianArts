@@ -1,0 +1,43 @@
+<!doctype html>
+<!--
+==========================================================================
+CLIP-01 «دانه‌ی برف» (snow-seed) — motion graphic v1, skill_version 3.0 (first build on the redesigned skill).
+Both ratios from this one file: ?ratio=9x16 (primary 1080x1920) and ?ratio=16x9 (re-composed).
+120 BPM, beat = 0.5s, 40 beats = 20s = 600 frames. Music: kit tr-dogo-jump-1267515.
+==========================================================================
+LOGLINE   یک دانه‌ی برف تنها در تاریکی می‌رقصد؛ باد او را با خود می‌برد و هر بار که با نور می‌رقصد نزدیک‌تر می‌شود، تا این‌که به زمین می‌رسد و دانه‌ی کوچکی از آن می‌روید؛ «از یک دانه، یک بهار».
+PROTAGONIST  snowflake (persistent actor): 6-arm star with secondary arms, warm rim light from the light source; seed/sprout at the end is the payoff.
+CLOCK     120 BPM: the flake's dance steps land ON beats (2, 6, 10, 14, 18); light pulses on beats; bar = 2s.
+LAYOUT    ONE table per ratio (PA.layout): 9x16 tall — light rays from upper-left, flake travels a curved path down-right to the snow ground at the bottom; 16x9 wide — flake arcs left-to-right across the stage.
+COPY      «هر دانه‌ای یک مسیر دارد» (t=3) / «یک دانه…» (t=11.5) / «…بهار می‌شود» (t=16) / «از یک دانه، یک بهار» (t=18, payoff card)
+ART       night #0e1220 -> #1a2138 radial; light rays warm #ffe9b8 additive from upper-left; snow ground #dfe7f2 with blue shadow #9fb4d4; flake #eaf2ff with warm rim #ffd98a; sprout #6fcf97. Vazirmatn.
+SCENES (beat 0.5s, bar 2s)
+  1 DARK  beats 0-4   (0-2s)     deep night, light shaft, dust motes, flake materializes (scale+rotate outBack)
+  2 DANCE beats 4-14  (2-7s)     flake steps on beats 2,6,10 with camera parallax, depth layers drift
+  3 DRIFT beats 14-30 (7-15s)    wind gusts push the flake on bar lines; copy 2; camera push-in
+  4 LAND  beats 30-38 (15-19s)   flake descends to the ground (outCubic), lands on beat 30 (hit), light warms
+  5 GROW  beats 38-40 (19-20s)   sprout unfolds (outExpo) on beat 38, payoff card fades in
+EVENTS (beats) materialize 4 | step 6 | step 10 | gust 14 | gust 18 | gust 22 | push 26 | land hit 30 | warm 34 | grow 38 | final settle 40 (ends_film)
+==========================================================================
+-->
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>clip-01 snow-seed</title>
+<style>
+@font-face{font-family:"PAHead";src:url("fonts/Vazirmatn-Variable.woff2") format("woff2");font-weight:100 900;font-display:block}
+html,body{margin:0;height:100%;background:#000;overflow:hidden}
+#stage{position:absolute;left:0;top:0;overflow:hidden;transform-origin:0 0;direction:rtl}
+canvas{position:absolute;left:0;top:0;width:100%;height:100%}
+.grain{position:absolute;inset:-10%;pointer-events:none;opacity:.05;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E")}
+.vignette{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 45%,transparent 55%,rgba(0,0,0,.35) 100%)}
+</style>
+<script src="../lib/pa-motion.js"></script>
+<script src="../lib/pa-camera.js"></script>
+<script src="../lib/pa-layout.js"></script>
+</head>
+<body>
+<div id="stage"><canvas id="cv"></canvas></div>
+

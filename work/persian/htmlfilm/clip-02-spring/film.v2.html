@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>clip-02 spring — WebGL</title>
+<style>
+@font-face{font-family:"PAHead";src:url("../fonts/Vazirmatn-Variable.woff2") format("woff2");font-weight:100 900;font-display:block}
+html,body{margin:0;height:100%;background:#05070a;overflow:hidden}
+canvas{position:absolute;left:0;top:0;z-index:1}
+#type{z-index:5}
+#type{pointer-events:none}
+</style>
+<script type="importmap">
+{"imports":{
+  "three": "../../src/workbench/node_modules/three/build/three.module.js",
+  "three/addons/": "../../src/workbench/node_modules/three/examples/jsm/"
+}}
+</script>
+<script src="../lib/pa-motion.js"></script>
+<script src="../lib/pa-film.js"></script>
+</head>
+<body>
+<canvas id="type" width="1080" height="1920"></canvas>
+<script type="module">
+import * as PFW from "../lib/pa-world.js";
+const {THREE} = PFW;
+
+const W = 1080, H = 1920, FPS = 30, BPM = 120, BS = 60 / BPM, DURATION = 40 * BS;
+const win = PF.win;
+
+// ---------------------------------------------------------------- world
+const PR = Number(new URLSearchParams(location.search).get("pr") || 1);
+const E = PFW.init({W, H, pr: PR, fov: 42, exposure: 1.12, bloom: 0.5, bloomRes: 0.35, fog: 0.00013, fogColor: 0x2b3a44,
+  dof: {focus: 1500, aperture: 0.00016, maxblur: 0.014}});
+const {scene, camera, renderer} = E;
+
+// real IBL: the sky lights the materials, the hand-built dome below only paints the backdrop
+const envMap = await PFW.environment(renderer, new URL("../../../../assets/hdri/sunflowers_puresky_1k.hdr", import.meta.url).href);
+scene.environment = envMap;
+scene.environmentIntensity = 0.75;
+
+const SUN_DIR = new THREE.Vector3(-0.74, 0.32, 0.42).normalize();
+const skyMesh = PFW.sky({
+  top: 0x4a6a86, mid: 0x9fb4bf, low: 0xc8cdc4,
+  sunDir: [SUN_DIR.x, SUN_DIR.y, SUN_DIR.z], sunColor: [1.0, 0.90, 0.74], sunPower: 16, sunGain: 0.55,
+  clouds: 0.85, cloudColor: 0xfdfaf2, cloudShade: 0x8d9aa4, cloudScale: 1.5, drift: 0.006,
+});
+// the HDRI lights the scene; the dome paints the sky (art direction stays ours, and the exposure of
+// the plate does not fight the exposure of the ground)
+scene.add(skyMesh);
+
+// lights
+const sun = new THREE.DirectionalLight(0xffdcae, 1.7);
+sun.position.copy(SUN_DIR).multiplyScalar(2200);
+sun.castShadow = true;
+sun.shadow.mapSize.set(1024, 1024);
+sun.shadow.camera.near = 200; sun.shadow.camera.far = 6000;
+sun.shadow.camera.left = -2800; sun.shadow.camera.right = 2800;
+sun.shadow.camera.top = 2800; sun.shadow.camera.bottom = -2800;
+sun.shadow.bias = -0.0004;
+sun.shadow.normalBias = 1.6;
+scene.add(sun);
+// cool bounce from the camera side: keeps the shaded faces readable instead of black
+const fill = new THREE.DirectionalLight(0x9fc0d8, 0.0);
+fill.position.set(600, 400, 1400);
+scene.add(fill);
+
+// --- the section is lit by daylight spilling in through the open face.
+// The ground casts a shadow, so the sun above never reaches the interior; these two are the only
+// sources down there. decay=1 (not 2) keeps the far wall from going black while the near floor is
+// still brighter — that gradient is the entire sense of depth in the underground shot.
+const inLight = new THREE.PointLight(0xffd0a0, 4600, 8000, 1);
+inLight.position.set(1150, -180, 820);
+scene.add(inLight);
+const inCool = new THREE.PointLight(0x9fc4e0, 2800, 7000, 1);
+inCool.position.set(-1250, -620, 250);
+scene.add(inCool);
+
+const seedLight = new THREE.PointLight(0xffa653, 1400, 2200, 1);
+seedLight.position.set(0, -560, -640);
+scene.add(seedLight);
+
+// ---------------------------------------------------------------- soil block (cutaway)
+const soilTex = PFW.soilTextures({size: 512, seed: 9});
+// the surface the light actually reaches: lighter, and the stones read as grit not boulders
+const turfTex = PFW.soilTextures({size: 1024, seed: 23, base: "#6b5540", light: "#a08a66", dark: "#3a2b1e"});
+const strataTex = PFW.soilStrata({size: 1024, seed: 17, bandCount: 9});
+function soilMat(rx = 2, ry = 1, tex = soilTex) {
+  const map = tex.color.clone(); map.needsUpdate = true; map.repeat.set(rx, ry);
+  const bump = tex.bump.clone(); bump.needsUpdate = true; bump.repeat.set(rx * 2, ry * 2);
+  return new THREE.MeshStandardMaterial({map, bumpMap: bump, bumpScale: 1.2, roughness: 0.96, metalness: 0.0});
+}
+// the section faces: one strata texture stretched over the whole face, never tiled vertically
+function strataMat(emissive = 0x150e08, rx = 2) {
+  const map = strataTex.color.clone(); map.needsUpdate = true; map.repeat.set(rx, 1);
+  const bump = strataTex.bump.clone(); bump.needsUpdate = true; bump.repeat.set(rx, 1);
+  return new THREE.MeshStandardMaterial({
+    map, bumpMap: bump, bumpScale: 2.4, roughness: 0.98, metalness: 0.0,
+    emissive: new THREE.Color(emissive), emissiveIntensity: 1,
+  });
+}
+const TOP_Y = 0, CUT_Z = 320, BACK_Z = -2400, FLOOR_Y = -1120, HALF_X = 2600;
+// the field must run *past* the camera, otherwise its front edge shows up as a brown band in the
+// above-ground shot and the whole thing reads as a set
+const FRONT_Z = 3000, FAR_Z = -9000;
+
+// top surface (grass ground)
+const topGeo = new THREE.PlaneGeometry(HALF_X * 2, FRONT_Z - FAR_Z, 1, 1);
+topGeo.rotateX(-Math.PI / 2);
+const top = new THREE.Mesh(topGeo, soilMat(7, 4, turfTex));
+top.position.set(0, TOP_Y, (FRONT_Z + FAR_Z) / 2);
+top.receiveShadow = true;
+top.castShadow = true;   // this is what puts the whole section in shadow
+scene.add(top);
+
+// underside of the top layer (what you see when the camera is below ground)
+const underGeo = new THREE.PlaneGeometry(HALF_X * 2, FRONT_Z - BACK_Z);
+underGeo.rotateX(Math.PI / 2);
+const under = new THREE.Mesh(underGeo, strataMat(0x0e0906));
+under.position.set(0, TOP_Y - 6, (FRONT_Z + BACK_Z) / 2);
+under.castShadow = true;
+scene.add(under);
+
+// interior walls — the section itself
+const backWall = new THREE.Mesh(new THREE.PlaneGeometry(HALF_X * 2, -FLOOR_Y), strataMat());
+backWall.position.set(0, FLOOR_Y / 2, BACK_Z);
+backWall.receiveShadow = true;
+scene.add(backWall);
+
+const floor = new THREE.Mesh(new THREE.PlaneGeometry(HALF_X * 2, CUT_Z - BACK_Z), strataMat(0x120c07));
+floor.rotation.x = -Math.PI / 2;
+floor.position.set(0, FLOOR_Y, (CUT_Z + BACK_Z) / 2);
+floor.receiveShadow = true;
+scene.add(floor);
+
+for (const sx of [-1, 1]) {
+  const wall = new THREE.Mesh(new THREE.PlaneGeometry(CUT_Z - BACK_Z, -FLOOR_Y), strataMat(0x120c07));
+  wall.rotation.y = sx > 0 ? -Math.PI / 2 : Math.PI / 2;
+  wall.position.set(sx * HALF_X, FLOOR_Y / 2, (CUT_Z + BACK_Z) / 2);
+  scene.add(wall);
+}
+
+// the cut edge is deliberately NOT modelled: the ground runs past the camera, so there is no visible
+// front face to give the set away. What sells the section is the light, not a lip.
+
+// meadow plate: the grass blades only cover ~2500 units, the ground has to be green all the way out
+const meadowRnd = PFW.rng(41);
+const meadowTex = PFW.canvasTexture(1024, (g, S) => {
+  g.fillStyle = "#44603a"; g.fillRect(0, 0, S, S);
+  for (let i = 0; i < 5200; i++) {
+    const r = 6 + meadowRnd() * 40;
+    g.fillStyle = meadowRnd() > 0.5 ? `rgba(96,126,70,${0.04 + meadowRnd() * 0.14})` : `rgba(26,40,22,${0.04 + meadowRnd() * 0.16})`;
+    g.beginPath(); g.arc(meadowRnd() * S, meadowRnd() * S, r, 0, 6.2832); g.fill();
+  }
+  for (let i = 0; i < 9000; i++) {
+    g.fillStyle = meadowRnd() > 0.5 ? `rgba(130,158,96,${0.05 + meadowRnd() * 0.14})` : `rgba(18,28,16,${0.05 + meadowRnd() * 0.16})`;
+    g.fillRect(meadowRnd() * S, meadowRnd() * S, 1 + meadowRnd() * 3, 2 + meadowRnd() * 7);
+  }
+});
+meadowTex.repeat.set(26, 20);
+const meadow = new THREE.Mesh(
+  new THREE.PlaneGeometry(18000, 14000),
+  new THREE.MeshStandardMaterial({map: meadowTex, color: 0xa8b898, roughness: 1, metalness: 0})
+);
+meadow.rotation.x = -Math.PI / 2;
+meadow.position.set(0, 2, -3500);
+meadow.receiveShadow = true;
+scene.add(meadow);
+
+// meadow: three card variants over two size classes. Cards, not needles.
+const grass = PFW.grassCards({count: 18000, area: 3400, height: 155, width: 150, seed: 5, variants: 3, color: 0xcfdcb6, exclude: {x: 0, z: 760, r: 300}, fade: [1500, 2300]});
+grass.mesh.position.set(0, TOP_Y, 120);
+scene.add(grass.mesh);
+const grass2 = PFW.grassCards({count: 7000, area: 1800, height: 120, width: 160, seed: 91, variants: 3, color: 0xbfd0a4, fade: [1200, 2100]});
+grass2.mesh.position.set(0, TOP_Y, -240);
+scene.add(grass2.mesh);
+
+// rain above the surface — sparse and thin; a wall of streaks reads as scratched film
+const rain = PFW.rainField({count: 700, area: 3000, top: 1800, bottom: 0, speed: 1500, seed: 21, opacity: 0.05});
+rain.mesh.position.z = -700;
+scene.add(rain.mesh);
+
+// ---------------------------------------------------------------- seed, root, shoot
+const SEED = new THREE.Vector3(0, -640, -300);
+// a seed is never a smooth ellipsoid: mottled coat, fine speckles, a darker crease
+const seedRnd = PFW.rng(77);
+const seedTex = PFW.canvasTexture(256, (g, S) => {
+  g.fillStyle = "#c9a163"; g.fillRect(0, 0, S, S);
+  for (let i = 0; i < 900; i++) {
+    const r = 2 + seedRnd() * 9;
+    g.fillStyle = seedRnd() > 0.45 ? `rgba(150,108,58,${0.10 + seedRnd() * 0.22})` : `rgba(232,206,158,${0.10 + seedRnd() * 0.20})`;
+    g.beginPath(); g.arc(seedRnd() * S, seedRnd() * S, r, 0, 6.2832); g.fill();
+  }
+  for (let i = 0; i < 2400; i++) {
+    g.fillStyle = `rgba(70,46,22,${0.10 + seedRnd() * 0.3})`;
+    g.fillRect(seedRnd() * S, seedRnd() * S, 1 + seedRnd() * 2, 1 + seedRnd() * 2);
+  }
+  g.strokeStyle = "rgba(78,52,26,0.45)"; g.lineWidth = 3;
+  g.beginPath(); g.moveTo(S * 0.5, S * 0.12); g.bezierCurveTo(S * 0.42, S * 0.4, S * 0.58, S * 0.62, S * 0.5, S * 0.9); g.stroke();
+});
+const seed = new THREE.Mesh(
+  new THREE.SphereGeometry(1, 48, 32),
+  new THREE.MeshStandardMaterial({map: seedTex, color: 0xf0d3a0, roughness: 0.72, metalness: 0.02, emissive: 0x2a1405, emissiveIntensity: 1})
+);
+seed.scale.set(74, 54, 64);
+seed.position.copy(SEED);
+seed.rotation.set(0.2, 0.5, 0.25);
+seed.castShadow = true;
+scene.add(seed);
+
+const seedShadow = PFW.contactShadow({radius: 190, opacity: 0.55});
+seedShadow.position.set(SEED.x, SEED.y - 62, SEED.z);
+scene.add(seedShadow);
+
+// roots — fanned, wandering, tapering, and each with one branch. Five straight tubes look like wire.
+const rootCurves = [];
+for (let i = 0; i < 5; i++) {
+  const tap = i === 0;                       // one taproot straight down, finer laterals around it
+  const a = tap ? 0 : -1.05 + i * 0.52;
+  const len = tap ? 120 : 300 + (i % 3) * 105;
+  const drop = tap ? 430 : 300 + (i % 2) * 110;
+  const pts = [new THREE.Vector3(SEED.x, SEED.y - 30, SEED.z)];
+  for (let k = 1; k <= 4; k++) {
+    const u = k / 4;
+    pts.push(new THREE.Vector3(
+      SEED.x + Math.sin(a) * len * u + Math.sin(u * 4.2 + i * 1.7) * 34,
+      SEED.y - 30 - drop * u,
+      SEED.z + Math.cos(a) * len * 0.32 * u - 40 * u + Math.cos(u * 3.1 + i) * 26,
+    ));
+  }
+  rootCurves.push(new THREE.CatmullRomCurve3(pts));
+}
+const rootMat = new THREE.MeshStandardMaterial({color: 0xffffff, vertexColors: true, roughness: 0.88});
+const roots = rootCurves.map((c, i) => {
+  const t = PFW.growTube(c, {
+    radius: i === 0 ? 9 : 6 - i * 0.35, radial: 8, tubular: 72, taper: 0.9,
+    shade: {base: 0x2e2419, tip: 0x8d7a5e}, material: rootMat.clone(),
+  });
+  scene.add(t.mesh);
+  return t;
+});
+// one branch per root, taken from a point along the parent
+const branches = rootCurves.map((c, i) => {
+  const a = c.getPoint(0.55);
+  const dir = i % 2 ? 1 : -1;
+  const bc = new THREE.CatmullRomCurve3([
+    a,
+    new THREE.Vector3(a.x + dir * 90, a.y - 70, a.z + 30),
+    new THREE.Vector3(a.x + dir * 150, a.y - 150, a.z + 70),
+  ]);
+  const t = PFW.growTube(bc, {radius: 4, radial: 6, tubular: 40, taper: 0.92, shade: {base: 0x2e2419, tip: 0x8d7a5e}, material: rootMat.clone()});
+  scene.add(t.mesh);
+  return t;
+});
+
+// shoot
+const shootCurve = new THREE.CatmullRomCurve3([
+  new THREE.Vector3(SEED.x, SEED.y + 20, SEED.z),
+  new THREE.Vector3(SEED.x + 30, -400, SEED.z + 26),
+  new THREE.Vector3(SEED.x + 4, -140, SEED.z + 52),
+  new THREE.Vector3(SEED.x - 26, 200, SEED.z + 74),
+  new THREE.Vector3(SEED.x - 12, 470, SEED.z + 88),
+]);
+const stemRnd = PFW.rng(61);
+const stemTex = PFW.canvasTexture(512, (g, S) => {
+  g.fillStyle = "#7fae6a"; g.fillRect(0, 0, S, S);
+  for (let i = 0; i < 260; i++) {
+    const x = stemRnd() * S;
+    g.strokeStyle = stemRnd() > 0.5 ? `rgba(186,220,158,${0.10 + stemRnd() * 0.22})` : `rgba(38,66,32,${0.10 + stemRnd() * 0.26})`;
+    g.lineWidth = 0.6 + stemRnd() * 2.4;
+    g.beginPath(); g.moveTo(x, 0);
+    g.bezierCurveTo(x + (stemRnd() - 0.5) * 10, S * 0.35, x + (stemRnd() - 0.5) * 10, S * 0.7, x + (stemRnd() - 0.5) * 6, S);
+    g.stroke();
+  }
+});
+stemTex.repeat.set(1, 1);
+const shoot = PFW.growTube(shootCurve, {
+  radius: 17, radial: 14, tubular: 150, taper: 0.55,
+  shade: {base: 0x2e4526, tip: 0x74915a},
+  material: new THREE.MeshStandardMaterial({map: stemTex, bumpMap: stemTex, bumpScale: 0.25, color: 0xffffff, vertexColors: true, roughness: 0.62}),
+});
+scene.add(shoot.mesh);
+
+// leaves at the tip
+const leafGeo = PFW.leafGeometry(178, 62, 0.22);
+const leafTex = PFW.leafTexture({size: 512, base: "#5f9b52", dark: "#2c5426", vein: "#b6d99a", seed: 8});
+const leafMat = new THREE.MeshStandardMaterial({
+  map: leafTex, bumpMap: leafTex, bumpScale: 0.3, color: 0xa8b894, roughness: 0.82, metalness: 0,
+  side: THREE.DoubleSide, emissive: 0x0a1608, emissiveIntensity: 0.4,
+});
+// foliage wrap-lighting: soften the terminator so the shaded side is not black plastic
+leafMat.onBeforeCompile = (sh) => {
+  sh.fragmentShader = sh.fragmentShader.replace(
+    "#include <lights_fragment_begin>",
+    `#include <lights_fragment_begin>
+     // wrap the diffuse terminator for the key light only
+     #if NUM_DIR_LIGHTS > 0
+       vec3 wrapN = normalize(geometryNormal);
+       float wrapD = dot(wrapN, directionalLights[0].direction);
+       reflectedLight.directDiffuse += directionalLights[0].color * material.diffuseColor
+         * clamp((wrapD + 0.55) / 1.55, 0.0, 1.0) * 0.35;
+     #endif`
+  );
+};
+const leaves = [];
+for (const s of [-1, 1]) {
+  const l = new THREE.Mesh(leafGeo, leafMat);
+  l.position.set(SEED.x - 12, 470, SEED.z + 88);
+  l.rotation.set(-0.30 + s * 0.12, s > 0 ? 0.42 : Math.PI - 0.30, s > 0 ? -0.42 : 0.46);
+  l.castShadow = true;
+  scene.add(l);
+  leaves.push(l);
+}
+// petioles: a leaf with no stalk is a sticker
+const petioleMat = new THREE.MeshStandardMaterial({map: stemTex, color: 0xbfd6a8, roughness: 0.7});
+for (const s of [-1, 1]) {
+  const c = new THREE.CatmullRomCurve3([
+    new THREE.Vector3(SEED.x - 10, 452, SEED.z + 86),
+    new THREE.Vector3(SEED.x - 12 + s * 14, 466, SEED.z + 88),
+    new THREE.Vector3(SEED.x - 12 + s * 26, 470, SEED.z + 88),
+  ]);
+  const p = PFW.growTube(c, {radius: 4.2, radial: 6, tubular: 16, taper: 0.35, material: petioleMat});
+  scene.add(p.mesh);
+}
+
+const plantShadow = PFW.contactShadow({radius: 230, opacity: 0.62});
+plantShadow.position.set(SEED.x, 6, SEED.z + 70);
+scene.add(plantShadow);
+
+// the drop that starts everything
+const drop = new THREE.Mesh(new THREE.SphereGeometry(16, 24, 16), new THREE.MeshStandardMaterial({color: 0xcfe6f2, roughness: 0.05, metalness: 0.0, transparent: true, opacity: 0.9}));
+scene.add(drop);
+const splashTex = PFW.canvasTexture(256, (g, S) => {
+  const grd = g.createRadialGradient(S / 2, S / 2, S * 0.10, S / 2, S / 2, S * 0.5);
+  grd.addColorStop(0, "rgba(255,255,255,0)");
+  grd.addColorStop(0.50, "rgba(255,255,255,0)");
+  grd.addColorStop(0.70, "rgba(240,250,255,0.9)");
+  grd.addColorStop(0.84, "rgba(210,236,250,0.28)");
+  grd.addColorStop(1, "rgba(255,255,255,0)");
+  g.fillStyle = grd; g.fillRect(0, 0, S, S);
+});
+const ringMat = new THREE.MeshBasicMaterial({map: splashTex, transparent: true, opacity: 0, side: THREE.DoubleSide, depthWrite: false, blending: THREE.AdditiveBlending});
+const ring = new THREE.Mesh(new THREE.PlaneGeometry(210, 210), ringMat);
+ring.rotation.x = -Math.PI / 2;
+ring.position.set(0, 6, 760);
+scene.add(ring);
+
+// light shafts
+const shafts = [
+  PFW.lightShaft({x: -700, y: 1300, z: -900, length: 3000, radiusTop: 60, radiusBottom: 620, opacity: 0.13}),
+  PFW.lightShaft({x: 320, y: 1400, z: -1300, length: 3000, radiusTop: 40, radiusBottom: 460, opacity: 0.09}),
+];
+shafts.forEach((s) => scene.add(s.mesh));
+
+// the shaft that enters the cut: this is the visible *source* of the underground light. Without a beam
+// on screen the interior looks lit by nothing.
+const cutShaft = PFW.lightShaft({
+  x: 30, y: -535, z: -700, length: 1124,
+  radiusTop: 30, radiusBottom: 265,
+  color: 0xffd9a8, opacity: 0.42,
+  rotZ: -0.270, rotX: 0.831,
+});
+scene.add(cutShaft.mesh);
+shafts.push(cutShaft);
+
+// dust in the beam — the cheapest, most convincing "filmed space" cue
+const dust = PFW.dustField({count: 300, origin: [-60, -620, -680], area: [1100, 1250, 1500], size: 10, opacity: 0.5});
+scene.add(dust.mesh);
+
+// ---------------------------------------------------------------- camera (one vertical move)
+const camY = PF.keyframes([[0, 520], [5.6, 470], [9.8, -300, PF.motion.settle], [13, -345], [15.6, -300], [18, 230, PF.motion.reveal], [20, 285]]);
+const camZ = PF.keyframes([[0, 1420], [5.6, 1300], [9.8, 780], [13, 755], [15.6, 800], [18, 1180], [20, 1240]]);
+const lookY = PF.keyframes([[0, 380], [5.6, 330], [9.8, -560], [13, -585], [15.6, -520], [18, 240], [20, 300]]);
+const lookZ = PF.keyframes([[0, -700], [5.6, -760], [9.8, -300], [13, -300], [15.6, -300], [18, -212], [20, -212]]);
+
+function placeCamera(t) {
+  const y = camY(t), z = camZ(t);
+  // handheld: a couple of low-frequency sines, never a jitter
+  const hx = Math.sin(t * 0.7) * 5 + Math.sin(t * 1.9) * 2;
+  const hy = Math.cos(t * 0.53) * 4 + Math.sin(t * 1.3) * 1.6;
+  camera.position.set(hx, y + hy, z);
+  camera.lookAt(hx * 0.4, lookY(t), lookZ(t));
+}
+
+// ---------------------------------------------------------------- copy (2D overlay, same as clip-02)
+const typeCanvas = document.getElementById("type");
+const tctx = typeCanvas.getContext("2d");
+const BODY = PF.typeQueue([
+  {txt: "باران که می‌آید، دانه بیدار می‌شود", t0: 3.0, t1: 6.6, y: 0.135},
+  {txt: "ریشه راهش را پیدا می‌کند", t0: 9.6, t1: 12.6, y: 0.135},
+  {txt: "ساقه به سمت نور می‌رود", t0: 13.2, t1: 15.9, y: 0.135},
+], {gap: 0.4});
+const HERO = {t0: 17.6, t1: DURATION + 1, main: "بهار", sub: "از زیر خاک شروع می‌شود"};
+
+function drawType(t) {
+  tctx.clearRect(0, 0, W, H);
+  const cross = win(t, 5.85, 6.45) * (1 - win(t, 6.45, 7.15));
+  if (cross > 0.004) {
+    const g = tctx.createRadialGradient(W * 0.5, H * 0.52, H * 0.06, W * 0.5, H * 0.52, H * 0.8);
+    g.addColorStop(0, `rgba(84,58,36,${0.62 * cross})`);
+    g.addColorStop(1, `rgba(22,14,9,${0.86 * cross})`);
+    tctx.fillStyle = g;
+    tctx.fillRect(0, 0, W, H);
+  }
+  for (const ln of BODY) {
+    const a = PF.motion.enter(win(t, ln.t0, ln.t0 + 0.5)) * (1 - win(t, ln.t1 - 0.45, ln.t1));
+    if (a <= 0.004) continue;
+    tctx.save();
+    tctx.shadowColor = "rgba(4,8,12,0.8)"; tctx.shadowBlur = 26; tctx.shadowOffsetY = 4;
+    PF.drawLine(tctx, {text: ln.txt, x: W / 2, y: H * ln.y, px: 100, weight: 700, color: "#f8f2e7", alpha: a, t, t0: ln.t0, stagger: 0.06, dur: 0.45, maxW: W - 192});
+    tctx.restore();
+  }
+  const a = PF.motion.enter(win(t, HERO.t0, HERO.t0 + 0.7)) * (1 - win(t, HERO.t1 - 0.5, HERO.t1));
+  if (a > 0.004) {
+    tctx.save();
+    tctx.shadowColor = "rgba(255,200,130,0.5)"; tctx.shadowBlur = 44;
+    PF.drawLine(tctx, {text: HERO.main, x: W / 2, y: H * 0.165, px: 236, weight: 900, color: "#ffe2b0", alpha: a, t, t0: HERO.t0, stagger: 0, dur: 0.6, rise: 0.2, maxW: W - 260});
+    tctx.shadowColor = "rgba(4,8,12,0.75)"; tctx.shadowBlur = 22;
+    PF.drawLine(tctx, {text: HERO.sub, x: W / 2, y: H * 0.165 + 100, px: 92, weight: 600, color: "#f6efe2", alpha: a, t, t0: HERO.t0 + 0.35, stagger: 0.05, dur: 0.5, maxW: W - 192});
+    tctx.restore();
+  }
+}
+
+// ---------------------------------------------------------------- animation
+const rootP = (t, i) => PF.motion.reveal(win(t, 10.3 + i * 0.18, 13.6 + i * 0.12));
+const shootP = (t) => PF.motion.reveal(win(t, 11.3, 15.4));
+const leafP = (t) => PF.motion.reveal(win(t, 13.2, 15.8)) * 0.55 + PF.motion.reveal(win(t, 16.6, 19.0)) * 0.45;
+const wake = (t) => win(t, 10.6, 11.8);
+
+function seek(t) {
+  t = Math.max(0, Math.min(DURATION, t));
+  placeCamera(t);
+
+  // seed wakes
+  const w = wake(t);
+  // a low ember even before it wakes, so the seed always sits in a pool of its own light
+  seedLight.intensity = 1400 + 6000 * w;
+  seed.material.emissiveIntensity = 0.35 + 1.1 * w;
+  seed.rotation.z = 0.25 + Math.sin(t * 0.6) * 0.03;
+
+  // roots and shoot grow
+  roots.forEach((r, i) => r.setProgress(rootP(t, i)));
+  branches.forEach((b, i) => b.setProgress(rootP(t, i + 0.5)));
+  shoot.setProgress(shootP(t));
+  const lp = leafP(t);
+  leaves.forEach((l, i) => {
+    const s = Math.max(0.001, lp);
+    l.scale.setScalar(s);
+    l.rotation.z = (i === 0 ? -0.5 : 0.5) + Math.sin(t * 1.4 + i) * 0.05 * s;
+  });
+
+  // the drop: falls 1.95-2.5, then the ring expands
+  const fallT = win(t, 1.95, 2.5);
+  if (t < 2.5) {
+    drop.visible = false;
+    drop.position.set(0, 980 - 980 * PF.motion.enter(fallT), 760);
+    drop.scale.setScalar(1 + 0.2 * fallT);
+    ringMat.opacity = 0;
+  } else {
+    drop.visible = false;
+    const k = win(t, 2.5, 3.6);
+    ringMat.opacity = 0;
+    ring.scale.setScalar(1 + k * 4.2);
+  }
+
+  grass.setTime(t);
+  grass2.setTime(t + 0.7);
+  rain.update(t);
+  rain.mesh.material.opacity = 0.05 * (1 - win(t, 6.2, 9.4));
+  dust.update(t);
+  shafts.forEach((s) => s.setTime(t));
+  skyMesh.userData.setTime(t);
+  seedShadow.material.opacity = 0.55;
+
+  // fog: above ground it is the sky's haze, below it is the warm dark of the section. One fog colour
+  // for both is what made the underground read as a black hole.
+  const under = PF.motion.ambient(win(t, 6.0, 8.6)) * (1 - win(t, 16.0, 18.4));
+  // the section is enclosed by the ground, so the sky's IBL is the only ambient down there: open it up
+  scene.environmentIntensity = 0.75 + 0.95 * under;
+  inLight.intensity = 4600 + 5200 * under;
+  inCool.intensity = 2800 + 2800 * under;
+  E.renderer.toneMappingExposure = 1.34 + 0.85 * under;
+  scene.fog.color.setRGB(
+    0.570 + (0.106 - 0.570) * under,
+    0.610 + (0.078 - 0.610) * under,
+    0.570 + (0.055 - 0.570) * under,
+  );
+  scene.fog.density = 0.00016 - 0.00006 * under;
+
+  // the sky darkens a touch as the camera goes under, then dawns at the end
+  const dawn = PF.motion.ambient(win(t, 13.8, 18.8));
+  // the camera breaks the surface at ~16.5s: that is a burst into the light, and it also covers the
+  // frames where the grass is seen from underneath and reads as a dark mass
+  const burst = Math.exp(-Math.pow((t - 16.55) / 0.38, 2));
+  fill.intensity = 0.55 + 2.6 * burst;
+  E.bloomPass.strength = 0.45 + 0.35 * dawn + 1.5 * burst;
+  E.renderer.toneMappingExposure += 0.5 * burst;
+  E.grade.uniforms.uVig.value = 0.40 + 0.16 * under;
+
+  if (E.bokeh) {
+    const dSeed = camera.position.distanceTo(SEED);
+    const dPlant = camera.position.distanceTo(new THREE.Vector3(SEED.x, 470, SEED.z + 88));
+    E.bokeh.uniforms.focus.value = dSeed * (1 - under) + dPlant * under;
+  }
+  E.render(t);
+  drawType(t);
+}
+
+window.__paE = E;
+
+window.film = {
+  ready: true, duration: DURATION, fps: FPS,
+  seek,
+  luma: () => E.luma(),
+  copyAlpha: (t) => BODY.map((l) => ({txt: l.txt, a: +(PF.motion.enter(win(t, l.t0, l.t0 + 0.5)) * (1 - win(t, l.t1 - 0.45, l.t1))).toFixed(3)})),
+};
+seek(0);
+</script>
+</body>
+</html>

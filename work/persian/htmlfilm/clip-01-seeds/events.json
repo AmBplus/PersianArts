@@ -1,0 +1,21 @@
+{
+  "schema": "persianarts.events/1",
+  "film": "clip-01-9x16 (دانه‌ی برف)",
+  "fps": 30,
+  "bpm": 120,
+  "t0_s": 0,
+  "duration_frames": 600,
+  "cut_frames": [],
+  "events": [
+    {"name": "bed-start", "type": "ambient", "frame": 0, "intensity": 0.45, "dur_s": 2.0},
+    {"name": "flake-appear", "type": "pop", "frame": 12, "intensity": 0.55},
+    {"name": "copy-1-in", "type": "slide", "frame": 90, "intensity": 0.5},
+    {"name": "copy-1-out", "type": "whoosh", "frame": 204, "intensity": 0.35},
+    {"name": "copy-2-in", "type": "tick", "frame": 345, "intensity": 0.5},
+    {"name": "flake-lands", "type": "thud", "frame": 465, "intensity": 0.75},
+    {"name": "copy-3-in", "type": "tick", "frame": 480, "intensity": 0.45},
+    {"name": "hero-reveal", "type": "reveal", "frame": 546, "intensity": 0.8, "role": "accent"},
+    {"name": "sprout", "type": "bell", "frame": 570, "intensity": 0.6, "role": "accent"},
+    {"name": "end", "type": "settle", "frame": 597, "intensity": 0.7, "role": "final", "ends_film": true}
+  ]
+}

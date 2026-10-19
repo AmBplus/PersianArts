@@ -1,0 +1,88 @@
+{
+  "clip": 2,
+  "title": "بهار — spring",
+  "series": "یک دانه (one seed)",
+  "date": "2026-10-18",
+  "skill_version": "3.1",
+  "files": {
+    "final": "output/clip-02/clip-02-final.mp4",
+    "silent": "output/clip-02/clip-02-9x16-silent.mp4",
+    "source": "work/persian/htmlfilm/clip-02-spring/film.html",
+    "events": "work/persian/htmlfilm/clip-02-spring/events.json",
+    "frames": "metrics/frames/clip-02/",
+    "sound_report": "output/clip-02/verify.json"
+  },
+  "specs": {
+    "ratio": "9x16",
+    "resolution": "1080x1920",
+    "fps": 30,
+    "duration_s": 20.0,
+    "frames": 600,
+    "bpm": 120,
+    "beats": 40,
+    "codec": "h264 yuv420p, aac 48k stereo",
+    "bitrate_mbps": 11.4,
+    "keyframe_interval_s": 2.0,
+    "lufs": -14.0,
+    "true_peak_dbtp": -1.3,
+    "tail_peak_dbfs": -72.74,
+    "music": "tr-vd-6852-corporate-build (120 BPM, corporate/clean)",
+    "cues": 17,
+    "max_simultaneous_cues": 3
+  },
+  "scores": {
+    "STORY": {
+      "score": 6,
+      "evidence": "Clear four-beat arc with one continuous world: rain (t=1.5s), a single drop hits the soil at 2.5s (contact frame), the camera dives through the surface (t=9.4s), the seed cracks at 11.2s, root and shoot grow (t=14.5s), the shoot breaks the surface and the dawn comes (t=19.4s). The hook is real but quiet - the first 2.4s are only rain, and the 'wake' beat at 11.2s is a thin crack plus a glow, weaker than the dive that precedes it."
+    },
+    "SCRIPT": {
+      "score": 6,
+      "evidence": "Four lines, none repeated, each 2.7-3.5s on screen: «باران که می‌آید، دانه بیدار می‌شود» (3.0-6.6s), «ریشه راهش را پیدا می‌کند» (9.6-12.6s), «ساقه به سمت نور می‌رود» (13.2-15.9s), «بهار / از زیر خاک شروع می‌شود» (17.6s). The close adds information instead of restating (C1-07 fixed). Line 3 is the weakest: it describes the picture instead of adding to it."
+    },
+    "VISUAL": {
+      "score": 6,
+      "evidence": "Four depth layers (sky gradient, two ridges, soil cross-section, rain front) with grain and vignette present (t=6s frame). The dawn halo at the horizon and the rim-lit seed (t=14.5s) are the best moments. Deductions: the soil is a flat brown plane whose only texture is scattered pebbles that read as beans, the shoot is a single unshaded green stroke, and the sky above ground is almost empty for the first 6s."
+    },
+    "MOTION": {
+      "score": 7,
+      "evidence": "Four named easings with distinct jobs (settle/outBack on the camera arrival at 9.8s, reveal/outExpo on root and shoot growth, enter/outCubic on copy, ambient on the dawn). Leaves and copy stagger; the world is continuous, so there is not a single cut to judder. Deduction: the dive is the only move with real energy - root growth and the shoot's rise read as steady progress rather than a performance, and the leaves pop (outBack) instead of unfurling."
+    },
+    "TYPO": {
+      "score": 7,
+      "evidence": "Body 100px (5.2% of height), hero 210px (10.9%), sub 88px: hierarchy is now readable at thumbnail size and every line fits the safe width (t=6s and t=14.5s frames). One line at a time, verified numerically with film.copyAlpha(9/17/19) = all 0 outside their windows (C1-02 fixed). Deduction: the hero is 210px against the 230px token, so the payoff is slightly under-weighted."
+    },
+    "AUDIO": {
+      "score": 6,
+      "evidence": "17 cues, -14.0 LUFS integrated, true peak -1.3 dBTP, last 0.25s -72.74 dBFS, max 3 simultaneous audible (output/clip-02/verify.json). The mix is clean and cues are audible, but the bed (corporate/clean, 120 BPM) does not match the film's weather - it reads as a product video under a rain scene, and the true peak is only 0.3 dB from the ceiling."
+    },
+    "SYNC": {
+      "score": 7,
+      "evidence": "Cue deltas are 0.0 ms on every contact (verify.json); copy enters at 3.0 / 9.6 / 13.2 / 17.6s and the hero lands with the dawn lift at 17.6s; the drop's thud sits exactly on the splash ring at 2.5s (t=3.2s frame). Deduction: the bed's own accents do not line up with the picture beats, so the film feels driven by the edit rather than by the music."
+    },
+    "TECH": {
+      "score": 7,
+      "evidence": "1080x1920 @30fps, yuv420p, 600 frames, keyframe every 60 frames (2.0s), qc-check found 0 black and 0 freeze frames, -14.0 LUFS. Deductions: 11.4 Mbps (28 MB for 20s) is heavy for a social cut - the grain at crf 16 is expensive - and the render itself ran at 1.3 fps (7m43s) because the grain was re-filled per frame."
+    },
+    "OVERALL": {
+      "score": 6,
+      "evidence": "In order (t=1.5, 3.2, 6, 9.4, 12, 14.5, 16.5, 19.4) it is a coherent, watchable piece with a real idea (the camera earns the cross-section) and one clear payoff. It still reads as a well-made explainer rather than a designed film: flat soil, one-note lighting, and a bed that belongs to another genre."
+    }
+  },
+  "average": 6.44,
+  "issues": [
+    {"id": "C1-01", "severity": "high", "timestamp": "17.6s", "description": "Type tokens: body is now 100px (5.2%) and the hero 210px (10.9%) - hierarchy fixed, hero still 20px under the 12% token.", "root_cause": "The token is enforced by eye in the film, not by a check; PF.drawLine can shrink a line but nothing asserts a minimum hero size.", "skill_change": "PF.drawLine gains a `minPx` guard in v3.2; the checklist asks for the hero's measured px in the clip record.", "status": "partial"},
+    {"id": "C1-02", "severity": "critical", "timestamp": "whole film", "description": "Overlapping copy lines: gone. copyAlpha(9/17/19) returns 0 for every line outside its window; t=6s and t=14.5s each show exactly one line.", "root_cause": "Fixed at the source (PF.win + PF.typeQueue).", "skill_change": "v3.1 craft kit.", "status": "fixed"},
+    {"id": "C1-03", "severity": "high", "timestamp": "14.5-20s", "description": "Hard-edged light polygon: gone. The dawn is built from a radial glow plus three PF.beam sprites with soft cross-fades (t=19.4s).", "root_cause": "Fixed at the source (PF.beam).", "skill_change": "v3.1 palettes.md 'light is built'.", "status": "fixed"},
+    {"id": "C1-04", "severity": "medium", "timestamp": "whole film", "description": "No texture: fixed - grain and vignette are applied every frame; the soil now has speckles, strata and a topsoil band.", "root_cause": "Fixed at the source (PF.grain/PF.vignette).", "skill_change": "v3.1 palettes.md 'texture mandatory'.", "status": "fixed"},
+    {"id": "C1-05", "severity": "high", "timestamp": "2.5s, 16-19s", "description": "Contact beats: fixed. The drop visibly hits the soil line with rings and splash at 2.5s, and the shoot breaks the surface between 16.2 and 18.6s (t=19.4s frame).", "root_cause": "Fixed via PF.win plus an explicit contact frame in the storyboard.", "skill_change": "v3.1 narrative.md 'contact frame'.", "status": "fixed"},
+    {"id": "C1-06", "severity": "medium", "timestamp": "whole film", "description": "One easing for everything: fixed - settle/reveal/enter/ambient all appear with distinct jobs.", "root_cause": "Fixed at the source (PF.motion + per-segment easing in kf).", "skill_change": "v3.1 motion.md kit.", "status": "fixed"},
+    {"id": "C1-07", "severity": "medium", "timestamp": "17.6s", "description": "Redundant closing line: fixed - «از زیر خاک شروع می‌شود» adds the consequence the three previous lines did not state.", "root_cause": "Fixed by the narrative rule.", "skill_change": "v3.1 narrative.md 'closing line'.", "status": "fixed"},
+    {"id": "C1-08", "severity": "low", "timestamp": "-", "description": "Unsupported event type (ambient): not exercised in this clip; the events file only uses supported types.", "root_cause": "Documented, not yet re-tested.", "skill_change": "v3.1 audio.md type list.", "status": "open"},
+    {"id": "C2-01", "severity": "medium", "timestamp": "6-14s", "description": "The soil cross-section reads as a flat brown plane: its only texture is ~34 pebbles that look like scattered beans, and the strata seams are too faint to give scale.", "root_cause": "references/palettes.md says 'texture at low opacity' but gives no recipe for a material surface; procedural speckle + ellipse pebbles is the cheapest thing that passes a still, and it fails at 100% playback.", "skill_change": "v3.2 palettes.md gains a 'material recipes' block (soil/water/stone: layered gradients + 3 scale bands + edge occlusion); pebbles must sit in shadow pockets, not float on top.", "status": "open"},
+    {"id": "C2-02", "severity": "medium", "timestamp": "render", "description": "Delivery is 11.4 Mbps (28 MB / 20 s) and the render ran at 1.3 fps (7m43s for 600 frames).", "root_cause": "PF.grain filled the whole canvas with an overlay pattern every frame - the single most expensive call in the film - and the encoder was asked to preserve that noise at crf 16.", "skill_change": "Grain is now three pre-baked full-frame layers blitted with drawImage; capture.mjs exposes --crf (default 18) and reports the measured bitrate in the render summary.", "status": "fixed"},
+    {"id": "C2-03", "severity": "medium", "timestamp": "whole film", "description": "Music mood mismatch: a corporate/clean bed under a rain-and-growth film; the picture is slower and softer than the track's drive.", "root_cause": "The track was chosen for its tempo match (120 BPM) because the kit's warm/emotional tracks are 110 BPM and the film was cut at 120; tempo was allowed to outrank mood.", "skill_change": "v3.2 audio.md: choose the track first, then cut the film at that track's BPM (the film's tempo is a consequence of the music, not the other way round).", "status": "open"},
+    {"id": "C2-04", "severity": "low", "timestamp": "master", "description": "True peak -1.3 dBTP is 0.3 dB from the -1.0 ceiling - legal but with no headroom.", "root_cause": "build_sound targets -14 LUFS with a TP -1.5 limiter, but the summed cues push the peak up afterwards.", "skill_change": "v3.2 audio.md: after the mix, re-check TP and lower the master 0.5 dB if it lands above -1.6.", "status": "open"},
+    {"id": "C2-05", "severity": "low", "timestamp": "13-19s", "description": "Leaves pop into place with outBack instead of unfurling; the two leaves at the tip stay small until the last second.", "root_cause": "The leaf draw has no growth curve of its own - scale comes from the reveal progress only.", "skill_change": "v3.2 motion.md: organic growth needs two curves (length then width) with a 0.15s offset.", "status": "open"}
+  ],
+  "notes": "First clip built on the v3.1 craft kit. Every critical issue from clip 1 is closed; the remaining defects are material/lighting craft and music choice, which is exactly what clip 3 targets."
+}

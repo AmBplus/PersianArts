@@ -1,0 +1,191 @@
+{
+ "probe-frame.png": {
+  "new": "probe-frame.webp",
+  "bytes_before": 13737,
+  "bytes_after": 1930,
+  "mode": "lossless",
+  "ssim": 1.0
+ },
+ "probe-stills/t0_00s_f000.png": {
+  "new": "t0_00s_f000.webp",
+  "bytes_before": 432776,
+  "bytes_after": 130104,
+  "mode": "lossless",
+  "ssim": 1.0
+ },
+ "probe-stills/t1_00s_f030.png": {
+  "new": "t1_00s_f030.webp",
+  "bytes_before": 26162,
+  "bytes_after": 6414,
+  "mode": "lossless",
+  "ssim": 1.0
+ },
+ "probe-stills/t2_00s_f060.png": {
+  "new": "t2_00s_f060.webp",
+  "bytes_before": 436677,
+  "bytes_after": 129798,
+  "mode": "lossless",
+  "ssim": 1.0
+ },
+ "probe-stills/t4_00s_f120.png": {
+  "new": "t4_00s_f120.webp",
+  "bytes_before": 644650,
+  "bytes_after": 271996,
+  "mode": "lossless",
+  "ssim": 1.0
+ },
+ "v10-stills/t8_00s_f240.png": {
+  "new": "t8_00s_f240.webp",
+  "bytes_before": 10218,
+  "bytes_after": 128,
+  "mode": "lossless",
+  "ssim": 1.0
+ },
+ "v2-stills/t16_00s_f480.png": {
+  "new": "t16_00s_f480.webp",
+  "bytes_before": 10218,
+  "bytes_after": 128,
+  "mode": "lossless",
+  "ssim": 1.0
+ },
+ "v2-stills/t4_00s_f120.png": {
+  "new": "t4_00s_f120.webp",
+  "bytes_before": 10218,
+  "bytes_after": 128,
+  "mode": "lossless",
+  "ssim": 1.0
+ },
+ "v2-stills/t8_00s_f240.png": {
+  "new": "t8_00s_f240.webp",
+  "bytes_before": 15379,
+  "bytes_after": 2404,
+  "mode": "lossless",
+  "ssim": 1.0
+ },
+ "v3-stills/t4_00s_f120.png": {
+  "new": "t4_00s_f120.webp",
+  "bytes_before": 10218,
+  "bytes_after": 128,
+  "mode": "lossless",
+  "ssim": 1.0
+ },
+ "v3-stills/t8_00s_f240.png": {
+  "new": "t8_00s_f240.webp",
+  "bytes_before": 10218,
+  "bytes_after": 128,
+  "mode": "lossless",
+  "ssim": 1.0
+ },
+ "v4-stills/t8_00s_f240.png": {
+  "new": "t8_00s_f240.webp",
+  "bytes_before": 10218,
+  "bytes_after": 128,
+  "mode": "lossless",
+  "ssim": 1.0
+ },
+ "v5-stills/t8_00s_f240.png": {
+  "new": "t8_00s_f240.webp",
+  "bytes_before": 10218,
+  "bytes_after": 128,
+  "mode": "lossless",
+  "ssim": 1.0
+ },
+ "v6-stills/t8_00s_f240.png": {
+  "new": "t8_00s_f240.webp",
+  "bytes_before": 10218,
+  "bytes_after": 128,
+  "mode": "lossless",
+  "ssim": 1.0
+ },
+ "v7-stills/t8_00s_f240.png": {
+  "new": "t8_00s_f240.webp",
+  "bytes_before": 10218,
+  "bytes_after": 128,
+  "mode": "lossless",
+  "ssim": 1.0
+ },
+ "v8-stills/t8_00s_f240.png": {
+  "new": "t8_00s_f240.webp",
+  "bytes_before": 10218,
+  "bytes_after": 128,
+  "mode": "lossless",
+  "ssim": 1.0
+ },
+ "test-frame.png": {
+  "new": "test-frame.webp",
+  "bytes_before": 6155,
+  "bytes_after": 128,
+  "mode": "lossless",
+  "ssim": 1.0
+ },
+ "probe6-frame.png": {
+  "new": "probe6-frame.webp",
+  "bytes_before": 288496,
+  "bytes_after": 177222,
+  "mode": "lossless",
+  "ssim": 1.0
+ },
+ "v11-frame.png": {
+  "new": "v11-frame.webp",
+  "bytes_before": 6155,
+  "bytes_after": 128,
+  "mode": "lossless",
+  "ssim": 1.0
+ },
+ "v12-frame.png": {
+  "new": "v12-frame.webp",
+  "bytes_before": 6155,
+  "bytes_after": 128,
+  "mode": "lossless",
+  "ssim": 1.0
+ },
+ "v13-frame.png": {
+  "new": "v13-frame.webp",
+  "bytes_before": 6155,
+  "bytes_after": 128,
+  "mode": "lossless",
+  "ssim": 1.0
+ },
+ "v14-frame.png": {
+  "new": "v14-frame.webp",
+  "bytes_before": 288496,
+  "bytes_after": 177222,
+  "mode": "lossless",
+  "ssim": 1.0
+ },
+ "v15-frame.png": {
+  "new": "v15-frame.webp",
+  "bytes_before": 6155,
+  "bytes_after": 128,
+  "mode": "lossless",
+  "ssim": 1.0
+ },
+ "v16-frame.png": {
+  "new": "v16-frame.webp",
+  "bytes_before": 6155,
+  "bytes_after": 128,
+  "mode": "lossless",
+  "ssim": 1.0
+ },
+ "v17-frame.png": {
+  "new": "v17-frame.webp",
+  "bytes_before": 6155,
+  "bytes_after": 128,
+  "mode": "lossless",
+  "ssim": 1.0
+ },
+ "mp4-frame240.png": {
+  "new": "mp4-frame240.webp",
+  "bytes_before": 6423,
+  "bytes_after": 128,
+  "mode": "lossless",
+  "ssim": 1.0
+ },
+ "v18-frame.png": {
+  "new": "v18-frame.webp",
+  "bytes_before": 6155,
+  "bytes_after": 128,
+  "mode": "lossless",
+  "ssim": 1.0
+ }
+}

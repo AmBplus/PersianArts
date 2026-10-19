@@ -1,0 +1,25 @@
+{
+  "schema": "persianarts.events/1",
+  "film": "clip-02-9x16 (بهار)",
+  "fps": 30,
+  "bpm": 120,
+  "t0_s": 0,
+  "duration_frames": 600,
+  "cut_frames": [],
+  "events": [
+    {"name": "drop-impact", "type": "thud", "frame": 75, "intensity": 0.55},
+    {"name": "copy-1-in", "type": "slide", "frame": 90, "intensity": 0.45},
+    {"name": "copy-1-out", "type": "whoosh", "frame": 198, "intensity": 0.3},
+    {"name": "dive", "type": "riser", "frame": 240, "intensity": 0.6, "dur_s": 1.8},
+    {"name": "copy-2-in", "type": "tick", "frame": 288, "intensity": 0.45},
+    {"name": "arrive-underground", "type": "thud", "frame": 294, "intensity": 0.75},
+    {"name": "seed-crack", "type": "pop", "frame": 336, "intensity": 0.65},
+    {"name": "copy-2-out", "type": "whoosh", "frame": 378, "intensity": 0.25},
+    {"name": "first-leaf", "type": "ring", "frame": 390, "intensity": 0.5},
+    {"name": "copy-3-in", "type": "tick", "frame": 396, "intensity": 0.45},
+    {"name": "copy-3-out", "type": "whoosh", "frame": 468, "intensity": 0.25},
+    {"name": "emerge", "type": "reveal", "frame": 486, "intensity": 0.6},
+    {"name": "hero-reveal", "type": "reveal", "frame": 528, "intensity": 0.85, "role": "accent"},
+    {"name": "end", "type": "settle", "frame": 582, "intensity": 0.7, "role": "final", "ends_film": true}
+  ]
+}

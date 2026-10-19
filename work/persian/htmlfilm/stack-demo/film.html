@@ -1,0 +1,380 @@
+<!doctype html>
+<!--
+  STACK-DEMO «یک دانه» — 10s, 1080x1920, 30fps.
+  A second proof, this time on a four-library stack instead of one renderer:
+    three.js r186  — 3D scene, depth, perspective camera, point clouds (MIT)
+    GSAP 3.15      — the whole timeline, seekable and deterministic (free standard license)
+    Tone.js 15.1   — generated score, no sample files (MIT)
+    postprocessing — UnrealBloomPass via three addons (MIT)
+  Persian type is drawn to a 2D canvas (browser shaping = correct joins) and used as a
+  CanvasTexture on a plane, then revealed by a soft RTL wipe in a ShaderMaterial.
+  Capture contract (../capture.mjs): window.film = {ready, duration, seek(t)}.
+-->
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>stack-demo · یک دانه</title>
+<style>
+@font-face{font-family:"PAHead";src:url("../fonts/Vazirmatn-Variable.woff2") format("woff2");font-weight:100 900;font-display:block}
+html,body{margin:0;height:100%;background:#000;overflow:hidden}
+canvas{display:block;position:absolute;left:0;top:0}
+</style>
+<script src="./stack.js"></script>
+</head>
+<body>
+<script>
+(async () => {
+  const W = 1080, H = 1920, DUR = 10.0, FPS = 30;
+  const { THREE, gsap } = window;
+  const { EffectComposer, RenderPass, UnrealBloomPass, OutputPass } = window.FX;
+
+  await document.fonts.load('700 100px "PAHead"');
+  await document.fonts.load('400 100px "PAHead"');
+  await document.fonts.ready;
+
+  const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true, alpha: false });
+  renderer.setPixelRatio(1);
+  renderer.setSize(W, H);
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.05;
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
+  document.body.appendChild(renderer.domElement);
+
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x04060c);
+  scene.fog = new THREE.FogExp2(0x04060c, 0.055);
+
+  const rig = new THREE.Group();
+  scene.add(rig);
+  const camera = new THREE.PerspectiveCamera(34, W / H, 0.1, 120);
+  camera.position.set(0, 0, 0);
+  camera.lookAt(0, 0, -1);
+  rig.add(camera);
+  rig.position.set(0, 0.55, 10.4);
+
+  // ---- post ----
+  const composer = new EffectComposer(renderer);
+  composer.setSize(W, H);
+  composer.addPass(new RenderPass(scene, camera));
+  const bloom = new UnrealBloomPass(new THREE.Vector2(W * 0.5, H * 0.5), 0.42, 0.55, 0.84);
+  composer.addPass(bloom);
+  composer.addPass(new OutputPass());
+
+  // ---- textures ----
+  const radial = (() => {
+    const c = document.createElement('canvas'); c.width = c.height = 256;
+    const g = c.getContext('2d');
+    const grd = g.createRadialGradient(128, 128, 0, 128, 128, 128);
+    grd.addColorStop(0, 'rgba(255,255,255,1)');
+    grd.addColorStop(0.12, 'rgba(255,255,255,0.62)');
+    grd.addColorStop(0.34, 'rgba(255,255,255,0.22)');
+    grd.addColorStop(0.62, 'rgba(255,255,255,0.06)');
+    grd.addColorStop(1, 'rgba(255,255,255,0)');
+    g.fillStyle = grd; g.fillRect(0, 0, 256, 256);
+    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t;
+  })();
+
+  function typeTexture(text, size, weight, glow) {
+    const pad = 120;
+    const probe = document.createElement('canvas').getContext('2d');
+    probe.font = `${weight} ${size}px PAHead`;
+    const w = Math.ceil(probe.measureText(text).width) + pad * 2;
+    const h = Math.ceil(size * 1.9);
+    const c = document.createElement('canvas');
+    c.width = w; c.height = h;
+    const g = c.getContext('2d');
+    g.font = `${weight} ${size}px PAHead`;
+    g.textAlign = 'center';
+    g.textBaseline = 'middle';
+    if (glow) {
+      g.shadowColor = 'rgba(255,206,150,0.95)';
+      g.shadowBlur = glow;
+      g.fillStyle = 'rgba(255,236,206,0.85)';
+      g.fillText(text, w / 2, h / 2);
+      g.shadowBlur = glow * 0.4;
+      g.fillText(text, w / 2, h / 2);
+    }
+    g.shadowBlur = 0;
+    g.fillStyle = '#fff8ea';
+    g.fillText(text, w / 2, h / 2);
+    const t = new THREE.CanvasTexture(c);
+    t.colorSpace = THREE.SRGBColorSpace;
+    t.minFilter = THREE.LinearFilter;
+    t.generateMipmaps = false;
+    return { tex: t, aspect: w / h };
+  }
+
+  // ---- title with a soft RTL wipe ----
+  const titleType = typeTexture('یک دانه', 210, '700', 0);
+  const titleUniforms = {
+    uMap: { value: titleType.tex },
+    uR: { value: 0 },
+    uSoft: { value: 0.035 },
+    uOpacity: { value: 1 },
+    uTint: { value: new THREE.Color(0xfff3dd) },
+  };
+  const titleMat = new THREE.ShaderMaterial({
+    uniforms: titleUniforms,
+    transparent: true,
+    depthWrite: false,
+    vertexShader: `varying vec2 vUv; void main(){ vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }`,
+    fragmentShader: `
+      uniform sampler2D uMap; uniform float uR; uniform float uSoft; uniform float uOpacity; uniform vec3 uTint;
+      varying vec2 vUv;
+      void main(){
+        vec4 t = texture2D(uMap, vUv);
+        float edge = 1.0 - uR;
+        float a = smoothstep(edge - uSoft, edge + uSoft, vUv.x);
+        float band = smoothstep(0.05, 0.0, abs(vUv.x - edge)) * uR * (1.0 - uR) * 4.0;
+        vec3 col = t.rgb * uTint + vec3(1.0, 0.94, 0.84) * band * 0.7;
+        gl_FragColor = vec4(col, t.a * a * uOpacity);
+      }`,
+  });
+  const titleW = 3.35;
+  const title = new THREE.Mesh(new THREE.PlaneGeometry(titleW, titleW / titleType.aspect), titleMat);
+  title.position.set(0, -0.50, 0.7);
+  title.rotation.set(-0.015, 0.022, 0);
+  scene.add(title);
+
+  // ---- subtitle ----
+  const subType = typeTexture('یک دانه، یک جنگل', 92, '400', 0);
+  const subMat = new THREE.MeshBasicMaterial({
+    map: subType.tex, transparent: true, depthWrite: false, opacity: 0, toneMapped: false,
+  });
+  const subW = 2.35;
+  const subtitle = new THREE.Mesh(new THREE.PlaneGeometry(subW, subW / subType.aspect), subMat);
+  subtitle.position.set(0, -1.36, 0.7);
+  scene.add(subtitle);
+
+  // ---- credit line ----
+  const credType = typeTexture('THREE · GSAP · TONE', 46, '400', 0);
+  const credMat = new THREE.MeshBasicMaterial({
+    map: credType.tex, transparent: true, depthWrite: false, opacity: 0, toneMapped: false, color: 0x9fb0c8,
+  });
+  const credW = 1.7;
+  const credit = new THREE.Mesh(new THREE.PlaneGeometry(credW, credW / credType.aspect), credMat);
+  credit.position.set(0, -1.92, 0.7);
+  scene.add(credit);
+
+  // ---- seed ----
+  const seed = new THREE.Group();
+  seed.position.set(0, 5.6, 0.4);
+  scene.add(seed);
+
+  const coreMat = new THREE.MeshStandardMaterial({
+    color: 0x201406, emissive: 0xffb066, emissiveIntensity: 2.2, roughness: 0.3, metalness: 0.0,
+  });
+  const core = new THREE.Mesh(new THREE.SphereGeometry(0.26, 48, 48), coreMat);
+  seed.add(core);
+
+  const haloMat = new THREE.SpriteMaterial({
+    map: radial, color: 0xffd6a6, transparent: true, opacity: 0.55,
+    blending: THREE.AdditiveBlending, depthWrite: false,
+  });
+  const halo = new THREE.Sprite(haloMat);
+  halo.scale.set(1.9, 1.9, 1);
+  seed.add(halo);
+
+  const seedLight = new THREE.PointLight(0xffb877, 9, 14, 2);
+  seed.add(seedLight);
+
+  scene.add(new THREE.AmbientLight(0x2a3a55, 1.1));
+
+  // ---- depth particles ----
+  const PN = 2600;
+  const pGeo = new THREE.BufferGeometry();
+  const pPos = new Float32Array(PN * 3);
+  let s0 = 90210;
+  const rnd = () => ((s0 = (s0 * 1664525 + 1013904223) % 4294967296) / 4294967296);
+  for (let i = 0; i < PN; i++) {
+    const r = 2.2 + Math.pow(rnd(), 0.55) * 9.0;
+    const th = rnd() * Math.PI * 2;
+    const ph = Math.acos(2 * rnd() - 1);
+    pPos[i * 3] = r * Math.sin(ph) * Math.cos(th) * 0.75;
+    pPos[i * 3 + 1] = r * Math.cos(ph) * 0.85;
+    pPos[i * 3 + 2] = r * Math.sin(ph) * Math.sin(th) - 3.0;
+  }
+  pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
+  const dust = new THREE.Points(pGeo, new THREE.PointsMaterial({
+    size: 0.07, map: radial, color: 0xa8c6f0, transparent: true, opacity: 0.6,
+    blending: THREE.AdditiveBlending, depthWrite: false, sizeAttenuation: true,
+  }));
+  scene.add(dust);
+
+  // ---- impact burst (shader, so 520 points cost one draw call) ----
+  const BN = 520;
+  const bGeo = new THREE.BufferGeometry();
+  const bPos = new Float32Array(BN * 3);
+  const bDir = new Float32Array(BN * 3);
+  const bSpd = new Float32Array(BN);
+  const bSize = new Float32Array(BN);
+  for (let i = 0; i < BN; i++) {
+    const th = rnd() * Math.PI * 2;
+    const ph = Math.acos(2 * rnd() - 1);
+    const dx = Math.sin(ph) * Math.cos(th), dy = Math.cos(ph), dz = Math.sin(ph) * Math.sin(th);
+    bDir[i * 3] = dx; bDir[i * 3 + 1] = dy; bDir[i * 3 + 2] = dz;
+    bSpd[i] = 0.35 + Math.pow(rnd(), 0.6) * 2.2;
+    bSize[i] = 3 + rnd() * 11;
+  }
+  bGeo.setAttribute('position', new THREE.BufferAttribute(bPos, 3));
+  bGeo.setAttribute('aDir', new THREE.BufferAttribute(bDir, 3));
+  bGeo.setAttribute('aSpd', new THREE.BufferAttribute(bSpd, 1));
+  bGeo.setAttribute('aSize', new THREE.BufferAttribute(bSize, 1));
+
+  const burstUniforms = { uP: { value: 0 } };
+  const burst = new THREE.Points(bGeo, new THREE.ShaderMaterial({
+    uniforms: burstUniforms,
+    transparent: true,
+    depthWrite: false,
+    blending: THREE.AdditiveBlending,
+    vertexShader: `
+      attribute vec3 aDir; attribute float aSpd; attribute float aSize;
+      uniform float uP; varying float vFade;
+      void main(){
+        float e = 1.0 - pow(1.0 - uP, 2.6);
+        vec3 p = position + aDir * aSpd * e * 3.4;
+        p.y += 0.9 * uP * uP;
+        vec4 mv = modelViewMatrix * vec4(p, 1.0);
+        vFade = 1.0 - uP;
+        gl_PointSize = aSize * (1.0 - 0.55 * uP) * (9.0 / max(0.4, -mv.z));
+        gl_Position = projectionMatrix * mv;
+      }`,
+    fragmentShader: `
+      varying float vFade;
+      void main(){
+        float d = length(gl_PointCoord - vec2(0.5));
+        float a = smoothstep(0.5, 0.02, d);
+        gl_FragColor = vec4(1.0, 0.86, 0.66, a * vFade);
+      }`,
+  }));
+  burst.position.set(0, 1.05, 0.4);
+  scene.add(burst);
+
+  // ---- camera-attached overlays (must live in the canvas to be captured) ----
+  const fadeMat = new THREE.MeshBasicMaterial({ color: 0x000000, transparent: true, opacity: 0.55, depthTest: false, depthWrite: false });
+  const fadeQuad = new THREE.Mesh(new THREE.PlaneGeometry(60, 100), fadeMat);
+  fadeQuad.position.z = -4.8;
+  fadeQuad.renderOrder = 10;
+  camera.add(fadeQuad);
+
+  const flashMat = new THREE.SpriteMaterial({ map: radial, color: 0xfff0d6, transparent: true, opacity: 0, depthWrite: false, blending: THREE.AdditiveBlending });
+  const flash = new THREE.Sprite(flashMat);
+  flash.position.set(0, 1.05, 0.5);
+  flash.scale.set(1.6, 1.6, 1);
+  scene.add(flash);
+
+  // ---- timeline ----
+  const tl = gsap.timeline({ paused: true });
+
+  tl.fromTo(fadeMat, { opacity: 0.55 }, { opacity: 0, duration: 1.0, ease: 'power2.out' }, 0);
+
+  tl.fromTo(seed.position, { y: 5.6 }, { y: 1.05, duration: 2.55, ease: 'power2.in' }, 0.4);
+  tl.to(haloMat, { opacity: 0.45, duration: 2.4, ease: 'none' }, 0.4);
+
+  // impact
+  tl.to(flashMat, { opacity: 0.85, duration: 0.05, ease: 'none' }, 2.94);
+  tl.to(flashMat, { opacity: 0, duration: 0.40, ease: 'power2.out' }, 3.0);
+  tl.to(flash.scale, { x: 7.5, y: 7.5, duration: 0.55, ease: 'power2.out' }, 2.94);
+  tl.to(burstUniforms.uP, { value: 1, duration: 1.9, ease: 'none' }, 2.95);
+  tl.to(core.scale, { x: 0.35, y: 0.35, z: 0.35, duration: 0.5, ease: 'power3.out' }, 2.95);
+  tl.to(haloMat, { opacity: 0.28, duration: 1.2, ease: 'power2.out' }, 2.95);
+  tl.to(camera.position, { x: 0.055, y: -0.045, duration: 0.055, yoyo: true, repeat: 7, ease: 'none' }, 2.95);
+  tl.set(camera.position, { x: 0, y: 0 }, 3.45);
+
+  // title
+  tl.to(titleUniforms.uR, { value: 1, duration: 1.15, ease: 'power3.out' }, 3.35);
+  tl.fromTo(title.scale, { x: 1.05, y: 1.05, z: 1.05 }, { x: 1, y: 1, z: 1, duration: 1.6, ease: 'power2.out' }, 3.35);
+  tl.fromTo(title.position, { z: 1.25 }, { z: 0.7, duration: 1.8, ease: 'power3.out' }, 3.35);
+
+  // subtitle + credit
+  tl.to(subMat, { opacity: 0.92, duration: 0.9, ease: 'power2.out' }, 4.55);
+  tl.fromTo(subtitle.position, { y: -1.48 }, { y: -1.36, duration: 1.0, ease: 'power3.out' }, 4.55);
+  tl.to(credMat, { opacity: 0.55, duration: 0.9, ease: 'power2.out' }, 5.5);
+
+  // slow push + fade out
+  tl.to(rig.position, { z: 9.3, y: 0.72, duration: 10.0, ease: 'none' }, 0);
+  tl.to(fadeMat, { opacity: 1, duration: 0.9, ease: 'power2.in' }, 9.05);
+
+  // ---- frame function ----
+  const clock = { t: 0 };
+  function seek(t) {
+    tl.seek(t);
+    seed.position.x = Math.sin(t * 2.15) * 0.12;
+    dust.rotation.y = t * 0.028;
+    dust.rotation.x = Math.sin(t * 0.12) * 0.05;
+    composer.render();
+  }
+
+  seek(0);
+  renderer.render(scene, camera);
+
+  // ---- optional score: rendered offline, exported as WAV (used by audio.mjs) ----
+  window.film = {
+    ready: true,
+    duration: DUR,
+    seek,
+    async audio() {
+      const { Tone } = window;
+      const buffer = await Tone.Offline(async () => {
+        const master = new Tone.Limiter(-2).toDestination();
+        const rev = new Tone.Freeverb({ roomSize: 0.86, dampening: 3200, wet: 0.42 }).connect(master);
+
+        const pad = new Tone.PolySynth(Tone.Synth, {
+          oscillator: { type: 'triangle' },
+          envelope: { attack: 1.6, decay: 1.2, sustain: 0.55, release: 3.2 },
+        }).connect(rev);
+        pad.volume.value = -20;
+        pad.triggerAttackRelease(['D3', 'A3', 'E4'], 7.5, 0.4);
+
+        const air = new Tone.Noise('pink').connect(new Tone.Filter(900, 'lowpass').connect(rev));
+        air.volume.value = -38;
+        air.start(0).stop(10);
+
+        const impact = new Tone.MembraneSynth({ pitchDecay: 0.06, octaves: 4 }).connect(master);
+        impact.volume.value = -9;
+        impact.triggerAttackRelease('D1', 1.2, 2.95);
+
+        const bell = new Tone.FMSynth({
+          harmonicity: 3.01, modulationIndex: 7,
+          envelope: { attack: 0.002, decay: 1.6, sustain: 0.02, release: 2.2 },
+        }).connect(rev);
+        bell.volume.value = -19;
+        bell.triggerAttackRelease('A5', 1.4, 3.45);
+        bell.triggerAttackRelease('D6', 1.2, 4.9);
+      }, DUR, 2);
+
+      const raw = typeof buffer.get === 'function' ? buffer.get() : buffer;
+      const ch = raw.numberOfChannels;
+      const len = raw.length;
+      const sr = raw.sampleRate;
+      const out = new DataView(new ArrayBuffer(44 + len * ch * 2));
+      const w = (o, s) => { for (let i = 0; i < s.length; i++) out.setUint8(o + i, s.charCodeAt(i)); };
+      w(0, 'RIFF'); out.setUint32(4, 36 + len * ch * 2, true); w(8, 'WAVEfmt ');
+      out.setUint32(16, 16, true); out.setUint16(20, 1, true); out.setUint16(22, ch, true);
+      out.setUint32(24, sr, true); out.setUint32(28, sr * ch * 2, true);
+      out.setUint16(32, ch * 2, true); out.setUint16(34, 16, true);
+      w(36, 'data'); out.setUint32(40, len * ch * 2, true);
+      const chans = [];
+      for (let c = 0; c < ch; c++) chans.push(raw.getChannelData(c));
+      let o = 44;
+      for (let i = 0; i < len; i++) {
+        for (let c = 0; c < ch; c++) {
+          const v = Math.max(-1, Math.min(1, chans[c][i]));
+          out.setInt16(o, v < 0 ? v * 0x8000 : v * 0x7fff, true);
+          o += 2;
+        }
+      }
+      const bytes = new Uint8Array(out.buffer);
+      let bin = '';
+      for (let i = 0; i < bytes.length; i += 8192) bin += String.fromCharCode.apply(null, bytes.subarray(i, i + 8192));
+      return btoa(bin);
+    },
+  };
+})().catch((e) => {
+  document.title = 'ERR ' + e.message;
+  window.__filmError = String((e && e.stack) || e);
+});
+</script>
+</body>
+</html>

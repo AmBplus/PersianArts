@@ -113,11 +113,112 @@ export function luma(img, gw, gh) { // box-averaged grayscale gw x gh
 
 export const frameFromName = (f) => { const m = /f(\d+)/i.exec(path.basename(f)); return m ? +m[1] : null; };
 
-export function sceneStarts(eventsPath, total) {
-  const starts = [0];
-  if (eventsPath && fs.existsSync(eventsPath)) {
-    const ev = JSON.parse(fs.readFileSync(eventsPath, 'utf8')).events || [];
-    for (const e of ev) if (/^wipe\d*/i.test(e.id || '') || e.type === 'wipe') starts.push(e.frame);
+// ---------------------------------------------------------------------------
+// Scene starts. Sources, in priority order: events.cut_frames (authoritative,
+// already in frames), wipe events with an explicit `frame`, wipe events with
+// only `t_s` (x fps). A one-take film has cut_frames [0] and no wipes, so it
+// yields exactly one start; run-gates then falls back to detectSceneCuts() on
+// the encoded video instead of reporting N/A.
+export function readEvents(eventsPath) {
+  if (!eventsPath || !fs.existsSync(eventsPath)) return null;
+  try { return JSON.parse(fs.readFileSync(eventsPath, 'utf8')); } catch { return null; }
+}
+
+export function sceneStartsInfo(eventsPath, total, opt = {}) {
+  const starts = new Set([0]);
+  const detail = { source: 'none', fps: opt.fps || 30, wipes: 0, cuts: 0 };
+  const j = readEvents(eventsPath);
+  if (j) {
+    const fps = +j.fps || detail.fps; detail.fps = fps;
+    for (const e of j.events || []) {
+      const isWipe = e.type === 'wipe' || /^wipe\d*/i.test(e.id || '');
+      if (!isWipe) continue;
+      if (Number.isFinite(+e.frame)) { starts.add(Math.round(+e.frame)); detail.wipes++; }
+      else if (Number.isFinite(+e.t_s)) { starts.add(Math.round(+e.t_s * fps)); detail.wipes++; }
+    }
+    const cuts = Array.isArray(j.cut_frames) ? j.cut_frames.map(Number).filter(Number.isFinite) : [];
+    if (cuts.length > 1) { for (const f of cuts) starts.add(Math.round(f)); detail.cuts = cuts.length; }
+    detail.source = [detail.cuts ? `cut_frames(${detail.cuts})` : null, detail.wipes ? `wipe events(${detail.wipes})` : null].filter(Boolean).join('+') || 'events (no cuts)';
   }
-  return [...new Set(starts)].sort((a, b) => a - b).filter((f) => f < total);
+  const out = [...starts].filter((f) => Number.isFinite(f) && f >= 0 && (total == null || f < total)).sort((a, b) => a - b);
+  return { starts: out, ...detail };
+}
+
+export function sceneStarts(eventsPath, total) { return sceneStartsInfo(eventsPath, total).starts; }
+
+// Encoded-video scene detection, used when the events file yields < 2 starts (one-take films).
+export function detectSceneCuts(file, fps, thr = 0.30) {
+  const r = spawnSync('ffmpeg', ['-v', 'info', '-i', file, '-an', '-vf', `select='gt(scene,${thr})',metadata=print`, '-f', 'null', '-'],
+    { encoding: 'utf8', maxBuffer: 1 << 26 });
+  const txt = `${r.stderr || ''}\n${r.stdout || ''}`;
+  const frames = new Set([0]);
+  for (const m of txt.matchAll(/pts_time:([0-9.]+)/g)) frames.add(Math.round(+m[1] * (fps || 30)));
+  return [...frames].sort((a, b) => a - b);
+}
+
+// Locate the events.json that belongs to `target` (video or stills dir) without --events:
+// next to it, one level up, or by the film label found in the path (work/persian/htmlfilm/<label>/).
+export function findEventsPath(target, cwd = process.cwd()) {
+  const dir = fs.statSync(target).isDirectory() ? target : path.dirname(target);
+  for (const c of [path.join(dir, 'events.json'), path.join(dir, '..', 'events.json')]) if (fs.existsSync(c)) return c;
+  const abs = path.resolve(target).split(path.sep);
+  for (let i = abs.length - 1; i >= 0; i--) {
+    if (/^s\d{2}-[a-z0-9][a-z0-9-]*$/i.test(abs[i])) {
+      const c = path.join(cwd, 'work', 'persian', 'htmlfilm', abs[i], 'events.json');
+      if (fs.existsSync(c)) return c;
+    }
+  }
+  for (const n of ['VERSION.json', 'meta.json']) {
+    const j = readEvents(path.join(dir, n));
+    if (j && (j.film || j.label)) {
+      const c = path.join(cwd, 'work', 'persian', 'htmlfilm', String(j.film || j.label), 'events.json');
+      if (fs.existsSync(c)) return c;
+    }
+  }
+  return null;
+}
+
+// The film's own source directory (what number-lint should lint), derived from
+// --events, the film label in the path, or a VERSION.json/meta.json "film" field.
+export function findFilmSourceDir(target, eventsPath, cwd = process.cwd()) {
+  const cands = [];
+  if (eventsPath) cands.push(path.dirname(eventsPath));
+  const dir = fs.statSync(target).isDirectory() ? target : path.dirname(target);
+  for (const n of ['VERSION.json', 'meta.json']) {
+    const j = readEvents(path.join(dir, n));
+    if (j && (j.film || j.label)) cands.push(path.join(cwd, 'work', 'persian', 'htmlfilm', String(j.film || j.label)));
+  }
+  const abs = path.resolve(target).split(path.sep);
+  for (let i = abs.length - 1; i >= 0; i--) if (/^s\d{2}-[a-z0-9][a-z0-9-]*$/i.test(abs[i])) cands.push(path.join(cwd, 'work', 'persian', 'htmlfilm', abs[i]));
+  for (const c of cands) if (fs.existsSync(c) && fs.statSync(c).isDirectory()) return c;
+  return null;
+}
+
+// Uniform near-black rows/columns touching the frame borders (letterbox / raster padding).
+export function borderBlackBands(img, opt = {}) {
+  const { w, h, data } = img;
+  const dark = opt.dark ?? 24, flat = opt.flat ?? 14;
+  const rowStat = [], colStat = [];
+  for (let y = 0; y < h; y++) {
+    let mean = 0, mx = 0;
+    for (let x = 0; x < w; x++) { const i = (y * w + x) * 3; const l = 0.299 * data[i] + 0.587 * data[i + 1] + 0.114 * data[i + 2]; mean += l; if (l > mx) mx = l; }
+    rowStat.push({ mean: mean / w, max: mx });
+  }
+  for (let x = 0; x < w; x++) {
+    let mean = 0, mx = 0;
+    for (let y = 0; y < h; y++) { const i = (y * w + x) * 3; const l = 0.299 * data[i] + 0.587 * data[i + 1] + 0.114 * data[i + 2]; mean += l; if (l > mx) mx = l; }
+    colStat.push({ mean: mean / h, max: mx });
+  }
+  const isBand = (s) => s.mean < dark && s.max < dark + flat;
+  const runFrom = (stats, fromEnd) => {
+    let n = 0;
+    for (let k = 0; k < stats.length; k++) { const s = stats[fromEnd ? stats.length - 1 - k : k]; if (isBand(s)) n++; else break; }
+    return n;
+  };
+  return [
+    { side: 'top', px: runFrom(rowStat, false) },
+    { side: 'bottom', px: runFrom(rowStat, true) },
+    { side: 'left', px: runFrom(colStat, false) },
+    { side: 'right', px: runFrom(colStat, true) },
+  ].filter((b) => b.px > 0);
 }

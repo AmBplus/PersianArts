@@ -1,0 +1,53 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<script src="../lib/pa-motion.js"></script>
+<script src="../lib/pa-camera.js"></script>
+<script src="../lib/pa-layout.js"></script>
+</head><body>
+<canvas id="cv" width="1080" height="1920"></canvas>
+<script>
+"use strict";
+const {clamp, lerp, prog, ease, rng, faDigits, ltr} = PA;
+const cv = document.getElementById("cv"), ctx = cv.getContext("2d");
+function seek(t) {
+  try {
+    const L = PA.layout({"9x16": {W:1080, H:1920, heroPx:120, bodyPx:52, marginX:96},
+                         "16x9": {W:1920, H:1080, heroPx:110, bodyPx:46, marginX:120}},
+                        new URLSearchParams(location.search).get("ratio") || "9x16");
+    cv.width = L.W; cv.height = L.H;
+    const R = rng(20261018);
+    const motes = Array.from({length: 46}, () => ({x: R(), y: R(), r: 1 + R() * 2.4, ph: R() * Math.PI * 2, sp: 0.2 + R() * 0.6}));
+    function keyf(list, e) {
+      return function (t) {
+        if (t <= list[0][0]) return list[0][1];
+        for (let i = 1; i < list.length; i++) {
+          if (t <= list[i][0]) {
+            const a = list[i - 1], b = list[i];
+            const k = clamp((t - a[0]) / (b[0] - a[0]));
+            return lerp(a[1], b[1], (e || ease.inOutSine)(k));
+          }
+        }
+        return list[list.length - 1][1];
+      };
+    }
+    const flakeX = keyf([[0, 0.10], [2, 0.30], [7, 0.42], [15, 0.58], [15.6, 0.60], [20, 0.60]], ease.inOutSine);
+    const flakeY = keyf([[0, 0.16], [2, 0.24], [7, 0.34], [15, 0.62], [15.6, 0.76], [20, 0.76]], ease.inOutSine);
+    const camZoom = keyf([[0, 1.0], [7, 1.08], [15, 1.16], [16, 1.02], [20, 1.02]], ease.inOutSine);
+    const camX = keyf([[0, 0], [15, 0.06], [20, 0.02]], ease.inOutSine);
+    const z = camZoom(t), cx = camX(t) * L.W;
+    ctx.setTransform(1,0,0,1,0,0);
+    ctx.clearRect(0,0,L.W,L.H);
+    ctx.fillStyle = "#1a2138"; ctx.fillRect(0,0,L.W,L.H);
+    ctx.save(); ctx.translate(-cx, 0);
+    ctx.translate(L.W / 2, L.H / 2); ctx.scale(z, z); ctx.translate(-L.W / 2, -L.H / 2);
+    ctx.fillStyle = "#e8b04b"; ctx.fillRect(flakeX(t) * L.W - 100, flakeY(t) * L.H - 100, 200, 200);
+    ctx.restore();
+  } catch (e) {
+    ctx.setTransform(1,0,0,1,0,0);
+    ctx.fillStyle = "#c44536"; ctx.fillRect(0,0,1080,1920);
+  }
+}
+window.film = {seek, duration: 20, fps: 30, ready: true};
+seek(1);
+</script>
+</body></html>

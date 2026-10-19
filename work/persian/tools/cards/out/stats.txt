@@ -1,0 +1,296 @@
+{
+ "n_total": 251,
+ "n_typography": 39,
+ "n_shotcraft": 212,
+ "palette_clusters": [
+  {
+   "hex": "#F0F0ED",
+   "n": 501,
+   "ex": "library/media/typography/countdown/poster.webp"
+  },
+  {
+   "hex": "#111C28",
+   "n": 205,
+   "ex": "library/media/typography/assembly/poster.webp"
+  },
+  {
+   "hex": "#08090C",
+   "n": 110,
+   "ex": "library/media/reference/shotcraft/ai-stream-response/ai-stream-response/poster.webp"
+  },
+  {
+   "hex": "#343638",
+   "n": 85,
+   "ex": "library/media/typography/assembly/poster.webp"
+  },
+  {
+   "hex": "#D5D5D3",
+   "n": 78,
+   "ex": "library/media/typography/countdown/poster.webp"
+  },
+  {
+   "hex": "#5B5C5B",
+   "n": 44,
+   "ex": "library/media/typography/blurslide/poster.webp"
+  },
+  {
+   "hex": "#B4B4B4",
+   "n": 43,
+   "ex": "library/media/typography/filmstrip/poster.webp"
+  },
+  {
+   "hex": "#FFFFFF",
+   "n": 39,
+   "ex": "library/media/reference/shotcraft/command-palette-summon/command-palette-summon/poster.webp"
+  },
+  {
+   "hex": "#858482",
+   "n": 27,
+   "ex": "library/media/typography/markerline/poster.webp"
+  },
+  {
+   "hex": "#A19B96",
+   "n": 19,
+   "ex": "library/media/typography/stomp/poster.webp"
+  },
+  {
+   "hex": "#4A4C4E",
+   "n": 15,
+   "ex": "library/media/typography/letterdrop/poster.webp"
+  },
+  {
+   "hex": "#2A262D",
+   "n": 11,
+   "ex": "library/media/typography/codeblock/poster.webp"
+  },
+  {
+   "hex": "#C5C4C5",
+   "n": 11,
+   "ex": "library/media/reference/shotcraft/aurora-bloom-bg-flip/aurora-bloom-bg-flip/poster.webp"
+  },
+  {
+   "hex": "#3D214F",
+   "n": 10,
+   "ex": "library/media/reference/shotcraft/card-stack/card-stack/poster.webp"
+  },
+  {
+   "hex": "#9B9DA1",
+   "n": 7,
+   "ex": "library/media/reference/shotcraft/avatar-bracket-carousel/avatar-bracket-carousel/poster.webp"
+  },
+  {
+   "hex": "#6A7183",
+   "n": 5,
+   "ex": "library/media/reference/shotcraft/counter-confetti/counter-confetti/poster.webp"
+  }
+ ],
+ "bg_clusters": [
+  {
+   "hex": "#F3F3F2",
+   "n": 148,
+   "ex": "library/media/typography/countdown/poster.webp"
+  },
+  {
+   "hex": "#0F1C28",
+   "n": 44,
+   "ex": "library/media/typography/assembly/poster.webp"
+  },
+  {
+   "hex": "#08080C",
+   "n": 40,
+   "ex": "library/media/reference/shotcraft/ai-stream-response/ai-stream-response/poster.webp"
+  },
+  {
+   "hex": "#2D2D2C",
+   "n": 8,
+   "ex": "library/media/reference/shotcraft/light-play-moves/halation-bloom/poster.webp"
+  },
+  {
+   "hex": "#DFE0E0",
+   "n": 4,
+   "ex": "library/media/reference/shotcraft/paper-craft-moves/popup-book-rise/poster.webp"
+  },
+  {
+   "hex": "#8E8E8E",
+   "n": 2,
+   "ex": "library/media/reference/shotcraft/command-palette-summon/command-palette-summon/poster.webp"
+  },
+  {
+   "hex": "#241A12",
+   "n": 1,
+   "ex": "library/media/reference/shotcraft/beat-step-list-theme-cycle/beat-step-list-theme-cycle/poster.webp"
+  },
+  {
+   "hex": "#C0C1BE",
+   "n": 1,
+   "ex": "library/media/reference/shotcraft/before-after-slider-scrub/before-after-slider-scrub/poster.webp"
+  },
+  {
+   "hex": "#322E5A",
+   "n": 1,
+   "ex": "library/media/reference/shotcraft/letterspace-materialize/letterspace-materialize/poster.webp"
+  },
+  {
+   "hex": "#B0ABA1",
+   "n": 1,
+   "ex": "library/media/reference/shotcraft/spotlight-hero-card/spotlight-hero-card/poster.webp"
+  }
+ ],
+ "mean_lum": {
+  "n": 251,
+  "min": 0.0022,
+  "p10": 0.0767,
+  "p25": 0.1212,
+  "median": 0.887,
+  "p75": 0.9228,
+  "p90": 0.9485,
+  "max": 0.9918,
+  "mean": 0.6038
+ },
+ "bimodality": {
+  "dark": 92,
+  "mid": 11,
+  "light": 148,
+  "dark_pct": 36.7,
+  "mid_pct": 4.4,
+  "light_pct": 59.0,
+  "dark_mean": 0.1119,
+  "light_mean": 0.9133
+ },
+ "mean_lum_by_kind": {
+  "typography": {
+   "n": 39,
+   "median": 0.1205,
+   "dark_pct": 87.2
+  },
+  "shotcraft": {
+   "n": 212,
+   "median": 0.8945,
+   "dark_pct": 27.4
+  }
+ },
+ "bg_frac": {
+  "median": 0.772,
+  "p25": 0.576,
+  "p75": 0.913
+ },
+ "contrast": {
+  "median": 3.98,
+  "p10": 1.29,
+  "p90": 8.91,
+  "min": 1.0,
+  "n_ge_4_5": 84,
+  "n_ge_3_0": 174,
+  "ge_4_5_pct": 33.5
+ },
+ "std_lum": {
+  "median": 0.1025
+ },
+ "type_ratio": {
+  "n": 251,
+  "min": 0.0,
+  "p10": 0.0444,
+  "p25": 0.0778,
+  "median": 0.1444,
+  "p75": 0.363,
+  "p90": 0.9889,
+  "max": 1.0,
+  "single_line_n": 140,
+  "single_line_median": 0.0907
+ },
+ "big_type": {
+  "n": 135,
+  "pct": 53.8
+ },
+ "type_px": {
+  "median": 94.0,
+  "p25": 50.0,
+  "p75": 178.0,
+  "max": 1080.0
+ },
+ "type_ratio_typography": {
+  "n": 39,
+  "median": 0.0917,
+  "p25": 0.0833,
+  "p75": 0.1111,
+  "p90": 0.1472
+ },
+ "type_ratio_shotcraft": {
+  "n": 206,
+  "median": 0.1723,
+  "p25": 0.0833,
+  "p75": 0.4796,
+  "p90": 0.9889
+ },
+ "devices": {
+  "has_dotgrid": {
+   "n": 206,
+   "pct": 82.1,
+   "typography_n": 37,
+   "typography_pct": 94.9,
+   "shotcraft_n": 169,
+   "shotcraft_pct": 79.7
+  },
+  "has_accent": {
+   "n": 44,
+   "pct": 17.5,
+   "typography_n": 8,
+   "typography_pct": 20.5,
+   "shotcraft_n": 36,
+   "shotcraft_pct": 17.0
+  },
+  "has_radius": {
+   "n": 57,
+   "pct": 22.7,
+   "typography_n": 4,
+   "typography_pct": 10.3,
+   "shotcraft_n": 53,
+   "shotcraft_pct": 25.0
+  },
+  "has_glow": {
+   "n": 48,
+   "pct": 19.1,
+   "typography_n": 21,
+   "typography_pct": 53.8,
+   "shotcraft_n": 27,
+   "shotcraft_pct": 12.7
+  },
+  "has_border": {
+   "n": 79,
+   "pct": 31.5,
+   "typography_n": 35,
+   "typography_pct": 89.7,
+   "shotcraft_n": 44,
+   "shotcraft_pct": 20.8
+  }
+ },
+ "accent_families": [
+  {
+   "hex": "#B27338",
+   "n": 7,
+   "ex": "library/media/typography/highlight/poster.webp"
+  },
+  {
+   "hex": "#CE924A",
+   "n": 5,
+   "ex": "library/media/typography/counter/poster.webp"
+  },
+  {
+   "hex": "#5B2E6F",
+   "n": 5,
+   "ex": "library/media/reference/shotcraft/card-stack/card-stack/poster.webp"
+  },
+  {
+   "hex": "#36446B",
+   "n": 4,
+   "ex": "library/media/reference/shotcraft/counter-confetti/counter-confetti/poster.webp"
+  },
+  {
+   "hex": "#4464B4",
+   "n": 3,
+   "ex": "library/media/reference/shotcraft/avatar-bracket-carousel/avatar-bracket-carousel/poster.webp"
+  },
+  {
+   "hex": "#624992",
+   "n": 3,
+   "ex": "library

@@ -1,0 +1,1072 @@
+{
+ "n_total": 251,
+ "n_typography": 39,
+ "n_shotcraft": 212,
+ "palette_clusters": [
+  {
+   "hex": "#F0F0ED",
+   "n": 501,
+   "ex": "library/media/typography/countdown/poster.webp"
+  },
+  {
+   "hex": "#111C28",
+   "n": 205,
+   "ex": "library/media/typography/assembly/poster.webp"
+  },
+  {
+   "hex": "#08090C",
+   "n": 110,
+   "ex": "library/media/reference/shotcraft/ai-stream-response/ai-stream-response/poster.webp"
+  },
+  {
+   "hex": "#343638",
+   "n": 85,
+   "ex": "library/media/typography/assembly/poster.webp"
+  },
+  {
+   "hex": "#D5D5D3",
+   "n": 78,
+   "ex": "library/media/typography/countdown/poster.webp"
+  },
+  {
+   "hex": "#5B5C5B",
+   "n": 44,
+   "ex": "library/media/typography/blurslide/poster.webp"
+  },
+  {
+   "hex": "#B4B4B4",
+   "n": 43,
+   "ex": "library/media/typography/filmstrip/poster.webp"
+  },
+  {
+   "hex": "#FFFFFF",
+   "n": 39,
+   "ex": "library/media/reference/shotcraft/command-palette-summon/command-palette-summon/poster.webp"
+  },
+  {
+   "hex": "#858482",
+   "n": 27,
+   "ex": "library/media/typography/markerline/poster.webp"
+  },
+  {
+   "hex": "#A19B96",
+   "n": 19,
+   "ex": "library/media/typography/stomp/poster.webp"
+  },
+  {
+   "hex": "#4A4C4E",
+   "n": 15,
+   "ex": "library/media/typography/letterdrop/poster.webp"
+  },
+  {
+   "hex": "#2A262D",
+   "n": 11,
+   "ex": "library/media/typography/codeblock/poster.webp"
+  },
+  {
+   "hex": "#C5C4C5",
+   "n": 11,
+   "ex": "library/media/reference/shotcraft/aurora-bloom-bg-flip/aurora-bloom-bg-flip/poster.webp"
+  },
+  {
+   "hex": "#3D214F",
+   "n": 10,
+   "ex": "library/media/reference/shotcraft/card-stack/card-stack/poster.webp"
+  },
+  {
+   "hex": "#9B9DA1",
+   "n": 7,
+   "ex": "library/media/reference/shotcraft/avatar-bracket-carousel/avatar-bracket-carousel/poster.webp"
+  },
+  {
+   "hex": "#6A7183",
+   "n": 5,
+   "ex": "library/media/reference/shotcraft/counter-confetti/counter-confetti/poster.webp"
+  }
+ ],
+ "bg_clusters": [
+  {
+   "hex": "#F3F3F2",
+   "n": 148,
+   "ex": "library/media/typography/countdown/poster.webp"
+  },
+  {
+   "hex": "#0F1C28",
+   "n": 44,
+   "ex": "library/media/typography/assembly/poster.webp"
+  },
+  {
+   "hex": "#08080C",
+   "n": 40,
+   "ex": "library/media/reference/shotcraft/ai-stream-response/ai-stream-response/poster.webp"
+  },
+  {
+   "hex": "#2D2D2C",
+   "n": 8,
+   "ex": "library/media/reference/shotcraft/light-play-moves/halation-bloom/poster.webp"
+  },
+  {
+   "hex": "#DFE0E0",
+   "n": 4,
+   "ex": "library/media/reference/shotcraft/paper-craft-moves/popup-book-rise/poster.webp"
+  },
+  {
+   "hex": "#8E8E8E",
+   "n": 2,
+   "ex": "library/media/reference/shotcraft/command-palette-summon/command-palette-summon/poster.webp"
+  },
+  {
+   "hex": "#241A12",
+   "n": 1,
+   "ex": "library/media/reference/shotcraft/beat-step-list-theme-cycle/beat-step-list-theme-cycle/poster.webp"
+  },
+  {
+   "hex": "#C0C1BE",
+   "n": 1,
+   "ex": "library/media/reference/shotcraft/before-after-slider-scrub/before-after-slider-scrub/poster.webp"
+  },
+  {
+   "hex": "#322E5A",
+   "n": 1,
+   "ex": "library/media/reference/shotcraft/letterspace-materialize/letterspace-materialize/poster.webp"
+  },
+  {
+   "hex": "#B0ABA1",
+   "n": 1,
+   "ex": "library/media/reference/shotcraft/spotlight-hero-card/spotlight-hero-card/poster.webp"
+  }
+ ],
+ "mean_lum": {
+  "n": 251,
+  "min": 0.0022,
+  "p10": 0.0767,
+  "p25": 0.1212,
+  "median": 0.887,
+  "p75": 0.9228,
+  "p90": 0.9485,
+  "max": 0.9918,
+  "mean": 0.6038
+ },
+ "bimodality": {
+  "dark": 92,
+  "mid": 11,
+  "light": 148,
+  "dark_pct": 36.7,
+  "mid_pct": 4.4,
+  "light_pct": 59.0,
+  "dark_mean": 0.1119,
+  "light_mean": 0.9133
+ },
+ "mean_lum_by_kind": {
+  "typography": {
+   "n": 39,
+   "median": 0.1205,
+   "dark_pct": 87.2
+  },
+  "shotcraft": {
+   "n": 212,
+   "median": 0.8945,
+   "dark_pct": 27.4
+  }
+ },
+ "bg_frac": {
+  "median": 0.772,
+  "p25": 0.576,
+  "p75": 0.913
+ },
+ "contrast": {
+  "median": 3.98,
+  "p10": 1.29,
+  "p90": 8.91,
+  "min": 1.0,
+  "n_ge_4_5": 84,
+  "n_ge_3_0": 174,
+  "ge_4_5_pct": 33.5
+ },
+ "std_lum": {
+  "median": 0.1025
+ },
+ "type_ratio": {
+  "n": 251,
+  "min": 0.0,
+  "p10": 0.0444,
+  "p25": 0.0778,
+  "median": 0.1444,
+  "p75": 0.363,
+  "p90": 0.9889,
+  "max": 1.0,
+  "single_line_n": 140,
+  "single_line_median": 0.0907
+ },
+ "big_type": {
+  "n": 135,
+  "pct": 53.8
+ },
+ "type_px": {
+  "median": 94.0,
+  "p25": 50.0,
+  "p75": 178.0,
+  "max": 1080.0
+ },
+ "type_ratio_typography": {
+  "n": 39,
+  "median": 0.0917,
+  "p25": 0.0833,
+  "p75": 0.1111,
+  "p90": 0.1472
+ },
+ "type_ratio_shotcraft": {
+  "n": 206,
+  "median": 0.1723,
+  "p25": 0.0833,
+  "p75": 0.4796,
+  "p90": 0.9889
+ },
+ "devices": {
+  "has_dotgrid": {
+   "n": 206,
+   "pct": 82.1,
+   "typography_n": 37,
+   "typography_pct": 94.9,
+   "shotcraft_n": 169,
+   "shotcraft_pct": 79.7
+  },
+  "has_accent": {
+   "n": 44,
+   "pct": 17.5,
+   "typography_n": 8,
+   "typography_pct": 20.5,
+   "shotcraft_n": 36,
+   "shotcraft_pct": 17.0
+  },
+  "has_radius": {
+   "n": 57,
+   "pct": 22.7,
+   "typography_n": 4,
+   "typography_pct": 10.3,
+   "shotcraft_n": 53,
+   "shotcraft_pct": 25.0
+  },
+  "has_glow": {
+   "n": 48,
+   "pct": 19.1,
+   "typography_n": 21,
+   "typography_pct": 53.8,
+   "shotcraft_n": 27,
+   "shotcraft_pct": 12.7
+  },
+  "has_border": {
+   "n": 79,
+   "pct": 31.5,
+   "typography_n": 35,
+   "typography_pct": 89.7,
+   "shotcraft_n": 44,
+   "shotcraft_pct": 20.8
+  }
+ },
+ "accent_hues": [
+  [
+   "#DCA045",
+   1
+  ],
+  [
+   "#DB4D67",
+   1
+  ],
+  [
+   "#AC813F",
+   1
+  ],
+  [
+   "#CF9944",
+   1
+  ],
+  [
+   "#AD6945",
+   1
+  ],
+  [
+   "#A98140",
+   1
+  ],
+  [
+   "#DE4D67",
+   1
+  ],
+  [
+   "#D29A44",
+   1
+  ],
+  [
+   "#3167BC",
+   1
+  ],
+  [
+   "#54C47F",
+   1
+  ],
+  [
+   "#3E7BF9",
+   1
+  ],
+  [
+   "#683577",
+   1
+  ]
+ ],
+ "accent_families": [
+  {
+   "hex": "#B27338",
+   "n": 7,
+   "ex": "library/media/typography/highlight/poster.webp"
+  },
+  {
+   "hex": "#CE924A",
+   "n": 5,
+   "ex": "library/media/typography/counter/poster.webp"
+  },
+  {
+   "hex": "#5B2E6F",
+   "n": 5,
+   "ex": "library/media/reference/shotcraft/card-stack/card-stack/poster.webp"
+  },
+  {
+   "hex": "#36446B",
+   "n": 4,
+   "ex": "library/media/reference/shotcraft/counter-confetti/counter-confetti/poster.webp"
+  },
+  {
+   "hex": "#4464B4",
+   "n": 3,
+   "ex": "library/media/reference/shotcraft/avatar-bracket-carousel/avatar-bracket-carousel/poster.webp"
+  },
+  {
+   "hex": "#624992",
+   "n": 3,
+   "ex": "library/media/reference/shotcraft/flying-words/flying-words/poster.webp"
+  },
+  {
+   "hex": "#DC4D67",
+   "n": 2,
+   "ex": "library/media/typography/fonthymp/poster.webp"
+  },
+  {
+   "hex": "#317FEE",
+   "n": 2,
+   "ex": "library/media/reference/shotcraft/brand-frame-snap/brand-frame-snap/poster.webp"
+  },
+  {
+   "hex": "#32906A",
+   "n": 2,
+   "ex": "library/media/reference/shotcraft/collab-cursor-moves/dialogue-duet/poster.webp"
+  },
+  {
+   "hex": "#886A39",
+   "n": 2,
+   "ex": "library/media/reference/shotcraft/neon-triple-marquee/neon-triple-marquee/poster.webp"
+  }
+ ],
+ "radius": {
+  "n_ge4": 57,
+  "median_of_detected": 10,
+  "max": 84
+ },
+ "texture_periodicity": {
+  "median": 0.559,
+  "p10": 0.166,
+  "p90": 0.753,
+  "n_ge_030": 206,
+  "n_ge_050": 152,
+  "pct_ge_030": 82.1
+ },
+ "palette_families": [
+  {
+   "palette_id": "P01",
+   "name": "paper white + pale grey",
+   "hexes": [
+    "#F4F4F3",
+    "#ECEDEA",
+    "#ECEDEA",
+    "#EBECE9",
+    "#CFCFCD"
+   ],
+   "mean_luminance": 0.9407,
+   "usage_count": 67,
+   "example_path": "library/media/reference/shotcraft/slam-entrance-moves/impact-burst-kit/poster.webp"
+  },
+  {
+   "palette_id": "P02",
+   "name": "charcoal + near-black navy",
+   "hexes": [
+    "#414545",
+    "#0E1E2D",
+    "#0D1D2C",
+    "#111C28",
+    "#0C1B2A"
+   ],
+   "mean_luminance": 0.1072,
+   "usage_count": 48,
+   "example_path": "library/media/typography/splitflap/poster.webp"
+  },
+  {
+   "palette_id": "P03",
+   "name": "paper white + grey",
+   "hexes": [
+    "#F0F0EE",
+    "#ECEDEA",
+    "#ECEDEA",
+    "#ECEDEA",
+    "#939492"
+   ],
+   "mean_luminance": 0.9147,
+   "usage_count": 37,
+   "example_path": "library/media/reference/shotcraft/particle-celebrate-hits/counter-tick-sparks/poster.webp"
+  },
+  {
+   "palette_id": "P04",
+   "name": "paper white + charcoal",
+   "hexes": [
+    "#FFFFFF",
+    "#F5F5F4",
+    "#E5E6E4",
+    "#535352",
+    "#3A3A3A"
+   ],
+   "mean_luminance": 0.8727,
+   "usage_count": 19,
+   "example_path": "library/media/reference/shotcraft/trailer-grammar-moves/smash-cut/poster.webp"
+  },
+  {
+   "palette_id": "P05",
+   "name": "paper white + charcoal",
+   "hexes": [
+    "#FCFCFB",
+    "#ECEDEA",
+    "#EBECE9",
+    "#B1B2B0",
+    "#3A3A3A"
+   ],
+   "mean_luminance": 0.8796,
+   "usage_count": 13,
+   "example_path": "library/media/reference/shotcraft/page-turn-transitions/cube-rotate/poster.webp"
+  },
+  {
+   "palette_id": "P06",
+   "name": "deep navy + near-black navy",
+   "hexes": [
+    "#212329",
+    "#07080C",
+    "#07080C",
+    "#07080C",
+    "#07080C"
+   ],
+   "mean_luminance": 0.0352,
+   "usage_count": 13,
+   "example_path": "library/media/reference/shotcraft/scramble/scramble/poster.webp"
+  },
+  {
+   "palette_id": "P07",
+   "name": "grey + near-black navy",
+   "hexes": [
+    "#8F99AA",
+    "#161820",
+    "#0A0B12",
+    "#0A0B12",
+    "#0A0B12"
+   ],
+   "mean_luminance": 0.0868,
+   "usage_count": 8,
+   "example_path": "library/media/reference/shotcraft/avatar-bracket-carousel/avatar-bracket-carousel/poster.webp"
+  },
+  {
+   "palette_id": "P08",
+   "name": "grey + near-black navy",
+   "hexes": [
+    "#847D6F",
+    "#4C3138",
+    "#223835",
+    "#1A1A1E",
+    "#0F0F10"
+   ],
+   "mean_luminance": 0.1194,
+   "usage_count": 4,
+   "example_path": "library/media/reference/shotcraft/dashboard-glow-highlight-pill/dashboard-glow-highlight-pill/poster.webp"
+  },
+  {
+   "palette_id": "P09",
+   "name": "paper white + near-black navy",
+   "hexes": [
+    "#FBF9F3",
+    "#F4F4F0",
+    "#53585D",
+    "#13171C",
+    "#0F1319"
+   ],
+   "mean_luminance": 0.5571,
+   "usage_count": 4,
+   "example_path": "library/media/reference/shotcraft/word-relay-filmstrip/word-relay-filmstrip/poster.webp"
+  },
+  {
+   "palette_id": "P10",
+   "name": "paper white + pale grey",
+   "hexes": [
+    "#F4F3F0",
+    "#E7E5E1",
+    "#CDCECF",
+    "#B6BDC1",
+    "#AAAFB5"
+   ],
+   "mean_luminance": 0.8867,
+   "usage_count": 3,
+   "example_path": "library/media/reference/shotcraft/quad-split-parallel-scenes/quad-split-parallel-scenes/poster.webp"
+  },
+  {
+   "palette_id": "P11",
+   "name": "paper white + near-black navy",
+   "hexes": [
+    "#F3F4F1",
+    "#ECECEA",
+    "#DADAD9",
+    "#ADADAE",
+    "#07060B"
+   ],
+   "mean_luminance": 0.7243,
+   "usage_count": 3,
+   "example_path": "library/media/reference/shotcraft/runway-ground-skim/runway-ground-skim/poster.webp"
+  },
+  {
+   "palette_id": "P12",
+   "name": "pale grey + deep navy",
+   "hexes": [
+    "#A9A9A9",
+    "#3A3A3A",
+    "#3A3A3A",
+    "#373737",
+    "#303030"
+   ],
+   "mean_luminance": 0.2095,
+   "usage_count": 3,
+   "example_path": "library/media/reference/shotcraft/tension-camera-moves/slow-push-in/poster.webp"
+  },
+  {
+   "palette_id": "P13",
+   "name": "paper white + deep navy",
+   "hexes": [
+    "#F2EEE8",
+    "#BAB8B2",
+    "#1F2839",
+    "#0F1F2D",
+    "#0D1C2C"
+   ],
+   "mean_luminance": 0.2236,
+   "usage_count": 2,
+   "example_path": "library/media/typography/filmstrip/poster.webp"
+  },
+  {
+   "palette_id": "P14",
+   "name": "deep blue + near-black navy",
+   "hexes": [
+    "#695AA1",
+    "#67238F",
+    "#662760",
+    "#23102A",
+    "#0A0B12"
+   ],
+   "mean_luminance": 0.1077,
+   "usage_count": 2,
+   "example_path": "library/media/reference/shotcraft/carousel-3d/carousel-3d/poster.webp"
+  },
+  {
+   "palette_id": "P15",
+   "name": "paper white + deep navy",
+   "hexes": [
+    "#E2DEE6",
+    "#9C9D9B",
+    "#6B6A6C",
+    "#585758",
+    "#1F1F23"
+   ],
+   "mean_luminance": 0.6029,
+   "usage_count": 2,
+   "example_path": "library/media/reference/shotcraft/spotlight-sweep-moves/slide-spotlight-pan/poster.webp"
+  },
+  {
+   "palette_id": "P16",
+   "name": "paper white + grey",
+   "hexes": [
+    "#F6F6F7",
+    "#F0F0F2",
+    "#DCDCDD",
+    "#AEAEAF",
+    "#7A7A7B"
+   ],
+   "mean_luminance": 0.9018,
+   "usage_count": 2,
+   "example_path": "library/media/reference/shotcraft/scan-bracket-sweep/scan-bracket-sweep/poster.webp"
+  },
+  {
+   "palette_id": "P17",
+   "name": "paper white + deep navy",
+   "hexes": [
+    "#FFFFFF",
+    "#5B5B5B",
+    "#2F2F2F",
+    "#2F2F2F",
+    "#2F2F2F"
+   ],
+   "mean_luminance": 0.2508,
+   "usage_count": 2,
+   "example_path": "library/media/reference/shotcraft/montage-rhythm-moves/drop-blackout-slam/poster.webp"
+  },
+  {
+   "palette_id": "P18",
+   "name": "paper white + near-black",
+   "hexes": [
+    "#F6F6F3",
+    "#F5F5F2",
+    "#F3F2F0",
+    "#D7CAC7",
+    "#170F17"
+   ],
+   "mean_luminance": 0.7131,
+   "usage_count": 2,
+   "example_path": "library/media/reference/shotcraft/neon-frame-orbit-drop/neon-frame-orbit-drop/poster.webp"
+  }
+ ],
+ "palette_families_n": 18,
+ "palette_families_cover": 234,
+ "shotcraft_categories": [
+  [
+   "shot-transitions",
+   5
+  ],
+  [
+   "tension-camera-moves",
+   4
+  ],
+  [
+   "type-assembly-moves",
+   4
+  ],
+  [
+   "chart-live-moves",
+   3
+  ],
+  [
+   "glow-flyline-moves",
+   3
+  ],
+  [
+   "light-play-moves",
+   3
+  ],
+  [
+   "montage-rhythm-moves",
+   3
+  ],
+  [
+   "panel-grid-moves",
+   3
+  ],
+  [
+   "slam-entrance-moves",
+   3
+  ],
+  [
+   "spotlight-sweep-moves",
+   3
+  ],
+  [
+   "trailer-grammar-moves",
+   3
+  ],
+  [
+   "transition-hidden-cut",
+   3
+  ],
+  [
+   "wall-reveal-moves",
+   3
+  ],
+  [
+   "beat-cut-moves",
+   2
+  ],
+  [
+   "canvas-materialize-moves",
+   2
+  ],
+  [
+   "collab-cursor-moves",
+   2
+  ],
+  [
+   "depth-layer-moves",
+   2
+  ],
+  [
+   "element-body-moves",
+   2
+  ],
+  [
+   "fui-hud-moves",
+   2
+  ],
+  [
+   "gauge-readout-moves",
+   2
+  ]
+ ],
+ "typography_archetypes": [
+  [
+   "",
+   39
+  ]
+ ],
+ "typography_titles": [
+  [
+   "assembly",
+   "",
+   ""
+  ],
+  [
+   "blurslide",
+   "",
+   ""
+  ],
+  [
+   "brace",
+   "",
+   ""
+  ],
+  [
+   "chipcycle",
+   "",
+   ""
+  ],
+  [
+   "codeblock",
+   "",
+   ""
+  ],
+  [
+   "converge",
+   "",
+   ""
+  ],
+  [
+   "countdown",
+   "",
+   ""
+  ],
+  [
+   "counter",
+   "",
+   ""
+  ],
+  [
+   "cutout",
+   "",
+   ""
+  ],
+  [
+   "demote",
+   "",
+   ""
+  ],
+  [
+   "docwrite",
+   "",
+   ""
+  ],
+  [
+   "dotsword",
+   "",
+   ""
+  ],
+  [
+   "filmstrip",
+   "",
+   ""
+  ],
+  [
+   "flyingwords",
+   "",
+   ""
+  ],
+  [
+   "fonthymp",
+   "",
+   ""
+  ],
+  [
+   "glitch",
+   "",
+   ""
+  ],
+  [
+   "highlight",
+   "",
+   ""
+  ],
+  [
+   "inktrace",
+   "",
+   ""
+  ],
+  [
+   "inktrace-penless",
+   "",
+   ""
+  ],
+  [
+   "karaoke",
+   "",
+   ""
+  ],
+  [
+   "kashida",
+   "",
+   ""
+  ],
+  [
+   "leadzoom",
+   "",
+   ""
+  ],
+  [
+   "letterdrop",
+   "",
+   ""
+  ],
+  [
+   "markerline",
+   "",
+   ""
+  ],
+  [
+   "mask",
+   "",
+   ""
+  ],
+  [
+   "nuqta",
+   "",
+   ""
+  ],
+  [
+   "outlinefill",
+   "",
+   ""
+  ],
+  [
+   "papercard",
+   "",
+   ""
+  ],
+  [
+   "pillslot",
+   "",
+   ""
+  ],
+  [
+   "reveal",
+   "",
+   ""
+  ],
+  [
+   "rollcycle",
+   "",
+   ""
+  ],
+  [
+   "scramble",
+   "",
+   ""
+  ],
+  [
+   "splitflap",
+   "",
+   ""
+  ],
+  [
+   "stomp",
+   "",
+   ""
+  ],
+  [
+   "sweep",
+   "",
+   ""
+  ],
+  [
+   "terminal",
+   "",
+   ""
+  ],
+  [
+   "typewriter",
+   "",
+   ""
+  ],
+  [
+   "wordfade",
+   "",
+   ""
+  ],
+  [
+   "wordpop",
+   "",
+   ""
+  ]
+ ],
+ "house_plate": {
+  "total_n": 44,
+  "total_pct": 17.5,
+  "typography_n": 35,
+  "typography_pct": 89.7,
+  "shotcraft_n": 9,
+  "shotcraft_pct": 4.2
+ },
+ "top_bg_typography": [
+  [
+   "#0D1D2C",
+   35,
+   "library/media/typography/assembly/poster.webp"
+  ],
+  [
+   "#F6F6F3",
+   4,
+   "library/media/typography/countdown/poster.webp"
+  ]
+ ],
+ "top_bg_shotcraft": [
+  [
+   "#F3F3F1",
+   139,
+   "library/media/reference/shotcraft/aurora-bloom-bg-flip/aurora-bloom-bg-flip/poster.webp"
+  ],
+  [
+   "#090A0E",
+   45,
+   "library/media/reference/shotcraft/ai-stream-response/ai-stream-response/poster.webp"
+  ],
+  [
+   "#242320",
+   8,
+   "library/media/reference/shotcraft/beat-step-list-theme-cycle/beat-step-list-theme-cycle/poster.webp"
+  ],
+  [
+   "#FFFFFE",
+   7,
+   "library/media/reference/shotcraft/beat-cut-moves/beat-cut-accelerando/poster.webp"
+  ],
+  [
+   "#2F2F2F",
+   4,
+   "library/media/reference/shotcraft/montage-rhythm-moves/drop-blackout-slam/poster.webp"
+  ]
+ ],
+ "type_px_typography": {
+  "n": 39,
+  "min": 6.0,
+  "p25": 71.0,
+  "median": 94.0,
+  "p75": 107.0,
+  "p90": 121.0,
+  "max": 787.0
+ },
+ "type_ladder": {
+  "ladder": [
+   20,
+   24,
+   40,
+   72,
+   120,
+   168,
+   260
+  ],
+  "on_ladder": 165,
+  "pct_on_ladder": 66.5,
+  "buckets": {
+   "off-ladder": 83,
+   "120": 45,
+   "40": 24,
+   "72": 39,
+   "168": 24,
+   "24": 11,
+   "20": 12,
+   "260": 10
+  }
+ },
+ "accent_area": {
+  "n": 44,
+  "median_pct": 1.216,
+  "p90_pct": 11.346,
+  "max_pct": 32.963,
+  "n_over_10pct": 6
+ },
+ "texture_pitch_px1920": {
+  "n": 251,
+  "median": 56,
+  "p25": 40,
+  "p75": 72,
+  "mode": [
+   [
+    40,
+    95
+   ],
+   [
+    64,
+    39
+   ],
+   [
+    48,
+    30
+   ],
+   [
+    56,
+    24
+   ],
+   [
+    96,
+    14
+   ]
+  ]
+ },
+ "border_inset": {
+  "n": 79,
+  "median": 0.477,
+  "p25": 0.411,
+  "p75": 0.499
+ },
+ "type_position": {
+  "median_y0_frac": 0.378,
+  "typography_y0_frac": 0.472,
+  "shotcraft_y0_frac": 0.331
+ },
+ "type_cov": {
+  "median": 0.1497
+ },
+ "lines": {
+  "counter": {
+   "1": 140,
+   "2": 36,
+   "3": 23,
+   "6": 8,
+   "5": 8,
+   "4": 6,
+   "7": 4,
+   "9": 4
+  },
+  "median": 1
+ },
+ "bg_frac_by_kind": {
+  "typography": 0.902,
+  "shotcraft": 0.702
+ },
+ "contrast_by_kind": {
+  "typography": 5.76,
+  "shotcraft": 3.77
+ }
+}

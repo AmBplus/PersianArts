@@ -57,11 +57,36 @@ async function encode(src, dst, crf, info) {
   args.push('-movflags', '+faststart', '-f', 'mp4', dst);
   await ex('ffmpeg', args, { maxBuffer: 1 << 26 });
 }
-function tvCheck(f) {
-  const code = `import sys,json;sys.path.insert(0,r'${path.join(ROOT, 'work/persian/tools/assets').replace(/\\/g, '/')}');import optimize_assets as o,pathlib;r=o.tv_check(pathlib.Path(sys.argv[1]));print(json.dumps(r['checks']))`;
-  const c = JSON.parse(execFileSync('python', ['-c', code, f], { encoding: 'utf8' }));
-  const bad = Object.entries(c).filter(([, v]) => v === 'fail').map(([k]) => k);
-  return bad.length ? 'FAIL:' + bad.join(',') : 'pass';
+// TV check of one mp4. optimize_assets.tv_check emits "pass" / "FAIL" per key (assets/optimize_assets.py:270),
+// so the comparison is case-insensitive and any token that is not "pass" counts as a failure.
+// A python that exits non-zero or throws is caught here and reported as a failure-shaped value
+// (checker-error(...)) instead of propagating: a checker that cannot run must never look like a pass.
+const ASSETS = path.join(ROOT, 'work/persian/tools/assets');
+export function tvCheckResult(f) {
+  const code = `import sys,json;sys.path.insert(0,r'${ASSETS.replace(/\\/g, '/')}');import optimize_assets as o,pathlib;r=o.tv_check(pathlib.Path(sys.argv[1]));print(json.dumps({"checks":r["checks"],"pass":bool(r["pass"])}))`;
+  let out;
+  try { out = execFileSync('python', ['-c', code, f], { encoding: 'utf8', maxBuffer: 1 << 24 }); }
+  catch (e) { const why = String((e.stderr || e.message || e)).trim().split('\n').filter(Boolean).pop() || 'unknown error'; return { ok: false, checked: false, detail: 'checker-error(' + why.slice(0, 160) + ')' }; }
+  let r; try { r = JSON.parse(out); } catch { return { ok: false, checked: false, detail: 'checker-error(output is not JSON)' }; }
+  const bad = Object.entries(r.checks || {}).filter(([, v]) => String(v).trim().toLowerCase() !== 'pass').map(([k]) => k);
+  if (bad.length || r.pass === false) return { ok: false, checked: true, detail: 'FAIL:' + (bad.join(',') || 'checker reported pass=false') };
+  return { ok: true, checked: true, detail: 'pass' };
+}
+const tvCheck = (f) => tvCheckResult(f).detail; // report token: "pass", "FAIL:<keys>" or "checker-error(...)"
+
+// One OUTPUT.md line for the TV-safe claim. A string recorded in VERSION.json is a CLAIM: it is only ever
+// printed next to what was actually re-checked, and if the checker cannot run the line says so.
+export function tvSafeVerdict(claimed, files) {
+  const claim = String(claimed || '').trim();
+  const rs = files.map((f) => ({ file: path.basename(f), ...tvCheckResult(f) }));
+  if (!rs.length || rs.some((r) => !r.checked)) {
+    const why = (rs.find((r) => !r.checked) || {}).detail || 'no final file to check';
+    return `تأیید نشده - claimed, not verified (ادعا: ${claim || 'ثبت نشده'}؛ بازبینی مجدد اجرا نشد: ${why})`;
+  }
+  const bad = rs.filter((r) => !r.ok);
+  return bad.length
+    ? `خیر (بازبینی شد در زمان تحویل: ${bad.map((r) => r.file + ' ' + r.detail).join(' | ')})`
+    : `بله (بازبینی شد در زمان تحویل: tv_check PASS${claim && claim.toLowerCase() !== 'pass' ? '؛ ادعای VERSION.json: ' + claim : ''})`;
 }
 
 async function one(f) {
@@ -82,7 +107,9 @@ async function one(f) {
   const L1 = await lufs(tmp);
   const dI = L0.I != null && L1.I != null ? +(L1.I - L0.I).toFixed(2) : 0;
   if (Math.abs(dI) > 0.2 || (L1.TP != null && L1.TP > -1.0 && !(L0.TP > -1.0))) { fs.rmSync(tmp, { force: true }); return { ...rec, status: `keep (audio drift ${dI} LU, TP ${L1.TP})`, after_mb: rec.before_mb, saved_pct: 0 }; }
-  const tv = tvCheck(tmp);
+  const tvr = tvCheckResult(tmp);
+  if (!tvr.checked) { fs.rmSync(tmp, { force: true }); return { ...rec, status: `keep (tv check could not run: ${tvr.detail})`, after_mb: rec.before_mb, saved_pct: 0 }; }
+  const tv = tvr.detail;
   if (!DRY) fs.renameSync(tmp, f); else fs.rmSync(tmp, { force: true }); // rename replaces the directory entry only: shared inode untouched
   return { ...rec, status: DRY ? 'dry-run' : 'compressed', crf: best.crf, ssim_mean: +best.s.mean.toFixed(4), ssim_worst: +best.s.worst.toFixed(4),
     after_mb: mbs(best.size), saved_pct: +(100 * (1 - best.size / before)).toFixed(1), lufs_before: L0.I, lufs_after: L1.I, tp_before: L0.TP, tp_after: L1.TP, tv_check: tv };

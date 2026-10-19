@@ -1,0 +1,5582 @@
+{
+  "library/media/entries/mg/05-cel-boil/poster.webp": {
+    "style": "light",
+    "meanLum": 0.912,
+    "cornerLum": [
+      0.9365,
+      0.9366,
+      0.9283,
+      0.9366
+    ],
+    "file": "library/media/entries/mg/05-cel-boil/poster.webp",
+    "posterSlug": "05-cel-boil"
+  },
+  "library/media/entries/shotcraft/ai-stream-response/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1438,
+    "cornerLum": [
+      0.1342,
+      0.155,
+      0.1289,
+      0.1273
+    ],
+    "file": "library/media/entries/shotcraft/ai-stream-response/poster.webp",
+    "posterSlug": "ai-stream-response"
+  },
+  "library/media/entries/shotcraft/assemble-then-type-flyin/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1372,
+    "cornerLum": [
+      0.1269,
+      0.1441,
+      0.1208,
+      0.1185
+    ],
+    "file": "library/media/entries/shotcraft/assemble-then-type-flyin/poster.webp",
+    "posterSlug": "assemble-then-type-flyin",
+    "cardIds": [
+      "demo-AssembleThenTypeFlyin"
+    ]
+  },
+  "library/media/entries/shotcraft/aurora-bloom-bg-flip/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1318,
+    "cornerLum": [
+      0.1253,
+      0.1222,
+      0.1344,
+      0.1168
+    ],
+    "file": "library/media/entries/shotcraft/aurora-bloom-bg-flip/poster.webp",
+    "posterSlug": "aurora-bloom-bg-flip",
+    "cardIds": [
+      "demo-AuroraBloomBgFlip"
+    ]
+  },
+  "library/media/entries/shotcraft/autolayout-gap-dial/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1439,
+    "cornerLum": [
+      0.1354,
+      0.1581,
+      0.129,
+      0.1273
+    ],
+    "file": "library/media/entries/shotcraft/autolayout-gap-dial/poster.webp",
+    "posterSlug": "autolayout-gap-dial",
+    "cardIds": [
+      "demo-AutolayoutGapDial"
+    ]
+  },
+  "library/media/entries/shotcraft/avatar-bracket-carousel/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1325,
+    "cornerLum": [
+      0.1283,
+      0.1459,
+      0.1224,
+      0.1204
+    ],
+    "file": "library/media/entries/shotcraft/avatar-bracket-carousel/poster.webp",
+    "posterSlug": "avatar-bracket-carousel",
+    "cardIds": [
+      "demo-AvatarBracketCarousel"
+    ]
+  },
+  "library/media/entries/shotcraft/avatar-grid-radial-build-colorize/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.161,
+    "cornerLum": [
+      0.1326,
+      0.1588,
+      0.1269,
+      0.1248
+    ],
+    "file": "library/media/entries/shotcraft/avatar-grid-radial-build-colorize/poster.webp",
+    "posterSlug": "avatar-grid-radial-build-colorize",
+    "cardIds": [
+      "demo-AvatarGridRadialBuildColorize"
+    ]
+  },
+  "library/media/entries/shotcraft/basic-3d-scene/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1299,
+    "cornerLum": [
+      0.1234,
+      0.1234,
+      0.1319,
+      0.1319
+    ],
+    "file": "library/media/entries/shotcraft/basic-3d-scene/poster.webp",
+    "posterSlug": "basic-3d-scene",
+    "cardIds": [
+      "demo-Basic3DScene"
+    ]
+  },
+  "library/media/entries/shotcraft/beat-cut-moves/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1311,
+    "cornerLum": [
+      0.1168,
+      0.1171,
+      0.1192,
+      0.1169
+    ],
+    "file": "library/media/entries/shotcraft/beat-cut-moves/poster.webp",
+    "posterSlug": "beat-cut-moves"
+  },
+  "library/media/entries/shotcraft/beat-step-list-theme-cycle/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.143,
+    "cornerLum": [
+      0.1248,
+      0.1245,
+      0.1267,
+      0.125
+    ],
+    "file": "library/media/entries/shotcraft/beat-step-list-theme-cycle/poster.webp",
+    "posterSlug": "beat-step-list-theme-cycle",
+    "cardIds": [
+      "demo-BeatStepListThemeCycle"
+    ]
+  },
+  "library/media/entries/shotcraft/before-after-slider-scrub/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1293,
+    "cornerLum": [
+      0.1256,
+      0.1459,
+      0.1198,
+      0.1176
+    ],
+    "file": "library/media/entries/shotcraft/before-after-slider-scrub/poster.webp",
+    "posterSlug": "before-after-slider-scrub",
+    "cardIds": [
+      "demo-BeforeAfterSliderScrub"
+    ]
+  },
+  "library/media/entries/shotcraft/bezier-source-converge-merge/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1371,
+    "cornerLum": [
+      0.1269,
+      0.1489,
+      0.1208,
+      0.1184
+    ],
+    "file": "library/media/entries/shotcraft/bezier-source-converge-merge/poster.webp",
+    "posterSlug": "bezier-source-converge-merge",
+    "cardIds": [
+      "demo-BezierSourceConvergeMerge"
+    ]
+  },
+  "library/media/entries/shotcraft/blur-slide/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1692,
+    "cornerLum": [
+      0.1278,
+      0.1456,
+      0.1224,
+      0.1202
+    ],
+    "file": "library/media/entries/shotcraft/blur-slide/poster.webp",
+    "posterSlug": "blur-slide",
+    "cardIds": [
+      "demo-BlurSlide"
+    ]
+  },
+  "library/media/entries/shotcraft/bottom-push-stack-wipe/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.108,
+    "cornerLum": [
+      0.148,
+      0.1147,
+      0.149,
+      0.1144
+    ],
+    "file": "library/media/entries/shotcraft/bottom-push-stack-wipe/poster.webp",
+    "posterSlug": "bottom-push-stack-wipe",
+    "cardIds": [
+      "demo-BottomPushStackWipe"
+    ]
+  },
+  "library/media/entries/shotcraft/brace-expand/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.163,
+    "cornerLum": [
+      0.1246,
+      0.1447,
+      0.1192,
+      0.1172
+    ],
+    "file": "library/media/entries/shotcraft/brace-expand/poster.webp",
+    "posterSlug": "brace-expand",
+    "cardIds": [
+      "demo-BraceExpand"
+    ]
+  },
+  "library/media/entries/shotcraft/brand-frame-snap/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1309,
+    "cornerLum": [
+      0.1177,
+      0.1178,
+      0.1199,
+      0.1178
+    ],
+    "file": "library/media/entries/shotcraft/brand-frame-snap/poster.webp",
+    "posterSlug": "brand-frame-snap",
+    "cardIds": [
+      "demo-BrandFrameSnap"
+    ]
+  },
+  "library/media/entries/shotcraft/brand-ink-open/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1393,
+    "cornerLum": [
+      0.1248,
+      0.1243,
+      0.1268,
+      0.1244
+    ],
+    "file": "library/media/entries/shotcraft/brand-ink-open/poster.webp",
+    "posterSlug": "brand-ink-open",
+    "cardIds": [
+      "demo-BrandInkOpen"
+    ]
+  },
+  "library/media/entries/shotcraft/bubble-swarm-takeover/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1057,
+    "cornerLum": [
+      0.151,
+      0.1117,
+      0.1521,
+      0.1118
+    ],
+    "file": "library/media/entries/shotcraft/bubble-swarm-takeover/poster.webp",
+    "posterSlug": "bubble-swarm-takeover",
+    "cardIds": [
+      "demo-BubbleSwarmTakeover"
+    ]
+  },
+  "library/media/entries/shotcraft/canvas-materialize-moves/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1268,
+    "cornerLum": [
+      0.1197,
+      0.1355,
+      0.1147,
+      0.1123
+    ],
+    "file": "library/media/entries/shotcraft/canvas-materialize-moves/poster.webp",
+    "posterSlug": "canvas-materialize-moves"
+  },
+  "library/media/entries/shotcraft/card-flip-reveal/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.0982,
+    "cornerLum": [
+      0.137,
+      0.1035,
+      0.1384,
+      0.1036
+    ],
+    "file": "library/media/entries/shotcraft/card-flip-reveal/poster.webp",
+    "posterSlug": "card-flip-reveal",
+    "cardIds": [
+      "demo-CardFlipReveal"
+    ]
+  },
+  "library/media/entries/shotcraft/card-flock-tumble/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.0983,
+    "cornerLum": [
+      0.1384,
+      0.104,
+      0.1396,
+      0.1039
+    ],
+    "file": "library/media/entries/shotcraft/card-flock-tumble/poster.webp",
+    "posterSlug": "card-flock-tumble",
+    "cardIds": [
+      "demo-CardFlockTumble"
+    ]
+  },
+  "library/media/entries/shotcraft/card-stack/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1433,
+    "cornerLum": [
+      0.1309,
+      0.1482,
+      0.1248,
+      0.1231
+    ],
+    "file": "library/media/entries/shotcraft/card-stack/poster.webp",
+    "posterSlug": "card-stack",
+    "cardIds": [
+      "demo-CardStack"
+    ]
+  },
+  "library/media/entries/shotcraft/carousel-3d/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1285,
+    "cornerLum": [
+      0.1243,
+      0.1442,
+      0.1191,
+      0.1169
+    ],
+    "file": "library/media/entries/shotcraft/carousel-3d/poster.webp",
+    "posterSlug": "carousel-3d",
+    "cardIds": [
+      "demo-Carousel3D"
+    ]
+  },
+  "library/media/entries/shotcraft/cel-flash-stomp/poster.webp": {
+    "style": "gradient",
+    "meanLum": 0.2379,
+    "cornerLum": [
+      0.1305,
+      0.1537,
+      0.5816,
+      0.5481
+    ],
+    "file": "library/media/entries/shotcraft/cel-flash-stomp/poster.webp",
+    "posterSlug": "cel-flash-stomp",
+    "cardIds": [
+      "demo-CelFlashStomp"
+    ]
+  },
+  "library/media/entries/shotcraft/chart-live-moves/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1614,
+    "cornerLum": [
+      0.1324,
+      0.1522,
+      0.128,
+      0.1256
+    ],
+    "file": "library/media/entries/shotcraft/chart-live-moves/poster.webp",
+    "posterSlug": "chart-live-moves"
+  },
+  "library/media/entries/shotcraft/chip-grid-single-select-blackout/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1378,
+    "cornerLum": [
+      0.1328,
+      0.1552,
+      0.1266,
+      0.1248
+    ],
+    "file": "library/media/entries/shotcraft/chip-grid-single-select-blackout/poster.webp",
+    "posterSlug": "chip-grid-single-select-blackout",
+    "cardIds": [
+      "demo-ChipGridSingleSelectBlackout"
+    ]
+  },
+  "library/media/entries/shotcraft/chip-lift-to-user-pill/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1261,
+    "cornerLum": [
+      0.1249,
+      0.1439,
+      0.1197,
+      0.1176
+    ],
+    "file": "library/media/entries/shotcraft/chip-lift-to-user-pill/poster.webp",
+    "posterSlug": "chip-lift-to-user-pill",
+    "cardIds": [
+      "demo-ChipLiftToUserPill"
+    ]
+  },
+  "library/media/entries/shotcraft/circle-match-iris/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.0957,
+    "cornerLum": [
+      0.1384,
+      0.104,
+      0.1395,
+      0.1041
+    ],
+    "file": "library/media/entries/shotcraft/circle-match-iris/poster.webp",
+    "posterSlug": "circle-match-iris",
+    "cardIds": [
+      "demo-CircleMatchIris"
+    ]
+  },
+  "library/media/entries/shotcraft/cloner-depth-echo/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1473,
+    "cornerLum": [
+      0.1327,
+      0.1783,
+      0.1449,
+      0.1648
+    ],
+    "file": "library/media/entries/shotcraft/cloner-depth-echo/poster.webp",
+    "posterSlug": "cloner-depth-echo",
+    "cardIds": [
+      "demo-ClonerDepthEcho"
+    ]
+  },
+  "library/media/entries/shotcraft/collab-cursor-moves/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.127,
+    "cornerLum": [
+      0.12,
+      0.1392,
+      0.1147,
+      0.1122
+    ],
+    "file": "library/media/entries/shotcraft/collab-cursor-moves/poster.webp",
+    "posterSlug": "collab-cursor-moves"
+  },
+  "library/media/entries/shotcraft/color-block-step-wipe/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.0969,
+    "cornerLum": [
+      0.137,
+      0.1035,
+      0.1383,
+      0.1039
+    ],
+    "file": "library/media/entries/shotcraft/color-block-step-wipe/poster.webp",
+    "posterSlug": "color-block-step-wipe",
+    "cardIds": [
+      "demo-ColorBlockStepWipe"
+    ]
+  },
+  "library/media/entries/shotcraft/command-palette-summon/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1384,
+    "cornerLum": [
+      0.1307,
+      0.154,
+      0.1248,
+      0.123
+    ],
+    "file": "library/media/entries/shotcraft/command-palette-summon/poster.webp",
+    "posterSlug": "command-palette-summon",
+    "cardIds": [
+      "demo-CommandPaletteSummon"
+    ]
+  },
+  "library/media/entries/shotcraft/countdown-arc-scatter/poster.webp": {
+    "style": "light",
+    "meanLum": 0.926,
+    "cornerLum": [
+      0.9677,
+      0.9677,
+      0.9677,
+      0.9677
+    ],
+    "file": "library/media/entries/shotcraft/countdown-arc-scatter/poster.webp",
+    "posterSlug": "countdown-arc-scatter",
+    "cardIds": [
+      "demo-CountdownArcScatter"
+    ]
+  },
+  "library/media/entries/shotcraft/split-flap-title/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.136,
+    "cornerLum": [
+      0.1281,
+      0.1476,
+      0.1223,
+      0.1205
+    ],
+    "file": "library/media/entries/shotcraft/split-flap-title/poster.webp",
+    "posterSlug": "split-flap-title"
+  },
+  "library/media/entries/talkcraft/behind-text-title/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1357,
+    "cornerLum": [
+      0.1275,
+      0.1278,
+      0.129,
+      0.1275
+    ],
+    "file": "library/media/entries/talkcraft/behind-text-title/poster.webp",
+    "posterSlug": "behind-text-title"
+  },
+  "library/media/reference/shotcraft/ai-stream-response/ai-stream-response/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.0663,
+    "cornerLum": [
+      0.0221,
+      0.016,
+      0.0205,
+      0.0196
+    ],
+    "file": "library/media/reference/shotcraft/ai-stream-response/ai-stream-response/poster.webp",
+    "posterSlug": "ai-stream-response"
+  },
+  "library/media/reference/shotcraft/assemble-then-type-flyin/assemble-then-type-flyin/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.08,
+    "cornerLum": [
+      0.0927,
+      0.0695,
+      0.0508,
+      0.0513
+    ],
+    "file": "library/media/reference/shotcraft/assemble-then-type-flyin/assemble-then-type-flyin/poster.webp",
+    "posterSlug": "assemble-then-type-flyin",
+    "cardIds": [
+      "demo-AssembleThenTypeFlyin"
+    ]
+  },
+  "library/media/reference/shotcraft/aurora-bloom-bg-flip/aurora-bloom-bg-flip/poster.webp": {
+    "style": "light",
+    "meanLum": 0.861,
+    "cornerLum": [
+      0.9248,
+      0.9234,
+      0.9025,
+      0.8489
+    ],
+    "file": "library/media/reference/shotcraft/aurora-bloom-bg-flip/aurora-bloom-bg-flip/poster.webp",
+    "posterSlug": "aurora-bloom-bg-flip",
+    "cardIds": [
+      "demo-AuroraBloomBgFlip"
+    ]
+  },
+  "library/media/reference/shotcraft/autolayout-gap-dial/autolayout-gap-dial/poster.webp": {
+    "style": "light",
+    "meanLum": 0.917,
+    "cornerLum": [
+      0.9269,
+      0.9269,
+      0.9269,
+      0.9267
+    ],
+    "file": "library/media/reference/shotcraft/autolayout-gap-dial/autolayout-gap-dial/poster.webp",
+    "posterSlug": "autolayout-gap-dial",
+    "cardIds": [
+      "demo-AutolayoutGapDial"
+    ]
+  },
+  "library/media/reference/shotcraft/avatar-bracket-carousel/avatar-bracket-carousel/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.0826,
+    "cornerLum": [
+      0.0451,
+      0.0451,
+      0.0451,
+      0.0451
+    ],
+    "file": "library/media/reference/shotcraft/avatar-bracket-carousel/avatar-bracket-carousel/poster.webp",
+    "posterSlug": "avatar-bracket-carousel",
+    "cardIds": [
+      "demo-AvatarBracketCarousel"
+    ]
+  },
+  "library/media/reference/shotcraft/avatar-grid-radial-build-colorize/avatar-grid-radial-build-colorize/poster.webp": {
+    "style": "light",
+    "meanLum": 0.8971,
+    "cornerLum": [
+      0.8716,
+      0.9235,
+      0.939,
+      0.941
+    ],
+    "file": "library/media/reference/shotcraft/avatar-grid-radial-build-colorize/avatar-grid-radial-build-colorize/poster.webp",
+    "posterSlug": "avatar-grid-radial-build-colorize",
+    "cardIds": [
+      "demo-AvatarGridRadialBuildColorize"
+    ]
+  },
+  "library/media/reference/shotcraft/basic-3d-scene/basic-3d-scene/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.0761,
+    "cornerLum": [
+      0.0417,
+      0.0416,
+      0.0959,
+      0.0412
+    ],
+    "file": "library/media/reference/shotcraft/basic-3d-scene/basic-3d-scene/poster.webp",
+    "posterSlug": "basic-3d-scene",
+    "cardIds": [
+      "demo-Basic3DScene"
+    ]
+  },
+  "library/media/reference/shotcraft/beat-cut-moves/beat-cut-accelerando/poster.webp": {
+    "style": "gradient",
+    "meanLum": 0.8881,
+    "cornerLum": [
+      0.2594,
+      0.949,
+      0.2268,
+      0.9691
+    ],
+    "file": "library/media/reference/shotcraft/beat-cut-moves/beat-cut-accelerando/poster.webp",
+    "posterSlug": "beat-cut-accelerando",
+    "cardIds": [
+      "demo-BeatCutAccelerando"
+    ]
+  },
+  "library/media/reference/shotcraft/beat-cut-moves/paparazzi-flash/poster.webp": {
+    "style": "gradient",
+    "meanLum": 0.9347,
+    "cornerLum": [
+      0.6097,
+      0.943,
+      0.6171,
+      1.0
+    ],
+    "file": "library/media/reference/shotcraft/beat-cut-moves/paparazzi-flash/poster.webp",
+    "posterSlug": "paparazzi-flash",
+    "cardIds": [
+      "demo-PaparazziFlash"
+    ]
+  },
+  "library/media/reference/shotcraft/beat-step-list-theme-cycle/beat-step-list-theme-cycle/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1501,
+    "cornerLum": [
+      0.1101,
+      0.1101,
+      0.1101,
+      0.1101
+    ],
+    "file": "library/media/reference/shotcraft/beat-step-list-theme-cycle/beat-step-list-theme-cycle/poster.webp",
+    "posterSlug": "beat-step-list-theme-cycle",
+    "cardIds": [
+      "demo-BeatStepListThemeCycle"
+    ]
+  },
+  "library/media/reference/shotcraft/before-after-slider-scrub/before-after-slider-scrub/poster.webp": {
+    "style": "gradient",
+    "meanLum": 0.7724,
+    "cornerLum": [
+      0.26,
+      0.7318,
+      0.2268,
+      0.7428
+    ],
+    "file": "library/media/reference/shotcraft/before-after-slider-scrub/before-after-slider-scrub/poster.webp",
+    "posterSlug": "before-after-slider-scrub",
+    "cardIds": [
+      "demo-BeforeAfterSliderScrub"
+    ]
+  },
+  "library/media/reference/shotcraft/bezier-source-converge-merge/bezier-source-converge-merge/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9348,
+    "cornerLum": [
+      0.948,
+      0.946,
+      0.948,
+      0.946
+    ],
+    "file": "library/media/reference/shotcraft/bezier-source-converge-merge/bezier-source-converge-merge/poster.webp",
+    "posterSlug": "bezier-source-converge-merge",
+    "cardIds": [
+      "demo-BezierSourceConvergeMerge"
+    ]
+  },
+  "library/media/reference/shotcraft/blur-slide/blur-slide/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.0801,
+    "cornerLum": [
+      0.0412,
+      0.0412,
+      0.0412,
+      0.0412
+    ],
+    "file": "library/media/reference/shotcraft/blur-slide/blur-slide/poster.webp",
+    "posterSlug": "blur-slide",
+    "cardIds": [
+      "demo-BlurSlide"
+    ]
+  },
+  "library/media/reference/shotcraft/bottom-push-stack-wipe/bottom-push-stack-wipe/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9306,
+    "cornerLum": [
+      0.9269,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/reference/shotcraft/bottom-push-stack-wipe/bottom-push-stack-wipe/poster.webp",
+    "posterSlug": "bottom-push-stack-wipe",
+    "cardIds": [
+      "demo-BottomPushStackWipe"
+    ]
+  },
+  "library/media/reference/shotcraft/brace-expand/brace-expand/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.0629,
+    "cornerLum": [
+      0.0412,
+      0.0412,
+      0.0412,
+      0.0412
+    ],
+    "file": "library/media/reference/shotcraft/brace-expand/brace-expand/poster.webp",
+    "posterSlug": "brace-expand",
+    "cardIds": [
+      "demo-BraceExpand"
+    ]
+  },
+  "library/media/reference/shotcraft/brand-frame-snap/brand-frame-snap/poster.webp": {
+    "style": "light",
+    "meanLum": 0.8371,
+    "cornerLum": [
+      0.7413,
+      0.7256,
+      0.7193,
+      0.7209
+    ],
+    "file": "library/media/reference/shotcraft/brand-frame-snap/brand-frame-snap/poster.webp",
+    "posterSlug": "brand-frame-snap",
+    "cardIds": [
+      "demo-BrandFrameSnap"
+    ]
+  },
+  "library/media/reference/shotcraft/brand-ink-open/brand-ink-open/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9482,
+    "cornerLum": [
+      0.9672,
+      0.9672,
+      0.9672,
+      0.9672
+    ],
+    "file": "library/media/reference/shotcraft/brand-ink-open/brand-ink-open/poster.webp",
+    "posterSlug": "brand-ink-open",
+    "cardIds": [
+      "demo-BrandInkOpen"
+    ]
+  },
+  "library/media/reference/shotcraft/bubble-swarm-takeover/bubble-swarm-takeover/poster.webp": {
+    "style": "light",
+    "meanLum": 0.946,
+    "cornerLum": [
+      0.9868,
+      0.9583,
+      0.9374,
+      0.9178
+    ],
+    "file": "library/media/reference/shotcraft/bubble-swarm-takeover/bubble-swarm-takeover/poster.webp",
+    "posterSlug": "bubble-swarm-takeover",
+    "cardIds": [
+      "demo-BubbleSwarmTakeover"
+    ]
+  },
+  "library/media/reference/shotcraft/canvas-materialize-moves/diagram-cascade/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9132,
+    "cornerLum": [
+      0.9268,
+      0.9269,
+      0.9269,
+      0.9267
+    ],
+    "file": "library/media/reference/shotcraft/canvas-materialize-moves/diagram-cascade/poster.webp",
+    "posterSlug": "diagram-cascade"
+  },
+  "library/media/reference/shotcraft/canvas-materialize-moves/panel-to-canvas/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9259,
+    "cornerLum": [
+      0.9269,
+      0.9328,
+      0.9269,
+      0.8497
+    ],
+    "file": "library/media/reference/shotcraft/canvas-materialize-moves/panel-to-canvas/poster.webp",
+    "posterSlug": "panel-to-canvas"
+  },
+  "library/media/reference/shotcraft/card-flip-reveal/card-flip-reveal/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9316,
+    "cornerLum": [
+      0.8974,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/reference/shotcraft/card-flip-reveal/card-flip-reveal/poster.webp",
+    "posterSlug": "card-flip-reveal",
+    "cardIds": [
+      "demo-CardFlipReveal"
+    ]
+  },
+  "library/media/reference/shotcraft/card-flock-tumble/card-flock-tumble/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.0629,
+    "cornerLum": [
+      0.023,
+      0.023,
+      0.023,
+      0.023
+    ],
+    "file": "library/media/reference/shotcraft/card-flock-tumble/card-flock-tumble/poster.webp",
+    "posterSlug": "card-flock-tumble",
+    "cardIds": [
+      "demo-CardFlockTumble"
+    ]
+  },
+  "library/media/reference/shotcraft/card-stack/card-stack/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.0585,
+    "cornerLum": [
+      0.0412,
+      0.0412,
+      0.0412,
+      0.0412
+    ],
+    "file": "library/media/reference/shotcraft/card-stack/card-stack/poster.webp",
+    "posterSlug": "card-stack",
+    "cardIds": [
+      "demo-CardStack"
+    ]
+  },
+  "library/media/reference/shotcraft/carousel-3d/carousel-3d/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1192,
+    "cornerLum": [
+      0.0412,
+      0.0412,
+      0.0414,
+      0.0415
+    ],
+    "file": "library/media/reference/shotcraft/carousel-3d/carousel-3d/poster.webp",
+    "posterSlug": "carousel-3d",
+    "cardIds": [
+      "demo-Carousel3D"
+    ]
+  },
+  "library/media/reference/shotcraft/cel-flash-stomp/cel-flash-stomp/poster.webp": {
+    "style": "light",
+    "meanLum": 0.905,
+    "cornerLum": [
+      0.8949,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/reference/shotcraft/cel-flash-stomp/cel-flash-stomp/poster.webp",
+    "posterSlug": "cel-flash-stomp",
+    "cardIds": [
+      "demo-CelFlashStomp"
+    ]
+  },
+  "library/media/reference/shotcraft/chart-live-moves/axis-rescale-shock/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9322,
+    "cornerLum": [
+      0.9269,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/reference/shotcraft/chart-live-moves/axis-rescale-shock/poster.webp",
+    "posterSlug": "axis-rescale-shock"
+  },
+  "library/media/reference/shotcraft/chart-live-moves/oscilloscope-stream/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9284,
+    "cornerLum": [
+      0.9269,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/reference/shotcraft/chart-live-moves/oscilloscope-stream/poster.webp",
+    "posterSlug": "oscilloscope-stream"
+  },
+  "library/media/reference/shotcraft/chart-live-moves/unit-dot-swarm-regroup/poster.webp": {
+    "style": "light",
+    "meanLum": 0.8947,
+    "cornerLum": [
+      0.9269,
+      0.9269,
+      0.919,
+      0.9269
+    ],
+    "file": "library/media/reference/shotcraft/chart-live-moves/unit-dot-swarm-regroup/poster.webp",
+    "posterSlug": "unit-dot-swarm-regroup"
+  },
+  "library/media/reference/shotcraft/chip-grid-single-select-blackout/chip-grid-single-select-blackout/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9232,
+    "cornerLum": [
+      0.946,
+      0.946,
+      0.946,
+      0.946
+    ],
+    "file": "library/media/reference/shotcraft/chip-grid-single-select-blackout/chip-grid-single-select-blackout/poster.webp",
+    "posterSlug": "chip-grid-single-select-blackout",
+    "cardIds": [
+      "demo-ChipGridSingleSelectBlackout"
+    ]
+  },
+  "library/media/reference/shotcraft/chip-lift-to-user-pill/chip-lift-to-user-pill/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9156,
+    "cornerLum": [
+      0.946,
+      0.946,
+      0.946,
+      0.946
+    ],
+    "file": "library/media/reference/shotcraft/chip-lift-to-user-pill/chip-lift-to-user-pill/poster.webp",
+    "posterSlug": "chip-lift-to-user-pill",
+    "cardIds": [
+      "demo-ChipLiftToUserPill"
+    ]
+  },
+  "library/media/reference/shotcraft/circle-match-iris/circle-match-iris/poster.webp": {
+    "style": "gradient",
+    "meanLum": 0.8859,
+    "cornerLum": [
+      0.2589,
+      0.9507,
+      0.2268,
+      0.9641
+    ],
+    "file": "library/media/reference/shotcraft/circle-match-iris/circle-match-iris/poster.webp",
+    "posterSlug": "circle-match-iris",
+    "cardIds": [
+      "demo-CircleMatchIris"
+    ]
+  },
+  "library/media/reference/shotcraft/cloner-depth-echo/cloner-depth-echo/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9207,
+    "cornerLum": [
+      0.9269,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/reference/shotcraft/cloner-depth-echo/cloner-depth-echo/poster.webp",
+    "posterSlug": "cloner-depth-echo",
+    "cardIds": [
+      "demo-ClonerDepthEcho"
+    ]
+  },
+  "library/media/reference/shotcraft/collab-cursor-moves/cast-ensemble/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9208,
+    "cornerLum": [
+      0.9269,
+      0.9271,
+      0.9269,
+      0.9266
+    ],
+    "file": "library/media/reference/shotcraft/collab-cursor-moves/cast-ensemble/poster.webp",
+    "posterSlug": "cast-ensemble"
+  },
+  "library/media/reference/shotcraft/collab-cursor-moves/dialogue-duet/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.0847,
+    "cornerLum": [
+      0.0637,
+      0.0636,
+      0.0636,
+      0.0636
+    ],
+    "file": "library/media/reference/shotcraft/collab-cursor-moves/dialogue-duet/poster.webp",
+    "posterSlug": "dialogue-duet"
+  },
+  "library/media/reference/shotcraft/color-block-step-wipe/color-block-step-wipe/poster.webp": {
+    "style": "light",
+    "meanLum": 0.827,
+    "cornerLum": [
+      0.9269,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/reference/shotcraft/color-block-step-wipe/color-block-step-wipe/poster.webp",
+    "posterSlug": "color-block-step-wipe",
+    "cardIds": [
+      "demo-ColorBlockStepWipe"
+    ]
+  },
+  "library/media/reference/shotcraft/command-palette-summon/command-palette-summon/poster.webp": {
+    "style": "gradient",
+    "meanLum": 0.5981,
+    "cornerLum": [
+      0.1912,
+      0.5558,
+      0.1767,
+      0.5678
+    ],
+    "file": "library/media/reference/shotcraft/command-palette-summon/command-palette-summon/poster.webp",
+    "posterSlug": "command-palette-summon",
+    "cardIds": [
+      "demo-CommandPaletteSummon"
+    ]
+  },
+  "library/media/reference/shotcraft/countdown-arc-scatter/countdown-arc-scatter/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9874,
+    "cornerLum": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "file": "library/media/reference/shotcraft/countdown-arc-scatter/countdown-arc-scatter/poster.webp",
+    "posterSlug": "countdown-arc-scatter",
+    "cardIds": [
+      "demo-CountdownArcScatter"
+    ]
+  },
+  "library/media/reference/shotcraft/counter-confetti/counter-confetti/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1506,
+    "cornerLum": [
+      0.0353,
+      0.0354,
+      0.033,
+      0.0331
+    ],
+    "file": "library/media/reference/shotcraft/counter-confetti/counter-confetti/poster.webp",
+    "posterSlug": "counter-confetti",
+    "cardIds": [
+      "demo-CounterConfetti"
+    ]
+  },
+  "library/media/reference/shotcraft/crane-rise-reveal/crane-rise-reveal/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9591,
+    "cornerLum": [
+      0.9467,
+      1.0,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/reference/shotcraft/crane-rise-reveal/crane-rise-reveal/poster.webp",
+    "posterSlug": "crane-rise-reveal",
+    "cardIds": [
+      "demo-CraneRiseReveal"
+    ]
+  },
+  "library/media/reference/shotcraft/crash-zoom-punch/crash-zoom-punch/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9559,
+    "cornerLum": [
+      0.9641,
+      0.9637,
+      0.963,
+      0.9637
+    ],
+    "file": "library/media/reference/shotcraft/crash-zoom-punch/crash-zoom-punch/poster.webp",
+    "posterSlug": "crash-zoom-punch"
+  },
+  "library/media/reference/shotcraft/cube-navigation/cube-navigation/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.115,
+    "cornerLum": [
+      0.063,
+      0.0633,
+      0.0329,
+      0.0329
+    ],
+    "file": "library/media/reference/shotcraft/cube-navigation/cube-navigation/poster.webp",
+    "posterSlug": "cube-navigation",
+    "cardIds": [
+      "demo-CubeNavigation"
+    ]
+  },
+  "library/media/reference/shotcraft/cursor-flyover/cursor-flyover/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1004,
+    "cornerLum": [
+      0.0989,
+      0.0368,
+      0.1133,
+      0.0362
+    ],
+    "file": "library/media/reference/shotcraft/cursor-flyover/cursor-flyover/poster.webp",
+    "posterSlug": "cursor-flyover",
+    "cardIds": [
+      "demo-CursorFlyover"
+    ]
+  },
+  "library/media/reference/shotcraft/cycle-glass-node-morph/cycle-glass-node-morph/poster.webp": {
+    "style": "light",
+    "meanLum": 0.8835,
+    "cornerLum": [
+      0.9585,
+      0.9585,
+      0.9585,
+      0.9585
+    ],
+    "file": "library/media/reference/shotcraft/cycle-glass-node-morph/cycle-glass-node-morph/poster.webp",
+    "posterSlug": "cycle-glass-node-morph",
+    "cardIds": [
+      "demo-CycleGlassNodeMorph"
+    ]
+  },
+  "library/media/reference/shotcraft/dashboard-glow-highlight-pill/dashboard-glow-highlight-pill/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1238,
+    "cornerLum": [
+      0.0469,
+      0.0322,
+      0.0162,
+      0.0178
+    ],
+    "file": "library/media/reference/shotcraft/dashboard-glow-highlight-pill/dashboard-glow-highlight-pill/poster.webp",
+    "posterSlug": "dashboard-glow-highlight-pill",
+    "cardIds": [
+      "demo-DashboardGlowHighlightPill"
+    ]
+  },
+  "library/media/reference/shotcraft/dataviz-landscape-open/dataviz-landscape-open/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.0431,
+    "cornerLum": [
+      0.0343,
+      0.0254,
+      0.029,
+      0.0235
+    ],
+    "file": "library/media/reference/shotcraft/dataviz-landscape-open/dataviz-landscape-open/poster.webp",
+    "posterSlug": "dataviz-landscape-open",
+    "cardIds": [
+      "demo-DatavizLandscapeOpen"
+    ]
+  },
+  "library/media/reference/shotcraft/deck-deal-flyin/deck-deal-flyin/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9543,
+    "cornerLum": [
+      0.9672,
+      0.9672,
+      0.9632,
+      0.9632
+    ],
+    "file": "library/media/reference/shotcraft/deck-deal-flyin/deck-deal-flyin/poster.webp",
+    "posterSlug": "deck-deal-flyin",
+    "cardIds": [
+      "demo-DeckDealFlyin"
+    ]
+  },
+  "library/media/reference/shotcraft/depth-layer-moves/dolly-zoom/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9414,
+    "cornerLum": [
+      0.9242,
+      0.9443,
+      0.9526,
+      0.9301
+    ],
+    "file": "library/media/reference/shotcraft/depth-layer-moves/dolly-zoom/poster.webp",
+    "posterSlug": "dolly-zoom"
+  },
+  "library/media/reference/shotcraft/depth-layer-moves/multiplane/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9513,
+    "cornerLum": [
+      0.954,
+      0.9495,
+      0.9558,
+      0.9494
+    ],
+    "file": "library/media/reference/shotcraft/depth-layer-moves/multiplane/poster.webp",
+    "posterSlug": "multiplane"
+  },
+  "library/media/reference/shotcraft/doc-park-left-pill-deal/doc-park-left-pill-deal/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9484,
+    "cornerLum": [
+      0.9426,
+      0.946,
+      0.9345,
+      0.946
+    ],
+    "file": "library/media/reference/shotcraft/doc-park-left-pill-deal/doc-park-left-pill-deal/poster.webp",
+    "posterSlug": "doc-park-left-pill-deal",
+    "cardIds": [
+      "demo-DocParkLeftPillDeal"
+    ]
+  },
+  "library/media/reference/shotcraft/document-typewriter-reveal/document-typewriter-reveal/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9624,
+    "cornerLum": [
+      0.9306,
+      0.9638,
+      0.9632,
+      0.9661
+    ],
+    "file": "library/media/reference/shotcraft/document-typewriter-reveal/document-typewriter-reveal/poster.webp",
+    "posterSlug": "document-typewriter-reveal",
+    "cardIds": [
+      "demo-DocumentTypewriterReveal"
+    ]
+  },
+  "library/media/reference/shotcraft/draw-svg-trace/draw-svg-trace/poster.webp": {
+    "style": "light",
+    "meanLum": 0.922,
+    "cornerLum": [
+      0.8909,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/reference/shotcraft/draw-svg-trace/draw-svg-trace/poster.webp",
+    "posterSlug": "draw-svg-trace",
+    "cardIds": [
+      "demo-DrawSvgTrace"
+    ]
+  },
+  "library/media/reference/shotcraft/edit-hook-moves/logo-sting-button/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.0115,
+    "cornerLum": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "file": "library/media/reference/shotcraft/edit-hook-moves/logo-sting-button/poster.webp",
+    "posterSlug": "logo-sting-button",
+    "cardIds": [
+      "demo-LogoStingButton"
+    ]
+  },
+  "library/media/reference/shotcraft/element-body-moves/axial-stretch/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9254,
+    "cornerLum": [
+      0.9269,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/reference/shotcraft/element-body-moves/axial-stretch/poster.webp",
+    "posterSlug": "axial-stretch",
+    "cardIds": [
+      "demo-AxialStretch"
+    ]
+  },
+  "library/media/reference/shotcraft/element-body-moves/contact-shadow-lift/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9321,
+    "cornerLum": [
+      0.9017,
+      0.9317,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/reference/shotcraft/element-body-moves/contact-shadow-lift/poster.webp",
+    "posterSlug": "contact-shadow-lift",
+    "cardIds": [
+      "demo-ContactShadowLift"
+    ]
+  },
+  "library/media/reference/shotcraft/floating-glossy-label-pills/floating-glossy-label-pills/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9352,
+    "cornerLum": [
+      0.9397,
+      0.8748,
+      0.7983,
+      0.9501
+    ],
+    "file": "library/media/reference/shotcraft/floating-glossy-label-pills/floating-glossy-label-pills/poster.webp",
+    "posterSlug": "floating-glossy-label-pills",
+    "cardIds": [
+      "demo-FloatingGlossyLabelPills"
+    ]
+  },
+  "library/media/reference/shotcraft/flying-words/flying-words/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.0746,
+    "cornerLum": [
+      0.0496,
+      0.0216,
+      0.0782,
+      0.0216
+    ],
+    "file": "library/media/reference/shotcraft/flying-words/flying-words/poster.webp",
+    "posterSlug": "flying-words",
+    "cardIds": [
+      "demo-FlyingWords"
+    ]
+  },
+  "library/media/reference/shotcraft/fracture/fracture/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.2576,
+    "cornerLum": [
+      0.0456,
+      0.0464,
+      0.0459,
+      0.0462
+    ],
+    "file": "library/media/reference/shotcraft/fracture/fracture/poster.webp",
+    "posterSlug": "fracture",
+    "cardIds": [
+      "demo-Fracture"
+    ]
+  },
+  "library/media/reference/shotcraft/fui-hud-moves/line-unfold-panel/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1676,
+    "cornerLum": [
+      0.109,
+      0.1089,
+      0.1089,
+      0.1089
+    ],
+    "file": "library/media/reference/shotcraft/fui-hud-moves/line-unfold-panel/poster.webp",
+    "posterSlug": "line-unfold-panel",
+    "cardIds": [
+      "demo-LineUnfoldPanel"
+    ]
+  },
+  "library/media/reference/shotcraft/fui-hud-moves/reticle-lock-on/poster.webp": {
+    "style": "gradient",
+    "meanLum": 0.8875,
+    "cornerLum": [
+      0.2592,
+      0.9489,
+      0.2268,
+      0.9693
+    ],
+    "file": "library/media/reference/shotcraft/fui-hud-moves/reticle-lock-on/poster.webp",
+    "posterSlug": "reticle-lock-on",
+    "cardIds": [
+      "demo-ReticleLockOn"
+    ]
+  },
+  "library/media/reference/shotcraft/gauge-readout-moves/needle-sweep-selftest/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9395,
+    "cornerLum": [
+      0.9269,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/reference/shotcraft/gauge-readout-moves/needle-sweep-selftest/poster.webp",
+    "posterSlug": "needle-sweep-selftest",
+    "cardIds": [
+      "demo-NeedleSweepSelftest"
+    ]
+  },
+  "library/media/reference/shotcraft/gauge-readout-moves/tape-scroll-fixed-pointer/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9167,
+    "cornerLum": [
+      0.9269,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/reference/shotcraft/gauge-readout-moves/tape-scroll-fixed-pointer/poster.webp",
+    "posterSlug": "tape-scroll-fixed-pointer",
+    "cardIds": [
+      "demo-TapeScrollFixedPointer"
+    ]
+  },
+  "library/media/reference/shotcraft/glass-pill-dictation-typing/glass-pill-dictation-typing/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.0164,
+    "cornerLum": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "file": "library/media/reference/shotcraft/glass-pill-dictation-typing/glass-pill-dictation-typing/poster.webp",
+    "posterSlug": "glass-pill-dictation-typing",
+    "cardIds": [
+      "demo-GlassPillDictationTyping"
+    ]
+  },
+  "library/media/reference/shotcraft/glitch-cycle/glitch-cycle/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.0475,
+    "cornerLum": [
+      0.0412,
+      0.0412,
+      0.0412,
+      0.0412
+    ],
+    "file": "library/media/reference/shotcraft/glitch-cycle/glitch-cycle/poster.webp",
+    "posterSlug": "glitch-cycle",
+    "cardIds": [
+      "demo-GlitchCycle"
+    ]
+  },
+  "library/media/reference/shotcraft/glow-flyline-moves/flyline-arc/poster.webp": {
+    "style": "gradient",
+    "meanLum": 0.8123,
+    "cornerLum": [
+      0.2405,
+      0.8735,
+      0.2111,
+      0.8926
+    ],
+    "file": "library/media/reference/shotcraft/glow-flyline-moves/flyline-arc/poster.webp",
+    "posterSlug": "flyline-arc",
+    "cardIds": [
+      "demo-FlylineArc"
+    ]
+  },
+  "library/media/reference/shotcraft/glow-flyline-moves/glow-orb-ambient/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1403,
+    "cornerLum": [
+      0.1151,
+      0.1128,
+      0.1128,
+      0.1128
+    ],
+    "file": "library/media/reference/shotcraft/glow-flyline-moves/glow-orb-ambient/poster.webp",
+    "posterSlug": "glow-orb-ambient",
+    "cardIds": [
+      "demo-GlowOrbAmbient"
+    ]
+  },
+  "library/media/reference/shotcraft/glow-flyline-moves/orb-flyline-relay/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1483,
+    "cornerLum": [
+      0.1128,
+      0.1336,
+      0.1128,
+      0.1128
+    ],
+    "file": "library/media/reference/shotcraft/glow-flyline-moves/orb-flyline-relay/poster.webp",
+    "posterSlug": "orb-flyline-relay",
+    "cardIds": [
+      "demo-OrbFlylineRelay"
+    ]
+  },
+  "library/media/reference/shotcraft/gradient-transition/gradient-transition/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.0427,
+    "cornerLum": [
+      0.0412,
+      0.0412,
+      0.0412,
+      0.0412
+    ],
+    "file": "library/media/reference/shotcraft/gradient-transition/gradient-transition/poster.webp",
+    "posterSlug": "gradient-transition",
+    "cardIds": [
+      "demo-GradientTransition"
+    ]
+  },
+  "library/media/reference/shotcraft/gradient-word-sweep/gradient-word-sweep/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.0494,
+    "cornerLum": [
+      0.0196,
+      0.0196,
+      0.0196,
+      0.0196
+    ],
+    "file": "library/media/reference/shotcraft/gradient-word-sweep/gradient-word-sweep/poster.webp",
+    "posterSlug": "gradient-word-sweep",
+    "cardIds": [
+      "demo-GradientWordSweep"
+    ]
+  },
+  "library/media/reference/shotcraft/grain-dissolve/grain-dissolve/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.0489,
+    "cornerLum": [
+      0.0362,
+      0.0362,
+      0.0362,
+      0.0362
+    ],
+    "file": "library/media/reference/shotcraft/grain-dissolve/grain-dissolve/poster.webp",
+    "posterSlug": "grain-dissolve",
+    "cardIds": [
+      "demo-GrainDissolve"
+    ]
+  },
+  "library/media/reference/shotcraft/graze-face-tour/graze-face-tour/poster.webp": {
+    "style": "gradient",
+    "meanLum": 0.7087,
+    "cornerLum": [
+      0.0638,
+      0.5246,
+      0.3429,
+      0.3532
+    ],
+    "file": "library/media/reference/shotcraft/graze-face-tour/graze-face-tour/poster.webp",
+    "posterSlug": "graze-face-tour",
+    "cardIds": [
+      "demo-GrazeFaceTour"
+    ]
+  },
+  "library/media/reference/shotcraft/hashtag-to-pill-materialize/hashtag-to-pill-materialize/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9845,
+    "cornerLum": [
+      0.9869,
+      0.9869,
+      0.9869,
+      0.9869
+    ],
+    "file": "library/media/reference/shotcraft/hashtag-to-pill-materialize/hashtag-to-pill-materialize/poster.webp",
+    "posterSlug": "hashtag-to-pill-materialize",
+    "cardIds": [
+      "demo-HashtagToPillMaterialize"
+    ]
+  },
+  "library/media/reference/shotcraft/hatch-depth/hatch-depth/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.0796,
+    "cornerLum": [
+      0.0362,
+      0.0362,
+      0.0362,
+      0.0362
+    ],
+    "file": "library/media/reference/shotcraft/hatch-depth/hatch-depth/poster.webp",
+    "posterSlug": "hatch-depth",
+    "cardIds": [
+      "demo-HatchDepth"
+    ]
+  },
+  "library/media/reference/shotcraft/icon-field-colorize/icon-field-colorize/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9909,
+    "cornerLum": [
+      0.996,
+      0.9889,
+      0.9947,
+      0.9999
+    ],
+    "file": "library/media/reference/shotcraft/icon-field-colorize/icon-field-colorize/poster.webp",
+    "posterSlug": "icon-field-colorize",
+    "cardIds": [
+      "demo-IconFieldColorize"
+    ]
+  },
+  "library/media/reference/shotcraft/icon-performance-moves/attention-bounce/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9135,
+    "cornerLum": [
+      0.9269,
+      0.9269,
+      0.9224,
+      0.9212
+    ],
+    "file": "library/media/reference/shotcraft/icon-performance-moves/attention-bounce/poster.webp",
+    "posterSlug": "attention-bounce",
+    "cardIds": [
+      "demo-AttentionBounce"
+    ]
+  },
+  "library/media/reference/shotcraft/icon-performance-moves/pop-burst-confirm/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9112,
+    "cornerLum": [
+      0.9269,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/reference/shotcraft/icon-performance-moves/pop-burst-confirm/poster.webp",
+    "posterSlug": "pop-burst-confirm",
+    "cardIds": [
+      "demo-PopBurstConfirm"
+    ]
+  },
+  "library/media/reference/shotcraft/impact-feedback/anime-impact/poster.webp": {
+    "style": "gradient",
+    "meanLum": 0.8792,
+    "cornerLum": [
+      0.2594,
+      0.9484,
+      0.2268,
+      0.9683
+    ],
+    "file": "library/media/reference/shotcraft/impact-feedback/anime-impact/poster.webp",
+    "posterSlug": "anime-impact",
+    "cardIds": [
+      "demo-AnimeImpact"
+    ]
+  },
+  "library/media/reference/shotcraft/impact-feedback/hit-counter/poster.webp": {
+    "style": "gradient",
+    "meanLum": 0.9045,
+    "cornerLum": [
+      0.6618,
+      0.6662,
+      0.6485,
+      0.9421
+    ],
+    "file": "library/media/reference/shotcraft/impact-feedback/hit-counter/poster.webp",
+    "posterSlug": "hit-counter",
+    "cardIds": [
+      "demo-HitCounter"
+    ]
+  },
+  "library/media/reference/shotcraft/input-trigger-moves/cursor-performance/poster.webp": {
+    "style": "gradient",
+    "meanLum": 0.9186,
+    "cornerLum": [
+      0.4193,
+      0.9155,
+      0.406,
+      0.9885
+    ],
+    "file": "library/media/reference/shotcraft/input-trigger-moves/cursor-performance/poster.webp",
+    "posterSlug": "cursor-performance"
+  },
+  "library/media/reference/shotcraft/input-trigger-moves/keycap-smash-cut/poster.webp": {
+    "style": "gradient",
+    "meanLum": 0.8876,
+    "cornerLum": [
+      0.2592,
+      0.9482,
+      0.2268,
+      0.9691
+    ],
+    "file": "library/media/reference/shotcraft/input-trigger-moves/keycap-smash-cut/poster.webp",
+    "posterSlug": "keycap-smash-cut",
+    "cardIds": [
+      "demo-KeycapSmashCut"
+    ]
+  },
+  "library/media/reference/shotcraft/integration-hub-map/integration-hub-map/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.2943,
+    "cornerLum": [
+      0.0309,
+      0.0309,
+      0.0539,
+      0.0312
+    ],
+    "file": "library/media/reference/shotcraft/integration-hub-map/integration-hub-map/poster.webp",
+    "posterSlug": "integration-hub-map",
+    "cardIds": [
+      "demo-IntegrationHubMap"
+    ]
+  },
+  "library/media/reference/shotcraft/lead-word-zoom-assemble/lead-word-zoom-assemble/poster.webp": {
+    "style": "light",
+    "meanLum": 0.92,
+    "cornerLum": [
+      0.9222,
+      0.9369,
+      0.9346,
+      0.9207
+    ],
+    "file": "library/media/reference/shotcraft/lead-word-zoom-assemble/lead-word-zoom-assemble/poster.webp",
+    "posterSlug": "lead-word-zoom-assemble",
+    "cardIds": [
+      "demo-LeadWordZoomAssemble"
+    ]
+  },
+  "library/media/reference/shotcraft/letterspace-materialize/letterspace-materialize/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1672,
+    "cornerLum": [
+      0.1992,
+      0.2072,
+      0.0823,
+      0.0727
+    ],
+    "file": "library/media/reference/shotcraft/letterspace-materialize/letterspace-materialize/poster.webp",
+    "posterSlug": "letterspace-materialize",
+    "cardIds": [
+      "demo-LetterspaceMaterialize"
+    ]
+  },
+  "library/media/reference/shotcraft/light-play-moves/halation-bloom/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.2451,
+    "cornerLum": [
+      0.1638,
+      0.1638,
+      0.1638,
+      0.1638
+    ],
+    "file": "library/media/reference/shotcraft/light-play-moves/halation-bloom/poster.webp",
+    "posterSlug": "halation-bloom",
+    "cardIds": [
+      "demo-HalationBloom"
+    ]
+  },
+  "library/media/reference/shotcraft/light-play-moves/sheen-sweep/poster.webp": {
+    "style": "light",
+    "meanLum": 0.824,
+    "cornerLum": [
+      0.9269,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/reference/shotcraft/light-play-moves/sheen-sweep/poster.webp",
+    "posterSlug": "sheen-sweep"
+  },
+  "library/media/reference/shotcraft/light-play-moves/spotlight-sweep/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.2008,
+    "cornerLum": [
+      0.1638,
+      0.1638,
+      0.1638,
+      0.1638
+    ],
+    "file": "library/media/reference/shotcraft/light-play-moves/spotlight-sweep/poster.webp",
+    "posterSlug": "spotlight-sweep"
+  },
+  "library/media/reference/shotcraft/line-boil/line-boil/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9065,
+    "cornerLum": [
+      0.8986,
+      0.9269,
+      0.9269,
+      0.8976
+    ],
+    "file": "library/media/reference/shotcraft/line-boil/line-boil/poster.webp",
+    "posterSlug": "line-boil",
+    "cardIds": [
+      "demo-LineBoil"
+    ]
+  },
+  "library/media/reference/shotcraft/line-carry-transition/line-carry-transition/poster.webp": {
+    "style": "light",
+    "meanLum": 0.927,
+    "cornerLum": [
+      0.9269,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/reference/shotcraft/line-carry-transition/line-carry-transition/poster.webp",
+    "posterSlug": "line-carry-transition",
+    "cardIds": [
+      "demo-LineCarryTransition"
+    ]
+  },
+  "library/media/reference/shotcraft/list-reveal/list-reveal/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.0747,
+    "cornerLum": [
+      0.0412,
+      0.0412,
+      0.0412,
+      0.0412
+    ],
+    "file": "library/media/reference/shotcraft/list-reveal/list-reveal/poster.webp",
+    "posterSlug": "list-reveal",
+    "cardIds": [
+      "demo-ListReveal"
+    ]
+  },
+  "library/media/reference/shotcraft/list-stack-press/list-stack-press/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9598,
+    "cornerLum": [
+      0.9639,
+      0.9499,
+      0.9639,
+      0.9639
+    ],
+    "file": "library/media/reference/shotcraft/list-stack-press/list-stack-press/poster.webp",
+    "posterSlug": "list-stack-press",
+    "cardIds": [
+      "demo-ListStackPress"
+    ]
+  },
+  "library/media/reference/shotcraft/logo-shrink-wordmark-lockup/logo-shrink-wordmark-lockup/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.0271,
+    "cornerLum": [
+      0.0191,
+      0.0191,
+      0.0191,
+      0.0191
+    ],
+    "file": "library/media/reference/shotcraft/logo-shrink-wordmark-lockup/logo-shrink-wordmark-lockup/poster.webp",
+    "posterSlug": "logo-shrink-wordmark-lockup",
+    "cardIds": [
+      "demo-LogoShrinkWordmarkLockup"
+    ]
+  },
+  "library/media/reference/shotcraft/magician-card-flourish/magician-card-flourish/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.0023,
+    "cornerLum": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "file": "library/media/reference/shotcraft/magician-card-flourish/magician-card-flourish/poster.webp",
+    "posterSlug": "magician-card-flourish",
+    "cardIds": [
+      "demo-MagicianCardFlourish"
+    ]
+  },
+  "library/media/reference/shotcraft/marker-underline-title/marker-underline-title/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9441,
+    "cornerLum": [
+      0.9544,
+      0.9543,
+      0.9545,
+      0.9545
+    ],
+    "file": "library/media/reference/shotcraft/marker-underline-title/marker-underline-title/poster.webp",
+    "posterSlug": "marker-underline-title",
+    "cardIds": [
+      "demo-MarkerUnderlineTitle"
+    ]
+  },
+  "library/media/reference/shotcraft/montage-rhythm-moves/domino-cascade/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9317,
+    "cornerLum": [
+      0.9269,
+      0.9269,
+      0.9269,
+      0.9253
+    ],
+    "file": "library/media/reference/shotcraft/montage-rhythm-moves/domino-cascade/poster.webp",
+    "posterSlug": "domino-cascade",
+    "cardIds": [
+      "demo-DominoCascade"
+    ]
+  },
+  "library/media/reference/shotcraft/montage-rhythm-moves/drop-blackout-slam/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.2447,
+    "cornerLum": [
+      0.1843,
+      0.1843,
+      0.1843,
+      0.1843
+    ],
+    "file": "library/media/reference/shotcraft/montage-rhythm-moves/drop-blackout-slam/poster.webp",
+    "posterSlug": "drop-blackout-slam",
+    "cardIds": [
+      "demo-DropBlackoutSlam"
+    ]
+  },
+  "library/media/reference/shotcraft/montage-rhythm-moves/wright-triple-cut/poster.webp": {
+    "style": "gradient",
+    "meanLum": 0.888,
+    "cornerLum": [
+      0.2594,
+      0.949,
+      0.2268,
+      0.9691
+    ],
+    "file": "library/media/reference/shotcraft/montage-rhythm-moves/wright-triple-cut/poster.webp",
+    "posterSlug": "wright-triple-cut",
+    "cardIds": [
+      "demo-WrightTripleCut"
+    ]
+  },
+  "library/media/reference/shotcraft/morph-from-primitive/morph-from-primitive/poster.webp": {
+    "style": "light",
+    "meanLum": 0.926,
+    "cornerLum": [
+      0.9269,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/reference/shotcraft/morph-from-primitive/morph-from-primitive/poster.webp",
+    "posterSlug": "morph-from-primitive",
+    "cardIds": [
+      "demo-MorphFromPrimitive"
+    ]
+  },
+  "library/media/reference/shotcraft/mosaic-reframe/mosaic-reframe/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.2287,
+    "cornerLum": [
+      0.207,
+      0.1103,
+      0.1253,
+      0.1531
+    ],
+    "file": "library/media/reference/shotcraft/mosaic-reframe/mosaic-reframe/poster.webp",
+    "posterSlug": "mosaic-reframe",
+    "cardIds": [
+      "demo-MosaicReframe"
+    ]
+  },
+  "library/media/reference/shotcraft/neon-frame-forerun/neon-frame-forerun/poster.webp": {
+    "style": "neutral",
+    "meanLum": 0.6332,
+    "cornerLum": [
+      0.0284,
+      0.0302,
+      0.0365,
+      0.1474
+    ],
+    "file": "library/media/reference/shotcraft/neon-frame-forerun/neon-frame-forerun/poster.webp",
+    "posterSlug": "neon-frame-forerun",
+    "cardIds": [
+      "demo-NeonFrameForerun"
+    ]
+  },
+  "library/media/reference/shotcraft/neon-frame-orbit-drop/neon-frame-orbit-drop/poster.webp": {
+    "style": "neutral",
+    "meanLum": 0.5052,
+    "cornerLum": [
+      0.0287,
+      0.023,
+      0.036,
+      0.0386
+    ],
+    "file": "library/media/reference/shotcraft/neon-frame-orbit-drop/neon-frame-orbit-drop/poster.webp",
+    "posterSlug": "neon-frame-orbit-drop"
+  },
+  "library/media/reference/shotcraft/neon-triple-marquee/neon-triple-marquee/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1031,
+    "cornerLum": [
+      0.0202,
+      0.0159,
+      0.1949,
+      0.0921
+    ],
+    "file": "library/media/reference/shotcraft/neon-triple-marquee/neon-triple-marquee/poster.webp",
+    "posterSlug": "neon-triple-marquee",
+    "cardIds": [
+      "demo-NeonTripleMarquee"
+    ]
+  },
+  "library/media/reference/shotcraft/odometer-digit-roll/odometer-digit-roll/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9015,
+    "cornerLum": [
+      0.8934,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/reference/shotcraft/odometer-digit-roll/odometer-digit-roll/poster.webp",
+    "posterSlug": "odometer-digit-roll",
+    "cardIds": [
+      "demo-OdometerDigitRoll"
+    ]
+  },
+  "library/media/reference/shotcraft/orbit-ring-title-open/orbit-ring-title-open/poster.webp": {
+    "style": "light",
+    "meanLum": 0.8919,
+    "cornerLum": [
+      0.9222,
+      0.9366,
+      0.9342,
+      0.9206
+    ],
+    "file": "library/media/reference/shotcraft/orbit-ring-title-open/orbit-ring-title-open/poster.webp",
+    "posterSlug": "orbit-ring-title-open",
+    "cardIds": [
+      "demo-OrbitRingTitleOpen"
+    ]
+  },
+  "library/media/reference/shotcraft/outline-word-fill/outline-word-fill/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.0112,
+    "cornerLum": [
+      0.008,
+      0.008,
+      0.0078,
+      0.0078
+    ],
+    "file": "library/media/reference/shotcraft/outline-word-fill/outline-word-fill/poster.webp",
+    "posterSlug": "outline-word-fill",
+    "cardIds": [
+      "demo-OutlineWordFill"
+    ]
+  },
+  "library/media/reference/shotcraft/outro-group-photo-launch/outro-group-photo-launch/poster.webp": {
+    "style": "light",
+    "meanLum": 0.931,
+    "cornerLum": [
+      0.9368,
+      0.9384,
+      0.9368,
+      0.9375
+    ],
+    "file": "library/media/reference/shotcraft/outro-group-photo-launch/outro-group-photo-launch/poster.webp",
+    "posterSlug": "outro-group-photo-launch",
+    "cardIds": [
+      "demo-OutroGroupPhotoLaunch"
+    ]
+  },
+  "library/media/reference/shotcraft/overhead-camera-moves/overhead-tabletop-drop/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9063,
+    "cornerLum": [
+      0.9269,
+      0.9269,
+      0.8995,
+      0.8993
+    ],
+    "file": "library/media/reference/shotcraft/overhead-camera-moves/overhead-tabletop-drop/poster.webp",
+    "posterSlug": "overhead-tabletop-drop",
+    "cardIds": [
+      "demo-OverheadTabletopDrop"
+    ]
+  },
+  "library/media/reference/shotcraft/overhead-camera-moves/tilt-reveal/poster.webp": {
+    "style": "gradient",
+    "meanLum": 0.888,
+    "cornerLum": [
+      0.2587,
+      0.9486,
+      0.2268,
+      0.969
+    ],
+    "file": "library/media/reference/shotcraft/overhead-camera-moves/tilt-reveal/poster.webp",
+    "posterSlug": "tilt-reveal",
+    "cardIds": [
+      "demo-TiltReveal"
+    ]
+  },
+  "library/media/reference/shotcraft/page-turn-transitions/barn-door-split/poster.webp": {
+    "style": "gradient",
+    "meanLum": 0.8836,
+    "cornerLum": [
+      0.2546,
+      0.9486,
+      0.2268,
+      0.9691
+    ],
+    "file": "library/media/reference/shotcraft/page-turn-transitions/barn-door-split/poster.webp",
+    "posterSlug": "barn-door-split",
+    "cardIds": [
+      "demo-BarnDoorSplit"
+    ]
+  },
+  "library/media/reference/shotcraft/page-turn-transitions/cube-rotate/poster.webp": {
+    "style": "light",
+    "meanLum": 0.8981,
+    "cornerLum": [
+      0.8875,
+      0.9278,
+      0.914,
+      0.9269
+    ],
+    "file": "library/media/reference/shotcraft/page-turn-transitions/cube-rotate/poster.webp",
+    "posterSlug": "cube-rotate",
+    "cardIds": [
+      "demo-CubeRotate"
+    ]
+  },
+  "library/media/reference/shotcraft/panel-grid-moves/comic-panel-split/poster.webp": {
+    "style": "gradient",
+    "meanLum": 0.8526,
+    "cornerLum": [
+      0.2594,
+      0.9859,
+      0.2268,
+      0.9446
+    ],
+    "file": "library/media/reference/shotcraft/panel-grid-moves/comic-panel-split/poster.webp",
+    "posterSlug": "comic-panel-split",
+    "cardIds": [
+      "demo-ComicPanelSplit"
+    ]
+  },
+  "library/media/reference/shotcraft/panel-grid-moves/flip-grid-reflow/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9306,
+    "cornerLum": [
+      0.8851,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/reference/shotcraft/panel-grid-moves/flip-grid-reflow/poster.webp",
+    "posterSlug": "flip-grid-reflow",
+    "cardIds": [
+      "demo-FlipGridReflow"
+    ]
+  },
+  "library/media/reference/shotcraft/panel-grid-moves/grid-flash-mosaic/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9269,
+    "cornerLum": [
+      0.9269,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/reference/shotcraft/panel-grid-moves/grid-flash-mosaic/poster.webp",
+    "posterSlug": "grid-flash-mosaic",
+    "cardIds": [
+      "demo-GridFlashMosaic"
+    ]
+  },
+  "library/media/reference/shotcraft/paper-craft-moves/masking-tape-slap/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9218,
+    "cornerLum": [
+      0.9269,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/reference/shotcraft/paper-craft-moves/masking-tape-slap/poster.webp",
+    "posterSlug": "masking-tape-slap",
+    "cardIds": [
+      "demo-MaskingTapeSlap"
+    ]
+  },
+  "library/media/reference/shotcraft/paper-craft-moves/popup-book-rise/poster.webp": {
+    "style": "light",
+    "meanLum": 0.8795,
+    "cornerLum": [
+      0.8619,
+      0.8619,
+      0.8622,
+      0.8622
+    ],
+    "file": "library/media/reference/shotcraft/paper-craft-moves/popup-book-rise/poster.webp",
+    "posterSlug": "popup-book-rise",
+    "cardIds": [
+      "demo-PopupBookRise"
+    ]
+  },
+  "library/media/reference/shotcraft/paper-plane-messenger/paper-plane-messenger/poster.webp": {
+    "style": "light",
+    "meanLum": 0.8888,
+    "cornerLum": [
+      0.9079,
+      0.8928,
+      0.8822,
+      0.8629
+    ],
+    "file": "library/media/reference/shotcraft/paper-plane-messenger/paper-plane-messenger/poster.webp",
+    "posterSlug": "paper-plane-messenger",
+    "cardIds": [
+      "demo-PaperPlaneMessenger"
+    ]
+  },
+  "library/media/reference/shotcraft/paper-title-card/paper-title-card/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9398,
+    "cornerLum": [
+      0.9632,
+      0.9632,
+      0.9632,
+      0.9632
+    ],
+    "file": "library/media/reference/shotcraft/paper-title-card/paper-title-card/poster.webp",
+    "posterSlug": "paper-title-card",
+    "cardIds": [
+      "demo-PaperTitleCard"
+    ]
+  },
+  "library/media/reference/shotcraft/particle-celebrate-hits/confetti-crossfire/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9151,
+    "cornerLum": [
+      0.9269,
+      0.9269,
+      0.9269,
+      0.9249
+    ],
+    "file": "library/media/reference/shotcraft/particle-celebrate-hits/confetti-crossfire/poster.webp",
+    "posterSlug": "confetti-crossfire",
+    "cardIds": [
+      "demo-ConfettiCrossfire"
+    ]
+  },
+  "library/media/reference/shotcraft/particle-celebrate-hits/counter-tick-sparks/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9117,
+    "cornerLum": [
+      0.9269,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/reference/shotcraft/particle-celebrate-hits/counter-tick-sparks/poster.webp",
+    "posterSlug": "counter-tick-sparks",
+    "cardIds": [
+      "demo-CounterTickSparks"
+    ]
+  },
+  "library/media/reference/shotcraft/particle-sand-fill/particle-sand-fill/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9151,
+    "cornerLum": [
+      0.9269,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/reference/shotcraft/particle-sand-fill/particle-sand-fill/poster.webp",
+    "posterSlug": "particle-sand-fill",
+    "cardIds": [
+      "demo-ParticleSandFill"
+    ]
+  },
+  "library/media/reference/shotcraft/picker-carousel-feature-cycle/picker-carousel-feature-cycle/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9434,
+    "cornerLum": [
+      0.9504,
+      0.9504,
+      0.9504,
+      0.9504
+    ],
+    "file": "library/media/reference/shotcraft/picker-carousel-feature-cycle/picker-carousel-feature-cycle/poster.webp",
+    "posterSlug": "picker-carousel-feature-cycle",
+    "cardIds": [
+      "demo-PickerCarouselFeatureCycle"
+    ]
+  },
+  "library/media/reference/shotcraft/pill-chip-slot-cycle-handled/pill-chip-slot-cycle-handled/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9233,
+    "cornerLum": [
+      0.9813,
+      0.9813,
+      0.9816,
+      0.9816
+    ],
+    "file": "library/media/reference/shotcraft/pill-chip-slot-cycle-handled/pill-chip-slot-cycle-handled/poster.webp",
+    "posterSlug": "pill-chip-slot-cycle-handled",
+    "cardIds": [
+      "demo-PillChipSlotCycleHandled"
+    ]
+  },
+  "library/media/reference/shotcraft/pill-slot-cycle/pill-slot-cycle/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9192,
+    "cornerLum": [
+      0.9269,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/reference/shotcraft/pill-slot-cycle/pill-slot-cycle/poster.webp",
+    "posterSlug": "pill-slot-cycle",
+    "cardIds": [
+      "demo-PillSlotCycle"
+    ]
+  },
+  "library/media/reference/shotcraft/platform-hinge-rise/platform-hinge-rise/poster.webp": {
+    "style": "light",
+    "meanLum": 0.8928,
+    "cornerLum": [
+      0.9535,
+      0.9535,
+      0.9537,
+      0.9537
+    ],
+    "file": "library/media/reference/shotcraft/platform-hinge-rise/platform-hinge-rise/poster.webp",
+    "posterSlug": "platform-hinge-rise",
+    "cardIds": [
+      "demo-PlatformHingeRise"
+    ]
+  },
+  "library/media/reference/shotcraft/print-texture-transitions/ink-bleed-reveal/poster.webp": {
+    "style": "gradient",
+    "meanLum": 0.8949,
+    "cornerLum": [
+      0.3448,
+      0.9269,
+      0.859,
+      0.9269
+    ],
+    "file": "library/media/reference/shotcraft/print-texture-transitions/ink-bleed-reveal/poster.webp",
+    "posterSlug": "ink-bleed-reveal",
+    "cardIds": [
+      "demo-InkBleedReveal"
+    ]
+  },
+  "library/media/reference/shotcraft/product-card-progressive-assemble/product-card-progressive-assemble/poster.webp": {
+    "style": "neutral",
+    "meanLum": 0.5431,
+    "cornerLum": [
+      0.0634,
+      0.0636,
+      0.0589,
+      0.0592
+    ],
+    "file": "library/media/reference/shotcraft/product-card-progressive-assemble/product-card-progressive-assemble/poster.webp",
+    "posterSlug": "product-card-progressive-assemble",
+    "cardIds": [
+      "demo-ProductCardProgressiveAssemble"
+    ]
+  },
+  "library/media/reference/shotcraft/quad-split-parallel-scenes/quad-split-parallel-scenes/poster.webp": {
+    "style": "gradient",
+    "meanLum": 0.8666,
+    "cornerLum": [
+      0.8404,
+      0.9651,
+      0.8991,
+      0.7504
+    ],
+    "file": "library/media/reference/shotcraft/quad-split-parallel-scenes/quad-split-parallel-scenes/poster.webp",
+    "posterSlug": "quad-split-parallel-scenes",
+    "cardIds": [
+      "demo-QuadSplitParallelScenes"
+    ]
+  },
+  "library/media/reference/shotcraft/radial-ripple-phone-chips/radial-ripple-phone-chips/poster.webp": {
+    "style": "light",
+    "meanLum": 0.853,
+    "cornerLum": [
+      0.863,
+      0.8637,
+      0.8635,
+      0.8639
+    ],
+    "file": "library/media/reference/shotcraft/radial-ripple-phone-chips/radial-ripple-phone-chips/poster.webp",
+    "posterSlug": "radial-ripple-phone-chips",
+    "cardIds": [
+      "demo-RadialRipplePhoneChips"
+    ]
+  },
+  "library/media/reference/shotcraft/radial-wave/radial-wave/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.0778,
+    "cornerLum": [
+      0.083,
+      0.0833,
+      0.0835,
+      0.0841
+    ],
+    "file": "library/media/reference/shotcraft/radial-wave/radial-wave/poster.webp",
+    "posterSlug": "radial-wave",
+    "cardIds": [
+      "demo-RadialWave"
+    ]
+  },
+  "library/media/reference/shotcraft/research-card-stack-scroll/research-card-stack-scroll/poster.webp": {
+    "style": "neutral",
+    "meanLum": 0.5101,
+    "cornerLum": [
+      0.9745,
+      0.9745,
+      0.9752,
+      0.902
+    ],
+    "file": "library/media/reference/shotcraft/research-card-stack-scroll/research-card-stack-scroll/poster.webp",
+    "posterSlug": "research-card-stack-scroll",
+    "cardIds": [
+      "demo-ResearchCardStackScroll"
+    ]
+  },
+  "library/media/reference/shotcraft/rhythm-interrupt-moves/jump-cut-punch-in/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9661,
+    "cornerLum": [
+      0.9826,
+      0.9155,
+      1.0,
+      0.9485
+    ],
+    "file": "library/media/reference/shotcraft/rhythm-interrupt-moves/jump-cut-punch-in/poster.webp",
+    "posterSlug": "jump-cut-punch-in",
+    "cardIds": [
+      "demo-JumpCutPunchIn"
+    ]
+  },
+  "library/media/reference/shotcraft/rhythm-interrupt-moves/strobe-black-frames/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9759,
+    "cornerLum": [
+      1.0,
+      1.0,
+      0.9893,
+      1.0
+    ],
+    "file": "library/media/reference/shotcraft/rhythm-interrupt-moves/strobe-black-frames/poster.webp",
+    "posterSlug": "strobe-black-frames",
+    "cardIds": [
+      "demo-StrobeBlackFrames"
+    ]
+  },
+  "library/media/reference/shotcraft/ring-diagram-annotation-reveal/ring-diagram-annotation-reveal/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9409,
+    "cornerLum": [
+      0.9677,
+      0.9677,
+      0.9677,
+      0.9677
+    ],
+    "file": "library/media/reference/shotcraft/ring-diagram-annotation-reveal/ring-diagram-annotation-reveal/poster.webp",
+    "posterSlug": "ring-diagram-annotation-reveal",
+    "cardIds": [
+      "demo-RingDiagramAnnotationReveal"
+    ]
+  },
+  "library/media/reference/shotcraft/riso-print-hits/beat-pump/poster.webp": {
+    "style": "light",
+    "meanLum": 0.8984,
+    "cornerLum": [
+      0.9269,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/reference/shotcraft/riso-print-hits/beat-pump/poster.webp",
+    "posterSlug": "beat-pump"
+  },
+  "library/media/reference/shotcraft/riso-print-hits/misregistration-hit/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9015,
+    "cornerLum": [
+      0.9269,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/reference/shotcraft/riso-print-hits/misregistration-hit/poster.webp",
+    "posterSlug": "misregistration-hit"
+  },
+  "library/media/reference/shotcraft/row-embed/row-embed/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9585,
+    "cornerLum": [
+      0.9632,
+      0.9632,
+      0.9645,
+      0.9645
+    ],
+    "file": "library/media/reference/shotcraft/row-embed/row-embed/poster.webp",
+    "posterSlug": "row-embed",
+    "cardIds": [
+      "demo-RowEmbed"
+    ]
+  },
+  "library/media/reference/shotcraft/runway-ground-skim/runway-ground-skim/poster.webp": {
+    "style": "gradient",
+    "meanLum": 0.8079,
+    "cornerLum": [
+      0.5278,
+      0.5691,
+      0.3388,
+      0.3458
+    ],
+    "file": "library/media/reference/shotcraft/runway-ground-skim/runway-ground-skim/poster.webp",
+    "posterSlug": "runway-ground-skim",
+    "cardIds": [
+      "demo-RunwayGroundSkim"
+    ]
+  },
+  "library/media/reference/shotcraft/sakuga-timing-shift/sakuga-timing-shift/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9198,
+    "cornerLum": [
+      0.9278,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/reference/shotcraft/sakuga-timing-shift/sakuga-timing-shift/poster.webp",
+    "posterSlug": "sakuga-timing-shift",
+    "cardIds": [
+      "demo-SakugaTimingShift"
+    ]
+  },
+  "library/media/reference/shotcraft/scan-bracket-sweep/scan-bracket-sweep/poster.webp": {
+    "style": "light",
+    "meanLum": 0.8985,
+    "cornerLum": [
+      0.946,
+      0.946,
+      0.946,
+      0.946
+    ],
+    "file": "library/media/reference/shotcraft/scan-bracket-sweep/scan-bracket-sweep/poster.webp",
+    "posterSlug": "scan-bracket-sweep",
+    "cardIds": [
+      "demo-ScanBracketSweep"
+    ]
+  },
+  "library/media/reference/shotcraft/scanline-annotate-focus/scanline-annotate-focus/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1095,
+    "cornerLum": [
+      0.1012,
+      0.0668,
+      0.1034,
+      0.1007
+    ],
+    "file": "library/media/reference/shotcraft/scanline-annotate-focus/scanline-annotate-focus/poster.webp",
+    "posterSlug": "scanline-annotate-focus",
+    "cardIds": [
+      "demo-ScanlineAnnotateFocus"
+    ]
+  },
+  "library/media/reference/shotcraft/scanline-assemble-flyin/scanline-assemble-flyin/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1008,
+    "cornerLum": [
+      0.0927,
+      0.0679,
+      0.0529,
+      0.0535
+    ],
+    "file": "library/media/reference/shotcraft/scanline-assemble-flyin/scanline-assemble-flyin/poster.webp",
+    "posterSlug": "scanline-assemble-flyin",
+    "cardIds": [
+      "demo-ScanlineAssembleFlyin"
+    ]
+  },
+  "library/media/reference/shotcraft/scramble/scramble/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.0386,
+    "cornerLum": [
+      0.032,
+      0.032,
+      0.032,
+      0.032
+    ],
+    "file": "library/media/reference/shotcraft/scramble/scramble/poster.webp",
+    "posterSlug": "scramble",
+    "cardIds": [
+      "demo-Scramble"
+    ]
+  },
+  "library/media/reference/shotcraft/scroll-brake-moves/brake-reticle-lock/poster.webp": {
+    "style": "light",
+    "meanLum": 0.942,
+    "cornerLum": [
+      0.9245,
+      0.9288,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/reference/shotcraft/scroll-brake-moves/brake-reticle-lock/poster.webp",
+    "posterSlug": "brake-reticle-lock",
+    "cardIds": [
+      "demo-BrakeReticleLock"
+    ]
+  },
+  "library/media/reference/shotcraft/scroll-brake-moves/changelog-scroll-brake/poster.webp": {
+    "style": "light",
+    "meanLum": 0.924,
+    "cornerLum": [
+      0.9269,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/reference/shotcraft/scroll-brake-moves/changelog-scroll-brake/poster.webp",
+    "posterSlug": "changelog-scroll-brake",
+    "cardIds": [
+      "demo-ChangelogScrollBrake"
+    ]
+  },
+  "library/media/reference/shotcraft/segmented-thumb-hero/segmented-thumb-hero/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9197,
+    "cornerLum": [
+      0.9269,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/reference/shotcraft/segmented-thumb-hero/segmented-thumb-hero/poster.webp",
+    "posterSlug": "segmented-thumb-hero",
+    "cardIds": [
+      "demo-SegmentedThumbHero"
+    ]
+  },
+  "library/media/reference/shotcraft/shot-transitions/mask-wipe/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9549,
+    "cornerLum": [
+      0.9537,
+      0.9533,
+      0.9452,
+      0.9445
+    ],
+    "file": "library/media/reference/shotcraft/shot-transitions/mask-wipe/poster.webp",
+    "posterSlug": "mask-wipe"
+  },
+  "library/media/reference/shotcraft/shot-transitions/shot-transitions-4/poster.webp": {
+    "style": "light",
+    "meanLum": 0.963,
+    "cornerLum": [
+      0.9285,
+      0.9671,
+      0.9632,
+      0.9632
+    ],
+    "file": "library/media/reference/shotcraft/shot-transitions/shot-transitions-4/poster.webp",
+    "posterSlug": "shot-transitions-4"
+  },
+  "library/media/reference/shotcraft/shot-transitions/shot-transitions-5/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9618,
+    "cornerLum": [
+      0.9632,
+      0.9632,
+      0.9672,
+      0.9672
+    ],
+    "file": "library/media/reference/shotcraft/shot-transitions/shot-transitions-5/poster.webp",
+    "posterSlug": "shot-transitions-5"
+  },
+  "library/media/reference/shotcraft/shot-transitions/shot-transitions-6/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.0517,
+    "cornerLum": [
+      0.0465,
+      0.0465,
+      0.0465,
+      0.0465
+    ],
+    "file": "library/media/reference/shotcraft/shot-transitions/shot-transitions-6/poster.webp",
+    "posterSlug": "shot-transitions-6"
+  },
+  "library/media/reference/shotcraft/shot-transitions/whip-pan/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9473,
+    "cornerLum": [
+      0.9412,
+      0.9412,
+      0.9412,
+      0.9412
+    ],
+    "file": "library/media/reference/shotcraft/shot-transitions/whip-pan/poster.webp",
+    "posterSlug": "whip-pan"
+  },
+  "library/media/reference/shotcraft/skeleton-reveal/skeleton-reveal/poster.webp": {
+    "style": "light",
+    "meanLum": 0.8648,
+    "cornerLum": [
+      0.9359,
+      0.9394,
+      0.9348,
+      0.9393
+    ],
+    "file": "library/media/reference/shotcraft/skeleton-reveal/skeleton-reveal/poster.webp",
+    "posterSlug": "skeleton-reveal",
+    "cardIds": [
+      "demo-SkeletonReveal"
+    ]
+  },
+  "library/media/reference/shotcraft/slam-entrance-moves/impact-burst-kit/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9345,
+    "cornerLum": [
+      0.892,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/reference/shotcraft/slam-entrance-moves/impact-burst-kit/poster.webp",
+    "posterSlug": "impact-burst-kit",
+    "cardIds": [
+      "demo-ImpactBurstKit"
+    ]
+  },
+  "library/media/reference/shotcraft/slam-entrance-moves/kanada-perspective-snap/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9221,
+    "cornerLum": [
+      0.8939,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/reference/shotcraft/slam-entrance-moves/kanada-perspective-snap/poster.webp",
+    "posterSlug": "kanada-perspective-snap",
+    "cardIds": [
+      "demo-KanadaPerspectiveSnap"
+    ]
+  },
+  "library/media/reference/shotcraft/slam-entrance-moves/score-slam/poster.webp": {
+    "style": "gradient",
+    "meanLum": 0.8888,
+    "cornerLum": [
+      0.2587,
+      0.9646,
+      0.2339,
+      0.9869
+    ],
+    "file": "library/media/reference/shotcraft/slam-entrance-moves/score-slam/poster.webp",
+    "posterSlug": "score-slam",
+    "cardIds": [
+      "demo-ScoreSlam"
+    ]
+  },
+  "library/media/reference/shotcraft/smear-multiples/smear-multiples/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9253,
+    "cornerLum": [
+      0.8923,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/reference/shotcraft/smear-multiples/smear-multiples/poster.webp",
+    "posterSlug": "smear-multiples",
+    "cardIds": [
+      "demo-SmearMultiples"
+    ]
+  },
+  "library/media/reference/shotcraft/space-camera-moves/drone-dive-landing/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9088,
+    "cornerLum": [
+      0.9176,
+      0.9176,
+      0.9176,
+      0.9176
+    ],
+    "file": "library/media/reference/shotcraft/space-camera-moves/drone-dive-landing/poster.webp",
+    "posterSlug": "drone-dive-landing",
+    "cardIds": [
+      "demo-DroneDiveLanding"
+    ]
+  },
+  "library/media/reference/shotcraft/space-camera-moves/exploded-view/poster.webp": {
+    "style": "light",
+    "meanLum": 0.8145,
+    "cornerLum": [
+      0.8642,
+      0.8564,
+      0.8002,
+      0.8006
+    ],
+    "file": "library/media/reference/shotcraft/space-camera-moves/exploded-view/poster.webp",
+    "posterSlug": "exploded-view",
+    "cardIds": [
+      "demo-ExplodedView"
+    ]
+  },
+  "library/media/reference/shotcraft/spectrum-morph-ui/spectrum-morph-ui/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9015,
+    "cornerLum": [
+      0.9269,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/reference/shotcraft/spectrum-morph-ui/spectrum-morph-ui/poster.webp",
+    "posterSlug": "spectrum-morph-ui",
+    "cardIds": [
+      "demo-SpectrumMorphUi"
+    ]
+  },
+  "library/media/reference/shotcraft/speed-ramp-freeze/freeze-annotate/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9556,
+    "cornerLum": [
+      0.9632,
+      0.9632,
+      0.9632,
+      0.9632
+    ],
+    "file": "library/media/reference/shotcraft/speed-ramp-freeze/freeze-annotate/poster.webp",
+    "posterSlug": "freeze-annotate"
+  },
+  "library/media/reference/shotcraft/speed-ramp-freeze/speed-ramp/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9586,
+    "cornerLum": [
+      0.9632,
+      0.9632,
+      0.9632,
+      0.9632
+    ],
+    "file": "library/media/reference/shotcraft/speed-ramp-freeze/speed-ramp/poster.webp",
+    "posterSlug": "speed-ramp"
+  },
+  "library/media/reference/shotcraft/split-flap-title/split-flap-title/poster.webp": {
+    "style": "gradient",
+    "meanLum": 0.854,
+    "cornerLum": [
+      0.7234,
+      0.9341,
+      0.7128,
+      0.941
+    ],
+    "file": "library/media/reference/shotcraft/split-flap-title/split-flap-title/poster.webp",
+    "posterSlug": "split-flap-title"
+  },
+  "library/media/reference/shotcraft/spotlight-hero-card/spotlight-hero-card/poster.webp": {
+    "style": "neutral",
+    "meanLum": 0.6614,
+    "cornerLum": [
+      0.6392,
+      0.6567,
+      0.6584,
+      0.656
+    ],
+    "file": "library/media/reference/shotcraft/spotlight-hero-card/spotlight-hero-card/poster.webp",
+    "posterSlug": "spotlight-hero-card",
+    "cardIds": [
+      "demo-SpotlightHeroCard"
+    ]
+  },
+  "library/media/reference/shotcraft/spotlight-sweep-moves/corner-spotlight-reveal/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9235,
+    "cornerLum": [
+      0.9029,
+      0.9207,
+      0.9527,
+      0.847
+    ],
+    "file": "library/media/reference/shotcraft/spotlight-sweep-moves/corner-spotlight-reveal/poster.webp",
+    "posterSlug": "corner-spotlight-reveal",
+    "cardIds": [
+      "demo-CornerSpotlightReveal"
+    ]
+  },
+  "library/media/reference/shotcraft/spotlight-sweep-moves/glow-wake-sleep-panel/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1993,
+    "cornerLum": [
+      0.014,
+      0.0201,
+      0.014,
+      0.0165
+    ],
+    "file": "library/media/reference/shotcraft/spotlight-sweep-moves/glow-wake-sleep-panel/poster.webp",
+    "posterSlug": "glow-wake-sleep-panel",
+    "cardIds": [
+      "demo-GlowWakeSleepPanel"
+    ]
+  },
+  "library/media/reference/shotcraft/spotlight-sweep-moves/slide-spotlight-pan/poster.webp": {
+    "style": "neutral",
+    "meanLum": 0.4985,
+    "cornerLum": [
+      0.0813,
+      0.0652,
+      0.2023,
+      0.1302
+    ],
+    "file": "library/media/reference/shotcraft/spotlight-sweep-moves/slide-spotlight-pan/poster.webp",
+    "posterSlug": "slide-spotlight-pan",
+    "cardIds": [
+      "demo-SlideSpotlightPan"
+    ]
+  },
+  "library/media/reference/shotcraft/steep-tilt-glide/steep-tilt-glide/poster.webp": {
+    "style": "gradient",
+    "meanLum": 0.6864,
+    "cornerLum": [
+      0.018,
+      0.7602,
+      0.026,
+      0.9068
+    ],
+    "file": "library/media/reference/shotcraft/steep-tilt-glide/steep-tilt-glide/poster.webp",
+    "posterSlug": "steep-tilt-glide",
+    "cardIds": [
+      "demo-SteepTiltGlide"
+    ]
+  },
+  "library/media/reference/shotcraft/stroke-segment-build/stroke-segment-build/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.2158,
+    "cornerLum": [
+      0.1843,
+      0.1843,
+      0.1843,
+      0.1843
+    ],
+    "file": "library/media/reference/shotcraft/stroke-segment-build/stroke-segment-build/poster.webp",
+    "posterSlug": "stroke-segment-build",
+    "cardIds": [
+      "demo-StrokeSegmentBuild"
+    ]
+  },
+  "library/media/reference/shotcraft/svg-shape-morph/svg-shape-morph/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.0585,
+    "cornerLum": [
+      0.0412,
+      0.0412,
+      0.0412,
+      0.0412
+    ],
+    "file": "library/media/reference/shotcraft/svg-shape-morph/svg-shape-morph/poster.webp",
+    "posterSlug": "svg-shape-morph",
+    "cardIds": [
+      "demo-SvgShapeMorph"
+    ]
+  },
+  "library/media/reference/shotcraft/tear-streak-transitions/glitch-displace/poster.webp": {
+    "style": "gradient",
+    "meanLum": 0.888,
+    "cornerLum": [
+      0.2595,
+      0.9489,
+      0.2268,
+      0.9683
+    ],
+    "file": "library/media/reference/shotcraft/tear-streak-transitions/glitch-displace/poster.webp",
+    "posterSlug": "glitch-displace",
+    "cardIds": [
+      "demo-GlitchDisplace"
+    ]
+  },
+  "library/media/reference/shotcraft/tension-camera-moves/bullet-time-freeze-orbit/poster.webp": {
+    "style": "light",
+    "meanLum": 0.917,
+    "cornerLum": [
+      0.8791,
+      0.8033,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/reference/shotcraft/tension-camera-moves/bullet-time-freeze-orbit/poster.webp",
+    "posterSlug": "bullet-time-freeze-orbit",
+    "cardIds": [
+      "demo-BulletTimeFreezeOrbit"
+    ]
+  },
+  "library/media/reference/shotcraft/tension-camera-moves/dutch-roll-to-level/poster.webp": {
+    "style": "gradient",
+    "meanLum": 0.9169,
+    "cornerLum": [
+      0.3431,
+      0.9705,
+      0.3986,
+      0.981
+    ],
+    "file": "library/media/reference/shotcraft/tension-camera-moves/dutch-roll-to-level/poster.webp",
+    "posterSlug": "dutch-roll-to-level",
+    "cardIds": [
+      "demo-DutchRollToLevel"
+    ]
+  },
+  "library/media/reference/shotcraft/tension-camera-moves/pull-back-isolation/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9221,
+    "cornerLum": [
+      0.9788,
+      0.9661,
+      0.9603,
+      0.9269
+    ],
+    "file": "library/media/reference/shotcraft/tension-camera-moves/pull-back-isolation/poster.webp",
+    "posterSlug": "pull-back-isolation",
+    "cardIds": [
+      "demo-PullBackIsolation"
+    ]
+  },
+  "library/media/reference/shotcraft/tension-camera-moves/slow-push-in/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.2317,
+    "cornerLum": [
+      0.173,
+      0.1733,
+      0.1732,
+      0.1731
+    ],
+    "file": "library/media/reference/shotcraft/tension-camera-moves/slow-push-in/poster.webp",
+    "posterSlug": "slow-push-in",
+    "cardIds": [
+      "demo-SlowPushIn"
+    ]
+  },
+  "library/media/reference/shotcraft/terminal-3d/terminal-3d/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.0758,
+    "cornerLum": [
+      0.1173,
+      0.0966,
+      0.0532,
+      0.0532
+    ],
+    "file": "library/media/reference/shotcraft/terminal-3d/terminal-3d/poster.webp",
+    "posterSlug": "terminal-3d",
+    "cardIds": [
+      "demo-Terminal3D"
+    ]
+  },
+  "library/media/reference/shotcraft/text-as-mask/text-as-mask/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.2549,
+    "cornerLum": [
+      0.1843,
+      0.1843,
+      0.1843,
+      0.1843
+    ],
+    "file": "library/media/reference/shotcraft/text-as-mask/text-as-mask/poster.webp",
+    "posterSlug": "text-as-mask",
+    "cardIds": [
+      "demo-TextAsMask"
+    ]
+  },
+  "library/media/reference/shotcraft/text-column-converge/text-column-converge/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.0209,
+    "cornerLum": [
+      0.0196,
+      0.0196,
+      0.0196,
+      0.0196
+    ],
+    "file": "library/media/reference/shotcraft/text-column-converge/text-column-converge/poster.webp",
+    "posterSlug": "text-column-converge",
+    "cardIds": [
+      "demo-TextColumnConverge"
+    ]
+  },
+  "library/media/reference/shotcraft/theme-switch-moves/palette-theme-ripple/poster.webp": {
+    "style": "gradient",
+    "meanLum": 0.5165,
+    "cornerLum": [
+      0.1402,
+      0.511,
+      0.1215,
+      0.5192
+    ],
+    "file": "library/media/reference/shotcraft/theme-switch-moves/palette-theme-ripple/poster.webp",
+    "posterSlug": "palette-theme-ripple",
+    "cardIds": [
+      "demo-PaletteThemeRipple"
+    ]
+  },
+  "library/media/reference/shotcraft/theme-switch-moves/theme-sweep-toggle/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1569,
+    "cornerLum": [
+      0.1376,
+      0.1612,
+      0.0602,
+      0.1486
+    ],
+    "file": "library/media/reference/shotcraft/theme-switch-moves/theme-sweep-toggle/poster.webp",
+    "posterSlug": "theme-sweep-toggle",
+    "cardIds": [
+      "demo-ThemeSweepToggle"
+    ]
+  },
+  "library/media/reference/shotcraft/timeline-travel/timeline-travel/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9209,
+    "cornerLum": [
+      0.9269,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/reference/shotcraft/timeline-travel/timeline-travel/poster.webp",
+    "posterSlug": "timeline-travel",
+    "cardIds": [
+      "demo-TimelineTravel"
+    ]
+  },
+  "library/media/reference/shotcraft/title-demote-to-label/title-demote-to-label/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9235,
+    "cornerLum": [
+      0.916,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/reference/shotcraft/title-demote-to-label/title-demote-to-label/poster.webp",
+    "posterSlug": "title-demote-to-label",
+    "cardIds": [
+      "demo-TitleDemoteToLabel"
+    ]
+  },
+  "library/media/reference/shotcraft/trailer-grammar-moves/card-footage-cadence/poster.webp": {
+    "style": "gradient",
+    "meanLum": 0.8922,
+    "cornerLum": [
+      0.2613,
+      0.9532,
+      0.226,
+      0.9713
+    ],
+    "file": "library/media/reference/shotcraft/trailer-grammar-moves/card-footage-cadence/poster.webp",
+    "posterSlug": "card-footage-cadence",
+    "cardIds": [
+      "demo-CardFootageCadence"
+    ]
+  },
+  "library/media/reference/shotcraft/trailer-grammar-moves/smash-cut/poster.webp": {
+    "style": "gradient",
+    "meanLum": 0.8861,
+    "cornerLum": [
+      0.2597,
+      0.9504,
+      0.2268,
+      0.9642
+    ],
+    "file": "library/media/reference/shotcraft/trailer-grammar-moves/smash-cut/poster.webp",
+    "posterSlug": "smash-cut",
+    "cardIds": [
+      "demo-SmashCut"
+    ]
+  },
+  "library/media/reference/shotcraft/trailer-grammar-moves/trailer-bumper/poster.webp": {
+    "style": "light",
+    "meanLum": 0.8983,
+    "cornerLum": [
+      0.9269,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/reference/shotcraft/trailer-grammar-moves/trailer-bumper/poster.webp",
+    "posterSlug": "trailer-bumper",
+    "cardIds": [
+      "demo-TrailerBumper"
+    ]
+  },
+  "library/media/reference/shotcraft/transition-hidden-cut/invisible-cut/poster.webp": {
+    "style": "gradient",
+    "meanLum": 0.8809,
+    "cornerLum": [
+      0.2606,
+      0.9491,
+      0.2314,
+      0.9637
+    ],
+    "file": "library/media/reference/shotcraft/transition-hidden-cut/invisible-cut/poster.webp",
+    "posterSlug": "invisible-cut",
+    "cardIds": [
+      "demo-InvisibleCut"
+    ]
+  },
+  "library/media/reference/shotcraft/transition-hidden-cut/light-leak-burn/poster.webp": {
+    "style": "gradient",
+    "meanLum": 0.8844,
+    "cornerLum": [
+      0.2656,
+      0.9518,
+      0.2318,
+      0.9649
+    ],
+    "file": "library/media/reference/shotcraft/transition-hidden-cut/light-leak-burn/poster.webp",
+    "posterSlug": "light-leak-burn",
+    "cardIds": [
+      "demo-LightLeakBurn"
+    ]
+  },
+  "library/media/reference/shotcraft/transition-hidden-cut/versus-slam/poster.webp": {
+    "style": "gradient",
+    "meanLum": 0.8768,
+    "cornerLum": [
+      0.2602,
+      0.9503,
+      0.2268,
+      0.9641
+    ],
+    "file": "library/media/reference/shotcraft/transition-hidden-cut/versus-slam/poster.webp",
+    "posterSlug": "versus-slam",
+    "cardIds": [
+      "demo-VersusSlam"
+    ]
+  },
+  "library/media/reference/shotcraft/transition-travel/letterform-zoom/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9192,
+    "cornerLum": [
+      0.9269,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/reference/shotcraft/transition-travel/letterform-zoom/poster.webp",
+    "posterSlug": "letterform-zoom",
+    "cardIds": [
+      "demo-LetterformZoom"
+    ]
+  },
+  "library/media/reference/shotcraft/transition-travel/shared-element-morph/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9773,
+    "cornerLum": [
+      0.9384,
+      0.9868,
+      0.994,
+      0.9921
+    ],
+    "file": "library/media/reference/shotcraft/transition-travel/shared-element-morph/poster.webp",
+    "posterSlug": "shared-element-morph",
+    "cardIds": [
+      "demo-SharedElementMorph"
+    ]
+  },
+  "library/media/reference/shotcraft/type-and-filter/type-and-filter/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9627,
+    "cornerLum": [
+      0.9671,
+      0.9672,
+      0.9652,
+      0.9652
+    ],
+    "file": "library/media/reference/shotcraft/type-and-filter/type-and-filter/poster.webp",
+    "posterSlug": "type-and-filter",
+    "cardIds": [
+      "demo-TypeAndFilter"
+    ]
+  },
+  "library/media/reference/shotcraft/type-assembly-moves/drift-assembly/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9038,
+    "cornerLum": [
+      0.8958,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/reference/shotcraft/type-assembly-moves/drift-assembly/poster.webp",
+    "posterSlug": "drift-assembly"
+  },
+  "library/media/reference/shotcraft/type-assembly-moves/split-text-stagger/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9091,
+    "cornerLum": [
+      0.8927,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/reference/shotcraft/type-assembly-moves/split-text-stagger/poster.webp",
+    "posterSlug": "split-text-stagger",
+    "cardIds": [
+      "demo-SplitTextStagger"
+    ]
+  },
+  "library/media/reference/shotcraft/type-assembly-moves/text-on-path/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9191,
+    "cornerLum": [
+      0.897,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/reference/shotcraft/type-assembly-moves/text-on-path/poster.webp",
+    "posterSlug": "text-on-path",
+    "cardIds": [
+      "demo-TextOnPath"
+    ]
+  },
+  "library/media/reference/shotcraft/type-assembly-moves/tracking-expand/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9017,
+    "cornerLum": [
+      0.8972,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/reference/shotcraft/type-assembly-moves/tracking-expand/poster.webp",
+    "posterSlug": "tracking-expand"
+  },
+  "library/media/reference/shotcraft/type-entrance-moves/letter-drop-physics/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9178,
+    "cornerLum": [
+      0.9269,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/reference/shotcraft/type-entrance-moves/letter-drop-physics/poster.webp",
+    "posterSlug": "letter-drop-physics",
+    "cardIds": [
+      "demo-LetterDropPhysics"
+    ]
+  },
+  "library/media/reference/shotcraft/type-entrance-moves/scramble-decode/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9182,
+    "cornerLum": [
+      0.9269,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/reference/shotcraft/type-entrance-moves/scramble-decode/poster.webp",
+    "posterSlug": "scramble-decode",
+    "cardIds": [
+      "demo-ScrambleDecode"
+    ]
+  },
+  "library/media/reference/shotcraft/type-rhythm-sync/font-weight-pump/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9172,
+    "cornerLum": [
+      0.9269,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/reference/shotcraft/type-rhythm-sync/font-weight-pump/poster.webp",
+    "posterSlug": "font-weight-pump",
+    "cardIds": [
+      "demo-FontWeightPump"
+    ]
+  },
+  "library/media/reference/shotcraft/type-rhythm-sync/karaoke-fill-sync/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9232,
+    "cornerLum": [
+      0.9269,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/reference/shotcraft/type-rhythm-sync/karaoke-fill-sync/poster.webp",
+    "posterSlug": "karaoke-fill-sync",
+    "cardIds": [
+      "demo-KaraokeFillSync"
+    ]
+  },
+  "library/media/reference/shotcraft/typewriter-moves/error-retype/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9204,
+    "cornerLum": [
+      0.9269,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/reference/shotcraft/typewriter-moves/error-retype/poster.webp",
+    "posterSlug": "error-retype"
+  },
+  "library/media/reference/shotcraft/typewriter-moves/terminal-typewriter/poster.webp": {
+    "style": "gradient",
+    "meanLum": 0.888,
+    "cornerLum": [
+      0.2598,
+      0.949,
+      0.2268,
+      0.9693
+    ],
+    "file": "library/media/reference/shotcraft/typewriter-moves/terminal-typewriter/poster.webp",
+    "posterSlug": "terminal-typewriter",
+    "cardIds": [
+      "demo-TerminalTypewriter"
+    ]
+  },
+  "library/media/reference/shotcraft/typing-code-block/typing-code-block/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.0651,
+    "cornerLum": [
+      0.0446,
+      0.0445,
+      0.0448,
+      0.0446
+    ],
+    "file": "library/media/reference/shotcraft/typing-code-block/typing-code-block/poster.webp",
+    "posterSlug": "typing-code-block",
+    "cardIds": [
+      "demo-TypingCodeBlock"
+    ]
+  },
+  "library/media/reference/shotcraft/ui-strip-away-outro/ui-strip-away-outro/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.0765,
+    "cornerLum": [
+      0.0681,
+      0.0681,
+      0.0681,
+      0.0681
+    ],
+    "file": "library/media/reference/shotcraft/ui-strip-away-outro/ui-strip-away-outro/poster.webp",
+    "posterSlug": "ui-strip-away-outro",
+    "cardIds": [
+      "demo-UiStripAwayOutro"
+    ]
+  },
+  "library/media/reference/shotcraft/ui-to-brand-morph/icon-flip-bloom/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9173,
+    "cornerLum": [
+      0.9269,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/reference/shotcraft/ui-to-brand-morph/icon-flip-bloom/poster.webp",
+    "posterSlug": "icon-flip-bloom"
+  },
+  "library/media/reference/shotcraft/ui-to-brand-morph/input-morph-assemble/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1974,
+    "cornerLum": [
+      0.1732,
+      0.1731,
+      0.1731,
+      0.1731
+    ],
+    "file": "library/media/reference/shotcraft/ui-to-brand-morph/input-morph-assemble/poster.webp",
+    "posterSlug": "input-morph-assemble"
+  },
+  "library/media/reference/shotcraft/value-stagger-gradient/value-stagger-gradient/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.0939,
+    "cornerLum": [
+      0.0412,
+      0.0412,
+      0.0412,
+      0.0412
+    ],
+    "file": "library/media/reference/shotcraft/value-stagger-gradient/value-stagger-gradient/poster.webp",
+    "posterSlug": "value-stagger-gradient",
+    "cardIds": [
+      "demo-ValueStaggerGradient"
+    ]
+  },
+  "library/media/reference/shotcraft/vertical-word-roll-blur-cycle/vertical-word-roll-blur-cycle/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9528,
+    "cornerLum": [
+      0.9672,
+      0.9672,
+      0.9672,
+      0.9672
+    ],
+    "file": "library/media/reference/shotcraft/vertical-word-roll-blur-cycle/vertical-word-roll-blur-cycle/poster.webp",
+    "posterSlug": "vertical-word-roll-blur-cycle",
+    "cardIds": [
+      "demo-VerticalWordRollBlurCycle"
+    ]
+  },
+  "library/media/reference/shotcraft/voice-waveform-live/voice-waveform-live/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.0692,
+    "cornerLum": [
+      0.0323,
+      0.0323,
+      0.0323,
+      0.0337
+    ],
+    "file": "library/media/reference/shotcraft/voice-waveform-live/voice-waveform-live/poster.webp",
+    "posterSlug": "voice-waveform-live",
+    "cardIds": [
+      "demo-VoiceWaveformLive"
+    ]
+  },
+  "library/media/reference/shotcraft/wall-reveal-moves/bento-light-up/poster.webp": {
+    "style": "neutral",
+    "meanLum": 0.4878,
+    "cornerLum": [
+      0.1632,
+      0.1638,
+      0.1632,
+      0.1637
+    ],
+    "file": "library/media/reference/shotcraft/wall-reveal-moves/bento-light-up/poster.webp",
+    "posterSlug": "bento-light-up",
+    "cardIds": [
+      "demo-BentoLightUp"
+    ]
+  },
+  "library/media/reference/shotcraft/wall-reveal-moves/grid-wave-flip/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9558,
+    "cornerLum": [
+      0.9288,
+      0.9319,
+      0.9279,
+      0.9325
+    ],
+    "file": "library/media/reference/shotcraft/wall-reveal-moves/grid-wave-flip/poster.webp",
+    "posterSlug": "grid-wave-flip",
+    "cardIds": [
+      "demo-GridWaveFlip"
+    ]
+  },
+  "library/media/reference/shotcraft/wall-reveal-moves/wireframe-draw-on/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9145,
+    "cornerLum": [
+      0.9029,
+      0.9068,
+      0.9188,
+      0.919
+    ],
+    "file": "library/media/reference/shotcraft/wall-reveal-moves/wireframe-draw-on/poster.webp",
+    "posterSlug": "wireframe-draw-on",
+    "cardIds": [
+      "demo-WireframeDrawOn"
+    ]
+  },
+  "library/media/reference/shotcraft/white-flash-logo-simplify-cut/white-flash-logo-simplify-cut/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9823,
+    "cornerLum": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "file": "library/media/reference/shotcraft/white-flash-logo-simplify-cut/white-flash-logo-simplify-cut/poster.webp",
+    "posterSlug": "white-flash-logo-simplify-cut",
+    "cardIds": [
+      "demo-WhiteFlashLogoSimplifyCut"
+    ]
+  },
+  "library/media/reference/shotcraft/wipe-transitions/blinds-slice/poster.webp": {
+    "style": "gradient",
+    "meanLum": 0.8879,
+    "cornerLum": [
+      0.2599,
+      0.9489,
+      0.2268,
+      0.9682
+    ],
+    "file": "library/media/reference/shotcraft/wipe-transitions/blinds-slice/poster.webp",
+    "posterSlug": "blinds-slice",
+    "cardIds": [
+      "demo-BlindsSlice"
+    ]
+  },
+  "library/media/reference/shotcraft/wipe-transitions/clock-wipe/poster.webp": {
+    "style": "gradient",
+    "meanLum": 0.8879,
+    "cornerLum": [
+      0.2599,
+      0.9489,
+      0.2268,
+      0.9682
+    ],
+    "file": "library/media/reference/shotcraft/wipe-transitions/clock-wipe/poster.webp",
+    "posterSlug": "clock-wipe",
+    "cardIds": [
+      "demo-ClockWipe"
+    ]
+  },
+  "library/media/reference/shotcraft/word-relay-filmstrip/word-relay-filmstrip/poster.webp": {
+    "style": "light",
+    "meanLum": 0.7618,
+    "cornerLum": [
+      0.9636,
+      0.9722,
+      0.9375,
+      0.9722
+    ],
+    "file": "library/media/reference/shotcraft/word-relay-filmstrip/word-relay-filmstrip/poster.webp",
+    "posterSlug": "word-relay-filmstrip",
+    "cardIds": [
+      "demo-WordRelayFilmstrip"
+    ]
+  },
+  "library/media/reference/shotcraft/word-relay-geometry/word-relay-geometry/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.065,
+    "cornerLum": [
+      0.032,
+      0.0329,
+      0.0324,
+      0.032
+    ],
+    "file": "library/media/reference/shotcraft/word-relay-geometry/word-relay-geometry/poster.webp",
+    "posterSlug": "word-relay-geometry",
+    "cardIds": [
+      "demo-WordRelayGeometry"
+    ]
+  },
+  "library/media/shotcraft/ai-stream-response/fa/ai-stream-response/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.0674,
+    "cornerLum": [
+      0.0221,
+      0.0163,
+      0.0205,
+      0.0197
+    ],
+    "file": "library/media/shotcraft/ai-stream-response/fa/ai-stream-response/poster.webp",
+    "posterSlug": "ai-stream-response"
+  },
+  "library/media/shotcraft/ai-stream-response/v1/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1164,
+    "cornerLum": [
+      0.0794,
+      0.0796,
+      0.0787,
+      0.0787
+    ],
+    "file": "library/media/shotcraft/ai-stream-response/v1/poster.webp",
+    "posterSlug": "v1"
+  },
+  "library/media/shotcraft/assemble-then-type-flyin/v1/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.0944,
+    "cornerLum": [
+      0.1253,
+      0.0783,
+      0.078,
+      0.078
+    ],
+    "file": "library/media/shotcraft/assemble-then-type-flyin/v1/poster.webp",
+    "posterSlug": "v1"
+  },
+  "library/media/shotcraft/aurora-bloom-bg-flip/v1/poster.webp": {
+    "style": "light",
+    "meanLum": 0.8885,
+    "cornerLum": [
+      0.9132,
+      0.9132,
+      0.9132,
+      0.9132
+    ],
+    "file": "library/media/shotcraft/aurora-bloom-bg-flip/v1/poster.webp",
+    "posterSlug": "v1"
+  },
+  "library/media/shotcraft/autolayout-gap-dial/fa/autolayout-gap-dial/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9178,
+    "cornerLum": [
+      0.9271,
+      0.9274,
+      0.9271,
+      0.9271
+    ],
+    "file": "library/media/shotcraft/autolayout-gap-dial/fa/autolayout-gap-dial/poster.webp",
+    "posterSlug": "autolayout-gap-dial",
+    "cardIds": [
+      "demo-AutolayoutGapDial"
+    ]
+  },
+  "library/media/shotcraft/avatar-bracket-carousel/fa/avatar-bracket-carousel/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.0787,
+    "cornerLum": [
+      0.0451,
+      0.0451,
+      0.0451,
+      0.0451
+    ],
+    "file": "library/media/shotcraft/avatar-bracket-carousel/fa/avatar-bracket-carousel/poster.webp",
+    "posterSlug": "avatar-bracket-carousel",
+    "cardIds": [
+      "demo-AvatarBracketCarousel"
+    ]
+  },
+  "library/media/shotcraft/beat-step-list-theme-cycle/fa/beat-step-list-theme-cycle/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1501,
+    "cornerLum": [
+      0.1101,
+      0.1101,
+      0.1101,
+      0.1101
+    ],
+    "file": "library/media/shotcraft/beat-step-list-theme-cycle/fa/beat-step-list-theme-cycle/poster.webp",
+    "posterSlug": "beat-step-list-theme-cycle",
+    "cardIds": [
+      "demo-BeatStepListThemeCycle"
+    ]
+  },
+  "library/media/shotcraft/bezier-source-converge-merge/fa/bezier-source-converge-merge/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9346,
+    "cornerLum": [
+      0.946,
+      0.948,
+      0.946,
+      0.948
+    ],
+    "file": "library/media/shotcraft/bezier-source-converge-merge/fa/bezier-source-converge-merge/poster.webp",
+    "posterSlug": "bezier-source-converge-merge",
+    "cardIds": [
+      "demo-BezierSourceConvergeMerge"
+    ]
+  },
+  "library/media/shotcraft/blur-slide/fa/blur-slide/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.0656,
+    "cornerLum": [
+      0.0412,
+      0.0412,
+      0.0412,
+      0.0412
+    ],
+    "file": "library/media/shotcraft/blur-slide/fa/blur-slide/poster.webp",
+    "posterSlug": "blur-slide",
+    "cardIds": [
+      "demo-BlurSlide"
+    ]
+  },
+  "library/media/shotcraft/brace-expand/fa/brace-expand/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.0593,
+    "cornerLum": [
+      0.0412,
+      0.0412,
+      0.0412,
+      0.0412
+    ],
+    "file": "library/media/shotcraft/brace-expand/fa/brace-expand/poster.webp",
+    "posterSlug": "brace-expand",
+    "cardIds": [
+      "demo-BraceExpand"
+    ]
+  },
+  "library/media/shotcraft/brand-ink-open/fa/brand-ink-open/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9524,
+    "cornerLum": [
+      0.9672,
+      0.9672,
+      0.9672,
+      0.9672
+    ],
+    "file": "library/media/shotcraft/brand-ink-open/fa/brand-ink-open/poster.webp",
+    "posterSlug": "brand-ink-open",
+    "cardIds": [
+      "demo-BrandInkOpen"
+    ]
+  },
+  "library/media/shotcraft/canvas-materialize-moves/fa/diagram-cascade/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9141,
+    "cornerLum": [
+      0.9269,
+      0.9269,
+      0.9269,
+      0.9271
+    ],
+    "file": "library/media/shotcraft/canvas-materialize-moves/fa/diagram-cascade/poster.webp",
+    "posterSlug": "diagram-cascade"
+  },
+  "library/media/shotcraft/canvas-materialize-moves/fa/panel-to-canvas/poster.webp": {
+    "style": "light",
+    "meanLum": 0.927,
+    "cornerLum": [
+      0.9329,
+      0.9272,
+      0.8499,
+      0.9266
+    ],
+    "file": "library/media/shotcraft/canvas-materialize-moves/fa/panel-to-canvas/poster.webp",
+    "posterSlug": "panel-to-canvas"
+  },
+  "library/media/shotcraft/card-stack/fa/card-stack/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.0612,
+    "cornerLum": [
+      0.0412,
+      0.0412,
+      0.0412,
+      0.0412
+    ],
+    "file": "library/media/shotcraft/card-stack/fa/card-stack/poster.webp",
+    "posterSlug": "card-stack",
+    "cardIds": [
+      "demo-CardStack"
+    ]
+  },
+  "library/media/shotcraft/carousel-3d/fa/carousel-3d/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1153,
+    "cornerLum": [
+      0.0412,
+      0.0412,
+      0.0414,
+      0.0415
+    ],
+    "file": "library/media/shotcraft/carousel-3d/fa/carousel-3d/poster.webp",
+    "posterSlug": "carousel-3d",
+    "cardIds": [
+      "demo-Carousel3D"
+    ]
+  },
+  "library/media/shotcraft/cel-flash-stomp/fa/cel-flash-stomp/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9071,
+    "cornerLum": [
+      0.9269,
+      0.8988,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/shotcraft/cel-flash-stomp/fa/cel-flash-stomp/poster.webp",
+    "posterSlug": "cel-flash-stomp",
+    "cardIds": [
+      "demo-CelFlashStomp"
+    ]
+  },
+  "library/media/shotcraft/chart-live-moves/fa/axis-rescale-shock/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9361,
+    "cornerLum": [
+      0.9269,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/shotcraft/chart-live-moves/fa/axis-rescale-shock/poster.webp",
+    "posterSlug": "axis-rescale-shock"
+  },
+  "library/media/shotcraft/chart-live-moves/fa/oscilloscope-stream/poster.webp": {
+    "style": "light",
+    "meanLum": 0.935,
+    "cornerLum": [
+      0.9269,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/shotcraft/chart-live-moves/fa/oscilloscope-stream/poster.webp",
+    "posterSlug": "oscilloscope-stream"
+  },
+  "library/media/shotcraft/chart-live-moves/fa/unit-dot-swarm-regroup/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9035,
+    "cornerLum": [
+      0.9269,
+      0.9269,
+      0.9269,
+      0.9199
+    ],
+    "file": "library/media/shotcraft/chart-live-moves/fa/unit-dot-swarm-regroup/poster.webp",
+    "posterSlug": "unit-dot-swarm-regroup"
+  },
+  "library/media/shotcraft/chip-grid-single-select-blackout/fa/chip-grid-single-select-blackout/poster.webp": {
+    "style": "light",
+    "meanLum": 0.926,
+    "cornerLum": [
+      0.946,
+      0.946,
+      0.946,
+      0.946
+    ],
+    "file": "library/media/shotcraft/chip-grid-single-select-blackout/fa/chip-grid-single-select-blackout/poster.webp",
+    "posterSlug": "chip-grid-single-select-blackout",
+    "cardIds": [
+      "demo-ChipGridSingleSelectBlackout"
+    ]
+  },
+  "library/media/shotcraft/chip-lift-to-user-pill/fa/chip-lift-to-user-pill/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9154,
+    "cornerLum": [
+      0.946,
+      0.946,
+      0.946,
+      0.946
+    ],
+    "file": "library/media/shotcraft/chip-lift-to-user-pill/fa/chip-lift-to-user-pill/poster.webp",
+    "posterSlug": "chip-lift-to-user-pill",
+    "cardIds": [
+      "demo-ChipLiftToUserPill"
+    ]
+  },
+  "library/media/shotcraft/cloner-depth-echo/fa/cloner-depth-echo/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9249,
+    "cornerLum": [
+      0.9269,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/shotcraft/cloner-depth-echo/fa/cloner-depth-echo/poster.webp",
+    "posterSlug": "cloner-depth-echo",
+    "cardIds": [
+      "demo-ClonerDepthEcho"
+    ]
+  },
+  "library/media/shotcraft/collab-cursor-moves/fa/cast-ensemble/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9198,
+    "cornerLum": [
+      0.9269,
+      0.9268,
+      0.927,
+      0.9267
+    ],
+    "file": "library/media/shotcraft/collab-cursor-moves/fa/cast-ensemble/poster.webp",
+    "posterSlug": "cast-ensemble"
+  },
+  "library/media/shotcraft/collab-cursor-moves/fa/dialogue-duet/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.0888,
+    "cornerLum": [
+      0.0636,
+      0.0636,
+      0.0636,
+      0.0636
+    ],
+    "file": "library/media/shotcraft/collab-cursor-moves/fa/dialogue-duet/poster.webp",
+    "posterSlug": "dialogue-duet"
+  },
+  "library/media/shotcraft/command-palette-summon/fa/command-palette-summon/poster.webp": {
+    "style": "gradient",
+    "meanLum": 0.5982,
+    "cornerLum": [
+      0.5554,
+      0.1929,
+      0.5681,
+      0.1777
+    ],
+    "file": "library/media/shotcraft/command-palette-summon/fa/command-palette-summon/poster.webp",
+    "posterSlug": "command-palette-summon",
+    "cardIds": [
+      "demo-CommandPaletteSummon"
+    ]
+  },
+  "library/media/shotcraft/countdown-arc-scatter/fa/countdown-arc-scatter/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9836,
+    "cornerLum": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "file": "library/media/shotcraft/countdown-arc-scatter/fa/countdown-arc-scatter/poster.webp",
+    "posterSlug": "countdown-arc-scatter",
+    "cardIds": [
+      "demo-CountdownArcScatter"
+    ]
+  },
+  "library/media/shotcraft/deck-deal-flyin/fa/deck-deal-flyin/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9602,
+    "cornerLum": [
+      0.9672,
+      0.9672,
+      0.9648,
+      0.9641
+    ],
+    "file": "library/media/shotcraft/deck-deal-flyin/fa/deck-deal-flyin/poster.webp",
+    "posterSlug": "deck-deal-flyin",
+    "cardIds": [
+      "demo-DeckDealFlyin"
+    ]
+  },
+  "library/media/shotcraft/doc-park-left-pill-deal/fa/doc-park-left-pill-deal/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9471,
+    "cornerLum": [
+      0.946,
+      0.9436,
+      0.946,
+      0.9345
+    ],
+    "file": "library/media/shotcraft/doc-park-left-pill-deal/fa/doc-park-left-pill-deal/poster.webp",
+    "posterSlug": "doc-park-left-pill-deal",
+    "cardIds": [
+      "demo-DocParkLeftPillDeal"
+    ]
+  },
+  "library/media/shotcraft/document-typewriter-reveal/fa/document-typewriter-reveal/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9664,
+    "cornerLum": [
+      0.9708,
+      0.9387,
+      0.977,
+      0.977
+    ],
+    "file": "library/media/shotcraft/document-typewriter-reveal/fa/document-typewriter-reveal/poster.webp",
+    "posterSlug": "document-typewriter-reveal",
+    "cardIds": [
+      "demo-DocumentTypewriterReveal"
+    ]
+  },
+  "library/media/shotcraft/draw-svg-trace/fa/draw-svg-trace/poster.webp": {
+    "style": "light",
+    "meanLum": 0.929,
+    "cornerLum": [
+      0.9269,
+      0.9041,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/shotcraft/draw-svg-trace/fa/draw-svg-trace/poster.webp",
+    "posterSlug": "draw-svg-trace",
+    "cardIds": [
+      "demo-DrawSvgTrace"
+    ]
+  },
+  "library/media/shotcraft/element-body-moves/fa/axial-stretch/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9271,
+    "cornerLum": [
+      0.9269,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/shotcraft/element-body-moves/fa/axial-stretch/poster.webp",
+    "posterSlug": "axial-stretch",
+    "cardIds": [
+      "demo-AxialStretch"
+    ]
+  },
+  "library/media/shotcraft/element-body-moves/fa/contact-shadow-lift/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9322,
+    "cornerLum": [
+      0.9319,
+      0.9013,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/shotcraft/element-body-moves/fa/contact-shadow-lift/poster.webp",
+    "posterSlug": "contact-shadow-lift",
+    "cardIds": [
+      "demo-ContactShadowLift"
+    ]
+  },
+  "library/media/shotcraft/floating-glossy-label-pills/fa/floating-glossy-label-pills/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9324,
+    "cornerLum": [
+      0.9089,
+      0.9348,
+      0.9498,
+      0.9155
+    ],
+    "file": "library/media/shotcraft/floating-glossy-label-pills/fa/floating-glossy-label-pills/poster.webp",
+    "posterSlug": "floating-glossy-label-pills",
+    "cardIds": [
+      "demo-FloatingGlossyLabelPills"
+    ]
+  },
+  "library/media/shotcraft/flying-words/fa/flying-words/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.0687,
+    "cornerLum": [
+      0.0702,
+      0.0216,
+      0.0216,
+      0.0216
+    ],
+    "file": "library/media/shotcraft/flying-words/fa/flying-words/poster.webp",
+    "posterSlug": "flying-words",
+    "cardIds": [
+      "demo-FlyingWords"
+    ]
+  },
+  "library/media/shotcraft/glass-pill-dictation-typing/fa/glass-pill-dictation-typing/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.0163,
+    "cornerLum": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "file": "library/media/shotcraft/glass-pill-dictation-typing/fa/glass-pill-dictation-typing/poster.webp",
+    "posterSlug": "glass-pill-dictation-typing",
+    "cardIds": [
+      "demo-GlassPillDictationTyping"
+    ]
+  },
+  "library/media/shotcraft/glitch-cycle/fa/glitch-cycle/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.0474,
+    "cornerLum": [
+      0.0412,
+      0.0412,
+      0.0412,
+      0.0412
+    ],
+    "file": "library/media/shotcraft/glitch-cycle/fa/glitch-cycle/poster.webp",
+    "posterSlug": "glitch-cycle",
+    "cardIds": [
+      "demo-GlitchCycle"
+    ]
+  },
+  "library/media/shotcraft/gradient-word-sweep/fa/gradient-word-sweep/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.0539,
+    "cornerLum": [
+      0.0196,
+      0.0196,
+      0.0196,
+      0.0196
+    ],
+    "file": "library/media/shotcraft/gradient-word-sweep/fa/gradient-word-sweep/poster.webp",
+    "posterSlug": "gradient-word-sweep",
+    "cardIds": [
+      "demo-GradientWordSweep"
+    ]
+  },
+  "library/media/shotcraft/hashtag-to-pill-materialize/fa/hashtag-to-pill-materialize/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9827,
+    "cornerLum": [
+      0.9869,
+      0.9869,
+      0.9869,
+      0.9869
+    ],
+    "file": "library/media/shotcraft/hashtag-to-pill-materialize/fa/hashtag-to-pill-materialize/poster.webp",
+    "posterSlug": "hashtag-to-pill-materialize",
+    "cardIds": [
+      "demo-HashtagToPillMaterialize"
+    ]
+  },
+  "library/media/shotcraft/input-trigger-moves/fa/cursor-performance/poster.webp": {
+    "style": "gradient",
+    "meanLum": 0.884,
+    "cornerLum": [
+      0.923,
+      0.2601,
+      0.9687,
+      0.2268
+    ],
+    "file": "library/media/shotcraft/input-trigger-moves/fa/cursor-performance/poster.webp",
+    "posterSlug": "cursor-performance"
+  },
+  "library/media/shotcraft/input-trigger-moves/fa/keycap-smash-cut/poster.webp": {
+    "style": "gradient",
+    "meanLum": 0.8878,
+    "cornerLum": [
+      0.9487,
+      0.2603,
+      0.9685,
+      0.2268
+    ],
+    "file": "library/media/shotcraft/input-trigger-moves/fa/keycap-smash-cut/poster.webp",
+    "posterSlug": "keycap-smash-cut",
+    "cardIds": [
+      "demo-KeycapSmashCut"
+    ]
+  },
+  "library/media/shotcraft/integration-hub-map/fa/integration-hub-map/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.2854,
+    "cornerLum": [
+      0.0308,
+      0.0309,
+      0.0539,
+      0.0311
+    ],
+    "file": "library/media/shotcraft/integration-hub-map/fa/integration-hub-map/poster.webp",
+    "posterSlug": "integration-hub-map",
+    "cardIds": [
+      "demo-IntegrationHubMap"
+    ]
+  },
+  "library/media/shotcraft/lead-word-zoom-assemble/fa/lead-word-zoom-assemble/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9248,
+    "cornerLum": [
+      0.9221,
+      0.9366,
+      0.9342,
+      0.9205
+    ],
+    "file": "library/media/shotcraft/lead-word-zoom-assemble/fa/lead-word-zoom-assemble/poster.webp",
+    "posterSlug": "lead-word-zoom-assemble",
+    "cardIds": [
+      "demo-LeadWordZoomAssemble"
+    ]
+  },
+  "library/media/shotcraft/letterspace-materialize/fa/letterspace-materialize/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1672,
+    "cornerLum": [
+      0.1992,
+      0.2071,
+      0.0825,
+      0.0725
+    ],
+    "file": "library/media/shotcraft/letterspace-materialize/fa/letterspace-materialize/poster.webp",
+    "posterSlug": "letterspace-materialize",
+    "cardIds": [
+      "demo-LetterspaceMaterialize"
+    ]
+  },
+  "library/media/shotcraft/light-play-moves/fa/halation-bloom/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1825,
+    "cornerLum": [
+      0.1638,
+      0.1638,
+      0.1638,
+      0.1638
+    ],
+    "file": "library/media/shotcraft/light-play-moves/fa/halation-bloom/poster.webp",
+    "posterSlug": "halation-bloom",
+    "cardIds": [
+      "demo-HalationBloom"
+    ]
+  },
+  "library/media/shotcraft/light-play-moves/fa/sheen-sweep/poster.webp": {
+    "style": "light",
+    "meanLum": 0.8206,
+    "cornerLum": [
+      0.9269,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/shotcraft/light-play-moves/fa/sheen-sweep/poster.webp",
+    "posterSlug": "sheen-sweep"
+  },
+  "library/media/shotcraft/light-play-moves/fa/spotlight-sweep/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1962,
+    "cornerLum": [
+      0.1638,
+      0.1638,
+      0.1638,
+      0.1638
+    ],
+    "file": "library/media/shotcraft/light-play-moves/fa/spotlight-sweep/poster.webp",
+    "posterSlug": "spotlight-sweep"
+  },
+  "library/media/shotcraft/line-boil/fa/line-boil/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9126,
+    "cornerLum": [
+      0.9269,
+      0.9019,
+      0.8947,
+      0.9269
+    ],
+    "file": "library/media/shotcraft/line-boil/fa/line-boil/poster.webp",
+    "posterSlug": "line-boil",
+    "cardIds": [
+      "demo-LineBoil"
+    ]
+  },
+  "library/media/shotcraft/list-reveal/fa/list-reveal/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.076,
+    "cornerLum": [
+      0.0412,
+      0.0412,
+      0.0412,
+      0.0412
+    ],
+    "file": "library/media/shotcraft/list-reveal/fa/list-reveal/poster.webp",
+    "posterSlug": "list-reveal",
+    "cardIds": [
+      "demo-ListReveal"
+    ]
+  },
+  "library/media/shotcraft/list-stack-press/fa/list-stack-press/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9667,
+    "cornerLum": [
+      0.9506,
+      0.9672,
+      0.9672,
+      0.9672
+    ],
+    "file": "library/media/shotcraft/list-stack-press/fa/list-stack-press/poster.webp",
+    "posterSlug": "list-stack-press",
+    "cardIds": [
+      "demo-ListStackPress"
+    ]
+  },
+  "library/media/shotcraft/marker-underline-title/fa/marker-underline-title/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9307,
+    "cornerLum": [
+      0.9543,
+      0.9543,
+      0.9545,
+      0.9545
+    ],
+    "file": "library/media/shotcraft/marker-underline-title/fa/marker-underline-title/poster.webp",
+    "posterSlug": "marker-underline-title",
+    "cardIds": [
+      "demo-MarkerUnderlineTitle"
+    ]
+  },
+  "library/media/shotcraft/morph-from-primitive/fa/morph-from-primitive/poster.webp": {
+    "style": "light",
+    "meanLum": 0.924,
+    "cornerLum": [
+      0.9269,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/shotcraft/morph-from-primitive/fa/morph-from-primitive/poster.webp",
+    "posterSlug": "morph-from-primitive",
+    "cardIds": [
+      "demo-MorphFromPrimitive"
+    ]
+  },
+  "library/media/shotcraft/neon-frame-forerun/fa/neon-frame-forerun/poster.webp": {
+    "style": "neutral",
+    "meanLum": 0.6333,
+    "cornerLum": [
+      0.0337,
+      0.023,
+      0.147,
+      0.0321
+    ],
+    "file": "library/media/shotcraft/neon-frame-forerun/fa/neon-frame-forerun/poster.webp",
+    "posterSlug": "neon-frame-forerun",
+    "cardIds": [
+      "demo-NeonFrameForerun"
+    ]
+  },
+  "library/media/shotcraft/neon-frame-orbit-drop/fa/neon-frame-orbit-drop/poster.webp": {
+    "style": "neutral",
+    "meanLum": 0.4809,
+    "cornerLum": [
+      0.0271,
+      0.023,
+      0.0362,
+      0.0329
+    ],
+    "file": "library/media/shotcraft/neon-frame-orbit-drop/fa/neon-frame-orbit-drop/poster.webp",
+    "posterSlug": "neon-frame-orbit-drop"
+  },
+  "library/media/shotcraft/neon-triple-marquee/fa/neon-triple-marquee/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.0536,
+    "cornerLum": [
+      0.0285,
+      0.0262,
+      0.0353,
+      0.0743
+    ],
+    "file": "library/media/shotcraft/neon-triple-marquee/fa/neon-triple-marquee/poster.webp",
+    "posterSlug": "neon-triple-marquee",
+    "cardIds": [
+      "demo-NeonTripleMarquee"
+    ]
+  },
+  "library/media/shotcraft/odometer-digit-roll/fa/odometer-digit-roll/poster.webp": {
+    "style": "light",
+    "meanLum": 0.911,
+    "cornerLum": [
+      0.9269,
+      0.9001,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/shotcraft/odometer-digit-roll/fa/odometer-digit-roll/poster.webp",
+    "posterSlug": "odometer-digit-roll",
+    "cardIds": [
+      "demo-OdometerDigitRoll"
+    ]
+  },
+  "library/media/shotcraft/outline-word-fill/fa/outline-word-fill/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.0113,
+    "cornerLum": [
+      0.0078,
+      0.008,
+      0.0078,
+      0.0078
+    ],
+    "file": "library/media/shotcraft/outline-word-fill/fa/outline-word-fill/poster.webp",
+    "posterSlug": "outline-word-fill",
+    "cardIds": [
+      "demo-OutlineWordFill"
+    ]
+  },
+  "library/media/shotcraft/page-turn-transitions/fa/barn-door-split/poster.webp": {
+    "style": "gradient",
+    "meanLum": 0.8859,
+    "cornerLum": [
+      0.9484,
+      0.2602,
+      0.9687,
+      0.2268
+    ],
+    "file": "library/media/shotcraft/page-turn-transitions/fa/barn-door-split/poster.webp",
+    "posterSlug": "barn-door-split",
+    "cardIds": [
+      "demo-BarnDoorSplit"
+    ]
+  },
+  "library/media/shotcraft/page-turn-transitions/fa/cube-rotate/poster.webp": {
+    "style": "light",
+    "meanLum": 0.8989,
+    "cornerLum": [
+      0.9278,
+      0.8919,
+      0.9269,
+      0.9145
+    ],
+    "file": "library/media/shotcraft/page-turn-transitions/fa/cube-rotate/poster.webp",
+    "posterSlug": "cube-rotate",
+    "cardIds": [
+      "demo-CubeRotate"
+    ]
+  },
+  "library/media/shotcraft/page-waterfall-wall/fa/page-waterfall-wall/poster.webp": {
+    "style": "gradient",
+    "meanLum": 0.7459,
+    "cornerLum": [
+      0.3424,
+      0.434,
+      0.5423,
+      0.5453
+    ],
+    "file": "library/media/shotcraft/page-waterfall-wall/fa/page-waterfall-wall/poster.webp",
+    "posterSlug": "page-waterfall-wall",
+    "cardIds": [
+      "demo-PageWaterfallWall"
+    ]
+  },
+  "library/media/shotcraft/paper-craft-moves/fa/masking-tape-slap/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9253,
+    "cornerLum": [
+      0.9269,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/shotcraft/paper-craft-moves/fa/masking-tape-slap/poster.webp",
+    "posterSlug": "masking-tape-slap",
+    "cardIds": [
+      "demo-MaskingTapeSlap"
+    ]
+  },
+  "library/media/shotcraft/paper-craft-moves/fa/popup-book-rise/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9102,
+    "cornerLum": [
+      0.8701,
+      0.8619,
+      0.8622,
+      0.8622
+    ],
+    "file": "library/media/shotcraft/paper-craft-moves/fa/popup-book-rise/poster.webp",
+    "posterSlug": "popup-book-rise",
+    "cardIds": [
+      "demo-PopupBookRise"
+    ]
+  },
+  "library/media/shotcraft/paper-title-card/fa/paper-title-card/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9505,
+    "cornerLum": [
+      0.9632,
+      0.9632,
+      0.9632,
+      0.9632
+    ],
+    "file": "library/media/shotcraft/paper-title-card/fa/paper-title-card/poster.webp",
+    "posterSlug": "paper-title-card",
+    "cardIds": [
+      "demo-PaperTitleCard"
+    ]
+  },
+  "library/media/shotcraft/picker-carousel-feature-cycle/fa/picker-carousel-feature-cycle/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9453,
+    "cornerLum": [
+      0.9504,
+      0.9504,
+      0.9504,
+      0.9504
+    ],
+    "file": "library/media/shotcraft/picker-carousel-feature-cycle/fa/picker-carousel-feature-cycle/poster.webp",
+    "posterSlug": "picker-carousel-feature-cycle",
+    "cardIds": [
+      "demo-PickerCarouselFeatureCycle"
+    ]
+  },
+  "library/media/shotcraft/pill-chip-slot-cycle-handled/fa/pill-chip-slot-cycle-handled/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9241,
+    "cornerLum": [
+      0.9813,
+      0.9813,
+      0.9816,
+      0.9816
+    ],
+    "file": "library/media/shotcraft/pill-chip-slot-cycle-handled/fa/pill-chip-slot-cycle-handled/poster.webp",
+    "posterSlug": "pill-chip-slot-cycle-handled",
+    "cardIds": [
+      "demo-PillChipSlotCycleHandled"
+    ]
+  },
+  "library/media/shotcraft/pill-slot-cycle/fa/pill-slot-cycle/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9167,
+    "cornerLum": [
+      0.9269,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/shotcraft/pill-slot-cycle/fa/pill-slot-cycle/poster.webp",
+    "posterSlug": "pill-slot-cycle",
+    "cardIds": [
+      "demo-PillSlotCycle"
+    ]
+  },
+  "library/media/shotcraft/platform-hinge-rise/fa/platform-hinge-rise/poster.webp": {
+    "style": "light",
+    "meanLum": 0.8917,
+    "cornerLum": [
+      0.9535,
+      0.9535,
+      0.9537,
+      0.9537
+    ],
+    "file": "library/media/shotcraft/platform-hinge-rise/fa/platform-hinge-rise/poster.webp",
+    "posterSlug": "platform-hinge-rise",
+    "cardIds": [
+      "demo-PlatformHingeRise"
+    ]
+  },
+  "library/media/shotcraft/product-card-progressive-assemble/fa/product-card-progressive-assemble/poster.webp": {
+    "style": "neutral",
+    "meanLum": 0.5489,
+    "cornerLum": [
+      0.0651,
+      0.0655,
+      0.0605,
+      0.0612
+    ],
+    "file": "library/media/shotcraft/product-card-progressive-assemble/fa/product-card-progressive-assemble/poster.webp",
+    "posterSlug": "product-card-progressive-assemble",
+    "cardIds": [
+      "demo-ProductCardProgressiveAssemble"
+    ]
+  },
+  "library/media/shotcraft/radial-wave/fa/radial-wave/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.0778,
+    "cornerLum": [
+      0.0828,
+      0.0834,
+      0.0834,
+      0.0837
+    ],
+    "file": "library/media/shotcraft/radial-wave/fa/radial-wave/poster.webp",
+    "posterSlug": "radial-wave",
+    "cardIds": [
+      "demo-RadialWave"
+    ]
+  },
+  "library/media/shotcraft/research-card-stack-scroll/fa/research-card-stack-scroll/poster.webp": {
+    "style": "neutral",
+    "meanLum": 0.5448,
+    "cornerLum": [
+      0.9746,
+      0.9745,
+      0.89,
+      0.9747
+    ],
+    "file": "library/media/shotcraft/research-card-stack-scroll/fa/research-card-stack-scroll/poster.webp",
+    "posterSlug": "research-card-stack-scroll",
+    "cardIds": [
+      "demo-ResearchCardStackScroll"
+    ]
+  },
+  "library/media/shotcraft/riso-print-hits/fa/beat-pump/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9117,
+    "cornerLum": [
+      0.9269,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/shotcraft/riso-print-hits/fa/beat-pump/poster.webp",
+    "posterSlug": "beat-pump"
+  },
+  "library/media/shotcraft/riso-print-hits/fa/misregistration-hit/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9114,
+    "cornerLum": [
+      0.9269,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/shotcraft/riso-print-hits/fa/misregistration-hit/poster.webp",
+    "posterSlug": "misregistration-hit"
+  },
+  "library/media/shotcraft/row-embed/fa/row-embed/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9615,
+    "cornerLum": [
+      0.9672,
+      0.9672,
+      0.9672,
+      0.9672
+    ],
+    "file": "library/media/shotcraft/row-embed/fa/row-embed/poster.webp",
+    "posterSlug": "row-embed",
+    "cardIds": [
+      "demo-RowEmbed"
+    ]
+  },
+  "library/media/shotcraft/runway-ground-skim/fa/runway-ground-skim/poster.webp": {
+    "style": "gradient",
+    "meanLum": 0.808,
+    "cornerLum": [
+      0.5817,
+      0.5399,
+      0.2973,
+      0.2916
+    ],
+    "file": "library/media/shotcraft/runway-ground-skim/fa/runway-ground-skim/poster.webp",
+    "posterSlug": "runway-ground-skim",
+    "cardIds": [
+      "demo-RunwayGroundSkim"
+    ]
+  },
+  "library/media/shotcraft/scramble/fa/scramble/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.0454,
+    "cornerLum": [
+      0.032,
+      0.032,
+      0.032,
+      0.032
+    ],
+    "file": "library/media/shotcraft/scramble/fa/scramble/poster.webp",
+    "posterSlug": "scramble",
+    "cardIds": [
+      "demo-Scramble"
+    ]
+  },
+  "library/media/shotcraft/segmented-thumb-hero/fa/segmented-thumb-hero/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9204,
+    "cornerLum": [
+      0.9269,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/shotcraft/segmented-thumb-hero/fa/segmented-thumb-hero/poster.webp",
+    "posterSlug": "segmented-thumb-hero",
+    "cardIds": [
+      "demo-SegmentedThumbHero"
+    ]
+  },
+  "library/media/shotcraft/skeleton-reveal/fa/skeleton-reveal/poster.webp": {
+    "style": "gradient",
+    "meanLum": 0.8492,
+    "cornerLum": [
+      0.9416,
+      0.7652,
+      0.9402,
+      0.71
+    ],
+    "file": "library/media/shotcraft/skeleton-reveal/fa/skeleton-reveal/poster.webp",
+    "posterSlug": "skeleton-reveal",
+    "cardIds": [
+      "demo-SkeletonReveal"
+    ]
+  },
+  "library/media/shotcraft/spectrum-morph-ui/fa/spectrum-morph-ui/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9085,
+    "cornerLum": [
+      0.9269,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/shotcraft/spectrum-morph-ui/fa/spectrum-morph-ui/poster.webp",
+    "posterSlug": "spectrum-morph-ui",
+    "cardIds": [
+      "demo-SpectrumMorphUi"
+    ]
+  },
+  "library/media/shotcraft/split-flap-title/fa/split-flap-title/poster.webp": {
+    "style": "gradient",
+    "meanLum": 0.8366,
+    "cornerLum": [
+      0.9345,
+      0.7236,
+      0.941,
+      0.7128
+    ],
+    "file": "library/media/shotcraft/split-flap-title/fa/split-flap-title/poster.webp",
+    "posterSlug": "split-flap-title"
+  },
+  "library/media/shotcraft/stroke-segment-build/fa/stroke-segment-build/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.2147,
+    "cornerLum": [
+      0.1844,
+      0.1843,
+      0.1843,
+      0.1843
+    ],
+    "file": "library/media/shotcraft/stroke-segment-build/fa/stroke-segment-build/poster.webp",
+    "posterSlug": "stroke-segment-build",
+    "cardIds": [
+      "demo-StrokeSegmentBuild"
+    ]
+  },
+  "library/media/shotcraft/svg-shape-morph/fa/svg-shape-morph/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.0586,
+    "cornerLum": [
+      0.0412,
+      0.0412,
+      0.0412,
+      0.0412
+    ],
+    "file": "library/media/shotcraft/svg-shape-morph/fa/svg-shape-morph/poster.webp",
+    "posterSlug": "svg-shape-morph",
+    "cardIds": [
+      "demo-SvgShapeMorph"
+    ]
+  },
+  "library/media/shotcraft/text-as-mask/fa/text-as-mask/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.2554,
+    "cornerLum": [
+      0.1843,
+      0.1843,
+      0.1843,
+      0.1843
+    ],
+    "file": "library/media/shotcraft/text-as-mask/fa/text-as-mask/poster.webp",
+    "posterSlug": "text-as-mask",
+    "cardIds": [
+      "demo-TextAsMask"
+    ]
+  },
+  "library/media/shotcraft/text-column-converge/fa/text-column-converge/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.0211,
+    "cornerLum": [
+      0.0196,
+      0.0196,
+      0.0196,
+      0.0196
+    ],
+    "file": "library/media/shotcraft/text-column-converge/fa/text-column-converge/poster.webp",
+    "posterSlug": "text-column-converge",
+    "cardIds": [
+      "demo-TextColumnConverge"
+    ]
+  },
+  "library/media/shotcraft/theme-switch-moves/fa/palette-theme-ripple/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.141,
+    "cornerLum": [
+      0.1473,
+      0.1263,
+      0.1319,
+      0.0558
+    ],
+    "file": "library/media/shotcraft/theme-switch-moves/fa/palette-theme-ripple/poster.webp",
+    "posterSlug": "palette-theme-ripple",
+    "cardIds": [
+      "demo-PaletteThemeRipple"
+    ]
+  },
+  "library/media/shotcraft/theme-switch-moves/fa/theme-sweep-toggle/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.157,
+    "cornerLum": [
+      0.1624,
+      0.1375,
+      0.1485,
+      0.0602
+    ],
+    "file": "library/media/shotcraft/theme-switch-moves/fa/theme-sweep-toggle/poster.webp",
+    "posterSlug": "theme-sweep-toggle",
+    "cardIds": [
+      "demo-ThemeSweepToggle"
+    ]
+  },
+  "library/media/shotcraft/title-demote-to-label/fa/title-demote-to-label/poster.webp": {
+    "style": "light",
+    "meanLum": 0.8957,
+    "cornerLum": [
+      0.9269,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/shotcraft/title-demote-to-label/fa/title-demote-to-label/poster.webp",
+    "posterSlug": "title-demote-to-label",
+    "cardIds": [
+      "demo-TitleDemoteToLabel"
+    ]
+  },
+  "library/media/shotcraft/type-and-filter/fa/type-and-filter/poster.webp": {
+    "style": "light",
+    "meanLum": 0.965,
+    "cornerLum": [
+      0.9672,
+      0.9672,
+      0.9652,
+      0.9652
+    ],
+    "file": "library/media/shotcraft/type-and-filter/fa/type-and-filter/poster.webp",
+    "posterSlug": "type-and-filter",
+    "cardIds": [
+      "demo-TypeAndFilter"
+    ]
+  },
+  "library/media/shotcraft/type-assembly-moves/fa/drift-assembly/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9139,
+    "cornerLum": [
+      0.9269,
+      0.8996,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/shotcraft/type-assembly-moves/fa/drift-assembly/poster.webp",
+    "posterSlug": "drift-assembly"
+  },
+  "library/media/shotcraft/type-assembly-moves/fa/split-text-stagger/poster.webp": {
+    "style": "light",
+    "meanLum": 0.916,
+    "cornerLum": [
+      0.9269,
+      0.9062,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/shotcraft/type-assembly-moves/fa/split-text-stagger/poster.webp",
+    "posterSlug": "split-text-stagger",
+    "cardIds": [
+      "demo-SplitTextStagger"
+    ]
+  },
+  "library/media/shotcraft/type-assembly-moves/fa/text-on-path/poster.webp": {
+    "style": "light",
+    "meanLum": 0.921,
+    "cornerLum": [
+      0.9269,
+      0.9042,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/shotcraft/type-assembly-moves/fa/text-on-path/poster.webp",
+    "posterSlug": "text-on-path",
+    "cardIds": [
+      "demo-TextOnPath"
+    ]
+  },
+  "library/media/shotcraft/type-assembly-moves/fa/tracking-expand/poster.webp": {
+    "style": "light",
+    "meanLum": 0.914,
+    "cornerLum": [
+      0.9269,
+      0.9128,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/shotcraft/type-assembly-moves/fa/tracking-expand/poster.webp",
+    "posterSlug": "tracking-expand"
+  },
+  "library/media/shotcraft/type-entrance-moves/fa/letter-drop-physics/poster.webp": {
+    "style": "light",
+    "meanLum": 0.8976,
+    "cornerLum": [
+      0.9269,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/shotcraft/type-entrance-moves/fa/letter-drop-physics/poster.webp",
+    "posterSlug": "letter-drop-physics",
+    "cardIds": [
+      "demo-LetterDropPhysics"
+    ]
+  },
+  "library/media/shotcraft/type-entrance-moves/fa/scramble-decode/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9105,
+    "cornerLum": [
+      0.9269,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/shotcraft/type-entrance-moves/fa/scramble-decode/poster.webp",
+    "posterSlug": "scramble-decode",
+    "cardIds": [
+      "demo-ScrambleDecode"
+    ]
+  },
+  "library/media/shotcraft/type-rhythm-sync/fa/font-weight-pump/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9027,
+    "cornerLum": [
+      0.9269,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/shotcraft/type-rhythm-sync/fa/font-weight-pump/poster.webp",
+    "posterSlug": "font-weight-pump",
+    "cardIds": [
+      "demo-FontWeightPump"
+    ]
+  },
+  "library/media/shotcraft/type-rhythm-sync/fa/karaoke-fill-sync/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9122,
+    "cornerLum": [
+      0.9269,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/shotcraft/type-rhythm-sync/fa/karaoke-fill-sync/poster.webp",
+    "posterSlug": "karaoke-fill-sync",
+    "cardIds": [
+      "demo-KaraokeFillSync"
+    ]
+  },
+  "library/media/shotcraft/typewriter-moves/fa/error-retype/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9132,
+    "cornerLum": [
+      0.9269,
+      0.9269,
+      0.9269,
+      0.9269
+    ],
+    "file": "library/media/shotcraft/typewriter-moves/fa/error-retype/poster.webp",
+    "posterSlug": "error-retype"
+  },
+  "library/media/shotcraft/typewriter-moves/fa/terminal-typewriter/poster.webp": {
+    "style": "gradient",
+    "meanLum": 0.888,
+    "cornerLum": [
+      0.9483,
+      0.2601,
+      0.9686,
+      0.2268
+    ],
+    "file": "library/media/shotcraft/typewriter-moves/fa/terminal-typewriter/poster.webp",
+    "posterSlug": "terminal-typewriter",
+    "cardIds": [
+      "demo-TerminalTypewriter"
+    ]
+  },
+  "library/media/shotcraft/typing-code-block/fa/typing-code-block/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.0668,
+    "cornerLum": [
+      0.0446,
+      0.0443,
+      0.0447,
+      0.0447
+    ],
+    "file": "library/media/shotcraft/typing-code-block/fa/typing-code-block/poster.webp",
+    "posterSlug": "typing-code-block",
+    "cardIds": [
+      "demo-TypingCodeBlock"
+    ]
+  },
+  "library/media/shotcraft/value-stagger-gradient/fa/value-stagger-gradient/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1024,
+    "cornerLum": [
+      0.0412,
+      0.0412,
+      0.0412,
+      0.0412
+    ],
+    "file": "library/media/shotcraft/value-stagger-gradient/fa/value-stagger-gradient/poster.webp",
+    "posterSlug": "value-stagger-gradient",
+    "cardIds": [
+      "demo-ValueStaggerGradient"
+    ]
+  },
+  "library/media/shotcraft/vertical-word-roll-blur-cycle/fa/vertical-word-roll-blur-cycle/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9516,
+    "cornerLum": [
+      0.9672,
+      0.9672,
+      0.9672,
+      0.9672
+    ],
+    "file": "library/media/shotcraft/vertical-word-roll-blur-cycle/fa/vertical-word-roll-blur-cycle/poster.webp",
+    "posterSlug": "vertical-word-roll-blur-cycle",
+    "cardIds": [
+      "demo-VerticalWordRollBlurCycle"
+    ]
+  },
+  "library/media/shotcraft/voice-waveform-live/fa/voice-waveform-live/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.0696,
+    "cornerLum": [
+      0.0323,
+      0.0323,
+      0.0323,
+      0.034
+    ],
+    "file": "library/media/shotcraft/voice-waveform-live/fa/voice-waveform-live/poster.webp",
+    "posterSlug": "voice-waveform-live",
+    "cardIds": [
+      "demo-VoiceWaveformLive"
+    ]
+  },
+  "library/media/shotcraft/wall-reveal-moves/fa/bento-light-up/poster.webp": {
+    "style": "neutral",
+    "meanLum": 0.535,
+    "cornerLum": [
+      0.1638,
+      0.1635,
+      0.1633,
+      0.1633
+    ],
+    "file": "library/media/shotcraft/wall-reveal-moves/fa/bento-light-up/poster.webp",
+    "posterSlug": "bento-light-up",
+    "cardIds": [
+      "demo-BentoLightUp"
+    ]
+  },
+  "library/media/shotcraft/wall-reveal-moves/fa/grid-wave-flip/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9557,
+    "cornerLum": [
+      0.9321,
+      0.9287,
+      0.9325,
+      0.928
+    ],
+    "file": "library/media/shotcraft/wall-reveal-moves/fa/grid-wave-flip/poster.webp",
+    "posterSlug": "grid-wave-flip",
+    "cardIds": [
+      "demo-GridWaveFlip"
+    ]
+  },
+  "library/media/shotcraft/wall-reveal-moves/fa/wireframe-draw-on/poster.webp": {
+    "style": "light",
+    "meanLum": 0.8993,
+    "cornerLum": [
+      0.9072,
+      0.7506,
+      0.9187,
+      0.7539
+    ],
+    "file": "library/media/shotcraft/wall-reveal-moves/fa/wireframe-draw-on/poster.webp",
+    "posterSlug": "wireframe-draw-on",
+    "cardIds": [
+      "demo-WireframeDrawOn"
+    ]
+  },
+  "library/media/shotcraft/word-relay-filmstrip/fa/word-relay-filmstrip/poster.webp": {
+    "style": "light",
+    "meanLum": 0.7475,
+    "cornerLum": [
+      0.9722,
+      0.975,
+      0.9722,
+      0.9581
+    ],
+    "file": "library/media/shotcraft/word-relay-filmstrip/fa/word-relay-filmstrip/poster.webp",
+    "posterSlug": "word-relay-filmstrip",
+    "cardIds": [
+      "demo-WordRelayFilmstrip"
+    ]
+  },
+  "library/media/shotcraft/word-relay-geometry/fa/word-relay-geometry/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.0505,
+    "cornerLum": [
+      0.032,
+      0.0322,
+      0.0322,
+      0.032
+    ],
+    "file": "library/media/shotcraft/word-relay-geometry/fa/word-relay-geometry/poster.webp",
+    "posterSlug": "word-relay-geometry",
+    "cardIds": [
+      "demo-WordRelayGeometry"
+    ]
+  },
+  "library/media/typography/assembly/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1119,
+    "cornerLum": [
+      0.1071,
+      0.113,
+      0.1077,
+      0.1041
+    ],
+    "file": "library/media/typography/assembly/poster.webp",
+    "posterSlug": "assembly"
+  },
+  "library/media/typography/blurslide/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1219,
+    "cornerLum": [
+      0.1073,
+      0.1124,
+      0.1083,
+      0.1043
+    ],
+    "file": "library/media/typography/blurslide/poster.webp",
+    "posterSlug": "blurslide",
+    "cardIds": [
+      "demo-BlurSlide"
+    ]
+  },
+  "library/media/typography/brace/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1194,
+    "cornerLum": [
+      0.1072,
+      0.1125,
+      0.108,
+      0.1042
+    ],
+    "file": "library/media/typography/brace/poster.webp",
+    "posterSlug": "brace"
+  },
+  "library/media/typography/chipcycle/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1113,
+    "cornerLum": [
+      0.1066,
+      0.1124,
+      0.1075,
+      0.1041
+    ],
+    "file": "library/media/typography/chipcycle/poster.webp",
+    "posterSlug": "chipcycle"
+  },
+  "library/media/typography/codeblock/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.0943,
+    "cornerLum": [
+      0.1064,
+      0.113,
+      0.1079,
+      0.1041
+    ],
+    "file": "library/media/typography/codeblock/poster.webp",
+    "posterSlug": "codeblock"
+  },
+  "library/media/typography/converge/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1075,
+    "cornerLum": [
+      0.1075,
+      0.1138,
+      0.1083,
+      0.104
+    ],
+    "file": "library/media/typography/converge/poster.webp",
+    "posterSlug": "converge"
+  },
+  "library/media/typography/countdown/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9602,
+    "cornerLum": [
+      0.9677,
+      0.9677,
+      0.9677,
+      0.9677
+    ],
+    "file": "library/media/typography/countdown/poster.webp",
+    "posterSlug": "countdown"
+  },
+  "library/media/typography/counter/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1184,
+    "cornerLum": [
+      0.1074,
+      0.1129,
+      0.1082,
+      0.1042
+    ],
+    "file": "library/media/typography/counter/poster.webp",
+    "posterSlug": "counter"
+  },
+  "library/media/typography/cutout/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1115,
+    "cornerLum": [
+      0.1069,
+      0.1131,
+      0.1077,
+      0.1043
+    ],
+    "file": "library/media/typography/cutout/poster.webp",
+    "posterSlug": "cutout"
+  },
+  "library/media/typography/demote/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1188,
+    "cornerLum": [
+      0.1075,
+      0.113,
+      0.1082,
+      0.1041
+    ],
+    "file": "library/media/typography/demote/poster.webp",
+    "posterSlug": "demote"
+  },
+  "library/media/typography/docwrite/poster.webp": {
+    "style": "neutral",
+    "meanLum": 0.4709,
+    "cornerLum": [
+      0.1073,
+      0.1106,
+      0.1072,
+      0.104
+    ],
+    "file": "library/media/typography/docwrite/poster.webp",
+    "posterSlug": "docwrite"
+  },
+  "library/media/typography/dotsword/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1109,
+    "cornerLum": [
+      0.1066,
+      0.1136,
+      0.1075,
+      0.104
+    ],
+    "file": "library/media/typography/dotsword/poster.webp",
+    "posterSlug": "dotsword"
+  },
+  "library/media/typography/filmstrip/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1998,
+    "cornerLum": [
+      0.1179,
+      0.1126,
+      0.2165,
+      0.1037
+    ],
+    "file": "library/media/typography/filmstrip/poster.webp",
+    "posterSlug": "filmstrip"
+  },
+  "library/media/typography/flyingwords/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1182,
+    "cornerLum": [
+      0.1074,
+      0.1131,
+      0.1082,
+      0.1041
+    ],
+    "file": "library/media/typography/flyingwords/poster.webp",
+    "posterSlug": "flyingwords",
+    "cardIds": [
+      "demo-FlyingWords"
+    ]
+  },
+  "library/media/typography/fonthymp/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1136,
+    "cornerLum": [
+      0.1067,
+      0.1108,
+      0.107,
+      0.1031
+    ],
+    "file": "library/media/typography/fonthymp/poster.webp",
+    "posterSlug": "fonthymp"
+  },
+  "library/media/typography/glitch/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1225,
+    "cornerLum": [
+      0.1072,
+      0.1148,
+      0.1078,
+      0.1038
+    ],
+    "file": "library/media/typography/glitch/poster.webp",
+    "posterSlug": "glitch"
+  },
+  "library/media/typography/highlight/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1222,
+    "cornerLum": [
+      0.1076,
+      0.1144,
+      0.1077,
+      0.1043
+    ],
+    "file": "library/media/typography/highlight/poster.webp",
+    "posterSlug": "highlight"
+  },
+  "library/media/typography/inktrace-penless/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1114,
+    "cornerLum": [
+      0.1074,
+      0.1133,
+      0.1082,
+      0.1039
+    ],
+    "file": "library/media/typography/inktrace-penless/poster.webp",
+    "posterSlug": "inktrace-penless"
+  },
+  "library/media/typography/inktrace/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1096,
+    "cornerLum": [
+      0.1069,
+      0.1132,
+      0.1077,
+      0.1035
+    ],
+    "file": "library/media/typography/inktrace/poster.webp",
+    "posterSlug": "inktrace"
+  },
+  "library/media/typography/karaoke/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1192,
+    "cornerLum": [
+      0.107,
+      0.1143,
+      0.1077,
+      0.1038
+    ],
+    "file": "library/media/typography/karaoke/poster.webp",
+    "posterSlug": "karaoke"
+  },
+  "library/media/typography/kashida/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1074,
+    "cornerLum": [
+      0.1073,
+      0.1137,
+      0.108,
+      0.104
+    ],
+    "file": "library/media/typography/kashida/poster.webp",
+    "posterSlug": "kashida"
+  },
+  "library/media/typography/leadzoom/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1201,
+    "cornerLum": [
+      0.1075,
+      0.1132,
+      0.1083,
+      0.1042
+    ],
+    "file": "library/media/typography/leadzoom/poster.webp",
+    "posterSlug": "leadzoom"
+  },
+  "library/media/typography/letterdrop/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1155,
+    "cornerLum": [
+      0.1072,
+      0.1136,
+      0.1083,
+      0.1039
+    ],
+    "file": "library/media/typography/letterdrop/poster.webp",
+    "posterSlug": "letterdrop"
+  },
+  "library/media/typography/markerline/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9256,
+    "cornerLum": [
+      0.9543,
+      0.9543,
+      0.9543,
+      0.9543
+    ],
+    "file": "library/media/typography/markerline/poster.webp",
+    "posterSlug": "markerline"
+  },
+  "library/media/typography/mask/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1208,
+    "cornerLum": [
+      0.1073,
+      0.113,
+      0.1078,
+      0.1037
+    ],
+    "file": "library/media/typography/mask/poster.webp",
+    "posterSlug": "mask"
+  },
+  "library/media/typography/nuqta/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1086,
+    "cornerLum": [
+      0.1071,
+      0.1146,
+      0.1077,
+      0.1043
+    ],
+    "file": "library/media/typography/nuqta/poster.webp",
+    "posterSlug": "nuqta"
+  },
+  "library/media/typography/outlinefill/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9557,
+    "cornerLum": [
+      0.9633,
+      0.9633,
+      0.9633,
+      0.9633
+    ],
+    "file": "library/media/typography/outlinefill/poster.webp",
+    "posterSlug": "outlinefill"
+  },
+  "library/media/typography/papercard/poster.webp": {
+    "style": "light",
+    "meanLum": 0.9634,
+    "cornerLum": [
+      0.9637,
+      0.9636,
+      0.9626,
+      0.9626
+    ],
+    "file": "library/media/typography/papercard/poster.webp",
+    "posterSlug": "papercard"
+  },
+  "library/media/typography/pillslot/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1105,
+    "cornerLum": [
+      0.1074,
+      0.1142,
+      0.1082,
+      0.1038
+    ],
+    "file": "library/media/typography/pillslot/poster.webp",
+    "posterSlug": "pillslot"
+  },
+  "library/media/typography/reveal/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1215,
+    "cornerLum": [
+      0.1066,
+      0.1128,
+      0.1074,
+      0.1041
+    ],
+    "file": "library/media/typography/reveal/poster.webp",
+    "posterSlug": "reveal"
+  },
+  "library/media/typography/rollcycle/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1098,
+    "cornerLum": [
+      0.1074,
+      0.1133,
+      0.1084,
+      0.1043
+    ],
+    "file": "library/media/typography/rollcycle/poster.webp",
+    "posterSlug": "rollcycle"
+  },
+  "library/media/typography/scramble/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1105,
+    "cornerLum": [
+      0.1071,
+      0.1141,
+      0.1078,
+      0.1038
+    ],
+    "file": "library/media/typography/scramble/poster.webp",
+    "posterSlug": "scramble",
+    "cardIds": [
+      "demo-Scramble"
+    ]
+  },
+  "library/media/typography/splitflap/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1096,
+    "cornerLum": [
+      0.1075,
+      0.1146,
+      0.1083,
+      0.1042
+    ],
+    "file": "library/media/typography/splitflap/poster.webp",
+    "posterSlug": "splitflap"
+  },
+  "library/media/typography/stomp/poster.webp": {
+    "style": "gradient",
+    "meanLum": 0.1765,
+    "cornerLum": [
+      0.1062,
+      0.113,
+      0.5057,
+      0.5049
+    ],
+    "file": "library/media/typography/stomp/poster.webp",
+    "posterSlug": "stomp"
+  },
+  "library/media/typography/sweep/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1156,
+    "cornerLum": [
+      0.1064,
+      0.1136,
+      0.1071,
+      0.1033
+    ],
+    "file": "library/media/typography/sweep/poster.webp",
+    "posterSlug": "sweep"
+  },
+  "library/media/typography/terminal/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.0876,
+    "cornerLum": [
+      0.1072,
+      0.113,
+      0.1081,
+      0.104
+    ],
+    "file": "library/media/typography/terminal/poster.webp",
+    "posterSlug": "terminal"
+  },
+  "library/media/typography/typewriter/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1136,
+    "cornerLum": [
+      0.1068,
+      0.1128,
+      0.1077,
+      0.1043
+    ],
+    "file": "library/media/typography/typewriter/poster.webp",
+    "posterSlug": "typewriter"
+  },
+  "library/media/typography/wordfade/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1187,
+    "cornerLum": [
+      0.106,
+      0.1122,
+      0.1069,
+      0.1034
+    ],
+    "file": "library/media/typography/wordfade/poster.webp",
+    "posterSlug": "wordfade"
+  },
+  "library/media/typography/wordpop/poster.webp": {
+    "style": "dark",
+    "meanLum": 0.1185,
+    "cornerLum": [
+      0.1073,
+      0.1121,
+      0.1083,
+      0.1041
+    ],
+    "file": "library/media/typography/wordpop/poster.webp",
+    "posterSlug": "wordpop"
+  }
+}

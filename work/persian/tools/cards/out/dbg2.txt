@@ -1,0 +1,12 @@
+chipcycle  smooth<0.01  panel_frac=0.007  maxrow=0.13 rows>0.3=0 maxcol=0.09
+chipcycle  smooth<0.02  panel_frac=0.013  maxrow=0.28 rows>0.3=0 maxcol=0.11
+chipcycle  smooth<0.04  panel_frac=0.018  maxrow=0.32 rows>0.3=1 maxcol=0.17
+   nonbg frac 0.038  lumdev p50 0.0024 p90 0.0341
+counter    smooth<0.01  panel_frac=0.008  maxrow=0.23 rows>0.3=0 maxcol=0.13
+counter    smooth<0.02  panel_frac=0.009  maxrow=0.23 rows>0.3=0 maxcol=0.13
+counter    smooth<0.04  panel_frac=0.014  maxrow=0.23 rows>0.3=0 maxcol=0.17
+   nonbg frac 0.034  lumdev p50 0.0028 p90 0.0348
+assembly   smooth<0.01  panel_frac=0.000  maxrow=0.06 rows>0.3=0 maxcol=0.01
+assembly   smooth<0.02  panel_frac=0.001  maxrow=0.11 rows>0.3=0 maxcol=0.06
+assembly   smooth<0.04  panel_frac=0.007  maxrow=0.66 rows>0.3=1 maxcol=0.08
+   nonbg frac 0.025  lumdev p50 0.0023 p90 0.0358

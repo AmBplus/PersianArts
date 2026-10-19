@@ -1,0 +1,369 @@
+{
+  "generated_note": "static source-level lint; not a pixel proof",
+  "thresholds": {
+    "tokenMin": 8,
+    "paletteKeysMin": 6,
+    "typeRoleMin": 3,
+    "typeWeightMin": 2,
+    "kitFamiliesFail": 1,
+    "kitFamiliesWarn": 2,
+    "fxMinSeconds": 12,
+    "overlapFrac": 0.15,
+    "accentBudget": 1,
+    "accentSatMin": 0.45,
+    "typeBandMin": 0.0917,
+    "unionMaxFiles": 40,
+    "unionMaxDepth": 3
+  },
+  "results": [
+    {
+      "lane": "workbench-card",
+      "file": "D:\\P\\project\\persianArts\\work\\persian\\src\\workbench\\src\\fa-film\\manifest-fa-film.tsx",
+      "files": [
+        "D:\\P\\project\\persianArts\\work\\persian\\src\\workbench\\src\\fa-film\\manifest-fa-film.tsx",
+        "D:\\P\\project\\persianArts\\work\\persian\\src\\workbench\\src\\cards\\manifest.ts",
+        "D:\\P\\project\\persianArts\\work\\persian\\src\\workbench\\src\\fa-film\\fa-cards.tsx",
+        "D:\\P\\project\\persianArts\\work\\persian\\src\\workbench\\demosrc\\data\\chart-live-moves\\UnitDotSwarmRegroupV2.tsx",
+        "D:\\P\\project\\persianArts\\work\\persian\\src\\workbench\\src\\cards\\inkpress\\flash-cut.tsx",
+        "D:\\P\\project\\persianArts\\work\\persian\\src\\workbench\\src\\cards\\types.ts",
+        "D:\\P\\project\\persianArts\\work\\persian\\src\\workbench\\demosrc\\_fa\\index.tsx",
+        "D:\\P\\project\\persianArts\\work\\persian\\src\\workbench\\demosrc\\_fixtures\\Fixtures.tsx",
+        "D:\\P\\project\\persianArts\\work\\persian\\src\\workbench\\demosrc\\data\\chart-live-moves\\_FaTitle.tsx"
+      ],
+      "duration": 26.666666666666668,
+      "durationMissing": [],
+      "manifestMeta": "fps 30, 1920x1080, total 800f",
+      "manifest": {
+        "fps": 30,
+        "width": 1920,
+        "height": 1080,
+        "total": 800,
+        "declaredUnits": 11,
+        "units": [
+          {
+            "kind": "shots",
+            "file": "D:\\P\\project\\persianArts\\work\\persian\\src\\workbench\\src\\fa-film\\manifest-fa-film.tsx",
+            "line": 47,
+            "id": "b1-open",
+            "from": 0,
+            "duration": 90,
+            "accent": "ACCENT",
+            "cardId": "fa-title",
+            "fontSize": 238,
+            "components": [
+              "FaTitle"
+            ]
+          },
+          {
+            "kind": "shots",
+            "file": "D:\\P\\project\\persianArts\\work\\persian\\src\\workbench\\src\\fa-film\\manifest-fa-film.tsx",
+            "line": 69,
+            "id": "b2-swarm",
+            "from": 90,
+            "duration": 90,
+            "accent": "ACCENT",
+            "cardId": "demo:UnitDotSwarmRegroupV2",
+            "fontSize": null,
+            "components": [
+              "SwarmPanel"
+            ]
+          },
+          {
+            "kind": "shots",
+            "file": "D:\\P\\project\\persianArts\\work\\persian\\src\\workbench\\src\\fa-film\\manifest-fa-film.tsx",
+            "line": 81,
+            "id": "b3-stat",
+            "from": 180,
+            "duration": 90,
+            "accent": "ACCENT",
+            "cardId": "fa-stat",
+            "fontSize": 330,
+            "components": [
+              "FaStat"
+            ]
+          },
+          {
+            "kind": "shots",
+            "file": "D:\\P\\project\\persianArts\\work\\persian\\src\\workbench\\src\\fa-film\\manifest-fa-film.tsx",
+            "line": 103,
+            "id": "b4-cream",
+            "from": 270,
+            "duration": 100,
+            "accent": "ACCENT",
+            "cardId": "fa-title",
+            "fontSize": 238,
+            "components": [
+              "FaTitle"
+            ]
+          },
+          {
+            "kind": "shots",
+            "file": "D:\\P\\project\\persianArts\\work\\persian\\src\\workbench\\src\\fa-film\\manifest-fa-film.tsx",
+            "line": 125,
+            "id": "b5-speed",
+            "from": 370,
+            "duration": 90,
+            "accent": "ACCENT",
+            "cardId": "fa-stat",
+            "fontSize": 330,
+            "components": [
+              "FaStat"
+            ]
+          },
+          {
+            "kind": "shots",
+            "file": "D:\\P\\project\\persianArts\\work\\persian\\src\\workbench\\src\\fa-film\\manifest-fa-film.tsx",
+            "line": 147,
+            "id": "b6-light",
+            "from": 460,
+            "duration": 100,
+            "accent": "ACCENT",
+            "cardId": "fa-light-play",
+            "fontSize": 200,
+            "components": [
+              "FaLightPlay"
+            ]
+          },
+          {
+            "kind": "shots",
+            "file": "D:\\P\\project\\persianArts\\work\\persian\\src\\workbench\\src\\fa-film\\manifest-fa-film.tsx",
+            "line": 168,
+            "id": "b7-outro",
+            "from": 560,
+            "duration": 110,
+            "accent": "ACCENT",
+            "cardId": "fa-outro",
+            "fontSize": 320,
+            "components": [
+              "FaOutro"
+            ]
+          },
+          {
+            "kind": "shots",
+            "file": "D:\\P\\project\\persianArts\\work\\persian\\src\\workbench\\src\\fa-film\\manifest-fa-film.tsx",
+            "line": 189,
+            "id": "b8-slogan",
+            "from": 670,
+            "duration": 130,
+            "accent": "ACCENT",
+            "cardId": "fa-value-marquee",
+            "fontSize": null,
+            "components": [
+              "FaValueMarquee"
+            ]
+          },
+          {
+            "kind": "transitions",
+            "file": "D:\\P\\project\\persianArts\\work\\persian\\src\\workbench\\src\\fa-film\\manifest-fa-film.tsx",
+            "line": 203,
+            "id": "t1",
+            "from": 265,
+            "duration": 10,
+            "accent": "ACCENT",
+            "cardId": "inkpress-flash-cut",
+            "fontSize": null,
+            "components": [
+              "FlashCut"
+            ]
+          },
+          {
+            "kind": "transitions",
+            "file": "D:\\P\\project\\persianArts\\work\\persian\\src\\workbench\\src\\fa-film\\manifest-fa-film.tsx",
+            "line": 214,
+            "id": "t2",
+            "from": 555,
+            "duration": 10,
+            "accent": "ACCENT",
+            "cardId": "inkpress-flash-cut",
+            "fontSize": null,
+            "components": [
+              "FlashCut"
+            ]
+          },
+          {
+            "kind": "transitions",
+            "file": "D:\\P\\project\\persianArts\\work\\persian\\src\\workbench\\src\\fa-film\\manifest-fa-film.tsx",
+            "line": 225,
+            "id": "t3",
+            "from": 665,
+            "duration": 10,
+            "accent": "ACCENT",
+            "cardId": "inkpress-flash-cut",
+            "fontSize": null,
+            "components": [
+              "FlashCut"
+            ]
+          }
+        ]
+      },
+      "checks": [
+        {
+          "id": "P01",
+          "title": "purity: requestAnimationFrame for animation state",
+          "level": "SKIP",
+          "note": "N/A (lane: workbench-card): there is no film.seek(t) render body in this lane, so \"rAF inside render\" cannot be evaluated — frame purity here means \"no unseeded clock/random\", checked by C02",
+          "findings": []
+        },
+        {
+          "id": "P02",
+          "title": "purity: wall-clock time (Date.now / performance.now) in render",
+          "level": "SKIP",
+          "note": "N/A (lane: workbench-card): P02 tests wall-clock time INSIDE the seek render body; this lane has no such body — clock purity over the union is checked by C02",
+          "findings": []
+        },
+        {
+          "id": "P03",
+          "title": "purity: unseeded Math.random in render",
+          "level": "SKIP",
+          "note": "N/A (lane: workbench-card): P03 tests Math.random INSIDE the seek render body; this lane has no such body — C02 scans the whole unit graph for it",
+          "findings": []
+        },
+        {
+          "id": "P04",
+          "title": "purity: remote asset URL",
+          "level": "PASS",
+          "note": "scanned 9 unit-graph file(s): no remote asset URL",
+          "findings": []
+        },
+        {
+          "id": "P05",
+          "title": "purity: scroll-driven API",
+          "level": "PASS",
+          "note": "scanned 9 unit-graph file(s): no scroll-driven API",
+          "findings": []
+        },
+        {
+          "id": "T01",
+          "title": "type: letter-spacing on Persian text",
+          "level": "SKIP",
+          "note": "N/A (lane: workbench-card): T01 is the html-film CSS/JS tracker check — in this lane the same rule (non-zero value only, per unit-graph file) is evaluated by C01",
+          "findings": []
+        },
+        {
+          "id": "T02",
+          "title": "type: text stroke",
+          "level": "SKIP",
+          "note": "N/A (lane: workbench-card): T02 is the html-film stroke scan — in this lane the same rule is evaluated per unit-graph file by C01",
+          "findings": []
+        },
+        {
+          "id": "T03",
+          "title": "type: per-character split of Persian",
+          "level": "SKIP",
+          "note": "N/A (lane: workbench-card): T03 is the html-film split scan — in this lane the same rule is evaluated per unit-graph file by C01",
+          "findings": []
+        },
+        {
+          "id": "T04",
+          "title": "type: Persian numerals not wrapped in an LTR isolate",
+          "level": "SKIP",
+          "note": "N/A (lane: workbench-card): no canvas/text-draw call site anywhere in the unit graph — the LTR-isolate rule has no call to inspect (JSX text is laid out by the browser)",
+          "findings": []
+        },
+        {
+          "id": "D01",
+          "title": "design: declared token layer (CSS custom properties or one palette object)",
+          "level": "PASS",
+          "note": "union scan of 9 file(s) | CSS custom properties: 0 (threshold 8) | largest palette object: 10 colour keys (threshold 6) in Fixtures.tsx:6",
+          "findings": []
+        },
+        {
+          "id": "D02",
+          "title": "design: key light declared in the film header",
+          "level": "PASS",
+          "note": "key light/glow declared at work/persian/src/workbench/src/fa-film/fa-cards.tsx:99 with direction + colour + softness (declaration: backgroundImage: `radial-gradient(1200px 820px at ${glowX} ${glowY}, ${ACCENT}${alpha}, t…)",
+          "findings": []
+        },
+        {
+          "id": "D03",
+          "title": "design: type roles, at least two differing in WEIGHT",
+          "level": "PASS",
+          "note": "distinct text weights: [500, 600, 700, 800] (n=4, threshold 2) | named type roles seen: 6 [headline, label, eyebrow, deck, display, numeral] | union scan of 9 file(s)",
+          "findings": []
+        },
+        {
+          "id": "K01",
+          "title": "kit: usage counts and density",
+          "level": "FAIL",
+          "note": "",
+          "findings": [
+            {
+              "level": "FAIL",
+              "line": 1,
+              "reason": "a film of 27 s uses 1 kit family (FAIL threshold <= 1) — the shipped kit is being reinvented. N=26.7s | counts: fx/shader 0, spring 3, outBack/outExpo 0, ltr()/iso 0, camera/pathFollow/hop 0, wobble/drawOn 0 | total 3 call(s), 1 distinct family [spring] | counted over the whole unit graph (9 file(s))"
+            }
+          ]
+        },
+        {
+          "id": "K02",
+          "title": "kit: secondary action (spring / overshoot)",
+          "level": "PASS",
+          "note": "spring 3 + overshoot 0",
+          "findings": []
+        },
+        {
+          "id": "K03",
+          "title": "kit: shader effect used via story",
+          "level": "WARN",
+          "note": "",
+          "findings": [
+            {
+              "level": "WARN",
+              "line": 1,
+              "reason": "no shader effect used (37-entry catalogue available via `pa fx find`) — measured across the batch: shader effects 0. A transition chosen by story is part of the standard, not optional decoration"
+            }
+          ]
+        },
+        {
+          "id": "X01",
+          "title": "text: declared rectangle overlap (source proxy, NOT pixels)",
+          "level": "SKIP",
+          "note": "N/A (lane: workbench-card): this lane declares no per-ratio text-rectangle LAYOUT table; the layout lives in JSX/CSS and cannot be read as rectangles here",
+          "findings": []
+        },
+        {
+          "id": "C01",
+          "title": "persian-safety: tracking / per-char split / text-transform / stroke on Persian (card lane)",
+          "level": "WARN",
+          "note": "",
+          "findings": [
+            {
+              "level": "WARN",
+              "line": 80,
+              "file": "D:\\P\\project\\persianArts\\work\\persian\\src\\workbench\\demosrc\\_fixtures\\Fixtures.tsx",
+              "reason": "non-zero letter-spacing (Latin-only tracking is legal; confirm no Persian run passes through this rule): -1 — tracking breaks Persian letter joins"
+            }
+          ]
+        },
+        {
+          "id": "C02",
+          "title": "determinism: no unseeded Math.random() / Date.now() / performance.now() (card lane)",
+          "level": "PASS",
+          "note": "scanned 9 unit-graph file(s): no Math.random() / Date.now() / performance.now() / new Date()",
+          "findings": []
+        },
+        {
+          "id": "C03",
+          "title": "accent discipline: distinct saturated accent hues vs budget (card lane)",
+          "level": "PASS",
+          "note": "threshold: 1 distinct saturated accent hue(s) (--accents, default 1; HSL saturation >= 0.45, 15-degree hue buckets) | measured: 1 [#ce924a h=33 at work/persian/src/workbench/src/fa-film/fa-cards.tsx:34 (constant ACCENT used as the accent of manifest unit \"b1-open\")]",
+          "findings": []
+        },
+        {
+          "id": "C04",
+          "title": "sanity: manifest duration/frame coverage + every card reference resolves (card lane)",
+          "level": "PASS",
+          "note": "shots: 8 | sum(duration) 800 | max(from+duration) 800 | manifest total 800 | first from 0 | total/fps = 26.67 s | transitions/captions/overlays: 3 | unit-graph files: 9 | unresolved refs: 0",
+          "findings": []
+        },
+        {
+          "id": "C05",
+          "title": "type scale: hero type band vs the measured library bar (card lane)",
+          "level": "PASS",
+          "note": "hero floor 0.0917 = measured library typography-poster median type-band ratio (fontSize / frameHeight 1080; override with --hero-floor) | largest hero: b3-stat 330px = 0.3056 (3.33x the floor) | smallest hero: b6-light 200px = 0.1852 (2.02x the floor) | measured units: 6/11 (library cards size themselves and carry no fontSize prop)",
+          "findings": []
+        }
+      ]
+    }
+  ]
+}

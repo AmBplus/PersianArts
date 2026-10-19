@@ -1730,6 +1730,73 @@
           "actualMinutes": 8.2
         }
       ]
+    },
+    {
+      "id": "STORYLAB2",
+      "title": "S08 tea-steam | تبلیغ محصول (تک‌برداشت، کمرا-محور)",
+      "percent": 100,
+      "items": [
+        {
+          "id": "S08",
+          "title": "S08 tea-steam | تبلیغ محصول (تک‌برداشت، کمرا-محور)",
+          "state": "done",
+          "percent": 100,
+          "expectedMinutes": 25,
+          "updatedAt": "2026-10-16T17:17:36.0589657Z",
+          "note": "",
+          "startedAt": "2026-10-16T08:27:40.6187434Z",
+          "finishedAt": "2026-10-16T17:17:36.0589657Z",
+          "actualMinutes": 529.9
+        },
+        {
+          "id": "S09",
+          "title": "S09 university-sun | معرفی دانشگاه (اطلاعات و عدد)",
+          "state": "done",
+          "percent": 100,
+          "expectedMinutes": 25,
+          "updatedAt": "2026-10-16T17:17:36.6474839Z",
+          "note": "",
+          "startedAt": "2026-10-16T08:27:41.2960581Z",
+          "finishedAt": "2026-10-16T17:17:36.6474839Z",
+          "actualMinutes": 529.9
+        },
+        {
+          "id": "S10",
+          "title": "S10 factory-parsa | معرفی شرکت تولیدی (فرآیند + لوگو)",
+          "state": "done",
+          "percent": 100,
+          "expectedMinutes": 25,
+          "updatedAt": "2026-10-16T17:17:37.2240512Z",
+          "note": "",
+          "startedAt": "2026-10-16T08:27:41.9478080Z",
+          "finishedAt": "2026-10-16T17:17:37.2240512Z",
+          "actualMinutes": 529.9
+        },
+        {
+          "id": "S11",
+          "title": "S11 bazaar-app | معرفی اپ/فروشگاه آنلاین (تایپو گرافیک جنبشی)",
+          "state": "done",
+          "percent": 100,
+          "expectedMinutes": 25,
+          "updatedAt": "2026-10-16T17:17:37.8564760Z",
+          "note": "",
+          "startedAt": "2026-10-16T08:27:42.5995363Z",
+          "finishedAt": "2026-10-16T17:17:37.8564760Z",
+          "actualMinutes": 529.9
+        },
+        {
+          "id": "S12",
+          "title": "S12 rahyaab-route | معرفی شرکت لجستیک (نقشه و مسیر)",
+          "state": "done",
+          "percent": 100,
+          "expectedMinutes": 25,
+          "updatedAt": "2026-10-16T17:17:38.4125311Z",
+          "note": "",
+          "startedAt": "2026-10-16T08:27:43.1900376Z",
+          "finishedAt": "2026-10-16T17:17:38.4125311Z",
+          "actualMinutes": 529.9
+        }
+      ]
     }
   ],
   "blockers": [

@@ -9,9 +9,16 @@ import { projectDuration, projectEndFrame } from "../types";
 import type { ProjectData } from "../types";
 import { MANIFEST, ORIGINAL } from "../cards/projectCards";
 import { buildProjectFromManifest } from "../projectImport";
+import { FA_FILM } from "../fa-film/manifest-fa-film";
+import { SamaFilm } from "../sama-film/SamaFilm";
+import { SAMA_SCHOOLS_PREVIEW } from "../sama-film/manifest";
 
 type MainProps = { project: ProjectData; renderExact?: boolean };
 const Main = MainComposition as React.ComponentType<MainProps>;
+
+/** The «میزکار» film: ONE manifest, two ratios. Both compositions read the same manifest
+ *  (same copy, same timing); the vertical one only overrides width/height. */
+const FaFilm: React.FC = () => <Main project={buildProjectFromManifest(FA_FILM)} renderExact />;
 
 /** Remotion Studio / CLI 入口：
  *  - Main：整条时间轴合成（吃工作台导出的工程 JSON——右侧 Props 面板可直接贴 JSON）
@@ -62,6 +69,16 @@ export const RemotionRoot: React.FC = () => {
           height={MANIFEST.height}
         />
       )}
+      <Composition
+        id="FaFilm1080"
+        component={FaFilm}
+        durationInFrames={Math.max(2, FA_FILM.total)}
+        fps={FA_FILM.fps}
+        width={FA_FILM.width}
+        height={FA_FILM.height}
+      />
+      {/* FaFilmVertical withheld on purpose — decision (b), see manifest-film-v2-report.md */}
+      <Composition id={SAMA_SCHOOLS_PREVIEW.id} component={SamaFilm} durationInFrames={SAMA_SCHOOLS_PREVIEW.durationInFrames} fps={SAMA_SCHOOLS_PREVIEW.fps} width={SAMA_SCHOOLS_PREVIEW.width} height={SAMA_SCHOOLS_PREVIEW.height} />
       {CARD_LIST.filter((c) => c.kind !== "audio").map((card) => {
         const { width, height } = cardSize(card);
         return (
