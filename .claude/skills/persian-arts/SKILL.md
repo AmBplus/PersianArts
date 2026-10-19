@@ -151,4 +151,7 @@ Write `metrics/clip-0N.json` exactly in the schema of the mission brief: `files`
 - [ ] Audio: events.json matches the real edit; −14 LUFS; true peak ≤ −1.0; ducking under cues; `pa audio-check` pass.
 - [ ] Sync: payoff events on the beat grid (≤ 5ms); text appears with its narration/move.
 - [ ] Tech: 1080×1920 (or brief ratio) 30fps, keyframe ≤ 2s, no black/freeze frames beyond intent, `qc-check.mjs` run.
+- [ ] Look: `contact.mjs` sheets built and READ (sheet/strip/phone); all 7 axes ≥ 8; three worst problems listed with timestamps.
+- [ ] Baseline: `motion-energy.mjs` report saved to `metrics/motion/<film>.json` (diagnostic — record the number, do not gate on it).
+- [ ] Anti-patterns: `references/motion-anti.md` checked (no dead camera, no single-easing film, no all-at-once entrances, no end-card hold > 1.4 s, no page chrome).
 - [ ] Evidence: scene frames saved in `metrics/frames/clip-0N/`; every score has a timestamp/frame; issues have root causes and skill changes.
