@@ -12,6 +12,20 @@ Invocation in Codex: $persian-arts  (Claude Code: /persian-arts or the Skill too
 ## When to activate
 Any request to *make, improve, or evaluate* a Persian/RTL motion graphic, promo, teaser, reel, social cut, or animated video — any duration, any ratio. Output is a **motion graphic** (movement + narrative), never a static image. If a user-level video skill auto-triggers, stop and use this one.
 
+## Bootstrap — run FIRST, every time this skill is invoked
+
+The skill must work on a fresh clone: nothing it needs may be assumed to exist.
+
+```bash
+node .claude/skills/persian-arts/scripts/bootstrap.mjs            # check + repair (network allowed)
+node .claude/skills/persian-arts/scripts/bootstrap.mjs --offline  # check only
+```
+
+It guarantees: node tools installed (`work/persian/tools/assets`: sharp · pixelmatch · svg-path-properties ·
+web-audio-beat-detector · gl-transitions · svgo), browser libs installed (`work/persian/htmlfilm/vendor`:
+three · postprocessing · pixi.js), fonts present, craft kit + QC tools present, the 71-item professional
+reference gallery fetched and built (`work/persian/reference-motion/index.html`), and the starter films
+present. Read its report: if a row says MISS, fix that before building anything.
 ## Design principles (non-negotiable)
 1. **Motion & narrative first.** The visual toolkit (typography/lockup, shape, light, texture, data, camera) exists to serve *movement and story*. A lockup is one tool among many — never the spine of the skill or the film.
 2. **Depth over flatness.** Every scene has ≥ 3 depth layers (bg/mid/fg), a light direction with shadow/rim, and texture at low opacity. Flat single-plane scenes are a defect.
@@ -72,11 +86,27 @@ Rules:
 - If a child is unavailable, the parent does that step itself with the parent rules — it never substitutes another director/video skill.
 - `.agents/skills/` is a generated mirror (Codex); edit only `.claude/skills/` and re-run `node scripts/sync-persian-arts-skill.mjs`.
 
+## Effect kit — three layers, pick one per need
+
+| need | use | file |
+|---|---|---|
+| canvas 2D look (grain/leak/chroma/halftone/dust/vhs/grade/glow) | `PF.fx.*` | `work/persian/htmlfilm/lib/pa-effects.js` |
+| GLSL transition or effect (wipe, morph, ripple, glitch, dissolve) | `PA.fx.transition/effect` + `lib/shaders/` | `work/persian/htmlfilm/lib/pa-fx.js` |
+| a real 3D scene with light, shadow, fog, bloom, bokeh | `pa-world.js` (three.js, import map → `work/persian/htmlfilm/vendor/node_modules/three/`) | `work/persian/htmlfilm/lib/pa-world.js` |
+
+Order of operations in a frame: `grade → leak → scene → chroma/glow → grain → vignette → type`.
+Never put grain or vignette over the type. Effects are a tool, not the film: at most two active at once.
+
+## Starters — copy, never start from scratch
+
+`work/persian/htmlfilm/starters/<name>/film.html` + `README.md` + a measured render.
+`PF.fx` and the GLSL shader registry are already inside the kit — read `references/effects.md` before
+writing a new effect.
 ## Workflow (per film)
 1. **Story** → logline, protagonist/object, arc (hook ≤ 3s → build → payoff on the beat → close/CTA). `references/narrative.md`.
 2. **Script** → short Persian lines (≤ 12 words headline, ≤ 18 body), each timed to picture; ≥ 1.5s on screen per line. `references/narrative.md`.
 3. **Storyboard** → scene table: beats, seconds, layers, light, easing, transition into the next scene, and the EVENTS contract (each payoff → a sound cue).
-4. **Image & motion** → build from `assets/film-template/film.html` (palette tokens, grain, vignette, pure `seek(t)`); palettes `references/palettes.md`; motion `references/motion.md`. Card library (`work/persian/tools/cards/card-find.mjs`) is a composition reference, not a mandate.
+4. **Image & motion** → copy a starter (`work/persian/htmlfilm/starters/` — `s01-grainy-gradient`, `s02-kinetic-colorblock`: each has `film.html` + README + a measured render) or start from `assets/film-template/film.html` (palette tokens, grain, vignette, pure `seek(t)`); palettes `references/palettes.md`; motion `references/motion.md`; **effects** `references/effects.md`; **Persian text** `references/persian-text.md`. Card library (`work/persian/tools/cards/card-find.mjs`) is a composition reference, not a mandate.
 5. **Sound** → `events.json` from the real edit, then `sound/tools/mixer/build_sound.py` (music bed + cues + ducking), then `pa.ps1 audio-check`. `references/audio.md`.
 6. **QC & metrics** → extract scene frames + measure (`scripts/frames-extract.mjs`, `scripts/qc-check.mjs`), score the 9 criteria with timestamp evidence, write `metrics/clip-0N.json`.
 7. **Improve the skill** → every issue becomes a rule/example/checklist item here or in `references/`; log it in `metrics/skill-changelog.md`.
@@ -102,9 +132,9 @@ Rules:
 ```
 .claude/skills/persian-arts/
   SKILL.md                  ← this file (principles, workflow, tokens, anti-patterns, checklist)
-  references/               ← palettes.md · motion.md · audio.md · narrative.md
+  references/               ← palettes.md · motion.md · audio.md · narrative.md · motion-anti.md · effects.md · persian-text.md
   assets/                   ← fonts/ (Vazirmatn, Estedad, Amiri, Lalezar) · film-template/film.html
-  scripts/                  ← qc-check.mjs (measure video/audio) · frames-extract.mjs (keyframes for metrics)
+  scripts/                  ← bootstrap.mjs (install/fetch everything this skill needs) · qc-check.mjs · frames-extract.mjs
   beauty/                   ← existing routed craft pack (rules, palettes, recipes, lint)
 ```
 

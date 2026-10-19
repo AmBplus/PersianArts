@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="fa" dir="rtl"><head><meta charset="utf-8"><title>pa-fx2d lab</title>
+<style>@font-face{font-family:"PAHead";src:url("../../assets/fonts/Vazirmatn-Variable.woff2") format("woff2");font-weight:100 900;font-display:block}body{margin:0;background:#000}</style>
+<script src="pa-motion.js"></script><script src="pa-film.js"></script><script src="pa-effects.js"></script></head><body>
+<script>
+/* fx-lab2d page: the canvas-2D effect kit (pa-effects.js) on ONE deterministic scene + a measuring
+   harness. Same measurement idea as fx-lab.html (the WebGL kit): determinism hash, frame-step
+   continuity, ms/frame, thumbnail. performance.now() is used ONLY to measure speed, never to make
+   pixels. The scene is baked once (static) so every frame-to-frame diff measures the EFFECT's motion. */
+const W = 540, H = 960, FPS = 30, TIME_SCALE = 4; // 60 frames = 8 s of film time: enough for leak/vhs/dust to travel
+
+function mk(w, h) { const c = document.createElement("canvas"); c.width = w; c.height = h; return c; }
+
+/* the test picture: gradient + geometry + Persian type through PF.drawLine (word level, RTL, no per-char split) */
+function buildScene() {
+  const c = mk(W, H), x = c.getContext("2d");
+  const g = x.createLinearGradient(0, 0, 0, H);
+  g.addColorStop(0, "#0b2340"); g.addColorStop(0.42, "#15506b"); g.addColorStop(0.72, "#2a9d8f"); g.addColorStop(1, "#e9c46a");
+  x.fillStyle = g; x.fillRect(0, 0, W, H);
+  x.strokeStyle = "rgba(255,255,255,.30)"; x.lineWidth = 2;
+  for (let i = 0; i < 9; i++) { x.beginPath(); x.arc(W / 2, H * 0.52, 34 + i * 36, 0, Math.PI * 2); x.stroke(); }
+  x.fillStyle = "rgba(0,0,0,.20)"; for (let i = 0; i < 6; i++) x.fillRect(i * 96, 0, 26, H);
+  x.fillStyle = "rgba(233,196,106,.28)"; x.fillRect(W * 0.10, H * 0.14, W * 0.80, H * 0.13);
+  PF.drawLine(x, {text: "زمان فرو می‌ریزد", x: W / 2, y: H * 0.52, px: 72, weight: 800, color: "#f7f3ea", t: 9, maxW: W * 0.84});
+  PF.drawLine(x, {text: "و دوباره ساخته می‌شود", x: W / 2, y: H * 0.52 + 64, px: 30, weight: 500, color: "#e9c46a", t: 9, maxW: W * 0.78});
+  PF.drawLine(x, {text: "فریم " + PA.faDigits(60), x: W / 2, y: H * 0.52 + 126, px: 22, weight: 400, color: "rgba(255,255,255,.82)", t: 9});
+  PF.vignette(x, W, H, {strength: 0.5});
+  return c;
+}
+
+const cv = mk(W, H); document.body.appendChild(cv);
+const ctx = cv.getContext("2d", {willReadFrequently: true});
+let SCENE = null;
+
+const EFFECT_LIST = ["chroma", "leak", "halftone", "dust", "scan", "vhs", "grade", "glow"];
+const EFFECT_OPT = {
+  chroma: {px: 6, alpha: 0.30},
+  leak: {alpha: 0.26, color: "#ff9a5a"},
+  halftone: {cell: 16, dot: 0.42, angle: 0.45, alpha: 0.30},
+  dust: {count: 160, alpha: 0.35},
+  scan: {spacing: 6, alpha: 0.16},
+  vhs: {amount: 0.6},
+  grade: {warm: 0.12, cool: 0.06, contrast: 0.08},
+  glow: {amount: 0.22, blur: 18},
+};
+function applyFx(name, t) {
+  const o = EFFECT_OPT[name];
+  switch (name) {
+    case "chroma": PF.fx.chroma(ctx, W, H, t, o); break;
+    case "leak": PF.fx.leak(ctx, W, H, t, o); break;
+    case "halftone": PF.fx.halftone(ctx, W, H, t, o); break;
+    case "dust": PF.fx.dust(ctx, W, H, t, o); break;
+    case "scan": PF.fx.scan(ctx, W, H, o); break;
+    case "vhs": PF.fx.vhs(ctx, W, H, t, o); break;
+    case "grade": PF.fx.grade(ctx, W, H, o); break;
+    case "glow": PF.fx.glow(ctx, W, H, t, o); break;
+  }
+}
+
+function drawScene() {
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+  ctx.globalAlpha = 1; ctx.globalCompositeOperation = "source-over"; ctx.filter = "none";
+  ctx.clearRect(0, 0, W, H);
+  ctx.drawImage(SCENE, 0, 0);
+}
+function snap() { return ctx.getImageData(0, 0, W, H).data; }
+function hashBytes(a) { let h = 2166136261 >>> 0; for (let i = 0; i < a.length; i += 7) { h ^= a[i]; h = Math.imul(h, 16777619) >>> 0; } return h >>> 0; }
+function mad(a, b) { let s = 0, n = 0; for (let i = 0; i < a.length; i += 17) { s += Math.abs(a[i] - b[i]); n++; } return s / n; }
+const errText = (e) => String((e && e.message) || e).slice(0, 300);
+
+window.labInit = () => { SCENE = buildScene(); return {ready: true, width: W, height: H, fps: FPS, time_scale: TIME_SCALE, effects: EFFECT_LIST.slice()}; };
+window.labList = () => EFFECT_LIST.map((n) => ({name: n}));
+window.labRun = (name, N) => {
+  const res = {name, frames: N, deterministic: false};
+  if (EFFECT_LIST.indexOf(name) < 0) { res.error = "unknown effect: " + name; return res; }
+  if (!SCENE) { res.error = "scene not built (call labInit first)"; return res; }
+  N = Math.max(2, N | 0);
+  const tMid = (Math.floor(N / 2) / FPS) * TIME_SCALE;
+  try { drawScene(); applyFx(name, 0); } catch (e) { res.error = "warmup: " + errText(e); return res; }
+  const steps = []; let prev = null, first = null; const t0 = performance.now();
+  for (let i = 0; i < N; i++) {
+    try { drawScene(); applyFx(name, (i / FPS) * TIME_SCALE); } catch (e) { res.error = "frame " + i + ": " + errText(e); return res; }
+    const s = snap();
+    if (i === 0) { res.hash_frame0 = hashBytes(s); first = s; }
+    if (prev) steps.push(mad(prev, s));
+    prev = s;
+  }
+  res.ms_per_frame = +((performance.now() - t0) / N).toFixed(2);
+  res.fps = +(1000 / Math.max(res.ms_per_frame, 0.001)).toFixed(1);
+  // determinism: the same frame, re-rendered after other frames, must hash identically
+  try {
+    drawScene(); applyFx(name, tMid); const h1 = hashBytes(snap());
+    drawScene(); applyFx(name, 0.2); drawScene(); applyFx(name, 2.7);
+    drawScene(); applyFx(name, tMid); const h2 = hashBytes(snap());
+    res.hash = h1; res.hash_again = h2; res.deterministic = h1 === h2;
+  } catch (e) { res.error = "determinism check: " + errText(e); return res; }
+  // continuity: shape of the frame-to-frame diff curve
+  const sorted = steps.slice().sort((a, b) => a - b);
+  const med = sorted[Math.floor(sorted.length / 2)], mx = sorted[sorted.length - 1];
+  res.step_median = +med.toFixed(3); res.step_max = +mx.toFixed(3);
+  res.step_ratio = +(mx / Math.max(med, 0.25)).toFixed(2);
+  let jump = 0; for (let i = 1; i < steps.length; i++) jump = Math.max(jump, Math.abs(steps[i] - steps[i - 1]));
+  res.step_jump = +jump.toFixed(3);
+  res.steps = steps.map((v) => +v.toFixed(3));
+  // span: how much the picture actually changed over the whole run (tells a still overlay from motion)
+  res.span = +mad(first, prev).toFixed(3);
+  res.static_overlay = res.span < 0.5;
+  // thumbnail of the mid frame
+  try { drawScene(); applyFx(name, tMid); const th = mk(270, 480); th.getContext("2d").drawImage(cv, 0, 0, 270, 480); res.thumb = th.toDataURL("image/jpeg", 0.82); }
+  catch (e) { res.thumb_error = errText(e); }
+  return res;
+};
+window.labReady = Promise.all([document.fonts.ready, document.fonts.load('800 72px PAHead'), document.fonts.load('500 30px PAHead'), document.fonts.load('400 22px PAHead')]).then(() => true);
+</script></body></html>

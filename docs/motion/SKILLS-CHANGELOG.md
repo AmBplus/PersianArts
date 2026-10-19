@@ -1,5 +1,12 @@
 # SKILLS-CHANGELOG
 
+## 3.2 (2026-10-20) — skill is now self-sufficient: bootstrap, effect kit, Persian text rules
+- New `scripts/bootstrap.mjs` in the skill: checks/installs node tools (sharp, pixelmatch, svg-path-properties, web-audio-beat-detector, gl-transitions, svgo), browser vendor (three, postprocessing, pixi.js), fonts, craft kit, QC tools, reference gallery (fetch + build) and the starter films — then reports MISS rows. Runs without cmd.exe (npm via npm-cli.js, powershell as its own exe).
+- SKILL.md v3.2: a "Bootstrap — run FIRST" section, an "Effect kit" table (canvas `PF.fx` / WebGL `PA.fx` + GLSL / three world kit), a "Starters — copy, never start from scratch" section, and step 4 now points at the starters + `references/effects.md` + `references/persian-text.md`.
+- New `references/effects.md` (three effect layers, the 8 canvas effects, 6 ready-made looks, the "npm has no effect packages" finding, the DO-NOT list) and `references/persian-text.md` (absolute prohibitions, 12 numbered motion rules, shaping libraries table, the `atmirrr/persian-motion-director` reference map).
+- New `work/persian/htmlfilm/lib/pa-effects.js` — canvas-2D effect kit: chroma, leak, halftone, dust, scan, vhs, grade, glow. Deterministic, memoised patterns; verified by `lib/fx-lab2d.mjs`.
+- New `work/persian/htmlfilm/vendor/` — npm-installed browser libs (three/postprocessing/pixi.js) with `VENDOR.md`.
+- Research: `docs/motion/EFFECT-LIBRARIES-2026-10-20.md`, `docs/motion/PERSIAN-TEXT-EFFECTS-2026-10-20.md`, `docs/motion/FFMPEG-EFFECTS-2026-10-20.md`.
 ## 3.1 (2026-10-19) — children re-linked, skills indexed
 - `description` values no longer contain `: ` inside an unquoted scalar: that made the frontmatter invalid YAML, so the loader dropped the skill silently (the parent `persian-arts` was one of the dropped five).
 - Orchestrator v3.1 names its nine craft children and the workflow step that reads each one; v3.0 mentioned none of them and the children were unreachable.

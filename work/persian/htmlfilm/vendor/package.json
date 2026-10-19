@@ -1,0 +1,11 @@
+{
+  "name": "persian-arts-browser-vendor",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Browser-side libraries for html-film renders (three + postprocessing + pixi). Installed by .claude/skills/persian-arts/scripts/bootstrap.mjs",
+  "dependencies": {
+    "pixi.js": "8.22.0",
+    "postprocessing": "6.39.5",
+    "three": "0.186.1"
+  }
+}
