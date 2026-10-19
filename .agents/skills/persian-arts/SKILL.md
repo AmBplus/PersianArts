@@ -108,6 +108,25 @@ Rules:
   beauty/                   ← existing routed craft pack (rules, palettes, recipes, lint)
 ```
 
+## Review loop (mandatory before delivery)
+
+Numbers alone do not judge craft — the reference motion projects all review the film AS IMAGES, and every
+professional reference film fails the copied pixel thresholds (measured: `docs/motion/MOTION-METRICS-2026-10-19.md`).
+So the order is: build → look → score → fix → look again.
+
+```bash
+# 1. build the review sheets (whole film, a suspicious moment, phone width)
+node work/persian/tools/qc/contact.mjs <frames-dir|video.mp4> --out out/qc --at <t> --n 24
+# 2. save the motion baseline (diagnostic, not a pass/fail gate)
+node work/persian/tools/gates/motion-energy.mjs <frames-dir|video.mp4> --out metrics/motion/<film>.json --max-dim 320
+# 3. read the anti-pattern list before you start a scene
+#    .claude/skills/persian-arts/references/motion-anti.md
+```
+
+Scoring rule: 7 axes (hook ≤ 2 s · readability at 360 px · motion quality · variety every 2–4 s · composition ·
+accuracy · sync), each 1–10, **nothing ships below 8 on any axis**, and the three worst problems are written with
+their timestamp. Compare against the professional references in `work/persian/reference-motion/index.html`
+(71 artefacts, sources in `MANIFEST.md`; re-fetch with `fetch-reference.ps1`).
 ## Quality criteria (score each 1–10 with evidence)
 | code | measures |
 |---|---|
